@@ -19,7 +19,7 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU" OR CMAKE_CXX_COMPILER_ID STREQUAL "Clang
 endif()
 
 # Include directories
-include_directories(include)
+include_directories(inc)
 
 # Create the library
 add_library(MAX22200Driver STATIC
@@ -30,7 +30,7 @@ add_library(MAX22200Driver STATIC
 set_target_properties(MAX22200Driver PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
-    PUBLIC_HEADER include/MAX22200.h include/SPIInterface.h include/MAX22200_Registers.h include/MAX22200_Types.h
+    PUBLIC_HEADER inc/MAX22200.h inc/SPIInterface.h inc/MAX22200_Registers.h inc/MAX22200_Types.h
 )
 
 # Create example executable

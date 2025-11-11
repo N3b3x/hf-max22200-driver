@@ -9,7 +9,7 @@
  * and motor driver IC.
  */
 
-#include "../include/MAX22200.h"
+#include "../inc/MAX22200.h"
 #include <cstring>
 
 namespace MAX22200 {

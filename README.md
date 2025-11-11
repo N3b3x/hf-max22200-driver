@@ -1,8 +1,28 @@
+---
+layout: default
+title: "HardFOC MAX22200 Driver"
+description: "The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:"
+nav_order: 1
+permalink: /
+---
+
 # MAX22200 Driver Library
+**A comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC**
 
-A comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC, designed for embedded systems with hardware abstraction and modern C++ features.
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-## Overview
+## 📚 Table of Contents
+1. [Overview](#-overview)
+2. [Features](#-features)
+3. [Quick Start](#-quick-start)
+4. [Installation](#-installation)
+5. [API Reference](#-api-reference)
+6. [Examples](#-examples)
+7. [Documentation](#-documentation)
+8. [Contributing](#-contributing)
+9. [License](#-license)
+
+## 📦 Overview
 
 The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
 - **Eight Half-Bridges**: Each capable of handling up to 36V and 1A RMS
@@ -11,7 +31,7 @@ The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
 - **High-Speed SPI Interface**: Up to 10MHz communication
 - **Comprehensive Protection**: OCP, OL, DPM, UVLO, TSD, and fault registers
 
-## Features
+## ✨ Features
 
 - ✅ **Hardware Agnostic**: Abstract SPI interface for platform independence
 - ✅ **Modern C++20**: Utilizes latest C++ features for efficiency and safety
@@ -22,7 +42,7 @@ The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
 - ✅ **Type Safety**: Strong typing with enums and structures
 - ✅ **Memory Efficient**: No dynamic allocations, suitable for embedded systems
 
-## Quick Start
+## 🚀 Quick Start
 
 ### 1. Clone the Repository
 
@@ -103,86 +123,41 @@ if (driver.initialize() == DriverStatus::OK) {
 }
 ```
 
-## Requirements
+## 🔧 Installation
 
+1. Clone the repository
+2. Copy the driver files into your project
+3. Implement the SPI interface for your platform
+4. Include the driver header in your code
+
+**Requirements:**
 - **C++20 Compiler**: GCC 10+, Clang 12+, or MSVC 2019+
 - **SPI Interface**: Platform-specific SPI implementation
 - **Memory**: ~2KB RAM, ~8KB Flash (approximate)
 
-## Documentation
+## 📖 API Reference
+
+For complete API documentation, see the [docs/API_Reference.md](docs/API_Reference.md) file.
+
+## 📊 Examples
+
+For ESP32 examples, see the [examples/esp32](examples/esp32/) directory. Additional examples and SPI implementations are available in the [examples](examples/) directory.
+
+## 📚 Documentation
 
 - [API Reference](docs/API_Reference.md) - Complete API documentation
 - [Hardware Guide](docs/Hardware_Guide.md) - Hardware integration guide
 - [ASCII Diagrams](docs/ASCII_Diagrams.md) - Visual representations
-- [Examples](examples/) - Usage examples and SPI implementations
+- Generate Doxygen documentation: `doxygen _config/Doxyfile`
 
-## Building
+## 🤝 Contributing
 
-### Using Make
+Pull requests and suggestions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
-```bash
-# Build everything
-make all
+## 📄 License
 
-# Build with debug flags
-make debug
-
-# Build with release flags
-make release
-
-# Clean build files
-make clean
-
-# Run example
-make run
-```
-
-### Using CMake
-
-```bash
-mkdir build
-cd build
-cmake ..
-make
-```
-
-## Installation
-
-```bash
-# Install library and headers
-make install
-
-# Remove installed files
-make uninstall
-```
-
-## Platform Support
-
-The library is designed to be platform-agnostic. Example implementations are provided for:
-
-- **STM32**: HAL-based SPI implementation
-- **Arduino**: Standard Arduino SPI library
-- **ESP32**: ESP-IDF SPI driver
-- **Generic**: Example implementation for testing
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Add tests if applicable
-5. Submit a pull request
-
-## License
-
-This library is provided as-is for educational and development purposes. Please refer to the MAX22200 datasheet for hardware specifications and limitations.
-
-## Support
-
-For questions and support:
-- Check the documentation in the `docs/` folder
-- Review the examples in the `examples/` folder
-- Refer to the MAX22200 datasheet for hardware details
+This project is licensed under the **GNU General Public License v3.0**.  
+See the [LICENSE](LICENSE) file for details.
 
 ## Changelog
 
