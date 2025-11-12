@@ -25,6 +25,7 @@ jobs:
       checkout_recursive: true
       deployment_branch: 'gh-pages'
       doxygen_config: "_config/Doxyfile"
+      doxygen_working_directory: "."
       jekyll_enabled: true
       jekyll_config: "_config/_config.yml"
       jekyll_source: "."
