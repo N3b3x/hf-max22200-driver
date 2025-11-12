@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['ensure_5fgpio14_5finitialized_0',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]]
+  ['deinitialize_0',['deinitialize',['../classMAX22200_1_1MAX22200.html#ab598c6700ba1e75df64532ede0aa662b',1,'MAX22200::MAX22200']]],
+  ['driverstatistics_1',['DriverStatistics',['../structMAX22200_1_1DriverStatistics.html#a08cf206447a6504033dabd65a22020ed',1,'MAX22200::DriverStatistics']]]
 ];

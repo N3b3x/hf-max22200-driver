@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: inc/MAX22200_Registers.h File Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+   <div id="projectbrief">HF-MAX22200 C++ Driver</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('MAX22200__Registers_8h.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#namespaces">Namespaces</a> &#124;
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">MAX22200_Registers.h File Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Register definitions and constants for <a class="el" href="namespaceMAX22200.html">MAX22200</a> IC.  
+<a href="#details">More...</a></p>
+<div class="textblock"><code>#include &lt;cstdint&gt;</code><br />
+</div><div class="textblock"><div class="dynheader">
+Include dependency graph for MAX22200_Registers.h:</div>
+<div class="dyncontent">
+<div class="center"><img src="MAX22200__Registers_8h__incl.png" border="0" usemap="#ainc_2MAX22200__Registers_8h" alt=""/></div>
+<map name="ainc_2MAX22200__Registers_8h" id="ainc_2MAX22200__Registers_8h">
+<area shape="rect" title="Register definitions and constants for MAX22200 IC." alt="" coords="5,5,200,31"/>
+<area shape="rect" title=" " alt="" coords="69,79,136,104"/>
+<area shape="poly" title=" " alt="" coords="105,31,105,65,100,65,100,31"/>
+</map>
+</div>
+</div><div class="textblock"><div class="dynheader">
+This graph shows which files directly or indirectly include this file:</div>
+<div class="dyncontent">
+<div class="center"><img src="MAX22200__Registers_8h__dep__incl.png" border="0" usemap="#ainc_2MAX22200__Registers_8hdep" alt=""/></div>
+<map name="ainc_2MAX22200__Registers_8hdep" id="ainc_2MAX22200__Registers_8hdep">
+<area shape="rect" title="Register definitions and constants for MAX22200 IC." alt="" coords="144,5,339,31"/>
+<area shape="rect" href="MAX22200_8h.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="178,152,305,177"/>
+<area shape="poly" title=" " alt="" coords="226,43,208,79,207,99,213,118,233,150,229,153,208,120,202,100,203,78,221,41"/>
+<area shape="rect" href="MAX22200__Types_8h.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="217,79,388,104"/>
+<area shape="poly" title=" " alt="" coords="262,40,295,77,291,80,258,43"/>
+<area shape="rect" href="MAX22200ComprehensiveTest_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="5,225,256,265"/>
+<area shape="poly" title=" " alt="" coords="215,187,159,227,156,223,212,183"/>
+<area shape="rect" href="MAX22200_8cpp.html" title="Implementation of MAX22200 driver class." alt="" coords="281,233,423,258"/>
+<area shape="poly" title=" " alt="" coords="271,183,337,230,334,235,268,188"/>
+<area shape="poly" title=" " alt="" coords="286,116,253,154,249,150,282,113"/>
+</map>
+</div>
+</div>
+<p><a href="MAX22200__Registers_8h_source.html">Go to the source code of this file.</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMAX22200" id="r_namespaceMAX22200"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html">MAX22200</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1Registers" id="r_namespaceMAX22200_1_1Registers"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html">MAX22200::Registers</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1Registers"><td class="mdescLeft">&#160;</td><td class="mdescRight">Register addresses for <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a>. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1GlobalConfigBits" id="r_namespaceMAX22200_1_1GlobalConfigBits"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html">MAX22200::GlobalConfigBits</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1GlobalConfigBits"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field definitions for Global Configuration Register (0x00) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1ChannelEnable" id="r_namespaceMAX22200_1_1ChannelEnable"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html">MAX22200::ChannelEnable</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1ChannelEnable"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field definitions for Channel Enable Register (0x01) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1FaultStatusBits" id="r_namespaceMAX22200_1_1FaultStatusBits"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html">MAX22200::FaultStatusBits</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1FaultStatusBits"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field definitions for Fault Status Register (0x02) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1ChannelConfigBits" id="r_namespaceMAX22200_1_1ChannelConfigBits"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html">MAX22200::ChannelConfigBits</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1ChannelConfigBits"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bit field definitions for Channel Configuration Register (0x10-0x17) <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1CurrentRange" id="r_namespaceMAX22200_1_1CurrentRange"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1CurrentRange.html">MAX22200::CurrentRange</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1CurrentRange"><td class="mdescLeft">&#160;</td><td class="mdescRight">Current range definitions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:namespaceMAX22200_1_1TimingRange" id="r_namespaceMAX22200_1_1TimingRange"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1TimingRange.html">MAX22200::TimingRange</a></td></tr>
+<tr class="memdesc:namespaceMAX22200_1_1TimingRange"><td class="mdescLeft">&#160;</td><td class="mdescRight">Timing range definitions. <br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a7a2b1f8d773d609ec427c6099a1acf41" id="r_a7a2b1f8d773d609ec427c6099a1acf41"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#a7a2b1f8d773d609ec427c6099a1acf41">MAX22200::getChannelConfigReg</a> (uint8_t channel)</td></tr>
+<tr class="memdesc:a7a2b1f8d773d609ec427c6099a1acf41"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to get channel configuration register address.  <br /></td></tr>
+<tr class="separator:a7a2b1f8d773d609ec427c6099a1acf41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a91b260379e9cb435b336a9af0b36af07" id="r_a91b260379e9cb435b336a9af0b36af07"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#a91b260379e9cb435b336a9af0b36af07">MAX22200::getChannelCurrentReg</a> (uint8_t channel)</td></tr>
+<tr class="memdesc:a91b260379e9cb435b336a9af0b36af07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to get channel current register address.  <br /></td></tr>
+<tr class="separator:a91b260379e9cb435b336a9af0b36af07"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a943528aed0b6efd6a16854b55a8e921b" id="r_a943528aed0b6efd6a16854b55a8e921b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#a943528aed0b6efd6a16854b55a8e921b">MAX22200::getChannelTimingReg</a> (uint8_t channel)</td></tr>
+<tr class="memdesc:a943528aed0b6efd6a16854b55a8e921b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function to get channel timing register address.  <br /></td></tr>
+<tr class="separator:a943528aed0b6efd6a16854b55a8e921b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a25866ef5b233463fb686f328214d8574" id="r_a25866ef5b233463fb686f328214d8574"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#a25866ef5b233463fb686f328214d8574">MAX22200::NUM_CHANNELS</a> = 8</td></tr>
+<tr class="memdesc:a25866ef5b233463fb686f328214d8574"><td class="mdescLeft">&#160;</td><td class="mdescRight">Number of channels on the <a class="el" href="namespaceMAX22200.html">MAX22200</a>.  <br /></td></tr>
+<tr class="separator:a25866ef5b233463fb686f328214d8574"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f0d26c9250205ec504ca174f6d09aa9" id="r_a8f0d26c9250205ec504ca174f6d09aa9"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#a8f0d26c9250205ec504ca174f6d09aa9">MAX22200::MAX_SPI_FREQ_STANDALONE</a> = 10000000</td></tr>
+<tr class="memdesc:a8f0d26c9250205ec504ca174f6d09aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum SPI clock frequency without daisy chaining (Hz)  <br /></td></tr>
+<tr class="separator:a8f0d26c9250205ec504ca174f6d09aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af883862b9fdce8809295af30431bcf78" id="r_af883862b9fdce8809295af30431bcf78"><td class="memItemLeft" align="right" valign="top">constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html#af883862b9fdce8809295af30431bcf78">MAX22200::MAX_SPI_FREQ_DAISY_CHAIN</a> = 5000000</td></tr>
+<tr class="memdesc:af883862b9fdce8809295af30431bcf78"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum SPI clock frequency with daisy chaining (Hz)  <br /></td></tr>
+<tr class="separator:af883862b9fdce8809295af30431bcf78"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ac43a8a99b3e2478f9c77084229a19c" id="r_a8ac43a8a99b3e2478f9c77084229a19c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a8ac43a8a99b3e2478f9c77084229a19c">MAX22200::Registers::GLOBAL_CONFIG</a> = 0x00</td></tr>
+<tr class="memdesc:a8ac43a8a99b3e2478f9c77084229a19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global configuration register.  <br /></td></tr>
+<tr class="separator:a8ac43a8a99b3e2478f9c77084229a19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a69c14dce25970bf0f196dc9e0548a9" id="r_a9a69c14dce25970bf0f196dc9e0548a9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a9a69c14dce25970bf0f196dc9e0548a9">MAX22200::Registers::CHANNEL_ENABLE</a> = 0x01</td></tr>
+<tr class="memdesc:a9a69c14dce25970bf0f196dc9e0548a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel enable register.  <br /></td></tr>
+<tr class="separator:a9a69c14dce25970bf0f196dc9e0548a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53746279d3bfd6c380c74f3350ed46f0" id="r_a53746279d3bfd6c380c74f3350ed46f0"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a53746279d3bfd6c380c74f3350ed46f0">MAX22200::Registers::FAULT_STATUS</a> = 0x02</td></tr>
+<tr class="memdesc:a53746279d3bfd6c380c74f3350ed46f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fault status register.  <br /></td></tr>
+<tr class="separator:a53746279d3bfd6c380c74f3350ed46f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d49992c86f73d33cc21e6ec85dd8335" id="r_a0d49992c86f73d33cc21e6ec85dd8335"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a0d49992c86f73d33cc21e6ec85dd8335">MAX22200::Registers::FAULT_MASK</a> = 0x03</td></tr>
+<tr class="memdesc:a0d49992c86f73d33cc21e6ec85dd8335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fault mask register.  <br /></td></tr>
+<tr class="separator:a0d49992c86f73d33cc21e6ec85dd8335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af721da2478c2ffc157f6016d39220bb1" id="r_af721da2478c2ffc157f6016d39220bb1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#af721da2478c2ffc157f6016d39220bb1">MAX22200::Registers::DIAGNOSTIC</a> = 0x04</td></tr>
+<tr class="memdesc:af721da2478c2ffc157f6016d39220bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic register.  <br /></td></tr>
+<tr class="separator:af721da2478c2ffc157f6016d39220bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6e72397694d53ad97dd4f2dbcf36f1" id="r_aad6e72397694d53ad97dd4f2dbcf36f1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#aad6e72397694d53ad97dd4f2dbcf36f1">MAX22200::Registers::CH0_CONFIG</a> = 0x10</td></tr>
+<tr class="memdesc:aad6e72397694d53ad97dd4f2dbcf36f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 configuration.  <br /></td></tr>
+<tr class="separator:aad6e72397694d53ad97dd4f2dbcf36f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac93b94bc4449a06da6b95c29f4b788e8" id="r_ac93b94bc4449a06da6b95c29f4b788e8"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ac93b94bc4449a06da6b95c29f4b788e8">MAX22200::Registers::CH1_CONFIG</a> = 0x11</td></tr>
+<tr class="memdesc:ac93b94bc4449a06da6b95c29f4b788e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 configuration.  <br /></td></tr>
+<tr class="separator:ac93b94bc4449a06da6b95c29f4b788e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14aa73edd166a954c90595f03534dfd8" id="r_a14aa73edd166a954c90595f03534dfd8"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a14aa73edd166a954c90595f03534dfd8">MAX22200::Registers::CH2_CONFIG</a> = 0x12</td></tr>
+<tr class="memdesc:a14aa73edd166a954c90595f03534dfd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 configuration.  <br /></td></tr>
+<tr class="separator:a14aa73edd166a954c90595f03534dfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4fbcde612dfb15d4175bedfe5a0770b" id="r_ac4fbcde612dfb15d4175bedfe5a0770b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ac4fbcde612dfb15d4175bedfe5a0770b">MAX22200::Registers::CH3_CONFIG</a> = 0x13</td></tr>
+<tr class="memdesc:ac4fbcde612dfb15d4175bedfe5a0770b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 configuration.  <br /></td></tr>
+<tr class="separator:ac4fbcde612dfb15d4175bedfe5a0770b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a6aeab8e193d5cdae7ae2e5b6c8e85" id="r_ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ab0a6aeab8e193d5cdae7ae2e5b6c8e85">MAX22200::Registers::CH4_CONFIG</a> = 0x14</td></tr>
+<tr class="memdesc:ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 configuration.  <br /></td></tr>
+<tr class="separator:ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919c609d23dda824a9f3550c3059ce2c" id="r_a919c609d23dda824a9f3550c3059ce2c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a919c609d23dda824a9f3550c3059ce2c">MAX22200::Registers::CH5_CONFIG</a> = 0x15</td></tr>
+<tr class="memdesc:a919c609d23dda824a9f3550c3059ce2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 configuration.  <br /></td></tr>
+<tr class="separator:a919c609d23dda824a9f3550c3059ce2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a857be62e3f9295ac12a093473e15ceb9" id="r_a857be62e3f9295ac12a093473e15ceb9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a857be62e3f9295ac12a093473e15ceb9">MAX22200::Registers::CH6_CONFIG</a> = 0x16</td></tr>
+<tr class="memdesc:a857be62e3f9295ac12a093473e15ceb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 configuration.  <br /></td></tr>
+<tr class="separator:a857be62e3f9295ac12a093473e15ceb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af270221a20e2d82a7335cd087f2eb1b1" id="r_af270221a20e2d82a7335cd087f2eb1b1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#af270221a20e2d82a7335cd087f2eb1b1">MAX22200::Registers::CH7_CONFIG</a> = 0x17</td></tr>
+<tr class="memdesc:af270221a20e2d82a7335cd087f2eb1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 configuration.  <br /></td></tr>
+<tr class="separator:af270221a20e2d82a7335cd087f2eb1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa56dd1354ab44791d63258db93a615" id="r_a5fa56dd1354ab44791d63258db93a615"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a5fa56dd1354ab44791d63258db93a615">MAX22200::Registers::CH0_CURRENT</a> = 0x20</td></tr>
+<tr class="memdesc:a5fa56dd1354ab44791d63258db93a615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 current control.  <br /></td></tr>
+<tr class="separator:a5fa56dd1354ab44791d63258db93a615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad434aa2bc4784d070c5fda4b1fcb7a3d" id="r_ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ad434aa2bc4784d070c5fda4b1fcb7a3d">MAX22200::Registers::CH1_CURRENT</a> = 0x21</td></tr>
+<tr class="memdesc:ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 current control.  <br /></td></tr>
+<tr class="separator:ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae00eefc00c70944a709a6a2faf936c48" id="r_ae00eefc00c70944a709a6a2faf936c48"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ae00eefc00c70944a709a6a2faf936c48">MAX22200::Registers::CH2_CURRENT</a> = 0x22</td></tr>
+<tr class="memdesc:ae00eefc00c70944a709a6a2faf936c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 current control.  <br /></td></tr>
+<tr class="separator:ae00eefc00c70944a709a6a2faf936c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc81ec7f2e81e97f7b914fef62ec3d7" id="r_a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a9dc81ec7f2e81e97f7b914fef62ec3d7">MAX22200::Registers::CH3_CURRENT</a> = 0x23</td></tr>
+<tr class="memdesc:a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 current control.  <br /></td></tr>
+<tr class="separator:a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5188693baff450aa8d2b024d434f3e2" id="r_ad5188693baff450aa8d2b024d434f3e2"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ad5188693baff450aa8d2b024d434f3e2">MAX22200::Registers::CH4_CURRENT</a> = 0x24</td></tr>
+<tr class="memdesc:ad5188693baff450aa8d2b024d434f3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 current control.  <br /></td></tr>
+<tr class="separator:ad5188693baff450aa8d2b024d434f3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42af1610665746d1c42781be0636f8ec" id="r_a42af1610665746d1c42781be0636f8ec"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a42af1610665746d1c42781be0636f8ec">MAX22200::Registers::CH5_CURRENT</a> = 0x25</td></tr>
+<tr class="memdesc:a42af1610665746d1c42781be0636f8ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 current control.  <br /></td></tr>
+<tr class="separator:a42af1610665746d1c42781be0636f8ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff3b3d5ebe972e4466ab8cd0b2dff55c" id="r_aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#aff3b3d5ebe972e4466ab8cd0b2dff55c">MAX22200::Registers::CH6_CURRENT</a> = 0x26</td></tr>
+<tr class="memdesc:aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 current control.  <br /></td></tr>
+<tr class="separator:aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace8c5f660c38d83d9bd4fe6b5fb2c18a" id="r_ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ace8c5f660c38d83d9bd4fe6b5fb2c18a">MAX22200::Registers::CH7_CURRENT</a> = 0x27</td></tr>
+<tr class="memdesc:ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 current control.  <br /></td></tr>
+<tr class="separator:ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab0fe063ac2c97f081271e70ceedb3f9" id="r_aab0fe063ac2c97f081271e70ceedb3f9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#aab0fe063ac2c97f081271e70ceedb3f9">MAX22200::Registers::CH0_TIMING</a> = 0x30</td></tr>
+<tr class="memdesc:aab0fe063ac2c97f081271e70ceedb3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 timing control.  <br /></td></tr>
+<tr class="separator:aab0fe063ac2c97f081271e70ceedb3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a158e69cdb4683c0721075117dc05c50d" id="r_a158e69cdb4683c0721075117dc05c50d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a158e69cdb4683c0721075117dc05c50d">MAX22200::Registers::CH1_TIMING</a> = 0x31</td></tr>
+<tr class="memdesc:a158e69cdb4683c0721075117dc05c50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 timing control.  <br /></td></tr>
+<tr class="separator:a158e69cdb4683c0721075117dc05c50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb8be909908e74324e0d6702d2f65ca0" id="r_acb8be909908e74324e0d6702d2f65ca0"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#acb8be909908e74324e0d6702d2f65ca0">MAX22200::Registers::CH2_TIMING</a> = 0x32</td></tr>
+<tr class="memdesc:acb8be909908e74324e0d6702d2f65ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 timing control.  <br /></td></tr>
+<tr class="separator:acb8be909908e74324e0d6702d2f65ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3adbef3cdf7a3c86f10866d82355e32" id="r_ab3adbef3cdf7a3c86f10866d82355e32"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#ab3adbef3cdf7a3c86f10866d82355e32">MAX22200::Registers::CH3_TIMING</a> = 0x33</td></tr>
+<tr class="memdesc:ab3adbef3cdf7a3c86f10866d82355e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 timing control.  <br /></td></tr>
+<tr class="separator:ab3adbef3cdf7a3c86f10866d82355e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194fe97e2064b2abe22ec848c0194b35" id="r_a194fe97e2064b2abe22ec848c0194b35"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a194fe97e2064b2abe22ec848c0194b35">MAX22200::Registers::CH4_TIMING</a> = 0x34</td></tr>
+<tr class="memdesc:a194fe97e2064b2abe22ec848c0194b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 timing control.  <br /></td></tr>
+<tr class="separator:a194fe97e2064b2abe22ec848c0194b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0e4dce1069f0ce7554a34f1b4de6e2" id="r_a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a8b0e4dce1069f0ce7554a34f1b4de6e2">MAX22200::Registers::CH5_TIMING</a> = 0x35</td></tr>
+<tr class="memdesc:a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 timing control.  <br /></td></tr>
+<tr class="separator:a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805385e0800d2ceb3347a18e878ee0e1" id="r_a805385e0800d2ceb3347a18e878ee0e1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a805385e0800d2ceb3347a18e878ee0e1">MAX22200::Registers::CH6_TIMING</a> = 0x36</td></tr>
+<tr class="memdesc:a805385e0800d2ceb3347a18e878ee0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 timing control.  <br /></td></tr>
+<tr class="separator:a805385e0800d2ceb3347a18e878ee0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7055807dee3e32f7866d6e611539a0d9" id="r_a7055807dee3e32f7866d6e611539a0d9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1Registers.html#a7055807dee3e32f7866d6e611539a0d9">MAX22200::Registers::CH7_TIMING</a> = 0x37</td></tr>
+<tr class="memdesc:a7055807dee3e32f7866d6e611539a0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 timing control.  <br /></td></tr>
+<tr class="separator:a7055807dee3e32f7866d6e611539a0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2030fa970207c7b406325c2d4bbc17" id="r_afd2030fa970207c7b406325c2d4bbc17"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#afd2030fa970207c7b406325c2d4bbc17">MAX22200::GlobalConfigBits::RESET_POS</a> = 0</td></tr>
+<tr class="memdesc:afd2030fa970207c7b406325c2d4bbc17"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset bit position.  <br /></td></tr>
+<tr class="separator:afd2030fa970207c7b406325c2d4bbc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cb19ed9819d7e72a3cfab86ed217aa9" id="r_a1cb19ed9819d7e72a3cfab86ed217aa9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a1cb19ed9819d7e72a3cfab86ed217aa9">MAX22200::GlobalConfigBits::RESET_MASK</a> = 0x01</td></tr>
+<tr class="memdesc:a1cb19ed9819d7e72a3cfab86ed217aa9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset bit mask.  <br /></td></tr>
+<tr class="separator:a1cb19ed9819d7e72a3cfab86ed217aa9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6dc368fcaea623776403c8226f3b4d1b" id="r_a6dc368fcaea623776403c8226f3b4d1b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a6dc368fcaea623776403c8226f3b4d1b">MAX22200::GlobalConfigBits::SLEEP_POS</a> = 1</td></tr>
+<tr class="memdesc:a6dc368fcaea623776403c8226f3b4d1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep mode bit position.  <br /></td></tr>
+<tr class="separator:a6dc368fcaea623776403c8226f3b4d1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7ff3f4a46ae37b34189edf833a6aea6a" id="r_a7ff3f4a46ae37b34189edf833a6aea6a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a7ff3f4a46ae37b34189edf833a6aea6a">MAX22200::GlobalConfigBits::SLEEP_MASK</a> = 0x02</td></tr>
+<tr class="memdesc:a7ff3f4a46ae37b34189edf833a6aea6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sleep mode bit mask.  <br /></td></tr>
+<tr class="separator:a7ff3f4a46ae37b34189edf833a6aea6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3af7f38ea01974d3201950cdcccf94ed" id="r_a3af7f38ea01974d3201950cdcccf94ed"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a3af7f38ea01974d3201950cdcccf94ed">MAX22200::GlobalConfigBits::DIAG_EN_POS</a> = 2</td></tr>
+<tr class="memdesc:a3af7f38ea01974d3201950cdcccf94ed"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic enable bit position.  <br /></td></tr>
+<tr class="separator:a3af7f38ea01974d3201950cdcccf94ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2a16c4702b2628c5dd03ffe9ae9ff279" id="r_a2a16c4702b2628c5dd03ffe9ae9ff279"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a2a16c4702b2628c5dd03ffe9ae9ff279">MAX22200::GlobalConfigBits::DIAG_EN_MASK</a> = 0x04</td></tr>
+<tr class="memdesc:a2a16c4702b2628c5dd03ffe9ae9ff279"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic enable bit mask.  <br /></td></tr>
+<tr class="separator:a2a16c4702b2628c5dd03ffe9ae9ff279"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad841f1190d5ab7a070b6990b2e3fee69" id="r_ad841f1190d5ab7a070b6990b2e3fee69"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#ad841f1190d5ab7a070b6990b2e3fee69">MAX22200::GlobalConfigBits::ICS_EN_POS</a> = 3</td></tr>
+<tr class="memdesc:ad841f1190d5ab7a070b6990b2e3fee69"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrated Current Sensing enable bit position.  <br /></td></tr>
+<tr class="separator:ad841f1190d5ab7a070b6990b2e3fee69"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abbe0e73bfe36244cef64fbd6648ffa44" id="r_abbe0e73bfe36244cef64fbd6648ffa44"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#abbe0e73bfe36244cef64fbd6648ffa44">MAX22200::GlobalConfigBits::ICS_EN_MASK</a> = 0x08</td></tr>
+<tr class="memdesc:abbe0e73bfe36244cef64fbd6648ffa44"><td class="mdescLeft">&#160;</td><td class="mdescRight">Integrated Current Sensing enable bit mask.  <br /></td></tr>
+<tr class="separator:abbe0e73bfe36244cef64fbd6648ffa44"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:adb3def62d35ba0c52da743485def730b" id="r_adb3def62d35ba0c52da743485def730b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#adb3def62d35ba0c52da743485def730b">MAX22200::GlobalConfigBits::DAISY_CHAIN_POS</a> = 4</td></tr>
+<tr class="memdesc:adb3def62d35ba0c52da743485def730b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Daisy chain mode bit position.  <br /></td></tr>
+<tr class="separator:adb3def62d35ba0c52da743485def730b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a45518cccd7d96b683e978948c95bd31f" id="r_a45518cccd7d96b683e978948c95bd31f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1GlobalConfigBits.html#a45518cccd7d96b683e978948c95bd31f">MAX22200::GlobalConfigBits::DAISY_CHAIN_MASK</a> = 0x10</td></tr>
+<tr class="memdesc:a45518cccd7d96b683e978948c95bd31f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Daisy chain mode bit mask.  <br /></td></tr>
+<tr class="separator:a45518cccd7d96b683e978948c95bd31f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3972a5fbfaaa5f8e90a3c0dbe0329cb2" id="r_a3972a5fbfaaa5f8e90a3c0dbe0329cb2"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a3972a5fbfaaa5f8e90a3c0dbe0329cb2">MAX22200::ChannelEnable::CH0_EN_POS</a> = 0</td></tr>
+<tr class="memdesc:a3972a5fbfaaa5f8e90a3c0dbe0329cb2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 enable bit position.  <br /></td></tr>
+<tr class="separator:a3972a5fbfaaa5f8e90a3c0dbe0329cb2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a28a7299315048e52cf91e016879d304a" id="r_a28a7299315048e52cf91e016879d304a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a28a7299315048e52cf91e016879d304a">MAX22200::ChannelEnable::CH0_EN_MASK</a> = 0x01</td></tr>
+<tr class="memdesc:a28a7299315048e52cf91e016879d304a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 enable bit mask.  <br /></td></tr>
+<tr class="separator:a28a7299315048e52cf91e016879d304a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bf73c71de8e920f635ea8d2e385c6a3" id="r_a7bf73c71de8e920f635ea8d2e385c6a3"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a7bf73c71de8e920f635ea8d2e385c6a3">MAX22200::ChannelEnable::CH1_EN_POS</a> = 1</td></tr>
+<tr class="memdesc:a7bf73c71de8e920f635ea8d2e385c6a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 enable bit position.  <br /></td></tr>
+<tr class="separator:a7bf73c71de8e920f635ea8d2e385c6a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61dbff69e10101e93f160580eb3d9555" id="r_a61dbff69e10101e93f160580eb3d9555"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a61dbff69e10101e93f160580eb3d9555">MAX22200::ChannelEnable::CH1_EN_MASK</a> = 0x02</td></tr>
+<tr class="memdesc:a61dbff69e10101e93f160580eb3d9555"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 enable bit mask.  <br /></td></tr>
+<tr class="separator:a61dbff69e10101e93f160580eb3d9555"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0802a468bb6b530c5f638366f4fa8fb5" id="r_a0802a468bb6b530c5f638366f4fa8fb5"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a0802a468bb6b530c5f638366f4fa8fb5">MAX22200::ChannelEnable::CH2_EN_POS</a> = 2</td></tr>
+<tr class="memdesc:a0802a468bb6b530c5f638366f4fa8fb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 enable bit position.  <br /></td></tr>
+<tr class="separator:a0802a468bb6b530c5f638366f4fa8fb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a62f8898e3b3b60a25b377d510690ee18" id="r_a62f8898e3b3b60a25b377d510690ee18"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a62f8898e3b3b60a25b377d510690ee18">MAX22200::ChannelEnable::CH2_EN_MASK</a> = 0x04</td></tr>
+<tr class="memdesc:a62f8898e3b3b60a25b377d510690ee18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 enable bit mask.  <br /></td></tr>
+<tr class="separator:a62f8898e3b3b60a25b377d510690ee18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c39a40670b9ebf3bfcf3391e9e26c4c" id="r_a0c39a40670b9ebf3bfcf3391e9e26c4c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a0c39a40670b9ebf3bfcf3391e9e26c4c">MAX22200::ChannelEnable::CH3_EN_POS</a> = 3</td></tr>
+<tr class="memdesc:a0c39a40670b9ebf3bfcf3391e9e26c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 enable bit position.  <br /></td></tr>
+<tr class="separator:a0c39a40670b9ebf3bfcf3391e9e26c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a624e8a976a8fa5bb7dd31fa7529d28dd" id="r_a624e8a976a8fa5bb7dd31fa7529d28dd"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a624e8a976a8fa5bb7dd31fa7529d28dd">MAX22200::ChannelEnable::CH3_EN_MASK</a> = 0x08</td></tr>
+<tr class="memdesc:a624e8a976a8fa5bb7dd31fa7529d28dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 enable bit mask.  <br /></td></tr>
+<tr class="separator:a624e8a976a8fa5bb7dd31fa7529d28dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4bbf789714513517db9dcd08ddcfa8be" id="r_a4bbf789714513517db9dcd08ddcfa8be"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a4bbf789714513517db9dcd08ddcfa8be">MAX22200::ChannelEnable::CH4_EN_POS</a> = 4</td></tr>
+<tr class="memdesc:a4bbf789714513517db9dcd08ddcfa8be"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 enable bit position.  <br /></td></tr>
+<tr class="separator:a4bbf789714513517db9dcd08ddcfa8be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8563e7079cc7e659370354f20667b1f1" id="r_a8563e7079cc7e659370354f20667b1f1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a8563e7079cc7e659370354f20667b1f1">MAX22200::ChannelEnable::CH4_EN_MASK</a> = 0x10</td></tr>
+<tr class="memdesc:a8563e7079cc7e659370354f20667b1f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 enable bit mask.  <br /></td></tr>
+<tr class="separator:a8563e7079cc7e659370354f20667b1f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac49ba2103bd0d696fa257e6ccb5cbb74" id="r_ac49ba2103bd0d696fa257e6ccb5cbb74"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#ac49ba2103bd0d696fa257e6ccb5cbb74">MAX22200::ChannelEnable::CH5_EN_POS</a> = 5</td></tr>
+<tr class="memdesc:ac49ba2103bd0d696fa257e6ccb5cbb74"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 enable bit position.  <br /></td></tr>
+<tr class="separator:ac49ba2103bd0d696fa257e6ccb5cbb74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae94f597afc875676c918f2ad10766b3f" id="r_ae94f597afc875676c918f2ad10766b3f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#ae94f597afc875676c918f2ad10766b3f">MAX22200::ChannelEnable::CH5_EN_MASK</a> = 0x20</td></tr>
+<tr class="memdesc:ae94f597afc875676c918f2ad10766b3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 enable bit mask.  <br /></td></tr>
+<tr class="separator:ae94f597afc875676c918f2ad10766b3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae4b7dcbde69e5f9b8603c9019166bbb4" id="r_ae4b7dcbde69e5f9b8603c9019166bbb4"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#ae4b7dcbde69e5f9b8603c9019166bbb4">MAX22200::ChannelEnable::CH6_EN_POS</a> = 6</td></tr>
+<tr class="memdesc:ae4b7dcbde69e5f9b8603c9019166bbb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 enable bit position.  <br /></td></tr>
+<tr class="separator:ae4b7dcbde69e5f9b8603c9019166bbb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a633b64d933710ee80ae907e8e9eeaddd" id="r_a633b64d933710ee80ae907e8e9eeaddd"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a633b64d933710ee80ae907e8e9eeaddd">MAX22200::ChannelEnable::CH6_EN_MASK</a> = 0x40</td></tr>
+<tr class="memdesc:a633b64d933710ee80ae907e8e9eeaddd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 enable bit mask.  <br /></td></tr>
+<tr class="separator:a633b64d933710ee80ae907e8e9eeaddd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a12bf70e71ce086d034701e9e94cedc6e" id="r_a12bf70e71ce086d034701e9e94cedc6e"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a12bf70e71ce086d034701e9e94cedc6e">MAX22200::ChannelEnable::CH7_EN_POS</a> = 7</td></tr>
+<tr class="memdesc:a12bf70e71ce086d034701e9e94cedc6e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 enable bit position.  <br /></td></tr>
+<tr class="separator:a12bf70e71ce086d034701e9e94cedc6e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15ade7ec91a269e6f66ad51ca98df13e" id="r_a15ade7ec91a269e6f66ad51ca98df13e"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelEnable.html#a15ade7ec91a269e6f66ad51ca98df13e">MAX22200::ChannelEnable::CH7_EN_MASK</a> = 0x80</td></tr>
+<tr class="memdesc:a15ade7ec91a269e6f66ad51ca98df13e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 enable bit mask.  <br /></td></tr>
+<tr class="separator:a15ade7ec91a269e6f66ad51ca98df13e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5e04830ea3b3e2494c31142345e823e" id="r_ad5e04830ea3b3e2494c31142345e823e"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#ad5e04830ea3b3e2494c31142345e823e">MAX22200::FaultStatusBits::OCP_POS</a> = 0</td></tr>
+<tr class="memdesc:ad5e04830ea3b3e2494c31142345e823e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overcurrent protection bit position.  <br /></td></tr>
+<tr class="separator:ad5e04830ea3b3e2494c31142345e823e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3b5b3aa46c70566da5e96c5093c34f" id="r_a4f3b5b3aa46c70566da5e96c5093c34f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a4f3b5b3aa46c70566da5e96c5093c34f">MAX22200::FaultStatusBits::OCP_MASK</a> = 0x01</td></tr>
+<tr class="memdesc:a4f3b5b3aa46c70566da5e96c5093c34f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overcurrent protection bit mask.  <br /></td></tr>
+<tr class="separator:a4f3b5b3aa46c70566da5e96c5093c34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0f06c36c4cc9dab219f820aa19aeb5" id="r_afb0f06c36c4cc9dab219f820aa19aeb5"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#afb0f06c36c4cc9dab219f820aa19aeb5">MAX22200::FaultStatusBits::OL_POS</a> = 1</td></tr>
+<tr class="memdesc:afb0f06c36c4cc9dab219f820aa19aeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open load detection bit position.  <br /></td></tr>
+<tr class="separator:afb0f06c36c4cc9dab219f820aa19aeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd046d91a81b944c3352636b50b01de" id="r_abfd046d91a81b944c3352636b50b01de"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#abfd046d91a81b944c3352636b50b01de">MAX22200::FaultStatusBits::OL_MASK</a> = 0x02</td></tr>
+<tr class="memdesc:abfd046d91a81b944c3352636b50b01de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open load detection bit mask.  <br /></td></tr>
+<tr class="separator:abfd046d91a81b944c3352636b50b01de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed1b7366c1494ffa11b9960c6215fd9" id="r_afed1b7366c1494ffa11b9960c6215fd9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#afed1b7366c1494ffa11b9960c6215fd9">MAX22200::FaultStatusBits::DPM_POS</a> = 2</td></tr>
+<tr class="memdesc:afed1b7366c1494ffa11b9960c6215fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detection of plunger movement bit position.  <br /></td></tr>
+<tr class="separator:afed1b7366c1494ffa11b9960c6215fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c9714221691a22bb7c8e7d3033846a" id="r_a93c9714221691a22bb7c8e7d3033846a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a93c9714221691a22bb7c8e7d3033846a">MAX22200::FaultStatusBits::DPM_MASK</a> = 0x04</td></tr>
+<tr class="memdesc:a93c9714221691a22bb7c8e7d3033846a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detection of plunger movement bit mask.  <br /></td></tr>
+<tr class="separator:a93c9714221691a22bb7c8e7d3033846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a786457cda97eaca486a76d0ca848ff2d" id="r_a786457cda97eaca486a76d0ca848ff2d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a786457cda97eaca486a76d0ca848ff2d">MAX22200::FaultStatusBits::UVLO_POS</a> = 3</td></tr>
+<tr class="memdesc:a786457cda97eaca486a76d0ca848ff2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undervoltage lockout bit position.  <br /></td></tr>
+<tr class="separator:a786457cda97eaca486a76d0ca848ff2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd02751d9bfa5c53c203b2ccd52cab02" id="r_afd02751d9bfa5c53c203b2ccd52cab02"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#afd02751d9bfa5c53c203b2ccd52cab02">MAX22200::FaultStatusBits::UVLO_MASK</a> = 0x08</td></tr>
+<tr class="memdesc:afd02751d9bfa5c53c203b2ccd52cab02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undervoltage lockout bit mask.  <br /></td></tr>
+<tr class="separator:afd02751d9bfa5c53c203b2ccd52cab02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a484fd5098908cb83eb4a7b7a71da4d41" id="r_a484fd5098908cb83eb4a7b7a71da4d41"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a484fd5098908cb83eb4a7b7a71da4d41">MAX22200::FaultStatusBits::HHF_POS</a> = 4</td></tr>
+<tr class="memdesc:a484fd5098908cb83eb4a7b7a71da4d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current not reached bit position.  <br /></td></tr>
+<tr class="separator:a484fd5098908cb83eb4a7b7a71da4d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0013caaab620b872197877e612e7007" id="r_aa0013caaab620b872197877e612e7007"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#aa0013caaab620b872197877e612e7007">MAX22200::FaultStatusBits::HHF_MASK</a> = 0x10</td></tr>
+<tr class="memdesc:aa0013caaab620b872197877e612e7007"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current not reached bit mask.  <br /></td></tr>
+<tr class="separator:aa0013caaab620b872197877e612e7007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868008a44e902bc935a72daf3f5f0e7b" id="r_a868008a44e902bc935a72daf3f5f0e7b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a868008a44e902bc935a72daf3f5f0e7b">MAX22200::FaultStatusBits::TSD_POS</a> = 5</td></tr>
+<tr class="memdesc:a868008a44e902bc935a72daf3f5f0e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal shutdown bit position.  <br /></td></tr>
+<tr class="separator:a868008a44e902bc935a72daf3f5f0e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d0a1677757d86293c776c5593987e5" id="r_a61d0a1677757d86293c776c5593987e5"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html#a61d0a1677757d86293c776c5593987e5">MAX22200::FaultStatusBits::TSD_MASK</a> = 0x20</td></tr>
+<tr class="memdesc:a61d0a1677757d86293c776c5593987e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal shutdown bit mask.  <br /></td></tr>
+<tr class="separator:a61d0a1677757d86293c776c5593987e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a75fac2e2496374d790cbe19175d3f97d" id="r_a75fac2e2496374d790cbe19175d3f97d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a75fac2e2496374d790cbe19175d3f97d">MAX22200::ChannelConfigBits::DRIVE_MODE_POS</a> = 0</td></tr>
+<tr class="memdesc:a75fac2e2496374d790cbe19175d3f97d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive mode bit position (0=CDR, 1=VDR)  <br /></td></tr>
+<tr class="separator:a75fac2e2496374d790cbe19175d3f97d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a214abd9250fccfd583ab7c71a4cd7f43" id="r_a214abd9250fccfd583ab7c71a4cd7f43"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a214abd9250fccfd583ab7c71a4cd7f43">MAX22200::ChannelConfigBits::DRIVE_MODE_MASK</a> = 0x01</td></tr>
+<tr class="memdesc:a214abd9250fccfd583ab7c71a4cd7f43"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive mode bit mask.  <br /></td></tr>
+<tr class="separator:a214abd9250fccfd583ab7c71a4cd7f43"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a169239ac17f570149ddd24b53b644144" id="r_a169239ac17f570149ddd24b53b644144"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a169239ac17f570149ddd24b53b644144">MAX22200::ChannelConfigBits::BRIDGE_MODE_POS</a> = 1</td></tr>
+<tr class="memdesc:a169239ac17f570149ddd24b53b644144"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bridge mode bit position (0=half, 1=full)  <br /></td></tr>
+<tr class="separator:a169239ac17f570149ddd24b53b644144"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e7f6eca4f483998eedb4256ab710973" id="r_a7e7f6eca4f483998eedb4256ab710973"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a7e7f6eca4f483998eedb4256ab710973">MAX22200::ChannelConfigBits::BRIDGE_MODE_MASK</a> = 0x02</td></tr>
+<tr class="memdesc:a7e7f6eca4f483998eedb4256ab710973"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bridge mode bit mask.  <br /></td></tr>
+<tr class="separator:a7e7f6eca4f483998eedb4256ab710973"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1811aabc651a18d8c444a83230af00b0" id="r_a1811aabc651a18d8c444a83230af00b0"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a1811aabc651a18d8c444a83230af00b0">MAX22200::ChannelConfigBits::PARALLEL_POS</a> = 2</td></tr>
+<tr class="memdesc:a1811aabc651a18d8c444a83230af00b0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel mode bit position.  <br /></td></tr>
+<tr class="separator:a1811aabc651a18d8c444a83230af00b0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abcea79328dc1488e537da702061ada7f" id="r_abcea79328dc1488e537da702061ada7f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#abcea79328dc1488e537da702061ada7f">MAX22200::ChannelConfigBits::PARALLEL_MASK</a> = 0x04</td></tr>
+<tr class="memdesc:abcea79328dc1488e537da702061ada7f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel mode bit mask.  <br /></td></tr>
+<tr class="separator:abcea79328dc1488e537da702061ada7f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a785798ee8d37fc1fc5b6dd4397c30de7" id="r_a785798ee8d37fc1fc5b6dd4397c30de7"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a785798ee8d37fc1fc5b6dd4397c30de7">MAX22200::ChannelConfigBits::POLARITY_POS</a> = 3</td></tr>
+<tr class="memdesc:a785798ee8d37fc1fc5b6dd4397c30de7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output polarity bit position.  <br /></td></tr>
+<tr class="separator:a785798ee8d37fc1fc5b6dd4397c30de7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1cffa4c8d7db6aaa8b0d282dbedd3c12" id="r_a1cffa4c8d7db6aaa8b0d282dbedd3c12"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1ChannelConfigBits.html#a1cffa4c8d7db6aaa8b0d282dbedd3c12">MAX22200::ChannelConfigBits::POLARITY_MASK</a> = 0x08</td></tr>
+<tr class="memdesc:a1cffa4c8d7db6aaa8b0d282dbedd3c12"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output polarity bit mask.  <br /></td></tr>
+<tr class="separator:a1cffa4c8d7db6aaa8b0d282dbedd3c12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab468d8196d4dc26579529a1938c8cc51" id="r_ab468d8196d4dc26579529a1938c8cc51"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1CurrentRange.html#ab468d8196d4dc26579529a1938c8cc51">MAX22200::CurrentRange::MIN_HIT_CURRENT</a> = 0</td></tr>
+<tr class="memdesc:ab468d8196d4dc26579529a1938c8cc51"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum HIT current setting.  <br /></td></tr>
+<tr class="separator:ab468d8196d4dc26579529a1938c8cc51"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1dece582dfddd7201716953eb6f4a88b" id="r_a1dece582dfddd7201716953eb6f4a88b"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1CurrentRange.html#a1dece582dfddd7201716953eb6f4a88b">MAX22200::CurrentRange::MAX_HIT_CURRENT</a> = 1023</td></tr>
+<tr class="memdesc:a1dece582dfddd7201716953eb6f4a88b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT current setting.  <br /></td></tr>
+<tr class="separator:a1dece582dfddd7201716953eb6f4a88b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4dd696126b5ed4769e92504558199bb4" id="r_a4dd696126b5ed4769e92504558199bb4"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1CurrentRange.html#a4dd696126b5ed4769e92504558199bb4">MAX22200::CurrentRange::MIN_HOLD_CURRENT</a> = 0</td></tr>
+<tr class="memdesc:a4dd696126b5ed4769e92504558199bb4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum HOLD current setting.  <br /></td></tr>
+<tr class="separator:a4dd696126b5ed4769e92504558199bb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d12e2597e77d0e0925e7552d94b150b" id="r_a0d12e2597e77d0e0925e7552d94b150b"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1CurrentRange.html#a0d12e2597e77d0e0925e7552d94b150b">MAX22200::CurrentRange::MAX_HOLD_CURRENT</a> = 1023</td></tr>
+<tr class="memdesc:a0d12e2597e77d0e0925e7552d94b150b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HOLD current setting.  <br /></td></tr>
+<tr class="separator:a0d12e2597e77d0e0925e7552d94b150b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93afe7bcb20e5a597c66798af23e429e" id="r_a93afe7bcb20e5a597c66798af23e429e"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1TimingRange.html#a93afe7bcb20e5a597c66798af23e429e">MAX22200::TimingRange::MIN_HIT_TIME</a> = 0</td></tr>
+<tr class="memdesc:a93afe7bcb20e5a597c66798af23e429e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Minimum HIT time setting.  <br /></td></tr>
+<tr class="separator:a93afe7bcb20e5a597c66798af23e429e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2870fa9e2003cc0f1bbdad45719f51cf" id="r_a2870fa9e2003cc0f1bbdad45719f51cf"><td class="memItemLeft" align="right" valign="top">constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200_1_1TimingRange.html#a2870fa9e2003cc0f1bbdad45719f51cf">MAX22200::TimingRange::MAX_HIT_TIME</a> = 65535</td></tr>
+<tr class="memdesc:a2870fa9e2003cc0f1bbdad45719f51cf"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT time setting.  <br /></td></tr>
+<tr class="separator:a2870fa9e2003cc0f1bbdad45719f51cf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Register definitions and constants for <a class="el" href="namespaceMAX22200.html">MAX22200</a> IC. </p>
+<dl class="section author"><dt>Author</dt><dd><a class="el" href="namespaceMAX22200.html">MAX22200</a> Driver Library </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>2024</dd></dl>
+<p>This file contains all register addresses, bit field definitions, and constants for the <a class="el" href="namespaceMAX22200.html">MAX22200</a> octal solenoid and motor driver. </p>
+</div></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a class="el" href="MAX22200__Registers_8h.html">MAX22200_Registers.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

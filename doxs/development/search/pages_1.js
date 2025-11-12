@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['esp32_20c6_20comprehensive_20test_20suite_0',['PCAL9555 ESP32-C6 Comprehensive Test Suite',['../index.html',1,'']]]
+  ['hf_20max22200_20driver_0',['HF-MAX22200 Driver',['../index.html',1,'']]]
 ];

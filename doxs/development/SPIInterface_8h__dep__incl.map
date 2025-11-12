@@ -1,0 +1,9 @@
+<map id="inc/SPIInterface.h" name="inc/SPIInterface.h">
+<area shape="rect" id="Node000001" title="Abstract base class for SPI communication interface." alt="" coords="174,5,309,31"/>
+<area shape="rect" id="Node000002" href="$MAX22200_8h.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="178,79,305,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,44,244,79,239,79,239,44"/>
+<area shape="rect" id="Node000003" href="$MAX22200ComprehensiveTest_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="5,152,256,192"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="215,114,159,154,156,150,212,110"/>
+<area shape="rect" id="Node000004" href="$MAX22200_8cpp.html" title="Implementation of MAX22200 driver class." alt="" coords="281,159,423,185"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="271,110,337,157,334,161,268,114"/>
+</map>
