@@ -1,0 +1,8 @@
+name: hf-max22200-driver
+version: "1.0.0"
+description: Hardware-agnostic MAX22200 driver component
+maintainers:
+  - "HardFOC"
+targets:
+  - esp32
+  - esp32c6
