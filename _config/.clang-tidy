@@ -1,0 +1,158 @@
+# =============================================================================
+# .clang-tidy Configuration File
+# =============================================================================
+# This file configures clang-tidy static analysis checks for C++ code.
+# clang-tidy helps identify potential bugs, style violations, and performance issues.
+
+# =============================================================================
+# CHECK CATEGORIES AND EXPLANATIONS
+# =============================================================================
+
+Checks: |
+  # Disable all checks by default, then enable specific categories
+  -*
+  
+  # CLANG ANALYZER CHECKS
+  # ---------------------
+  # These are advanced static analysis checks that can detect complex bugs
+  # like memory leaks, null pointer dereferences, and logic errors.
+  clang-analyzer-*
+  
+  # BUGPRONE CHECKS
+  # ---------------
+  # Detect common programming errors and bug-prone patterns:
+  # - Incorrect usage of standard library functions
+  # - Potential integer overflows
+  # - Misuse of string functions
+  # - Incorrect loop conditions
+  # - Dangerous pointer arithmetic
+  bugprone-*
+  
+  # C++ CORE GUIDELINES CHECKS
+  # ---------------------------
+  # Enforce C++ Core Guidelines recommendations:
+  # - Resource management (RAII)
+  # - Type safety
+  # - Interface design
+  # - Performance guidelines
+  # - Exception safety
+  cppcoreguidelines-*
+  
+  # PERFORMANCE CHECKS
+  # ------------------
+  # Identify potential performance issues:
+  # - Unnecessary copies
+  # - Inefficient algorithms
+  # - Missing move semantics
+  # - Expensive operations in loops
+  performance-*
+  
+  # PORTABILITY CHECKS
+  # ------------------
+  # Ensure code works across different platforms:
+  # - Non-portable assumptions
+  # - Compiler-specific features
+  # - Endianness issues
+  # - Platform-specific code
+  portability-*
+  
+  # READABILITY CHECKS
+  # ------------------
+  # Improve code readability and maintainability:
+  # - Naming conventions
+  # - Code structure
+  # - Comment quality
+  # - Function complexity
+  readability-*
+  
+  # MODERNIZE CHECKS
+  # ----------------
+  # Suggest modern C++ features and best practices:
+  # - Use of auto keyword
+  # - Range-based for loops
+  # - Smart pointers
+  # - Lambda expressions
+  # - constexpr usage
+  modernize-*
+
+# =============================================================================
+# DISABLED CHECKS (with explanations)
+# =============================================================================
+
+  # Disable trailing return type enforcement (can be verbose for simple functions)
+  -modernize-use-trailing-return-type
+  
+  # Allow magic numbers in certain contexts (use with caution)
+  -cppcoreguidelines-avoid-magic-numbers
+  -readability-magic-numbers
+  
+  # Allow array-to-pointer decay and pointer arithmetic in specific cases
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic
+  
+  # Disable cognitive complexity check (can be too strict for some codebases)
+  -readability-function-cognitive-complexity
+
+# =============================================================================
+# CONFIGURATION OPTIONS
+# =============================================================================
+
+# Note: Diagnostic errors for missing system headers (cstdint, etc.) cannot be suppressed
+# in clang-tidy config. These are expected in CI without full build environment.
+# The CI workflow should exclude problematic files via the 'ignore' pattern if needed.
+
+# Treat warnings as errors (empty = disabled, set to specific checks to enable)
+WarningsAsErrors: ''
+
+# Header file filter - only analyze headers matching this regex
+# Current: Only analyze .h and .hpp files in 'inc' or 'src' directories
+HeaderFilterRegex: '(inc|src)/.*\.(h|hpp)$'
+
+# Use formatting style from .clang-format file
+FormatStyle: file
+
+# =============================================================================
+# FOLDER SEARCH CONFIGURATION
+# =============================================================================
+# To search files in different folders, you can:
+
+# 1. MODIFY HeaderFilterRegex for different directory structures:
+#    - For multiple directories: '(inc|src|include|headers)/.*\.(h|hpp)$'
+#    - For all subdirectories: '.*/.*\.(h|hpp)$'
+#    - For specific paths: '(project1|project2)/.*\.(h|hpp)$'
+
+# 2. USE command line options when running clang-tidy:
+#    clang-tidy file1.cpp file2.cpp -- -I./include -I./src
+#    clang-tidy src/**/*.cpp -- -I./include
+
+# 3. CREATE multiple .clang-tidy files in different directories:
+#    - Each directory can have its own configuration
+#    - Use relative paths in HeaderFilterRegex
+
+# 4. USE compile_commands.json for complex projects:
+#    - Generate with CMake: -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+#    - Or use Bear: bear -- make
+#    - clang-tidy will automatically find and use it
+
+# =============================================================================
+# EXAMPLE USAGE COMMANDS
+# =============================================================================
+# 
+# Basic usage:
+#   clang-tidy src/main.cpp
+# 
+# Multiple files:
+#   clang-tidy src/*.cpp include/*.h
+# 
+# Recursive directory search:
+#   find . -name "*.cpp" -o -name "*.h" | xargs clang-tidy
+# 
+# With specific checks:
+#   clang-tidy -checks='-*,readability-*' src/main.cpp
+# 
+# Fix issues automatically (where possible):
+#   clang-tidy -fix src/main.cpp
+# 
+# Export fixes to file:
+#   clang-tidy -export-fixes=fixes.yaml src/main.cpp
+

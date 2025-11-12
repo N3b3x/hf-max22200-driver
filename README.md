@@ -24,6 +24,9 @@ permalink: /
 
 ## 📦 Overview
 
+> **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-max22200-driver/)** - 
+> Interactive guides, examples, and step-by-step tutorials
+
 The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
 - **Eight Half-Bridges**: Each capable of handling up to 36V and 1A RMS
 - **Current and Voltage Regulation**: Supports both CDR and VDR modes

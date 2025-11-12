@@ -15,7 +15,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: docs-versioned-${{{{ github.ref }}}}
+  group: docs-versioned-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
