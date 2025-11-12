@@ -1,3 +1,6 @@
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1762, file /tmp/doxyfile.qPmzaB
+warning: Tag 'DOT_TRANSPARENT' at line 2785 of file '/tmp/doxyfile.qPmzaB' has become obsolete.
+         To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '-e'
 error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item ''/^---$/'
 error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '/^---$/d''
