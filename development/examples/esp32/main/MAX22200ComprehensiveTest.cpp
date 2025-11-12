@@ -9,11 +9,12 @@
  * @copyright HardFOC
  */
 
+#include <memory>
+
 #include "MAX22200.h"
 #include "TestFramework.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include <memory>
 
 #ifdef __cplusplus
 extern "C" {

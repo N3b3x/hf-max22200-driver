@@ -1,0 +1,36 @@
+# =============================================================================
+# Lychee Link Checker Configuration
+# =============================================================================
+# Configuration for lychee link checker to exclude known problematic URLs
+# =============================================================================
+
+[input]
+# Files to check (handled by workflow paths parameter)
+files = []
+
+[output]
+format = "detailed"
+verbose = true
+
+[check]
+# Timeout in seconds per link
+timeout = 30
+# Number of retries for failed links
+retry = 3
+# Exclude private/internal links
+exclude_all_private = true
+# Exclude mailto links
+exclude_mail = true
+
+# Exclude specific URLs that are known to timeout or cause issues
+exclude = [
+  # GPL license link - known to timeout occasionally but is valid
+  "https://www.gnu.org/licenses/gpl-3.0",
+  # Also match with trailing slash
+  "https://www.gnu.org/licenses/gpl-3.0/",
+]
+
+[http]
+# User agent for HTTP requests
+headers = { "User-Agent" = "lychee/0.21.0" }
+

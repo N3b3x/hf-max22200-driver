@@ -1,26 +1,26 @@
 <map id="examples/esp32/main/MAX22200ComprehensiveTest.cpp" name="examples/esp32/main/MAX22200ComprehensiveTest.cpp">
-<area shape="rect" id="Node000001" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="458,5,709,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="286,93,390,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="525,48,387,92,386,87,524,43"/>
-<area shape="rect" id="Node000003" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="465,93,598,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="573,47,549,83,544,80,569,44"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="5,167,89,192"/>
-<area shape="poly" id="edge13_Node000001_Node000005" title=" " alt="" coords="548,48,403,121,322,143,257,152,189,158,103,169,103,164,189,152,256,146,321,137,401,116,545,43"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="681,167,832,192"/>
-<area shape="poly" id="edge10_Node000001_Node000007" title=" " alt="" coords="600,44,631,79,669,117,727,157,724,162,666,121,627,83,596,47"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="857,167,974,192"/>
-<area shape="poly" id="edge11_Node000001_Node000010" title=" " alt="" coords="606,43,653,80,713,116,779,143,845,161,843,166,777,148,710,121,650,84,603,48"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="723,93,801,119"/>
-<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="627,43,724,85,722,90,625,48"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="553,167,657,192"/>
-<area shape="poly" id="edge3_Node000003_Node000004" title=" " alt="" coords="545,117,585,155,581,159,542,121"/>
-<area shape="poly" id="edge4_Node000003_Node000005" title=" " alt="" coords="465,119,103,169,102,164,464,114"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="114,167,213,192"/>
-<area shape="poly" id="edge5_Node000003_Node000006" title=" " alt="" coords="473,121,227,169,226,163,472,116"/>
-<area shape="poly" id="edge6_Node000003_Node000007" title=" " alt="" coords="568,116,708,160,706,165,567,121"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="237,167,367,192"/>
-<area shape="poly" id="edge7_Node000003_Node000008" title=" " alt="" coords="495,121,353,165,352,160,494,116"/>
-<area shape="rect" id="Node000009" title=" " alt="" coords="391,167,528,192"/>
-<area shape="poly" id="edge8_Node000003_Node000009" title=" " alt="" coords="521,121,483,159,479,155,518,117"/>
-<area shape="poly" id="edge9_Node000003_Node000010" title=" " alt="" coords="594,116,843,162,842,167,593,121"/>
+<area shape="rect" id="Node000001" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="330,5,581,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="161,93,238,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="395,48,250,92,249,87,393,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="262,93,366,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="423,48,348,89,346,84,420,43"/>
+<area shape="rect" id="Node000004" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="441,93,574,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="470,44,494,80,490,83,466,47"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="5,167,89,192"/>
+<area shape="poly" id="edge13_Node000001_Node000006" title=" " alt="" coords="447,47,420,85,401,105,379,121,342,140,309,151,248,160,184,161,103,169,103,164,184,156,248,155,308,146,340,135,377,116,398,101,416,82,443,44"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="681,167,832,192"/>
+<area shape="poly" id="edge11_Node000001_Node000008" title=" " alt="" coords="494,43,723,158,721,163,492,48"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="857,167,974,192"/>
+<area shape="poly" id="edge12_Node000001_Node000011" title=" " alt="" coords="513,43,868,160,867,165,511,48"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="553,167,657,192"/>
+<area shape="poly" id="edge4_Node000004_Node000005" title=" " alt="" coords="525,117,579,156,576,160,521,121"/>
+<area shape="poly" id="edge5_Node000004_Node000006" title=" " alt="" coords="441,119,103,169,103,164,440,114"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="114,167,213,192"/>
+<area shape="poly" id="edge6_Node000004_Node000007" title=" " alt="" coords="453,121,227,168,226,162,452,116"/>
+<area shape="poly" id="edge7_Node000004_Node000008" title=" " alt="" coords="548,116,704,160,702,165,547,121"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="237,167,367,192"/>
+<area shape="poly" id="edge8_Node000004_Node000009" title=" " alt="" coords="475,121,349,165,347,160,473,116"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="391,167,528,192"/>
+<area shape="poly" id="edge9_Node000004_Node000010" title=" " alt="" coords="502,121,477,157,472,154,497,118"/>
+<area shape="poly" id="edge10_Node000004_Node000011" title=" " alt="" coords="573,116,844,163,843,168,572,121"/>
 </map>
