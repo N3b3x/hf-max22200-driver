@@ -152,7 +152,7 @@ footer_content: >
 just_the_docs:
   # Navigation configuration
   nav_fold: true  # Allow folding navigation items
-  
+
   # External links in navigation
   nav_external_links:
     - title: "📚 GitHub Repository"
@@ -188,7 +188,6 @@ exclude:
   - examples/esp32/scripts/  # ESP32 project tools (not part of docs)
   - _config/doxygen-extensions/  # Doxygen extensions (separate from Jekyll)
   - src/                      # Source code
-    - inc/                  # Header files
   - inc/                      # Alternative header directory
   - tests/                    # Test files
 
