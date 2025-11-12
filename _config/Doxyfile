@@ -1414,7 +1414,10 @@ HTML_EXTRA_FILES       = _config/doxygen-extensions/doxygen-awesome-css/doxygen-
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js \
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-paragraph-link.js \
                          _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-interactive-toc.js \
-                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js
+                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js \
+                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/toggle-alternative-theme.js \
+                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/theme-round.css \
+                         _config/doxygen-extensions/doxygen-awesome-css/doxygen-custom/theme-robot.css
 
 # Disable built-in copy to clipboard (required for doxygen-awesome fragment copy button)
 HTML_COPY_CLIPBOARD    = NO
