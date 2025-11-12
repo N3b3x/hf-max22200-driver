@@ -4,14 +4,6 @@
 # Configuration for lychee link checker to exclude known problematic URLs
 # =============================================================================
 
-[input]
-# Files to check (handled by workflow paths parameter)
-files = []
-
-[output]
-format = "detailed"
-verbose = true
-
 [check]
 # Timeout in seconds per link
 timeout = 30
@@ -33,4 +25,3 @@ exclude = [
 [http]
 # User agent for HTTP requests
 headers = { "User-Agent" = "lychee/0.21.0" }
-
