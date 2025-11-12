@@ -1,62 +1,7 @@
-warning: tag INPUT: input source 'include' does not exist
-warning: source 'include' is not a readable file or directory... skipping.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:18: warning: documented symbol 'MAX22200::MAX22200' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:27: warning: documented symbol 'MAX22200::~MAX22200' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:34: warning: documented symbol 'DriverStatus MAX22200::initialize' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:82: warning: documented symbol 'DriverStatus MAX22200::deinitialize' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:99: warning: documented symbol 'DriverStatus MAX22200::reset' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:122: warning: documented symbol 'DriverStatus MAX22200::configureGlobal' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:130: warning: documented symbol 'DriverStatus MAX22200::getGlobalConfig' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:141: warning: documented symbol 'DriverStatus MAX22200::setSleepMode' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:161: warning: documented symbol 'DriverStatus MAX22200::setDiagnosticMode' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:182: warning: documented symbol 'DriverStatus MAX22200::setIntegratedCurrentSensing' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:202: warning: documented symbol 'DriverStatus MAX22200::configureChannel' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:246: warning: documented symbol 'DriverStatus MAX22200::getChannelConfig' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:289: warning: documented symbol 'DriverStatus MAX22200::configureAllChannels' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:304: warning: documented symbol 'DriverStatus MAX22200::getAllChannelConfigs' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:319: warning: documented symbol 'DriverStatus MAX22200::enableChannel' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:344: warning: documented symbol 'DriverStatus MAX22200::enableAllChannels' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:352: warning: documented symbol 'DriverStatus MAX22200::setChannelDriveMode' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:377: warning: documented symbol 'DriverStatus MAX22200::setChannelBridgeMode' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:402: warning: documented symbol 'DriverStatus MAX22200::setChannelPolarity' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:427: warning: documented symbol 'DriverStatus MAX22200::setHitCurrent' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:447: warning: documented symbol 'DriverStatus MAX22200::setHoldCurrent' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:467: warning: documented symbol 'DriverStatus MAX22200::setCurrents' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:481: warning: documented symbol 'DriverStatus MAX22200::getCurrents' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:499: warning: documented symbol 'DriverStatus MAX22200::setHitTime' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:511: warning: documented symbol 'DriverStatus MAX22200::getHitTime' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:523: warning: documented symbol 'DriverStatus MAX22200::readFaultStatus' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:534: warning: documented symbol 'DriverStatus MAX22200::clearFaultStatus' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:542: warning: documented symbol 'DriverStatus MAX22200::readChannelStatus' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:578: warning: documented symbol 'DriverStatus MAX22200::readAllChannelStatuses' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:593: warning: documented symbol 'DriverStatus MAX22200::getStatistics' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:599: warning: documented symbol 'DriverStatus MAX22200::resetStatistics' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:605: warning: documented symbol 'void MAX22200::setFaultCallback' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:611: warning: documented symbol 'void MAX22200::setStateChangeCallback' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:617: warning: documented symbol 'bool MAX22200::isInitialized' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:624: warning: documented symbol 'DriverStatus MAX22200::writeRegister' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:640: warning: documented symbol 'DriverStatus MAX22200::readRegister' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:657: warning: documented symbol 'DriverStatus MAX22200::writeRegisterArray' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:679: warning: documented symbol 'DriverStatus MAX22200::readRegisterArray' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:705: warning: documented symbol 'DriverStatus MAX22200::updateChannelEnableRegister' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:712: warning: documented symbol 'DriverStatus MAX22200::updateGlobalConfigRegister' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:719: warning: documented symbol 'void MAX22200::updateStatistics' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:727: warning: documented symbol 'void MAX22200::triggerFaultCallback' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:735: warning: documented symbol 'void MAX22200::triggerStateChangeCallback' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:744: warning: documented symbol 'uint16_t MAX22200::buildChannelConfigValue' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:767: warning: documented symbol 'ChannelConfig MAX22200::parseChannelConfigValue' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:785: warning: documented symbol 'uint16_t MAX22200::buildGlobalConfigValue' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:812: warning: documented symbol 'GlobalConfig MAX22200::parseGlobalConfigValue' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:825: warning: documented symbol 'FaultStatus MAX22200::parseFaultStatusValue' was not declared or defined.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/scripts/README.md:1: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md, line 1), Skipping current block!
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:1: warning: found more than one \mainpage comment block! (first occurrence: /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md, line 1), Skipping current block!
-error: Style sheet '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome.css' specified by HTML_EXTRA_STYLESHEET does not exist!
-error: Style sheet '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-sidebar-only.css' specified by HTML_EXTRA_STYLESHEET does not exist!
-error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-darkmode-toggle.js' specified in HTML_EXTRA_FILES does not exist!
-error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-fragment-copy-button.js' specified in HTML_EXTRA_FILES does not exist!
-error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-paragraph-link.js' specified in HTML_EXTRA_FILES does not exist!
-error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-interactive-toc.js' specified in HTML_EXTRA_FILES does not exist!
-error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesome-tabs.js' specified in HTML_EXTRA_FILES does not exist!
+error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '-e'
+error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item ''/^---$/'
+error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '/^---$/d''
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/MAX22200.h:67: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
@@ -66,13 +11,3 @@ error: Extra file '_config/doxygen-extensions/doxygen-awesome-css/doxygen-awesom
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:7: warning: unable to resolve reference to '-hardware-overview' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:8: warning: unable to resolve reference to '-pin-connections' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:9: warning: unable to resolve reference to '-hardware-setup' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:10: warning: unable to resolve reference to '-building-the-tests' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:11: warning: unable to resolve reference to '-running-the-tests' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:12: warning: unable to resolve reference to '-test-suites' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:13: warning: unable to resolve reference to '-troubleshooting' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:421: warning: unable to resolve reference to '../../docs/api_reference.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:422: warning: unable to resolve reference to '../../docs/platform_integration.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/README.md:423: warning: unable to resolve reference to '../../docs/hardware_overview.md' for \ref command

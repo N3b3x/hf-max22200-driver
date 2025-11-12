@@ -1,14 +1,39 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HF-MAX22200 Driver: PCAL9555 ESP32-C6 Comprehensive Test Suite</title>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: HF-MAX22200 Driver</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
 <link href="navtree.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="resize.js"></script>
 <script type="text/javascript" src="navtreedata.js"></script>
@@ -18,21 +43,36 @@
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
 <div id="titlearea">
 <table cellspacing="0" cellpadding="0">
  <tbody>
- <tr id="projectrow">
-  <td id="projectalign">
-   <div id="projectname">HF-MAX22200 Driver<span id="projectnumber">&#160;0.1.0-dev</span>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
    </div>
    <div id="projectbrief">HF-MAX22200 C++ Driver</div>
   </td>
  </tr>
  </tbody>
 </table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
 </div>
 <!-- end header part -->
 <!-- Generated by Doxygen 1.10.0 -->
@@ -91,456 +131,11 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">PCAL9555 ESP32-C6 Comprehensive Test Suite </div></div>
+  <div class="headertitle"><div class="title">HF-MAX22200 Driver </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_examples_2esp32_2README"></a> This directory contains comprehensive test suites for the PCAL9555 16-bit I/O expander driver using the ESP32-C6 DevKit-M-1.</p>
-<h1><a class="anchor" id="autotoc_md1"></a>
-📋 Table of Contents</h1>
-<ul>
-<li>Hardware Overview</li>
-<li>Pin Connections</li>
-<li>Hardware Setup</li>
-<li>Building the Tests</li>
-<li>Running the Tests</li>
-<li>Test Suites</li>
-<li>Troubleshooting</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md3"></a>
-🔌 Hardware Overview</h1>
-<h2><a class="anchor" id="autotoc_md4"></a>
-ESP32-C6 DevKit-M-1</h2>
-<p>The ESP32-C6 DevKit-M-1 serves as the host controller for communicating with the PCAL9555 GPIO expander via I2C.</p>
-<div class="fragment"><div class="line">┌─────────────────────────────────────────────────┐</div>
-<div class="line">│        ESP32-C6 DevKit-M-1                      │</div>
-<div class="line">│                                                 │</div>
-<div class="line">│  ┌──────────────────────────────────────────┐   │</div>
-<div class="line">│  │        ESP32-C6 Microcontroller          │   │</div>
-<div class="line">│  │                                          │   │</div>
-<div class="line">│  │  GPIO Pins:                              │   │</div>
-<div class="line">│  │  • I2C: SDA (GPIO4), SCL (GPIO5)         │   │</div>
-<div class="line">│  │  • Test Indicator: GPIO14                │   │</div>
-<div class="line">│  └──────────────────────────────────────────┘   │</div>
-<div class="line">│                                                 │</div>
-<div class="line">│  USB-C Connector                                │</div>
-<div class="line">│  (Power + Serial Communication)                 │</div>
-<div class="line">└─────────────────────────────────────────────────┘</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md5"></a>
-PCAL9555 GPIO Expander</h2>
-<p>The PCAL9555 is a 16-bit I/O expander with I²C interface, providing 16 GPIO pins organized into two 8-bit ports.</p>
-<div class="fragment"><div class="line">┌─────────────────────────────────────────────────┐</div>
-<div class="line">│      PCAL9555 GPIO Expander                     │</div>
-<div class="line">│                                                 │</div>
-<div class="line">│  ┌──────────────────────────────────────────┐   │</div>
-<div class="line">│  │        PCAL9555 IC                       │   │</div>
-<div class="line">│  │                                          │   │</div>
-<div class="line">│  │  Features:                               │   │</div>
-<div class="line">│  │  • 16 GPIO pins (PORT_0: P0.0-P0.7)      │   │</div>
-<div class="line">│  │  • 16 GPIO pins (PORT_1: P1.0-P1.7)      │   │</div>
-<div class="line">│  │  • I2C interface (7-bit address)         │   │</div>
-<div class="line">│  │  • Configurable pull-up/pull-down        │   │</div>
-<div class="line">│  │  • Programmable drive strength           │   │</div>
-<div class="line">│  │  • Interrupt support                     │   │</div>
-<div class="line">│  │  • Input latch capability                │   │</div>
-<div class="line">│  │  • Polarity inversion                    │   │</div>
-<div class="line">│  │  • Open-drain output mode                │   │</div>
-<div class="line">│  └──────────────────────────────────────────┘   │</div>
-<div class="line">│                                                 │</div>
-<div class="line">│  I2C Connections:                               │</div>
-<div class="line">│  • SDA (I2C Data)                               │</div>
-<div class="line">│  • SCL (I2C Clock)                              │</div>
-<div class="line">│  • VDD (3.3V Power)                             │</div>
-<div class="line">│  • GND (Ground)                                 │</div>
-<div class="line">│  • INT (Interrupt Output, optional)             │</div>
-<div class="line">└─────────────────────────────────────────────────┘</div>
-</div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md7"></a>
-📌 Pin Connections</h1>
-<h2><a class="anchor" id="autotoc_md8"></a>
-I2C Bus Connections</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">PCAL9555 Pin   </th><th class="markdownTableHeadNone">ESP32-C6 GPIO   </th><th class="markdownTableHeadNone">Function   </th><th class="markdownTableHeadNone">Notes    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">SDA   </td><td class="markdownTableBodyNone">GPIO4   </td><td class="markdownTableBodyNone">I2C Data   </td><td class="markdownTableBodyNone">With 4.7kΩ pull-up to 3.3V    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">SCL   </td><td class="markdownTableBodyNone">GPIO5   </td><td class="markdownTableBodyNone">I2C Clock   </td><td class="markdownTableBodyNone">With 4.7kΩ pull-up to 3.3V    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">3.3V   </td><td class="markdownTableBodyNone">Power Supply   </td><td class="markdownTableBodyNone"></td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">Ground   </td><td class="markdownTableBodyNone"></td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">INT   </td><td class="markdownTableBodyNone">GPIO15 (optional)   </td><td class="markdownTableBodyNone">Interrupt Output   </td><td class="markdownTableBodyNone">Open-drain, requires pull-up   </td></tr>
-</table>
-<h2><a class="anchor" id="autotoc_md9"></a>
-Test Indicator</h2>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">Signal   </th><th class="markdownTableHeadNone">ESP32-C6 GPIO   </th><th class="markdownTableHeadNone">Function    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">Test Progress   </td><td class="markdownTableBodyNone">GPIO14   </td><td class="markdownTableBodyNone">Visual test progression indicator   </td></tr>
-</table>
-<h2><a class="anchor" id="autotoc_md10"></a>
-I2C Address Configuration</h2>
-<p>The PCAL9555 I2C address is determined by the A0, A1, and A2 address pins:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone">A2   </th><th class="markdownTableHeadNone">A1   </th><th class="markdownTableHeadNone">A0   </th><th class="markdownTableHeadNone">I2C Address (7-bit)   </th><th class="markdownTableHeadNone">I2C Address (8-bit)    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">0x20   </td><td class="markdownTableBodyNone">0x40    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">0x21   </td><td class="markdownTableBodyNone">0x42    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">0x22   </td><td class="markdownTableBodyNone">0x44    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">0x23   </td><td class="markdownTableBodyNone">0x46    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">0x24   </td><td class="markdownTableBodyNone">0x48    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">0x25   </td><td class="markdownTableBodyNone">0x4A    </td></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">GND   </td><td class="markdownTableBodyNone">0x26   </td><td class="markdownTableBodyNone">0x4C    </td></tr>
-<tr class="markdownTableRowEven">
-<td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">VDD   </td><td class="markdownTableBodyNone">0x27   </td><td class="markdownTableBodyNone">0x4E   </td></tr>
-</table>
-<p><b>Default</b>: All address pins to GND = <b>0x20</b> (used in examples)</p>
-<hr  />
-<h1><a class="anchor" id="autotoc_md12"></a>
-🛠️ Hardware Setup</h1>
-<h2><a class="anchor" id="autotoc_md13"></a>
-Basic Setup</h2>
-<ol type="1">
-<li><b>Connect I2C Bus</b>:<ul>
-<li>Connect PCAL9555 SDA to ESP32-C6 GPIO4</li>
-<li>Connect PCAL9555 SCL to ESP32-C6 GPIO5</li>
-<li>Add 4.7kΩ pull-up resistors on both SDA and SCL to 3.3V</li>
-</ul>
-</li>
-<li><b>Power Connections</b>:<ul>
-<li>Connect PCAL9555 VDD to ESP32-C6 3.3V</li>
-<li>Connect PCAL9555 GND to ESP32-C6 GND</li>
-</ul>
-</li>
-<li><b>Optional Interrupt</b>:<ul>
-<li>Connect PCAL9555 INT to ESP32-C6 GPIO15 (with pull-up resistor)</li>
-</ul>
-</li>
-<li><b>Address Configuration</b>:<ul>
-<li>Connect A0, A1, A2 to GND for default address 0x20</li>
-<li>Or configure for different address if needed</li>
-</ul>
-</li>
-</ol>
-<h2><a class="anchor" id="autotoc_md14"></a>
-Test Setup</h2>
-<p>For comprehensive testing, you can connect:</p><ul>
-<li>LEDs to output pins (with current-limiting resistors)</li>
-<li>Switches/buttons to input pins</li>
-<li>External pull-up/pull-down resistors for testing</li>
-<li>Logic analyzer on I2C bus for protocol verification</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md16"></a>
-🚀 Building the Tests</h1>
-<h2><a class="anchor" id="autotoc_md17"></a>
-Prerequisites</h2>
-<ol type="1">
-<li><p class="startli"><b>Install ESP-IDF</b> (if not already installed):</p>
-<div class="fragment"><div class="line"># Clone ESP-IDF</div>
-<div class="line">git clone --recursive https://github.com/espressif/esp-idf.git</div>
-<div class="line">cd esp-idf</div>
-<div class="line"> </div>
-<div class="line"># Checkout release version 5.5</div>
-<div class="line">git checkout release/v5.5</div>
-<div class="line">git submodule update --init --recursive</div>
-<div class="line"> </div>
-<div class="line"># Install ESP-IDF (Linux/macOS)</div>
-<div class="line">./install.sh esp32c6</div>
-<div class="line"> </div>
-<div class="line"># Set up environment (add to ~/.bashrc or ~/.zshrc for persistence)</div>
-<div class="line">. ./export.sh</div>
-</div><!-- fragment --></li>
-<li><p class="startli"><b>Navigate to ESP32 Examples</b>:</p>
-<div class="fragment"><div class="line">cd examples/esp32</div>
-</div><!-- fragment --></li>
-<li><p class="startli"><b>Setup Repository</b> (First time only):</p>
-<div class="fragment"><div class="line"># Make scripts executable and setup the build environment</div>
-<div class="line">chmod +x scripts/*.sh</div>
-<div class="line">./scripts/setup_repo.sh</div>
-</div><!-- fragment --></li>
-</ol>
-<h2><a class="anchor" id="autotoc_md18"></a>
-Available Test Applications</h2>
-<p>The test suites use a centralized build system with scripts. Available applications:</p>
-<table class="markdownTable">
-<tr class="markdownTableHead">
-<th class="markdownTableHeadNone"><b>Application Name</b>   </th><th class="markdownTableHeadNone"><b>Description</b>   </th><th class="markdownTableHeadNone"><b>Hardware Required</b>    </th></tr>
-<tr class="markdownTableRowOdd">
-<td class="markdownTableBodyNone"><code>pcal9555_comprehensive_test</code>   </td><td class="markdownTableBodyNone">Comprehensive PCAL9555 GPIO expander testing with all features   </td><td class="markdownTableBodyNone">PCAL9555 board   </td></tr>
-</table>
-<h2><a class="anchor" id="autotoc_md19"></a>
-List Available Applications</h2>
-<div class="fragment"><div class="line"># List all available applications</div>
-<div class="line">./scripts/build_app.sh list</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md20"></a>
-Build an Application</h2>
-<div class="fragment"><div class="line"># Build comprehensive test (Debug build)</div>
-<div class="line">./scripts/build_app.sh pcal9555_comprehensive_test Debug</div>
-<div class="line"> </div>
-<div class="line"># Build comprehensive test (Release build)</div>
-<div class="line">./scripts/build_app.sh pcal9555_comprehensive_test Release</div>
-</div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md22"></a>
-📤 Running the Tests</h1>
-<h2><a class="anchor" id="autotoc_md23"></a>
-Flash Application</h2>
-<div class="fragment"><div class="line"># Flash the application to ESP32-C6</div>
-<div class="line">./scripts/flash_app.sh pcal9555_comprehensive_test Debug</div>
-<div class="line"> </div>
-<div class="line"># Or manually:</div>
-<div class="line">idf.py -p /dev/ttyUSB0 flash</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md24"></a>
-Monitor Output</h2>
-<div class="fragment"><div class="line"># Monitor serial output</div>
-<div class="line">idf.py -p /dev/ttyUSB0 monitor</div>
-<div class="line"> </div>
-<div class="line"># Or use the flash script which includes monitoring</div>
-<div class="line">./scripts/flash_app.sh pcal9555_comprehensive_test Debug</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md25"></a>
-Auto-detect Port</h2>
-<div class="fragment"><div class="line"># The scripts can auto-detect the port</div>
-<div class="line">./scripts/detect_ports.sh</div>
-</div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md27"></a>
-🧪 Test Suites</h1>
-<h2><a class="anchor" id="autotoc_md28"></a>
-Comprehensive Test Suite</h2>
-<p><b>Application</b>: <code>pcal9555_comprehensive_test</code></p>
-<p>This comprehensive test suite validates all PCAL9555 functionality:</p>
-<h3><a class="anchor" id="autotoc_md29"></a>
-Test Sections</h3>
-<ol type="1">
-<li><b>Initialization Tests</b><ul>
-<li>I2C bus initialization</li>
-<li>Driver initialization</li>
-<li>Reset to default state</li>
-</ul>
-</li>
-<li><b>GPIO Direction Tests</b><ul>
-<li>Single pin direction configuration (input/output)</li>
-<li>Multiple pin direction configuration</li>
-<li>Port-level direction control</li>
-</ul>
-</li>
-<li><b>GPIO Read/Write Tests</b><ul>
-<li>Pin write operations (HIGH/LOW)</li>
-<li>Pin read operations</li>
-<li>Pin toggle operations</li>
-<li>Port-level read/write</li>
-</ul>
-</li>
-<li><b>Pull Resistor Tests</b><ul>
-<li>Pull-up resistor configuration</li>
-<li>Pull-down resistor configuration</li>
-<li>Pull enable/disable</li>
-<li>Per-pin pull configuration</li>
-</ul>
-</li>
-<li><b>Drive Strength Tests</b><ul>
-<li>All drive strength levels (Level0-Level3)</li>
-<li>Per-pin drive strength configuration</li>
-</ul>
-</li>
-<li><b>Output Mode Tests</b><ul>
-<li>Push-pull mode configuration</li>
-<li>Open-drain mode configuration</li>
-<li>Port-level output mode control</li>
-</ul>
-</li>
-<li><b>Polarity Tests</b><ul>
-<li>Input polarity inversion (normal/inverted)</li>
-<li>Single pin polarity configuration</li>
-<li>Multiple pin polarity configuration</li>
-</ul>
-</li>
-<li><b>Input Latch Tests</b><ul>
-<li>Input latch enable/disable</li>
-<li>Single pin latch configuration</li>
-<li>Multiple pin latch configuration</li>
-</ul>
-</li>
-<li><b>Interrupt Tests</b><ul>
-<li>Interrupt mask configuration</li>
-<li>Interrupt status reading</li>
-<li>Interrupt callback registration</li>
-</ul>
-</li>
-<li><b>Port Operation Tests</b><ul>
-<li>Port 0 operations (pins 0-7)</li>
-<li>Port 1 operations (pins 8-15)</li>
-<li>Mixed port operations</li>
-</ul>
-</li>
-<li><b>Error Handling Tests</b><ul>
-<li>Invalid pin handling</li>
-<li>Error flag management</li>
-<li>Error recovery</li>
-</ul>
-</li>
-<li><b>Stress Tests</b><ul>
-<li>Rapid pin operations</li>
-<li>Continuous read/write cycles</li>
-<li>Multi-pin simultaneous operations</li>
-</ul>
-</li>
-</ol>
-<h3><a class="anchor" id="autotoc_md30"></a>
-Test Configuration</h3>
-<p>You can enable/disable specific test sections by editing the test file:</p>
-<div class="fragment"><div class="line"><span class="comment">// In PCAL9555ComprehensiveTest.cpp</span></div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> ENABLE_INITIALIZATION_TESTS = <span class="keyword">true</span>;</div>
-<div class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> ENABLE_GPIO_DIRECTION_TESTS = <span class="keyword">true</span>;</div>
-<div class="line"><span class="comment">// ... etc</span></div>
-</div><!-- fragment --><h3><a class="anchor" id="autotoc_md31"></a>
-Test Results</h3>
-<p>The test framework provides:</p><ul>
-<li>Automatic pass/fail tracking</li>
-<li>Execution time measurement</li>
-<li>GPIO14 progress indicator (toggles on each test)</li>
-<li>Comprehensive test summary</li>
-<li>Success percentage calculation</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md33"></a>
-🔧 Configuration</h1>
-<h2><a class="anchor" id="autotoc_md34"></a>
-I2C Bus Configuration</h2>
-<p>Default I2C configuration (can be modified in test file):</p>
-<div class="fragment"><div class="line">Esp32Pcal9555Bus::I2CConfig config;</div>
-<div class="line">config.port = I2C_NUM_0;</div>
-<div class="line">config.sda_pin = GPIO_NUM_4;      <span class="comment">// SDA pin</span></div>
-<div class="line">config.scl_pin = GPIO_NUM_5;       <span class="comment">// SCL pin</span></div>
-<div class="line">config.frequency = 400000;         <span class="comment">// 400 kHz</span></div>
-<div class="line">config.pullup_enable = <span class="keyword">true</span>;        <span class="comment">// Enable internal pullups</span></div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md35"></a>
-PCAL9555 Address</h2>
-<p>Default I2C address (can be modified in test file):</p>
-<div class="fragment"><div class="line"><span class="keyword">static</span> <span class="keyword">constexpr</span> uint8_t PCAL9555_I2C_ADDRESS = 0x20;  <span class="comment">// Default address</span></div>
-</div><!-- fragment --><hr  />
-<h1><a class="anchor" id="autotoc_md37"></a>
-🐛 Troubleshooting</h1>
-<h2><a class="anchor" id="autotoc_md38"></a>
-I2C Communication Failures</h2>
-<p><b>Symptoms</b>: Tests fail with I2C errors</p>
-<p><b>Solutions</b>:</p><ol type="1">
-<li><b>Check I2C connections</b>:<ul>
-<li>Verify SDA/SCL connections</li>
-<li>Check pull-up resistors (4.7kΩ recommended)</li>
-<li>Ensure proper power connections</li>
-</ul>
-</li>
-<li><b>Verify I2C address</b>:<ul>
-<li>Check A0, A1, A2 pin configuration</li>
-<li>Use I2C scanner to detect device address</li>
-<li>Update <code>PCAL9555_I2C_ADDRESS</code> if different</li>
-</ul>
-</li>
-<li><b>Check I2C bus speed</b>:<ul>
-<li>Reduce frequency if using long wires</li>
-<li>Try 100 kHz instead of 400 kHz</li>
-</ul>
-</li>
-<li><b>Verify power supply</b>:<ul>
-<li>Ensure 3.3V is stable</li>
-<li>Check for voltage drops</li>
-</ul>
-</li>
-</ol>
-<h2><a class="anchor" id="autotoc_md39"></a>
-Build Errors</h2>
-<p><b>Symptoms</b>: CMake or compilation errors</p>
-<p><b>Solutions</b>:</p><ol type="1">
-<li><b>Verify ESP-IDF version</b>: <div class="fragment"><div class="line">idf.py --version</div>
-<div class="line"># Should show ESP-IDF v5.5 or compatible</div>
-</div><!-- fragment --></li>
-<li><b>Clean and rebuild</b>: <div class="fragment"><div class="line">idf.py fullclean</div>
-<div class="line">./scripts/build_app.sh pcal9555_comprehensive_test Debug</div>
-</div><!-- fragment --></li>
-<li><b>Check component paths</b>:<ul>
-<li>Verify component CMakeLists.txt paths</li>
-<li>Ensure source files are accessible</li>
-</ul>
-</li>
-</ol>
-<h2><a class="anchor" id="autotoc_md40"></a>
-Test Failures</h2>
-<p><b>Symptoms</b>: Specific tests fail</p>
-<p><b>Solutions</b>:</p><ol type="1">
-<li><b>Check hardware connections</b>:<ul>
-<li>Verify all pins are properly connected</li>
-<li>Check for loose connections</li>
-</ul>
-</li>
-<li><b>Review test logs</b>:<ul>
-<li>Check which specific test failed</li>
-<li>Review error messages in serial output</li>
-</ul>
-</li>
-<li><b>Verify device state</b>:<ul>
-<li>Reset PCAL9555 (power cycle)</li>
-<li>Run reset test first</li>
-</ul>
-</li>
-</ol>
-<hr  />
-<h1><a class="anchor" id="autotoc_md42"></a>
-📚 Additional Resources</h1>
-<ul>
-<li><a href="../../datasheet/PCAL9555A.pdf">PCAL9555 Datasheet</a></li>
-<li>Driver API Documentation</li>
-<li>Platform Integration Guide</li>
-<li>Hardware Overview</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md44"></a>
-🎯 Quick Reference</h1>
-<h2><a class="anchor" id="autotoc_md45"></a>
-Build Commands</h2>
-<div class="fragment"><div class="line"># List available apps</div>
-<div class="line">./scripts/build_app.sh list</div>
-<div class="line"> </div>
-<div class="line"># Build comprehensive test</div>
-<div class="line">./scripts/build_app.sh pcal9555_comprehensive_test Debug</div>
-<div class="line"> </div>
-<div class="line"># Flash and monitor</div>
-<div class="line">./scripts/flash_app.sh pcal9555_comprehensive_test Debug</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md46"></a>
-Test Execution</h2>
-<p>The comprehensive test suite runs automatically on boot and provides:</p><ul>
-<li>Real-time test progress via GPIO14 indicator</li>
-<li>Serial output with detailed test results</li>
-<li>Automatic test summary at completion</li>
-</ul>
-<h2><a class="anchor" id="autotoc_md47"></a>
-GPIO14 Test Indicator</h2>
-<p>GPIO14 toggles between HIGH/LOW for each completed test, providing visual feedback:</p><ul>
-<li>Use oscilloscope or logic analyzer to monitor</li>
-<li>Useful for automated test verification</li>
-<li>Blinks 5 times at section start/end</li>
-</ul>
-<hr  />
-<h1><a class="anchor" id="autotoc_md49"></a>
-📝 Notes</h1>
-<ul>
-<li><b>I2C Pull-ups</b>: External pull-up resistors (4.7kΩ) are recommended even if internal pullups are enabled</li>
-<li><b>Address Configuration</b>: Default address is 0x20. Modify if using different A0/A1/A2 configuration</li>
-<li><b>Test Duration</b>: Comprehensive test suite takes approximately 2-5 minutes to complete</li>
-<li><b>Hardware Requirements</b>: Basic tests work without external hardware; some tests benefit from LEDs/switches</li>
-</ul>
-<hr  />
-<div style="text-align: center; margin: 2em 0; padding: 1em; background: #f8f9fa; border-radius: 8px;"> <b>🎯 Ready to test the PCAL9555?</b><br  />
- Start with: <code>./scripts/build_app.sh pcal9555_comprehensive_test Debug</code> </div> </div></div><!-- PageDoc -->
+<div class="textblock"><p><a class="anchor" id="md_README"></a></p>
+</div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
 </div><!-- doc-content -->

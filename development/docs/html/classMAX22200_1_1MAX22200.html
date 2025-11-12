@@ -1,0 +1,1388 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: MAX22200::MAX22200 Class Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+   <div id="projectbrief">HF-MAX22200 C++ Driver</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('classMAX22200_1_1MAX22200.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="classMAX22200_1_1MAX22200-members.html">List of all members</a>  </div>
+  <div class="headertitle"><div class="title">MAX22200::MAX22200 Class Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p><code>#include &lt;<a class="el" href="MAX22200_8h_source.html">MAX22200.h</a>&gt;</code></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a32e6937cbcfe43bd453a01adc52da51d" id="r_a32e6937cbcfe43bd453a01adc52da51d"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a32e6937cbcfe43bd453a01adc52da51d">MAX22200</a> (<a class="el" href="classSPIInterface.html">SPIInterface</a> &amp;spi_interface, bool enable_diagnostics=true)</td></tr>
+<tr class="memdesc:a32e6937cbcfe43bd453a01adc52da51d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor.  <br /></td></tr>
+<tr class="separator:a32e6937cbcfe43bd453a01adc52da51d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aecca4f1a05f48c31b8524721cab0f967" id="r_aecca4f1a05f48c31b8524721cab0f967"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aecca4f1a05f48c31b8524721cab0f967">~MAX22200</a> ()</td></tr>
+<tr class="memdesc:aecca4f1a05f48c31b8524721cab0f967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Destructor.  <br /></td></tr>
+<tr class="separator:aecca4f1a05f48c31b8524721cab0f967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0c3e995033c8c64aebda648d0381eb1b" id="r_a0c3e995033c8c64aebda648d0381eb1b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0c3e995033c8c64aebda648d0381eb1b">MAX22200</a> (const <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;)=delete</td></tr>
+<tr class="separator:a0c3e995033c8c64aebda648d0381eb1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a3b84d71e3b1a469df4b448a6f2cd96" id="r_a6a3b84d71e3b1a469df4b448a6f2cd96"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a3b84d71e3b1a469df4b448a6f2cd96">operator=</a> (const <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;)=delete</td></tr>
+<tr class="separator:a6a3b84d71e3b1a469df4b448a6f2cd96"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ac7805e0a4d24462ba3292caf63343e" id="r_a3ac7805e0a4d24462ba3292caf63343e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3ac7805e0a4d24462ba3292caf63343e">MAX22200</a> (<a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&amp;)=default</td></tr>
+<tr class="separator:a3ac7805e0a4d24462ba3292caf63343e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c9a6a8fa7fd158b0fd6542497d57d3" id="r_ae0c9a6a8fa7fd158b0fd6542497d57d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0c9a6a8fa7fd158b0fd6542497d57d3">operator=</a> (<a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&amp;)=delete</td></tr>
+<tr class="separator:ae0c9a6a8fa7fd158b0fd6542497d57d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a782f1b564aa9f6ab9733c07af6527cc8" id="r_a782f1b564aa9f6ab9733c07af6527cc8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a782f1b564aa9f6ab9733c07af6527cc8">initialize</a> ()</td></tr>
+<tr class="memdesc:a782f1b564aa9f6ab9733c07af6527cc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> driver.  <br /></td></tr>
+<tr class="separator:a782f1b564aa9f6ab9733c07af6527cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab598c6700ba1e75df64532ede0aa662b" id="r_ab598c6700ba1e75df64532ede0aa662b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab598c6700ba1e75df64532ede0aa662b">deinitialize</a> ()</td></tr>
+<tr class="memdesc:ab598c6700ba1e75df64532ede0aa662b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deinitialize the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> driver.  <br /></td></tr>
+<tr class="separator:ab598c6700ba1e75df64532ede0aa662b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16fb89eebc6dc1d784a3de0005eb23e8" id="r_a16fb89eebc6dc1d784a3de0005eb23e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16fb89eebc6dc1d784a3de0005eb23e8">reset</a> ()</td></tr>
+<tr class="memdesc:a16fb89eebc6dc1d784a3de0005eb23e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> device.  <br /></td></tr>
+<tr class="separator:a16fb89eebc6dc1d784a3de0005eb23e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8cc054eded188cd70a29610387f5e18" id="r_ab8cc054eded188cd70a29610387f5e18"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8cc054eded188cd70a29610387f5e18">configureGlobal</a> (const <a class="el" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a> &amp;config)</td></tr>
+<tr class="memdesc:ab8cc054eded188cd70a29610387f5e18"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure global settings.  <br /></td></tr>
+<tr class="separator:ab8cc054eded188cd70a29610387f5e18"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a611291e984d063fc75fab74b9b7d149b" id="r_a611291e984d063fc75fab74b9b7d149b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a611291e984d063fc75fab74b9b7d149b">getGlobalConfig</a> (<a class="el" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a> &amp;config) const</td></tr>
+<tr class="memdesc:a611291e984d063fc75fab74b9b7d149b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current global configuration.  <br /></td></tr>
+<tr class="separator:a611291e984d063fc75fab74b9b7d149b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a41b95eca2596149fd16a92951f0a4245" id="r_a41b95eca2596149fd16a92951f0a4245"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41b95eca2596149fd16a92951f0a4245">setSleepMode</a> (bool enable)</td></tr>
+<tr class="memdesc:a41b95eca2596149fd16a92951f0a4245"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable sleep mode.  <br /></td></tr>
+<tr class="separator:a41b95eca2596149fd16a92951f0a4245"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a803364e5f6b2ddcd2a7a7b95223a905d" id="r_a803364e5f6b2ddcd2a7a7b95223a905d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a803364e5f6b2ddcd2a7a7b95223a905d">setDiagnosticMode</a> (bool enable)</td></tr>
+<tr class="memdesc:a803364e5f6b2ddcd2a7a7b95223a905d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable diagnostic features.  <br /></td></tr>
+<tr class="separator:a803364e5f6b2ddcd2a7a7b95223a905d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a53db266c2652832271cc89e76936a" id="r_ad2a53db266c2652832271cc89e76936a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a53db266c2652832271cc89e76936a">setIntegratedCurrentSensing</a> (bool enable)</td></tr>
+<tr class="memdesc:ad2a53db266c2652832271cc89e76936a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable integrated current sensing.  <br /></td></tr>
+<tr class="separator:ad2a53db266c2652832271cc89e76936a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a720c53520bbb498458013379eebbd553" id="r_a720c53520bbb498458013379eebbd553"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a720c53520bbb498458013379eebbd553">configureChannel</a> (uint8_t channel, const <a class="el" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a> &amp;config)</td></tr>
+<tr class="memdesc:a720c53520bbb498458013379eebbd553"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure a specific channel.  <br /></td></tr>
+<tr class="separator:a720c53520bbb498458013379eebbd553"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a234f3b8023bce26cb41e7e79425ee765" id="r_a234f3b8023bce26cb41e7e79425ee765"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a234f3b8023bce26cb41e7e79425ee765">getChannelConfig</a> (uint8_t channel, <a class="el" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a> &amp;config) const</td></tr>
+<tr class="memdesc:a234f3b8023bce26cb41e7e79425ee765"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration of a specific channel.  <br /></td></tr>
+<tr class="separator:a234f3b8023bce26cb41e7e79425ee765"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab8f7cf101cb73c31df16b11f5f82c226" id="r_ab8f7cf101cb73c31df16b11f5f82c226"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab8f7cf101cb73c31df16b11f5f82c226">configureAllChannels</a> (const <a class="el" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a> &amp;configs)</td></tr>
+<tr class="memdesc:ab8f7cf101cb73c31df16b11f5f82c226"><td class="mdescLeft">&#160;</td><td class="mdescRight">Configure all channels at once.  <br /></td></tr>
+<tr class="separator:ab8f7cf101cb73c31df16b11f5f82c226"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7064c2c6468de40c3d9afc7698377619" id="r_a7064c2c6468de40c3d9afc7698377619"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7064c2c6468de40c3d9afc7698377619">getAllChannelConfigs</a> (<a class="el" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a> &amp;configs) const</td></tr>
+<tr class="memdesc:a7064c2c6468de40c3d9afc7698377619"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get configuration of all channels.  <br /></td></tr>
+<tr class="separator:a7064c2c6468de40c3d9afc7698377619"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad40b5d03aa329b5f1e9e857dac67f607" id="r_ad40b5d03aa329b5f1e9e857dac67f607"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad40b5d03aa329b5f1e9e857dac67f607">enableChannel</a> (uint8_t channel, bool enable)</td></tr>
+<tr class="memdesc:ad40b5d03aa329b5f1e9e857dac67f607"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable a specific channel.  <br /></td></tr>
+<tr class="separator:ad40b5d03aa329b5f1e9e857dac67f607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a00e1b374941e3ee2709071e09fc58965" id="r_a00e1b374941e3ee2709071e09fc58965"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a00e1b374941e3ee2709071e09fc58965">enableAllChannels</a> (bool enable)</td></tr>
+<tr class="memdesc:a00e1b374941e3ee2709071e09fc58965"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable or disable all channels.  <br /></td></tr>
+<tr class="separator:a00e1b374941e3ee2709071e09fc58965"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8823f6617e3b453ea014fd1783232536" id="r_a8823f6617e3b453ea014fd1783232536"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8823f6617e3b453ea014fd1783232536">setChannelDriveMode</a> (uint8_t channel, <a class="el" href="namespaceMAX22200.html#a9e907742d92028a71547215492215ed5">DriveMode</a> mode)</td></tr>
+<tr class="memdesc:a8823f6617e3b453ea014fd1783232536"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set channel drive mode.  <br /></td></tr>
+<tr class="separator:a8823f6617e3b453ea014fd1783232536"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2be9f9bc08a43c38b286b01f8ee9874" id="r_ab2be9f9bc08a43c38b286b01f8ee9874"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2be9f9bc08a43c38b286b01f8ee9874">setChannelBridgeMode</a> (uint8_t channel, <a class="el" href="namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155">BridgeMode</a> mode)</td></tr>
+<tr class="memdesc:ab2be9f9bc08a43c38b286b01f8ee9874"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set channel bridge mode.  <br /></td></tr>
+<tr class="separator:ab2be9f9bc08a43c38b286b01f8ee9874"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab7b9c1970e0f0c78ae0bd222952ab7ba" id="r_ab7b9c1970e0f0c78ae0bd222952ab7ba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab7b9c1970e0f0c78ae0bd222952ab7ba">setChannelPolarity</a> (uint8_t channel, <a class="el" href="namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6">OutputPolarity</a> polarity)</td></tr>
+<tr class="memdesc:ab7b9c1970e0f0c78ae0bd222952ab7ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set channel output polarity.  <br /></td></tr>
+<tr class="separator:ab7b9c1970e0f0c78ae0bd222952ab7ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af0abeb29c3f34841ad41fde5e20fbf68" id="r_af0abeb29c3f34841ad41fde5e20fbf68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af0abeb29c3f34841ad41fde5e20fbf68">setHitCurrent</a> (uint8_t channel, uint16_t current)</td></tr>
+<tr class="memdesc:af0abeb29c3f34841ad41fde5e20fbf68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set HIT current for a channel.  <br /></td></tr>
+<tr class="separator:af0abeb29c3f34841ad41fde5e20fbf68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16a46ef7cb01000d44ec5fa4034ccc9" id="r_ab16a46ef7cb01000d44ec5fa4034ccc9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab16a46ef7cb01000d44ec5fa4034ccc9">setHoldCurrent</a> (uint8_t channel, uint16_t current)</td></tr>
+<tr class="memdesc:ab16a46ef7cb01000d44ec5fa4034ccc9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set HOLD current for a channel.  <br /></td></tr>
+<tr class="separator:ab16a46ef7cb01000d44ec5fa4034ccc9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a77a9e8b3e91f6172d3223fc002052691" id="r_a77a9e8b3e91f6172d3223fc002052691"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a77a9e8b3e91f6172d3223fc002052691">setCurrents</a> (uint8_t channel, uint16_t hit_current, uint16_t hold_current)</td></tr>
+<tr class="memdesc:a77a9e8b3e91f6172d3223fc002052691"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set both HIT and HOLD currents for a channel.  <br /></td></tr>
+<tr class="separator:a77a9e8b3e91f6172d3223fc002052691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7bea2b2829e526fa03d36fff5aa34ee1" id="r_a7bea2b2829e526fa03d36fff5aa34ee1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7bea2b2829e526fa03d36fff5aa34ee1">getCurrents</a> (uint8_t channel, uint16_t &amp;hit_current, uint16_t &amp;hold_current) const</td></tr>
+<tr class="memdesc:a7bea2b2829e526fa03d36fff5aa34ee1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get current settings for a channel.  <br /></td></tr>
+<tr class="separator:a7bea2b2829e526fa03d36fff5aa34ee1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7f0bdfe706505d48ef11f39445645065" id="r_a7f0bdfe706505d48ef11f39445645065"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7f0bdfe706505d48ef11f39445645065">setHitTime</a> (uint8_t channel, uint16_t time)</td></tr>
+<tr class="memdesc:a7f0bdfe706505d48ef11f39445645065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set HIT time for a channel.  <br /></td></tr>
+<tr class="separator:a7f0bdfe706505d48ef11f39445645065"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a600e48aa4781eddb7bfcec5260bb140e" id="r_a600e48aa4781eddb7bfcec5260bb140e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a600e48aa4781eddb7bfcec5260bb140e">getHitTime</a> (uint8_t channel, uint16_t &amp;time) const</td></tr>
+<tr class="memdesc:a600e48aa4781eddb7bfcec5260bb140e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get HIT time for a channel.  <br /></td></tr>
+<tr class="separator:a600e48aa4781eddb7bfcec5260bb140e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2b94320269dfe0a2c59726322f52c3f7" id="r_a2b94320269dfe0a2c59726322f52c3f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b94320269dfe0a2c59726322f52c3f7">readFaultStatus</a> (<a class="el" href="structMAX22200_1_1FaultStatus.html">FaultStatus</a> &amp;status) const</td></tr>
+<tr class="memdesc:a2b94320269dfe0a2c59726322f52c3f7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read fault status.  <br /></td></tr>
+<tr class="separator:a2b94320269dfe0a2c59726322f52c3f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d88fe5ce1438952bee73525ce5e7a54" id="r_a3d88fe5ce1438952bee73525ce5e7a54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d88fe5ce1438952bee73525ce5e7a54">clearFaultStatus</a> ()</td></tr>
+<tr class="memdesc:a3d88fe5ce1438952bee73525ce5e7a54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Clear fault status.  <br /></td></tr>
+<tr class="separator:a3d88fe5ce1438952bee73525ce5e7a54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5c5e1d30d78853e1838b9903c59502fd" id="r_a5c5e1d30d78853e1838b9903c59502fd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5c5e1d30d78853e1838b9903c59502fd">readChannelStatus</a> (uint8_t channel, <a class="el" href="structMAX22200_1_1ChannelStatus.html">ChannelStatus</a> &amp;status) const</td></tr>
+<tr class="memdesc:a5c5e1d30d78853e1838b9903c59502fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read channel status.  <br /></td></tr>
+<tr class="separator:a5c5e1d30d78853e1838b9903c59502fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57ae01e608f243e8ce2dc68a8c2cad68" id="r_a57ae01e608f243e8ce2dc68a8c2cad68"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57ae01e608f243e8ce2dc68a8c2cad68">readAllChannelStatuses</a> (<a class="el" href="namespaceMAX22200.html#a7caa5db0b60a76f0a5f10d420a60cef0">ChannelStatusArray</a> &amp;statuses) const</td></tr>
+<tr class="memdesc:a57ae01e608f243e8ce2dc68a8c2cad68"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read all channel statuses.  <br /></td></tr>
+<tr class="separator:a57ae01e608f243e8ce2dc68a8c2cad68"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6f6ad8ab788a1aaf3a71c93b5de5d4da" id="r_a6f6ad8ab788a1aaf3a71c93b5de5d4da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6f6ad8ab788a1aaf3a71c93b5de5d4da">getStatistics</a> (<a class="el" href="structMAX22200_1_1DriverStatistics.html">DriverStatistics</a> &amp;stats) const</td></tr>
+<tr class="memdesc:a6f6ad8ab788a1aaf3a71c93b5de5d4da"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get driver statistics.  <br /></td></tr>
+<tr class="separator:a6f6ad8ab788a1aaf3a71c93b5de5d4da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9eb5fef9a901794a957ff8e4f613661d" id="r_a9eb5fef9a901794a957ff8e4f613661d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9eb5fef9a901794a957ff8e4f613661d">resetStatistics</a> ()</td></tr>
+<tr class="memdesc:a9eb5fef9a901794a957ff8e4f613661d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Reset driver statistics.  <br /></td></tr>
+<tr class="separator:a9eb5fef9a901794a957ff8e4f613661d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6a895a4145801bd807c0dde254fecb39" id="r_a6a895a4145801bd807c0dde254fecb39"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6a895a4145801bd807c0dde254fecb39">setFaultCallback</a> (<a class="el" href="namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7">FaultCallback</a> callback, void *user_data=nullptr)</td></tr>
+<tr class="memdesc:a6a895a4145801bd807c0dde254fecb39"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set fault callback function.  <br /></td></tr>
+<tr class="separator:a6a895a4145801bd807c0dde254fecb39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf30f38d3a6b1bee83ec805b0f36cc9c" id="r_aaf30f38d3a6b1bee83ec805b0f36cc9c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aaf30f38d3a6b1bee83ec805b0f36cc9c">setStateChangeCallback</a> (<a class="el" href="namespaceMAX22200.html#a43ba147ce2b61076ad4808a46088fd8b">StateChangeCallback</a> callback, void *user_data=nullptr)</td></tr>
+<tr class="memdesc:aaf30f38d3a6b1bee83ec805b0f36cc9c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set state change callback function.  <br /></td></tr>
+<tr class="separator:aaf30f38d3a6b1bee83ec805b0f36cc9c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a29e0bd476174486d20863f83865459" id="r_a4a29e0bd476174486d20863f83865459"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a29e0bd476174486d20863f83865459">isInitialized</a> () const</td></tr>
+<tr class="memdesc:a4a29e0bd476174486d20863f83865459"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if driver is initialized.  <br /></td></tr>
+<tr class="separator:a4a29e0bd476174486d20863f83865459"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a122e4282b6eb8ea61e2841ab6b0743e0" id="r_a122e4282b6eb8ea61e2841ab6b0743e0"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a122e4282b6eb8ea61e2841ab6b0743e0">isValidChannel</a> (uint8_t channel)</td></tr>
+<tr class="memdesc:a122e4282b6eb8ea61e2841ab6b0743e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if a channel is valid.  <br /></td></tr>
+<tr class="separator:a122e4282b6eb8ea61e2841ab6b0743e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1e0f0a4a6621a38931e602a68879d5c1" id="r_a1e0f0a4a6621a38931e602a68879d5c1"><td class="memItemLeft" align="right" valign="top">static constexpr const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1e0f0a4a6621a38931e602a68879d5c1">getVersion</a> ()</td></tr>
+<tr class="memdesc:a1e0f0a4a6621a38931e602a68879d5c1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get driver version string.  <br /></td></tr>
+<tr class="separator:a1e0f0a4a6621a38931e602a68879d5c1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a32e6937cbcfe43bd453a01adc52da51d" name="a32e6937cbcfe43bd453a01adc52da51d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a32e6937cbcfe43bd453a01adc52da51d">&#9670;&#160;</a></span>MAX22200() <span class="overload">[1/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MAX22200::MAX22200::MAX22200 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classSPIInterface.html">SPIInterface</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>spi_interface</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable_diagnostics</em><span class="paramdefsep"> = </span><span class="paramdefval">true</span></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">spi_interface</td><td>Reference to SPI interface implementation </td></tr>
+    <tr><td class="paramname">enable_diagnostics</td><td>Enable diagnostic features (default: true) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aecca4f1a05f48c31b8524721cab0f967" name="aecca4f1a05f48c31b8524721cab0f967"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aecca4f1a05f48c31b8524721cab0f967">&#9670;&#160;</a></span>~MAX22200()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">MAX22200::MAX22200::~MAX22200 </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Destructor. </p>
+<p>Safely shuts down the driver and disables all channels. </p>
+
+</div>
+</div>
+<a id="a0c3e995033c8c64aebda648d0381eb1b" name="a0c3e995033c8c64aebda648d0381eb1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0c3e995033c8c64aebda648d0381eb1b">&#9670;&#160;</a></span>MAX22200() <span class="overload">[2/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MAX22200::MAX22200::MAX22200 </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a3ac7805e0a4d24462ba3292caf63343e" name="a3ac7805e0a4d24462ba3292caf63343e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ac7805e0a4d24462ba3292caf63343e">&#9670;&#160;</a></span>MAX22200() <span class="overload">[3/3]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">MAX22200::MAX22200::MAX22200 </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">default</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a3d88fe5ce1438952bee73525ce5e7a54" name="a3d88fe5ce1438952bee73525ce5e7a54"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d88fe5ce1438952bee73525ce5e7a54">&#9670;&#160;</a></span>clearFaultStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::clearFaultStatus </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Clear fault status. </p>
+<p>Clears all fault flags in the device.</p>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab8f7cf101cb73c31df16b11f5f82c226" name="ab8f7cf101cb73c31df16b11f5f82c226"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f7cf101cb73c31df16b11f5f82c226">&#9670;&#160;</a></span>configureAllChannels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::configureAllChannels </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>configs</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure all channels at once. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">configs</td><td>Array of channel configurations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a720c53520bbb498458013379eebbd553" name="a720c53520bbb498458013379eebbd553"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a720c53520bbb498458013379eebbd553">&#9670;&#160;</a></span>configureChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::configureChannel </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure a specific channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">config</td><td>Channel configuration structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab8cc054eded188cd70a29610387f5e18" name="ab8cc054eded188cd70a29610387f5e18"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8cc054eded188cd70a29610387f5e18">&#9670;&#160;</a></span>configureGlobal()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::configureGlobal </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Configure global settings. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Global configuration structure </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab598c6700ba1e75df64532ede0aa662b" name="ab598c6700ba1e75df64532ede0aa662b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab598c6700ba1e75df64532ede0aa662b">&#9670;&#160;</a></span>deinitialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::deinitialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Deinitialize the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> driver. </p>
+<p>Safely shuts down the driver, disables all channels, and puts the device into sleep mode.</p>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a00e1b374941e3ee2709071e09fc58965" name="a00e1b374941e3ee2709071e09fc58965"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a00e1b374941e3ee2709071e09fc58965">&#9670;&#160;</a></span>enableAllChannels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::enableAllChannels </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable all channels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true to enable all, false to disable all </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ad40b5d03aa329b5f1e9e857dac67f607" name="ad40b5d03aa329b5f1e9e857dac67f607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad40b5d03aa329b5f1e9e857dac67f607">&#9670;&#160;</a></span>enableChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::enableChannel </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable a specific channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">enable</td><td>true to enable, false to disable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a7064c2c6468de40c3d9afc7698377619" name="a7064c2c6468de40c3d9afc7698377619"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7064c2c6468de40c3d9afc7698377619">&#9670;&#160;</a></span>getAllChannelConfigs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getAllChannelConfigs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>configs</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get configuration of all channels. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">configs</td><td>Reference to store the channel configurations </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a234f3b8023bce26cb41e7e79425ee765" name="a234f3b8023bce26cb41e7e79425ee765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a234f3b8023bce26cb41e7e79425ee765">&#9670;&#160;</a></span>getChannelConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getChannelConfig </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get configuration of a specific channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">config</td><td>Reference to store the channel configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a7bea2b2829e526fa03d36fff5aa34ee1" name="a7bea2b2829e526fa03d36fff5aa34ee1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7bea2b2829e526fa03d36fff5aa34ee1">&#9670;&#160;</a></span>getCurrents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getCurrents </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>hit_current</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>hold_current</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current settings for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">hit_current</td><td>Reference to store HIT current </td></tr>
+    <tr><td class="paramname">hold_current</td><td>Reference to store HOLD current </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a611291e984d063fc75fab74b9b7d149b" name="a611291e984d063fc75fab74b9b7d149b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a611291e984d063fc75fab74b9b7d149b">&#9670;&#160;</a></span>getGlobalConfig()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getGlobalConfig </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>config</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get current global configuration. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">config</td><td>Reference to store the current configuration </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a600e48aa4781eddb7bfcec5260bb140e" name="a600e48aa4781eddb7bfcec5260bb140e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a600e48aa4781eddb7bfcec5260bb140e">&#9670;&#160;</a></span>getHitTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getHitTime </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t &amp;</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get HIT time for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">time</td><td>Reference to store HIT time </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a6f6ad8ab788a1aaf3a71c93b5de5d4da" name="a6f6ad8ab788a1aaf3a71c93b5de5d4da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6f6ad8ab788a1aaf3a71c93b5de5d4da">&#9670;&#160;</a></span>getStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::getStatistics </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMAX22200_1_1DriverStatistics.html">DriverStatistics</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>stats</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get driver statistics. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">stats</td><td>Reference to store driver statistics </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a1e0f0a4a6621a38931e602a68879d5c1" name="a1e0f0a4a6621a38931e602a68879d5c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1e0f0a4a6621a38931e602a68879d5c1">&#9670;&#160;</a></span>getVersion()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr const char * MAX22200::MAX22200::getVersion </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get driver version string. </p>
+<dl class="section return"><dt>Returns</dt><dd>Version string </dd></dl>
+
+</div>
+</div>
+<a id="a782f1b564aa9f6ab9733c07af6527cc8" name="a782f1b564aa9f6ab9733c07af6527cc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a782f1b564aa9f6ab9733c07af6527cc8">&#9670;&#160;</a></span>initialize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::initialize </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Initialize the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> driver. </p>
+<p>This method initializes the SPI interface and configures the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> with default settings. It should be called before using any other driver functions.</p>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a4a29e0bd476174486d20863f83865459" name="a4a29e0bd476174486d20863f83865459"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a29e0bd476174486d20863f83865459">&#9670;&#160;</a></span>isInitialized()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool MAX22200::MAX22200::isInitialized </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Check if driver is initialized. </p>
+<dl class="section return"><dt>Returns</dt><dd>true if driver is initialized, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a122e4282b6eb8ea61e2841ab6b0743e0" name="a122e4282b6eb8ea61e2841ab6b0743e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a122e4282b6eb8ea61e2841ab6b0743e0">&#9670;&#160;</a></span>isValidChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static constexpr bool MAX22200::MAX22200::isValidChannel </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Check if a channel is valid. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number to check </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if channel is valid (0-7), false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a6a3b84d71e3b1a469df4b448a6f2cd96" name="a6a3b84d71e3b1a469df4b448a6f2cd96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a3b84d71e3b1a469df4b448a6f2cd96">&#9670;&#160;</a></span>operator=() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp; MAX22200::MAX22200::operator= </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae0c9a6a8fa7fd158b0fd6542497d57d3" name="ae0c9a6a8fa7fd158b0fd6542497d57d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c9a6a8fa7fd158b0fd6542497d57d3">&#9670;&#160;</a></span>operator=() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp; MAX22200::MAX22200::operator= </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> &amp;&amp;</td>          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">delete</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a57ae01e608f243e8ce2dc68a8c2cad68" name="a57ae01e608f243e8ce2dc68a8c2cad68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a57ae01e608f243e8ce2dc68a8c2cad68">&#9670;&#160;</a></span>readAllChannelStatuses()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::readAllChannelStatuses </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a7caa5db0b60a76f0a5f10d420a60cef0">ChannelStatusArray</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>statuses</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read all channel statuses. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">statuses</td><td>Reference to store channel statuses </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a5c5e1d30d78853e1838b9903c59502fd" name="a5c5e1d30d78853e1838b9903c59502fd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c5e1d30d78853e1838b9903c59502fd">&#9670;&#160;</a></span>readChannelStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::readChannelStatus </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structMAX22200_1_1ChannelStatus.html">ChannelStatus</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>status</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read channel status. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">status</td><td>Reference to store channel status </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a2b94320269dfe0a2c59726322f52c3f7" name="a2b94320269dfe0a2c59726322f52c3f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2b94320269dfe0a2c59726322f52c3f7">&#9670;&#160;</a></span>readFaultStatus()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::readFaultStatus </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="structMAX22200_1_1FaultStatus.html">FaultStatus</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>status</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Read fault status. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">status</td><td>Reference to store fault status </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a16fb89eebc6dc1d784a3de0005eb23e8" name="a16fb89eebc6dc1d784a3de0005eb23e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16fb89eebc6dc1d784a3de0005eb23e8">&#9670;&#160;</a></span>reset()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::reset </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> device. </p>
+<p>Performs a software reset of the <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a> device, clearing all configuration and returning to default state.</p>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a9eb5fef9a901794a957ff8e4f613661d" name="a9eb5fef9a901794a957ff8e4f613661d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9eb5fef9a901794a957ff8e4f613661d">&#9670;&#160;</a></span>resetStatistics()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::resetStatistics </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Reset driver statistics. </p>
+<p>Resets all driver statistics to zero.</p>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab2be9f9bc08a43c38b286b01f8ee9874" name="ab2be9f9bc08a43c38b286b01f8ee9874"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2be9f9bc08a43c38b286b01f8ee9874">&#9670;&#160;</a></span>setChannelBridgeMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setChannelBridgeMode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155">BridgeMode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set channel bridge mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">mode</td><td>Bridge mode (half or full) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a8823f6617e3b453ea014fd1783232536" name="a8823f6617e3b453ea014fd1783232536"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8823f6617e3b453ea014fd1783232536">&#9670;&#160;</a></span>setChannelDriveMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setChannelDriveMode </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a9e907742d92028a71547215492215ed5">DriveMode</a></td>          <td class="paramname"><span class="paramname"><em>mode</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set channel drive mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">mode</td><td>Drive mode (CDR or VDR) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab7b9c1970e0f0c78ae0bd222952ab7ba" name="ab7b9c1970e0f0c78ae0bd222952ab7ba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab7b9c1970e0f0c78ae0bd222952ab7ba">&#9670;&#160;</a></span>setChannelPolarity()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setChannelPolarity </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6">OutputPolarity</a></td>          <td class="paramname"><span class="paramname"><em>polarity</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set channel output polarity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">polarity</td><td>Output polarity (normal or inverted) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a77a9e8b3e91f6172d3223fc002052691" name="a77a9e8b3e91f6172d3223fc002052691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a77a9e8b3e91f6172d3223fc002052691">&#9670;&#160;</a></span>setCurrents()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setCurrents </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>hit_current</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>hold_current</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set both HIT and HOLD currents for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">hit_current</td><td>HIT current value (0-1023) </td></tr>
+    <tr><td class="paramname">hold_current</td><td>HOLD current value (0-1023) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a803364e5f6b2ddcd2a7a7b95223a905d" name="a803364e5f6b2ddcd2a7a7b95223a905d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a803364e5f6b2ddcd2a7a7b95223a905d">&#9670;&#160;</a></span>setDiagnosticMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setDiagnosticMode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable diagnostic features. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true to enable diagnostics, false to disable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a6a895a4145801bd807c0dde254fecb39" name="a6a895a4145801bd807c0dde254fecb39"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6a895a4145801bd807c0dde254fecb39">&#9670;&#160;</a></span>setFaultCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MAX22200::MAX22200::setFaultCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7">FaultCallback</a></td>          <td class="paramname"><span class="paramname"><em>callback</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>user_data</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set fault callback function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>Function to call when a fault occurs </td></tr>
+    <tr><td class="paramname">user_data</td><td>User data to pass to callback </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="af0abeb29c3f34841ad41fde5e20fbf68" name="af0abeb29c3f34841ad41fde5e20fbf68"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af0abeb29c3f34841ad41fde5e20fbf68">&#9670;&#160;</a></span>setHitCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setHitCurrent </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>current</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set HIT current for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">current</td><td>HIT current value (0-1023) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a7f0bdfe706505d48ef11f39445645065" name="a7f0bdfe706505d48ef11f39445645065"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7f0bdfe706505d48ef11f39445645065">&#9670;&#160;</a></span>setHitTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setHitTime </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>time</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set HIT time for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">time</td><td>HIT time value (0-65535) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ab16a46ef7cb01000d44ec5fa4034ccc9" name="ab16a46ef7cb01000d44ec5fa4034ccc9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab16a46ef7cb01000d44ec5fa4034ccc9">&#9670;&#160;</a></span>setHoldCurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setHoldCurrent </td>
+          <td>(</td>
+          <td class="paramtype">uint8_t</td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">uint16_t</td>          <td class="paramname"><span class="paramname"><em>current</em></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set HOLD current for a channel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
+    <tr><td class="paramname">current</td><td>HOLD current value (0-1023) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="ad2a53db266c2652832271cc89e76936a" name="ad2a53db266c2652832271cc89e76936a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a53db266c2652832271cc89e76936a">&#9670;&#160;</a></span>setIntegratedCurrentSensing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setIntegratedCurrentSensing </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable integrated current sensing. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true to enable ICS, false to disable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="a41b95eca2596149fd16a92951f0a4245" name="a41b95eca2596149fd16a92951f0a4245"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a41b95eca2596149fd16a92951f0a4245">&#9670;&#160;</a></span>setSleepMode()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> MAX22200::MAX22200::setSleepMode </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>enable</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable or disable sleep mode. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">enable</td><td>true to enable sleep mode, false to disable </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus indicating success or failure </dd></dl>
+
+</div>
+</div>
+<a id="aaf30f38d3a6b1bee83ec805b0f36cc9c" name="aaf30f38d3a6b1bee83ec805b0f36cc9c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aaf30f38d3a6b1bee83ec805b0f36cc9c">&#9670;&#160;</a></span>setStateChangeCallback()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void MAX22200::MAX22200::setStateChangeCallback </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespaceMAX22200.html#a43ba147ce2b61076ad4808a46088fd8b">StateChangeCallback</a></td>          <td class="paramname"><span class="paramname"><em>callback</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">void *</td>          <td class="paramname"><span class="paramname"><em>user_data</em><span class="paramdefsep"> = </span><span class="paramdefval">nullptr</span></span>&#160;)</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Set state change callback function. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">callback</td><td>Function to call when channel state changes </td></tr>
+    <tr><td class="paramname">user_data</td><td>User data to pass to callback </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following files:<ul>
+<li>inc/<a class="el" href="MAX22200_8h_source.html">MAX22200.h</a></li>
+<li>src/<a class="el" href="MAX22200_8cpp.html">MAX22200.cpp</a></li>
+</ul>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMAX22200.html">MAX22200</a></li><li class="navelem"><a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

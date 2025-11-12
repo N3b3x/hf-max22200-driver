@@ -1,4 +1,18 @@
 var searchData=
 [
-  ['init_5ftest_5fprogress_5findicator_0',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]]
+  ['get_5fsuccess_5fpercentage_0',['get_success_percentage',['../structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8',1,'TestResults']]],
+  ['get_5ftotal_5ftime_5fms_1',['get_total_time_ms',['../structTestResults.html#a6d2e718d81a8b4a4dcca515ee858de57',1,'TestResults']]],
+  ['getallchannelconfigs_2',['getAllChannelConfigs',['../classMAX22200_1_1MAX22200.html#a7064c2c6468de40c3d9afc7698377619',1,'MAX22200::MAX22200']]],
+  ['getchannelconfig_3',['getChannelConfig',['../classMAX22200_1_1MAX22200.html#a234f3b8023bce26cb41e7e79425ee765',1,'MAX22200::MAX22200']]],
+  ['getchannelconfigreg_4',['getChannelConfigReg',['../namespaceMAX22200.html#a7a2b1f8d773d609ec427c6099a1acf41',1,'MAX22200']]],
+  ['getchannelcurrentreg_5',['getChannelCurrentReg',['../namespaceMAX22200.html#a91b260379e9cb435b336a9af0b36af07',1,'MAX22200']]],
+  ['getchanneltimingreg_6',['getChannelTimingReg',['../namespaceMAX22200.html#a943528aed0b6efd6a16854b55a8e921b',1,'MAX22200']]],
+  ['getcurrents_7',['getCurrents',['../classMAX22200_1_1MAX22200.html#a7bea2b2829e526fa03d36fff5aa34ee1',1,'MAX22200::MAX22200']]],
+  ['getfaultcount_8',['getFaultCount',['../structMAX22200_1_1FaultStatus.html#aab6e2034c709c6b8ab044a8c29f70cd1',1,'MAX22200::FaultStatus']]],
+  ['getglobalconfig_9',['getGlobalConfig',['../classMAX22200_1_1MAX22200.html#a611291e984d063fc75fab74b9b7d149b',1,'MAX22200::MAX22200']]],
+  ['gethittime_10',['getHitTime',['../classMAX22200_1_1MAX22200.html#a600e48aa4781eddb7bfcec5260bb140e',1,'MAX22200::MAX22200']]],
+  ['getstatistics_11',['getStatistics',['../classMAX22200_1_1MAX22200.html#a6f6ad8ab788a1aaf3a71c93b5de5d4da',1,'MAX22200::MAX22200']]],
+  ['getsuccessrate_12',['getSuccessRate',['../structMAX22200_1_1DriverStatistics.html#a13703e38f0b564278dc465197f571a3b',1,'MAX22200::DriverStatistics']]],
+  ['getversion_13',['getVersion',['../classMAX22200_1_1MAX22200.html#a1e0f0a4a6621a38931e602a68879d5c1',1,'MAX22200::MAX22200']]],
+  ['globalconfig_14',['GlobalConfig',['../structMAX22200_1_1GlobalConfig.html#a6a04a869407ae0804d1b587e70696d04',1,'MAX22200::GlobalConfig']]]
 ];

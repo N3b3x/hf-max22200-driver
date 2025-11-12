@@ -1,0 +1,338 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: inc/MAX22200.h Source File</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+   <div id="projectbrief">HF-MAX22200 C++ Driver</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() { codefold.init(0); });
+/* @license-end */
+</script>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('MAX22200_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">MAX22200.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="MAX22200_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#ifndef MAX22200_H</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#define MAX22200_H</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;<a class="code" href="MAX22200__Registers_8h.html">MAX22200_Registers.h</a>&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;<a class="code" href="MAX22200__Types_8h.html">MAX22200_Types.h</a>&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="SPIInterface_8h.html">SPIInterface.h</a>&quot;</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &lt;array&gt;</span></div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span> </div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a> {</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
+<div class="foldopen" id="foldopen00057" data-start="{" data-end="};">
+<div class="line"><a id="l00057" name="l00057"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html">   57</a></span><span class="keyword">class </span><a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a> {</div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>  <span class="keyword">explicit</span> <a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>(<a class="code hl_class" href="classSPIInterface.html">SPIInterface</a>&amp; spi_interface, <span class="keywordtype">bool</span> enable_diagnostics = <span class="keyword">true</span>);</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>  <a class="code hl_namespace" href="namespaceMAX22200.html">~MAX22200</a>();</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span> </div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>  <span class="comment">// Disable copy constructor and assignment operator</span></div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#a0c3e995033c8c64aebda648d0381eb1b">   75</a></span>  <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#a0c3e995033c8c64aebda648d0381eb1b">MAX22200</a>(<span class="keyword">const</span> <a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#a6a3b84d71e3b1a469df4b448a6f2cd96">   76</a></span>  <a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp; <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#a6a3b84d71e3b1a469df4b448a6f2cd96">operator=</a>(<span class="keyword">const</span> <a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp;) = <span class="keyword">delete</span>;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>  <span class="comment">// Enable move constructor and assignment operator</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#a3ac7805e0a4d24462ba3292caf63343e">   79</a></span>  <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#a3ac7805e0a4d24462ba3292caf63343e">MAX22200</a>(<a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp;&amp;) = <span class="keywordflow">default</span>;</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#ae0c9a6a8fa7fd158b0fd6542497d57d3">   80</a></span>  <a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp; <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#ae0c9a6a8fa7fd158b0fd6542497d57d3">operator=</a>(<a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a>&amp;&amp;) = <span class="keyword">delete</span>; <span class="comment">// Cannot move due to reference member</span></div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span> </div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> initialize();</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
+<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> deinitialize();</div>
+<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span> </div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> reset();</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>  <span class="comment">// Global Configuration Methods</span></div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span> </div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> configureGlobal(<span class="keyword">const</span> <a class="code hl_struct" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a>&amp; config);</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span> </div>
+<div class="line"><a id="l00129" name="l00129"></a><span class="lineno">  129</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getGlobalConfig(<a class="code hl_struct" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a>&amp; config) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00130" name="l00130"></a><span class="lineno">  130</span> </div>
+<div class="line"><a id="l00137" name="l00137"></a><span class="lineno">  137</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setSleepMode(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00138" name="l00138"></a><span class="lineno">  138</span> </div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setDiagnosticMode(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span> </div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setIntegratedCurrentSensing(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span> </div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>  <span class="comment">// Channel Configuration Methods</span></div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span> </div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> configureChannel(uint8_t channel, <span class="keyword">const</span> <a class="code hl_struct" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a>&amp; config);</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00173" name="l00173"></a><span class="lineno">  173</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getChannelConfig(uint8_t channel, <a class="code hl_struct" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a>&amp; config) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00174" name="l00174"></a><span class="lineno">  174</span> </div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> configureAllChannels(<span class="keyword">const</span> <a class="code hl_typedef" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a>&amp; configs);</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span> </div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getAllChannelConfigs(<a class="code hl_typedef" href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">ChannelConfigArray</a>&amp; configs) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>  <span class="comment">// Channel Control Methods</span></div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span> </div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> enableChannel(uint8_t channel, <span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span> </div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> enableAllChannels(<span class="keywordtype">bool</span> enable);</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span> </div>
+<div class="line"><a id="l00217" name="l00217"></a><span class="lineno">  217</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setChannelDriveMode(uint8_t channel, <a class="code hl_enumeration" href="namespaceMAX22200.html#a9e907742d92028a71547215492215ed5">DriveMode</a> mode);</div>
+<div class="line"><a id="l00218" name="l00218"></a><span class="lineno">  218</span> </div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setChannelBridgeMode(uint8_t channel, <a class="code hl_enumeration" href="namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155">BridgeMode</a> mode);</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setChannelPolarity(uint8_t channel, <a class="code hl_enumeration" href="namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6">OutputPolarity</a> polarity);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  <span class="comment">// Current Control Methods</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span> </div>
+<div class="line"><a id="l00246" name="l00246"></a><span class="lineno">  246</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setHitCurrent(uint8_t channel, uint16_t current);</div>
+<div class="line"><a id="l00247" name="l00247"></a><span class="lineno">  247</span> </div>
+<div class="line"><a id="l00255" name="l00255"></a><span class="lineno">  255</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setHoldCurrent(uint8_t channel, uint16_t current);</div>
+<div class="line"><a id="l00256" name="l00256"></a><span class="lineno">  256</span> </div>
+<div class="line"><a id="l00265" name="l00265"></a><span class="lineno">  265</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current);</div>
+<div class="line"><a id="l00266" name="l00266"></a><span class="lineno">  266</span> </div>
+<div class="line"><a id="l00275" name="l00275"></a><span class="lineno">  275</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getCurrents(uint8_t channel, uint16_t&amp; hit_current, uint16_t&amp; hold_current) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00276" name="l00276"></a><span class="lineno">  276</span> </div>
+<div class="line"><a id="l00277" name="l00277"></a><span class="lineno">  277</span>  <span class="comment">// Timing Control Methods</span></div>
+<div class="line"><a id="l00278" name="l00278"></a><span class="lineno">  278</span> </div>
+<div class="line"><a id="l00286" name="l00286"></a><span class="lineno">  286</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> setHitTime(uint8_t channel, uint16_t time);</div>
+<div class="line"><a id="l00287" name="l00287"></a><span class="lineno">  287</span> </div>
+<div class="line"><a id="l00295" name="l00295"></a><span class="lineno">  295</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getHitTime(uint8_t channel, uint16_t&amp; time) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00296" name="l00296"></a><span class="lineno">  296</span> </div>
+<div class="line"><a id="l00297" name="l00297"></a><span class="lineno">  297</span>  <span class="comment">// Status and Diagnostic Methods</span></div>
+<div class="line"><a id="l00298" name="l00298"></a><span class="lineno">  298</span> </div>
+<div class="line"><a id="l00305" name="l00305"></a><span class="lineno">  305</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> readFaultStatus(<a class="code hl_struct" href="structMAX22200_1_1FaultStatus.html">FaultStatus</a>&amp; status) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00306" name="l00306"></a><span class="lineno">  306</span> </div>
+<div class="line"><a id="l00314" name="l00314"></a><span class="lineno">  314</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> clearFaultStatus();</div>
+<div class="line"><a id="l00315" name="l00315"></a><span class="lineno">  315</span> </div>
+<div class="line"><a id="l00323" name="l00323"></a><span class="lineno">  323</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> readChannelStatus(uint8_t channel, <a class="code hl_struct" href="structMAX22200_1_1ChannelStatus.html">ChannelStatus</a>&amp; status) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00324" name="l00324"></a><span class="lineno">  324</span> </div>
+<div class="line"><a id="l00331" name="l00331"></a><span class="lineno">  331</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> readAllChannelStatuses(<a class="code hl_typedef" href="namespaceMAX22200.html#a7caa5db0b60a76f0a5f10d420a60cef0">ChannelStatusArray</a>&amp; statuses) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00332" name="l00332"></a><span class="lineno">  332</span> </div>
+<div class="line"><a id="l00339" name="l00339"></a><span class="lineno">  339</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> getStatistics(<a class="code hl_struct" href="structMAX22200_1_1DriverStatistics.html">DriverStatistics</a>&amp; stats) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00340" name="l00340"></a><span class="lineno">  340</span> </div>
+<div class="line"><a id="l00348" name="l00348"></a><span class="lineno">  348</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> resetStatistics();</div>
+<div class="line"><a id="l00349" name="l00349"></a><span class="lineno">  349</span> </div>
+<div class="line"><a id="l00350" name="l00350"></a><span class="lineno">  350</span>  <span class="comment">// Callback Methods</span></div>
+<div class="line"><a id="l00351" name="l00351"></a><span class="lineno">  351</span> </div>
+<div class="line"><a id="l00358" name="l00358"></a><span class="lineno">  358</span>  <span class="keywordtype">void</span> setFaultCallback(<a class="code hl_typedef" href="namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7">FaultCallback</a> callback, <span class="keywordtype">void</span>* user_data = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00359" name="l00359"></a><span class="lineno">  359</span> </div>
+<div class="line"><a id="l00366" name="l00366"></a><span class="lineno">  366</span>  <span class="keywordtype">void</span> setStateChangeCallback(<a class="code hl_typedef" href="namespaceMAX22200.html#a43ba147ce2b61076ad4808a46088fd8b">StateChangeCallback</a> callback, <span class="keywordtype">void</span>* user_data = <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00367" name="l00367"></a><span class="lineno">  367</span> </div>
+<div class="line"><a id="l00368" name="l00368"></a><span class="lineno">  368</span>  <span class="comment">// Utility Methods</span></div>
+<div class="line"><a id="l00369" name="l00369"></a><span class="lineno">  369</span> </div>
+<div class="line"><a id="l00375" name="l00375"></a><span class="lineno">  375</span>  <span class="keywordtype">bool</span> isInitialized() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00376" name="l00376"></a><span class="lineno">  376</span> </div>
+<div class="foldopen" id="foldopen00383" data-start="{" data-end="}">
+<div class="line"><a id="l00383" name="l00383"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#a122e4282b6eb8ea61e2841ab6b0743e0">  383</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">bool</span> <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#a122e4282b6eb8ea61e2841ab6b0743e0">isValidChannel</a>(uint8_t channel) {</div>
+<div class="line"><a id="l00384" name="l00384"></a><span class="lineno">  384</span>    <span class="keywordflow">return</span> channel &lt; <a class="code hl_variable" href="namespaceMAX22200.html#a25866ef5b233463fb686f328214d8574">NUM_CHANNELS</a>;</div>
+<div class="line"><a id="l00385" name="l00385"></a><span class="lineno">  385</span>  }</div>
+</div>
+<div class="line"><a id="l00386" name="l00386"></a><span class="lineno">  386</span> </div>
+<div class="foldopen" id="foldopen00392" data-start="{" data-end="}">
+<div class="line"><a id="l00392" name="l00392"></a><span class="lineno"><a class="line" href="classMAX22200_1_1MAX22200.html#a1e0f0a4a6621a38931e602a68879d5c1">  392</a></span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_function" href="classMAX22200_1_1MAX22200.html#a1e0f0a4a6621a38931e602a68879d5c1">getVersion</a>() {</div>
+<div class="line"><a id="l00393" name="l00393"></a><span class="lineno">  393</span>    <span class="keywordflow">return</span> <span class="stringliteral">&quot;1.0.0&quot;</span>;</div>
+<div class="line"><a id="l00394" name="l00394"></a><span class="lineno">  394</span>  }</div>
+</div>
+<div class="line"><a id="l00395" name="l00395"></a><span class="lineno">  395</span> </div>
+<div class="line"><a id="l00396" name="l00396"></a><span class="lineno">  396</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00397" name="l00397"></a><span class="lineno">  397</span>  <span class="comment">// Private member variables</span></div>
+<div class="line"><a id="l00398" name="l00398"></a><span class="lineno">  398</span>  <a class="code hl_class" href="classSPIInterface.html">SPIInterface</a>&amp; spi_interface_;         </div>
+<div class="line"><a id="l00399" name="l00399"></a><span class="lineno">  399</span>  <span class="keywordtype">bool</span> initialized_;                    </div>
+<div class="line"><a id="l00400" name="l00400"></a><span class="lineno">  400</span>  <span class="keywordtype">bool</span> diagnostics_enabled_;            </div>
+<div class="line"><a id="l00401" name="l00401"></a><span class="lineno">  401</span>  <span class="keyword">mutable</span> <a class="code hl_struct" href="structMAX22200_1_1DriverStatistics.html">DriverStatistics</a> statistics_; </div>
+<div class="line"><a id="l00402" name="l00402"></a><span class="lineno">  402</span> </div>
+<div class="line"><a id="l00403" name="l00403"></a><span class="lineno">  403</span>  <span class="comment">// Callback functions</span></div>
+<div class="line"><a id="l00404" name="l00404"></a><span class="lineno">  404</span>  <a class="code hl_typedef" href="namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7">FaultCallback</a> fault_callback_;       </div>
+<div class="line"><a id="l00405" name="l00405"></a><span class="lineno">  405</span>  <span class="keywordtype">void</span>* fault_user_data_;              </div>
+<div class="line"><a id="l00406" name="l00406"></a><span class="lineno">  406</span>  <a class="code hl_typedef" href="namespaceMAX22200.html#a43ba147ce2b61076ad4808a46088fd8b">StateChangeCallback</a> state_callback_; </div>
+<div class="line"><a id="l00407" name="l00407"></a><span class="lineno">  407</span>  <span class="keywordtype">void</span>* state_user_data_;              </div>
+<div class="line"><a id="l00408" name="l00408"></a><span class="lineno">  408</span> </div>
+<div class="line"><a id="l00409" name="l00409"></a><span class="lineno">  409</span>  <span class="comment">// Private methods</span></div>
+<div class="line"><a id="l00410" name="l00410"></a><span class="lineno">  410</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> writeRegister(uint8_t reg, uint16_t value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00411" name="l00411"></a><span class="lineno">  411</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> readRegister(uint8_t reg, uint16_t&amp; value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00412" name="l00412"></a><span class="lineno">  412</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> writeRegisterArray(uint8_t reg, <span class="keyword">const</span> uint8_t* data, <span class="keywordtype">size_t</span> length) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00413" name="l00413"></a><span class="lineno">  413</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> readRegisterArray(uint8_t reg, uint8_t* data, <span class="keywordtype">size_t</span> length) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00414" name="l00414"></a><span class="lineno">  414</span> </div>
+<div class="line"><a id="l00415" name="l00415"></a><span class="lineno">  415</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> updateChannelEnableRegister() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00416" name="l00416"></a><span class="lineno">  416</span>  <a class="code hl_enumeration" href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">DriverStatus</a> updateGlobalConfigRegister() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00417" name="l00417"></a><span class="lineno">  417</span> </div>
+<div class="line"><a id="l00418" name="l00418"></a><span class="lineno">  418</span>  <span class="keywordtype">void</span> updateStatistics(<span class="keywordtype">bool</span> success) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00419" name="l00419"></a><span class="lineno">  419</span>  <span class="keywordtype">void</span> triggerFaultCallback(uint8_t channel, <a class="code hl_enumeration" href="namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9e">FaultType</a> fault_type) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00420" name="l00420"></a><span class="lineno">  420</span>  <span class="keywordtype">void</span> triggerStateChangeCallback(uint8_t channel, <a class="code hl_enumeration" href="namespaceMAX22200.html#afe6e6449aef260182b1f0d601d364ebc">ChannelState</a> old_state,</div>
+<div class="line"><a id="l00421" name="l00421"></a><span class="lineno">  421</span>                                  <a class="code hl_enumeration" href="namespaceMAX22200.html#afe6e6449aef260182b1f0d601d364ebc">ChannelState</a> new_state) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00422" name="l00422"></a><span class="lineno">  422</span> </div>
+<div class="line"><a id="l00423" name="l00423"></a><span class="lineno">  423</span>  <span class="comment">// Helper methods for register manipulation</span></div>
+<div class="line"><a id="l00424" name="l00424"></a><span class="lineno">  424</span>  uint16_t buildChannelConfigValue(<span class="keyword">const</span> <a class="code hl_struct" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a>&amp; config) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00425" name="l00425"></a><span class="lineno">  425</span>  <a class="code hl_struct" href="structMAX22200_1_1ChannelConfig.html">ChannelConfig</a> parseChannelConfigValue(uint16_t value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00426" name="l00426"></a><span class="lineno">  426</span>  uint16_t buildGlobalConfigValue(<span class="keyword">const</span> <a class="code hl_struct" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a>&amp; config) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00427" name="l00427"></a><span class="lineno">  427</span>  <a class="code hl_struct" href="structMAX22200_1_1GlobalConfig.html">GlobalConfig</a> parseGlobalConfigValue(uint16_t value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00428" name="l00428"></a><span class="lineno">  428</span>  <a class="code hl_struct" href="structMAX22200_1_1FaultStatus.html">FaultStatus</a> parseFaultStatusValue(uint16_t value) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00429" name="l00429"></a><span class="lineno">  429</span>};</div>
+</div>
+<div class="line"><a id="l00430" name="l00430"></a><span class="lineno">  430</span> </div>
+<div class="line"><a id="l00431" name="l00431"></a><span class="lineno">  431</span>} <span class="comment">// namespace MAX22200</span></div>
+<div class="line"><a id="l00432" name="l00432"></a><span class="lineno">  432</span> </div>
+<div class="line"><a id="l00433" name="l00433"></a><span class="lineno">  433</span><span class="preprocessor">#endif </span><span class="comment">// MAX22200_H</span></div>
+<div class="ttc" id="aMAX22200__Registers_8h_html"><div class="ttname"><a href="MAX22200__Registers_8h.html">MAX22200_Registers.h</a></div><div class="ttdoc">Register definitions and constants for MAX22200 IC.</div></div>
+<div class="ttc" id="aMAX22200__Types_8h_html"><div class="ttname"><a href="MAX22200__Types_8h.html">MAX22200_Types.h</a></div><div class="ttdoc">Type definitions and structures for MAX22200 driver.</div></div>
+<div class="ttc" id="aSPIInterface_8h_html"><div class="ttname"><a href="SPIInterface_8h.html">SPIInterface.h</a></div><div class="ttdoc">Abstract base class for SPI communication interface.</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_a0c3e995033c8c64aebda648d0381eb1b"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#a0c3e995033c8c64aebda648d0381eb1b">MAX22200::MAX22200::MAX22200</a></div><div class="ttdeci">MAX22200(const MAX22200 &amp;)=delete</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_a122e4282b6eb8ea61e2841ab6b0743e0"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#a122e4282b6eb8ea61e2841ab6b0743e0">MAX22200::MAX22200::isValidChannel</a></div><div class="ttdeci">static constexpr bool isValidChannel(uint8_t channel)</div><div class="ttdoc">Check if a channel is valid.</div><div class="ttdef"><b>Definition</b> MAX22200.h:383</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_a1e0f0a4a6621a38931e602a68879d5c1"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#a1e0f0a4a6621a38931e602a68879d5c1">MAX22200::MAX22200::getVersion</a></div><div class="ttdeci">static constexpr const char * getVersion()</div><div class="ttdoc">Get driver version string.</div><div class="ttdef"><b>Definition</b> MAX22200.h:392</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_a3ac7805e0a4d24462ba3292caf63343e"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#a3ac7805e0a4d24462ba3292caf63343e">MAX22200::MAX22200::MAX22200</a></div><div class="ttdeci">MAX22200(MAX22200 &amp;&amp;)=default</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_a6a3b84d71e3b1a469df4b448a6f2cd96"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#a6a3b84d71e3b1a469df4b448a6f2cd96">MAX22200::MAX22200::operator=</a></div><div class="ttdeci">MAX22200 &amp; operator=(const MAX22200 &amp;)=delete</div></div>
+<div class="ttc" id="aclassMAX22200_1_1MAX22200_html_ae0c9a6a8fa7fd158b0fd6542497d57d3"><div class="ttname"><a href="classMAX22200_1_1MAX22200.html#ae0c9a6a8fa7fd158b0fd6542497d57d3">MAX22200::MAX22200::operator=</a></div><div class="ttdeci">MAX22200 &amp; operator=(MAX22200 &amp;&amp;)=delete</div></div>
+<div class="ttc" id="aclassSPIInterface_html"><div class="ttname"><a href="classSPIInterface.html">SPIInterface</a></div><div class="ttdoc">Abstract base class for SPI communication interface.</div><div class="ttdef"><b>Definition</b> SPIInterface.h:28</div></div>
+<div class="ttc" id="anamespaceMAX22200_html"><div class="ttname"><a href="namespaceMAX22200.html">MAX22200</a></div><div class="ttdef"><b>Definition</b> MAX22200.cpp:15</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a0319fbc0770d1f426031463631aa4ac7"><div class="ttname"><a href="namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7">MAX22200::FaultCallback</a></div><div class="ttdeci">void(*)(uint8_t channel, FaultType fault_type, void *user_data) FaultCallback</div><div class="ttdoc">Callback function type for fault events.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:240</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a17ee7ec72e8c85b76c7dc60becab1cf8"><div class="ttname"><a href="namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8">MAX22200::ChannelConfigArray</a></div><div class="ttdeci">std::array&lt; ChannelConfig, NUM_CHANNELS &gt; ChannelConfigArray</div><div class="ttdoc">Array type for channel configurations.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:221</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a25866ef5b233463fb686f328214d8574"><div class="ttname"><a href="namespaceMAX22200.html#a25866ef5b233463fb686f328214d8574">MAX22200::NUM_CHANNELS</a></div><div class="ttdeci">constexpr uint8_t NUM_CHANNELS</div><div class="ttdoc">Number of channels on the MAX22200.</div><div class="ttdef"><b>Definition</b> MAX22200_Registers.h:21</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a43ba147ce2b61076ad4808a46088fd8b"><div class="ttname"><a href="namespaceMAX22200.html#a43ba147ce2b61076ad4808a46088fd8b">MAX22200::StateChangeCallback</a></div><div class="ttdeci">void(*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data) StateChangeCallback</div><div class="ttdoc">Callback function type for channel state changes.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:250</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a7caa5db0b60a76f0a5f10d420a60cef0"><div class="ttname"><a href="namespaceMAX22200.html#a7caa5db0b60a76f0a5f10d420a60cef0">MAX22200::ChannelStatusArray</a></div><div class="ttdeci">std::array&lt; ChannelStatus, NUM_CHANNELS &gt; ChannelStatusArray</div><div class="ttdoc">Array type for channel statuses.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:226</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a98cf0daac2becebda13c69a393864dd6"><div class="ttname"><a href="namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6">MAX22200::OutputPolarity</a></div><div class="ttdeci">OutputPolarity</div><div class="ttdoc">Output polarity enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:39</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_a9e907742d92028a71547215492215ed5"><div class="ttname"><a href="namespaceMAX22200.html#a9e907742d92028a71547215492215ed5">MAX22200::DriveMode</a></div><div class="ttdeci">DriveMode</div><div class="ttdoc">Drive mode enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:23</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_aa68f7bbcfa133997d353ee4aa4ff0fd2"><div class="ttname"><a href="namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2">MAX22200::DriverStatus</a></div><div class="ttdeci">DriverStatus</div><div class="ttdoc">Driver status enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:198</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_ab314b1bd484d7be49c929f95066e6c9e"><div class="ttname"><a href="namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9e">MAX22200::FaultType</a></div><div class="ttdeci">FaultType</div><div class="ttdoc">Fault type enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:47</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_ab805eabb8b23c8c875c240590a8a0155"><div class="ttname"><a href="namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155">MAX22200::BridgeMode</a></div><div class="ttdeci">BridgeMode</div><div class="ttdoc">Bridge mode enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:31</div></div>
+<div class="ttc" id="anamespaceMAX22200_html_afe6e6449aef260182b1f0d601d364ebc"><div class="ttname"><a href="namespaceMAX22200.html#afe6e6449aef260182b1f0d601d364ebc">MAX22200::ChannelState</a></div><div class="ttdeci">ChannelState</div><div class="ttdoc">Channel state enumeration.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:210</div></div>
+<div class="ttc" id="astructMAX22200_1_1ChannelConfig_html"><div class="ttname"><a href="structMAX22200_1_1ChannelConfig.html">MAX22200::ChannelConfig</a></div><div class="ttdoc">Channel configuration structure.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:62</div></div>
+<div class="ttc" id="astructMAX22200_1_1ChannelStatus_html"><div class="ttname"><a href="structMAX22200_1_1ChannelStatus.html">MAX22200::ChannelStatus</a></div><div class="ttdoc">Channel status structure.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:180</div></div>
+<div class="ttc" id="astructMAX22200_1_1DriverStatistics_html"><div class="ttname"><a href="structMAX22200_1_1DriverStatistics.html">MAX22200::DriverStatistics</a></div><div class="ttdoc">Driver statistics structure.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:258</div></div>
+<div class="ttc" id="astructMAX22200_1_1FaultStatus_html"><div class="ttname"><a href="structMAX22200_1_1FaultStatus.html">MAX22200::FaultStatus</a></div><div class="ttdoc">Fault status structure.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:127</div></div>
+<div class="ttc" id="astructMAX22200_1_1GlobalConfig_html"><div class="ttname"><a href="structMAX22200_1_1GlobalConfig.html">MAX22200::GlobalConfig</a></div><div class="ttdoc">Global configuration structure.</div><div class="ttdef"><b>Definition</b> MAX22200_Types.h:105</div></div>
+</div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_bfccd401955b95cf8c75461437045ac0.html">inc</a></li><li class="navelem"><a class="el" href="MAX22200_8h.html">MAX22200.h</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

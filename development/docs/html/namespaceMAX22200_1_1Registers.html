@@ -1,0 +1,942 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: MAX22200::Registers Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+   <div id="projectbrief">HF-MAX22200 C++ Driver</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespaceMAX22200_1_1Registers.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">MAX22200::Registers Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Register addresses for <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a>.  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a8ac43a8a99b3e2478f9c77084229a19c" id="r_a8ac43a8a99b3e2478f9c77084229a19c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8ac43a8a99b3e2478f9c77084229a19c">GLOBAL_CONFIG</a> = 0x00</td></tr>
+<tr class="memdesc:a8ac43a8a99b3e2478f9c77084229a19c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Global configuration register.  <br /></td></tr>
+<tr class="separator:a8ac43a8a99b3e2478f9c77084229a19c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a69c14dce25970bf0f196dc9e0548a9" id="r_a9a69c14dce25970bf0f196dc9e0548a9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a69c14dce25970bf0f196dc9e0548a9">CHANNEL_ENABLE</a> = 0x01</td></tr>
+<tr class="memdesc:a9a69c14dce25970bf0f196dc9e0548a9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel enable register.  <br /></td></tr>
+<tr class="separator:a9a69c14dce25970bf0f196dc9e0548a9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a53746279d3bfd6c380c74f3350ed46f0" id="r_a53746279d3bfd6c380c74f3350ed46f0"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a53746279d3bfd6c380c74f3350ed46f0">FAULT_STATUS</a> = 0x02</td></tr>
+<tr class="memdesc:a53746279d3bfd6c380c74f3350ed46f0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fault status register.  <br /></td></tr>
+<tr class="separator:a53746279d3bfd6c380c74f3350ed46f0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d49992c86f73d33cc21e6ec85dd8335" id="r_a0d49992c86f73d33cc21e6ec85dd8335"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0d49992c86f73d33cc21e6ec85dd8335">FAULT_MASK</a> = 0x03</td></tr>
+<tr class="memdesc:a0d49992c86f73d33cc21e6ec85dd8335"><td class="mdescLeft">&#160;</td><td class="mdescRight">Fault mask register.  <br /></td></tr>
+<tr class="separator:a0d49992c86f73d33cc21e6ec85dd8335"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af721da2478c2ffc157f6016d39220bb1" id="r_af721da2478c2ffc157f6016d39220bb1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af721da2478c2ffc157f6016d39220bb1">DIAGNOSTIC</a> = 0x04</td></tr>
+<tr class="memdesc:af721da2478c2ffc157f6016d39220bb1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Diagnostic register.  <br /></td></tr>
+<tr class="separator:af721da2478c2ffc157f6016d39220bb1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad6e72397694d53ad97dd4f2dbcf36f1" id="r_aad6e72397694d53ad97dd4f2dbcf36f1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aad6e72397694d53ad97dd4f2dbcf36f1">CH0_CONFIG</a> = 0x10</td></tr>
+<tr class="memdesc:aad6e72397694d53ad97dd4f2dbcf36f1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 configuration.  <br /></td></tr>
+<tr class="separator:aad6e72397694d53ad97dd4f2dbcf36f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac93b94bc4449a06da6b95c29f4b788e8" id="r_ac93b94bc4449a06da6b95c29f4b788e8"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac93b94bc4449a06da6b95c29f4b788e8">CH1_CONFIG</a> = 0x11</td></tr>
+<tr class="memdesc:ac93b94bc4449a06da6b95c29f4b788e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 configuration.  <br /></td></tr>
+<tr class="separator:ac93b94bc4449a06da6b95c29f4b788e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14aa73edd166a954c90595f03534dfd8" id="r_a14aa73edd166a954c90595f03534dfd8"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a14aa73edd166a954c90595f03534dfd8">CH2_CONFIG</a> = 0x12</td></tr>
+<tr class="memdesc:a14aa73edd166a954c90595f03534dfd8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 configuration.  <br /></td></tr>
+<tr class="separator:a14aa73edd166a954c90595f03534dfd8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4fbcde612dfb15d4175bedfe5a0770b" id="r_ac4fbcde612dfb15d4175bedfe5a0770b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac4fbcde612dfb15d4175bedfe5a0770b">CH3_CONFIG</a> = 0x13</td></tr>
+<tr class="memdesc:ac4fbcde612dfb15d4175bedfe5a0770b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 configuration.  <br /></td></tr>
+<tr class="separator:ac4fbcde612dfb15d4175bedfe5a0770b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab0a6aeab8e193d5cdae7ae2e5b6c8e85" id="r_ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab0a6aeab8e193d5cdae7ae2e5b6c8e85">CH4_CONFIG</a> = 0x14</td></tr>
+<tr class="memdesc:ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 configuration.  <br /></td></tr>
+<tr class="separator:ab0a6aeab8e193d5cdae7ae2e5b6c8e85"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a919c609d23dda824a9f3550c3059ce2c" id="r_a919c609d23dda824a9f3550c3059ce2c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a919c609d23dda824a9f3550c3059ce2c">CH5_CONFIG</a> = 0x15</td></tr>
+<tr class="memdesc:a919c609d23dda824a9f3550c3059ce2c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 configuration.  <br /></td></tr>
+<tr class="separator:a919c609d23dda824a9f3550c3059ce2c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a857be62e3f9295ac12a093473e15ceb9" id="r_a857be62e3f9295ac12a093473e15ceb9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a857be62e3f9295ac12a093473e15ceb9">CH6_CONFIG</a> = 0x16</td></tr>
+<tr class="memdesc:a857be62e3f9295ac12a093473e15ceb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 configuration.  <br /></td></tr>
+<tr class="separator:a857be62e3f9295ac12a093473e15ceb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af270221a20e2d82a7335cd087f2eb1b1" id="r_af270221a20e2d82a7335cd087f2eb1b1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af270221a20e2d82a7335cd087f2eb1b1">CH7_CONFIG</a> = 0x17</td></tr>
+<tr class="memdesc:af270221a20e2d82a7335cd087f2eb1b1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 configuration.  <br /></td></tr>
+<tr class="separator:af270221a20e2d82a7335cd087f2eb1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5fa56dd1354ab44791d63258db93a615" id="r_a5fa56dd1354ab44791d63258db93a615"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5fa56dd1354ab44791d63258db93a615">CH0_CURRENT</a> = 0x20</td></tr>
+<tr class="memdesc:a5fa56dd1354ab44791d63258db93a615"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 current control.  <br /></td></tr>
+<tr class="separator:a5fa56dd1354ab44791d63258db93a615"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad434aa2bc4784d070c5fda4b1fcb7a3d" id="r_ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad434aa2bc4784d070c5fda4b1fcb7a3d">CH1_CURRENT</a> = 0x21</td></tr>
+<tr class="memdesc:ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 current control.  <br /></td></tr>
+<tr class="separator:ad434aa2bc4784d070c5fda4b1fcb7a3d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae00eefc00c70944a709a6a2faf936c48" id="r_ae00eefc00c70944a709a6a2faf936c48"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae00eefc00c70944a709a6a2faf936c48">CH2_CURRENT</a> = 0x22</td></tr>
+<tr class="memdesc:ae00eefc00c70944a709a6a2faf936c48"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 current control.  <br /></td></tr>
+<tr class="separator:ae00eefc00c70944a709a6a2faf936c48"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9dc81ec7f2e81e97f7b914fef62ec3d7" id="r_a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9dc81ec7f2e81e97f7b914fef62ec3d7">CH3_CURRENT</a> = 0x23</td></tr>
+<tr class="memdesc:a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 current control.  <br /></td></tr>
+<tr class="separator:a9dc81ec7f2e81e97f7b914fef62ec3d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad5188693baff450aa8d2b024d434f3e2" id="r_ad5188693baff450aa8d2b024d434f3e2"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5188693baff450aa8d2b024d434f3e2">CH4_CURRENT</a> = 0x24</td></tr>
+<tr class="memdesc:ad5188693baff450aa8d2b024d434f3e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 current control.  <br /></td></tr>
+<tr class="separator:ad5188693baff450aa8d2b024d434f3e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42af1610665746d1c42781be0636f8ec" id="r_a42af1610665746d1c42781be0636f8ec"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a42af1610665746d1c42781be0636f8ec">CH5_CURRENT</a> = 0x25</td></tr>
+<tr class="memdesc:a42af1610665746d1c42781be0636f8ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 current control.  <br /></td></tr>
+<tr class="separator:a42af1610665746d1c42781be0636f8ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aff3b3d5ebe972e4466ab8cd0b2dff55c" id="r_aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aff3b3d5ebe972e4466ab8cd0b2dff55c">CH6_CURRENT</a> = 0x26</td></tr>
+<tr class="memdesc:aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 current control.  <br /></td></tr>
+<tr class="separator:aff3b3d5ebe972e4466ab8cd0b2dff55c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ace8c5f660c38d83d9bd4fe6b5fb2c18a" id="r_ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ace8c5f660c38d83d9bd4fe6b5fb2c18a">CH7_CURRENT</a> = 0x27</td></tr>
+<tr class="memdesc:ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 current control.  <br /></td></tr>
+<tr class="separator:ace8c5f660c38d83d9bd4fe6b5fb2c18a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aab0fe063ac2c97f081271e70ceedb3f9" id="r_aab0fe063ac2c97f081271e70ceedb3f9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aab0fe063ac2c97f081271e70ceedb3f9">CH0_TIMING</a> = 0x30</td></tr>
+<tr class="memdesc:aab0fe063ac2c97f081271e70ceedb3f9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 0 timing control.  <br /></td></tr>
+<tr class="separator:aab0fe063ac2c97f081271e70ceedb3f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a158e69cdb4683c0721075117dc05c50d" id="r_a158e69cdb4683c0721075117dc05c50d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a158e69cdb4683c0721075117dc05c50d">CH1_TIMING</a> = 0x31</td></tr>
+<tr class="memdesc:a158e69cdb4683c0721075117dc05c50d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 1 timing control.  <br /></td></tr>
+<tr class="separator:a158e69cdb4683c0721075117dc05c50d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb8be909908e74324e0d6702d2f65ca0" id="r_acb8be909908e74324e0d6702d2f65ca0"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb8be909908e74324e0d6702d2f65ca0">CH2_TIMING</a> = 0x32</td></tr>
+<tr class="memdesc:acb8be909908e74324e0d6702d2f65ca0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 2 timing control.  <br /></td></tr>
+<tr class="separator:acb8be909908e74324e0d6702d2f65ca0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3adbef3cdf7a3c86f10866d82355e32" id="r_ab3adbef3cdf7a3c86f10866d82355e32"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3adbef3cdf7a3c86f10866d82355e32">CH3_TIMING</a> = 0x33</td></tr>
+<tr class="memdesc:ab3adbef3cdf7a3c86f10866d82355e32"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 3 timing control.  <br /></td></tr>
+<tr class="separator:ab3adbef3cdf7a3c86f10866d82355e32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a194fe97e2064b2abe22ec848c0194b35" id="r_a194fe97e2064b2abe22ec848c0194b35"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a194fe97e2064b2abe22ec848c0194b35">CH4_TIMING</a> = 0x34</td></tr>
+<tr class="memdesc:a194fe97e2064b2abe22ec848c0194b35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 4 timing control.  <br /></td></tr>
+<tr class="separator:a194fe97e2064b2abe22ec848c0194b35"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8b0e4dce1069f0ce7554a34f1b4de6e2" id="r_a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8b0e4dce1069f0ce7554a34f1b4de6e2">CH5_TIMING</a> = 0x35</td></tr>
+<tr class="memdesc:a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 5 timing control.  <br /></td></tr>
+<tr class="separator:a8b0e4dce1069f0ce7554a34f1b4de6e2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a805385e0800d2ceb3347a18e878ee0e1" id="r_a805385e0800d2ceb3347a18e878ee0e1"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a805385e0800d2ceb3347a18e878ee0e1">CH6_TIMING</a> = 0x36</td></tr>
+<tr class="memdesc:a805385e0800d2ceb3347a18e878ee0e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 6 timing control.  <br /></td></tr>
+<tr class="separator:a805385e0800d2ceb3347a18e878ee0e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7055807dee3e32f7866d6e611539a0d9" id="r_a7055807dee3e32f7866d6e611539a0d9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7055807dee3e32f7866d6e611539a0d9">CH7_TIMING</a> = 0x37</td></tr>
+<tr class="memdesc:a7055807dee3e32f7866d6e611539a0d9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel 7 timing control.  <br /></td></tr>
+<tr class="separator:a7055807dee3e32f7866d6e611539a0d9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Register addresses for <a class="el" href="classMAX22200_1_1MAX22200.html">MAX22200</a>. </p>
+</div><h2 class="groupheader">Variable Documentation</h2>
+<a id="aad6e72397694d53ad97dd4f2dbcf36f1" name="aad6e72397694d53ad97dd4f2dbcf36f1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aad6e72397694d53ad97dd4f2dbcf36f1">&#9670;&#160;</a></span>CH0_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH0_CONFIG = 0x10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 0 configuration. </p>
+
+</div>
+</div>
+<a id="a5fa56dd1354ab44791d63258db93a615" name="a5fa56dd1354ab44791d63258db93a615"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5fa56dd1354ab44791d63258db93a615">&#9670;&#160;</a></span>CH0_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH0_CURRENT = 0x20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 0 current control. </p>
+
+</div>
+</div>
+<a id="aab0fe063ac2c97f081271e70ceedb3f9" name="aab0fe063ac2c97f081271e70ceedb3f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aab0fe063ac2c97f081271e70ceedb3f9">&#9670;&#160;</a></span>CH0_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH0_TIMING = 0x30</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 0 timing control. </p>
+
+</div>
+</div>
+<a id="ac93b94bc4449a06da6b95c29f4b788e8" name="ac93b94bc4449a06da6b95c29f4b788e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac93b94bc4449a06da6b95c29f4b788e8">&#9670;&#160;</a></span>CH1_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH1_CONFIG = 0x11</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 1 configuration. </p>
+
+</div>
+</div>
+<a id="ad434aa2bc4784d070c5fda4b1fcb7a3d" name="ad434aa2bc4784d070c5fda4b1fcb7a3d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad434aa2bc4784d070c5fda4b1fcb7a3d">&#9670;&#160;</a></span>CH1_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH1_CURRENT = 0x21</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 1 current control. </p>
+
+</div>
+</div>
+<a id="a158e69cdb4683c0721075117dc05c50d" name="a158e69cdb4683c0721075117dc05c50d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a158e69cdb4683c0721075117dc05c50d">&#9670;&#160;</a></span>CH1_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH1_TIMING = 0x31</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 1 timing control. </p>
+
+</div>
+</div>
+<a id="a14aa73edd166a954c90595f03534dfd8" name="a14aa73edd166a954c90595f03534dfd8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a14aa73edd166a954c90595f03534dfd8">&#9670;&#160;</a></span>CH2_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH2_CONFIG = 0x12</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 2 configuration. </p>
+
+</div>
+</div>
+<a id="ae00eefc00c70944a709a6a2faf936c48" name="ae00eefc00c70944a709a6a2faf936c48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae00eefc00c70944a709a6a2faf936c48">&#9670;&#160;</a></span>CH2_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH2_CURRENT = 0x22</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 2 current control. </p>
+
+</div>
+</div>
+<a id="acb8be909908e74324e0d6702d2f65ca0" name="acb8be909908e74324e0d6702d2f65ca0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb8be909908e74324e0d6702d2f65ca0">&#9670;&#160;</a></span>CH2_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH2_TIMING = 0x32</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 2 timing control. </p>
+
+</div>
+</div>
+<a id="ac4fbcde612dfb15d4175bedfe5a0770b" name="ac4fbcde612dfb15d4175bedfe5a0770b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4fbcde612dfb15d4175bedfe5a0770b">&#9670;&#160;</a></span>CH3_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH3_CONFIG = 0x13</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 3 configuration. </p>
+
+</div>
+</div>
+<a id="a9dc81ec7f2e81e97f7b914fef62ec3d7" name="a9dc81ec7f2e81e97f7b914fef62ec3d7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9dc81ec7f2e81e97f7b914fef62ec3d7">&#9670;&#160;</a></span>CH3_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH3_CURRENT = 0x23</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 3 current control. </p>
+
+</div>
+</div>
+<a id="ab3adbef3cdf7a3c86f10866d82355e32" name="ab3adbef3cdf7a3c86f10866d82355e32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3adbef3cdf7a3c86f10866d82355e32">&#9670;&#160;</a></span>CH3_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH3_TIMING = 0x33</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 3 timing control. </p>
+
+</div>
+</div>
+<a id="ab0a6aeab8e193d5cdae7ae2e5b6c8e85" name="ab0a6aeab8e193d5cdae7ae2e5b6c8e85"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab0a6aeab8e193d5cdae7ae2e5b6c8e85">&#9670;&#160;</a></span>CH4_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH4_CONFIG = 0x14</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 4 configuration. </p>
+
+</div>
+</div>
+<a id="ad5188693baff450aa8d2b024d434f3e2" name="ad5188693baff450aa8d2b024d434f3e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5188693baff450aa8d2b024d434f3e2">&#9670;&#160;</a></span>CH4_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH4_CURRENT = 0x24</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 4 current control. </p>
+
+</div>
+</div>
+<a id="a194fe97e2064b2abe22ec848c0194b35" name="a194fe97e2064b2abe22ec848c0194b35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a194fe97e2064b2abe22ec848c0194b35">&#9670;&#160;</a></span>CH4_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH4_TIMING = 0x34</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 4 timing control. </p>
+
+</div>
+</div>
+<a id="a919c609d23dda824a9f3550c3059ce2c" name="a919c609d23dda824a9f3550c3059ce2c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a919c609d23dda824a9f3550c3059ce2c">&#9670;&#160;</a></span>CH5_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH5_CONFIG = 0x15</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 5 configuration. </p>
+
+</div>
+</div>
+<a id="a42af1610665746d1c42781be0636f8ec" name="a42af1610665746d1c42781be0636f8ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a42af1610665746d1c42781be0636f8ec">&#9670;&#160;</a></span>CH5_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH5_CURRENT = 0x25</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 5 current control. </p>
+
+</div>
+</div>
+<a id="a8b0e4dce1069f0ce7554a34f1b4de6e2" name="a8b0e4dce1069f0ce7554a34f1b4de6e2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8b0e4dce1069f0ce7554a34f1b4de6e2">&#9670;&#160;</a></span>CH5_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH5_TIMING = 0x35</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 5 timing control. </p>
+
+</div>
+</div>
+<a id="a857be62e3f9295ac12a093473e15ceb9" name="a857be62e3f9295ac12a093473e15ceb9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a857be62e3f9295ac12a093473e15ceb9">&#9670;&#160;</a></span>CH6_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH6_CONFIG = 0x16</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 6 configuration. </p>
+
+</div>
+</div>
+<a id="aff3b3d5ebe972e4466ab8cd0b2dff55c" name="aff3b3d5ebe972e4466ab8cd0b2dff55c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aff3b3d5ebe972e4466ab8cd0b2dff55c">&#9670;&#160;</a></span>CH6_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH6_CURRENT = 0x26</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 6 current control. </p>
+
+</div>
+</div>
+<a id="a805385e0800d2ceb3347a18e878ee0e1" name="a805385e0800d2ceb3347a18e878ee0e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a805385e0800d2ceb3347a18e878ee0e1">&#9670;&#160;</a></span>CH6_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH6_TIMING = 0x36</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 6 timing control. </p>
+
+</div>
+</div>
+<a id="af270221a20e2d82a7335cd087f2eb1b1" name="af270221a20e2d82a7335cd087f2eb1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af270221a20e2d82a7335cd087f2eb1b1">&#9670;&#160;</a></span>CH7_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH7_CONFIG = 0x17</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 7 configuration. </p>
+
+</div>
+</div>
+<a id="ace8c5f660c38d83d9bd4fe6b5fb2c18a" name="ace8c5f660c38d83d9bd4fe6b5fb2c18a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ace8c5f660c38d83d9bd4fe6b5fb2c18a">&#9670;&#160;</a></span>CH7_CURRENT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH7_CURRENT = 0x27</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 7 current control. </p>
+
+</div>
+</div>
+<a id="a7055807dee3e32f7866d6e611539a0d9" name="a7055807dee3e32f7866d6e611539a0d9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7055807dee3e32f7866d6e611539a0d9">&#9670;&#160;</a></span>CH7_TIMING</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CH7_TIMING = 0x37</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel 7 timing control. </p>
+
+</div>
+</div>
+<a id="a9a69c14dce25970bf0f196dc9e0548a9" name="a9a69c14dce25970bf0f196dc9e0548a9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a69c14dce25970bf0f196dc9e0548a9">&#9670;&#160;</a></span>CHANNEL_ENABLE</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::CHANNEL_ENABLE = 0x01</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Channel enable register. </p>
+
+</div>
+</div>
+<a id="af721da2478c2ffc157f6016d39220bb1" name="af721da2478c2ffc157f6016d39220bb1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af721da2478c2ffc157f6016d39220bb1">&#9670;&#160;</a></span>DIAGNOSTIC</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::DIAGNOSTIC = 0x04</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Diagnostic register. </p>
+
+</div>
+</div>
+<a id="a0d49992c86f73d33cc21e6ec85dd8335" name="a0d49992c86f73d33cc21e6ec85dd8335"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0d49992c86f73d33cc21e6ec85dd8335">&#9670;&#160;</a></span>FAULT_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::FAULT_MASK = 0x03</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fault mask register. </p>
+
+</div>
+</div>
+<a id="a53746279d3bfd6c380c74f3350ed46f0" name="a53746279d3bfd6c380c74f3350ed46f0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a53746279d3bfd6c380c74f3350ed46f0">&#9670;&#160;</a></span>FAULT_STATUS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::FAULT_STATUS = 0x02</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Fault status register. </p>
+
+</div>
+</div>
+<a id="a8ac43a8a99b3e2478f9c77084229a19c" name="a8ac43a8a99b3e2478f9c77084229a19c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8ac43a8a99b3e2478f9c77084229a19c">&#9670;&#160;</a></span>GLOBAL_CONFIG</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::Registers::GLOBAL_CONFIG = 0x00</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Global configuration register. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMAX22200.html">MAX22200</a></li><li class="navelem"><a class="el" href="namespaceMAX22200_1_1Registers.html">Registers</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

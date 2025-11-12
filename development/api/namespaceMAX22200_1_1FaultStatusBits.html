@@ -1,0 +1,483 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.10.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<!-- BEGIN opengraph metadata -->
+<meta property="og:title" content="Doxygen Awesome" />
+<meta property="og:image" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta property="og:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<meta property="og:url" content="https://jothepro.github.io/doxygen-awesome-css/" />
+<!-- END opengraph metadata -->
+<!-- BEGIN twitter metadata -->
+<meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" />
+<meta name="twitter:title" content="Doxygen Awesome" />
+<meta name="twitter:description" content="Custom CSS theme for doxygen html-documentation with lots of customization parameters." />
+<!-- END twitter metadata -->
+<title>HF-MAX22200 Driver: MAX22200::FaultStatusBits Namespace Reference</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<link rel="icon" type="image/svg+xml" href="logo.drawio.svg"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<script type="text/javascript" src="doxygen-awesome-darkmode-toggle.js"></script>
+<script type="text/javascript" src="doxygen-awesome-fragment-copy-button.js"></script>
+<script type="text/javascript" src="doxygen-awesome-paragraph-link.js"></script>
+<script type="text/javascript" src="doxygen-awesome-interactive-toc.js"></script>
+<script type="text/javascript" src="doxygen-awesome-tabs.js"></script>
+<script type="text/javascript" src="toggle-alternative-theme.js"></script>
+<script type="text/javascript">
+    DoxygenAwesomeFragmentCopyButton.init()
+    DoxygenAwesomeDarkModeToggle.init()
+    DoxygenAwesomeParagraphLink.init()
+    DoxygenAwesomeInteractiveToc.init()
+    DoxygenAwesomeTabs.init()
+</script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
+<script type="text/javascript" src="cookie.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen-awesome.css" rel="stylesheet" type="text/css"/>
+<link href="doxygen-awesome-sidebar-only.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<!-- https://tholman.com/github-corners/ -->
+<a href="https://github.com/jothepro/doxygen-awesome-css" class="github-corner" title="View source on GitHub" target="_blank" rel="noopener noreferrer">
+    <svg viewBox="0 0 250 250" width="40" height="40" style="position: absolute; top: 0; border: 0; right: 0; z-index: 99;" aria-hidden="true">
+    <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"></path></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">HF-MAX22200 Driver
+   &#160;<span id="projectnumber">0.1.0-dev</span>
+   </div>
+   <div id="projectbrief">HF-MAX22200 C++ Driver</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+<div id="theme-selection">
+ <label for="theme-select">Theme:</label>
+ <select id="theme-select">
+  <option value="theme-default">Default</option>
+  <option value="theme-round">Round</option>
+  <option value="theme-robot">Robot</option>
+ </select>
+</div>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.10.0 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Search');
+  $(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function(){initNavTree('namespaceMAX22200_1_1FaultStatusBits.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Loading...</div>
+<div class="SRStatus" id="Searching">Searching...</div>
+<div class="SRStatus" id="NoMatches">No Matches</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="summary">
+<a href="#var-members">Variables</a>  </div>
+  <div class="headertitle"><div class="title">MAX22200::FaultStatusBits Namespace Reference</div></div>
+</div><!--header-->
+<div class="contents">
+
+<p>Bit field definitions for Fault Status Register (0x02)  
+<a href="#details">More...</a></p>
+<table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="var-members" name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:ad5e04830ea3b3e2494c31142345e823e" id="r_ad5e04830ea3b3e2494c31142345e823e"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e04830ea3b3e2494c31142345e823e">OCP_POS</a> = 0</td></tr>
+<tr class="memdesc:ad5e04830ea3b3e2494c31142345e823e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overcurrent protection bit position.  <br /></td></tr>
+<tr class="separator:ad5e04830ea3b3e2494c31142345e823e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f3b5b3aa46c70566da5e96c5093c34f" id="r_a4f3b5b3aa46c70566da5e96c5093c34f"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4f3b5b3aa46c70566da5e96c5093c34f">OCP_MASK</a> = 0x01</td></tr>
+<tr class="memdesc:a4f3b5b3aa46c70566da5e96c5093c34f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overcurrent protection bit mask.  <br /></td></tr>
+<tr class="separator:a4f3b5b3aa46c70566da5e96c5093c34f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afb0f06c36c4cc9dab219f820aa19aeb5" id="r_afb0f06c36c4cc9dab219f820aa19aeb5"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afb0f06c36c4cc9dab219f820aa19aeb5">OL_POS</a> = 1</td></tr>
+<tr class="memdesc:afb0f06c36c4cc9dab219f820aa19aeb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open load detection bit position.  <br /></td></tr>
+<tr class="separator:afb0f06c36c4cc9dab219f820aa19aeb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abfd046d91a81b944c3352636b50b01de" id="r_abfd046d91a81b944c3352636b50b01de"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abfd046d91a81b944c3352636b50b01de">OL_MASK</a> = 0x02</td></tr>
+<tr class="memdesc:abfd046d91a81b944c3352636b50b01de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open load detection bit mask.  <br /></td></tr>
+<tr class="separator:abfd046d91a81b944c3352636b50b01de"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afed1b7366c1494ffa11b9960c6215fd9" id="r_afed1b7366c1494ffa11b9960c6215fd9"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afed1b7366c1494ffa11b9960c6215fd9">DPM_POS</a> = 2</td></tr>
+<tr class="memdesc:afed1b7366c1494ffa11b9960c6215fd9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detection of plunger movement bit position.  <br /></td></tr>
+<tr class="separator:afed1b7366c1494ffa11b9960c6215fd9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a93c9714221691a22bb7c8e7d3033846a" id="r_a93c9714221691a22bb7c8e7d3033846a"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a93c9714221691a22bb7c8e7d3033846a">DPM_MASK</a> = 0x04</td></tr>
+<tr class="memdesc:a93c9714221691a22bb7c8e7d3033846a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detection of plunger movement bit mask.  <br /></td></tr>
+<tr class="separator:a93c9714221691a22bb7c8e7d3033846a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a786457cda97eaca486a76d0ca848ff2d" id="r_a786457cda97eaca486a76d0ca848ff2d"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a786457cda97eaca486a76d0ca848ff2d">UVLO_POS</a> = 3</td></tr>
+<tr class="memdesc:a786457cda97eaca486a76d0ca848ff2d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undervoltage lockout bit position.  <br /></td></tr>
+<tr class="separator:a786457cda97eaca486a76d0ca848ff2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd02751d9bfa5c53c203b2ccd52cab02" id="r_afd02751d9bfa5c53c203b2ccd52cab02"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afd02751d9bfa5c53c203b2ccd52cab02">UVLO_MASK</a> = 0x08</td></tr>
+<tr class="memdesc:afd02751d9bfa5c53c203b2ccd52cab02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undervoltage lockout bit mask.  <br /></td></tr>
+<tr class="separator:afd02751d9bfa5c53c203b2ccd52cab02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a484fd5098908cb83eb4a7b7a71da4d41" id="r_a484fd5098908cb83eb4a7b7a71da4d41"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a484fd5098908cb83eb4a7b7a71da4d41">HHF_POS</a> = 4</td></tr>
+<tr class="memdesc:a484fd5098908cb83eb4a7b7a71da4d41"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current not reached bit position.  <br /></td></tr>
+<tr class="separator:a484fd5098908cb83eb4a7b7a71da4d41"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa0013caaab620b872197877e612e7007" id="r_aa0013caaab620b872197877e612e7007"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa0013caaab620b872197877e612e7007">HHF_MASK</a> = 0x10</td></tr>
+<tr class="memdesc:aa0013caaab620b872197877e612e7007"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current not reached bit mask.  <br /></td></tr>
+<tr class="separator:aa0013caaab620b872197877e612e7007"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a868008a44e902bc935a72daf3f5f0e7b" id="r_a868008a44e902bc935a72daf3f5f0e7b"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a868008a44e902bc935a72daf3f5f0e7b">TSD_POS</a> = 5</td></tr>
+<tr class="memdesc:a868008a44e902bc935a72daf3f5f0e7b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal shutdown bit position.  <br /></td></tr>
+<tr class="separator:a868008a44e902bc935a72daf3f5f0e7b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a61d0a1677757d86293c776c5593987e5" id="r_a61d0a1677757d86293c776c5593987e5"><td class="memItemLeft" align="right" valign="top">constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a61d0a1677757d86293c776c5593987e5">TSD_MASK</a> = 0x20</td></tr>
+<tr class="memdesc:a61d0a1677757d86293c776c5593987e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal shutdown bit mask.  <br /></td></tr>
+<tr class="separator:a61d0a1677757d86293c776c5593987e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Bit field definitions for Fault Status Register (0x02) </p>
+</div><h2 class="groupheader">Variable Documentation</h2>
+<a id="a93c9714221691a22bb7c8e7d3033846a" name="a93c9714221691a22bb7c8e7d3033846a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a93c9714221691a22bb7c8e7d3033846a">&#9670;&#160;</a></span>DPM_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::DPM_MASK = 0x04</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Detection of plunger movement bit mask. </p>
+
+</div>
+</div>
+<a id="afed1b7366c1494ffa11b9960c6215fd9" name="afed1b7366c1494ffa11b9960c6215fd9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afed1b7366c1494ffa11b9960c6215fd9">&#9670;&#160;</a></span>DPM_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::DPM_POS = 2</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Detection of plunger movement bit position. </p>
+
+</div>
+</div>
+<a id="aa0013caaab620b872197877e612e7007" name="aa0013caaab620b872197877e612e7007"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa0013caaab620b872197877e612e7007">&#9670;&#160;</a></span>HHF_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::HHF_MASK = 0x10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HIT current not reached bit mask. </p>
+
+</div>
+</div>
+<a id="a484fd5098908cb83eb4a7b7a71da4d41" name="a484fd5098908cb83eb4a7b7a71da4d41"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a484fd5098908cb83eb4a7b7a71da4d41">&#9670;&#160;</a></span>HHF_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::HHF_POS = 4</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>HIT current not reached bit position. </p>
+
+</div>
+</div>
+<a id="a4f3b5b3aa46c70566da5e96c5093c34f" name="a4f3b5b3aa46c70566da5e96c5093c34f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4f3b5b3aa46c70566da5e96c5093c34f">&#9670;&#160;</a></span>OCP_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::OCP_MASK = 0x01</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overcurrent protection bit mask. </p>
+
+</div>
+</div>
+<a id="ad5e04830ea3b3e2494c31142345e823e" name="ad5e04830ea3b3e2494c31142345e823e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5e04830ea3b3e2494c31142345e823e">&#9670;&#160;</a></span>OCP_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::OCP_POS = 0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Overcurrent protection bit position. </p>
+
+</div>
+</div>
+<a id="abfd046d91a81b944c3352636b50b01de" name="abfd046d91a81b944c3352636b50b01de"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abfd046d91a81b944c3352636b50b01de">&#9670;&#160;</a></span>OL_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::OL_MASK = 0x02</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Open load detection bit mask. </p>
+
+</div>
+</div>
+<a id="afb0f06c36c4cc9dab219f820aa19aeb5" name="afb0f06c36c4cc9dab219f820aa19aeb5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afb0f06c36c4cc9dab219f820aa19aeb5">&#9670;&#160;</a></span>OL_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::OL_POS = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Open load detection bit position. </p>
+
+</div>
+</div>
+<a id="a61d0a1677757d86293c776c5593987e5" name="a61d0a1677757d86293c776c5593987e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a61d0a1677757d86293c776c5593987e5">&#9670;&#160;</a></span>TSD_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::TSD_MASK = 0x20</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thermal shutdown bit mask. </p>
+
+</div>
+</div>
+<a id="a868008a44e902bc935a72daf3f5f0e7b" name="a868008a44e902bc935a72daf3f5f0e7b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a868008a44e902bc935a72daf3f5f0e7b">&#9670;&#160;</a></span>TSD_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::TSD_POS = 5</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Thermal shutdown bit position. </p>
+
+</div>
+</div>
+<a id="afd02751d9bfa5c53c203b2ccd52cab02" name="afd02751d9bfa5c53c203b2ccd52cab02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afd02751d9bfa5c53c203b2ccd52cab02">&#9670;&#160;</a></span>UVLO_MASK</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::UVLO_MASK = 0x08</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Undervoltage lockout bit mask. </p>
+
+</div>
+</div>
+<a id="a786457cda97eaca486a76d0ca848ff2d" name="a786457cda97eaca486a76d0ca848ff2d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a786457cda97eaca486a76d0ca848ff2d">&#9670;&#160;</a></span>UVLO_POS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200::FaultStatusBits::UVLO_POS = 3</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Undervoltage lockout bit position. </p>
+
+</div>
+</div>
+</div><!-- contents -->
+</div><!-- doc-content -->
+<!-- start footer part -->
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="namespaceMAX22200.html">MAX22200</a></li><li class="navelem"><a class="el" href="namespaceMAX22200_1_1FaultStatusBits.html">FaultStatusBits</a></li>
+    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
+  </ul>
+</div>
+</body>
+</html>

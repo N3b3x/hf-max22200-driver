@@ -25,12 +25,14 @@
 var NAVTREE =
 [
   [ "HF-MAX22200 Driver", "index.html", [
-    [ "PCAL9555 ESP32-C6 Comprehensive Test Suite", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
         [ "All", "namespacemembers.html", null ],
-        [ "Functions", "namespacemembers_func.html", null ]
+        [ "Functions", "namespacemembers_func.html", null ],
+        [ "Variables", "namespacemembers_vars.html", null ],
+        [ "Typedefs", "namespacemembers_type.html", null ],
+        [ "Enumerations", "namespacemembers_enum.html", null ]
       ] ]
     ] ],
     [ "Classes", "annotated.html", [
@@ -49,13 +51,15 @@ var NAVTREE =
         [ "Functions", "globals_func.html", null ],
         [ "Macros", "globals_defs.html", null ]
       ] ]
-    ] ]
+    ] ],
+    [ "Examples", "examples.html", "examples" ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"MAX22200ComprehensiveTest_8cpp.html"
+"Basic-example.html",
+"globals.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

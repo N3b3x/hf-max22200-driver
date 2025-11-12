@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['tag_0',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
-  ['test_5ffunc_1',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
-  ['test_5fname_2',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
-  ['total_5fexecution_5ftime_5fus_3',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5ftests_4',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]]
+  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
+  ['failed_5ftransfers_1',['failed_transfers',['../structMAX22200_1_1DriverStatistics.html#aa2dc50cfe5491795c25c90669b45cbe5',1,'MAX22200::DriverStatistics']]],
+  ['fault_5factive_2',['fault_active',['../structMAX22200_1_1ChannelStatus.html#a3924a297bf39dab3e82c4d529c2b4326',1,'MAX22200::ChannelStatus']]],
+  ['fault_5fevents_3',['fault_events',['../structMAX22200_1_1DriverStatistics.html#acced6b5693715308ef5829a9b417c925',1,'MAX22200::DriverStatistics']]],
+  ['fault_5fmask_4',['FAULT_MASK',['../namespaceMAX22200_1_1Registers.html#a0d49992c86f73d33cc21e6ec85dd8335',1,'MAX22200::Registers']]],
+  ['fault_5fstatus_5',['FAULT_STATUS',['../namespaceMAX22200_1_1Registers.html#a53746279d3bfd6c380c74f3350ed46f0',1,'MAX22200::Registers']]]
 ];

@@ -4,14 +4,6 @@
 # Configuration for lychee link checker to exclude known problematic URLs
 # =============================================================================
 
-[input]
-# Files to check (handled by workflow paths parameter)
-files = []
-
-[output]
-format = "detailed"
-verbose = true
-
 [check]
 # Timeout in seconds per link
 timeout = 30
@@ -22,15 +14,18 @@ exclude_all_private = true
 # Exclude mailto links
 exclude_mail = true
 
-# Exclude specific URLs that are known to timeout or cause issues
+# Accept 429 (Too Many Requests) as a valid status code
+# This is useful for rate-limited URLs like gnu.org/licenses/gpl-3.0
+# The link is valid but may return 429 due to rate limiting
+accept = [200, 429]
+
+# Exclude specific URLs that are known to timeout, rate limit, or cause issues
+# Note: exclude uses exact URL matching - must match the exact URL in the markdown
 exclude = [
-  # GPL license link - known to timeout occasionally but is valid
   "https://www.gnu.org/licenses/gpl-3.0",
-  # Also match with trailing slash
   "https://www.gnu.org/licenses/gpl-3.0/",
 ]
 
 [http]
 # User agent for HTTP requests
 headers = { "User-Agent" = "lychee/0.21.0" }
-
