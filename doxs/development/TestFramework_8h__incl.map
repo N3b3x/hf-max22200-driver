@@ -1,17 +1,17 @@
 <map id="examples/esp32/main/TestFramework.h" name="examples/esp32/main/TestFramework.h">
-<area shape="rect" id="Node000001" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="357,5,524,45"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,89,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,45,104,96,103,91,357,40"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="114,93,213,119"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="375,48,218,92,216,87,374,43"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="237,93,341,119"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="405,48,325,89,322,84,403,43"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="365,93,516,119"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="443,46,443,79,438,79,438,46"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="540,93,669,119"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="481,43,570,85,567,90,479,48"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="693,93,831,119"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="518,43,702,87,701,93,517,48"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="855,93,973,119"/>
-<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="525,38,842,90,842,95,524,43"/>
+<area shape="rect" id="Node000001" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="358,5,525,45"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,93,109,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="358,46,123,94,122,89,357,41"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="134,93,218,119"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="379,48,229,92,227,87,377,43"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="243,93,341,119"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="407,48,328,89,325,84,404,43"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="366,93,517,119"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="444,46,444,79,439,79,439,46"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="541,93,670,119"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="482,43,570,85,568,90,479,48"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="694,93,831,119"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="519,43,703,87,702,93,518,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="856,93,973,119"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="525,38,843,90,842,95,524,43"/>
 </map>
