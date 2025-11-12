@@ -18,9 +18,9 @@
 extern "C" {
 #endif
 
+#include "driver/gpio.h"
 #include "esp_log.h"
 #include "esp_timer.h"
-#include "driver/gpio.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/semphr.h"
@@ -107,10 +107,10 @@ inline void cleanup_test_progress_indicator() noexcept {
   if (g_test_progress_initialized) {
     // Ensure GPIO14 is LOW before cleanup
     gpio_set_level(TEST_PROGRESS_PIN, 0);
-    
+
     // Reset GPIO configuration
     gpio_reset_pin(TEST_PROGRESS_PIN);
-    
+
     g_test_progress_initialized = false;
     g_test_progress_state = false;
   }
@@ -128,10 +128,10 @@ inline void output_section_indicator(uint8_t blink_count = 5) noexcept {
 
   // Blink the specified number of times for section identification
   for (uint8_t i = 0; i < blink_count; ++i) {
-    gpio_set_level(TEST_PROGRESS_PIN, 1);  // HIGH
-    vTaskDelay(pdMS_TO_TICKS(50));         // ON
-    gpio_set_level(TEST_PROGRESS_PIN, 0);  // LOW
-    vTaskDelay(pdMS_TO_TICKS(50));         // OFF
+    gpio_set_level(TEST_PROGRESS_PIN, 1); // HIGH
+    vTaskDelay(pdMS_TO_TICKS(50));        // ON
+    gpio_set_level(TEST_PROGRESS_PIN, 0); // LOW
+    vTaskDelay(pdMS_TO_TICKS(50));        // OFF
 
     // // Pause between blinks (except after the last one)
     // if (i < blink_count - 1) {
