@@ -155,7 +155,7 @@ For ESP32 examples, see the [examples/esp32](examples/esp32/) directory. Additio
 
 ## 🤝 Contributing
 
-Pull requests and suggestions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Pull requests and suggestions are welcome! For guidelines, please see the [Contributing](#-contributing) section above or open an issue to discuss your changes.
 
 ## 📄 License
 

@@ -129,7 +129,7 @@ g++ -std=c++20 -I include examples/example_usage.cpp examples/ExampleSPI.cpp MAX
 - [API Reference](API_Reference.md) - Complete API documentation
 - [Hardware Guide](Hardware_Guide.md) - Hardware integration guide
 - [ASCII Diagrams](ASCII_Diagrams.md) - Visual representations
-- [Examples](examples/) - Usage examples and SPI implementations
+- [Examples](../examples/) - Usage examples and SPI implementations
 
 ## Requirements
 
