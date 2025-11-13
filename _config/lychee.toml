@@ -1,7 +1,7 @@
+# Lychee Link Checker Configuration - Template for HF Drivers
 # =============================================================================
-# Lychee Link Checker Configuration
-# =============================================================================
-# Configuration for lychee link checker to exclude known problematic URLs
+# This configuration handles common issues with link checking for HF drivers,
+# particularly GNU license URLs that are frequently rate-limited.
 # Based on official example: https://github.com/lycheeverse/lychee/blob/master/lychee.example.toml
 # =============================================================================
 
@@ -47,15 +47,15 @@ accept = ["200", "429", "403"]
 
 # Exclude URLs and mail addresses from checking (treated as regular expressions)
 exclude = [
-  # GNU License URLs - frequently rate limited
+  # GNU License URLs - frequently rate limited (exact matches)
   '^https://www\.gnu\.org/licenses/gpl-3\.0/?$',
   '^https://gnu\.org/licenses/gpl-3\.0/?$',
   '^https://www\.gnu\.org/licenses/gpl-3\.0\.html$',
   
-  # License badge URLs that might be rate limited
+  # License badge URLs that might be rate limited (exact matches)
   '^https://img\.shields\.io/badge/License-GPLv3-blue\.svg$',
   
-  # General patterns for GNU license URLs
+  # General patterns for GNU license URLs (broader matching)
   '^https?://(www\.)?gnu\.org/licenses/.*',
   '^https?://img\.shields\.io/badge/License-.*',
 ]
