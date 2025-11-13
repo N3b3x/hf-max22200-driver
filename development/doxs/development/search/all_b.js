@@ -1,15 +1,16 @@
 var searchData=
 [
-  ['ocp_0',['OCP',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea74e1674dcac4639bcbd1bf123e5df92a',1,'MAX22200']]],
-  ['ocp_5fmask_1',['OCP_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#a4f3b5b3aa46c70566da5e96c5093c34f',1,'MAX22200::FaultStatusBits']]],
-  ['ocp_5fpos_2',['OCP_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#ad5e04830ea3b3e2494c31142345e823e',1,'MAX22200::FaultStatusBits']]],
-  ['ok_3',['OK',['../namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2ae0aa021e21dddbd6d8cecec71e9cf564',1,'MAX22200']]],
-  ['ol_4',['OL',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9eab406571b7334cfe40767dc13498c1896',1,'MAX22200']]],
-  ['ol_5fmask_5',['OL_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#abfd046d91a81b944c3352636b50b01de',1,'MAX22200::FaultStatusBits']]],
-  ['ol_5fpos_6',['OL_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#afb0f06c36c4cc9dab219f820aa19aeb5',1,'MAX22200::FaultStatusBits']]],
-  ['open_5fload_7',['open_load',['../structMAX22200_1_1FaultStatus.html#a80244318feb873fd256944ab078ccf2a',1,'MAX22200::FaultStatus']]],
-  ['operator_3d_8',['operator=',['../classMAX22200_1_1MAX22200.html#a6a3b84d71e3b1a469df4b448a6f2cd96',1,'MAX22200::MAX22200::operator=(const MAX22200 &amp;)=delete'],['../classMAX22200_1_1MAX22200.html#ae0c9a6a8fa7fd158b0fd6542497d57d3',1,'MAX22200::MAX22200::operator=(MAX22200 &amp;&amp;)=delete']]],
-  ['output_5fsection_5findicator_9',['output_section_indicator',['../TestFramework_8h.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TestFramework.h']]],
-  ['outputpolarity_10',['OutputPolarity',['../namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6',1,'MAX22200']]],
-  ['overcurrent_5fprotection_11',['overcurrent_protection',['../structMAX22200_1_1FaultStatus.html#a16d418f8ef7f320cb24aa5abd028a696',1,'MAX22200::FaultStatus']]]
+  ['half_5fbridge_0',['HALF_BRIDGE',['../namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155acc802a2b27f559fe3917a33918f3ce73',1,'MAX22200']]],
+  ['hardware_5ffault_1',['HARDWARE_FAULT',['../namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2a26fbfa51c0f7c7dc7255456ec5787aeb',1,'MAX22200']]],
+  ['hasfault_2',['hasFault',['../structMAX22200_1_1FaultStatus.html#a4143976cdaba1929c1fecdf695bab70b',1,'MAX22200::FaultStatus']]],
+  ['hhf_3',['HHF',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea20cb7d0b2ed081378e7ba466b36b2942',1,'MAX22200']]],
+  ['hhf_5fmask_4',['HHF_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#aa0013caaab620b872197877e612e7007',1,'MAX22200::FaultStatusBits']]],
+  ['hhf_5fpos_5',['HHF_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#a484fd5098908cb83eb4a7b7a71da4d41',1,'MAX22200::FaultStatusBits']]],
+  ['hit_5fcurrent_6',['hit_current',['../structMAX22200_1_1ChannelConfig.html#a72055d11070dfd4d645c221919f18b43',1,'MAX22200::ChannelConfig']]],
+  ['hit_5fcurrent_5fnot_5freached_7',['hit_current_not_reached',['../structMAX22200_1_1FaultStatus.html#a7c3a6a838a08365e9c6aea8ab9dd5096',1,'MAX22200::FaultStatus']]],
+  ['hit_5fphase_8',['HIT_PHASE',['../namespaceMAX22200.html#afe6e6449aef260182b1f0d601d364ebca2eda3353145f7836f539037355133107',1,'MAX22200']]],
+  ['hit_5fphase_5factive_9',['hit_phase_active',['../structMAX22200_1_1ChannelStatus.html#aaed80f1521c654ed052c9161844f26f0',1,'MAX22200::ChannelStatus']]],
+  ['hit_5ftime_10',['hit_time',['../structMAX22200_1_1ChannelConfig.html#ae252f4fe90ad756539d8cf5bfe25194a',1,'MAX22200::ChannelConfig']]],
+  ['hold_5fcurrent_11',['hold_current',['../structMAX22200_1_1ChannelConfig.html#a628c611ae0fe8434963b4cdc02bf89ee',1,'MAX22200::ChannelConfig']]],
+  ['hold_5fphase_12',['HOLD_PHASE',['../namespaceMAX22200.html#afe6e6449aef260182b1f0d601d364ebcae77d7787acc0512a80703ca3c166b024',1,'MAX22200']]]
 ];

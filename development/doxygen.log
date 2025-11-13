@@ -1,9 +1,6 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1765, file /tmp/doxyfile.eCjtje
-warning: Tag 'DOT_TRANSPARENT' at line 2788 of file '/tmp/doxyfile.eCjtje' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.gHn1Bz
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.gHn1Bz' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
-error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '-e'
-error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item ''/^---$/'
-error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified for item '/^---$/d''
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/MAX22200.h:67: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
@@ -14,3 +11,17 @@ error: Illegal format for option FILTER_PATTERNS, no equal sign ('=') specified 
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:8: warning: unable to resolve reference to '-overview' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:9: warning: unable to resolve reference to '-features' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:10: warning: unable to resolve reference to '-quick-start' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:11: warning: unable to resolve reference to '-installation' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:12: warning: unable to resolve reference to '-api-reference' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:13: warning: unable to resolve reference to '-examples' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:14: warning: unable to resolve reference to '-documentation' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:15: warning: unable to resolve reference to '-contributing' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:16: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:136: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/API_Reference.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:144: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/API_Reference.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:145: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/Hardware_Guide.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:146: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/ASCII_Diagrams.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:151: warning: unable to resolve reference to '-contributing' for \ref command

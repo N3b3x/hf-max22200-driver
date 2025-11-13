@@ -1,19 +1,5 @@
 var searchData=
 [
-  ['tag_0',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
-  ['test_5ffunc_1',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
-  ['test_5fname_2',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
-  ['test_5ftask_5ftrampoline_3',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
-  ['testframework_2eh_4',['TestFramework.h',['../TestFramework_8h.html',1,'']]],
-  ['testresults_5',['TestResults',['../structTestResults.html',1,'']]],
-  ['testtaskcontext_6',['TestTaskContext',['../structTestTaskContext.html',1,'']]],
-  ['thermal_5fshutdown_7',['thermal_shutdown',['../structMAX22200_1_1FaultStatus.html#a05924fb85a9a198657905aeffa4938bb',1,'MAX22200::FaultStatus']]],
-  ['timeout_8',['TIMEOUT',['../namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2a070a0fb40f6c308ab544b227660aadff',1,'MAX22200']]],
-  ['total_5fexecution_5ftime_5fus_9',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
-  ['total_5ftests_10',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
-  ['total_5ftransfers_11',['total_transfers',['../structMAX22200_1_1DriverStatistics.html#a45add9342000ea1ee2c4b96b142d5890',1,'MAX22200::DriverStatistics']]],
-  ['transfer_12',['transfer',['../classSPIInterface.html#a494d1c885905c113d5edbbc87db29346',1,'SPIInterface']]],
-  ['tsd_13',['TSD',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea167666837b80a00e45923b2137eefbce',1,'MAX22200']]],
-  ['tsd_5fmask_14',['TSD_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#a61d0a1677757d86293c776c5593987e5',1,'MAX22200::FaultStatusBits']]],
-  ['tsd_5fpos_15',['TSD_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#a868008a44e902bc935a72daf3f5f0e7b',1,'MAX22200::FaultStatusBits']]]
+  ['normal_0',['NORMAL',['../namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6a1e23852820b9154316c7c06e2b7ba051',1,'MAX22200']]],
+  ['num_5fchannels_1',['NUM_CHANNELS',['../namespaceMAX22200.html#a25866ef5b233463fb686f328214d8574',1,'MAX22200']]]
 ];

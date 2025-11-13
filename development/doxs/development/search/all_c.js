@@ -1,15 +1,15 @@
 var searchData=
 [
-  ['parallel_5fmask_0',['PARALLEL_MASK',['../namespaceMAX22200_1_1ChannelConfigBits.html#abcea79328dc1488e537da702061ada7f',1,'MAX22200::ChannelConfigBits']]],
-  ['parallel_5fmode_1',['parallel_mode',['../structMAX22200_1_1ChannelConfig.html#ae085005f6162362faf20445af32bd7d9',1,'MAX22200::ChannelConfig']]],
-  ['parallel_5fpos_2',['PARALLEL_POS',['../namespaceMAX22200_1_1ChannelConfigBits.html#a1811aabc651a18d8c444a83230af00b0',1,'MAX22200::ChannelConfigBits']]],
-  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['plunger_5fmovement_4',['plunger_movement',['../structMAX22200_1_1FaultStatus.html#a4f8c2c40979b350b5049d4bd32e36085',1,'MAX22200::FaultStatus']]],
-  ['polarity_5',['polarity',['../structMAX22200_1_1ChannelConfig.html#a5140286657b1c44559fa24d2db3d6c87',1,'MAX22200::ChannelConfig']]],
-  ['polarity_5fmask_6',['POLARITY_MASK',['../namespaceMAX22200_1_1ChannelConfigBits.html#a1cffa4c8d7db6aaa8b0d282dbedd3c12',1,'MAX22200::ChannelConfigBits']]],
-  ['polarity_5fpos_7',['POLARITY_POS',['../namespaceMAX22200_1_1ChannelConfigBits.html#a785798ee8d37fc1fc5b6dd4397c30de7',1,'MAX22200::ChannelConfigBits']]],
-  ['print_5ftest_5fsection_5ffooter_8',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fheader_9',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fstatus_10',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
-  ['print_5ftest_5fsummary_11',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
+  ['ics_5fen_5fmask_0',['ICS_EN_MASK',['../namespaceMAX22200_1_1GlobalConfigBits.html#abbe0e73bfe36244cef64fbd6648ffa44',1,'MAX22200::GlobalConfigBits']]],
+  ['ics_5fen_5fpos_1',['ICS_EN_POS',['../namespaceMAX22200_1_1GlobalConfigBits.html#ad841f1190d5ab7a070b6990b2e3fee69',1,'MAX22200::GlobalConfigBits']]],
+  ['ics_5fenable_2',['ics_enable',['../structMAX22200_1_1GlobalConfig.html#a6103a2886632a326b9e5590712b88303',1,'MAX22200::GlobalConfig']]],
+  ['init_5ftest_5fprogress_5findicator_3',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
+  ['initialization_5ferror_4',['INITIALIZATION_ERROR',['../namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2a7a348bf6d29011d629d13513e5382240',1,'MAX22200']]],
+  ['initialize_5',['initialize',['../classMAX22200_1_1MAX22200.html#a782f1b564aa9f6ab9733c07af6527cc8',1,'MAX22200::MAX22200::initialize()'],['../classSPIInterface.html#a4084404c24523ea1b97d9209614b388d',1,'SPIInterface::initialize()']]],
+  ['installation_6',['🔧 Installation',['../index.html#autotoc_md10',1,'']]],
+  ['invalid_5fparameter_7',['INVALID_PARAMETER',['../namespaceMAX22200.html#aa68f7bbcfa133997d353ee4aa4ff0fd2afeb1a30cb74c35aaf4ea067736109e30',1,'MAX22200']]],
+  ['inverted_8',['INVERTED',['../namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6a3b1b4a4827c05897abb3915b5c8f8139',1,'MAX22200']]],
+  ['isinitialized_9',['isInitialized',['../classMAX22200_1_1MAX22200.html#a4a29e0bd476174486d20863f83865459',1,'MAX22200::MAX22200']]],
+  ['isready_10',['isReady',['../classSPIInterface.html#aea9e8c1b91cccf14c7f387d72a8abf55',1,'SPIInterface']]],
+  ['isvalidchannel_11',['isValidChannel',['../classMAX22200_1_1MAX22200.html#a122e4282b6eb8ea61e2841ab6b0743e0',1,'MAX22200::MAX22200']]]
 ];

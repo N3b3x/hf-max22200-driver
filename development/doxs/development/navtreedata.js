@@ -25,6 +25,7 @@
 var NAVTREE =
 [
   [ "HF-MAX22200 Driver", "index.html", [
+    [ "MAX22200 Driver Library", "index.html", "index" ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -59,7 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"globals.html"
+"globals.html",
+"structTestTaskContext.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

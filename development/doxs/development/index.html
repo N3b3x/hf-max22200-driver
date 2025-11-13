@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HF-MAX22200 Driver: HF-MAX22200 Driver</title>
+<title>HF-MAX22200 Driver: MAX22200 Driver Library</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,10 +94,162 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">HF-MAX22200 Driver </div></div>
+  <div class="headertitle"><div class="title"><a class="el" href="namespaceMAX22200.html">MAX22200</a> Driver Library </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><b>A comprehensive C++20 driver library for the <a class="el" href="namespaceMAX22200.html">MAX22200</a> octal solenoid and motor driver IC</b></p>
+<p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3" style="pointer-events: none;" class="inline"/></a></p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+📚 Table of Contents</h1>
+<ol type="1">
+<li>Overview</li>
+<li>Features</li>
+<li>Quick Start</li>
+<li>Installation</li>
+<li>API Reference</li>
+<li>Examples</li>
+<li>Documentation</li>
+<li>Contributing</li>
+<li>License</li>
+</ol>
+<h1><a class="anchor" id="autotoc_md2"></a>
+📦 Overview</h1>
+<blockquote class="doxtable">
+<p>&zwj;<b>📖 <a href="https://n3b3x.github.io/hf-max22200-driver/">📚🌐 Live Complete Documentation</a></b> - Interactive guides, examples, and step-by-step tutorials </p>
+</blockquote>
+<p>The <a class="el" href="namespaceMAX22200.html">MAX22200</a> is an octal (eight-channel) solenoid and motor driver featuring:</p><ul>
+<li><b>Eight Half-Bridges</b>: Each capable of handling up to 36V and 1A RMS</li>
+<li><b>Current and Voltage Regulation</b>: Supports both CDR and VDR modes</li>
+<li><b>Integrated Lossless Current Sensing (ICS)</b>: Real-time current monitoring</li>
+<li><b>High-Speed SPI Interface</b>: Up to 10MHz communication</li>
+<li><b>Comprehensive Protection</b>: OCP, OL, DPM, UVLO, TSD, and fault registers</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md3"></a>
+✨ Features</h1>
+<ul>
+<li>✅ <b>Hardware Agnostic</b>: Abstract SPI interface for platform independence</li>
+<li>✅ <b>Modern C++20</b>: Utilizes latest C++ features for efficiency and safety</li>
+<li>✅ <b>Exception-Free</b>: Designed for embedded systems without exceptions</li>
+<li>✅ <b>Comprehensive Documentation</b>: Doxygen comments and markdown guides</li>
+<li>✅ <b>Callback Support</b>: Event-driven programming with fault and state callbacks</li>
+<li>✅ <b>Statistics Tracking</b>: Runtime performance and error monitoring</li>
+<li>✅ <b>Type Safety</b>: Strong typing with enums and structures</li>
+<li>✅ <b>Memory Efficient</b>: No dynamic allocations, suitable for embedded systems</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md4"></a>
+🚀 Quick Start</h1>
+<h2><a class="anchor" id="autotoc_md5"></a>
+1. Clone the Repository</h2>
+<div class="fragment"><div class="line">git clone &lt;repository-url&gt;</div>
+<div class="line">cd hf-max22200</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
+2. Build the Library</h2>
+<div class="fragment"><div class="line"># Using Make</div>
+<div class="line">make all</div>
+<div class="line"> </div>
+<div class="line"># Using CMake</div>
+<div class="line">mkdir build</div>
+<div class="line">cd build</div>
+<div class="line">cmake ..</div>
+<div class="line">make</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
+3. Run the Example</h2>
+<div class="fragment"><div class="line">make run</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
+Directory Structure</h1>
+<div class="fragment"><div class="line">hf-max22200/</div>
+<div class="line">├── include/                 # Header files</div>
+<div class="line">│   ├── MAX22200.h          # Main driver class</div>
+<div class="line">│   ├── SPIInterface.h      # Abstract SPI interface</div>
+<div class="line">│   ├── MAX22200_Registers.h # Register definitions</div>
+<div class="line">│   └── MAX22200_Types.h    # Type definitions</div>
+<div class="line">├── src/                    # Source files</div>
+<div class="line">│   └── MAX22200.cpp       # Driver implementation</div>
+<div class="line">├── examples/               # Example code</div>
+<div class="line">│   ├── example_usage.cpp  # Usage examples</div>
+<div class="line">│   ├── ExampleSPI.h       # Example SPI implementation</div>
+<div class="line">│   └── ExampleSPI.cpp     # Example SPI implementation</div>
+<div class="line">├── docs/                   # Documentation</div>
+<div class="line">│   ├── README.md          # Main documentation</div>
+<div class="line">│   ├── API_Reference.md   # API documentation</div>
+<div class="line">│   ├── Hardware_Guide.md  # Hardware integration guide</div>
+<div class="line">│   └── ASCII_Diagrams.md  # ASCII art diagrams</div>
+<div class="line">├── CMakeLists.txt         # CMake build configuration</div>
+<div class="line">├── Makefile               # Make build configuration</div>
+<div class="line">└── Datasheet/             # IC datasheet</div>
+<div class="line">    └── MAX22200.pdf       # MAX22200 datasheet</div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
+Usage Example</h1>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="MAX22200_8h.html">MAX22200.h</a>&quot;</span></div>
+<div class="line"><span class="preprocessor">#include &quot;MySPI.h&quot;</span>  <span class="comment">// Your SPI implementation</span></div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Create SPI interface</span></div>
+<div class="line">MySPI spi;</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Create MAX22200 driver</span></div>
+<div class="line"><a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a> driver(spi);</div>
+<div class="line"> </div>
+<div class="line"><span class="comment">// Initialize</span></div>
+<div class="line"><span class="keywordflow">if</span> (driver.initialize() == DriverStatus::OK) {</div>
+<div class="line">    <span class="comment">// Configure channel 0</span></div>
+<div class="line">    ChannelConfig config;</div>
+<div class="line">    config.enabled = <span class="keyword">true</span>;</div>
+<div class="line">    config.drive_mode = DriveMode::CDR;</div>
+<div class="line">    config.hit_current = 500;</div>
+<div class="line">    config.hold_current = 200;</div>
+<div class="line">    config.hit_time = 1000;</div>
+<div class="line">    </div>
+<div class="line">    driver.configureChannel(0, config);</div>
+<div class="line">    driver.enableChannel(0, <span class="keyword">true</span>);</div>
+<div class="line">}</div>
+<div class="ttc" id="aMAX22200_8h_html"><div class="ttname"><a href="MAX22200_8h.html">MAX22200.h</a></div><div class="ttdoc">Main driver class for MAX22200 octal solenoid and motor driver.</div></div>
+<div class="ttc" id="anamespaceMAX22200_html"><div class="ttname"><a href="namespaceMAX22200.html">MAX22200</a></div><div class="ttdef"><b>Definition</b> MAX22200.cpp:15</div></div>
+</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+🔧 Installation</h1>
+<ol type="1">
+<li>Clone the repository</li>
+<li>Copy the driver files into your project</li>
+<li>Implement the SPI interface for your platform</li>
+<li>Include the driver header in your code</li>
+</ol>
+<p><b>Requirements:</b></p><ul>
+<li><b>C++20 Compiler</b>: GCC 10+, Clang 12+, or MSVC 2019+</li>
+<li><b>SPI Interface</b>: Platform-specific SPI implementation</li>
+<li><b>Memory</b>: ~2KB RAM, ~8KB Flash (approximate)</li>
+</ul>
+<h1><a class="anchor" id="autotoc_md11"></a>
+📖 API Reference</h1>
+<p>For complete API documentation, see the docs/API_Reference.md file.</p>
+<h1><a class="anchor" id="autotoc_md12"></a>
+📊 Examples</h1>
+<p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory. Additional examples and SPI implementations are available in the <a href="examples/">examples</a> directory.</p>
+<h1><a class="anchor" id="autotoc_md13"></a>
+📚 Documentation</h1>
+<ul>
+<li>API Reference - Complete API documentation</li>
+<li>Hardware Guide - Hardware integration guide</li>
+<li>ASCII Diagrams - Visual representations</li>
+<li>Generate Doxygen documentation: <code>doxygen _config/Doxyfile</code></li>
+</ul>
+<h1><a class="anchor" id="autotoc_md14"></a>
+🤝 Contributing</h1>
+<p>Pull requests and suggestions are welcome! For guidelines, please see the Contributing section above or open an issue to discuss your changes.</p>
+<h1><a class="anchor" id="autotoc_md15"></a>
+📄 License</h1>
+<p>This project is licensed under the <b>GNU General Public License v3.0</b>. <br  />
+ See the [LICENSE](LICENSE) file for details.</p>
+<h1><a class="anchor" id="autotoc_md16"></a>
+Changelog</h1>
+<h2><a class="anchor" id="autotoc_md17"></a>
+Version 1.0.0</h2>
+<ul>
+<li>Initial release</li>
+<li>Complete driver implementation</li>
+<li>Hardware abstraction layer</li>
+<li>Comprehensive documentation</li>
+<li>Example implementations</li>
+<li>ASCII diagrams </li>
+</ul>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
