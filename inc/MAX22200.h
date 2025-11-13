@@ -28,16 +28,21 @@ namespace MAX22200 {
  * current regulation, voltage regulation, integrated current sensing, and
  * comprehensive fault detection.
  *
+ * @tparam SpiType The SPI interface implementation type that inherits from MAX22200::SPIInterface<SpiType>
+ *
  * @note This class is designed for embedded systems and does not use exceptions.
  *       All error conditions are reported through return values.
+ *
+ * @note The driver uses CRTP-based SPI interface for zero virtual call overhead.
  *
  * @example Basic usage:
  * @code
  * // Create SPI interface implementation
- * MySPIImplementation spi;
+ * class MySPI : public MAX22200::SPIInterface<MySPI> { ... };
+ * MySPI spi;
  *
  * // Create MAX22200 driver
- * MAX22200 driver(spi);
+ * MAX22200<MySPI> driver(spi);
  *
  * // Initialize the driver
  * if (driver.initialize() == DriverStatus::OK) {
@@ -54,15 +59,16 @@ namespace MAX22200 {
  * }
  * @endcode
  */
+template <typename SpiType>
 class MAX22200 {
 public:
   /**
    * @brief Constructor
    *
-   * @param spi_interface Reference to SPI interface implementation
+   * @param spi_interface Reference to SPI interface implementation (must inherit from MAX22200::SPIInterface<SpiType>)
    * @param enable_diagnostics Enable diagnostic features (default: true)
    */
-  explicit MAX22200(SPIInterface& spi_interface, bool enable_diagnostics = true);
+  explicit MAX22200(SpiType& spi_interface, bool enable_diagnostics = true);
 
   /**
    * @brief Destructor
@@ -395,7 +401,7 @@ public:
 
 private:
   // Private member variables
-  SPIInterface& spi_interface_;         ///< Reference to SPI interface
+  SpiType& spi_interface_;              ///< Reference to SPI interface
   bool initialized_;                    ///< Initialization state
   bool diagnostics_enabled_;            ///< Diagnostic mode state
   mutable DriverStatistics statistics_; ///< Driver statistics
@@ -427,6 +433,11 @@ private:
   GlobalConfig parseGlobalConfigValue(uint16_t value) const;
   FaultStatus parseFaultStatusValue(uint16_t value) const;
 };
+
+// Include template implementation
+#define MAX22200_HEADER_INCLUDED
+#include "../src/MAX22200.cpp"
+#undef MAX22200_HEADER_INCLUDED
 
 } // namespace MAX22200
 

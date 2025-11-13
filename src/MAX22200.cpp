@@ -9,13 +9,24 @@
  * and motor driver IC.
  */
 
-#include "../inc/MAX22200.h"
-#include <cstring>
+#ifndef MAX22200_IMPL
+#define MAX22200_IMPL
 
-namespace MAX22200 {
+// When included from header, use relative path; when compiled directly, use standard include
+#ifdef MAX22200_HEADER_INCLUDED
+#include "../inc/MAX22200.h"
+#else
+#include "../inc/MAX22200.h"
+#endif
+
+#include <string.h>  // Use C string.h for ESP-IDF compatibility (cstring has issues with ESP-IDF toolchain)
+
+// Note: This file is included inside namespace MAX22200 in MAX22200.h,
+//       so we don't declare the namespace here
 
 // Constructor
-MAX22200::MAX22200(SPIInterface& spi_interface, bool enable_diagnostics)
+template <typename SpiType>
+MAX22200<SpiType>::MAX22200(SpiType& spi_interface, bool enable_diagnostics)
     : spi_interface_(spi_interface), initialized_(false), diagnostics_enabled_(enable_diagnostics),
       fault_callback_(nullptr), fault_user_data_(nullptr), state_callback_(nullptr),
       state_user_data_(nullptr) {
@@ -24,14 +35,16 @@ MAX22200::MAX22200(SPIInterface& spi_interface, bool enable_diagnostics)
 }
 
 // Destructor
-MAX22200::~MAX22200() {
+template <typename SpiType>
+MAX22200<SpiType>::~MAX22200() {
   if (initialized_) {
     deinitialize();
   }
 }
 
 // Initialize the MAX22200 driver
-DriverStatus MAX22200::initialize() {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::initialize() {
   // Check if already initialized
   if (initialized_) {
     return DriverStatus::OK;
@@ -79,7 +92,8 @@ DriverStatus MAX22200::initialize() {
 }
 
 // Deinitialize the MAX22200 driver
-DriverStatus MAX22200::deinitialize() {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::deinitialize() {
   if (!initialized_) {
     return DriverStatus::OK;
   }
@@ -96,7 +110,8 @@ DriverStatus MAX22200::deinitialize() {
 }
 
 // Reset the MAX22200 device
-DriverStatus MAX22200::reset() {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::reset() {
   // Set reset bit
   DriverStatus status = writeRegister(Registers::GLOBAL_CONFIG, GlobalConfigBits::RESET_MASK);
   if (status != DriverStatus::OK) {
@@ -119,7 +134,8 @@ DriverStatus MAX22200::reset() {
 }
 
 // Configure global settings
-DriverStatus MAX22200::configureGlobal(const GlobalConfig& config) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::configureGlobal(const GlobalConfig& config) {
   uint16_t reg_value = buildGlobalConfigValue(config);
   DriverStatus status = writeRegister(Registers::GLOBAL_CONFIG, reg_value);
   updateStatistics(status == DriverStatus::OK);
@@ -127,7 +143,8 @@ DriverStatus MAX22200::configureGlobal(const GlobalConfig& config) {
 }
 
 // Get current global configuration
-DriverStatus MAX22200::getGlobalConfig(GlobalConfig& config) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getGlobalConfig(GlobalConfig& config) const {
   uint16_t reg_value;
   DriverStatus status = readRegister(Registers::GLOBAL_CONFIG, reg_value);
   if (status == DriverStatus::OK) {
@@ -138,7 +155,8 @@ DriverStatus MAX22200::getGlobalConfig(GlobalConfig& config) const {
 }
 
 // Enable or disable sleep mode
-DriverStatus MAX22200::setSleepMode(bool enable) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setSleepMode(bool enable) {
   uint16_t current_value;
   DriverStatus status = readRegister(Registers::GLOBAL_CONFIG, current_value);
   if (status != DriverStatus::OK) {
@@ -158,7 +176,8 @@ DriverStatus MAX22200::setSleepMode(bool enable) {
 }
 
 // Enable or disable diagnostic features
-DriverStatus MAX22200::setDiagnosticMode(bool enable) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setDiagnosticMode(bool enable) {
   uint16_t current_value;
   DriverStatus status = readRegister(Registers::GLOBAL_CONFIG, current_value);
   if (status != DriverStatus::OK) {
@@ -179,7 +198,8 @@ DriverStatus MAX22200::setDiagnosticMode(bool enable) {
 }
 
 // Enable or disable integrated current sensing
-DriverStatus MAX22200::setIntegratedCurrentSensing(bool enable) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setIntegratedCurrentSensing(bool enable) {
   uint16_t current_value;
   DriverStatus status = readRegister(Registers::GLOBAL_CONFIG, current_value);
   if (status != DriverStatus::OK) {
@@ -199,7 +219,8 @@ DriverStatus MAX22200::setIntegratedCurrentSensing(bool enable) {
 }
 
 // Configure a specific channel
-DriverStatus MAX22200::configureChannel(uint8_t channel, const ChannelConfig& config) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::configureChannel(uint8_t channel, const ChannelConfig& config) {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -243,7 +264,8 @@ DriverStatus MAX22200::configureChannel(uint8_t channel, const ChannelConfig& co
 }
 
 // Get configuration of a specific channel
-DriverStatus MAX22200::getChannelConfig(uint8_t channel, ChannelConfig& config) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getChannelConfig(uint8_t channel, ChannelConfig& config) const {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -286,7 +308,8 @@ DriverStatus MAX22200::getChannelConfig(uint8_t channel, ChannelConfig& config) 
 }
 
 // Configure all channels at once
-DriverStatus MAX22200::configureAllChannels(const ChannelConfigArray& configs) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::configureAllChannels(const ChannelConfigArray& configs) {
   DriverStatus status = DriverStatus::OK;
 
   for (uint8_t channel = 0; channel < NUM_CHANNELS; ++channel) {
@@ -301,7 +324,8 @@ DriverStatus MAX22200::configureAllChannels(const ChannelConfigArray& configs) {
 }
 
 // Get configuration of all channels
-DriverStatus MAX22200::getAllChannelConfigs(ChannelConfigArray& configs) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getAllChannelConfigs(ChannelConfigArray& configs) const {
   DriverStatus status = DriverStatus::OK;
 
   for (uint8_t channel = 0; channel < NUM_CHANNELS; ++channel) {
@@ -316,7 +340,8 @@ DriverStatus MAX22200::getAllChannelConfigs(ChannelConfigArray& configs) const {
 }
 
 // Enable or disable a specific channel
-DriverStatus MAX22200::enableChannel(uint8_t channel, bool enable) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::enableChannel(uint8_t channel, bool enable) {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -341,7 +366,8 @@ DriverStatus MAX22200::enableChannel(uint8_t channel, bool enable) {
 }
 
 // Enable or disable all channels
-DriverStatus MAX22200::enableAllChannels(bool enable) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::enableAllChannels(bool enable) {
   uint16_t value = enable ? 0x00FF : 0x0000;
   DriverStatus status = writeRegister(Registers::CHANNEL_ENABLE, value);
   updateStatistics(status == DriverStatus::OK);
@@ -349,7 +375,8 @@ DriverStatus MAX22200::enableAllChannels(bool enable) {
 }
 
 // Set channel drive mode
-DriverStatus MAX22200::setChannelDriveMode(uint8_t channel, DriveMode mode) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setChannelDriveMode(uint8_t channel, DriveMode mode) {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -374,7 +401,8 @@ DriverStatus MAX22200::setChannelDriveMode(uint8_t channel, DriveMode mode) {
 }
 
 // Set channel bridge mode
-DriverStatus MAX22200::setChannelBridgeMode(uint8_t channel, BridgeMode mode) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setChannelBridgeMode(uint8_t channel, BridgeMode mode) {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -399,7 +427,8 @@ DriverStatus MAX22200::setChannelBridgeMode(uint8_t channel, BridgeMode mode) {
 }
 
 // Set channel output polarity
-DriverStatus MAX22200::setChannelPolarity(uint8_t channel, OutputPolarity polarity) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setChannelPolarity(uint8_t channel, OutputPolarity polarity) {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -424,7 +453,8 @@ DriverStatus MAX22200::setChannelPolarity(uint8_t channel, OutputPolarity polari
 }
 
 // Set HIT current for a channel
-DriverStatus MAX22200::setHitCurrent(uint8_t channel, uint16_t current) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setHitCurrent(uint8_t channel, uint16_t current) {
   if (!isValidChannel(channel) || current > CurrentRange::MAX_HIT_CURRENT) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -444,7 +474,8 @@ DriverStatus MAX22200::setHitCurrent(uint8_t channel, uint16_t current) {
 }
 
 // Set HOLD current for a channel
-DriverStatus MAX22200::setHoldCurrent(uint8_t channel, uint16_t current) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setHoldCurrent(uint8_t channel, uint16_t current) {
   if (!isValidChannel(channel) || current > CurrentRange::MAX_HOLD_CURRENT) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -464,7 +495,8 @@ DriverStatus MAX22200::setHoldCurrent(uint8_t channel, uint16_t current) {
 }
 
 // Set both HIT and HOLD currents for a channel
-DriverStatus MAX22200::setCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current) {
   if (!isValidChannel(channel) || hit_current > CurrentRange::MAX_HIT_CURRENT ||
       hold_current > CurrentRange::MAX_HOLD_CURRENT) {
     updateStatistics(false);
@@ -478,7 +510,8 @@ DriverStatus MAX22200::setCurrents(uint8_t channel, uint16_t hit_current, uint16
 }
 
 // Get current settings for a channel
-DriverStatus MAX22200::getCurrents(uint8_t channel, uint16_t& hit_current,
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getCurrents(uint8_t channel, uint16_t& hit_current,
                                    uint16_t& hold_current) const {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
@@ -496,7 +529,8 @@ DriverStatus MAX22200::getCurrents(uint8_t channel, uint16_t& hit_current,
 }
 
 // Set HIT time for a channel
-DriverStatus MAX22200::setHitTime(uint8_t channel, uint16_t time) {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::setHitTime(uint8_t channel, uint16_t time) {
   if (!isValidChannel(channel) || time > TimingRange::MAX_HIT_TIME) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -508,7 +542,8 @@ DriverStatus MAX22200::setHitTime(uint8_t channel, uint16_t time) {
 }
 
 // Get HIT time for a channel
-DriverStatus MAX22200::getHitTime(uint8_t channel, uint16_t& time) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getHitTime(uint8_t channel, uint16_t& time) const {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -520,7 +555,8 @@ DriverStatus MAX22200::getHitTime(uint8_t channel, uint16_t& time) const {
 }
 
 // Read fault status
-DriverStatus MAX22200::readFaultStatus(FaultStatus& status) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::readFaultStatus(FaultStatus& status) const {
   uint16_t fault_value;
   DriverStatus result = readRegister(Registers::FAULT_STATUS, fault_value);
   if (result == DriverStatus::OK) {
@@ -531,7 +567,8 @@ DriverStatus MAX22200::readFaultStatus(FaultStatus& status) const {
 }
 
 // Clear fault status
-DriverStatus MAX22200::clearFaultStatus() {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::clearFaultStatus() {
   // Write 0x00FF to clear all fault flags
   DriverStatus status = writeRegister(Registers::FAULT_STATUS, 0x00FF);
   updateStatistics(status == DriverStatus::OK);
@@ -539,7 +576,8 @@ DriverStatus MAX22200::clearFaultStatus() {
 }
 
 // Read channel status
-DriverStatus MAX22200::readChannelStatus(uint8_t channel, ChannelStatus& status) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::readChannelStatus(uint8_t channel, ChannelStatus& status) const {
   if (!isValidChannel(channel)) {
     updateStatistics(false);
     return DriverStatus::INVALID_PARAMETER;
@@ -575,7 +613,8 @@ DriverStatus MAX22200::readChannelStatus(uint8_t channel, ChannelStatus& status)
 }
 
 // Read all channel statuses
-DriverStatus MAX22200::readAllChannelStatuses(ChannelStatusArray& statuses) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::readAllChannelStatuses(ChannelStatusArray& statuses) const {
   DriverStatus status = DriverStatus::OK;
 
   for (uint8_t channel = 0; channel < NUM_CHANNELS; ++channel) {
@@ -590,38 +629,44 @@ DriverStatus MAX22200::readAllChannelStatuses(ChannelStatusArray& statuses) cons
 }
 
 // Get driver statistics
-DriverStatus MAX22200::getStatistics(DriverStatistics& stats) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::getStatistics(DriverStatistics& stats) const {
   stats = statistics_;
   return DriverStatus::OK;
 }
 
 // Reset driver statistics
-DriverStatus MAX22200::resetStatistics() {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::resetStatistics() {
   statistics_ = DriverStatistics();
   return DriverStatus::OK;
 }
 
 // Set fault callback function
-void MAX22200::setFaultCallback(FaultCallback callback, void* user_data) {
+template <typename SpiType>
+void MAX22200<SpiType>::setFaultCallback(FaultCallback callback, void* user_data) {
   fault_callback_ = callback;
   fault_user_data_ = user_data;
 }
 
 // Set state change callback function
-void MAX22200::setStateChangeCallback(StateChangeCallback callback, void* user_data) {
+template <typename SpiType>
+void MAX22200<SpiType>::setStateChangeCallback(StateChangeCallback callback, void* user_data) {
   state_callback_ = callback;
   state_user_data_ = user_data;
 }
 
 // Check if driver is initialized
-bool MAX22200::isInitialized() const {
+template <typename SpiType>
+bool MAX22200<SpiType>::isInitialized() const {
   return initialized_;
 }
 
 // Private method implementations
 
 // Write register
-DriverStatus MAX22200::writeRegister(uint8_t reg, uint16_t value) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::writeRegister(uint8_t reg, uint16_t value) const {
   uint8_t tx_data[3] = {reg, static_cast<uint8_t>(value >> 8), static_cast<uint8_t>(value & 0xFF)};
   uint8_t rx_data[3];
 
@@ -637,7 +682,8 @@ DriverStatus MAX22200::writeRegister(uint8_t reg, uint16_t value) const {
 }
 
 // Read register
-DriverStatus MAX22200::readRegister(uint8_t reg, uint16_t& value) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::readRegister(uint8_t reg, uint16_t& value) const {
   uint8_t tx_data[3] = {static_cast<uint8_t>(reg | 0x80), 0x00, 0x00};
   uint8_t rx_data[3];
 
@@ -654,12 +700,13 @@ DriverStatus MAX22200::readRegister(uint8_t reg, uint16_t& value) const {
 }
 
 // Write register array
-DriverStatus MAX22200::writeRegisterArray(uint8_t reg, const uint8_t* data, size_t length) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::writeRegisterArray(uint8_t reg, const uint8_t* data, size_t length) const {
   uint8_t* tx_data = new uint8_t[length + 1];
   uint8_t* rx_data = new uint8_t[length + 1];
 
   tx_data[0] = reg;
-  std::memcpy(&tx_data[1], data, length);
+  memcpy(&tx_data[1], data, length);
 
   spi_interface_.setChipSelect(false);
   bool success = spi_interface_.transfer(tx_data, rx_data, length + 1);
@@ -676,19 +723,20 @@ DriverStatus MAX22200::writeRegisterArray(uint8_t reg, const uint8_t* data, size
 }
 
 // Read register array
-DriverStatus MAX22200::readRegisterArray(uint8_t reg, uint8_t* data, size_t length) const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::readRegisterArray(uint8_t reg, uint8_t* data, size_t length) const {
   uint8_t* tx_data = new uint8_t[length + 1];
   uint8_t* rx_data = new uint8_t[length + 1];
 
   tx_data[0] = static_cast<uint8_t>(reg | 0x80);
-  std::memset(&tx_data[1], 0x00, length);
+  memset(&tx_data[1], 0x00, length);
 
   spi_interface_.setChipSelect(false);
   bool success = spi_interface_.transfer(tx_data, rx_data, length + 1);
   spi_interface_.setChipSelect(true);
 
   if (success) {
-    std::memcpy(data, &rx_data[1], length);
+    memcpy(data, &rx_data[1], length);
   }
 
   delete[] tx_data;
@@ -702,21 +750,24 @@ DriverStatus MAX22200::readRegisterArray(uint8_t reg, uint8_t* data, size_t leng
 }
 
 // Update channel enable register
-DriverStatus MAX22200::updateChannelEnableRegister() const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::updateChannelEnableRegister() const {
   // This would read all channel configurations and update the enable register
   // Implementation depends on how channel enable state is managed
   return DriverStatus::OK;
 }
 
 // Update global config register
-DriverStatus MAX22200::updateGlobalConfigRegister() const {
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::updateGlobalConfigRegister() const {
   // This would update the global configuration register
   // Implementation depends on current global config state
   return DriverStatus::OK;
 }
 
 // Update statistics
-void MAX22200::updateStatistics(bool success) const {
+template <typename SpiType>
+void MAX22200<SpiType>::updateStatistics(bool success) const {
   statistics_.total_transfers++;
   if (!success) {
     statistics_.failed_transfers++;
@@ -724,7 +775,8 @@ void MAX22200::updateStatistics(bool success) const {
 }
 
 // Trigger fault callback
-void MAX22200::triggerFaultCallback(uint8_t channel, FaultType fault_type) const {
+template <typename SpiType>
+void MAX22200<SpiType>::triggerFaultCallback(uint8_t channel, FaultType fault_type) const {
   if (fault_callback_) {
     fault_callback_(channel, fault_type, fault_user_data_);
     statistics_.fault_events++;
@@ -732,7 +784,8 @@ void MAX22200::triggerFaultCallback(uint8_t channel, FaultType fault_type) const
 }
 
 // Trigger state change callback
-void MAX22200::triggerStateChangeCallback(uint8_t channel, ChannelState old_state,
+template <typename SpiType>
+void MAX22200<SpiType>::triggerStateChangeCallback(uint8_t channel, ChannelState old_state,
                                           ChannelState new_state) const {
   if (state_callback_) {
     state_callback_(channel, old_state, new_state, state_user_data_);
@@ -741,7 +794,8 @@ void MAX22200::triggerStateChangeCallback(uint8_t channel, ChannelState old_stat
 }
 
 // Build channel config value
-uint16_t MAX22200::buildChannelConfigValue(const ChannelConfig& config) const {
+template <typename SpiType>
+uint16_t MAX22200<SpiType>::buildChannelConfigValue(const ChannelConfig& config) const {
   uint16_t value = 0;
 
   if (config.drive_mode == DriveMode::VDR) {
@@ -764,7 +818,8 @@ uint16_t MAX22200::buildChannelConfigValue(const ChannelConfig& config) const {
 }
 
 // Parse channel config value
-ChannelConfig MAX22200::parseChannelConfigValue(uint16_t value) const {
+template <typename SpiType>
+ChannelConfig MAX22200<SpiType>::parseChannelConfigValue(uint16_t value) const {
   ChannelConfig config;
 
   config.drive_mode =
@@ -782,7 +837,8 @@ ChannelConfig MAX22200::parseChannelConfigValue(uint16_t value) const {
 }
 
 // Build global config value
-uint16_t MAX22200::buildGlobalConfigValue(const GlobalConfig& config) const {
+template <typename SpiType>
+uint16_t MAX22200<SpiType>::buildGlobalConfigValue(const GlobalConfig& config) const {
   uint16_t value = 0;
 
   if (config.reset) {
@@ -809,7 +865,8 @@ uint16_t MAX22200::buildGlobalConfigValue(const GlobalConfig& config) const {
 }
 
 // Parse global config value
-GlobalConfig MAX22200::parseGlobalConfigValue(uint16_t value) const {
+template <typename SpiType>
+GlobalConfig MAX22200<SpiType>::parseGlobalConfigValue(uint16_t value) const {
   GlobalConfig config;
 
   config.reset = (value & GlobalConfigBits::RESET_MASK) != 0;
@@ -822,7 +879,8 @@ GlobalConfig MAX22200::parseGlobalConfigValue(uint16_t value) const {
 }
 
 // Parse fault status value
-FaultStatus MAX22200::parseFaultStatusValue(uint16_t value) const {
+template <typename SpiType>
+FaultStatus MAX22200<SpiType>::parseFaultStatusValue(uint16_t value) const {
   FaultStatus status;
 
   status.overcurrent_protection = (value & FaultStatusBits::OCP_MASK) != 0;
@@ -835,4 +893,6 @@ FaultStatus MAX22200::parseFaultStatusValue(uint16_t value) const {
   return status;
 }
 
-} // namespace MAX22200
+// Note: Namespace is closed in MAX22200.h, not here
+
+#endif  // MAX22200_IMPL
