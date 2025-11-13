@@ -100,8 +100,10 @@ aux_links:
 
 # Footer customization
 footer_content: >
-  Built with ❤️ using <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> •
-  <a href='https://github.com/n3b3x/hf-espidf-project-tools/blob/main/LICENSE'>MIT License</a> •
+  Built with ❤️ using
+  <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> •
+  <a href='https://github.com/n3b3x/hf-espidf-project-tools/blob/main/LICENSE'>
+    MIT License</a> •
   <a href='https://github.com/n3b3x/hf-espidf-project-tools'>View on GitHub</a>
 
 # Collections for better organization
@@ -156,7 +158,8 @@ seo:
   type: "Organization"
   name: "HardFOC ESP-IDF Project Tools"
   description: >
-    Development Scripts for ESP-IDF projects with multi-application build support.
+    Development Scripts for ESP-IDF projects with multi-application build
+    support.
   url: "https://n3b3x.github.io/hf-espidf-project-tools"
   twitter:
     card: "summary_large_image"

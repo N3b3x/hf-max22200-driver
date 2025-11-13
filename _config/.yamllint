@@ -1,3 +1,4 @@
+---
 extends: default
 
 rules:
@@ -64,6 +65,5 @@ rules:
   hyphens:
     max-spaces-after: 1
 
-  # Comments indentation
-  comments-indentation: disable
-
+    # Comments indentation
+    comments-indentation: disable

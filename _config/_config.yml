@@ -1,3 +1,4 @@
+---
 # =============================================================================
 # Standardized Jekyll Configuration for HardFOC Driver Documentation
 # =============================================================================
@@ -10,7 +11,8 @@
 # -----------------------------------------------------------------------------
 title: "HardFOC MAX22200 Driver"
 description: >
-  Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction
+  Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor
+  driver IC with hardware abstraction
 
 baseurl: "/hf-max22200-driver"
 url: "https://n3b3x.github.io"
@@ -132,8 +134,10 @@ aux_links:
 # Footer Customization
 # -----------------------------------------------------------------------------
 footer_content: >
-  Built with ❤️ using <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> •
-  <a href='https://github.com/n3b3x/hf-max22200-driver/blob/main/LICENSE'>GPL v3 License</a> •
+  Built with ❤️ using
+  <a href='https://just-the-docs.github.io/just-the-docs/'>Just the Docs</a> •
+  <a href='https://github.com/n3b3x/hf-max22200-driver/blob/main/LICENSE'>
+    GPL v3 License</a> •
   <a href='https://github.com/n3b3x/hf-max22200-driver'>View on GitHub</a>
 
 # -----------------------------------------------------------------------------
@@ -210,7 +214,8 @@ seo:
   type: "SoftwareApplication"
   name: "HardFOC MAX22200 Driver"
   description: >
-    Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction
+    Comprehensive C++20 driver library for the MAX22200 octal solenoid and
+    motor driver IC with hardware abstraction
   url: "https://n3b3x.github.io/hf-max22200-driver"
   twitter:
     card: "summary_large_image"
@@ -250,4 +255,3 @@ compress_html:
 #   features:
 #     - "Feature 1"
 #     - "Feature 2"
-

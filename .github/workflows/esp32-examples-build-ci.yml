@@ -1,7 +1,7 @@
 ---
 name: 🚀 ESP32 Examples Build CI
 
-on:
+'on':
   push:
     branches: [main, develop, release/*, feature/*, bugfix/*]
   pull_request:
@@ -57,7 +57,8 @@ jobs:
           cd ${{ steps.vars.outputs.tools_dir }}
           MATRIX=$(python3 generate_matrix.py)
           echo "matrix=${MATRIX}" >> "$GITHUB_OUTPUT"
-          echo "Generated matrix with $(echo "${MATRIX}" | jq '.include | length') build combinations"
+          build_count=$(echo "${MATRIX}" | jq '.include | length')
+          echo "Generated matrix with ${build_count} build combinations"
 
   # 🏗️ Build firmware (parallel matrix)
   build:

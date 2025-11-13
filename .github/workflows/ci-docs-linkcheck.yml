@@ -1,7 +1,7 @@
 ---
 name: 🔗 Docs Link Check CI
 
-on:
+'on':
   push:
     branches: [main, 'release/*']
     tags: ['v*']
@@ -22,7 +22,10 @@ jobs:
     uses: N3b3x/hf-general-ci-tools/.github/workflows/ru-docs-linkcheck.yml@main
     with:
       checkout_recursive: true
-      paths: "docs/** *.md **/*.md"
+      paths: >
+        docs/**
+        *.md
+        **/*.md
       fail_on_errors: false
       timeout: "30"
       max_retries: "3"
@@ -30,4 +33,5 @@ jobs:
       exclude_private: true
       exclude_mail: true
       verbose: true
-      config_file: "_config/lychee.toml"  # Use lychee.toml to exclude known problematic URLs
+      # Use lychee.toml to exclude known problematic URLs
+      config_file: "_config/lychee.toml"

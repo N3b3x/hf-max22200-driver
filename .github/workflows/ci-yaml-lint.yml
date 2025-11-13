@@ -1,7 +1,7 @@
 ---
 name: 📝 YAML Lint CI
 
-on:
+'on':
   push:
     branches: [main, develop]
   pull_request:
@@ -16,4 +16,10 @@ jobs:
       paths: '.github/workflows/*.yml,**/*.yml,**/*.yaml'
       config_file: '_config/.yamllint'
       strict_mode: false
-      exclude_patterns: '.git/**,node_modules/**,venv/**,.venv/**,_site/**,**/hf-espidf-project-tools/**'
+      exclude_patterns: >
+        .git/**
+        node_modules/**
+        venv/**
+        .venv/**
+        _site/**
+        **/hf-espidf-project-tools/**

@@ -1,3 +1,4 @@
+---
 # ESP32 MAX22200 Driver - Apps Configuration
 # This file centralizes all app definitions, their source files, and metadata
 # Used by build scripts, flash scripts, CI workflows, and CMake
@@ -21,7 +22,8 @@ apps:
   # Comprehensive Test Suite
   # --------------------------------------------------------------------------
   max22200_comprehensive_test:
-    description: "Comprehensive MAX22200 driver test suite covering all functionality"
+    description: >
+      Comprehensive MAX22200 driver test suite covering all functionality
     source_file: "MAX22200ComprehensiveTest.cpp"
     category: "test"
     idf_versions: ["release/v5.5"]
@@ -52,7 +54,8 @@ build_config:
       debug_level: "-g0"
       defines: ["NDEBUG"]
 
-  build_directory_pattern: "build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}"
+    build_directory_pattern: >
+      build-app-{app_type}-type-{build_type}-target-{target}-idf-{idf_version}
   project_name_pattern: "esp32_max22200_{app_type}_app"
 
 ci_config:

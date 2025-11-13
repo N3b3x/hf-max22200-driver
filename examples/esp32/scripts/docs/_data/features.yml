@@ -2,8 +2,8 @@
 # Features data for the HardFOC ESP-IDF CI Tools
 - title: "Multi-application ESP-IDF builds"
   description: >
-    Build multiple applications from a single ESP-IDF project with intelligent configuration
-    management and automated build processes
+    Build multiple applications from a single ESP-IDF project with intelligent
+    configuration management and automated build processes
   icon: "fas fa-cogs"
   badges:
     - text: "Core Feature"
@@ -13,7 +13,8 @@
 
 - title: "Comprehensive security auditing"
   description: >
-    Dependencies, secrets, and CodeQL analysis with automatic requirements discovery for mixed-language projects
+    Dependencies, secrets, and CodeQL analysis with automatic requirements
+    discovery for mixed-language projects
   icon: "fas fa-shield-alt"
   badges:
     - text: "Security"
@@ -23,7 +24,8 @@
 
 - title: "Smart project tools integration"
   description: >
-    Single composite action for project tools directory management with automatic tool cloning and security validation
+    Single composite action for project tools directory management with
+    automatic tool cloning and security validation
   icon: "fas fa-tools"
   badges:
     - text: "Automation"
@@ -32,7 +34,9 @@
       type: "info"
 
 - title: "Multi-application project support"
-  description: "ESP-IDF projects with multiple applications for library testing and development workflows"
+  description: >
+    ESP-IDF projects with multiple applications for library testing and
+    development workflows
   icon: "fas fa-microchip"
   badges:
     - text: "HardFOC"
