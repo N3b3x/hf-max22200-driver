@@ -1124,7 +1124,7 @@ IMAGE_PATH             =
 # need to set EXTENSION_MAPPING for the extension otherwise the files are not
 # properly processed by doxygen.
 
-INPUT_FILTER           = "sed '/^---$/,/^---$/d'"
+INPUT_FILTER           = 
 
 # The FILTER_PATTERNS tag can be used to specify filters on a per file pattern
 # basis. Doxygen will compare the file name with each pattern and apply the
@@ -1136,6 +1136,7 @@ INPUT_FILTER           = "sed '/^---$/,/^---$/d'"
 # Note that for custom extensions or not directly supported extensions you also
 # need to set EXTENSION_MAPPING for the extension otherwise the files are not
 # properly processed by doxygen.
+
 # Remove YAML front-matter from .md files
 FILTER_PATTERNS = *.md="sed -e '/^---$/,/^---$/d'"
 
