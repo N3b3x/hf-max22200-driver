@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.Ih6ae2
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.Ih6ae2' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.8IQHFq
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.8IQHFq' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:29: warning: documented symbol 'MAX22200::MAX22200' was not declared or defined.
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/src/MAX22200.cpp:39: warning: documented symbol 'MAX22200::~MAX22200' was not declared or defined.
