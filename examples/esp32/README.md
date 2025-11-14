@@ -441,9 +441,9 @@ channel_config.hold_current = 200; // mA
 ## 📚 Additional Resources
 
 - [MAX22200 Datasheet](../../datasheet/MAX22200.pdf)
-- [Driver API Documentation](../../docs/API_Reference.md)
-- [Hardware Integration Guide](../../docs/Hardware_Guide.md)
-- [ASCII Diagrams](../../docs/ASCII_Diagrams.md)
+- [Driver API Documentation](../../docs/api_reference.md)
+- [Hardware Integration Guide](../../docs/hardware_guide.md)
+- [ASCII Diagrams](../../docs/ascii_diagrams.md)
 
 ---
 

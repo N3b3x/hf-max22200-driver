@@ -1,5 +1,5 @@
 /**
- * @file MAX22200_Types.h
+ * @file max22200_types.hpp
  * @brief Type definitions and structures for MAX22200 driver
  * @author MAX22200 Driver Library
  * @date 2024
@@ -11,11 +11,11 @@
 #ifndef MAX22200_TYPES_H
 #define MAX22200_TYPES_H
 
-#include "MAX22200_Registers.h"
+#include "max22200_registers.hpp"
 #include <array>
 #include <cstdint>
 
-namespace MAX22200 {
+namespace max22200 {
 
 /**
  * @brief Drive mode enumeration
@@ -75,8 +75,9 @@ struct ChannelConfig {
    * Initializes the channel configuration with default values.
    */
   ChannelConfig()
-      : enabled(false), drive_mode(DriveMode::CDR), bridge_mode(BridgeMode::HALF_BRIDGE),
-        parallel_mode(false), polarity(OutputPolarity::NORMAL), hit_current(0), hold_current(0),
+      : enabled(false), drive_mode(DriveMode::CDR),
+        bridge_mode(BridgeMode::HALF_BRIDGE), parallel_mode(false),
+        polarity(OutputPolarity::NORMAL), hit_current(0), hold_current(0),
         hit_time(0) {}
 
   /**
@@ -91,10 +92,10 @@ struct ChannelConfig {
    * @param hdc HOLD current
    * @param ht HIT time
    */
-  ChannelConfig(bool en, DriveMode dm, BridgeMode bm, bool pm, OutputPolarity pol, uint16_t hc,
-                uint16_t hdc, uint16_t ht)
-      : enabled(en), drive_mode(dm), bridge_mode(bm), parallel_mode(pm), polarity(pol),
-        hit_current(hc), hold_current(hdc), hit_time(ht) {}
+  ChannelConfig(bool en, DriveMode dm, BridgeMode bm, bool pm,
+                OutputPolarity pol, uint16_t hc, uint16_t hdc, uint16_t ht)
+      : enabled(en), drive_mode(dm), bridge_mode(bm), parallel_mode(pm),
+        polarity(pol), hit_current(hc), hold_current(hdc), hit_time(ht) {}
 };
 
 /**
@@ -115,8 +116,8 @@ struct GlobalConfig {
    * Initializes the global configuration with default values.
    */
   GlobalConfig()
-      : reset(false), sleep_mode(false), diagnostic_enable(true), ics_enable(true),
-        daisy_chain_mode(false) {}
+      : reset(false), sleep_mode(false), diagnostic_enable(true),
+        ics_enable(true), daisy_chain_mode(false) {}
 };
 
 /**
@@ -138,16 +139,17 @@ struct FaultStatus {
    * Initializes all fault flags to false.
    */
   FaultStatus()
-      : overcurrent_protection(false), open_load(false), plunger_movement(false),
-        undervoltage_lockout(false), hit_current_not_reached(false), thermal_shutdown(false) {}
+      : overcurrent_protection(false), open_load(false),
+        plunger_movement(false), undervoltage_lockout(false),
+        hit_current_not_reached(false), thermal_shutdown(false) {}
 
   /**
    * @brief Check if any fault is active
    * @return true if any fault is active, false otherwise
    */
   bool hasFault() const {
-    return overcurrent_protection || open_load || plunger_movement || undervoltage_lockout ||
-           hit_current_not_reached || thermal_shutdown;
+    return overcurrent_protection || open_load || plunger_movement ||
+           undervoltage_lockout || hit_current_not_reached || thermal_shutdown;
   }
 
   /**
@@ -189,7 +191,8 @@ struct ChannelStatus {
    * Initializes the channel status with default values.
    */
   ChannelStatus()
-      : enabled(false), fault_active(false), current_reading(0), hit_phase_active(false) {}
+      : enabled(false), fault_active(false), current_reading(0),
+        hit_phase_active(false) {}
 };
 
 /**
@@ -218,17 +221,17 @@ enum class ChannelState : uint8_t {
 /**
  * @brief Array type for channel configurations
  */
-using ChannelConfigArray = std::array<ChannelConfig, NUM_CHANNELS>;
+using ChannelConfigArray = std::array<ChannelConfig, NUM_CHANNELS_>;
 
 /**
  * @brief Array type for channel statuses
  */
-using ChannelStatusArray = std::array<ChannelStatus, NUM_CHANNELS>;
+using ChannelStatusArray = std::array<ChannelStatus, NUM_CHANNELS_>;
 
 /**
  * @brief Array type for channel states
  */
-using ChannelStateArray = std::array<ChannelState, NUM_CHANNELS>;
+using ChannelStateArray = std::array<ChannelState, NUM_CHANNELS_>;
 
 /**
  * @brief Callback function type for fault events
@@ -237,7 +240,8 @@ using ChannelStateArray = std::array<ChannelState, NUM_CHANNELS>;
  * @param fault_type Type of fault that occurred
  * @param user_data User-provided data pointer
  */
-using FaultCallback = void (*)(uint8_t channel, FaultType fault_type, void* user_data);
+using FaultCallback = void (*)(uint8_t channel, FaultType fault_type,
+                               void *user_data);
 
 /**
  * @brief Callback function type for channel state changes
@@ -248,7 +252,7 @@ using FaultCallback = void (*)(uint8_t channel, FaultType fault_type, void* user
  * @param user_data User-provided data pointer
  */
 using StateChangeCallback = void (*)(uint8_t channel, ChannelState old_state,
-                                     ChannelState new_state, void* user_data);
+                                     ChannelState new_state, void *user_data);
 
 /**
  * @brief Driver statistics structure
@@ -268,7 +272,8 @@ struct DriverStatistics {
    * Initializes all statistics to zero.
    */
   DriverStatistics()
-      : total_transfers(0), failed_transfers(0), fault_events(0), state_changes(0), uptime_ms(0) {}
+      : total_transfers(0), failed_transfers(0), fault_events(0),
+        state_changes(0), uptime_ms(0) {}
 
   /**
    * @brief Get transfer success rate
@@ -277,10 +282,11 @@ struct DriverStatistics {
   float getSuccessRate() const {
     if (total_transfers == 0)
       return 100.0f;
-    return ((float)(total_transfers - failed_transfers) / total_transfers) * 100.0f;
+    return ((float)(total_transfers - failed_transfers) / total_transfers) *
+           100.0f;
   }
 };
 
-} // namespace MAX22200
+} // namespace max22200
 
 #endif // MAX22200_TYPES_H

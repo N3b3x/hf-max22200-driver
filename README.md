@@ -79,7 +79,7 @@ make run
 hf-max22200/
 ├── include/                 # Header files
 │   ├── MAX22200.h          # Main driver class
-│   ├── SPIInterface.h      # Abstract SPI interface
+│   ├── SpiInterface.h      # Abstract SPI interface
 │   ├── MAX22200_Registers.h # Register definitions
 │   └── MAX22200_Types.h    # Type definitions
 ├── src/                    # Source files
@@ -90,9 +90,9 @@ hf-max22200/
 │   └── ExampleSPI.cpp     # Example SPI implementation
 ├── docs/                   # Documentation
 │   ├── README.md          # Main documentation
-│   ├── API_Reference.md   # API documentation
-│   ├── Hardware_Guide.md  # Hardware integration guide
-│   └── ASCII_Diagrams.md  # ASCII art diagrams
+│   ├── api_reference.md   # API documentation
+│   ├── hardware_guide.md  # Hardware integration guide
+│   └── ascii_diagrams.md  # ASCII art diagrams
 ├── CMakeLists.txt         # CMake build configuration
 ├── Makefile               # Make build configuration
 └── Datasheet/             # IC datasheet
@@ -112,7 +112,7 @@ MySPI spi;
 MAX22200 driver(spi);
 
 // Initialize
-if (driver.initialize() == DriverStatus::OK) {
+if (driver.Initialize() == DriverStatus::OK) {
     // Configure channel 0
     ChannelConfig config;
     config.enabled = true;
@@ -121,8 +121,8 @@ if (driver.initialize() == DriverStatus::OK) {
     config.hold_current = 200;
     config.hit_time = 1000;
     
-    driver.configureChannel(0, config);
-    driver.enableChannel(0, true);
+    driver.ConfigureChannel(0, config);
+    driver.EnableChannel(0, true);
 }
 ```
 
@@ -140,7 +140,7 @@ if (driver.initialize() == DriverStatus::OK) {
 
 ## 📖 API Reference
 
-For complete API documentation, see the [docs/API_Reference.md](docs/API_Reference.md) file.
+For complete API documentation, see the [docs/api_reference.md](docs/api_reference.md) file.
 
 ## 📊 Examples
 
@@ -148,9 +148,9 @@ For ESP32 examples, see the [examples/esp32](examples/esp32/) directory. Additio
 
 ## 📚 Documentation
 
-- [API Reference](docs/API_Reference.md) - Complete API documentation
-- [Hardware Guide](docs/Hardware_Guide.md) - Hardware integration guide
-- [ASCII Diagrams](docs/ASCII_Diagrams.md) - Visual representations
+- [API Reference](docs/api_reference.md) - Complete API documentation
+- [Hardware Guide](docs/hardware_guide.md) - Hardware integration guide
+- [ASCII Diagrams](docs/ascii_diagrams.md) - Visual representations
 - Generate Doxygen documentation: `doxygen _config/Doxyfile`
 
 ## 🤝 Contributing

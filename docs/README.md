@@ -28,19 +28,22 @@ The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
 
 ```cpp
 #include "MAX22200.h"
-#include "SPIInterface.h"
+#include "SpiInterface.h"
 ```
 
 ### 2. Implement SPI Interface
 
 ```cpp
-class MySPI : public SPIInterface {
+#include "SpiInterface.h"
+using namespace max22200;
+
+class MySPI : public SpiInterface<MySPI> {
 public:
-    bool initialize() override { /* Your SPI init code */ }
-    bool transfer(const uint8_t* tx, uint8_t* rx, size_t len) override { /* Your SPI transfer */ }
-    void setChipSelect(bool state) override { /* Your CS control */ }
-    bool configure(uint32_t speed, uint8_t mode, bool msb_first) override { /* Your SPI config */ }
-    bool isReady() const override { /* Your ready check */ }
+    bool Initialize() { /* Your SPI init code */ }
+    bool Transfer(const uint8_t* tx, uint8_t* rx, size_t len) { /* Your SPI transfer */ }
+    void SetChipSelect(bool state) { /* Your CS control */ }
+    bool Configure(uint32_t speed, uint8_t mode, bool msb_first) { /* Your SPI config */ }
+    bool IsReady() const { /* Your ready check */ }
 };
 ```
 
@@ -51,7 +54,7 @@ MySPI spi;
 MAX22200 driver(spi);
 
 // Initialize
-if (driver.initialize() == DriverStatus::OK) {
+if (driver.Initialize() == DriverStatus::OK) {
     // Configure channel 0
     ChannelConfig config;
     config.enabled = true;
@@ -60,26 +63,38 @@ if (driver.initialize() == DriverStatus::OK) {
     config.hold_current = 200;
     config.hit_time = 1000;
     
-    driver.configureChannel(0, config);
-    driver.enableChannel(0, true);
+    driver.ConfigureChannel(0, config);
+    driver.EnableChannel(0, true);
 }
 ```
 
 ## Architecture
 
 ```
-┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Application   │    │   MAX22200      │    │   SPI Interface │
-│                 │    │   Driver        │    │   (Platform     │
-│                 │◄──►│                 │◄──►│   Specific)     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌─────────────────┐
-                       │   MAX22200 IC   │
-                       │   (Hardware)    │
-                       └─────────────────┘
-```
+┌─────────────────┐
+│   Application   │
+│   (User code)   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   MAX22200      │
+│   Driver        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│    SPI Interface            │
+│  (Platform-specific layer)  │
+└────────┬────────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│   MAX22200 IC   │
+│   (Hardware)    │
+└─────────────────┘
+
+The platform-specific SPI interface is implemented and passed in by the application but is invoked internally by the MAX22200 driver to communicate with the hardware IC.
 
 ## Directory Structure
 
@@ -87,7 +102,7 @@ if (driver.initialize() == DriverStatus::OK) {
 hf-max22200/
 ├── include/                 # Header files
 │   ├── MAX22200.h          # Main driver class
-│   ├── SPIInterface.h      # Abstract SPI interface
+│   ├── SpiInterface.h      # Abstract SPI interface
 │   ├── MAX22200_Registers.h # Register definitions
 │   └── MAX22200_Types.h    # Type definitions
 ├── src/                    # Source files
@@ -98,9 +113,9 @@ hf-max22200/
 │   └── ExampleSPI.cpp     # Example SPI implementation
 ├── docs/                   # Documentation
 │   ├── README.md          # This file
-│   ├── API_Reference.md   # API documentation
-│   ├── Hardware_Guide.md  # Hardware integration guide
-│   └── ASCII_Diagrams.md  # ASCII art diagrams
+│   ├── api_reference.md   # API documentation
+│   ├── hardware_guide.md  # Hardware integration guide
+│   └── ascii_diagrams.md  # ASCII art diagrams
 ├── CMakeLists.txt         # CMake build configuration
 └── Datasheet/             # IC datasheet
     └── MAX22200.pdf       # MAX22200 datasheet
@@ -126,9 +141,9 @@ g++ -std=c++20 -I include examples/example_usage.cpp examples/ExampleSPI.cpp MAX
 
 ## Documentation
 
-- [API Reference](API_Reference.md) - Complete API documentation
-- [Hardware Guide](Hardware_Guide.md) - Hardware integration guide
-- [ASCII Diagrams](ASCII_Diagrams.md) - Visual representations
+- [API Reference](api_reference.md) - Complete API documentation
+- [Hardware Guide](hardware_guide.md) - Hardware integration guide
+- [ASCII Diagrams](ascii_diagrams.md) - Visual representations
 - [Examples](../examples/) - Usage examples and SPI implementations
 
 ## Requirements

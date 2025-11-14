@@ -20,7 +20,7 @@ The main driver class for controlling the MAX22200 IC.
 ```cpp
 class MAX22200 {
 public:
-    explicit MAX22200(SPIInterface& spi_interface, bool enable_diagnostics = true);
+    explicit MAX22200(SpiInterface& spi_interface, bool enable_diagnostics = true);
     ~MAX22200();
     
     // Initialization
@@ -71,26 +71,28 @@ public:
     void setStateChangeCallback(StateChangeCallback callback, void* user_data = nullptr);
     
     // Utility
-    bool isInitialized() const;
-    static constexpr bool isValidChannel(uint8_t channel);
-    static constexpr const char* getVersion();
+    bool IsInitialized() const;
+    static constexpr bool IsValidChannel(uint8_t channel);
+    static constexpr const char* GetVersion();
 };
 ```
 
-### SPIInterface
+### SpiInterface
 
-Abstract base class for SPI communication.
+CRTP-based template interface for SPI communication.
 
 ```cpp
-class SPIInterface {
+namespace max22200 {
+template <typename Derived>
+class SpiInterface {
 public:
-    virtual ~SPIInterface() = default;
-    virtual bool initialize() = 0;
-    virtual bool transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) = 0;
-    virtual void setChipSelect(bool state) = 0;
-    virtual bool configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) = 0;
-    virtual bool isReady() const = 0;
+    bool Initialize();
+    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length);
+    void SetChipSelect(bool state);
+    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true);
+    bool IsReady() const;
 };
+}
 ```
 
 ## Data Types
@@ -301,7 +303,7 @@ The driver uses return codes instead of exceptions for error handling, making it
 ### Return Code Usage
 
 ```cpp
-DriverStatus status = driver.initialize();
+DriverStatus status = driver.Initialize();
 if (status != DriverStatus::OK) {
     // Handle error
     switch (status) {
@@ -323,8 +325,8 @@ if (status != DriverStatus::OK) {
 
 ```cpp
 // Clear faults and retry
-driver.clearFaultStatus();
-DriverStatus status = driver.initialize();
+driver.ClearFaultStatus();
+DriverStatus status = driver.Initialize();
 if (status == DriverStatus::OK) {
     // Success
 } else {
@@ -343,7 +345,7 @@ if (status == DriverStatus::OK) {
 MySPI spi;
 MAX22200 driver(spi);
 
-if (driver.initialize() == DriverStatus::OK) {
+if (driver.Initialize() == DriverStatus::OK) {
     // Driver ready for use
 }
 ```
@@ -360,9 +362,9 @@ config.hit_current = 800;
 config.hold_current = 200;
 config.hit_time = 1000;
 
-DriverStatus status = driver.configureChannel(0, config);
+DriverStatus status = driver.ConfigureChannel(0, config);
 if (status == DriverStatus::OK) {
-    driver.enableChannel(0, true);
+    driver.EnableChannel(0, true);
 }
 ```
 
@@ -370,13 +372,13 @@ if (status == DriverStatus::OK) {
 
 ```cpp
 // Set up fault callback
-driver.setFaultCallback([](uint8_t channel, FaultType fault_type, void* user_data) {
+driver.SetFaultCallback([](uint8_t channel, FaultType fault_type, void* user_data) {
     printf("Fault on channel %d: %d\n", channel, static_cast<int>(fault_type));
 }, nullptr);
 
 // Read fault status
 FaultStatus status;
-if (driver.readFaultStatus(status) == DriverStatus::OK) {
+if (driver.ReadFaultStatus(status) == DriverStatus::OK) {
     if (status.hasFault()) {
         printf("Active faults: %d\n", status.getFaultCount());
     }
@@ -387,7 +389,7 @@ if (driver.readFaultStatus(status) == DriverStatus::OK) {
 
 ```cpp
 DriverStatistics stats;
-if (driver.getStatistics(stats) == DriverStatus::OK) {
+if (driver.GetStatistics(stats) == DriverStatus::OK) {
     printf("Success rate: %.2f%%\n", stats.getSuccessRate());
     printf("Total transfers: %u\n", stats.total_transfers);
 }
@@ -418,8 +420,8 @@ namespace TimingRange {
 ### SPI Frequencies
 
 ```cpp
-constexpr uint32_t MAX_SPI_FREQ_STANDALONE = 10000000; // 10 MHz
-constexpr uint32_t MAX_SPI_FREQ_DAISY_CHAIN = 5000000;  // 5 MHz
+constexpr uint32_t MAX_SPI_FREQ_STANDALONE_ = 10000000; // 10 MHz
+constexpr uint32_t MAX_SPI_FREQ_DAISY_CHAIN_ = 5000000;  // 5 MHz
 ```
 
 ## Thread Safety

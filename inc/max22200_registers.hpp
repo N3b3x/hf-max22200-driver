@@ -1,5 +1,5 @@
 /**
- * @file MAX22200_Registers.h
+ * @file max22200_registers.hpp
  * @brief Register definitions and constants for MAX22200 IC
  * @author MAX22200 Driver Library
  * @date 2024
@@ -13,22 +13,22 @@
 
 #include <cstdint>
 
-namespace MAX22200 {
+namespace max22200 {
 
 /**
  * @brief Number of channels on the MAX22200
  */
-constexpr uint8_t NUM_CHANNELS = 8;
+constexpr uint8_t NUM_CHANNELS_ = 8;
 
 /**
  * @brief Maximum SPI clock frequency without daisy chaining (Hz)
  */
-constexpr uint32_t MAX_SPI_FREQ_STANDALONE = 10000000; // 10 MHz
+constexpr uint32_t MAX_SPI_FREQ_STANDALONE_ = 10000000; // 10 MHz
 
 /**
  * @brief Maximum SPI clock frequency with daisy chaining (Hz)
  */
-constexpr uint32_t MAX_SPI_FREQ_DAISY_CHAIN = 5000000; // 5 MHz
+constexpr uint32_t MAX_SPI_FREQ_DAISY_CHAIN_ = 5000000; // 5 MHz
 
 /**
  * @brief Register addresses for MAX22200
@@ -85,8 +85,10 @@ constexpr uint8_t SLEEP_MASK = 0x02; ///< Sleep mode bit mask
 constexpr uint8_t DIAG_EN_POS = 2;     ///< Diagnostic enable bit position
 constexpr uint8_t DIAG_EN_MASK = 0x04; ///< Diagnostic enable bit mask
 
-constexpr uint8_t ICS_EN_POS = 3;     ///< Integrated Current Sensing enable bit position
-constexpr uint8_t ICS_EN_MASK = 0x08; ///< Integrated Current Sensing enable bit mask
+constexpr uint8_t ICS_EN_POS =
+    3; ///< Integrated Current Sensing enable bit position
+constexpr uint8_t ICS_EN_MASK =
+    0x08; ///< Integrated Current Sensing enable bit mask
 
 constexpr uint8_t DAISY_CHAIN_POS = 4;     ///< Daisy chain mode bit position
 constexpr uint8_t DAISY_CHAIN_MASK = 0x10; ///< Daisy chain mode bit mask
@@ -131,7 +133,7 @@ constexpr uint8_t OCP_MASK = 0x01; ///< Overcurrent protection bit mask
 constexpr uint8_t OL_POS = 1;     ///< Open load detection bit position
 constexpr uint8_t OL_MASK = 0x02; ///< Open load detection bit mask
 
-constexpr uint8_t DPM_POS = 2;     ///< Detection of plunger movement bit position
+constexpr uint8_t DPM_POS = 2; ///< Detection of plunger movement bit position
 constexpr uint8_t DPM_MASK = 0x04; ///< Detection of plunger movement bit mask
 
 constexpr uint8_t UVLO_POS = 3;     ///< Undervoltage lockout bit position
@@ -148,10 +150,12 @@ constexpr uint8_t TSD_MASK = 0x20; ///< Thermal shutdown bit mask
  * @brief Bit field definitions for Channel Configuration Register (0x10-0x17)
  */
 namespace ChannelConfigBits {
-constexpr uint8_t DRIVE_MODE_POS = 0;     ///< Drive mode bit position (0=CDR, 1=VDR)
+constexpr uint8_t DRIVE_MODE_POS =
+    0; ///< Drive mode bit position (0=CDR, 1=VDR)
 constexpr uint8_t DRIVE_MODE_MASK = 0x01; ///< Drive mode bit mask
 
-constexpr uint8_t BRIDGE_MODE_POS = 1;     ///< Bridge mode bit position (0=half, 1=full)
+constexpr uint8_t BRIDGE_MODE_POS =
+    1; ///< Bridge mode bit position (0=half, 1=full)
 constexpr uint8_t BRIDGE_MODE_MASK = 0x02; ///< Bridge mode bit mask
 
 constexpr uint8_t PARALLEL_POS = 2;     ///< Parallel mode bit position
@@ -161,7 +165,7 @@ constexpr uint8_t POLARITY_POS = 3;     ///< Output polarity bit position
 constexpr uint8_t POLARITY_MASK = 0x08; ///< Output polarity bit mask
 } // namespace ChannelConfigBits
 
-// Forward declarations - actual definitions are in MAX22200_Types.h
+// Forward declarations - actual definitions are in max22200_types.hpp
 enum class DriveMode : uint8_t;
 enum class BridgeMode : uint8_t;
 enum class OutputPolarity : uint8_t;
@@ -212,6 +216,6 @@ constexpr uint8_t getChannelTimingReg(uint8_t channel) {
   return Registers::CH0_TIMING + channel;
 }
 
-} // namespace MAX22200
+} // namespace max22200
 
 #endif // MAX22200_REGISTERS_H

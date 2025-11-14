@@ -1,12 +1,13 @@
 /**
- * @file SPIInterface.h
+ * @file max22200_spi_interface.hpp
  * @brief CRTP-based template interface for SPI communication
  * @author MAX22200 Driver Library
  * @date 2024
  *
  * This file defines a CRTP (Curiously Recurring Template Pattern) interface
- * for SPI communication, providing hardware abstraction for the MAX22200 driver.
- * This approach provides compile-time polymorphism without virtual function overhead.
+ * for SPI communication, providing hardware abstraction for the MAX22200
+ * driver. This approach provides compile-time polymorphism without virtual
+ * function overhead.
  */
 
 #ifndef SPI_INTERFACE_H
@@ -15,14 +16,14 @@
 #include <cstddef>
 #include <cstdint>
 
-namespace MAX22200 {
+namespace max22200 {
 
 /**
  * @brief CRTP-based template interface for SPI communication
  *
- * This template class provides a hardware-agnostic interface for SPI communication
- * using the CRTP pattern. Platform-specific implementations should inherit from
- * this template with themselves as the template parameter.
+ * This template class provides a hardware-agnostic interface for SPI
+ * communication using the CRTP pattern. Platform-specific implementations
+ * should inherit from this template with themselves as the template parameter.
  *
  * Benefits of CRTP:
  * - Compile-time polymorphism (no virtual function overhead)
@@ -31,18 +32,17 @@ namespace MAX22200 {
  *
  * Example usage:
  * @code
- * class MySPI : public MAX22200::SPIInterface<MySPI> {
+ * class MySPI : public max22200::SpiInterface<MySPI> {
  * public:
- *   bool initialize() { ... }
- *   bool transfer(...) { ... }
+ *   bool Initialize() { ... }
+ *   bool Transfer(...) { ... }
  *   // ... implement other methods
  * };
  * @endcode
  *
  * @tparam Derived The derived class type (CRTP pattern)
  */
-template <typename Derived>
-class SPIInterface {
+template <typename Derived> class SpiInterface {
 public:
   /**
    * @brief Initialize the SPI interface
@@ -53,9 +53,7 @@ public:
    *
    * @return true if initialization was successful, false otherwise
    */
-  bool initialize() {
-    return static_cast<Derived*>(this)->initialize();
-  }
+  bool Initialize() { return static_cast<Derived *>(this)->Initialize(); }
 
   /**
    * @brief Transfer data over SPI interface
@@ -71,8 +69,8 @@ public:
    * @note Both tx_data and rx_data must be valid pointers and
    *       length must be greater than 0 for a successful transfer.
    */
-  bool transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
-    return static_cast<Derived*>(this)->transfer(tx_data, rx_data, length);
+  bool Transfer(const uint8_t *tx_data, uint8_t *rx_data, size_t length) {
+    return static_cast<Derived *>(this)->Transfer(tx_data, rx_data, length);
   }
 
   /**
@@ -85,8 +83,8 @@ public:
    * @note The actual polarity of CS depends on hardware implementation.
    *       This method should handle the correct CS polarity internally.
    */
-  void setChipSelect(bool state) {
-    return static_cast<Derived*>(this)->setChipSelect(state);
+  void SetChipSelect(bool state) {
+    return static_cast<Derived *>(this)->SetChipSelect(state);
   }
 
   /**
@@ -100,8 +98,8 @@ public:
    * @param msb_first true for MSB first, false for LSB first
    * @return true if configuration was successful, false otherwise
    */
-  bool configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) {
-    return static_cast<Derived*>(this)->configure(speed_hz, mode, msb_first);
+  bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) {
+    return static_cast<Derived *>(this)->Configure(speed_hz, mode, msb_first);
   }
 
   /**
@@ -112,31 +110,29 @@ public:
    *
    * @return true if interface is ready, false otherwise
    */
-  bool isReady() const {
-    return static_cast<const Derived*>(this)->isReady();
-  }
+  bool IsReady() const { return static_cast<const Derived *>(this)->IsReady(); }
 
 protected:
   /**
    * @brief Protected constructor to prevent direct instantiation
    */
-  SPIInterface() = default;
+  SpiInterface() = default;
 
   // Prevent copying
-  SPIInterface(const SPIInterface&) = delete;
-  SPIInterface& operator=(const SPIInterface&) = delete;
+  SpiInterface(const SpiInterface &) = delete;
+  SpiInterface &operator=(const SpiInterface &) = delete;
 
   // Allow moving
-  SPIInterface(SPIInterface&&) = default;
-  SPIInterface& operator=(SPIInterface&&) = default;
+  SpiInterface(SpiInterface &&) = default;
+  SpiInterface &operator=(SpiInterface &&) = default;
 
   /**
    * @brief Protected destructor
    * @note Derived classes can have public destructors
    */
-  ~SPIInterface() = default;
+  ~SpiInterface() = default;
 };
 
-}  // namespace MAX22200
+} // namespace max22200
 
 #endif // SPI_INTERFACE_H

@@ -22,7 +22,7 @@ endif()
 include_directories(inc)
 
 # Create the library
-# Note: MAX22200.cpp is a template implementation file included by the header,
+# Note: max22200.cpp is a template implementation file included by the header,
 #       so it should NOT be compiled separately
 add_library(MAX22200Driver INTERFACE)
 target_include_directories(MAX22200Driver INTERFACE inc)
@@ -31,7 +31,7 @@ target_include_directories(MAX22200Driver INTERFACE inc)
 set_target_properties(MAX22200Driver PROPERTIES
     VERSION ${PROJECT_VERSION}
     SOVERSION 1
-    PUBLIC_HEADER inc/MAX22200.h inc/SPIInterface.h inc/MAX22200_Registers.h inc/MAX22200_Types.h
+    PUBLIC_HEADER inc/max22200.hpp inc/max22200_spi_interface.hpp inc/max22200_registers.hpp inc/max22200_types.hpp
 )
 
 # Create example executable

@@ -429,7 +429,7 @@ This document contains ASCII art diagrams illustrating the MAX22200 IC architect
     │                                                             │
     │  ┌─────────────────────────────────────────────────────────┐ │
     │  │                Application Call                         │ │
-    │  │  driver.setHitCurrent(0, 500);                         │ │
+    │  │  driver.SetHitCurrent(0, 500);                         │ │
     │  └─────────────────────────────────────────────────────────┘ │
     │                              │                              │
     │                              ▼                              │

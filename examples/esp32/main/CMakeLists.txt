@@ -77,9 +77,14 @@ set(MAIN_REQUIRES
 # =============================================================================
 # Component Registration
 # =============================================================================
+# Additional source files for the component
+set(ADDITIONAL_SRCS
+    esp32_max22200_spi.cpp                   # ESP32 SPI implementation
+)
+
 # Register the main component with ESP-IDF build system
 idf_component_register(
-    SRCS "${APP_SOURCE_FILE}"              # Source file (determined by build_app.sh)
+    SRCS "${APP_SOURCE_FILE}" ${ADDITIONAL_SRCS}  # Source files
     INCLUDE_DIRS ${MAIN_INCLUDE_DIRS}      # Include directories defined above
     REQUIRES ${MAIN_REQUIRES}              # Component dependencies defined above
 )
