@@ -25,7 +25,16 @@
 var NAVTREE =
 [
   [ "HF-MAX22200 Driver", "index.html", [
-    [ "MAX22200 Driver Library", "index.html", "index" ],
+    [ "📚 Table of Contents", "index.html#autotoc_md1", null ],
+    [ "📦 Overview", "index.html#autotoc_md2", null ],
+    [ "✨ Features", "index.html#autotoc_md3", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md4", null ],
+    [ "🔧 Installation", "index.html#autotoc_md5", null ],
+    [ "📖 API Reference", "index.html#autotoc_md6", null ],
+    [ "📊 Examples", "index.html#autotoc_md7", null ],
+    [ "📚 Documentation", "index.html#autotoc_md8", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md9", null ],
+    [ "📄 License", "index.html#autotoc_md10", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -61,8 +70,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"max22200__registers_8hpp.html#ad85f7264cbe923304790a647bc89b91b",
-"structmax22200_1_1DriverStatistics.html#a2043601ec212a4504d0291eaa3b39197"
+"max22200__registers_8hpp.html#aef9ff2455a4f9f1a716b72fff2758f4c",
+"structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

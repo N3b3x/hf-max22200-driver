@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['library_0',['MAX22200 Driver Library',['../index.html',1,'']]]
+  ['hf_20max22200_20driver_0',['HF-MAX22200 Driver',['../index.html',1,'']]]
 ];
