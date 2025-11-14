@@ -310,7 +310,7 @@
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"MAX22200.h"</span><span class="cp">
-#include</span> <span class="cpf">"SPIInterface.h"</span><span class="cp">
+#include</span> <span class="cpf">"SpiInterface.h"</span><span class="cp">
 </span></pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="2-implement-spi-interface">
   
@@ -329,13 +329,19 @@
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">MySPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SPIInterface</span> <span class="p">{</span>
+9
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"SpiInterface.h"</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">max22200</span><span class="p">;</span>
+
+<span class="k">class</span> <span class="nc">MySPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">MySPI</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">public:</span>
-    <span class="kt">bool</span> <span class="n">initialize</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* Your SPI init code */</span> <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* Your SPI transfer */</span> <span class="p">}</span>
-    <span class="kt">void</span> <span class="n">setChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* Your CS control */</span> <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* Your SPI config */</span> <span class="p">}</span>
-    <span class="kt">bool</span> <span class="n">isReady</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span> <span class="cm">/* Your ready check */</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">()</span> <span class="p">{</span> <span class="cm">/* Your SPI init code */</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">len</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* Your SPI transfer */</span> <span class="p">}</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* Your CS control */</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="p">{</span> <span class="cm">/* Your SPI config */</span> <span class="p">}</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span> <span class="cm">/* Your ready check */</span> <span class="p">}</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="3-create-and-use-driver">
@@ -367,7 +373,7 @@
 <span class="n">MAX22200</span> <span class="nf">driver</span><span class="p">(</span><span class="n">spi</span><span class="p">);</span>
 
 <span class="c1">// Initialize</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Configure channel 0</span>
     <span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
@@ -376,46 +382,14 @@
     <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
     
-    <span class="n">driver</span><span class="p">.</span><span class="n">configureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="architecture">
   
   
     <a href="#architecture" class="anchor-heading" aria-labelledby="architecture"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Architecture
-  
-  
-</h2>
-    
-
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre>┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐
-│   Application   │    │   MAX22200      │    │   SPI Interface │
-│                 │    │   Driver        │    │   (Platform     │
-│                 │◄──►│                 │◄──►│   Specific)     │
-└─────────────────┘    └─────────────────┘    └─────────────────┘
-                              │
-                              ▼
-                       ┌─────────────────┐
-                       │   MAX22200 IC   │
-                       │   (Hardware)    │
-                       └─────────────────┘
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="directory-structure">
-  
-  
-    <a href="#directory-structure" class="anchor-heading" aria-labelledby="directory-structure"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Directory Structure
   
   
 </h2>
@@ -441,10 +415,45 @@
 18
 19
 20
-</pre></td><td class="rouge-code"><pre>hf-max22200/
+21
+22
+23
+24
+25
+26
+27
+</pre></td><td class="rouge-code"><pre>┌─────────────────┐
+│   Application   │
+│   (User code)   │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────┐
+│   MAX22200      │
+│   Driver        │
+└────────┬────────┘
+         │
+         ▼
+┌─────────────────────────────┐
+│    SPI Interface            │
+│  (Platform-specific layer)  │
+└────────┬────────────────────┘
+         │
+         ▼
+┌─────────────────┐
+│   MAX22200 IC   │
+│   (Hardware)    │
+└─────────────────┘
+
+The platform-specific SPI interface is implemented and passed in by the application but is invoked internally by the MAX22200 driver to communicate with the hardware IC.
+
+## Directory Structure
+
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<p>hf-max22200/
 ├── include/                 # Header files
 │   ├── MAX22200.h          # Main driver class
-│   ├── SPIInterface.h      # Abstract SPI interface
+│   ├── SpiInterface.h      # Abstract SPI interface
 │   ├── MAX22200_Registers.h # Register definitions
 │   └── MAX22200_Types.h    # Type definitions
 ├── src/                    # Source files
@@ -455,36 +464,30 @@
 │   └── ExampleSPI.cpp     # Example SPI implementation
 ├── docs/                   # Documentation
 │   ├── README.md          # This file
-│   ├── API_Reference.md   # API documentation
-│   ├── Hardware_Guide.md  # Hardware integration guide
-│   └── ASCII_Diagrams.md  # ASCII art diagrams
+│   ├── api_reference.md   # API documentation
+│   ├── hardware_guide.md  # Hardware integration guide
+│   └── ascii_diagrams.md  # ASCII art diagrams
 ├── CMakeLists.txt         # CMake build configuration
 └── Datasheet/             # IC datasheet
-    └── MAX22200.pdf       # MAX22200 datasheet
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="building">
-  
-  
-    <a href="#building" class="anchor-heading" aria-labelledby="building"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Building
-  
-  
-</h2>
-    
-<h3 id="using-cmake">
-  
-  
-    <a href="#using-cmake" class="anchor-heading" aria-labelledby="using-cmake"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Using CMake
-  
-  
-</h3>
-    
-
-<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+    └── MAX22200.pdf       # MAX22200 datasheet</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
-</pre></td><td class="rouge-code"><pre><span class="nb">mkdir </span>build
-<span class="nb">cd </span>build
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre>
+## Building
+
+### Using CMake
+
+```bash
+mkdir build
+cd build
 cmake ..
 make
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -512,9 +515,9 @@ g++ <span class="nt">-std</span><span class="o">=</span>c++20 <span class="nt">-
     
 
 <ul>
-  <li><a href="/hf-max22200-driver/development/docs/API_Reference.html">API Reference</a> - Complete API documentation</li>
-  <li><a href="/hf-max22200-driver/development/docs/Hardware_Guide.html">Hardware Guide</a> - Hardware integration guide</li>
-  <li><a href="/hf-max22200-driver/development/docs/ASCII_Diagrams.html">ASCII Diagrams</a> - Visual representations</li>
+  <li><a href="api_reference.md">API Reference</a> - Complete API documentation</li>
+  <li><a href="hardware_guide.md">Hardware Guide</a> - Hardware integration guide</li>
+  <li><a href="ascii_diagrams.md">ASCII Diagrams</a> - Visual representations</li>
   <li><a href="../examples/">Examples</a> - Usage examples and SPI implementations</li>
 </ul>
 <h2 id="requirements">

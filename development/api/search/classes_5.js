@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['spiinterface_0',['SPIInterface',['../classMAX22200_1_1SPIInterface.html',1,'MAX22200']]]
+  ['max22200_0',['MAX22200',['../classmax22200_1_1MAX22200.html',1,'max22200']]]
 ];

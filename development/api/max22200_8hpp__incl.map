@@ -1,0 +1,24 @@
+<map id="inc/max22200.hpp" name="inc/max22200.hpp">
+<area shape="rect" id="Node000001" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="363,5,505,31"/>
+<area shape="rect" id="Node000002" href="$max22200__registers_8hpp.html" title="Register definitions and constants for MAX22200 IC." alt="" coords="5,152,188,177"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="363,23,284,28,200,38,126,55,99,67,81,80,75,93,75,108,85,138,80,140,69,109,70,92,77,77,97,62,125,50,199,33,284,23,362,18"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="259,225,326,251"/>
+<area shape="poly" id="edge11_Node000001_Node000003" title=" " alt="" coords="479,28,510,40,537,56,554,78,557,91,554,105,538,135,515,160,488,180,459,197,396,220,340,233,339,228,395,215,456,192,485,176,512,156,533,132,549,103,551,91,549,80,533,60,507,45,478,33"/>
+<area shape="rect" id="Node000004" href="$max22200__types_8hpp.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="91,79,254,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="393,33,229,78,228,72,391,28"/>
+<area shape="rect" id="Node000005" title=" " alt="" coords="263,152,319,177"/>
+<area shape="poly" id="edge10_Node000001_Node000005" title=" " alt="" coords="395,33,354,52,335,65,319,80,303,109,296,139,291,137,298,107,315,77,332,60,352,47,392,28"/>
+<area shape="rect" id="Node000006" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="329,79,539,104"/>
+<area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="437,31,437,65,431,65,431,31"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="615,79,701,104"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="471,28,610,72,608,77,469,33"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="725,79,879,104"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="494,28,730,73,729,79,493,33"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="129,175,249,218,247,223,127,180"/>
+<area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="162,106,121,144,117,141,159,102"/>
+<area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="185,103,276,213,272,216,180,106"/>
+<area shape="poly" id="edge5_Node000004_Node000005" title=" " alt="" coords="193,102,261,142,259,147,190,106"/>
+<area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="424,106,315,217,312,214,421,103"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="399,152,469,177"/>
+<area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="437,104,437,138,431,138,431,104"/>
+</map>

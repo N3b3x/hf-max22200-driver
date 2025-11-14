@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['outputpolarity_0',['OutputPolarity',['../namespaceMAX22200.html#a98cf0daac2becebda13c69a393864dd6',1,'MAX22200']]]
+  ['outputpolarity_0',['OutputPolarity',['../namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71',1,'max22200']]]
 ];

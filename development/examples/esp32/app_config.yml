@@ -22,7 +22,7 @@ apps:
   # --------------------------------------------------------------------------
   max22200_comprehensive_test:
     description: "Comprehensive MAX22200 driver test suite covering all functionality"
-    source_file: "MAX22200ComprehensiveTest.cpp"
+    source_file: "max22200_comprehensive_test.cpp"
     category: "test"
     idf_versions: ["release/v5.5"]
     build_types: ["Debug", "Release"]

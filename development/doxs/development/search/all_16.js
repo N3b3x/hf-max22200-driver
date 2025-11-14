@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['undervoltage_5flockout_0',['undervoltage_lockout',['../structMAX22200_1_1FaultStatus.html#a85e2cd51d2b74999d37581a083371e13',1,'MAX22200::FaultStatus']]],
-  ['uptime_5fms_1',['uptime_ms',['../structMAX22200_1_1DriverStatistics.html#a50f1e7197e590e2afb1de86a2fab51e4',1,'MAX22200::DriverStatistics']]],
+  ['undervoltage_5flockout_0',['undervoltage_lockout',['../structmax22200_1_1FaultStatus.html#aba0c9b0342513fe65599dea48a68a456',1,'max22200::FaultStatus']]],
+  ['uptime_5fms_1',['uptime_ms',['../structmax22200_1_1DriverStatistics.html#a83443a1da4dc00b15dde24af340d6fae',1,'max22200::DriverStatistics']]],
   ['usage_20example_2',['Usage Example',['../index.html#autotoc_md9',1,'']]],
-  ['uvlo_3',['UVLO',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea747160ed904511b8086c45e27df12777',1,'MAX22200']]],
-  ['uvlo_5fmask_4',['UVLO_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#afd02751d9bfa5c53c203b2ccd52cab02',1,'MAX22200::FaultStatusBits']]],
-  ['uvlo_5fpos_5',['UVLO_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#a786457cda97eaca486a76d0ca848ff2d',1,'MAX22200::FaultStatusBits']]]
+  ['uvlo_3',['UVLO',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a747160ed904511b8086c45e27df12777',1,'max22200']]],
+  ['uvlo_5fmask_4',['UVLO_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a3bbdb4af954c6784da4f2b64ae941bcb',1,'max22200::FaultStatusBits']]],
+  ['uvlo_5fpos_5',['UVLO_POS',['../namespacemax22200_1_1FaultStatusBits.html#a788294e2934e251e22f48d97ddcd7d27',1,'max22200::FaultStatusBits']]]
 ];

@@ -1,9 +1,9 @@
 var searchData=
 [
-  ['ocp_5fmask_0',['OCP_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#a4f3b5b3aa46c70566da5e96c5093c34f',1,'MAX22200::FaultStatusBits']]],
-  ['ocp_5fpos_1',['OCP_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#ad5e04830ea3b3e2494c31142345e823e',1,'MAX22200::FaultStatusBits']]],
-  ['ol_5fmask_2',['OL_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#abfd046d91a81b944c3352636b50b01de',1,'MAX22200::FaultStatusBits']]],
-  ['ol_5fpos_3',['OL_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#afb0f06c36c4cc9dab219f820aa19aeb5',1,'MAX22200::FaultStatusBits']]],
-  ['open_5fload_4',['open_load',['../structMAX22200_1_1FaultStatus.html#a80244318feb873fd256944ab078ccf2a',1,'MAX22200::FaultStatus']]],
-  ['overcurrent_5fprotection_5',['overcurrent_protection',['../structMAX22200_1_1FaultStatus.html#a16d418f8ef7f320cb24aa5abd028a696',1,'MAX22200::FaultStatus']]]
+  ['ocp_5fmask_0',['OCP_MASK',['../namespacemax22200_1_1FaultStatusBits.html#aae367d15435c5bf7a2e106d4a94ee8f1',1,'max22200::FaultStatusBits']]],
+  ['ocp_5fpos_1',['OCP_POS',['../namespacemax22200_1_1FaultStatusBits.html#a4b2f5b0fc6efecc953e8d273f13d163e',1,'max22200::FaultStatusBits']]],
+  ['ol_5fmask_2',['OL_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a590cddba07ca43bb798fba012822811b',1,'max22200::FaultStatusBits']]],
+  ['ol_5fpos_3',['OL_POS',['../namespacemax22200_1_1FaultStatusBits.html#a8a2945974eeacb9ede3f34539f26d5c7',1,'max22200::FaultStatusBits']]],
+  ['open_5fload_4',['open_load',['../structmax22200_1_1FaultStatus.html#aeb4605ae6bf8258bddc29eb973411e5d',1,'max22200::FaultStatus']]],
+  ['overcurrent_5fprotection_5',['overcurrent_protection',['../structmax22200_1_1FaultStatus.html#ab3a94b1f3fad4e0b77e3ea1e7653aa6a',1,'max22200::FaultStatus']]]
 ];

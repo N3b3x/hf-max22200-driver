@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['uvlo_0',['UVLO',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea747160ed904511b8086c45e27df12777',1,'MAX22200']]]
+  ['uvlo_0',['UVLO',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a747160ed904511b8086c45e27df12777',1,'max22200']]]
 ];

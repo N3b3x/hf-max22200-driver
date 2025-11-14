@@ -1,7 +1,7 @@
 var dir_bfccd401955b95cf8c75461437045ac0 =
 [
-    [ "MAX22200.h", "MAX22200_8h.html", "MAX22200_8h" ],
-    [ "MAX22200_Registers.h", "MAX22200__Registers_8h.html", "MAX22200__Registers_8h" ],
-    [ "MAX22200_Types.h", "MAX22200__Types_8h.html", "MAX22200__Types_8h" ],
-    [ "SPIInterface.h", "SPIInterface_8h.html", "SPIInterface_8h" ]
+    [ "max22200.hpp", "max22200_8hpp.html", "max22200_8hpp" ],
+    [ "max22200_registers.hpp", "max22200__registers_8hpp.html", "max22200__registers_8hpp" ],
+    [ "max22200_spi_interface.hpp", "max22200__spi__interface_8hpp.html", "max22200__spi__interface_8hpp" ],
+    [ "max22200_types.hpp", "max22200__types_8hpp.html", "max22200__types_8hpp" ]
 ];

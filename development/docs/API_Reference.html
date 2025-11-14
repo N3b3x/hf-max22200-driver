@@ -349,7 +349,7 @@
 57
 </pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">MAX22200</span> <span class="p">{</span>
 <span class="nl">public:</span>
-    <span class="k">explicit</span> <span class="n">MAX22200</span><span class="p">(</span><span class="n">SPIInterface</span><span class="o">&amp;</span> <span class="n">spi_interface</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">enable_diagnostics</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="k">explicit</span> <span class="n">MAX22200</span><span class="p">(</span><span class="n">SpiInterface</span><span class="o">&amp;</span> <span class="n">spi_interface</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">enable_diagnostics</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
     <span class="o">~</span><span class="n">MAX22200</span><span class="p">();</span>
     
     <span class="c1">// Initialization</span>
@@ -400,21 +400,21 @@
     <span class="kt">void</span> <span class="n">setStateChangeCallback</span><span class="p">(</span><span class="n">StateChangeCallback</span> <span class="n">callback</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">user_data</span> <span class="o">=</span> <span class="nb">nullptr</span><span class="p">);</span>
     
     <span class="c1">// Utility</span>
-    <span class="kt">bool</span> <span class="n">isInitialized</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">isValidChannel</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">channel</span><span class="p">);</span>
-    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">getVersion</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">IsInitialized</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">bool</span> <span class="n">IsValidChannel</span><span class="p">(</span><span class="kt">uint8_t</span> <span class="n">channel</span><span class="p">);</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">const</span> <span class="kt">char</span><span class="o">*</span> <span class="n">GetVersion</span><span class="p">();</span>
 <span class="p">};</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="spiinterface">
   
   
-    <a href="#spiinterface" class="anchor-heading" aria-labelledby="spiinterface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SPIInterface
+    <a href="#spiinterface" class="anchor-heading" aria-labelledby="spiinterface"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> SpiInterface
   
   
 </h3>
     
 
-<p>Abstract base class for SPI communication.</p>
+<p>CRTP-based template interface for SPI communication.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -425,15 +425,19 @@
 7
 8
 9
-</pre></td><td class="rouge-code"><pre><span class="k">class</span> <span class="nc">SPIInterface</span> <span class="p">{</span>
+10
+11
+</pre></td><td class="rouge-code"><pre><span class="k">namespace</span> <span class="n">max22200</span> <span class="p">{</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">SpiInterface</span> <span class="p">{</span>
 <span class="nl">public:</span>
-    <span class="k">virtual</span> <span class="o">~</span><span class="n">SPIInterface</span><span class="p">()</span> <span class="o">=</span> <span class="k">default</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">initialize</span><span class="p">()</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">void</span> <span class="n">setChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span> <span class="o">=</span> <span class="nb">true</span><span class="p">)</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-    <span class="k">virtual</span> <span class="kt">bool</span> <span class="n">isReady</span><span class="p">()</span> <span class="k">const</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 <span class="p">};</span>
+<span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="data-types">
   
@@ -855,7 +859,7 @@
 14
 15
 16
-</pre></td><td class="rouge-code"><pre><span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+</pre></td><td class="rouge-code"><pre><span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Handle error</span>
     <span class="k">switch</span> <span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="p">{</span>
@@ -890,8 +894,8 @@
 7
 8
 </pre></td><td class="rouge-code"><pre><span class="c1">// Clear faults and retry</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">clearFaultStatus</span><span class="p">();</span>
-<span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ClearFaultStatus</span><span class="p">();</span>
+<span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">();</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Success</span>
 <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
@@ -930,7 +934,7 @@
 <span class="n">MySPI</span> <span class="n">spi</span><span class="p">;</span>
 <span class="n">MAX22200</span> <span class="nf">driver</span><span class="p">(</span><span class="n">spi</span><span class="p">);</span>
 
-<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Driver ready for use</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -965,9 +969,9 @@
 <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
 
-<span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">configureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+<span class="n">DriverStatus</span> <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="fault-handling">
@@ -992,13 +996,13 @@
 11
 12
 </pre></td><td class="rouge-code"><pre><span class="c1">// Set up fault callback</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">setFaultCallback</span><span class="p">([](</span><span class="kt">uint8_t</span> <span class="n">channel</span><span class="p">,</span> <span class="n">FaultType</span> <span class="n">fault_type</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">user_data</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetFaultCallback</span><span class="p">([](</span><span class="kt">uint8_t</span> <span class="n">channel</span><span class="p">,</span> <span class="n">FaultType</span> <span class="n">fault_type</span><span class="p">,</span> <span class="kt">void</span><span class="o">*</span> <span class="n">user_data</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Fault on channel %d: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">channel</span><span class="p">,</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="p">(</span><span class="n">fault_type</span><span class="p">));</span>
 <span class="p">},</span> <span class="nb">nullptr</span><span class="p">);</span>
 
 <span class="c1">// Read fault status</span>
 <span class="n">FaultStatus</span> <span class="n">status</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">readFaultStatus</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">ReadFaultStatus</span><span class="p">(</span><span class="n">status</span><span class="p">)</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">status</span><span class="p">.</span><span class="n">hasFault</span><span class="p">())</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Active faults: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">getFaultCount</span><span class="p">());</span>
     <span class="p">}</span>
@@ -1019,7 +1023,7 @@
 4
 5
 </pre></td><td class="rouge-code"><pre><span class="n">DriverStatistics</span> <span class="n">stats</span><span class="p">;</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">getStatistics</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">GetStatistics</span><span class="p">(</span><span class="n">stats</span><span class="p">)</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Success rate: %.2f%%</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">stats</span><span class="p">.</span><span class="n">getSuccessRate</span><span class="p">());</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Total transfers: %u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">stats</span><span class="p">.</span><span class="n">total_transfers</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1083,8 +1087,8 @@
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="k">constexpr</span> <span class="kt">uint32_t</span> <span class="n">MAX_SPI_FREQ_STANDALONE</span> <span class="o">=</span> <span class="mi">10000000</span><span class="p">;</span> <span class="c1">// 10 MHz</span>
-<span class="k">constexpr</span> <span class="kt">uint32_t</span> <span class="n">MAX_SPI_FREQ_DAISY_CHAIN</span> <span class="o">=</span> <span class="mi">5000000</span><span class="p">;</span>  <span class="c1">// 5 MHz</span>
+</pre></td><td class="rouge-code"><pre><span class="k">constexpr</span> <span class="kt">uint32_t</span> <span class="n">MAX_SPI_FREQ_STANDALONE_</span> <span class="o">=</span> <span class="mi">10000000</span><span class="p">;</span> <span class="c1">// 10 MHz</span>
+<span class="k">constexpr</span> <span class="kt">uint32_t</span> <span class="n">MAX_SPI_FREQ_DAISY_CHAIN_</span> <span class="o">=</span> <span class="mi">5000000</span><span class="p">;</span>  <span class="c1">// 5 MHz</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="thread-safety">
   

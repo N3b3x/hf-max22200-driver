@@ -97,11 +97,11 @@ $(function(){initNavTree('Basic-example.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Basic</div></div>
 </div><!--header-->
 <div class="contents">
-<p>Main driver class for <a class="el" href="namespaceMAX22200.html">MAX22200</a> IC.</p>
-<p>Main driver class for <a class="el" href="namespaceMAX22200.html">MAX22200</a> ICThis class provides a comprehensive interface for controlling the <a class="el" href="namespaceMAX22200.html">MAX22200</a> octal solenoid and motor driver. It supports all features of the IC including current regulation, voltage regulation, integrated current sensing, and comprehensive fault detection.</p>
+<p>Main driver class for MAX22200 IC.</p>
+<p>Main driver class for MAX22200 ICThis class provides a comprehensive interface for controlling the MAX22200 octal solenoid and motor driver. It supports all features of the IC including current regulation, voltage regulation, integrated current sensing, and comprehensive fault detection.</p>
 <dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
-    <tr><td class="paramname">SpiType</td><td>The SPI interface implementation type that inherits from MAX22200::SPIInterface&lt;SpiType&gt;</td></tr>
+    <tr><td class="paramname">SpiType</td><td>The SPI interface implementation type that inherits from max22200::SpiInterface&lt;SpiType&gt;</td></tr>
   </table>
   </dd>
 </dl>
@@ -109,14 +109,14 @@ $(function(){initNavTree('Basic-example.html',''); initResizable(); });
 <dd>
 The driver uses CRTP-based SPI interface for zero virtual call overhead.</dd></dl>
 <p>usage: </p><div class="fragment"><div class="line"><span class="comment">// Create SPI interface implementation</span></div>
-<div class="line"><span class="keyword">class </span>MySPI : <span class="keyword">public</span> <a id="_a0" name="_a0"></a><a class="code hl_class" href="classMAX22200_1_1SPIInterface.html">MAX22200::SPIInterface</a>&lt;MySPI&gt; { ... };</div>
+<div class="line"><span class="keyword">class </span>MySPI : <span class="keyword">public</span> <a id="_a0" name="_a0"></a><a class="code hl_class" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt;MySPI&gt; { ... };</div>
 <div class="line">MySPI spi;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create MAX22200 driver</span></div>
 <div class="line">MAX22200&lt;MySPI&gt; driver(spi);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize the driver</span></div>
-<div class="line"><span class="keywordflow">if</span> (driver.initialize() == DriverStatus::OK) {</div>
+<div class="line"><span class="keywordflow">if</span> (driver.Initialize() == DriverStatus::OK) {</div>
 <div class="line">    <span class="comment">// Configure channel 0</span></div>
 <div class="line">    ChannelConfig config;</div>
 <div class="line">    config.enabled = <span class="keyword">true</span>;</div>
@@ -125,10 +125,10 @@ The driver uses CRTP-based SPI interface for zero virtual call overhead.</dd></d
 <div class="line">    config.hold_current = 200;</div>
 <div class="line">    config.hit_time = 1000;</div>
 <div class="line"> </div>
-<div class="line">    driver.configureChannel(0, config);</div>
-<div class="line">    driver.enableChannel(0, <span class="keyword">true</span>);</div>
+<div class="line">    driver.ConfigureChannel(0, config);</div>
+<div class="line">    driver.EnableChannel(0, <span class="keyword">true</span>);</div>
 <div class="line">}</div>
-<div class="ttc" id="aclassMAX22200_1_1SPIInterface_html"><div class="ttname"><a href="classMAX22200_1_1SPIInterface.html">MAX22200::SPIInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> SPIInterface.h:45</div></div>
+<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:45</div></div>
 </div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

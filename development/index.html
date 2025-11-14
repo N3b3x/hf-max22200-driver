@@ -408,7 +408,7 @@ make
 </pre></td><td class="rouge-code"><pre>hf-max22200/
 ├── include/                 # Header files
 │   ├── MAX22200.h          # Main driver class
-│   ├── SPIInterface.h      # Abstract SPI interface
+│   ├── SpiInterface.h      # Abstract SPI interface
 │   ├── MAX22200_Registers.h # Register definitions
 │   └── MAX22200_Types.h    # Type definitions
 ├── src/                    # Source files
@@ -419,9 +419,9 @@ make
 │   └── ExampleSPI.cpp     # Example SPI implementation
 ├── docs/                   # Documentation
 │   ├── README.md          # Main documentation
-│   ├── API_Reference.md   # API documentation
-│   ├── Hardware_Guide.md  # Hardware integration guide
-│   └── ASCII_Diagrams.md  # ASCII art diagrams
+│   ├── api_reference.md   # API documentation
+│   ├── hardware_guide.md  # Hardware integration guide
+│   └── ascii_diagrams.md  # ASCII art diagrams
 ├── CMakeLists.txt         # CMake build configuration
 ├── Makefile               # Make build configuration
 └── Datasheet/             # IC datasheet
@@ -468,7 +468,7 @@ make
 <span class="n">MAX22200</span> <span class="nf">driver</span><span class="p">(</span><span class="n">spi</span><span class="p">);</span>
 
 <span class="c1">// Initialize</span>
-<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// Configure channel 0</span>
     <span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
@@ -477,8 +477,8 @@ make
     <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
     
-    <span class="n">driver</span><span class="p">.</span><span class="n">configureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">enableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="-installation">
@@ -512,7 +512,7 @@ make
 </h2>
     
 
-<p>For complete API documentation, see the <a href="/hf-max22200-driver/development/docs/API_Reference.html">docs/API_Reference.md</a> file.</p>
+<p>For complete API documentation, see the <a href="docs/api_reference.md">docs/api_reference.md</a> file.</p>
 <h2 id="-examples">
   
   
@@ -533,9 +533,9 @@ make
     
 
 <ul>
-  <li><a href="/hf-max22200-driver/development/docs/API_Reference.html">API Reference</a> - Complete API documentation</li>
-  <li><a href="/hf-max22200-driver/development/docs/Hardware_Guide.html">Hardware Guide</a> - Hardware integration guide</li>
-  <li><a href="/hf-max22200-driver/development/docs/ASCII_Diagrams.html">ASCII Diagrams</a> - Visual representations</li>
+  <li><a href="docs/api_reference.md">API Reference</a> - Complete API documentation</li>
+  <li><a href="docs/hardware_guide.md">Hardware Guide</a> - Hardware integration guide</li>
+  <li><a href="docs/ascii_diagrams.md">ASCII Diagrams</a> - Visual representations</li>
   <li>Generate Doxygen documentation: <code class="language-plaintext highlighter-rouge">doxygen _config/Doxyfile</code></li>
 </ul>
 <h2 id="-contributing">

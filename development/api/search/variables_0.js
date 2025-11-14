@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['bridge_5fmode_0',['bridge_mode',['../structMAX22200_1_1ChannelConfig.html#a86fa154161f2bc2aa0452f9b1d57427b',1,'MAX22200::ChannelConfig']]],
-  ['bridge_5fmode_5fmask_1',['BRIDGE_MODE_MASK',['../namespaceMAX22200_1_1ChannelConfigBits.html#a7e7f6eca4f483998eedb4256ab710973',1,'MAX22200::ChannelConfigBits']]],
-  ['bridge_5fmode_5fpos_2',['BRIDGE_MODE_POS',['../namespaceMAX22200_1_1ChannelConfigBits.html#a169239ac17f570149ddd24b53b644144',1,'MAX22200::ChannelConfigBits']]]
+  ['bridge_5fmode_0',['bridge_mode',['../structmax22200_1_1ChannelConfig.html#a68843e3c0dd76bb34dc032922b1cdc07',1,'max22200::ChannelConfig']]],
+  ['bridge_5fmode_5fmask_1',['BRIDGE_MODE_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#a6af715e49afba1558a5b8025059d832a',1,'max22200::ChannelConfigBits']]],
+  ['bridge_5fmode_5fpos_2',['BRIDGE_MODE_POS',['../namespacemax22200_1_1ChannelConfigBits.html#aa5123e8dc5d69560050c76cf16b2ba60',1,'max22200::ChannelConfigBits']]]
 ];

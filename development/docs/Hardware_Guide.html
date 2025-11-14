@@ -801,8 +801,14 @@
 57
 58
 59
-</pre></td><td class="rouge-code"><pre><span class="c1">// STM32 SPI Implementation</span>
-<span class="k">class</span> <span class="nc">STM32SPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SPIInterface</span> <span class="p">{</span>
+60
+61
+62
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"SpiInterface.h"</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">max22200</span><span class="p">;</span>
+
+<span class="c1">// STM32 SPI Implementation</span>
+<span class="k">class</span> <span class="nc">STM32SPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">STM32SPI</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="n">SPI_HandleTypeDef</span><span class="o">*</span> <span class="n">hspi_</span><span class="p">;</span>
     <span class="n">GPIO_TypeDef</span><span class="o">*</span> <span class="n">cs_port_</span><span class="p">;</span>
@@ -812,24 +818,24 @@
     <span class="n">STM32SPI</span><span class="p">(</span><span class="n">SPI_HandleTypeDef</span><span class="o">*</span> <span class="n">hspi</span><span class="p">,</span> <span class="n">GPIO_TypeDef</span><span class="o">*</span> <span class="n">cs_port</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">cs_pin</span><span class="p">)</span>
         <span class="o">:</span> <span class="n">hspi_</span><span class="p">(</span><span class="n">hspi</span><span class="p">),</span> <span class="n">cs_port_</span><span class="p">(</span><span class="n">cs_port</span><span class="p">),</span> <span class="n">cs_pin_</span><span class="p">(</span><span class="n">cs_pin</span><span class="p">)</span> <span class="p">{}</span>
     
-    <span class="kt">bool</span> <span class="n">initialize</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">if</span> <span class="p">(</span><span class="n">HAL_SPI_Init</span><span class="p">(</span><span class="n">hspi_</span><span class="p">)</span> <span class="o">!=</span> <span class="n">HAL_OK</span><span class="p">)</span> <span class="p">{</span>
             <span class="k">return</span> <span class="nb">false</span><span class="p">;</span>
         <span class="p">}</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">HAL_StatusTypeDef</span> <span class="n">status</span> <span class="o">=</span> <span class="n">HAL_SPI_TransmitReceive</span><span class="p">(</span><span class="n">hspi_</span><span class="p">,</span> 
             <span class="k">const_cast</span><span class="o">&lt;</span><span class="kt">uint8_t</span><span class="o">*&gt;</span><span class="p">(</span><span class="n">tx_data</span><span class="p">),</span> <span class="n">rx_data</span><span class="p">,</span> <span class="n">length</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">status</span> <span class="o">==</span> <span class="n">HAL_OK</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">void</span> <span class="n">setChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">HAL_GPIO_WritePin</span><span class="p">(</span><span class="n">cs_port_</span><span class="p">,</span> <span class="n">cs_pin_</span><span class="p">,</span> <span class="n">state</span> <span class="o">?</span> <span class="n">GPIO_PIN_SET</span> <span class="o">:</span> <span class="n">GPIO_PIN_RESET</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">hspi_</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">.</span><span class="n">BaudRatePrescaler</span> <span class="o">=</span> <span class="n">calculatePrescaler</span><span class="p">(</span><span class="n">speed_hz</span><span class="p">);</span>
         <span class="n">hspi_</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">.</span><span class="n">Direction</span> <span class="o">=</span> <span class="n">SPI_DIRECTION_2LINES</span><span class="p">;</span>
         <span class="n">hspi_</span><span class="o">-&gt;</span><span class="n">Init</span><span class="p">.</span><span class="n">DataSize</span> <span class="o">=</span> <span class="n">SPI_DATASIZE_8BIT</span><span class="p">;</span>
@@ -841,7 +847,7 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">HAL_SPI_Init</span><span class="p">(</span><span class="n">hspi_</span><span class="p">)</span> <span class="o">==</span> <span class="n">HAL_OK</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">isReady</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">hspi_</span><span class="o">-&gt;</span><span class="n">State</span> <span class="o">==</span> <span class="n">HAL_SPI_STATE_READY</span><span class="p">);</span>
     <span class="p">}</span>
     
@@ -909,8 +915,14 @@
 37
 38
 39
-</pre></td><td class="rouge-code"><pre><span class="c1">// Arduino SPI Implementation</span>
-<span class="k">class</span> <span class="nc">ArduinoSPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SPIInterface</span> <span class="p">{</span>
+40
+41
+42
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"SpiInterface.h"</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">max22200</span><span class="p">;</span>
+
+<span class="c1">// Arduino SPI Implementation</span>
+<span class="k">class</span> <span class="nc">ArduinoSPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">ArduinoSPI</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="kt">uint8_t</span> <span class="n">cs_pin_</span><span class="p">;</span>
     <span class="n">SPISettings</span> <span class="n">settings_</span><span class="p">;</span>
@@ -921,12 +933,12 @@
         <span class="n">digitalWrite</span><span class="p">(</span><span class="n">cs_pin_</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">initialize</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">()</span> <span class="p">{</span>
         <span class="n">SPI</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">SPI</span><span class="p">.</span><span class="n">beginTransaction</span><span class="p">(</span><span class="n">settings_</span><span class="p">);</span>
         <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">length</span><span class="p">;</span> <span class="o">++</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
             <span class="n">rx_data</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">SPI</span><span class="p">.</span><span class="n">transfer</span><span class="p">(</span><span class="n">tx_data</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
@@ -935,16 +947,16 @@
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="kt">void</span> <span class="n">setChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">digitalWrite</span><span class="p">(</span><span class="n">cs_pin_</span><span class="p">,</span> <span class="n">state</span> <span class="o">?</span> <span class="n">HIGH</span> <span class="o">:</span> <span class="n">LOW</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">settings_</span> <span class="o">=</span> <span class="n">SPISettings</span><span class="p">(</span><span class="n">speed_hz</span><span class="p">,</span> <span class="n">msb_first</span> <span class="o">?</span> <span class="n">MSBFIRST</span> <span class="o">:</span> <span class="n">LSBFIRST</span><span class="p">,</span> <span class="n">mode</span><span class="p">);</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">isReady</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span> <span class="c1">// Arduino SPI is always ready</span>
     <span class="p">}</span>
 <span class="p">};</span>
@@ -1012,8 +1024,14 @@
 52
 53
 54
-</pre></td><td class="rouge-code"><pre><span class="c1">// ESP32 SPI Implementation</span>
-<span class="k">class</span> <span class="nc">ESP32SPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SPIInterface</span> <span class="p">{</span>
+55
+56
+57
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"SpiInterface.h"</span><span class="cp">
+</span><span class="k">using</span> <span class="k">namespace</span> <span class="n">max22200</span><span class="p">;</span>
+
+<span class="c1">// ESP32 SPI Implementation</span>
+<span class="k">class</span> <span class="nc">ESP32SPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">ESP32SPI</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>
     <span class="n">spi_device_handle_t</span> <span class="n">spi_</span><span class="p">;</span>
     <span class="n">gpio_num_t</span> <span class="n">cs_pin_</span><span class="p">;</span>
@@ -1039,11 +1057,11 @@
         <span class="n">spi_bus_add_device</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dev_cfg</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">spi_</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">initialize</span><span class="p">()</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">()</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">spi_</span> <span class="o">!=</span> <span class="nb">nullptr</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">spi_transaction_t</span> <span class="n">trans</span> <span class="o">=</span> <span class="p">{};</span>
         <span class="n">trans</span><span class="p">.</span><span class="n">length</span> <span class="o">=</span> <span class="n">length</span> <span class="o">*</span> <span class="mi">8</span><span class="p">;</span>
         <span class="n">trans</span><span class="p">.</span><span class="n">tx_buffer</span> <span class="o">=</span> <span class="n">tx_data</span><span class="p">;</span>
@@ -1053,16 +1071,16 @@
         <span class="k">return</span> <span class="p">(</span><span class="n">ret</span> <span class="o">==</span> <span class="n">ESP_OK</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">void</span> <span class="n">setChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">gpio_set_level</span><span class="p">(</span><span class="n">cs_pin_</span><span class="p">,</span> <span class="n">state</span> <span class="o">?</span> <span class="mi">1</span> <span class="o">:</span> <span class="mi">0</span><span class="p">);</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1">// ESP32 SPI configuration is set during initialization</span>
         <span class="k">return</span> <span class="nb">true</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="kt">bool</span> <span class="n">isReady</span><span class="p">()</span> <span class="k">const</span> <span class="k">override</span> <span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span> <span class="p">{</span>
         <span class="k">return</span> <span class="p">(</span><span class="n">spi_</span> <span class="o">!=</span> <span class="nb">nullptr</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">};</span>

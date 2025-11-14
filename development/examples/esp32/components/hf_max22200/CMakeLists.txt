@@ -20,7 +20,7 @@ message(STATUS "Source Root: ${SRC_ROOT}")
 # Source File Discovery and Validation
 # =============================================================================
 # List all potential driver source files
-# Note: MAX22200.cpp is a template implementation file included by the header,
+# Note: max22200.cpp is a template implementation file included by the header,
 #       so it should NOT be compiled separately
 set(DRIVER_SRCS
     # No source files - template implementation is included in header

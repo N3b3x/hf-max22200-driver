@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['enabled_0',['enabled',['../structMAX22200_1_1ChannelConfig.html#ad01ccbeb01ad3ce0e0b14cb371c34672',1,'MAX22200::ChannelConfig::enabled'],['../structMAX22200_1_1ChannelStatus.html#a796b2b70b2ea2e44a5c9089e5e5e67bd',1,'MAX22200::ChannelStatus::enabled']]]
+  ['enabled_0',['enabled',['../structmax22200_1_1ChannelConfig.html#ac6d455474e1ec3559b8de60fe00b029a',1,'max22200::ChannelConfig::enabled'],['../structmax22200_1_1ChannelStatus.html#ae9c0967964320310e19c5abc46ca101e',1,'max22200::ChannelStatus::enabled']]]
 ];

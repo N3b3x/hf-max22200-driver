@@ -232,8 +232,11 @@ Trace Width Requirements:
 ### STM32 Implementation
 
 ```cpp
+#include "SpiInterface.h"
+using namespace max22200;
+
 // STM32 SPI Implementation
-class STM32SPI : public SPIInterface {
+class STM32SPI : public SpiInterface<STM32SPI> {
 private:
     SPI_HandleTypeDef* hspi_;
     GPIO_TypeDef* cs_port_;
@@ -243,24 +246,24 @@ public:
     STM32SPI(SPI_HandleTypeDef* hspi, GPIO_TypeDef* cs_port, uint16_t cs_pin)
         : hspi_(hspi), cs_port_(cs_port), cs_pin_(cs_pin) {}
     
-    bool initialize() override {
+    bool Initialize() {
         if (HAL_SPI_Init(hspi_) != HAL_OK) {
             return false;
         }
         return true;
     }
     
-    bool transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) override {
+    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
         HAL_StatusTypeDef status = HAL_SPI_TransmitReceive(hspi_, 
             const_cast<uint8_t*>(tx_data), rx_data, length, 1000);
         return (status == HAL_OK);
     }
     
-    void setChipSelect(bool state) override {
+    void SetChipSelect(bool state) {
         HAL_GPIO_WritePin(cs_port_, cs_pin_, state ? GPIO_PIN_SET : GPIO_PIN_RESET);
     }
     
-    bool configure(uint32_t speed_hz, uint8_t mode, bool msb_first) override {
+    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first) {
         hspi_->Init.BaudRatePrescaler = calculatePrescaler(speed_hz);
         hspi_->Init.Direction = SPI_DIRECTION_2LINES;
         hspi_->Init.DataSize = SPI_DATASIZE_8BIT;
@@ -272,7 +275,7 @@ public:
         return (HAL_SPI_Init(hspi_) == HAL_OK);
     }
     
-    bool isReady() const override {
+    bool IsReady() const {
         return (hspi_->State == HAL_SPI_STATE_READY);
     }
     
@@ -296,8 +299,11 @@ private:
 ### Arduino Implementation
 
 ```cpp
+#include "SpiInterface.h"
+using namespace max22200;
+
 // Arduino SPI Implementation
-class ArduinoSPI : public SPIInterface {
+class ArduinoSPI : public SpiInterface<ArduinoSPI> {
 private:
     uint8_t cs_pin_;
     SPISettings settings_;
@@ -308,12 +314,12 @@ public:
         digitalWrite(cs_pin_, HIGH);
     }
     
-    bool initialize() override {
+    bool Initialize() {
         SPI.begin();
         return true;
     }
     
-    bool transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) override {
+    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
         SPI.beginTransaction(settings_);
         for (size_t i = 0; i < length; ++i) {
             rx_data[i] = SPI.transfer(tx_data[i]);
@@ -322,16 +328,16 @@ public:
         return true;
     }
     
-    void setChipSelect(bool state) override {
+    void SetChipSelect(bool state) {
         digitalWrite(cs_pin_, state ? HIGH : LOW);
     }
     
-    bool configure(uint32_t speed_hz, uint8_t mode, bool msb_first) override {
+    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first) {
         settings_ = SPISettings(speed_hz, msb_first ? MSBFIRST : LSBFIRST, mode);
         return true;
     }
     
-    bool isReady() const override {
+    bool IsReady() const {
         return true; // Arduino SPI is always ready
     }
 };
@@ -340,8 +346,11 @@ public:
 ### ESP32 Implementation
 
 ```cpp
+#include "SpiInterface.h"
+using namespace max22200;
+
 // ESP32 SPI Implementation
-class ESP32SPI : public SPIInterface {
+class ESP32SPI : public SpiInterface<ESP32SPI> {
 private:
     spi_device_handle_t spi_;
     gpio_num_t cs_pin_;
@@ -367,11 +376,11 @@ public:
         spi_bus_add_device(host, &dev_cfg, &spi_);
     }
     
-    bool initialize() override {
+    bool Initialize() {
         return (spi_ != nullptr);
     }
     
-    bool transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) override {
+    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
         spi_transaction_t trans = {};
         trans.length = length * 8;
         trans.tx_buffer = tx_data;
@@ -381,16 +390,16 @@ public:
         return (ret == ESP_OK);
     }
     
-    void setChipSelect(bool state) override {
+    void SetChipSelect(bool state) {
         gpio_set_level(cs_pin_, state ? 1 : 0);
     }
     
-    bool configure(uint32_t speed_hz, uint8_t mode, bool msb_first) override {
+    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first) {
         // ESP32 SPI configuration is set during initialization
         return true;
     }
     
-    bool isReady() const override {
+    bool IsReady() const {
         return (spi_ != nullptr);
     }
 };

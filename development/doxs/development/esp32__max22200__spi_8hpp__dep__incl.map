@@ -1,0 +1,7 @@
+<map id="examples/esp32/main/esp32_max22200_spi.hpp" name="examples/esp32/main/esp32_max22200_spi.hpp">
+<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver." alt="" coords="116,5,311,45"/>
+<area shape="rect" id="Node000002" href="$esp32__max22200__spi_8cpp.html" title="ESP32 SPI transport implementation for MAX22200 driver." alt="" coords="5,101,200,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="182,56,127,103,123,99,179,52"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="224,93,427,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="248,52,295,91,292,95,245,56"/>
+</map>

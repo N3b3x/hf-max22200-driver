@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['globalconfig_0',['GlobalConfig',['../structMAX22200_1_1GlobalConfig.html',1,'MAX22200']]]
+  ['faultstatus_0',['FaultStatus',['../structmax22200_1_1FaultStatus.html',1,'max22200']]]
 ];

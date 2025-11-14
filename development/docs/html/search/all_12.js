@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['quick_20start_0',['🚀 Quick Start',['../index.html#autotoc_md4',1,'']]]
+  ['queue_5fsize_0',['queue_size',['../structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['quick_20start_1',['🚀 Quick Start',['../index.html#autotoc_md4',1,'']]]
 ];

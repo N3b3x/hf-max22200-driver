@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['num_5fchannels_0',['NUM_CHANNELS',['../namespaceMAX22200.html#a25866ef5b233463fb686f328214d8574',1,'MAX22200']]]
+  ['num_5fchannels_5f_0',['NUM_CHANNELS_',['../namespacemax22200.html#ade1e463aec90832776b7b35c6200c3a7',1,'max22200']]]
 ];

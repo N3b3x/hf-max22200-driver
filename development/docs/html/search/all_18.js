@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['_7emax22200_0',['~MAX22200',['../classMAX22200_1_1MAX22200.html#a30272ae58759f59dd2e14c4ae14f11ee',1,'MAX22200::MAX22200']]],
-  ['_7espiinterface_1',['~SPIInterface',['../classMAX22200_1_1SPIInterface.html#aa0bfdf4df2ef907c8811389058ccbaac',1,'MAX22200::SPIInterface']]]
+  ['_7eesp32max22200spi_0',['~Esp32Max22200Spi',['../classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810',1,'Esp32Max22200Spi']]],
+  ['_7emax22200_1',['~MAX22200',['../classmax22200_1_1MAX22200.html#abd466af43b5d2486ee349163a1094aff',1,'max22200::MAX22200']]],
+  ['_7espiinterface_2',['~SpiInterface',['../classmax22200_1_1SpiInterface.html#ae7dff3dfc9ad76de3ef74ddbd1fe7828',1,'max22200::SpiInterface']]]
 ];

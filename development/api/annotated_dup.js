@@ -1,14 +1,15 @@
 var annotated_dup =
 [
-    [ "MAX22200", "namespaceMAX22200.html", [
-      [ "ChannelConfig", "structMAX22200_1_1ChannelConfig.html", "structMAX22200_1_1ChannelConfig" ],
-      [ "ChannelStatus", "structMAX22200_1_1ChannelStatus.html", "structMAX22200_1_1ChannelStatus" ],
-      [ "DriverStatistics", "structMAX22200_1_1DriverStatistics.html", "structMAX22200_1_1DriverStatistics" ],
-      [ "FaultStatus", "structMAX22200_1_1FaultStatus.html", "structMAX22200_1_1FaultStatus" ],
-      [ "GlobalConfig", "structMAX22200_1_1GlobalConfig.html", "structMAX22200_1_1GlobalConfig" ],
-      [ "MAX22200", "classMAX22200_1_1MAX22200.html", "classMAX22200_1_1MAX22200" ],
-      [ "SPIInterface", "classMAX22200_1_1SPIInterface.html", "classMAX22200_1_1SPIInterface" ]
+    [ "max22200", "namespacemax22200.html", [
+      [ "ChannelConfig", "structmax22200_1_1ChannelConfig.html", "structmax22200_1_1ChannelConfig" ],
+      [ "ChannelStatus", "structmax22200_1_1ChannelStatus.html", "structmax22200_1_1ChannelStatus" ],
+      [ "DriverStatistics", "structmax22200_1_1DriverStatistics.html", "structmax22200_1_1DriverStatistics" ],
+      [ "FaultStatus", "structmax22200_1_1FaultStatus.html", "structmax22200_1_1FaultStatus" ],
+      [ "GlobalConfig", "structmax22200_1_1GlobalConfig.html", "structmax22200_1_1GlobalConfig" ],
+      [ "MAX22200", "classmax22200_1_1MAX22200.html", "classmax22200_1_1MAX22200" ],
+      [ "SpiInterface", "classmax22200_1_1SpiInterface.html", "classmax22200_1_1SpiInterface" ]
     ] ],
+    [ "Esp32Max22200Spi", "classEsp32Max22200Spi.html", "classEsp32Max22200Spi" ],
     [ "TestResults", "structTestResults.html", "structTestResults" ],
     [ "TestTaskContext", "structTestTaskContext.html", "structTestTaskContext" ]
 ];

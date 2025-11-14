@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['faultcallback_0',['FaultCallback',['../namespaceMAX22200.html#a0319fbc0770d1f426031463631aa4ac7',1,'MAX22200']]]
+  ['faultcallback_0',['FaultCallback',['../namespacemax22200.html#aee8356bd3f2f5ecfa4f677e643f16d46',1,'max22200']]]
 ];

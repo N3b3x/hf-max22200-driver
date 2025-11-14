@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['bridgemode_0',['BridgeMode',['../namespaceMAX22200.html#ab805eabb8b23c8c875c240590a8a0155',1,'MAX22200']]]
+  ['bridgemode_0',['BridgeMode',['../namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5',1,'max22200']]]
 ];

@@ -1,11 +1,11 @@
 var searchData=
 [
-  ['channelconfig_0',['ChannelConfig',['../structMAX22200_1_1ChannelConfig.html#a14f985f2676320470d6bf2b26e9c596a',1,'MAX22200::ChannelConfig::ChannelConfig()'],['../structMAX22200_1_1ChannelConfig.html#a28c0a26e904c78b4c93ff7a3e9ce26cf',1,'MAX22200::ChannelConfig::ChannelConfig(bool en, DriveMode dm, BridgeMode bm, bool pm, OutputPolarity pol, uint16_t hc, uint16_t hdc, uint16_t ht)']]],
-  ['channelstatus_1',['ChannelStatus',['../structMAX22200_1_1ChannelStatus.html#a5853fa6146312becec3e6d72ebb78490',1,'MAX22200::ChannelStatus']]],
+  ['channelconfig_0',['ChannelConfig',['../structmax22200_1_1ChannelConfig.html#adb0e7181def63a1d8834ccadcf975f0e',1,'max22200::ChannelConfig::ChannelConfig()'],['../structmax22200_1_1ChannelConfig.html#aa1a209a068b603f1f00f58f04f1df043',1,'max22200::ChannelConfig::ChannelConfig(bool en, DriveMode dm, BridgeMode bm, bool pm, OutputPolarity pol, uint16_t hc, uint16_t hdc, uint16_t ht)']]],
+  ['channelstatus_1',['ChannelStatus',['../structmax22200_1_1ChannelStatus.html#aa44de581a6a600892871eb2f3ac59f08',1,'max22200::ChannelStatus']]],
   ['cleanup_5ftest_5fprogress_5findicator_2',['cleanup_test_progress_indicator',['../TestFramework_8h.html#a5c86314094f10701c597cf07a95a4bae',1,'TestFramework.h']]],
-  ['clearfaultstatus_3',['clearFaultStatus',['../classMAX22200_1_1MAX22200.html#a0378676cdb20f38cc4d112feb005b3f1',1,'MAX22200::MAX22200']]],
-  ['configure_4',['configure',['../classMAX22200_1_1SPIInterface.html#aaebba41aeca1f90ec332dbad3426dadc',1,'MAX22200::SPIInterface']]],
-  ['configureallchannels_5',['configureAllChannels',['../classMAX22200_1_1MAX22200.html#a93790ec40952aa42ec52d4d80a4c02ad',1,'MAX22200::MAX22200']]],
-  ['configurechannel_6',['configureChannel',['../classMAX22200_1_1MAX22200.html#af831ab172a5d04123713c616424052dc',1,'MAX22200::MAX22200']]],
-  ['configureglobal_7',['configureGlobal',['../classMAX22200_1_1MAX22200.html#aa24047a90e25a23430e9ae02567c4791',1,'MAX22200::MAX22200']]]
+  ['clearfaultstatus_3',['ClearFaultStatus',['../classmax22200_1_1MAX22200.html#aac6bd5df6a58bcfe23e14028fb21fe88',1,'max22200::MAX22200']]],
+  ['configure_4',['Configure',['../classmax22200_1_1SpiInterface.html#a3ce7e42eff0d1918f54162d97efc38b4',1,'max22200::SpiInterface::Configure()'],['../classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194',1,'Esp32Max22200Spi::Configure()']]],
+  ['configureallchannels_5',['ConfigureAllChannels',['../classmax22200_1_1MAX22200.html#abf903c6831169d667c47aea3ed078bf0',1,'max22200::MAX22200']]],
+  ['configurechannel_6',['ConfigureChannel',['../classmax22200_1_1MAX22200.html#a4f408001924084364f6e85ee2a5cafc6',1,'max22200::MAX22200']]],
+  ['configureglobal_7',['ConfigureGlobal',['../classmax22200_1_1MAX22200.html#a15c417b2d35d9348451222c5609e247d',1,'max22200::MAX22200']]]
 ];
