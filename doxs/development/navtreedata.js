@@ -60,8 +60,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"globals.html",
-"structTestTaskContext.html"
+"classMAX22200_1_1SPIInterface.html#aaebba41aeca1f90ec332dbad3426dadc",
+"structMAX22200_1_1GlobalConfig.html#a043a0e193b260541d0c349c5e70c166e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

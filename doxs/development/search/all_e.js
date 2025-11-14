@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['max22200_0',['MAX22200',['../classMAX22200_1_1MAX22200.html',1,'MAX22200::MAX22200'],['../namespaceMAX22200.html',1,'MAX22200'],['../classMAX22200_1_1MAX22200.html#a32e6937cbcfe43bd453a01adc52da51d',1,'MAX22200::MAX22200::MAX22200(SPIInterface &amp;spi_interface, bool enable_diagnostics=true)'],['../classMAX22200_1_1MAX22200.html#a0c3e995033c8c64aebda648d0381eb1b',1,'MAX22200::MAX22200::MAX22200(const MAX22200 &amp;)=delete'],['../classMAX22200_1_1MAX22200.html#a3ac7805e0a4d24462ba3292caf63343e',1,'MAX22200::MAX22200::MAX22200(MAX22200 &amp;&amp;)=default']]],
+  ['max22200_0',['MAX22200',['../classMAX22200_1_1MAX22200.html',1,'MAX22200::MAX22200&lt; SpiType &gt;'],['../namespaceMAX22200.html',1,'MAX22200'],['../classMAX22200_1_1MAX22200.html#a2846346cd089935c973ac8a4020d3847',1,'MAX22200::MAX22200::MAX22200(SpiType &amp;spi_interface, bool enable_diagnostics=true)'],['../classMAX22200_1_1MAX22200.html#a0e7d4c69c77c9262294514a2c747e182',1,'MAX22200::MAX22200::MAX22200(const MAX22200 &amp;)=delete'],['../classMAX22200_1_1MAX22200.html#a459ce87e5c9a7a33eb91b67474efa4c6',1,'MAX22200::MAX22200::MAX22200(MAX22200 &amp;&amp;)=default']]],
   ['max22200_20driver_20library_1',['MAX22200 Driver Library',['../index.html',1,'']]],
   ['max22200_2ecpp_2',['MAX22200.cpp',['../MAX22200_8cpp.html',1,'']]],
   ['max22200_2eh_3',['MAX22200.h',['../MAX22200_8h.html',1,'']]],
@@ -11,15 +11,17 @@ var searchData=
   ['max22200_3a_3aglobalconfigbits_8',['GlobalConfigBits',['../namespaceMAX22200_1_1GlobalConfigBits.html',1,'MAX22200']]],
   ['max22200_3a_3aregisters_9',['Registers',['../namespaceMAX22200_1_1Registers.html',1,'MAX22200']]],
   ['max22200_3a_3atimingrange_10',['TimingRange',['../namespaceMAX22200_1_1TimingRange.html',1,'MAX22200']]],
-  ['max22200_5fregisters_2eh_11',['MAX22200_Registers.h',['../MAX22200__Registers_8h.html',1,'']]],
-  ['max22200_5ftypes_2eh_12',['MAX22200_Types.h',['../MAX22200__Types_8h.html',1,'']]],
-  ['max22200comprehensivetest_2ecpp_13',['MAX22200ComprehensiveTest.cpp',['../MAX22200ComprehensiveTest_8cpp.html',1,'']]],
-  ['max_5fhit_5fcurrent_14',['MAX_HIT_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a1dece582dfddd7201716953eb6f4a88b',1,'MAX22200::CurrentRange']]],
-  ['max_5fhit_5ftime_15',['MAX_HIT_TIME',['../namespaceMAX22200_1_1TimingRange.html#a2870fa9e2003cc0f1bbdad45719f51cf',1,'MAX22200::TimingRange']]],
-  ['max_5fhold_5fcurrent_16',['MAX_HOLD_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a0d12e2597e77d0e0925e7552d94b150b',1,'MAX22200::CurrentRange']]],
-  ['max_5fspi_5ffreq_5fdaisy_5fchain_17',['MAX_SPI_FREQ_DAISY_CHAIN',['../namespaceMAX22200.html#af883862b9fdce8809295af30431bcf78',1,'MAX22200']]],
-  ['max_5fspi_5ffreq_5fstandalone_18',['MAX_SPI_FREQ_STANDALONE',['../namespaceMAX22200.html#a8f0d26c9250205ec504ca174f6d09aa9',1,'MAX22200']]],
-  ['min_5fhit_5fcurrent_19',['MIN_HIT_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#ab468d8196d4dc26579529a1938c8cc51',1,'MAX22200::CurrentRange']]],
-  ['min_5fhit_5ftime_20',['MIN_HIT_TIME',['../namespaceMAX22200_1_1TimingRange.html#a93afe7bcb20e5a597c66798af23e429e',1,'MAX22200::TimingRange']]],
-  ['min_5fhold_5fcurrent_21',['MIN_HOLD_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a4dd696126b5ed4769e92504558199bb4',1,'MAX22200::CurrentRange']]]
+  ['max22200_5fheader_5fincluded_11',['MAX22200_HEADER_INCLUDED',['../MAX22200_8h.html#a3e9b3b86c15cf59a72d870bb109a7a98',1,'MAX22200.h']]],
+  ['max22200_5fimpl_12',['MAX22200_IMPL',['../MAX22200_8cpp.html#abf8805f38b50db415d044d9dc3abbd74',1,'MAX22200.cpp']]],
+  ['max22200_5fregisters_2eh_13',['MAX22200_Registers.h',['../MAX22200__Registers_8h.html',1,'']]],
+  ['max22200_5ftypes_2eh_14',['MAX22200_Types.h',['../MAX22200__Types_8h.html',1,'']]],
+  ['max22200comprehensivetest_2ecpp_15',['MAX22200ComprehensiveTest.cpp',['../MAX22200ComprehensiveTest_8cpp.html',1,'']]],
+  ['max_5fhit_5fcurrent_16',['MAX_HIT_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a1dece582dfddd7201716953eb6f4a88b',1,'MAX22200::CurrentRange']]],
+  ['max_5fhit_5ftime_17',['MAX_HIT_TIME',['../namespaceMAX22200_1_1TimingRange.html#a2870fa9e2003cc0f1bbdad45719f51cf',1,'MAX22200::TimingRange']]],
+  ['max_5fhold_5fcurrent_18',['MAX_HOLD_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a0d12e2597e77d0e0925e7552d94b150b',1,'MAX22200::CurrentRange']]],
+  ['max_5fspi_5ffreq_5fdaisy_5fchain_19',['MAX_SPI_FREQ_DAISY_CHAIN',['../namespaceMAX22200.html#af883862b9fdce8809295af30431bcf78',1,'MAX22200']]],
+  ['max_5fspi_5ffreq_5fstandalone_20',['MAX_SPI_FREQ_STANDALONE',['../namespaceMAX22200.html#a8f0d26c9250205ec504ca174f6d09aa9',1,'MAX22200']]],
+  ['min_5fhit_5fcurrent_21',['MIN_HIT_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#ab468d8196d4dc26579529a1938c8cc51',1,'MAX22200::CurrentRange']]],
+  ['min_5fhit_5ftime_22',['MIN_HIT_TIME',['../namespaceMAX22200_1_1TimingRange.html#a93afe7bcb20e5a597c66798af23e429e',1,'MAX22200::TimingRange']]],
+  ['min_5fhold_5fcurrent_23',['MIN_HOLD_CURRENT',['../namespaceMAX22200_1_1CurrentRange.html#a4dd696126b5ed4769e92504558199bb4',1,'MAX22200::CurrentRange']]]
 ];

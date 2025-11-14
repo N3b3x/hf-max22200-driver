@@ -11,9 +11,9 @@
 <!-- Node1 -->
 <g id="Node000001" class="node">
 <title>Node1</title>
-<g id="a_Node000001"><a xlink:title="Abstract base class for SPI communication interface.">
-<polygon fill="#999999" stroke="#666666" points="227.5,-140 126.5,-140 126.5,-121 227.5,-121 227.5,-140"/>
-<text text-anchor="middle" x="177" y="-128" font-family="Helvetica,sans-Serif" font-size="10.00">inc/SPIInterface.h</text>
+<g id="a_Node000001"><a xlink:title="CRTP&#45;based template interface for SPI communication.">
+<polygon fill="#999999" stroke="#666666" points="310.5,-140 209.5,-140 209.5,-121 310.5,-121 310.5,-140"/>
+<text text-anchor="middle" x="260" y="-128" font-family="Helvetica,sans-Serif" font-size="10.00">inc/SPIInterface.h</text>
 </a>
 </g>
 </g>
@@ -21,8 +21,8 @@
 <g id="Node000002" class="node">
 <title>Node2</title>
 <g id="a_Node000002"><a xlink:href="MAX22200_8h.html" target="_top" xlink:title="Main driver class for MAX22200 octal solenoid and motor driver.">
-<polygon fill="white" stroke="#666666" points="224.5,-85 129.5,-85 129.5,-66 224.5,-66 224.5,-85"/>
-<text text-anchor="middle" x="177" y="-73" font-family="Helvetica,sans-Serif" font-size="10.00">inc/MAX22200.h</text>
+<polygon fill="white" stroke="#666666" points="307.5,-85 212.5,-85 212.5,-66 307.5,-66 307.5,-85"/>
+<text text-anchor="middle" x="260" y="-73" font-family="Helvetica,sans-Serif" font-size="10.00">inc/MAX22200.h</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M177,-110.66C177,-101.93 177,-91.99 177,-85.09"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="173.5,-110.75 177,-120.75 180.5,-110.75 173.5,-110.75"/>
+<path fill="none" stroke="#63b8ff" d="M260,-110.66C260,-101.93 260,-91.99 260,-85.09"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="256.5,-110.75 260,-120.75 263.5,-110.75 256.5,-110.75"/>
 </a>
 </g>
 </g>
@@ -49,8 +49,8 @@
 <g id="edge2_Node000002_Node000003" class="edge">
 <title>Node2&#45;&gt;Node3</title>
 <g id="a_edge2_Node000002_Node000003"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M156.47,-60.03C143.52,-50.9 126.88,-39.17 114.03,-30.11"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="154.56,-62.97 164.75,-65.87 158.6,-57.25 154.56,-62.97"/>
+<path fill="none" stroke="#63b8ff" d="M226.18,-62.58C199.46,-53.16 162.1,-40 133.91,-30.06"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="225.27,-65.97 235.86,-65.99 227.59,-59.37 225.27,-65.97"/>
 </a>
 </g>
 </g>
@@ -67,8 +67,17 @@
 <g id="edge3_Node000002_Node000004" class="edge">
 <title>Node2&#45;&gt;Node4</title>
 <g id="a_edge3_Node000002_Node000004"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M197.79,-59.85C213.51,-48.77 234.56,-33.93 247.7,-24.67"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="195.4,-57.25 189.25,-65.87 199.44,-62.97 195.4,-57.25"/>
+<path fill="none" stroke="#63b8ff" d="M253.65,-55.66C252.82,-45.24 253.29,-32.8 255.04,-24.67"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="250.22,-56.44 255.04,-65.87 257.15,-55.49 250.22,-56.44"/>
+</a>
+</g>
+</g>
+<!-- Node4&#45;&gt;Node2 -->
+<g id="edge4_Node000004_Node000002" class="edge">
+<title>Node4&#45;&gt;Node2</title>
+<g id="a_edge4_Node000004_Node000002"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M266.36,-34.89C267.18,-45.31 266.71,-57.75 264.96,-65.87"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="269.78,-34.1 264.96,-24.67 262.85,-35.05 269.78,-34.1"/>
 </a>
 </g>
 </g>

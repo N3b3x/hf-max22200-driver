@@ -1,4 +1,4 @@
 var SPIInterface_8h =
 [
-    [ "SPIInterface", "classSPIInterface.html", "classSPIInterface" ]
+    [ "MAX22200::SPIInterface< Derived >", "classMAX22200_1_1SPIInterface.html", "classMAX22200_1_1SPIInterface" ]
 ];
