@@ -20,6 +20,7 @@ Main driver class for interfacing with the MAX22200 octal solenoid and motor dri
 **Location**: [`inc/max22200.hpp#L64`](../inc/max22200.hpp#L64)
 
 **Constructor:**
+
 ```cpp
 explicit MAX22200(SpiType &spi_interface, bool enable_diagnostics = true);
 ```

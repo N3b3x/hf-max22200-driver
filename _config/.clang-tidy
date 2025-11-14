@@ -74,32 +74,74 @@ Checks: |
   # - Lambda expressions
   # - constexpr usage
   modernize-*
-
-# =============================================================================
-# DISABLED CHECKS (with explanations)
-# =============================================================================
-
-  # Disable trailing return type enforcement (can be verbose for simple functions)
+  
+  # DISABLED CHECKS WITH JUSTIFICATION
+  # -----------------------------------
+  
+  # pragma once is standard and widely supported (better than include guards for maintenance)
+  -portability-avoid-pragma-once
+  
+  # CRTP pattern requires reference members - this is by design for zero-overhead polymorphism
+  -cppcoreguidelines-avoid-const-or-ref-data-members
+  
+  # Template code often uses short names (T, U, etc.) - this is idiomatic C++
+  -readability-identifier-length
+  
+  # Intentional .cpp includes for template implementations - this is a valid pattern
+  -bugprone-suspicious-include
+  
+  # Special member functions are handled explicitly (we add =delete where needed)
+  -cppcoreguidelines-special-member-functions
+  
+  # Trailing return types can be verbose for simple functions
   -modernize-use-trailing-return-type
   
-  # Allow magic numbers in certain contexts (use with caution)
+  # Magic numbers are acceptable in register definitions and hardware constants
   -cppcoreguidelines-avoid-magic-numbers
   -readability-magic-numbers
   
-  # Allow array-to-pointer decay and pointer arithmetic in specific cases
+  # Array-to-pointer decay needed for register access patterns
   -cppcoreguidelines-pro-bounds-array-to-pointer-decay
   -cppcoreguidelines-pro-bounds-pointer-arithmetic
   
-  # Disable cognitive complexity check (can be too strict for some codebases)
+  # Cognitive complexity can be too strict for register manipulation code
   -readability-function-cognitive-complexity
+  
+  # Union access is necessary for register frame structures (hardware interface requirement)
+  -cppcoreguidelines-pro-type-union-access
+  
+  # Branch cloning is acceptable for error code mapping (intentional pattern)
+  -bugprone-branch-clone
+  
+  # Variadic templates not always practical for embedded logging interfaces
+  -cppcoreguidelines-pro-type-vararg
+  
+  # Easily swappable parameters - we use comments/names to clarify when needed
+  -bugprone-easily-swappable-parameters
+  
+  # ADDITIONAL CHECKS TO ENABLE (currently enabled via wildcards above)
+  # These are valuable checks that should be fixed:
+  # - readability-braces-around-statements: Add braces to all if/for/while statements
+  # - readability-uppercase-literal-suffix: Use F instead of f for float literals
+  # - readability-implicit-bool-conversion: Explicitly cast to bool
+  # - modernize-use-auto: Use auto for type deduction
+  # - cppcoreguidelines-pro-type-member-init: Initialize all struct members
+  # - bugprone-narrowing-conversions: Fix narrowing conversions
+  # - cppcoreguidelines-pro-type-reinterpret-cast: Review reinterpret_cast usage
+  #
+  # Additional valuable checks enabled:
+  # - misc-const-correctness: Ensures const correctness
+  # - performance-unnecessary-copy-initialization: Catches unnecessary copies
+  # - performance-unnecessary-value-param: Suggests passing by const reference
+  # - readability-const-return-type: Ensures const return types where appropriate
+  # - readability-redundant-*: Catches redundant code
+  # - modernize-use-constexpr: Suggests constexpr where possible
+  # - modernize-use-nodiscard: Suggests [[nodiscard]] where appropriate
+  # - cppcoreguidelines-pro-type-const-cast: Warns about const_cast
 
 # =============================================================================
 # CONFIGURATION OPTIONS
 # =============================================================================
-
-# Note: Diagnostic errors for missing system headers (cstdint, etc.) cannot be suppressed
-# in clang-tidy config. These are expected in CI without full build environment.
-# The CI workflow should exclude problematic files via the 'ignore' pattern if needed.
 
 # Treat warnings as errors (empty = disabled, set to specific checks to enable)
 WarningsAsErrors: ''

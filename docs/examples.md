@@ -240,4 +240,3 @@ For other platforms, implement the SPI interface and compile with C++20 support.
 
 **Navigation**
 ⬅️ [API Reference](api_reference.md) | [Next: Troubleshooting ➡️](troubleshooting.md) | [Back to Index](index.md)
-
