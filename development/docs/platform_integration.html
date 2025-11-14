@@ -263,7 +263,8 @@
 </h2>
     
 
-<p>The MAX22200 driver uses <strong>CRTP</strong> (Curiously Recurring Template Pattern) for hardware abstraction. This design choice provides several critical benefits for embedded systems:</p>
+<p>The MAX22200 driver uses <strong>CRTP</strong> (Curiously Recurring Template Pattern) for hardware
+abstraction. This design choice provides several critical benefits for embedded systems:</p>
 <h3 id="why-crtp-instead-of-virtual-functions">
   
   
@@ -280,6 +281,7 @@
   
 </h4>
     
+
 <ul>
   <li><strong>Virtual functions</strong>: Require a vtable lookup (indirect call) = ~5-10 CPU cycles overhead per call</li>
   <li><strong>CRTP</strong>: Direct function calls = 0 overhead, compiler can inline</li>
@@ -293,6 +295,7 @@
   
 </h4>
     
+
 <ul>
   <li><strong>Virtual functions</strong>: Runtime dispatch - the compiler cannot optimize across the abstraction boundary</li>
   <li><strong>CRTP</strong>: Compile-time dispatch - full optimization, dead code elimination, constant propagation</li>
@@ -306,6 +309,7 @@
   
 </h4>
     
+
 <ul>
   <li><strong>Virtual functions</strong>: Each object needs a vtable pointer (4-8 bytes)</li>
   <li><strong>CRTP</strong>: No vtable pointer needed</li>
@@ -319,6 +323,7 @@
   
 </h4>
     
+
 <ul>
   <li><strong>Virtual functions</strong>: Runtime errors if method not implemented</li>
   <li><strong>CRTP</strong>: Compile-time errors if method not implemented</li>
@@ -328,92 +333,6 @@
   
   
     <a href="#how-crtp-works" class="anchor-heading" aria-labelledby="how-crtp-works"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> How CRTP Works
-  
-  
-</h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-</pre></td><td class="rouge-code"><pre><span class="c1">// Base template class (from max22200_spi_interface.hpp)</span>
-<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
-<span class="k">class</span> <span class="nc">SpiInterface</span> <span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Cast 'this' to Derived* and call the derived implementation</span>
-        <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Transfer</span><span class="p">(</span><span class="n">tx_data</span><span class="p">,</span> <span class="n">rx_data</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-
-<span class="c1">// Your implementation</span>
-<span class="k">class</span> <span class="nc">MySPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">MySPI</span><span class="o">&gt;</span> <span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="c1">// This method is called directly (no virtual overhead)</span>
-    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Your platform-specific SPI code</span>
-    <span class="p">}</span>
-<span class="p">};</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="interface-definition">
-  
-  
-    <a href="#interface-definition" class="anchor-heading" aria-labelledby="interface-definition"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Interface Definition
-  
-  
-</h2>
-    
-
-<p>The MAX22200 driver requires you to implement the following interface:</p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td><td class="rouge-code"><pre><span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
-<span class="k">class</span> <span class="nc">SpiInterface</span> <span class="p">{</span>
-<span class="nl">public:</span>
-    <span class="c1">// Required methods (implement all of these)</span>
-    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">();</span>
-    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">);</span>
-    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">);</span>
-    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
-    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
-<span class="p">};</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="implementation-steps">
-  
-  
-    <a href="#implementation-steps" class="anchor-heading" aria-labelledby="implementation-steps"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Implementation Steps
-  
-  
-</h2>
-    
-<h3 id="step-1-create-your-implementation-class">
-  
-  
-    <a href="#step-1-create-your-implementation-class" class="anchor-heading" aria-labelledby="step-1-create-your-implementation-class"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Step 1: Create Your Implementation Class
   
   
 </h3>
@@ -455,7 +374,91 @@
 34
 35
 36
-</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200_spi_interface.hpp"</span><span class="cp">
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+</pre></td><td class="rouge-code"><pre><span class="c1">// Base template class (from max22200_spi_interface.hpp)</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">SpiInterface</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Cast 'this' to Derived* and call the derived implementation</span>
+        <span class="k">return</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">Derived</span><span class="o">*&gt;</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">Transfer</span><span class="p">(</span><span class="n">tx_data</span><span class="p">,</span> <span class="n">rx_data</span><span class="p">,</span> <span class="n">length</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="c1">// Your implementation</span>
+<span class="k">class</span> <span class="nc">MySPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">MySPI</span><span class="o">&gt;</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="c1">// This method is called directly (no virtual overhead)</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Your platform-specific SPI code</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="err">```</span><span class="n">cpp</span>
+
+<span class="cp">## Interface Definition
+</span>
+<span class="n">The</span> <span class="n">MAX22200</span> <span class="n">driver</span> <span class="k">requires</span> <span class="n">you</span> <span class="n">to</span> <span class="n">implement</span> <span class="n">the</span> <span class="n">following</span> <span class="n">interface</span><span class="o">:</span>
+
+<span class="err">```</span><span class="n">cpp</span>
+<span class="k">template</span> <span class="o">&lt;</span><span class="k">typename</span> <span class="nc">Derived</span><span class="p">&gt;</span>
+<span class="k">class</span> <span class="nc">SpiInterface</span> <span class="p">{</span>
+<span class="nl">public:</span>
+    <span class="c1">// Required methods (implement all of these)</span>
+    <span class="kt">bool</span> <span class="n">Initialize</span><span class="p">();</span>
+    <span class="kt">bool</span> <span class="n">Transfer</span><span class="p">(</span><span class="k">const</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">tx_data</span><span class="p">,</span> <span class="kt">uint8_t</span><span class="o">*</span> <span class="n">rx_data</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">length</span><span class="p">);</span>
+    <span class="kt">void</span> <span class="n">SetChipSelect</span><span class="p">(</span><span class="kt">bool</span> <span class="n">state</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">Configure</span><span class="p">(</span><span class="kt">uint32_t</span> <span class="n">speed_hz</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">mode</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">msb_first</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="kt">bool</span> <span class="n">IsReady</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
+<span class="p">};</span>
+<span class="err">```</span><span class="n">cpp</span>
+
+<span class="cp">## Implementation Steps
+</span>
+<span class="cp">### Step 1: Create Your Implementation Class
+</span>
+<span class="err">```</span><span class="n">cpp</span>
+<span class="cp">#include</span> <span class="cpf">"max22200_spi_interface.hpp"</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">MyPlatformSPI</span> <span class="o">:</span> <span class="k">public</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">MyPlatformSPI</span><span class="o">&gt;</span> <span class="p">{</span>
 <span class="nl">private:</span>

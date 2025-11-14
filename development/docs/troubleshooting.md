@@ -7,15 +7,18 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Error: Initialization Failed
 
 **Symptoms:**
+
 - `Initialize()` returns `INITIALIZATION_ERROR`
 - Driver not responding
 
 **Causes:**
+
 - SPI interface not properly initialized
 - Hardware connections incorrect
 - Power supply issues
 
 **Solutions:**
+
 1. **Verify SPI Interface**: Ensure SPI interface is initialized before creating driver
 2. **Check Connections**: Verify all SPI connections (SCLK, SDI, SDO, CS)
 3. **Verify Power**: Check power supply voltage (2.7V - 5.5V)
@@ -26,15 +29,18 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Error: Communication Error
 
 **Symptoms:**
+
 - `COMMUNICATION_ERROR` returned from methods
 - No response from device
 
 **Causes:**
+
 - SPI configuration incorrect
 - Signal integrity issues
 - CS timing problems
 
 **Solutions:**
+
 1. **Check SPI Mode**: Ensure SPI Mode 0 or Mode 3
 2. **Verify Speed**: Try lower SPI speed (e.g., 1 MHz)
 3. **Check CS Timing**: Verify CS assertion/deassertion timing
@@ -45,16 +51,19 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Error: Channel Not Working
 
 **Symptoms:**
+
 - Channel enabled but no output
 - Current not flowing
 
 **Causes:**
+
 - Channel not properly configured
 - Channel not enabled
 - Load not connected correctly
 - Fault condition
 
 **Solutions:**
+
 1. **Check Configuration**: Verify channel configuration is correct
 2. **Check Enable State**: Ensure channel is enabled via `EnableChannel()`
 3. **Verify Load**: Check load connections (OUTA/OUTB to load)
@@ -65,15 +74,18 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Error: Overcurrent Protection (OCP)
 
 **Symptoms:**
+
 - `FaultStatus.overcurrent_protection` is true
 - Channel disabled automatically
 
 **Causes:**
+
 - Load current exceeds limits
 - Short circuit
 - Incorrect current settings
 
 **Solutions:**
+
 1. **Check Load**: Verify load is within specifications (1A RMS max per channel)
 2. **Reduce Current**: Lower hit_current and hold_current settings
 3. **Check for Shorts**: Verify no short circuits in wiring
@@ -84,15 +96,18 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Error: Open Load Detection
 
 **Symptoms:**
+
 - `FaultStatus.open_load` is true
 - No current flow
 
 **Causes:**
+
 - Load not connected
 - Broken connection
 - Load impedance too high
 
 **Solutions:**
+
 1. **Check Connections**: Verify load is properly connected
 2. **Check Wiring**: Inspect for broken wires
 3. **Verify Load**: Ensure load impedance is appropriate
@@ -104,6 +119,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Device Not Responding
 
 **Checklist:**
+
 - [ ] Verify power supply voltage is 2.7V - 5.5V
 - [ ] Check all SPI connections are secure
 - [ ] Verify CS line is properly controlled
@@ -115,15 +131,18 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 ### Incorrect Current Readings
 
 **Symptoms:**
+
 - Current readings don't match expected values
 - ICS readings are zero or incorrect
 
 **Causes:**
+
 - ICS not enabled
 - Channel not active
 - Incorrect configuration
 
 **Solutions:**
+
 1. **Enable ICS**: Call `SetIntegratedCurrentSensing(true)`
 2. **Check Channel State**: Verify channel is enabled and active
 3. **Verify Configuration**: Check current settings are correct
@@ -137,12 +156,14 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 **Error: "No matching function"**
 
 **Solution:**
+
 - Ensure you've implemented all required SPI interface methods
 - Check method signatures match the interface definition
 
 **Error: "Undefined reference"**
 
 **Solution:**
+
 - Verify you're linking the driver source file
 - Check include paths are correct
 
@@ -153,6 +174,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 **Initialization Fails**
 
 **Checklist:**
+
 - [ ] SPI bus interface is properly initialized
 - [ ] Hardware connections are correct
 - [ ] Configuration parameters are valid
@@ -161,6 +183,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 **Unexpected Behavior**
 
 **Checklist:**
+
 - [ ] Verify configuration matches your use case
 - [ ] Check for timing issues
 - [ ] Review error handling code
@@ -252,4 +275,3 @@ If you're still experiencing issues:
 
 **Navigation**
 ⬅️ [Examples](examples.md) | [Back to Index](index.md)
-

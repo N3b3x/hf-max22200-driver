@@ -6,7 +6,7 @@ This guide covers the physical connections and hardware requirements for the MAX
 
 ### Basic SPI Connections
 
-```
+```text
 MCU              MAX22200
 ─────────────────────────
 3.3V      ────── VDD
@@ -65,7 +65,7 @@ Each of the 8 channels has two output pins:
 
 In half-bridge mode, connect the load between OUTA and GND:
 
-```
+```cpp
 OUTA ────[Load]──── GND
 OUTB ──── (not used)
 ```
@@ -74,7 +74,7 @@ OUTB ──── (not used)
 
 In full-bridge mode, connect the load between OUTA and OUTB:
 
-```
+```cpp
 OUTA ────[Load]──── OUTB
 ```
 
@@ -90,7 +90,7 @@ OUTA ────[Load]──── OUTB
 
 ## Example Wiring Diagram
 
-```
+```text
                     MAX22200
                     ┌─────────┐
         3.3V ───────┤ VDD     │
@@ -113,7 +113,7 @@ OUTA ────[Load]──── OUTB
 
 For inductive loads (solenoids, motors), add flyback diodes:
 
-```
+```cpp
 OUTA ────[Flyback Diode]─── OUTB
          (cathode to OUTA)
 ```
@@ -132,4 +132,3 @@ The MAX22200 has built-in overcurrent protection (OCP), but you may want to add 
 
 **Navigation**
 ⬅️ [Quick Start](quickstart.md) | [Next: Platform Integration ➡️](platform_integration.md) | [Back to Index](index.md)
-

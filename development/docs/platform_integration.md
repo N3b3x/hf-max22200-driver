@@ -4,26 +4,31 @@ This guide explains how to implement the hardware abstraction interface for the 
 
 ## Understanding CRTP (Curiously Recurring Template Pattern)
 
-The MAX22200 driver uses **CRTP** (Curiously Recurring Template Pattern) for hardware abstraction. This design choice provides several critical benefits for embedded systems:
+The MAX22200 driver uses **CRTP** (Curiously Recurring Template Pattern) for hardware
+abstraction. This design choice provides several critical benefits for embedded systems:
 
 ### Why CRTP Instead of Virtual Functions?
 
 #### 1. **Zero Runtime Overhead**
+
 - **Virtual functions**: Require a vtable lookup (indirect call) = ~5-10 CPU cycles overhead per call
 - **CRTP**: Direct function calls = 0 overhead, compiler can inline
 - **Impact**: In time-critical embedded code controlling solenoids/motors, this matters significantly
 
 #### 2. **Compile-Time Polymorphism**
+
 - **Virtual functions**: Runtime dispatch - the compiler cannot optimize across the abstraction boundary
 - **CRTP**: Compile-time dispatch - full optimization, dead code elimination, constant propagation
 - **Impact**: Smaller code size, faster execution
 
 #### 3. **Memory Efficiency**
+
 - **Virtual functions**: Each object needs a vtable pointer (4-8 bytes)
 - **CRTP**: No vtable pointer needed
 - **Impact**: Critical in memory-constrained systems
 
 #### 4. **Type Safety**
+
 - **Virtual functions**: Runtime errors if method not implemented
 - **CRTP**: Compile-time errors if method not implemented
 - **Impact**: Catch bugs at compile time, not in the field
@@ -49,7 +54,7 @@ public:
         // Your platform-specific SPI code
     }
 };
-```
+```cpp
 
 ## Interface Definition
 
@@ -66,7 +71,7 @@ public:
     bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true);
     bool IsReady() const;
 };
-```
+```cpp
 
 ## Implementation Steps
 
@@ -331,4 +336,3 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
 
 **Navigation**
 ⬅️ [Hardware Setup](hardware_setup.md) | [Next: Configuration ➡️](configuration.md)
-

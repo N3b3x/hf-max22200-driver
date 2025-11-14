@@ -272,12 +272,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li><code class="language-plaintext highlighter-rouge">Initialize()</code> returns <code class="language-plaintext highlighter-rouge">INITIALIZATION_ERROR</code></li>
   <li>Driver not responding</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>SPI interface not properly initialized</li>
   <li>Hardware connections incorrect</li>
@@ -285,6 +287,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Verify SPI Interface</strong>: Ensure SPI interface is initialized before creating driver</li>
   <li><strong>Check Connections</strong>: Verify all SPI connections (SCLK, SDI, SDO, CS)</li>
@@ -301,12 +304,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li><code class="language-plaintext highlighter-rouge">COMMUNICATION_ERROR</code> returned from methods</li>
   <li>No response from device</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>SPI configuration incorrect</li>
   <li>Signal integrity issues</li>
@@ -314,6 +319,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Check SPI Mode</strong>: Ensure SPI Mode 0 or Mode 3</li>
   <li><strong>Verify Speed</strong>: Try lower SPI speed (e.g., 1 MHz)</li>
@@ -330,12 +336,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li>Channel enabled but no output</li>
   <li>Current not flowing</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>Channel not properly configured</li>
   <li>Channel not enabled</li>
@@ -344,6 +352,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Check Configuration</strong>: Verify channel configuration is correct</li>
   <li><strong>Check Enable State</strong>: Ensure channel is enabled via <code class="language-plaintext highlighter-rouge">EnableChannel()</code></li>
@@ -360,12 +369,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li><code class="language-plaintext highlighter-rouge">FaultStatus.overcurrent_protection</code> is true</li>
   <li>Channel disabled automatically</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>Load current exceeds limits</li>
   <li>Short circuit</li>
@@ -373,6 +384,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Check Load</strong>: Verify load is within specifications (1A RMS max per channel)</li>
   <li><strong>Reduce Current</strong>: Lower hit_current and hold_current settings</li>
@@ -389,12 +401,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li><code class="language-plaintext highlighter-rouge">FaultStatus.open_load</code> is true</li>
   <li>No current flow</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>Load not connected</li>
   <li>Broken connection</li>
@@ -402,6 +416,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Check Connections</strong>: Verify load is properly connected</li>
   <li><strong>Check Wiring</strong>: Inspect for broken wires</li>
@@ -425,6 +440,7 @@
     
 
 <p><strong>Checklist:</strong></p>
+
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Verify power supply voltage is 2.7V - 5.5V</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Check all SPI connections are secure</li>
@@ -442,12 +458,14 @@
     
 
 <p><strong>Symptoms:</strong></p>
+
 <ul>
   <li>Current readings don’t match expected values</li>
   <li>ICS readings are zero or incorrect</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
+
 <ul>
   <li>ICS not enabled</li>
   <li>Channel not active</li>
@@ -455,6 +473,7 @@
 </ul>
 
 <p><strong>Solutions:</strong></p>
+
 <ol>
   <li><strong>Enable ICS</strong>: Call <code class="language-plaintext highlighter-rouge">SetIntegratedCurrentSensing(true)</code></li>
   <li><strong>Check Channel State</strong>: Verify channel is enabled and active</li>
@@ -480,6 +499,7 @@
 <p><strong>Error: “No matching function”</strong></p>
 
 <p><strong>Solution:</strong></p>
+
 <ul>
   <li>Ensure you’ve implemented all required SPI interface methods</li>
   <li>Check method signatures match the interface definition</li>
@@ -488,6 +508,7 @@
 <p><strong>Error: “Undefined reference”</strong></p>
 
 <p><strong>Solution:</strong></p>
+
 <ul>
   <li>Verify you’re linking the driver source file</li>
   <li>Check include paths are correct</li>
@@ -504,6 +525,7 @@
 <p><strong>Initialization Fails</strong></p>
 
 <p><strong>Checklist:</strong></p>
+
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />SPI bus interface is properly initialized</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Hardware connections are correct</li>
@@ -514,6 +536,7 @@
 <p><strong>Unexpected Behavior</strong></p>
 
 <p><strong>Checklist:</strong></p>
+
 <ul class="task-list">
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Verify configuration matches your use case</li>
   <li class="task-list-item"><input type="checkbox" class="task-list-item-checkbox" disabled="disabled" />Check for timing issues</li>

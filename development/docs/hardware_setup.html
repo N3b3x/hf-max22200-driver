@@ -271,7 +271,7 @@
 </h3>
     
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -468,10 +468,10 @@ CS        ────── CS
 
 <p>In half-bridge mode, connect the load between OUTA and GND:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre>OUTA ────[Load]──── GND
-OUTB ──── (not used)
+</pre></td><td class="rouge-code"><pre><span class="n">OUTA</span> <span class="err">────</span><span class="p">[</span><span class="n">Load</span><span class="p">]</span><span class="err">────</span> <span class="n">GND</span>
+<span class="n">OUTB</span> <span class="err">────</span> <span class="p">(</span><span class="n">not</span> <span class="n">used</span><span class="p">)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="full-bridge-mode">
   
@@ -484,8 +484,8 @@ OUTB ──── (not used)
 
 <p>In full-bridge mode, connect the load between OUTA and OUTB:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>OUTA ────[Load]──── OUTB
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">OUTA</span> <span class="err">────</span><span class="p">[</span><span class="n">Load</span><span class="p">]</span><span class="err">────</span> <span class="n">OUTB</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="physical-layout-recommendations">
   
@@ -514,7 +514,7 @@ OUTB ──── (not used)
 </h2>
     
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
@@ -562,10 +562,10 @@ OUTB ──── (not used)
 
 <p>For inductive loads (solenoids, motors), add flyback diodes:</p>
 
-<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre>OUTA ────[Flyback Diode]─── OUTB
-         (cathode to OUTA)
+</pre></td><td class="rouge-code"><pre><span class="n">OUTA</span> <span class="err">────</span><span class="p">[</span><span class="n">Flyback</span> <span class="n">Diode</span><span class="p">]</span><span class="err">───</span> <span class="n">OUTB</span>
+         <span class="p">(</span><span class="n">cathode</span> <span class="n">to</span> <span class="n">OUTA</span><span class="p">)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="current-limiting">
   
