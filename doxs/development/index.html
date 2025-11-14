@@ -94,10 +94,10 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title"><a class="el" href="namespaceMAX22200.html">MAX22200</a> Driver Library </div></div>
+  <div class="headertitle"><div class="title">MAX22200 Driver Library </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><b>A comprehensive C++20 driver library for the <a class="el" href="namespaceMAX22200.html">MAX22200</a> octal solenoid and motor driver IC</b></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a><b>A comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC</b></p>
 <p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 📚 Table of Contents</h1>
@@ -117,7 +117,7 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <blockquote class="doxtable">
 <p>&zwj;<b>📖 <a href="https://n3b3x.github.io/hf-max22200-driver/">📚🌐 Live Complete Documentation</a></b> - Interactive guides, examples, and step-by-step tutorials </p>
 </blockquote>
-<p>The <a class="el" href="namespaceMAX22200.html">MAX22200</a> is an octal (eight-channel) solenoid and motor driver featuring:</p><ul>
+<p>The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:</p><ul>
 <li><b>Eight Half-Bridges</b>: Each capable of handling up to 36V and 1A RMS</li>
 <li><b>Current and Voltage Regulation</b>: Supports both CDR and VDR modes</li>
 <li><b>Integrated Lossless Current Sensing (ICS)</b>: Real-time current monitoring</li>
@@ -160,7 +160,7 @@ Directory Structure</h1>
 <div class="fragment"><div class="line">hf-max22200/</div>
 <div class="line">├── include/                 # Header files</div>
 <div class="line">│   ├── MAX22200.h          # Main driver class</div>
-<div class="line">│   ├── SPIInterface.h      # Abstract SPI interface</div>
+<div class="line">│   ├── SpiInterface.h      # Abstract SPI interface</div>
 <div class="line">│   ├── MAX22200_Registers.h # Register definitions</div>
 <div class="line">│   └── MAX22200_Types.h    # Type definitions</div>
 <div class="line">├── src/                    # Source files</div>
@@ -171,26 +171,26 @@ Directory Structure</h1>
 <div class="line">│   └── ExampleSPI.cpp     # Example SPI implementation</div>
 <div class="line">├── docs/                   # Documentation</div>
 <div class="line">│   ├── README.md          # Main documentation</div>
-<div class="line">│   ├── API_Reference.md   # API documentation</div>
-<div class="line">│   ├── Hardware_Guide.md  # Hardware integration guide</div>
-<div class="line">│   └── ASCII_Diagrams.md  # ASCII art diagrams</div>
+<div class="line">│   ├── api_reference.md   # API documentation</div>
+<div class="line">│   ├── hardware_guide.md  # Hardware integration guide</div>
+<div class="line">│   └── ascii_diagrams.md  # ASCII art diagrams</div>
 <div class="line">├── CMakeLists.txt         # CMake build configuration</div>
 <div class="line">├── Makefile               # Make build configuration</div>
 <div class="line">└── Datasheet/             # IC datasheet</div>
 <div class="line">    └── MAX22200.pdf       # MAX22200 datasheet</div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
 Usage Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="MAX22200_8h.html">MAX22200.h</a>&quot;</span></div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;MAX22200.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;MySPI.h&quot;</span>  <span class="comment">// Your SPI implementation</span></div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create SPI interface</span></div>
 <div class="line">MySPI spi;</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Create MAX22200 driver</span></div>
-<div class="line"><a class="code hl_namespace" href="namespaceMAX22200.html">MAX22200</a> driver(spi);</div>
+<div class="line">MAX22200 driver(spi);</div>
 <div class="line"> </div>
 <div class="line"><span class="comment">// Initialize</span></div>
-<div class="line"><span class="keywordflow">if</span> (driver.initialize() == DriverStatus::OK) {</div>
+<div class="line"><span class="keywordflow">if</span> (driver.Initialize() == DriverStatus::OK) {</div>
 <div class="line">    <span class="comment">// Configure channel 0</span></div>
 <div class="line">    ChannelConfig config;</div>
 <div class="line">    config.enabled = <span class="keyword">true</span>;</div>
@@ -199,11 +199,9 @@ Usage Example</h1>
 <div class="line">    config.hold_current = 200;</div>
 <div class="line">    config.hit_time = 1000;</div>
 <div class="line">    </div>
-<div class="line">    driver.configureChannel(0, config);</div>
-<div class="line">    driver.enableChannel(0, <span class="keyword">true</span>);</div>
+<div class="line">    driver.ConfigureChannel(0, config);</div>
+<div class="line">    driver.EnableChannel(0, <span class="keyword">true</span>);</div>
 <div class="line">}</div>
-<div class="ttc" id="aMAX22200_8h_html"><div class="ttname"><a href="MAX22200_8h.html">MAX22200.h</a></div><div class="ttdoc">Main driver class for MAX22200 octal solenoid and motor driver.</div></div>
-<div class="ttc" id="anamespaceMAX22200_html"><div class="ttname"><a href="namespaceMAX22200.html">MAX22200</a></div><div class="ttdef"><b>Definition</b> MAX22200.h:21</div></div>
 </div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
 🔧 Installation</h1>
 <ol type="1">
@@ -219,7 +217,7 @@ Usage Example</h1>
 </ul>
 <h1><a class="anchor" id="autotoc_md11"></a>
 📖 API Reference</h1>
-<p>For complete API documentation, see the docs/API_Reference.md file.</p>
+<p>For complete API documentation, see the docs/api_reference.md file.</p>
 <h1><a class="anchor" id="autotoc_md12"></a>
 📊 Examples</h1>
 <p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory. Additional examples and SPI implementations are available in the <a href="examples/">examples</a> directory.</p>

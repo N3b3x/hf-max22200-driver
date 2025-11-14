@@ -1,5 +1,5 @@
 var searchData=
 [
   ['test_5ftask_5ftrampoline_0',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
-  ['transfer_1',['transfer',['../classMAX22200_1_1SPIInterface.html#ab83d4e1fdbead28634f71d5a8456670f',1,'MAX22200::SPIInterface']]]
+  ['transfer_1',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]]
 ];

@@ -1,4 +1,4 @@
 var namespaces_dup =
 [
-    [ "MAX22200", "namespaceMAX22200.html", "namespaceMAX22200" ]
+    [ "max22200", "namespacemax22200.html", "namespacemax22200" ]
 ];

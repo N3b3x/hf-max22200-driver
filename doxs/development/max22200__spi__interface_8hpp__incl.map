@@ -1,0 +1,7 @@
+<map id="inc/max22200_spi_interface.hpp" name="inc/max22200_spi_interface.hpp">
+<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="5,5,239,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="40,79,111,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="117,32,93,69,88,66,112,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="135,79,202,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="132,30,156,66,151,69,127,32"/>
+</map>
