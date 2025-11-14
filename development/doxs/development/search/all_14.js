@@ -1,27 +1,6 @@
 var searchData=
 [
-  ['sclk_5fpin_0',['sclk_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['setchannelbridgemode_1',['SetChannelBridgeMode',['../classmax22200_1_1MAX22200.html#a5aa697681306f5e2db17c89de5412427',1,'max22200::MAX22200']]],
-  ['setchanneldrivemode_2',['SetChannelDriveMode',['../classmax22200_1_1MAX22200.html#a9d327a6935fad06bcba9b518946fcbed',1,'max22200::MAX22200']]],
-  ['setchannelpolarity_3',['SetChannelPolarity',['../classmax22200_1_1MAX22200.html#a4fb938664efaa2dde398dabc67bf2e03',1,'max22200::MAX22200']]],
-  ['setchipselect_4',['SetChipSelect',['../classmax22200_1_1SpiInterface.html#aa23c61499025dc828d11103aa2941f1a',1,'max22200::SpiInterface::SetChipSelect()'],['../classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd',1,'Esp32Max22200Spi::SetChipSelect()']]],
-  ['setcurrents_5',['SetCurrents',['../classmax22200_1_1MAX22200.html#a2eebdeeb4e464a507c8aea5cd43a2164',1,'max22200::MAX22200']]],
-  ['setdiagnosticmode_6',['SetDiagnosticMode',['../classmax22200_1_1MAX22200.html#ab128a603b66c831c5d8137dc57854858',1,'max22200::MAX22200']]],
-  ['setfaultcallback_7',['SetFaultCallback',['../classmax22200_1_1MAX22200.html#a9ef77915bedeea10805421ac04b87db5',1,'max22200::MAX22200']]],
-  ['sethitcurrent_8',['SetHitCurrent',['../classmax22200_1_1MAX22200.html#ac48db6c3c31859e5005d947eca2beb82',1,'max22200::MAX22200']]],
-  ['sethittime_9',['SetHitTime',['../classmax22200_1_1MAX22200.html#acded3adb154cf400ee6ca0e3351ef3dd',1,'max22200::MAX22200']]],
-  ['setholdcurrent_10',['SetHoldCurrent',['../classmax22200_1_1MAX22200.html#a5501eb2b392f05d7a170e83cee1005fe',1,'max22200::MAX22200']]],
-  ['setintegratedcurrentsensing_11',['SetIntegratedCurrentSensing',['../classmax22200_1_1MAX22200.html#a1ee426eb4a5d0d0ea988ea0b7c13a5d0',1,'max22200::MAX22200']]],
-  ['setsleepmode_12',['SetSleepMode',['../classmax22200_1_1MAX22200.html#a10ed4c05cfbf5b70a72362508a4e709f',1,'max22200::MAX22200']]],
-  ['setstatechangecallback_13',['SetStateChangeCallback',['../classmax22200_1_1MAX22200.html#a1b85ea4458f8b4364e5927da89171c37',1,'max22200::MAX22200']]],
-  ['sleep_5fmask_14',['SLEEP_MASK',['../namespacemax22200_1_1GlobalConfigBits.html#abee0a06f0dc1e7f458e58eb2304f6772',1,'max22200::GlobalConfigBits']]],
-  ['sleep_5fmode_15',['sleep_mode',['../structmax22200_1_1GlobalConfig.html#a0e07d8b480dd4596c973ef27660e5a9d',1,'max22200::GlobalConfig']]],
-  ['sleep_5fpos_16',['SLEEP_POS',['../namespacemax22200_1_1GlobalConfigBits.html#a9a7a3c237bc3480b19c87b4621fbaa75',1,'max22200::GlobalConfigBits']]],
-  ['spiconfig_17',['SPIConfig',['../structEsp32Max22200Spi_1_1SPIConfig.html',1,'Esp32Max22200Spi']]],
-  ['spiinterface_18',['SpiInterface',['../classmax22200_1_1SpiInterface.html',1,'max22200::SpiInterface&lt; Derived &gt;'],['../classmax22200_1_1SpiInterface.html#a5b4ea12fdd1eac04ec3c4600fad4cc3a',1,'max22200::SpiInterface::SpiInterface()=default'],['../classmax22200_1_1SpiInterface.html#a6bc215d54eb536bcee360880c6ed345d',1,'max22200::SpiInterface::SpiInterface(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a2056b5452ad6992144bb096ab701cad3',1,'max22200::SpiInterface::SpiInterface(SpiInterface &amp;&amp;)=default']]],
-  ['spiinterface_3c_20esp32max22200spi_20_3e_19',['SpiInterface&lt; Esp32Max22200Spi &gt;',['../classmax22200_1_1SpiInterface.html',1,'max22200']]],
-  ['start_20',['🚀 Quick Start',['../index.html#autotoc_md4',1,'']]],
-  ['state_5fchanges_21',['state_changes',['../structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956',1,'max22200::DriverStatistics']]],
-  ['statechangecallback_22',['StateChangeCallback',['../namespacemax22200.html#ada9a4ce152e1a20efe1a89cd46ab9f90',1,'max22200']]],
-  ['structure_23',['Directory Structure',['../index.html#autotoc_md8',1,'']]]
+  ['_7eesp32max22200spi_0',['~Esp32Max22200Spi',['../classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810',1,'Esp32Max22200Spi']]],
+  ['_7emax22200_1',['~MAX22200',['../classmax22200_1_1MAX22200.html#abd466af43b5d2486ee349163a1094aff',1,'max22200::MAX22200']]],
+  ['_7espiinterface_2',['~SpiInterface',['../classmax22200_1_1SpiInterface.html#ae7dff3dfc9ad76de3ef74ddbd1fe7828',1,'max22200::SpiInterface']]]
 ];

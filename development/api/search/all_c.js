@@ -1,15 +1,17 @@
 var searchData=
 [
-  ['ics_5fen_5fmask_0',['ICS_EN_MASK',['../namespacemax22200_1_1GlobalConfigBits.html#a0e7faa44f97b2bfd9813c8dcce8d22ea',1,'max22200::GlobalConfigBits']]],
-  ['ics_5fen_5fpos_1',['ICS_EN_POS',['../namespacemax22200_1_1GlobalConfigBits.html#a0ab8e798fba1b65b681ed3ff31a3423b',1,'max22200::GlobalConfigBits']]],
-  ['ics_5fenable_2',['ics_enable',['../structmax22200_1_1GlobalConfig.html#a500640085b476a01bd0a82f741b826ca',1,'max22200::GlobalConfig']]],
-  ['init_5ftest_5fprogress_5findicator_3',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
-  ['initialization_5ferror_4',['INITIALIZATION_ERROR',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27ba7a348bf6d29011d629d13513e5382240',1,'max22200']]],
-  ['initialize_5',['Initialize',['../classmax22200_1_1MAX22200.html#ad5ca435cf0dd81d41f7a81e573a566a4',1,'max22200::MAX22200::Initialize()'],['../classmax22200_1_1SpiInterface.html#a50b6e9cae519e2ddaff0b4d66c089150',1,'max22200::SpiInterface::Initialize()'],['../classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732',1,'Esp32Max22200Spi::Initialize()']]],
-  ['installation_6',['🔧 Installation',['../index.html#autotoc_md10',1,'']]],
-  ['invalid_5fparameter_7',['INVALID_PARAMETER',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27bafeb1a30cb74c35aaf4ea067736109e30',1,'max22200']]],
-  ['inverted_8',['INVERTED',['../namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71a3b1b4a4827c05897abb3915b5c8f8139',1,'max22200']]],
-  ['isinitialized_9',['IsInitialized',['../classmax22200_1_1MAX22200.html#a9a426c5d19927011c80d6266d6da6a13',1,'max22200::MAX22200']]],
-  ['isready_10',['IsReady',['../classmax22200_1_1SpiInterface.html#ad12425ba4fa46a5e31156d335ade9810',1,'max22200::SpiInterface::IsReady()'],['../classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a',1,'Esp32Max22200Spi::IsReady()']]],
-  ['isvalidchannel_11',['IsValidChannel',['../classmax22200_1_1MAX22200.html#a0ba2e638c01194a9f46e5954f17f714f',1,'max22200::MAX22200']]]
+  ['ocp_0',['OCP',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a74e1674dcac4639bcbd1bf123e5df92a',1,'max22200']]],
+  ['ocp_5fmask_1',['OCP_MASK',['../namespacemax22200_1_1FaultStatusBits.html#aae367d15435c5bf7a2e106d4a94ee8f1',1,'max22200::FaultStatusBits']]],
+  ['ocp_5fpos_2',['OCP_POS',['../namespacemax22200_1_1FaultStatusBits.html#a4b2f5b0fc6efecc953e8d273f13d163e',1,'max22200::FaultStatusBits']]],
+  ['of_20contents_3',['📚 Table of Contents',['../index.html#autotoc_md1',1,'']]],
+  ['ok_4',['OK',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27bae0aa021e21dddbd6d8cecec71e9cf564',1,'max22200']]],
+  ['ol_5',['OL',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44ab406571b7334cfe40767dc13498c1896',1,'max22200']]],
+  ['ol_5fmask_6',['OL_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a590cddba07ca43bb798fba012822811b',1,'max22200::FaultStatusBits']]],
+  ['ol_5fpos_7',['OL_POS',['../namespacemax22200_1_1FaultStatusBits.html#a8a2945974eeacb9ede3f34539f26d5c7',1,'max22200::FaultStatusBits']]],
+  ['open_5fload_8',['open_load',['../structmax22200_1_1FaultStatus.html#aeb4605ae6bf8258bddc29eb973411e5d',1,'max22200::FaultStatus']]],
+  ['operator_3d_9',['operator=',['../classmax22200_1_1MAX22200.html#a4ffe26bf67d099fd98d6e8a5faeaa63b',1,'max22200::MAX22200::operator=(const MAX22200 &amp;)=delete'],['../classmax22200_1_1MAX22200.html#a47a6b5d94f9f9f42b8a6fb8e1660af8f',1,'max22200::MAX22200::operator=(MAX22200 &amp;&amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a720898d990ef354e1febab97e5d22552',1,'max22200::SpiInterface::operator=(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a14c790aae46a0a936567e3c7f1c8aaf8',1,'max22200::SpiInterface::operator=(SpiInterface &amp;&amp;)=default']]],
+  ['output_5fsection_5findicator_10',['output_section_indicator',['../TestFramework_8h.html#a0b263a245b65a247ab95a28992b8cc4c',1,'TestFramework.h']]],
+  ['outputpolarity_11',['OutputPolarity',['../namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71',1,'max22200']]],
+  ['overcurrent_5fprotection_12',['overcurrent_protection',['../structmax22200_1_1FaultStatus.html#ab3a94b1f3fad4e0b77e3ea1e7653aa6a',1,'max22200::FaultStatus']]],
+  ['overview_13',['📦 Overview',['../index.html#autotoc_md2',1,'']]]
 ];

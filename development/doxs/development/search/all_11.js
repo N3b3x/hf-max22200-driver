@@ -1,15 +1,20 @@
 var searchData=
 [
-  ['parallel_5fmask_0',['PARALLEL_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#ae4945c07d7db7a5e46790ef5f14fad4a',1,'max22200::ChannelConfigBits']]],
-  ['parallel_5fmode_1',['parallel_mode',['../structmax22200_1_1ChannelConfig.html#a1804d898a42237ec2ebb58f0eee8c43d',1,'max22200::ChannelConfig']]],
-  ['parallel_5fpos_2',['PARALLEL_POS',['../namespacemax22200_1_1ChannelConfigBits.html#aafa4ac1ee9c7146df84d54b8a88c0d87',1,'max22200::ChannelConfigBits']]],
-  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['plunger_5fmovement_4',['plunger_movement',['../structmax22200_1_1FaultStatus.html#af6848eed80754f48d3491855c9b2c61d',1,'max22200::FaultStatus']]],
-  ['polarity_5',['polarity',['../structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f',1,'max22200::ChannelConfig']]],
-  ['polarity_5fmask_6',['POLARITY_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#a209bc96630e68d3d450ec5a783486993',1,'max22200::ChannelConfigBits']]],
-  ['polarity_5fpos_7',['POLARITY_POS',['../namespacemax22200_1_1ChannelConfigBits.html#af2ebf82312cb901a7fbaf6eb53001652',1,'max22200::ChannelConfigBits']]],
-  ['print_5ftest_5fsection_5ffooter_8',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fheader_9',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
-  ['print_5ftest_5fsection_5fstatus_10',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
-  ['print_5ftest_5fsummary_11',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
+  ['table_20of_20contents_0',['📚 Table of Contents',['../index.html#autotoc_md1',1,'']]],
+  ['tag_1',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
+  ['test_5ffunc_2',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
+  ['test_5fname_3',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
+  ['test_5ftask_5ftrampoline_4',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
+  ['testframework_2eh_5',['TestFramework.h',['../TestFramework_8h.html',1,'']]],
+  ['testresults_6',['TestResults',['../structTestResults.html',1,'']]],
+  ['testtaskcontext_7',['TestTaskContext',['../structTestTaskContext.html',1,'']]],
+  ['thermal_5fshutdown_8',['thermal_shutdown',['../structmax22200_1_1FaultStatus.html#a3cf7286894481d923f60012734c213f5',1,'max22200::FaultStatus']]],
+  ['timeout_9',['TIMEOUT',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27ba070a0fb40f6c308ab544b227660aadff',1,'max22200']]],
+  ['total_5fexecution_5ftime_5fus_10',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
+  ['total_5ftests_11',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
+  ['total_5ftransfers_12',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
+  ['transfer_13',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]],
+  ['tsd_14',['TSD',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce',1,'max22200']]],
+  ['tsd_5fmask_15',['TSD_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a8a3ad68d7b4817bd2dcc57fe2b2f7242',1,'max22200::FaultStatusBits']]],
+  ['tsd_5fpos_16',['TSD_POS',['../namespacemax22200_1_1FaultStatusBits.html#a2f548569ff32fe86d20504038413d7f1',1,'max22200::FaultStatusBits']]]
 ];

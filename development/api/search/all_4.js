@@ -1,6 +1,12 @@
 var searchData=
 [
-  ['add_5fresult_0',['add_result',['../structTestResults.html#a257eba3a9005a5c19c68ae27774948f7',1,'TestResults']]],
-  ['api_20reference_1',['📖 API Reference',['../index.html#autotoc_md11',1,'']]],
-  ['app_5fmain_2',['app_main',['../max22200__comprehensive__test_8cpp.html#abce06be17fc37d675118a678a8100a36',1,'max22200_comprehensive_test.cpp']]]
+  ['enableallchannels_0',['EnableAllChannels',['../classmax22200_1_1MAX22200.html#a16609ebdb8a1e19ff9fe9e21c4aa3141',1,'max22200::MAX22200']]],
+  ['enablechannel_1',['EnableChannel',['../classmax22200_1_1MAX22200.html#a4570644e9bdf3668701dc7d510b4b269',1,'max22200::MAX22200']]],
+  ['enabled_2',['enabled',['../structmax22200_1_1ChannelConfig.html#ac6d455474e1ec3559b8de60fe00b029a',1,'max22200::ChannelConfig::enabled'],['../structmax22200_1_1ChannelStatus.html#ae9c0967964320310e19c5abc46ca101e',1,'max22200::ChannelStatus::enabled']]],
+  ['enabled_3',['ENABLED',['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422ac8cf6eea8f096ed51160b484d97c5bbd',1,'max22200']]],
+  ['ensure_5fgpio14_5finitialized_4',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]],
+  ['esp32_5fmax22200_5fspi_2ecpp_5',['esp32_max22200_spi.cpp',['../esp32__max22200__spi_8cpp.html',1,'']]],
+  ['esp32_5fmax22200_5fspi_2ehpp_6',['esp32_max22200_spi.hpp',['../esp32__max22200__spi_8hpp.html',1,'']]],
+  ['esp32max22200spi_7',['Esp32Max22200Spi',['../classEsp32Max22200Spi.html',1,'Esp32Max22200Spi'],['../classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991',1,'Esp32Max22200Spi::Esp32Max22200Spi()'],['../classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798',1,'Esp32Max22200Spi::Esp32Max22200Spi(const SPIConfig &amp;config)']]],
+  ['examples_8',['📊 Examples',['../index.html#autotoc_md7',1,'']]]
 ];

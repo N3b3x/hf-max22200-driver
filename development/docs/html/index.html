@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HF-MAX22200 Driver: MAX22200 Driver Library</title>
+<title>HF-MAX22200 Driver: HF-MAX22200 Driver</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -94,10 +94,10 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 
 <div><div class="header">
-  <div class="headertitle"><div class="title">MAX22200 Driver Library </div></div>
+  <div class="headertitle"><div class="title">HF-MAX22200 Driver </div></div>
 </div><!--header-->
 <div class="contents">
-<div class="textblock"><p><a class="anchor" id="md_README"></a><b>A comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC</b></p>
+<div class="textblock"><p><a class="anchor" id="md_README"></a> <b>Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface</b></p>
 <p><a href="https://www.gnu.org/licenses/gpl-3.0"><img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPL v3" style="pointer-events: none;" class="inline"/></a></p>
 <h1><a class="anchor" id="autotoc_md1"></a>
 📚 Table of Contents</h1>
@@ -117,137 +117,117 @@ $(function(){initNavTree('index.html',''); initResizable(); });
 <blockquote class="doxtable">
 <p>&zwj;<b>📖 <a href="https://n3b3x.github.io/hf-max22200-driver/">📚🌐 Live Complete Documentation</a></b> - Interactive guides, examples, and step-by-step tutorials </p>
 </blockquote>
-<p>The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:</p><ul>
-<li><b>Eight Half-Bridges</b>: Each capable of handling up to 36V and 1A RMS</li>
-<li><b>Current and Voltage Regulation</b>: Supports both CDR and VDR modes</li>
-<li><b>Integrated Lossless Current Sensing (ICS)</b>: Real-time current monitoring</li>
-<li><b>High-Speed SPI Interface</b>: Up to 10MHz communication</li>
-<li><b>Comprehensive Protection</b>: OCP, OL, DPM, UVLO, TSD, and fault registers</li>
-</ul>
+<p><b>HF-MAX22200</b> is a portable C++20 driver for the <b>MAX22200</b> octal (eight-channel) solenoid and motor driver IC. The MAX22200 features eight half-bridges, each capable of handling up to 36V and 1A RMS, with integrated current sensing, current/voltage regulation, and comprehensive protection features.</p>
+<p>The driver uses a CRTP-based <code>SpiInterface</code> for hardware abstraction, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It implements all major features from the MAX22200 datasheet including channel configuration, current/voltage regulation modes, integrated current sensing (ICS), fault detection, and callback support for event-driven programming.</p>
 <h1><a class="anchor" id="autotoc_md3"></a>
 ✨ Features</h1>
 <ul>
-<li>✅ <b>Hardware Agnostic</b>: Abstract SPI interface for platform independence</li>
-<li>✅ <b>Modern C++20</b>: Utilizes latest C++ features for efficiency and safety</li>
-<li>✅ <b>Exception-Free</b>: Designed for embedded systems without exceptions</li>
-<li>✅ <b>Comprehensive Documentation</b>: Doxygen comments and markdown guides</li>
+<li>✅ <b>Eight Half-Bridges</b>: Each channel handles up to 36V and 1A RMS</li>
+<li>✅ <b>Current and Voltage Regulation</b>: Supports both CDR (Current Drive Regulation) and VDR (Voltage Drive Regulation) modes</li>
+<li>✅ <b>Integrated Current Sensing (ICS)</b>: Real-time current monitoring without external sense resistors</li>
+<li>✅ <b>Half-Bridge and Full-Bridge Modes</b>: Flexible bridge configurations</li>
+<li>✅ <b>HIT/HOLD Current Control</b>: Programmable hit current, hold current, and hit time</li>
+<li>✅ <b>Comprehensive Protection</b>: OCP, OL, DPM, UVLO, TSD, and fault registers</li>
+<li>✅ <b>Hardware Agnostic</b>: SPI interface for platform independence</li>
+<li>✅ <b>Modern C++</b>: C++20 with CRTP-based design</li>
+<li>✅ <b>Zero Overhead</b>: CRTP-based design for compile-time polymorphism</li>
 <li>✅ <b>Callback Support</b>: Event-driven programming with fault and state callbacks</li>
 <li>✅ <b>Statistics Tracking</b>: Runtime performance and error monitoring</li>
-<li>✅ <b>Type Safety</b>: Strong typing with enums and structures</li>
-<li>✅ <b>Memory Efficient</b>: No dynamic allocations, suitable for embedded systems</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md4"></a>
 🚀 Quick Start</h1>
-<h2><a class="anchor" id="autotoc_md5"></a>
-1. Clone the Repository</h2>
-<div class="fragment"><div class="line">git clone &lt;repository-url&gt;</div>
-<div class="line">cd hf-max22200</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md6"></a>
-2. Build the Library</h2>
-<div class="fragment"><div class="line"># Using Make</div>
-<div class="line">make all</div>
+<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="max22200_8hpp.html">max22200.hpp</a>&quot;</span></div>
 <div class="line"> </div>
-<div class="line"># Using CMake</div>
-<div class="line">mkdir build</div>
-<div class="line">cd build</div>
-<div class="line">cmake ..</div>
-<div class="line">make</div>
-</div><!-- fragment --><h2><a class="anchor" id="autotoc_md7"></a>
-3. Run the Example</h2>
-<div class="fragment"><div class="line">make run</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md8"></a>
-Directory Structure</h1>
-<div class="fragment"><div class="line">hf-max22200/</div>
-<div class="line">├── include/                 # Header files</div>
-<div class="line">│   ├── MAX22200.h          # Main driver class</div>
-<div class="line">│   ├── SpiInterface.h      # Abstract SPI interface</div>
-<div class="line">│   ├── MAX22200_Registers.h # Register definitions</div>
-<div class="line">│   └── MAX22200_Types.h    # Type definitions</div>
-<div class="line">├── src/                    # Source files</div>
-<div class="line">│   └── MAX22200.cpp       # Driver implementation</div>
-<div class="line">├── examples/               # Example code</div>
-<div class="line">│   ├── example_usage.cpp  # Usage examples</div>
-<div class="line">│   ├── ExampleSPI.h       # Example SPI implementation</div>
-<div class="line">│   └── ExampleSPI.cpp     # Example SPI implementation</div>
-<div class="line">├── docs/                   # Documentation</div>
-<div class="line">│   ├── README.md          # Main documentation</div>
-<div class="line">│   ├── api_reference.md   # API documentation</div>
-<div class="line">│   ├── hardware_guide.md  # Hardware integration guide</div>
-<div class="line">│   └── ascii_diagrams.md  # ASCII art diagrams</div>
-<div class="line">├── CMakeLists.txt         # CMake build configuration</div>
-<div class="line">├── Makefile               # Make build configuration</div>
-<div class="line">└── Datasheet/             # IC datasheet</div>
-<div class="line">    └── MAX22200.pdf       # MAX22200 datasheet</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md9"></a>
-Usage Example</h1>
-<div class="fragment"><div class="line"><span class="preprocessor">#include &quot;MAX22200.h&quot;</span></div>
-<div class="line"><span class="preprocessor">#include &quot;MySPI.h&quot;</span>  <span class="comment">// Your SPI implementation</span></div>
+<div class="line"><span class="comment">// 1. Implement the SPI interface (see platform_integration.md)</span></div>
+<div class="line"><span class="keyword">class </span>MySpi : <span class="keyword">public</span> <a class="code hl_class" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt;MySpi&gt; {</div>
+<div class="line"><span class="keyword">public</span>:</div>
+<div class="line">    <span class="keywordtype">void</span> transfer(<span class="keyword">const</span> uint8_t* tx, uint8_t* rx, <span class="keywordtype">size_t</span> len) {</div>
+<div class="line">        <span class="comment">// Your SPI transfer implementation</span></div>
+<div class="line">    }</div>
+<div class="line">};</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Create SPI interface</span></div>
-<div class="line">MySPI spi;</div>
+<div class="line"><span class="comment">// 2. Create driver instance</span></div>
+<div class="line">MySpi spi;</div>
+<div class="line"><a class="code hl_class" href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a> driver(spi);</div>
 <div class="line"> </div>
-<div class="line"><span class="comment">// Create MAX22200 driver</span></div>
-<div class="line">MAX22200 driver(spi);</div>
-<div class="line"> </div>
-<div class="line"><span class="comment">// Initialize</span></div>
-<div class="line"><span class="keywordflow">if</span> (driver.Initialize() == DriverStatus::OK) {</div>
-<div class="line">    <span class="comment">// Configure channel 0</span></div>
-<div class="line">    ChannelConfig config;</div>
-<div class="line">    config.enabled = <span class="keyword">true</span>;</div>
-<div class="line">    config.drive_mode = DriveMode::CDR;</div>
-<div class="line">    config.hit_current = 500;</div>
-<div class="line">    config.hold_current = 200;</div>
-<div class="line">    config.hit_time = 1000;</div>
+<div class="line"><span class="comment">// 3. Initialize</span></div>
+<div class="line"><span class="keywordflow">if</span> (driver.Initialize() == <a class="code hl_enumvalue" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27bae0aa021e21dddbd6d8cecec71e9cf564">max22200::DriverStatus::OK</a>) {</div>
+<div class="line">    <span class="comment">// 4. Configure channel 0</span></div>
+<div class="line">    <a class="code hl_struct" href="structmax22200_1_1ChannelConfig.html">max22200::ChannelConfig</a> config;</div>
+<div class="line">    config.<a class="code hl_variable" href="structmax22200_1_1ChannelConfig.html#ac6d455474e1ec3559b8de60fe00b029a">enabled</a> = <span class="keyword">true</span>;</div>
+<div class="line">    config.<a class="code hl_variable" href="structmax22200_1_1ChannelConfig.html#ad5e23fc3312df705ed4933dd8c0106d0">drive_mode</a> = <a class="code hl_enumvalue" href="namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376">max22200::DriveMode::CDR</a>;</div>
+<div class="line">    config.<a class="code hl_variable" href="structmax22200_1_1ChannelConfig.html#a09724805d7724387b8cd9cac0aad3e23">hit_current</a> = 500;</div>
+<div class="line">    config.<a class="code hl_variable" href="structmax22200_1_1ChannelConfig.html#a156989985bc3ca34f4692f7baf80e6ab">hold_current</a> = 200;</div>
+<div class="line">    config.<a class="code hl_variable" href="structmax22200_1_1ChannelConfig.html#aefc7ca5063b6c9f50e23620f6de3567d">hit_time</a> = 1000;</div>
 <div class="line">    </div>
-<div class="line">    driver.ConfigureChannel(0, config);</div>
+<div class="line">    driver.<a class="code hl_function" href="classmax22200_1_1MAX22200.html#a4f408001924084364f6e85ee2a5cafc6">ConfigureChannel</a>(0, config);</div>
 <div class="line">    driver.EnableChannel(0, <span class="keyword">true</span>);</div>
 <div class="line">}</div>
-</div><!-- fragment --><h1><a class="anchor" id="autotoc_md10"></a>
+<div class="ttc" id="aclassmax22200_1_1MAX22200_html"><div class="ttname"><a href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a></div><div class="ttdef"><b>Definition</b> max22200.hpp:64</div></div>
+<div class="ttc" id="aclassmax22200_1_1MAX22200_html_a4f408001924084364f6e85ee2a5cafc6"><div class="ttname"><a href="classmax22200_1_1MAX22200.html#a4f408001924084364f6e85ee2a5cafc6">max22200::MAX22200::ConfigureChannel</a></div><div class="ttdeci">DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &amp;config)</div><div class="ttdoc">Configure a specific channel.</div><div class="ttdef"><b>Definition</b> MAX22200.cpp:215</div></div>
+<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:45</div></div>
+<div class="ttc" id="amax22200_8hpp_html"><div class="ttname"><a href="max22200_8hpp.html">max22200.hpp</a></div><div class="ttdoc">Main driver class for MAX22200 octal solenoid and motor driver.</div></div>
+<div class="ttc" id="anamespacemax22200_html_a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376"><div class="ttname"><a href="namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376">max22200::DriveMode::CDR</a></div><div class="ttdeci">@ CDR</div><div class="ttdoc">Current Drive Regulation.</div></div>
+<div class="ttc" id="anamespacemax22200_html_a63bc0b5401ad8c7106ce140926eab27bae0aa021e21dddbd6d8cecec71e9cf564"><div class="ttname"><a href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27bae0aa021e21dddbd6d8cecec71e9cf564">max22200::DriverStatus::OK</a></div><div class="ttdeci">@ OK</div><div class="ttdoc">Driver is functioning normally.</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html">max22200::ChannelConfig</a></div><div class="ttdoc">Channel configuration structure.</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:62</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html_a09724805d7724387b8cd9cac0aad3e23"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html#a09724805d7724387b8cd9cac0aad3e23">max22200::ChannelConfig::hit_current</a></div><div class="ttdeci">uint16_t hit_current</div><div class="ttdoc">HIT current setting (0-1023)</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:68</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html_a156989985bc3ca34f4692f7baf80e6ab"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html#a156989985bc3ca34f4692f7baf80e6ab">max22200::ChannelConfig::hold_current</a></div><div class="ttdeci">uint16_t hold_current</div><div class="ttdoc">HOLD current setting (0-1023)</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:69</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html_ac6d455474e1ec3559b8de60fe00b029a"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html#ac6d455474e1ec3559b8de60fe00b029a">max22200::ChannelConfig::enabled</a></div><div class="ttdeci">bool enabled</div><div class="ttdoc">Channel enable state.</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:63</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html_ad5e23fc3312df705ed4933dd8c0106d0"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html#ad5e23fc3312df705ed4933dd8c0106d0">max22200::ChannelConfig::drive_mode</a></div><div class="ttdeci">DriveMode drive_mode</div><div class="ttdoc">Drive mode (CDR or VDR)</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:64</div></div>
+<div class="ttc" id="astructmax22200_1_1ChannelConfig_html_aefc7ca5063b6c9f50e23620f6de3567d"><div class="ttname"><a href="structmax22200_1_1ChannelConfig.html#aefc7ca5063b6c9f50e23620f6de3567d">max22200::ChannelConfig::hit_time</a></div><div class="ttdeci">uint16_t hit_time</div><div class="ttdoc">HIT time setting (0-65535)</div><div class="ttdef"><b>Definition</b> max22200_types.hpp:70</div></div>
+</div><!-- fragment --><p>For detailed setup, see Installation and Quick Start Guide.</p>
+<h1><a class="anchor" id="autotoc_md5"></a>
 🔧 Installation</h1>
 <ol type="1">
-<li>Clone the repository</li>
-<li>Copy the driver files into your project</li>
-<li>Implement the SPI interface for your platform</li>
-<li>Include the driver header in your code</li>
+<li><b>Clone or copy</b> the driver files into your project</li>
+<li><b>Implement the SPI interface</b> for your platform (see Platform Integration)</li>
+<li><b>Include the header</b> in your code: <div class="fragment"><div class="line"><span class="preprocessor">#include &quot;<a class="code" href="max22200_8hpp.html">max22200.hpp</a>&quot;</span></div>
+</div><!-- fragment --></li>
+<li>Compile with a <b>C++20</b> or newer compiler</li>
 </ol>
-<p><b>Requirements:</b></p><ul>
-<li><b>C++20 Compiler</b>: GCC 10+, Clang 12+, or MSVC 2019+</li>
-<li><b>SPI Interface</b>: Platform-specific SPI implementation</li>
-<li><b>Memory</b>: ~2KB RAM, ~8KB Flash (approximate)</li>
-</ul>
-<h1><a class="anchor" id="autotoc_md11"></a>
+<p>For detailed installation instructions, see docs/installation.md.</p>
+<h1><a class="anchor" id="autotoc_md6"></a>
 📖 API Reference</h1>
-<p>For complete API documentation, see the docs/api_reference.md file.</p>
-<h1><a class="anchor" id="autotoc_md12"></a>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Method   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>Initialize()</code>   </td><td class="markdownTableBodyNone">Initialize the driver    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>Deinitialize()</code>   </td><td class="markdownTableBodyNone">Safely shut down the driver    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>Reset()</code>   </td><td class="markdownTableBodyNone">Perform software reset    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ConfigureChannel()</code>   </td><td class="markdownTableBodyNone">Configure a channel    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>EnableChannel()</code>   </td><td class="markdownTableBodyNone">Enable/disable a channel    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>GetChannelStatus()</code>   </td><td class="markdownTableBodyNone">Get channel status    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>GetFaultStatus()</code>   </td><td class="markdownTableBodyNone">Get fault status    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>ReadCurrent()</code>   </td><td class="markdownTableBodyNone">Read current via ICS    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>SetSleepMode()</code>   </td><td class="markdownTableBodyNone">Enable/disable sleep mode    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone"><code>SetFaultCallback()</code>   </td><td class="markdownTableBodyNone">Set fault callback function    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone"><code>GetStatistics()</code>   </td><td class="markdownTableBodyNone">Get driver statistics   </td></tr>
+</table>
+<p>For complete API documentation, see docs/api_reference.md.</p>
+<h1><a class="anchor" id="autotoc_md7"></a>
 📊 Examples</h1>
-<p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory. Additional examples and SPI implementations are available in the <a href="examples/">examples</a> directory.</p>
-<h1><a class="anchor" id="autotoc_md13"></a>
+<p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory. Additional examples for other platforms are available in the <a href="examples/">examples</a> directory.</p>
+<p>Detailed example walkthroughs are available in docs/examples.md.</p>
+<h1><a class="anchor" id="autotoc_md8"></a>
 📚 Documentation</h1>
-<ul>
-<li>API Reference - Complete API documentation</li>
-<li>Hardware Guide - Hardware integration guide</li>
-<li>ASCII Diagrams - Visual representations</li>
-<li>Generate Doxygen documentation: <code>doxygen _config/Doxyfile</code></li>
-</ul>
-<h1><a class="anchor" id="autotoc_md14"></a>
+<p>For complete documentation, see the docs directory.</p>
+<h1><a class="anchor" id="autotoc_md9"></a>
 🤝 Contributing</h1>
-<p>Pull requests and suggestions are welcome! For guidelines, please see the Contributing section above or open an issue to discuss your changes.</p>
-<h1><a class="anchor" id="autotoc_md15"></a>
+<p>Pull requests and suggestions are welcome! Please follow the existing code style and include tests for new features.</p>
+<h1><a class="anchor" id="autotoc_md10"></a>
 📄 License</h1>
-<p>This project is licensed under the <b>GNU General Public License v3.0</b>. <br  />
- See the [LICENSE](LICENSE) file for details.</p>
-<h1><a class="anchor" id="autotoc_md16"></a>
-Changelog</h1>
-<h2><a class="anchor" id="autotoc_md17"></a>
-Version 1.0.0</h2>
-<ul>
-<li>Initial release</li>
-<li>Complete driver implementation</li>
-<li>Hardware abstraction layer</li>
-<li>Comprehensive documentation</li>
-<li>Example implementations</li>
-<li>ASCII diagrams </li>
-</ul>
+<p>This project is licensed under the <b>GNU General Public License v3.0</b>. See the [LICENSE](LICENSE) file for details. </p>
 </div></div><!-- PageDoc -->
 <a href="doxygen_crawl.html"/>
 </div><!-- contents -->
