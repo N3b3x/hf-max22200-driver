@@ -1,7 +1,8 @@
 <map id="inc/MAX22200.h" name="inc/MAX22200.h">
-<area shape="rect" id="Node000001" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="178,5,305,31"/>
+<area shape="rect" id="Node000001" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="289,5,415,31"/>
 <area shape="rect" id="Node000002" href="$MAX22200ComprehensiveTest_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="5,79,256,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="215,41,159,81,156,76,212,36"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="308,38,185,81,183,76,306,33"/>
 <area shape="rect" id="Node000003" href="$MAX22200_8cpp.html" title="Implementation of MAX22200 driver class." alt="" coords="281,86,423,111"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="271,37,337,84,334,88,268,41"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="346,44,348,86,343,86,341,45"/>
+<area shape="poly" id="edge3_Node000003_Node000001" title=" " alt="" coords="358,72,356,31,361,31,363,72"/>
 </map>

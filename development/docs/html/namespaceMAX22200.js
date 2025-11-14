@@ -101,6 +101,7 @@ var namespaceMAX22200 =
     [ "FaultStatus", "structMAX22200_1_1FaultStatus.html", "structMAX22200_1_1FaultStatus" ],
     [ "GlobalConfig", "structMAX22200_1_1GlobalConfig.html", "structMAX22200_1_1GlobalConfig" ],
     [ "MAX22200", "classMAX22200_1_1MAX22200.html", "classMAX22200_1_1MAX22200" ],
+    [ "SPIInterface", "classMAX22200_1_1SPIInterface.html", "classMAX22200_1_1SPIInterface" ],
     [ "ChannelConfigArray", "namespaceMAX22200.html#a17ee7ec72e8c85b76c7dc60becab1cf8", null ],
     [ "ChannelStateArray", "namespaceMAX22200.html#a6fb86e4e1c8426d59249102d98594735", null ],
     [ "ChannelStatusArray", "namespaceMAX22200.html#a7caa5db0b60a76f0a5f10d420a60cef0", null ],

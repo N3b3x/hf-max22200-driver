@@ -95,12 +95,13 @@ $(function(){initNavTree('SPIInterface_8h.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">SPIInterface.h File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Abstract base class for SPI communication interface.  
+<p>CRTP-based template interface for SPI communication.  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
@@ -119,15 +120,20 @@ This graph shows which files directly or indirectly include this file:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="nested-classes" name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSPIInterface.html">SPIInterface</a></td></tr>
-<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract base class for SPI communication interface.  <a href="classSPIInterface.html#details">More...</a><br /></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMAX22200_1_1SPIInterface.html">MAX22200::SPIInterface&lt; Derived &gt;</a></td></tr>
+<tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">CRTP-based template interface for SPI communication.  <a href="classMAX22200_1_1SPIInterface.html#details">More...</a><br /></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespaceMAX22200" id="r_namespaceMAX22200"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceMAX22200.html">MAX22200</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Abstract base class for SPI communication interface. </p>
+<div class="textblock"><p>CRTP-based template interface for SPI communication. </p>
 <dl class="section author"><dt>Author</dt><dd><a class="el" href="namespaceMAX22200.html">MAX22200</a> Driver Library </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2024</dd></dl>
-<p>This file defines the abstract base class for SPI communication, providing hardware abstraction for the <a class="el" href="namespaceMAX22200.html">MAX22200</a> driver. </p>
+<p>This file defines a CRTP (Curiously Recurring Template Pattern) interface for SPI communication, providing hardware abstraction for the <a class="el" href="namespaceMAX22200.html">MAX22200</a> driver. This approach provides compile-time polymorphism without virtual function overhead. </p>
 </div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

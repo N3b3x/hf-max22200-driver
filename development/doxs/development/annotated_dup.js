@@ -6,9 +6,9 @@ var annotated_dup =
       [ "DriverStatistics", "structMAX22200_1_1DriverStatistics.html", "structMAX22200_1_1DriverStatistics" ],
       [ "FaultStatus", "structMAX22200_1_1FaultStatus.html", "structMAX22200_1_1FaultStatus" ],
       [ "GlobalConfig", "structMAX22200_1_1GlobalConfig.html", "structMAX22200_1_1GlobalConfig" ],
-      [ "MAX22200", "classMAX22200_1_1MAX22200.html", "classMAX22200_1_1MAX22200" ]
+      [ "MAX22200", "classMAX22200_1_1MAX22200.html", "classMAX22200_1_1MAX22200" ],
+      [ "SPIInterface", "classMAX22200_1_1SPIInterface.html", "classMAX22200_1_1SPIInterface" ]
     ] ],
-    [ "SPIInterface", "classSPIInterface.html", "classSPIInterface" ],
     [ "TestResults", "structTestResults.html", "structTestResults" ],
     [ "TestTaskContext", "structTestTaskContext.html", "structTestTaskContext" ]
 ];

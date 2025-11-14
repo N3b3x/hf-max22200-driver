@@ -12,8 +12,8 @@
 <g id="Node000001" class="node">
 <title>Node1</title>
 <g id="a_Node000001"><a xlink:title="Implementation of MAX22200 driver class.">
-<polygon fill="#999999" stroke="#666666" points="364,-239 257,-239 257,-220 364,-220 364,-239"/>
-<text text-anchor="middle" x="310.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00">src/MAX22200.cpp</text>
+<polygon fill="#999999" stroke="#666666" points="317,-239 210,-239 210,-220 317,-220 317,-239"/>
+<text text-anchor="middle" x="263.5" y="-227" font-family="Helvetica,sans-Serif" font-size="10.00">src/MAX22200.cpp</text>
 </a>
 </g>
 </g>
@@ -30,8 +30,8 @@
 <g id="edge1_Node000001_Node000002" class="edge">
 <title>Node1&#45;&gt;Node2</title>
 <g id="a_edge1_Node000001_Node000002"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M302.74,-219.75C296.03,-212.18 286.16,-201.05 277.99,-191.84"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="280.37,-189.25 271.12,-184.09 275.13,-193.89 280.37,-189.25"/>
+<path fill="none" stroke="#63b8ff" d="M258.33,-219.75C256.84,-212.8 256.4,-202.85 257.02,-194.13"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="260.51,-194.47 258.37,-184.09 253.57,-193.53 260.51,-194.47"/>
 </a>
 </g>
 </g>
@@ -39,17 +39,26 @@
 <g id="Node000010" class="node">
 <title>Node10</title>
 <g id="a_Node000010"><a xlink:title=" ">
-<polygon fill="#e0e0e0" stroke="#999999" points="383.5,-184 333.5,-184 333.5,-165 383.5,-165 383.5,-184"/>
-<text text-anchor="middle" x="358.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">cstring</text>
+<polygon fill="#e0e0e0" stroke="#999999" points="387,-184 334,-184 334,-165 387,-165 387,-184"/>
+<text text-anchor="middle" x="360.5" y="-172" font-family="Helvetica,sans-Serif" font-size="10.00">string.h</text>
 </a>
 </g>
 </g>
 <!-- Node1&#45;&gt;Node10 -->
-<g id="edge14_Node000001_Node000010" class="edge">
+<g id="edge15_Node000001_Node000010" class="edge">
 <title>Node1&#45;&gt;Node10</title>
-<g id="a_edge14_Node000001_Node000010"><a xlink:title=" ">
-<path fill="none" stroke="#63b8ff" d="M318.43,-219.75C325.35,-212.11 335.57,-200.82 343.95,-191.56"/>
-<polygon fill="#63b8ff" stroke="#63b8ff" points="346.6,-193.85 350.72,-184.09 341.41,-189.15 346.6,-193.85"/>
+<g id="a_edge15_Node000001_Node000010"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M279.08,-219.98C294.27,-211.69 317.6,-198.94 335.4,-189.22"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="337.53,-192.04 344.63,-184.17 334.18,-185.89 337.53,-192.04"/>
+</a>
+</g>
+</g>
+<!-- Node2&#45;&gt;Node1 -->
+<g id="edge14_Node000002_Node000001" class="edge">
+<title>Node2&#45;&gt;Node1</title>
+<g id="a_edge14_Node000002_Node000001"><a xlink:title=" ">
+<path fill="none" stroke="#63b8ff" d="M268.63,-184.09C270.14,-190.99 270.59,-200.93 269.99,-209.66"/>
+<polygon fill="#63b8ff" stroke="#63b8ff" points="266.5,-209.38 268.67,-219.75 273.44,-210.29 266.5,-209.38"/>
 </a>
 </g>
 </g>
@@ -128,7 +137,7 @@
 <!-- Node7 -->
 <g id="Node000007" class="node">
 <title>Node7</title>
-<g id="a_Node000007"><a xlink:href="SPIInterface_8h.html" target="_top" xlink:title="Abstract base class for SPI communication interface.">
+<g id="a_Node000007"><a xlink:href="SPIInterface_8h.html" target="_top" xlink:title="CRTP&#45;based template interface for SPI communication.">
 <polygon fill="white" stroke="#666666" points="340.5,-129 256.5,-129 256.5,-110 340.5,-110 340.5,-129"/>
 <text text-anchor="middle" x="298.5" y="-117" font-family="Helvetica,sans-Serif" font-size="10.00">SPIInterface.h</text>
 </a>

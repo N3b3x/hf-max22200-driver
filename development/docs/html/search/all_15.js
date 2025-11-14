@@ -16,7 +16,7 @@ var searchData=
   ['total_5fexecution_5ftime_5fus_13',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5ftests_14',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
   ['total_5ftransfers_15',['total_transfers',['../structMAX22200_1_1DriverStatistics.html#a45add9342000ea1ee2c4b96b142d5890',1,'MAX22200::DriverStatistics']]],
-  ['transfer_16',['transfer',['../classSPIInterface.html#a494d1c885905c113d5edbbc87db29346',1,'SPIInterface']]],
+  ['transfer_16',['transfer',['../classMAX22200_1_1SPIInterface.html#ab83d4e1fdbead28634f71d5a8456670f',1,'MAX22200::SPIInterface']]],
   ['tsd_17',['TSD',['../namespaceMAX22200.html#ab314b1bd484d7be49c929f95066e6c9ea167666837b80a00e45923b2137eefbce',1,'MAX22200']]],
   ['tsd_5fmask_18',['TSD_MASK',['../namespaceMAX22200_1_1FaultStatusBits.html#a61d0a1677757d86293c776c5593987e5',1,'MAX22200::FaultStatusBits']]],
   ['tsd_5fpos_19',['TSD_POS',['../namespaceMAX22200_1_1FaultStatusBits.html#a868008a44e902bc935a72daf3f5f0e7b',1,'MAX22200::FaultStatusBits']]]

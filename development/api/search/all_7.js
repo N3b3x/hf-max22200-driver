@@ -3,7 +3,7 @@ var searchData=
   ['daisy_5fchain_5fmask_0',['DAISY_CHAIN_MASK',['../namespaceMAX22200_1_1GlobalConfigBits.html#a45518cccd7d96b683e978948c95bd31f',1,'MAX22200::GlobalConfigBits']]],
   ['daisy_5fchain_5fmode_1',['daisy_chain_mode',['../structMAX22200_1_1GlobalConfig.html#a043a0e193b260541d0c349c5e70c166e',1,'MAX22200::GlobalConfig']]],
   ['daisy_5fchain_5fpos_2',['DAISY_CHAIN_POS',['../namespaceMAX22200_1_1GlobalConfigBits.html#adb3def62d35ba0c52da743485def730b',1,'MAX22200::GlobalConfigBits']]],
-  ['deinitialize_3',['deinitialize',['../classMAX22200_1_1MAX22200.html#ab598c6700ba1e75df64532ede0aa662b',1,'MAX22200::MAX22200']]],
+  ['deinitialize_3',['deinitialize',['../classMAX22200_1_1MAX22200.html#a4b50719e58654ea87d157e24e371b117',1,'MAX22200::MAX22200']]],
   ['diag_5fen_5fmask_4',['DIAG_EN_MASK',['../namespaceMAX22200_1_1GlobalConfigBits.html#a2a16c4702b2628c5dd03ffe9ae9ff279',1,'MAX22200::GlobalConfigBits']]],
   ['diag_5fen_5fpos_5',['DIAG_EN_POS',['../namespaceMAX22200_1_1GlobalConfigBits.html#a3af7f38ea01974d3201950cdcccf94ed',1,'MAX22200::GlobalConfigBits']]],
   ['diagnostic_6',['DIAGNOSTIC',['../namespaceMAX22200_1_1Registers.html#af721da2478c2ffc157f6016d39220bb1',1,'MAX22200::Registers']]],

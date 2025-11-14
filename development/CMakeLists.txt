@@ -22,9 +22,10 @@ endif()
 include_directories(inc)
 
 # Create the library
-add_library(MAX22200Driver STATIC
-    src/MAX22200.cpp
-)
+# Note: MAX22200.cpp is a template implementation file included by the header,
+#       so it should NOT be compiled separately
+add_library(MAX22200Driver INTERFACE)
+target_include_directories(MAX22200Driver INTERFACE inc)
 
 # Set target properties
 set_target_properties(MAX22200Driver PROPERTIES
