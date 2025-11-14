@@ -1,442 +1,145 @@
-# MAX22200 Driver API Reference
+# API Reference
 
-This document provides comprehensive API documentation for the MAX22200 driver library.
+Complete reference documentation for all public methods and types in the MAX22200 driver.
 
-## Table of Contents
+## Source Code
 
-- [Core Classes](#core-classes)
-- [Data Types](#data-types)
-- [Enumerations](#enumerations)
-- [Functions](#functions)
-- [Error Handling](#error-handling)
-- [Usage Examples](#usage-examples)
+- **Main Header**: [`inc/max22200.hpp`](../inc/max22200.hpp)
+- **SPI Interface**: [`inc/max22200_spi_interface.hpp`](../inc/max22200_spi_interface.hpp)
+- **Types**: [`inc/max22200_types.hpp`](../inc/max22200_types.hpp)
+- **Implementation**: [`src/max22200.cpp`](../src/max22200.cpp)
 
-## Core Classes
+## Core Class
 
-### MAX22200
+### `MAX22200<SpiType>`
 
-The main driver class for controlling the MAX22200 IC.
+Main driver class for interfacing with the MAX22200 octal solenoid and motor driver.
 
+**Template Parameter**: `SpiType` - Your SPI interface implementation (must inherit from `max22200::SpiInterface<SpiType>`)
+
+**Location**: [`inc/max22200.hpp#L64`](../inc/max22200.hpp#L64)
+
+**Constructor:**
 ```cpp
-class MAX22200 {
-public:
-    explicit MAX22200(SpiInterface& spi_interface, bool enable_diagnostics = true);
-    ~MAX22200();
-    
-    // Initialization
-    DriverStatus initialize();
-    DriverStatus deinitialize();
-    DriverStatus reset();
-    
-    // Global Configuration
-    DriverStatus configureGlobal(const GlobalConfig& config);
-    DriverStatus getGlobalConfig(GlobalConfig& config) const;
-    DriverStatus setSleepMode(bool enable);
-    DriverStatus setDiagnosticMode(bool enable);
-    DriverStatus setIntegratedCurrentSensing(bool enable);
-    
-    // Channel Configuration
-    DriverStatus configureChannel(uint8_t channel, const ChannelConfig& config);
-    DriverStatus getChannelConfig(uint8_t channel, ChannelConfig& config) const;
-    DriverStatus configureAllChannels(const ChannelConfigArray& configs);
-    DriverStatus getAllChannelConfigs(ChannelConfigArray& configs) const;
-    
-    // Channel Control
-    DriverStatus enableChannel(uint8_t channel, bool enable);
-    DriverStatus enableAllChannels(bool enable);
-    DriverStatus setChannelDriveMode(uint8_t channel, DriveMode mode);
-    DriverStatus setChannelBridgeMode(uint8_t channel, BridgeMode mode);
-    DriverStatus setChannelPolarity(uint8_t channel, OutputPolarity polarity);
-    
-    // Current Control
-    DriverStatus setHitCurrent(uint8_t channel, uint16_t current);
-    DriverStatus setHoldCurrent(uint8_t channel, uint16_t current);
-    DriverStatus setCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current);
-    DriverStatus getCurrents(uint8_t channel, uint16_t& hit_current, uint16_t& hold_current) const;
-    
-    // Timing Control
-    DriverStatus setHitTime(uint8_t channel, uint16_t time);
-    DriverStatus getHitTime(uint8_t channel, uint16_t& time) const;
-    
-    // Status and Diagnostics
-    DriverStatus readFaultStatus(FaultStatus& status) const;
-    DriverStatus clearFaultStatus();
-    DriverStatus readChannelStatus(uint8_t channel, ChannelStatus& status) const;
-    DriverStatus readAllChannelStatuses(ChannelStatusArray& statuses) const;
-    DriverStatus getStatistics(DriverStatistics& stats) const;
-    DriverStatus resetStatistics();
-    
-    // Callbacks
-    void setFaultCallback(FaultCallback callback, void* user_data = nullptr);
-    void setStateChangeCallback(StateChangeCallback callback, void* user_data = nullptr);
-    
-    // Utility
-    bool IsInitialized() const;
-    static constexpr bool IsValidChannel(uint8_t channel);
-    static constexpr const char* GetVersion();
-};
+explicit MAX22200(SpiType &spi_interface, bool enable_diagnostics = true);
 ```
 
-### SpiInterface
+**Location**: [`inc/max22200.hpp#L73`](../inc/max22200.hpp#L73)
 
-CRTP-based template interface for SPI communication.
+## Methods
 
-```cpp
-namespace max22200 {
-template <typename Derived>
-class SpiInterface {
-public:
-    bool Initialize();
-    bool Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length);
-    void SetChipSelect(bool state);
-    bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true);
-    bool IsReady() const;
-};
-}
-```
+### Initialization
 
-## Data Types
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `Initialize()` | `DriverStatus Initialize()` | [`inc/max22200.hpp#L100`](../inc/max22200.hpp#L100) |
+| `Deinitialize()` | `DriverStatus Deinitialize()` | [`inc/max22200.hpp#L110`](../inc/max22200.hpp#L110) |
+| `Reset()` | `DriverStatus Reset()` | [`inc/max22200.hpp#L120`](../inc/max22200.hpp#L120) |
 
-### ChannelConfig
+### Global Configuration
 
-Configuration structure for a single channel.
-
-```cpp
-struct ChannelConfig {
-    bool enabled;                    ///< Channel enable state
-    DriveMode drive_mode;           ///< Drive mode (CDR or VDR)
-    BridgeMode bridge_mode;         ///< Bridge mode (half or full)
-    bool parallel_mode;             ///< Parallel mode enable
-    OutputPolarity polarity;        ///< Output polarity
-    uint16_t hit_current;           ///< HIT current setting (0-1023)
-    uint16_t hold_current;          ///< HOLD current setting (0-1023)
-    uint16_t hit_time;              ///< HIT time setting (0-65535)
-    
-    ChannelConfig();  // Default constructor
-    ChannelConfig(bool en, DriveMode dm, BridgeMode bm, bool pm, 
-                  OutputPolarity pol, uint16_t hc, uint16_t hdc, uint16_t ht);
-};
-```
-
-### GlobalConfig
-
-Global configuration structure.
-
-```cpp
-struct GlobalConfig {
-    bool reset;                     ///< Reset state
-    bool sleep_mode;                ///< Sleep mode enable
-    bool diagnostic_enable;         ///< Diagnostic enable
-    bool ics_enable;                ///< Integrated Current Sensing enable
-    bool daisy_chain_mode;          ///< Daisy chain mode enable
-    
-    GlobalConfig();  // Default constructor
-};
-```
-
-### FaultStatus
-
-Fault status information.
-
-```cpp
-struct FaultStatus {
-    bool overcurrent_protection;    ///< Overcurrent protection fault
-    bool open_load;                 ///< Open load detection fault
-    bool plunger_movement;          ///< Detection of plunger movement
-    bool undervoltage_lockout;      ///< Undervoltage lockout fault
-    bool hit_current_not_reached;   ///< HIT current not reached fault
-    bool thermal_shutdown;          ///< Thermal shutdown fault
-    
-    FaultStatus();  // Default constructor
-    bool hasFault() const;          ///< Check if any fault is active
-    uint8_t getFaultCount() const;  ///< Get fault count
-};
-```
-
-### ChannelStatus
-
-Current status of a single channel.
-
-```cpp
-struct ChannelStatus {
-    bool enabled;                   ///< Channel enable state
-    bool fault_active;              ///< Channel fault state
-    uint16_t current_reading;       ///< Current reading from ICS
-    bool hit_phase_active;          ///< HIT phase active state
-    
-    ChannelStatus();  // Default constructor
-};
-```
-
-### DriverStatistics
-
-Runtime statistics for the driver.
-
-```cpp
-struct DriverStatistics {
-    uint32_t total_transfers;       ///< Total number of SPI transfers
-    uint32_t failed_transfers;      ///< Number of failed SPI transfers
-    uint32_t fault_events;          ///< Number of fault events
-    uint32_t state_changes;         ///< Number of state changes
-    uint32_t uptime_ms;             ///< Driver uptime in milliseconds
-    
-    DriverStatistics();  // Default constructor
-    float getSuccessRate() const;   ///< Get transfer success rate
-};
-```
-
-## Enumerations
-
-### DriverStatus
-
-Driver operation status codes.
-
-```cpp
-enum class DriverStatus : uint8_t {
-    OK = 0,                 ///< Operation successful
-    INITIALIZATION_ERROR,   ///< Initialization failed
-    COMMUNICATION_ERROR,    ///< SPI communication error
-    INVALID_PARAMETER,      ///< Invalid parameter provided
-    HARDWARE_FAULT,         ///< Hardware fault detected
-    TIMEOUT                 ///< Operation timeout
-};
-```
-
-### DriveMode
-
-Channel drive mode.
-
-```cpp
-enum class DriveMode : uint8_t {
-    CDR = 0,    ///< Current Drive Regulation
-    VDR = 1     ///< Voltage Drive Regulation
-};
-```
-
-### BridgeMode
-
-Bridge configuration mode.
-
-```cpp
-enum class BridgeMode : uint8_t {
-    HALF_BRIDGE = 0,    ///< Half-bridge mode
-    FULL_BRIDGE = 1     ///< Full-bridge mode
-};
-```
-
-### OutputPolarity
-
-Output polarity setting.
-
-```cpp
-enum class OutputPolarity : uint8_t {
-    NORMAL = 0,     ///< Normal polarity
-    INVERTED = 1    ///< Inverted polarity
-};
-```
-
-### FaultType
-
-Types of faults that can occur.
-
-```cpp
-enum class FaultType : uint8_t {
-    OCP = 0,    ///< Overcurrent protection
-    OL = 1,     ///< Open load detection
-    DPM = 2,    ///< Detection of plunger movement
-    UVLO = 3,   ///< Undervoltage lockout
-    HHF = 4,    ///< HIT current not reached
-    TSD = 5     ///< Thermal shutdown
-};
-```
-
-### ChannelState
-
-Channel operational state.
-
-```cpp
-enum class ChannelState : uint8_t {
-    DISABLED = 0,       ///< Channel is disabled
-    ENABLED,            ///< Channel is enabled
-    HIT_PHASE,          ///< Channel is in HIT phase
-    HOLD_PHASE,         ///< Channel is in HOLD phase
-    FAULT               ///< Channel has a fault
-};
-```
-
-## Functions
-
-### Callback Functions
-
-#### FaultCallback
-
-Function type for fault event callbacks.
-
-```cpp
-using FaultCallback = void(*)(uint8_t channel, FaultType fault_type, void* user_data);
-```
-
-**Parameters:**
-- `channel`: Channel number where fault occurred (0-7)
-- `fault_type`: Type of fault that occurred
-- `user_data`: User-provided data pointer
-
-#### StateChangeCallback
-
-Function type for channel state change callbacks.
-
-```cpp
-using StateChangeCallback = void(*)(uint8_t channel, ChannelState old_state, 
-                                   ChannelState new_state, void* user_data);
-```
-
-**Parameters:**
-- `channel`: Channel number (0-7)
-- `old_state`: Previous channel state
-- `new_state`: New channel state
-- `user_data`: User-provided data pointer
-
-## Error Handling
-
-The driver uses return codes instead of exceptions for error handling, making it suitable for embedded systems.
-
-### Return Code Usage
-
-```cpp
-DriverStatus status = driver.Initialize();
-if (status != DriverStatus::OK) {
-    // Handle error
-    switch (status) {
-        case DriverStatus::INITIALIZATION_ERROR:
-            // Handle initialization error
-            break;
-        case DriverStatus::COMMUNICATION_ERROR:
-            // Handle SPI communication error
-            break;
-        case DriverStatus::INVALID_PARAMETER:
-            // Handle invalid parameter
-            break;
-        // ... other cases
-    }
-}
-```
-
-### Error Recovery
-
-```cpp
-// Clear faults and retry
-driver.ClearFaultStatus();
-DriverStatus status = driver.Initialize();
-if (status == DriverStatus::OK) {
-    // Success
-} else {
-    // Still failed, take appropriate action
-}
-```
-
-## Usage Examples
-
-### Basic Initialization
-
-```cpp
-#include "MAX22200.h"
-#include "MySPI.h"  // Your SPI implementation
-
-MySPI spi;
-MAX22200 driver(spi);
-
-if (driver.Initialize() == DriverStatus::OK) {
-    // Driver ready for use
-}
-```
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `ConfigureGlobal()` | `DriverStatus ConfigureGlobal(const GlobalConfig &config)` | [`inc/max22200.hpp#L130`](../inc/max22200.hpp#L130) |
+| `GetGlobalConfig()` | `DriverStatus GetGlobalConfig(GlobalConfig &config) const` | [`inc/max22200.hpp#L138`](../inc/max22200.hpp#L138) |
+| `SetSleepMode()` | `DriverStatus SetSleepMode(bool enable)` | [`inc/max22200.hpp#L146`](../inc/max22200.hpp#L146) |
+| `SetDiagnosticMode()` | `DriverStatus SetDiagnosticMode(bool enable)` | [`inc/max22200.hpp#L154`](../inc/max22200.hpp#L154) |
+| `SetIntegratedCurrentSensing()` | `DriverStatus SetIntegratedCurrentSensing(bool enable)` | [`inc/max22200.hpp#L162`](../inc/max22200.hpp#L162) |
 
 ### Channel Configuration
 
-```cpp
-// Configure channel 0 for solenoid control
-ChannelConfig config;
-config.enabled = true;
-config.drive_mode = DriveMode::CDR;
-config.bridge_mode = BridgeMode::HALF_BRIDGE;
-config.hit_current = 800;
-config.hold_current = 200;
-config.hit_time = 1000;
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `ConfigureChannel()` | `DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &config)` | [`inc/max22200.hpp#L173`](../inc/max22200.hpp#L173) |
+| `GetChannelConfig()` | `DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &config) const` | [`inc/max22200.hpp#L182`](../inc/max22200.hpp#L182) |
+| `ConfigureAllChannels()` | `DriverStatus ConfigureAllChannels(const ChannelConfigArray &configs)` | [`inc/max22200.hpp#L190`](../inc/max22200.hpp#L190) |
+| `GetAllChannelConfigs()` | `DriverStatus GetAllChannelConfigs(ChannelConfigArray &configs) const` | [`inc/max22200.hpp#L198`](../inc/max22200.hpp#L198) |
 
-DriverStatus status = driver.ConfigureChannel(0, config);
-if (status == DriverStatus::OK) {
-    driver.EnableChannel(0, true);
-}
-```
+### Channel Control
 
-### Fault Handling
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `EnableChannel()` | `DriverStatus EnableChannel(uint8_t channel, bool enable)` | [`inc/max22200.hpp#L209`](../inc/max22200.hpp#L209) |
+| `EnableAllChannels()` | `DriverStatus EnableAllChannels(bool enable)` | [`inc/max22200.hpp#L217`](../inc/max22200.hpp#L217) |
+| `SetChannelDriveMode()` | `DriverStatus SetChannelDriveMode(uint8_t channel, DriveMode mode)` | [`inc/max22200.hpp#L226`](../inc/max22200.hpp#L226) |
+| `SetChannelBridgeMode()` | `DriverStatus SetChannelBridgeMode(uint8_t channel, BridgeMode mode)` | [`inc/max22200.hpp#L235`](../inc/max22200.hpp#L235) |
+| `SetChannelPolarity()` | `DriverStatus SetChannelPolarity(uint8_t channel, OutputPolarity polarity)` | [`inc/max22200.hpp#L244`](../inc/max22200.hpp#L244) |
 
-```cpp
-// Set up fault callback
-driver.SetFaultCallback([](uint8_t channel, FaultType fault_type, void* user_data) {
-    printf("Fault on channel %d: %d\n", channel, static_cast<int>(fault_type));
-}, nullptr);
+### Current Control
 
-// Read fault status
-FaultStatus status;
-if (driver.ReadFaultStatus(status) == DriverStatus::OK) {
-    if (status.hasFault()) {
-        printf("Active faults: %d\n", status.getFaultCount());
-    }
-}
-```
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `SetHitCurrent()` | `DriverStatus SetHitCurrent(uint8_t channel, uint16_t current)` | [`inc/max22200.hpp#L255`](../inc/max22200.hpp#L255) |
+| `SetHoldCurrent()` | `DriverStatus SetHoldCurrent(uint8_t channel, uint16_t current)` | [`inc/max22200.hpp#L264`](../inc/max22200.hpp#L264) |
+| `SetCurrents()` | `DriverStatus SetCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current)` | [`inc/max22200.hpp#L274`](../inc/max22200.hpp#L274) |
+| `GetCurrents()` | `DriverStatus GetCurrents(uint8_t channel, uint16_t &hit_current, uint16_t &hold_current) const` | [`inc/max22200.hpp#L285`](../inc/max22200.hpp#L285) |
 
-### Statistics Monitoring
+### Timing Control
 
-```cpp
-DriverStatistics stats;
-if (driver.GetStatistics(stats) == DriverStatus::OK) {
-    printf("Success rate: %.2f%%\n", stats.getSuccessRate());
-    printf("Total transfers: %u\n", stats.total_transfers);
-}
-```
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `SetHitTime()` | `DriverStatus SetHitTime(uint8_t channel, uint16_t time)` | [`inc/max22200.hpp#L297`](../inc/max22200.hpp#L297) |
+| `GetHitTime()` | `DriverStatus GetHitTime(uint8_t channel, uint16_t &time) const` | [`inc/max22200.hpp#L306`](../inc/max22200.hpp#L306) |
 
-## Constants
+### Status and Diagnostics
 
-### Current Ranges
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `ReadFaultStatus()` | `DriverStatus ReadFaultStatus(FaultStatus &status) const` | [`inc/max22200.hpp#L316`](../inc/max22200.hpp#L316) |
+| `ClearFaultStatus()` | `DriverStatus ClearFaultStatus()` | [`inc/max22200.hpp#L325`](../inc/max22200.hpp#L325) |
+| `ReadChannelStatus()` | `DriverStatus ReadChannelStatus(uint8_t channel, ChannelStatus &status) const` | [`inc/max22200.hpp#L334`](../inc/max22200.hpp#L334) |
+| `ReadAllChannelStatuses()` | `DriverStatus ReadAllChannelStatuses(ChannelStatusArray &statuses) const` | [`inc/max22200.hpp#L342`](../inc/max22200.hpp#L342) |
+| `GetStatistics()` | `DriverStatus GetStatistics(DriverStatistics &stats) const` | [`inc/max22200.hpp#L350`](../inc/max22200.hpp#L350) |
+| `ResetStatistics()` | `DriverStatus ResetStatistics()` | [`inc/max22200.hpp#L359`](../inc/max22200.hpp#L359) |
 
-```cpp
-namespace CurrentRange {
-    constexpr uint16_t MIN_HIT_CURRENT  = 0;     ///< Minimum HIT current
-    constexpr uint16_t MAX_HIT_CURRENT  = 1023;  ///< Maximum HIT current
-    constexpr uint16_t MIN_HOLD_CURRENT = 0;     ///< Minimum HOLD current
-    constexpr uint16_t MAX_HOLD_CURRENT = 1023;  ///< Maximum HOLD current
-}
-```
+### Callbacks
 
-### Timing Ranges
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `SetFaultCallback()` | `void SetFaultCallback(FaultCallback callback, void *user_data = nullptr)` | [`inc/max22200.hpp#L369`](../inc/max22200.hpp#L369) |
+| `SetStateChangeCallback()` | `void SetStateChangeCallback(StateChangeCallback callback, void *user_data = nullptr)` | [`inc/max22200.hpp#L377`](../inc/max22200.hpp#L377) |
 
-```cpp
-namespace TimingRange {
-    constexpr uint16_t MIN_HIT_TIME     = 0;     ///< Minimum HIT time
-    constexpr uint16_t MAX_HIT_TIME     = 65535; ///< Maximum HIT time
-}
-```
+### Utility
 
-### SPI Frequencies
+| Method | Signature | Location |
+|--------|-----------|----------|
+| `IsInitialized()` | `bool IsInitialized() const` | [`inc/max22200.hpp#L387`](../inc/max22200.hpp#L387) |
+| `IsValidChannel()` | `static constexpr bool IsValidChannel(uint8_t channel)` | [`inc/max22200.hpp#L395`](../inc/max22200.hpp#L395) |
+| `GetVersion()` | `static constexpr const char *GetVersion()` | [`inc/max22200.hpp#L404`](../inc/max22200.hpp#L404) |
 
-```cpp
-constexpr uint32_t MAX_SPI_FREQ_STANDALONE_ = 10000000; // 10 MHz
-constexpr uint32_t MAX_SPI_FREQ_DAISY_CHAIN_ = 5000000;  // 5 MHz
-```
+## Types
 
-## Thread Safety
+### Enumerations
 
-The driver is not thread-safe by default. If multiple threads need to access the driver, external synchronization must be provided.
+| Type | Values | Location |
+|------|--------|----------|
+| `DriverStatus` | `OK`, `INITIALIZATION_ERROR`, `COMMUNICATION_ERROR`, `INVALID_PARAMETER`, `HARDWARE_FAULT`, `TIMEOUT` | [`inc/max22200_types.hpp#L201`](../inc/max22200_types.hpp#L201) |
+| `DriveMode` | `CDR`, `VDR` | [`inc/max22200_types.hpp#L23`](../inc/max22200_types.hpp#L23) |
+| `BridgeMode` | `HALF_BRIDGE`, `FULL_BRIDGE` | [`inc/max22200_types.hpp#L31`](../inc/max22200_types.hpp#L31) |
+| `OutputPolarity` | `NORMAL`, `INVERTED` | [`inc/max22200_types.hpp#L39`](../inc/max22200_types.hpp#L39) |
+| `FaultType` | `OCP`, `OL`, `DPM`, `UVLO`, `HHF`, `TSD` | [`inc/max22200_types.hpp#L47`](../inc/max22200_types.hpp#L47) |
+| `ChannelState` | `DISABLED`, `ENABLED`, `HIT_PHASE`, `HOLD_PHASE`, `FAULT` | [`inc/max22200_types.hpp#L213`](../inc/max22200_types.hpp#L213) |
 
-## Memory Usage
+### Structures
 
-- **RAM**: Approximately 2KB for driver instance and buffers
-- **Flash**: Approximately 8KB for code and constants
-- **Stack**: Minimal stack usage, suitable for embedded systems
+| Type | Description | Location |
+|------|-------------|----------|
+| `ChannelConfig` | Channel configuration structure | [`inc/max22200_types.hpp#L62`](../inc/max22200_types.hpp#L62) |
+| `GlobalConfig` | Global configuration structure | [`inc/max22200_types.hpp#L106`](../inc/max22200_types.hpp#L106) |
+| `FaultStatus` | Fault status structure | [`inc/max22200_types.hpp#L128`](../inc/max22200_types.hpp#L128) |
+| `ChannelStatus` | Channel status structure | [`inc/max22200_types.hpp#L182`](../inc/max22200_types.hpp#L182) |
+| `DriverStatistics` | Driver statistics structure | [`inc/max22200_types.hpp#L262`](../inc/max22200_types.hpp#L262) |
 
-## Performance
+### Type Aliases
 
-- **SPI Transfer**: ~1-2ms per register read/write
-- **Channel Configuration**: ~5-10ms for full channel setup
-- **Fault Detection**: ~1ms for fault status read
-- **Current Sensing**: Real-time when ICS enabled
+| Type | Definition | Location |
+|------|------------|----------|
+| `ChannelConfigArray` | `std::array<ChannelConfig, 8>` | [`inc/max22200_types.hpp#L224`](../inc/max22200_types.hpp#L224) |
+| `ChannelStatusArray` | `std::array<ChannelStatus, 8>` | [`inc/max22200_types.hpp#L229`](../inc/max22200_types.hpp#L229) |
+| `FaultCallback` | `void (*)(uint8_t channel, FaultType fault_type, void *user_data)` | [`inc/max22200_types.hpp#L243`](../inc/max22200_types.hpp#L243) |
+| `StateChangeCallback` | `void (*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data)` | [`inc/max22200_types.hpp#L254`](../inc/max22200_types.hpp#L254) |
+
+---
+
+**Navigation**
+⬅️ [Configuration](configuration.md) | [Next: Examples ➡️](examples.md) | [Back to Index](index.md)

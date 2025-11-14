@@ -1,13 +1,6 @@
----
-layout: default
-title: "HardFOC MAX22200 Driver"
-description: "The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:"
-nav_order: 1
-permalink: /
----
+# HF-MAX22200 Driver
 
-# MAX22200 Driver Library
-**A comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC**
+**Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface**
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
@@ -27,96 +20,47 @@ permalink: /
 > **📖 [📚🌐 Live Complete Documentation](https://n3b3x.github.io/hf-max22200-driver/)** - 
 > Interactive guides, examples, and step-by-step tutorials
 
-The MAX22200 is an octal (eight-channel) solenoid and motor driver featuring:
-- **Eight Half-Bridges**: Each capable of handling up to 36V and 1A RMS
-- **Current and Voltage Regulation**: Supports both CDR and VDR modes
-- **Integrated Lossless Current Sensing (ICS)**: Real-time current monitoring
-- **High-Speed SPI Interface**: Up to 10MHz communication
-- **Comprehensive Protection**: OCP, OL, DPM, UVLO, TSD, and fault registers
+**HF-MAX22200** is a portable C++20 driver for the **MAX22200** octal (eight-channel) solenoid and motor driver IC. The MAX22200 features eight half-bridges, each capable of handling up to 36V and 1A RMS, with integrated current sensing, current/voltage regulation, and comprehensive protection features.
+
+The driver uses a CRTP-based `SpiInterface` for hardware abstraction, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It implements all major features from the MAX22200 datasheet including channel configuration, current/voltage regulation modes, integrated current sensing (ICS), fault detection, and callback support for event-driven programming.
 
 ## ✨ Features
 
-- ✅ **Hardware Agnostic**: Abstract SPI interface for platform independence
-- ✅ **Modern C++20**: Utilizes latest C++ features for efficiency and safety
-- ✅ **Exception-Free**: Designed for embedded systems without exceptions
-- ✅ **Comprehensive Documentation**: Doxygen comments and markdown guides
+- ✅ **Eight Half-Bridges**: Each channel handles up to 36V and 1A RMS
+- ✅ **Current and Voltage Regulation**: Supports both CDR (Current Drive Regulation) and VDR (Voltage Drive Regulation) modes
+- ✅ **Integrated Current Sensing (ICS)**: Real-time current monitoring without external sense resistors
+- ✅ **Half-Bridge and Full-Bridge Modes**: Flexible bridge configurations
+- ✅ **HIT/HOLD Current Control**: Programmable hit current, hold current, and hit time
+- ✅ **Comprehensive Protection**: OCP, OL, DPM, UVLO, TSD, and fault registers
+- ✅ **Hardware Agnostic**: SPI interface for platform independence
+- ✅ **Modern C++**: C++20 with CRTP-based design
+- ✅ **Zero Overhead**: CRTP-based design for compile-time polymorphism
 - ✅ **Callback Support**: Event-driven programming with fault and state callbacks
 - ✅ **Statistics Tracking**: Runtime performance and error monitoring
-- ✅ **Type Safety**: Strong typing with enums and structures
-- ✅ **Memory Efficient**: No dynamic allocations, suitable for embedded systems
 
 ## 🚀 Quick Start
 
-### 1. Clone the Repository
-
-```bash
-git clone <repository-url>
-cd hf-max22200
-```
-
-### 2. Build the Library
-
-```bash
-# Using Make
-make all
-
-# Using CMake
-mkdir build
-cd build
-cmake ..
-make
-```
-
-### 3. Run the Example
-
-```bash
-make run
-```
-
-## Directory Structure
-
-```
-hf-max22200/
-├── include/                 # Header files
-│   ├── MAX22200.h          # Main driver class
-│   ├── SpiInterface.h      # Abstract SPI interface
-│   ├── MAX22200_Registers.h # Register definitions
-│   └── MAX22200_Types.h    # Type definitions
-├── src/                    # Source files
-│   └── MAX22200.cpp       # Driver implementation
-├── examples/               # Example code
-│   ├── example_usage.cpp  # Usage examples
-│   ├── ExampleSPI.h       # Example SPI implementation
-│   └── ExampleSPI.cpp     # Example SPI implementation
-├── docs/                   # Documentation
-│   ├── README.md          # Main documentation
-│   ├── api_reference.md   # API documentation
-│   ├── hardware_guide.md  # Hardware integration guide
-│   └── ascii_diagrams.md  # ASCII art diagrams
-├── CMakeLists.txt         # CMake build configuration
-├── Makefile               # Make build configuration
-└── Datasheet/             # IC datasheet
-    └── MAX22200.pdf       # MAX22200 datasheet
-```
-
-## Usage Example
-
 ```cpp
-#include "MAX22200.h"
-#include "MySPI.h"  // Your SPI implementation
+#include "max22200.hpp"
 
-// Create SPI interface
-MySPI spi;
+// 1. Implement the SPI interface (see platform_integration.md)
+class MySpi : public max22200::SpiInterface<MySpi> {
+public:
+    void transfer(const uint8_t* tx, uint8_t* rx, size_t len) {
+        // Your SPI transfer implementation
+    }
+};
 
-// Create MAX22200 driver
-MAX22200 driver(spi);
+// 2. Create driver instance
+MySpi spi;
+max22200::MAX22200 driver(spi);
 
-// Initialize
-if (driver.Initialize() == DriverStatus::OK) {
-    // Configure channel 0
-    ChannelConfig config;
+// 3. Initialize
+if (driver.Initialize() == max22200::DriverStatus::OK) {
+    // 4. Configure channel 0
+    max22200::ChannelConfig config;
     config.enabled = true;
-    config.drive_mode = DriveMode::CDR;
+    config.drive_mode = max22200::DriveMode::CDR;
     config.hit_current = 500;
     config.hold_current = 200;
     config.hit_time = 1000;
@@ -126,48 +70,55 @@ if (driver.Initialize() == DriverStatus::OK) {
 }
 ```
 
+For detailed setup, see [Installation](docs/installation.md) and [Quick Start Guide](docs/quickstart.md).
+
 ## 🔧 Installation
 
-1. Clone the repository
-2. Copy the driver files into your project
-3. Implement the SPI interface for your platform
-4. Include the driver header in your code
+1. **Clone or copy** the driver files into your project
+2. **Implement the SPI interface** for your platform (see [Platform Integration](docs/platform_integration.md))
+3. **Include the header** in your code:
+   ```cpp
+   #include "max22200.hpp"
+   ```
+4. Compile with a **C++20** or newer compiler
 
-**Requirements:**
-- **C++20 Compiler**: GCC 10+, Clang 12+, or MSVC 2019+
-- **SPI Interface**: Platform-specific SPI implementation
-- **Memory**: ~2KB RAM, ~8KB Flash (approximate)
+For detailed installation instructions, see [docs/installation.md](docs/installation.md).
 
 ## 📖 API Reference
 
-For complete API documentation, see the [docs/api_reference.md](docs/api_reference.md) file.
+| Method | Description |
+|--------|-------------|
+| `Initialize()` | Initialize the driver |
+| `Deinitialize()` | Safely shut down the driver |
+| `Reset()` | Perform software reset |
+| `ConfigureChannel()` | Configure a channel |
+| `EnableChannel()` | Enable/disable a channel |
+| `GetChannelStatus()` | Get channel status |
+| `GetFaultStatus()` | Get fault status |
+| `ReadCurrent()` | Read current via ICS |
+| `SetSleepMode()` | Enable/disable sleep mode |
+| `SetFaultCallback()` | Set fault callback function |
+| `GetStatistics()` | Get driver statistics |
+
+For complete API documentation, see [docs/api_reference.md](docs/api_reference.md).
 
 ## 📊 Examples
 
-For ESP32 examples, see the [examples/esp32](examples/esp32/) directory. Additional examples and SPI implementations are available in the [examples](examples/) directory.
+For ESP32 examples, see the [examples/esp32](examples/esp32/) directory.
+Additional examples for other platforms are available in the [examples](examples/) directory.
+
+Detailed example walkthroughs are available in [docs/examples.md](docs/examples.md).
 
 ## 📚 Documentation
 
-- [API Reference](docs/api_reference.md) - Complete API documentation
-- [Hardware Guide](docs/hardware_guide.md) - Hardware integration guide
-- [ASCII Diagrams](docs/ascii_diagrams.md) - Visual representations
-- Generate Doxygen documentation: `doxygen _config/Doxyfile`
+For complete documentation, see the [docs directory](docs/index.md).
 
 ## 🤝 Contributing
 
-Pull requests and suggestions are welcome! For guidelines, please see the [Contributing](#-contributing) section above or open an issue to discuss your changes.
+Pull requests and suggestions are welcome! Please follow the existing code style and include tests for new features.
 
 ## 📄 License
 
-This project is licensed under the **GNU General Public License v3.0**.  
+This project is licensed under the **GNU General Public License v3.0**.
 See the [LICENSE](LICENSE) file for details.
 
-## Changelog
-
-### Version 1.0.0
-- Initial release
-- Complete driver implementation
-- Hardware abstraction layer
-- Comprehensive documentation
-- Example implementations
-- ASCII diagrams
