@@ -1,5 +1,6 @@
 var NAVTREEINDEX2 =
 {
+"structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956":[10,0,0,9,4],
 "structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956":[11,0,0,2,4],
 "structmax22200_1_1DriverStatistics.html#a83443a1da4dc00b15dde24af340d6fae":[10,0,0,9,6],
 "structmax22200_1_1DriverStatistics.html#a83443a1da4dc00b15dde24af340d6fae":[11,0,0,2,6],

@@ -7,7 +7,6 @@ Complete reference documentation for all public methods and types in the MAX2220
 - **Main Header**: [`inc/max22200.hpp`](../inc/max22200.hpp)
 - **SPI Interface**: [`inc/max22200_spi_interface.hpp`](../inc/max22200_spi_interface.hpp)
 - **Types**: [`inc/max22200_types.hpp`](../inc/max22200_types.hpp)
-- **Implementation**: [`src/max22200.cpp`](../src/max22200.cpp)
 
 ## Core Class
 

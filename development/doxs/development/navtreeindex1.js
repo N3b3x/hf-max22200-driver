@@ -1,5 +1,6 @@
 var NAVTREEINDEX1 =
 {
+"max22200__registers_8hpp.html#aeb82f50868a1427969454af1877eadd2":[12,0,1,1,56],
 "max22200__registers_8hpp.html#aef9ff2455a4f9f1a716b72fff2758f4c":[12,0,1,1,36],
 "max22200__registers_8hpp.html#af2ebf82312cb901a7fbaf6eb53001652":[12,0,1,1,78],
 "max22200__registers_8hpp.html#af336189bfa7e94c7023c96372a36cd80":[12,0,1,1,42],
@@ -248,6 +249,5 @@ var NAVTREEINDEX1 =
 "structmax22200_1_1DriverStatistics.html#a3a0d44b5b54a48618353dcafbfdc2e91":[10,0,0,9,3],
 "structmax22200_1_1DriverStatistics.html#a3a0d44b5b54a48618353dcafbfdc2e91":[11,0,0,2,3],
 "structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4":[10,0,0,9,5],
-"structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4":[11,0,0,2,5],
-"structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956":[10,0,0,9,4]
+"structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4":[11,0,0,2,5]
 };

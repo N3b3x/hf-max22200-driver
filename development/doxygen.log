@@ -1,7 +1,7 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.XggNhL
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.XggNhL' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.BAITV2
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.BAITV2' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:445: warning: include file ../src/max22200.cpp not found, perhaps you forgot to add its directory to INCLUDE_PATH?
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/src/max22200.cpp:2: warning: the name 'MAX22200.cpp' supplied as the argument in the \file statement is not an input file
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:80: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
