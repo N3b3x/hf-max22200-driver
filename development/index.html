@@ -15,7 +15,7 @@
   
 
     
-    .site-nav > ul.nav-list:first-child > li:not(:nth-child(5)) > a,
+    .site-nav > ul.nav-list:first-child > li:not(:nth-child(1)) > a,
     .site-nav > ul.nav-list:first-child > li > ul > li a {
       background-image: none;
     }
@@ -25,12 +25,12 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(5) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > a {
       font-weight: 600;
       text-decoration: none;
-    }.site-nav > ul.nav-list:first-child > li:nth-child(5) > button svg {
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg {
       transform: rotate(-90deg);
-    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(5) > ul.nav-list {
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list {
       display: block;
     }
   </style>
@@ -50,21 +50,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>HF-MAX22200 Driver | HardFOC MAX22200 Driver - development</title>
+<title>HardFOC MAX22200 Driver | HardFOC MAX22200 Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="HF-MAX22200 Driver" />
+<meta property="og:title" content="HardFOC MAX22200 Driver" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction" />
-<meta property="og:description" content="Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction" />
+<meta name="description" content="Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface" />
+<meta property="og:description" content="Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface" />
 <link rel="canonical" href="https://n3b3x.github.io/hf-max22200-driver/development/" />
 <meta property="og:url" content="https://n3b3x.github.io/hf-max22200-driver/development/" />
 <meta property="og:site_name" content="HardFOC MAX22200 Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="HF-MAX22200 Driver" />
+<meta property="twitter:title" content="HardFOC MAX22200 Driver" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction","headline":"HF-MAX22200 Driver","name":"HardFOC MAX22200 Driver","sameAs":["https://github.com/n3b3x/hf-max22200-driver","https://github.com/n3b3x"],"url":"https://n3b3x.github.io/hf-max22200-driver/development/"}</script>
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface","headline":"HardFOC MAX22200 Driver","name":"HardFOC MAX22200 Driver","sameAs":["https://github.com/n3b3x/hf-max22200-driver","https://github.com/n3b3x"],"url":"https://n3b3x.github.io/hf-max22200-driver/development/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -166,7 +166,11 @@
   <nav aria-label="Main" id="site-nav" class="site-nav">
   
   
-    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration.html" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples.html" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">HF-MAX22200 Documentation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/" class="nav-list-link">HF-MAX22200 Driver</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup.html" class="nav-list-link">Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation.html" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration.html" class="nav-list-link">Platform Integration Guide</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart.html" class="nav-list-link">Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting.html" class="nav-list-link">Troubleshooting</a></li></ul>
+    <ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in HardFOC MAX22200 Driver category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="toggle items in 📚 Documentation category" aria-pressed="false">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
   
 </nav>
 
@@ -382,7 +386,7 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p>For detailed setup, see <a href="/hf-max22200-driver/development/docs/installation.html">Installation</a> and <a href="/hf-max22200-driver/development/docs/quickstart.html">Quick Start Guide</a>.</p>
+<p>For detailed setup, see <a href="/hf-max22200-driver/development/docs/installation/">Installation</a> and <a href="/hf-max22200-driver/development/docs/quickstart/">Quick Start Guide</a>.</p>
 <h2 id="-installation">
   
   
@@ -394,7 +398,7 @@ Interactive guides, examples, and step-by-step tutorials</p>
 
 <ol>
   <li><strong>Clone or copy</strong> the driver files into your project</li>
-  <li><strong>Implement the SPI interface</strong> for your platform (see <a href="/hf-max22200-driver/development/docs/platform_integration.html">Platform Integration</a>)</li>
+  <li><strong>Implement the SPI interface</strong> for your platform (see <a href="/hf-max22200-driver/development/docs/platform_integration/">Platform Integration</a>)</li>
   <li><strong>Include the header</strong> in your code:
     <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
@@ -403,7 +407,7 @@ Interactive guides, examples, and step-by-step tutorials</p>
   <li>Compile with a <strong>C++20</strong> or newer compiler</li>
 </ol>
 
-<p>For detailed installation instructions, see <a href="/hf-max22200-driver/development/docs/installation.html">docs/installation.md</a>.</p>
+<p>For detailed installation instructions, see <a href="/hf-max22200-driver/development/docs/installation/">docs/installation.md</a>.</p>
 <h2 id="-api-reference">
   
   
@@ -481,7 +485,7 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <p>For ESP32 examples, see the <a href="examples/esp32/">examples/esp32</a> directory.
 Additional examples for other platforms are available in the <a href="examples/">examples</a> directory.</p>
 
-<p>Detailed example walkthroughs are available in <a href="/hf-max22200-driver/development/docs/examples.html">docs/examples.md</a>.</p>
+<p>Detailed example walkthroughs are available in <a href="/hf-max22200-driver/development/docs/examples/">docs/examples.md</a>.</p>
 <h2 id="-documentation">
   
   
@@ -517,7 +521,16 @@ See the <a href="/hf-max22200-driver/development/LICENSE">LICENSE</a> file for d
           
 
           
-            
+            <hr>
+<h2 class="text-delta">Table of contents</h2>
+
+<ul>
+  
+  <li>
+    <a href="/hf-max22200-driver/development/docs/">📚 Documentation</a>
+  </li>
+  
+</ul>
           
         </main>
         

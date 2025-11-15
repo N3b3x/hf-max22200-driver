@@ -15,9 +15,10 @@
   
 
     .site-nav > ul.nav-list:first-child > li > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > a,
     
-    .site-nav > ul.nav-list:first-child > li > ul > li:not(:nth-child(1)) > a,
-    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li a {
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li > ul > li > ul > li a {
       background-image: none;
     }
 
@@ -26,14 +27,16 @@
       background-image: none;
     }
 
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > a {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(1) > a {
       font-weight: 600;
       text-decoration: none;
     }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg,
-    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg {
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > button svg,
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > ul > li:nth-child(1) > ul > li:nth-child(1) > button svg {
       transform: rotate(-90deg);
     }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list,
-    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list,
+    .site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list > li.nav-list-item:nth-child(1) > ul.nav-list {
       display: block;
     }
   </style>
@@ -53,21 +56,21 @@
 
 
   <!-- Begin Jekyll SEO tag v2.8.0 -->
-<title>📚 Documentation | HardFOC MAX22200 Driver - development</title>
+<title>🛠️ Installation | HardFOC MAX22200 Driver - development</title>
 <meta name="generator" content="Jekyll v3.10.0" />
-<meta property="og:title" content="📚 Documentation" />
+<meta property="og:title" content="🛠️ Installation" />
 <meta name="author" content="N3b3x" />
 <meta property="og:locale" content="en" />
-<meta name="description" content="Complete documentation for the HardFOC MAX22200 Driver" />
-<meta property="og:description" content="Complete documentation for the HardFOC MAX22200 Driver" />
-<link rel="canonical" href="https://n3b3x.github.io/hf-max22200-driver/development/docs/" />
-<meta property="og:url" content="https://n3b3x.github.io/hf-max22200-driver/development/docs/" />
+<meta name="description" content="Installation and integration instructions for the MAX22200 driver" />
+<meta property="og:description" content="Installation and integration instructions for the MAX22200 driver" />
+<link rel="canonical" href="https://n3b3x.github.io/hf-max22200-driver/development/docs/installation/" />
+<meta property="og:url" content="https://n3b3x.github.io/hf-max22200-driver/development/docs/installation/" />
 <meta property="og:site_name" content="HardFOC MAX22200 Driver - development" />
 <meta property="og:type" content="website" />
 <meta name="twitter:card" content="summary" />
-<meta property="twitter:title" content="📚 Documentation" />
+<meta property="twitter:title" content="🛠️ Installation" />
 <script type="application/ld+json">
-{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Complete documentation for the HardFOC MAX22200 Driver","headline":"📚 Documentation","url":"https://n3b3x.github.io/hf-max22200-driver/development/docs/"}</script>
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Installation and integration instructions for the MAX22200 driver","headline":"🛠️ Installation","url":"https://n3b3x.github.io/hf-max22200-driver/development/docs/installation/"}</script>
 <!-- End Jekyll SEO tag -->
 
 
@@ -250,7 +253,8 @@
       <nav aria-label="Breadcrumb" class="breadcrumb-nav">
   <ol class="breadcrumb-nav-list">
     <li class="breadcrumb-nav-list-item"><a href="/hf-max22200-driver/development/">HardFOC MAX22200 Driver</a></li>
-    <li class="breadcrumb-nav-list-item"><span>📚 Documentation</span></li>
+    <li class="breadcrumb-nav-list-item"><a href="/hf-max22200-driver/development/docs/">📚 Documentation</a></li>
+    <li class="breadcrumb-nav-list-item"><span>🛠️ Installation</span></li>
   </ol>
 </nav>
 
@@ -258,149 +262,203 @@
       <div id="main-content" class="main-content">
         <main>
           
-            <h1 id="hf-max22200-documentation">
+            <h1 id="installation">
   
   
-    <a href="#hf-max22200-documentation" class="anchor-heading" aria-labelledby="hf-max22200-documentation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> HF-MAX22200 Documentation
+    <a href="#installation" class="anchor-heading" aria-labelledby="installation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Installation
   
   
 </h1>
     
 
-<p>Welcome! This directory contains step-by-step guides for installing, building, and using the <strong>HF-MAX22200</strong> library.</p>
-<h2 id="-documentation-structure">
+<p>This guide covers how to obtain and integrate the MAX22200 driver library into your project.</p>
+<h2 id="prerequisites">
   
   
-    <a href="#-documentation-structure" class="anchor-heading" aria-labelledby="-documentation-structure"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 📚 Documentation Structure
-  
-  
-</h2>
-    
-<h3 id="getting-started">
-  
-  
-    <a href="#getting-started" class="anchor-heading" aria-labelledby="getting-started"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Getting Started</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-max22200-driver/development/docs/installation/">🛠️ Installation</a></strong> – Prerequisites and how to obtain the source</li>
-  <li><strong><a href="/hf-max22200-driver/development/docs/quickstart/">⚡ Quick Start</a></strong> – Minimal working example to get you running</li>
-  <li><strong><a href="/hf-max22200-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a></strong> – Wiring diagrams and pin connections</li>
-</ol>
-<h3 id="integration">
-  
-  
-    <a href="#integration" class="anchor-heading" aria-labelledby="integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Integration</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-max22200-driver/development/docs/platform_integration/">🔧 Platform Integration</a></strong> – Implement the CRTP SPI interface for your platform</li>
-  <li><strong><a href="/hf-max22200-driver/development/docs/configuration/">⚙️ Configuration</a></strong> – Configuration options and settings</li>
-</ol>
-<h3 id="reference">
-  
-  
-    <a href="#reference" class="anchor-heading" aria-labelledby="reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Reference</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-max22200-driver/development/docs/api_reference.html">📖 API Reference</a></strong> – Complete API documentation</li>
-  <li><strong><a href="/hf-max22200-driver/development/docs/examples/">💡 Examples</a></strong> – Detailed example walkthroughs</li>
-</ol>
-<h3 id="troubleshooting">
-  
-  
-    <a href="#troubleshooting" class="anchor-heading" aria-labelledby="troubleshooting"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <strong>Troubleshooting</strong>
-  
-  
-</h3>
-    
-
-<ol>
-  <li><strong><a href="/hf-max22200-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a></strong> – Common issues and solutions</li>
-</ol><hr />
-<h2 id="-quick-start-path">
-  
-  
-    <a href="#-quick-start-path" class="anchor-heading" aria-labelledby="-quick-start-path"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 🚀 Quick Start Path
+    <a href="#prerequisites" class="anchor-heading" aria-labelledby="prerequisites"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Prerequisites
   
   
 </h2>
     
 
-<p><strong>New to MAX22200?</strong> Follow this recommended path:</p>
+<p>Before installing the driver, ensure you have:</p>
+
+<ul>
+  <li><strong>C++20 Compiler</strong>: GCC 10+, Clang 12+, or MSVC 2019+</li>
+  <li><strong>Build System</strong>: Make, CMake, or ESP-IDF (depending on your platform)</li>
+  <li><strong>Platform SDK</strong>: ESP-IDF, STM32 HAL, Arduino, or your platform’s SPI driver</li>
+</ul>
+<h2 id="obtaining-the-source">
+  
+  
+    <a href="#obtaining-the-source" class="anchor-heading" aria-labelledby="obtaining-the-source"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Obtaining the Source
+  
+  
+</h2>
+    
+<h3 id="option-1-git-clone">
+  
+  
+    <a href="#option-1-git-clone" class="anchor-heading" aria-labelledby="option-1-git-clone"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Option 1: Git Clone
+  
+  
+</h3>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>git clone https://github.com/n3b3x/hf-max22200-driver.git
+<span class="nb">cd </span>hf-max22200-driver
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="option-2-copy-files">
+  
+  
+    <a href="#option-2-copy-files" class="anchor-heading" aria-labelledby="option-2-copy-files"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Option 2: Copy Files
+  
+  
+</h3>
+    
+
+<p>Copy the following files into your project:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="rouge-code"><pre>inc/
+  ├── max22200.hpp
+  ├── max22200_spi_interface.hpp
+  ├── max22200_registers.hpp
+  └── max22200_types.hpp
+src/
+  └── max22200.cpp
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="integration-methods">
+  
+  
+    <a href="#integration-methods" class="anchor-heading" aria-labelledby="integration-methods"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Integration Methods
+  
+  
+</h2>
+    
+<h3 id="using-cmake">
+  
+  
+    <a href="#using-cmake" class="anchor-heading" aria-labelledby="using-cmake"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Using CMake
+  
+  
+</h3>
+    
+
+<p>Add the driver as a subdirectory in your <code class="language-plaintext highlighter-rouge">CMakeLists.txt</code>:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre></td><td class="rouge-code"><pre><span class="nb">add_subdirectory</span><span class="p">(</span>external/hf-max22200-driver<span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span>your_target PRIVATE hf_max22200<span class="p">)</span>
+<span class="nb">target_include_directories</span><span class="p">(</span>your_target PRIVATE 
+    <span class="si">${</span><span class="nv">CMAKE_CURRENT_SOURCE_DIR</span><span class="si">}</span>/external/hf-max22200-driver/inc
+<span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="using-esp-idf-component">
+  
+  
+    <a href="#using-esp-idf-component" class="anchor-heading" aria-labelledby="using-esp-idf-component"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Using ESP-IDF Component
+  
+  
+</h3>
+    
+
+<p>The driver can be used as an ESP-IDF component. Add it to your <code class="language-plaintext highlighter-rouge">components</code> directory:</p>
+
+<div class="language-cmake highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre></td><td class="rouge-code"><pre><span class="c1"># In your main CMakeLists.txt</span>
+<span class="nf">idf_component_register</span><span class="p">(</span>
+    SRCS <span class="s2">"your_code.cpp"</span>
+    INCLUDE_DIRS <span class="s2">"."</span>
+    REQUIRES hf_max22200
+<span class="p">)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="manual-integration">
+  
+  
+    <a href="#manual-integration" class="anchor-heading" aria-labelledby="manual-integration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Manual Integration
+  
+  
+</h3>
+    
 
 <ol>
-  <li>Start with <strong><a href="/hf-max22200-driver/development/docs/installation/">Installation</a></strong> to prepare your environment</li>
-  <li>Follow <strong><a href="/hf-max22200-driver/development/docs/hardware_setup/">Hardware Setup</a></strong> to wire your hardware</li>
-  <li>Read <strong><a href="/hf-max22200-driver/development/docs/quickstart/">Quick Start</a></strong> for a minimal working example</li>
-  <li>Check <strong><a href="/hf-max22200-driver/development/docs/platform_integration/">Platform Integration</a></strong> to implement the SPI interface</li>
-  <li>Explore <strong><a href="/hf-max22200-driver/development/docs/examples/">Examples</a></strong> for more advanced usage</li>
-</ol><hr />
-<h2 id="-need-help">
+  <li>Copy the driver files to your project</li>
+  <li>Add the <code class="language-plaintext highlighter-rouge">inc/</code> directory to your include path</li>
+  <li>Include the header:
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
+</span></pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li>Compile with C++20 support:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>g++ <span class="nt">-std</span><span class="o">=</span>c++20 <span class="nt">-I</span> inc/ your_code.cpp src/max22200.cpp
+</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+</ol>
+<h2 id="verification">
   
   
-    <a href="#-need-help" class="anchor-heading" aria-labelledby="-need-help"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> 💡 Need Help?
+    <a href="#verification" class="anchor-heading" aria-labelledby="verification"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Verification
+  
+  
+</h2>
+    
+
+<p>To verify the installation:</p>
+
+<ol>
+  <li>Include the header in a test file:
+    <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
+</span></pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li>Compile a simple test:
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>g++ <span class="nt">-std</span><span class="o">=</span>c++20 <span class="nt">-I</span> inc/ <span class="nt">-c</span> src/max22200.cpp <span class="nt">-o</span> test.o
+</pre></td></tr></tbody></table></div></code></pre></div>    </div>
+  </li>
+  <li>If compilation succeeds, the library is properly installed.</li>
+</ol>
+<h2 id="next-steps">
+  
+  
+    <a href="#next-steps" class="anchor-heading" aria-labelledby="next-steps"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Next Steps
   
   
 </h2>
     
 
 <ul>
-  <li><strong>🐛 Found a bug?</strong> Check the <a href="/hf-max22200-driver/development/docs/troubleshooting/">Troubleshooting</a> guide</li>
-  <li><strong>❓ Have questions?</strong> Review the <a href="/hf-max22200-driver/development/docs/api_reference.html">API Reference</a></li>
-  <li><strong>📝 Want to contribute?</strong> See the contributing guidelines in the main README</li>
+  <li>Follow the <a href="/hf-max22200-driver/development/docs/quickstart/">Quick Start</a> guide to create your first application</li>
+  <li>Review <a href="/hf-max22200-driver/development/docs/hardware_setup/">Hardware Setup</a> for wiring instructions</li>
+  <li>Check <a href="/hf-max22200-driver/development/docs/platform_integration/">Platform Integration</a> to implement the SPI interface</li>
 </ul><hr />
 
 <p><strong>Navigation</strong>
-➡️ <a href="/hf-max22200-driver/development/docs/installation/">Installation</a></p>
+⬅️ <a href="/hf-max22200-driver/development/docs/">Back to Index</a> | <a href="/hf-max22200-driver/development/docs/quickstart/">Next: Quick Start ➡️</a></p>
 
           
 
           
-            <hr>
-<h2 class="text-delta">Table of contents</h2>
-
-<ul>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/installation/">🛠️ Installation</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/quickstart/">⚡ Quick Start</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/hardware_setup/">🔌 Hardware Setup</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/platform_integration/">🔧 Platform Integration</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/configuration/">⚙️ Configuration</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/examples/">💡 Examples</a>
-  </li>
-  
-  <li>
-    <a href="/hf-max22200-driver/development/docs/troubleshooting/">🐛 Troubleshooting</a>
-  </li>
-  
-</ul>
+            
           
         </main>
         
