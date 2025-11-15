@@ -1,3 +1,12 @@
+---
+layout: default
+title: "⚡ Quick Start"
+description: "Get up and running with the MAX22200 driver in minutes"
+nav_order: 2
+parent: "📚 Documentation"
+permalink: /docs/quickstart/
+---
+
 # Quick Start
 
 This guide will get you up and running with the MAX22200 driver in just a few steps.

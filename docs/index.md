@@ -1,3 +1,13 @@
+---
+layout: default
+title: "📚 Documentation"
+description: "Complete documentation for the HardFOC MAX22200 Driver"
+nav_order: 2
+parent: "HardFOC MAX22200 Driver"
+permalink: /docs/
+has_children: true
+---
+
 # HF-MAX22200 Documentation
 
 Welcome! This directory contains step-by-step guides for installing, building, and using the **HF-MAX22200** library.

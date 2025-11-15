@@ -1,3 +1,11 @@
+---
+layout: default
+title: "HardFOC MAX22200 Driver"
+description: "Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface"
+nav_order: 1
+permalink: /
+---
+
 # HF-MAX22200 Driver
 
 **Portable C++20 driver for the MAX22200 octal solenoid and motor driver with SPI interface**

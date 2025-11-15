@@ -1,3 +1,12 @@
+---
+layout: default
+title: "🛠️ Installation"
+description: "Installation and integration instructions for the MAX22200 driver"
+nav_order: 1
+parent: "📚 Documentation"
+permalink: /docs/installation/
+---
+
 # Installation
 
 This guide covers how to obtain and integrate the MAX22200 driver library into your project.
