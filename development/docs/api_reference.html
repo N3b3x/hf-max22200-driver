@@ -1,0 +1,858 @@
+
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+
+  <link rel="stylesheet" href="/hf-max22200-driver/development/assets/css/just-the-docs-default.css">
+
+  <link rel="stylesheet" href="/hf-max22200-driver/development/assets/css/just-the-docs-head-nav.css" id="jtd-head-nav-stylesheet">
+
+  <style id="jtd-nav-activation">
+  
+
+    
+    .site-nav > ul.nav-list:first-child > li:not(:nth-child(1)) > a,
+    .site-nav > ul.nav-list:first-child > li > ul > li a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:not(:first-child) a,
+    .site-nav li.external a {
+      background-image: none;
+    }
+
+    .site-nav > ul.nav-list:first-child > li:nth-child(1) > a {
+      font-weight: 600;
+      text-decoration: none;
+    }.site-nav > ul.nav-list:first-child > li:nth-child(1) > button svg {
+      transform: rotate(-90deg);
+    }.site-nav > ul.nav-list:first-child > li.nav-list-item:nth-child(1) > ul.nav-list {
+      display: block;
+    }
+  </style>
+
+  
+
+  
+    <script src="/hf-max22200-driver/development/assets/js/vendor/lunr.min.js"></script>
+  
+
+  <script src="/hf-max22200-driver/development/assets/js/just-the-docs.js"></script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+
+
+
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>API Reference | HardFOC MAX22200 Driver - development</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="API Reference" />
+<meta name="author" content="N3b3x" />
+<meta property="og:locale" content="en" />
+<meta name="description" content="Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction" />
+<meta property="og:description" content="Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction" />
+<link rel="canonical" href="https://n3b3x.github.io/hf-max22200-driver/development/docs/api_reference.html" />
+<meta property="og:url" content="https://n3b3x.github.io/hf-max22200-driver/development/docs/api_reference.html" />
+<meta property="og:site_name" content="HardFOC MAX22200 Driver - development" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="API Reference" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"N3b3x","url":"https://github.com/n3b3x"},"description":"Comprehensive C++20 driver library for the MAX22200 octal solenoid and motor driver IC with hardware abstraction","headline":"API Reference","url":"https://n3b3x.github.io/hf-max22200-driver/development/docs/api_reference.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+
+  <!-- =============================================================================
+     Custom Head Content for HardFOC Driver Documentation
+     =============================================================================
+     This file is included in the <head> section of every page.
+     It loads custom CSS and JavaScript for enhanced functionality.
+     ============================================================================= -->
+
+<!-- Custom CSS for enhanced styling and fixes -->
+<link rel="stylesheet" href="/hf-max22200-driver/development/assets/css/custom.css">
+
+<!-- Custom JavaScript for interactive features -->
+<script src="/hf-max22200-driver/development/assets/js/custom.js" defer></script>
+
+
+
+</head>
+
+<body>
+  <a class="skip-to-main" href="#main-content">Skip to main content</a>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+  <symbol id="svg-link" viewBox="0 0 24 24">
+  <title>Link</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-link">
+    <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+  </svg>
+</symbol>
+
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+  <title>Menu</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu">
+    <line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line>
+  </svg>
+</symbol>
+
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+  <title>Expand</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right">
+    <polyline points="9 18 15 12 9 6"></polyline>
+  </svg>
+</symbol>
+
+  <!-- Feather. MIT License: https://github.com/feathericons/feather/blob/master/LICENSE -->
+<symbol id="svg-external-link" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-external-link">
+  <title id="svg-external-link-title">(external link)</title>
+  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line>
+</symbol>
+
+  
+    <symbol id="svg-doc" viewBox="0 0 24 24">
+  <title>Document</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-file">
+    <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><polyline points="13 2 13 9 20 9"></polyline>
+  </svg>
+</symbol>
+
+    <symbol id="svg-search" viewBox="0 0 24 24">
+  <title>Search</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+    <circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+  </svg>
+</symbol>
+
+  
+  
+    <!-- Bootstrap Icons. MIT License: https://github.com/twbs/icons/blob/main/LICENSE.md -->
+<symbol id="svg-copy" viewBox="0 0 16 16">
+  <title>Copy</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard" viewBox="0 0 16 16">
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1v-1z"/>
+    <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3z"/>
+  </svg>
+</symbol>
+<symbol id="svg-copied" viewBox="0 0 16 16">
+  <title>Copied</title>
+  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard-check-fill" viewBox="0 0 16 16">
+    <path d="M6.5 0A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3Zm3 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5h3Z"/>
+    <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1A2.5 2.5 0 0 1 9.5 5h-3A2.5 2.5 0 0 1 4 2.5v-1Zm6.854 7.354-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708Z"/>
+  </svg>
+</symbol>
+
+  
+</svg>
+
+  
+    <div class="side-bar">
+  <div class="site-header" role="banner">
+    <a href="/hf-max22200-driver/development/" class="site-title lh-tight">
+  HardFOC MAX22200 Driver - development
+
+</a>
+    <button id="menu-button" class="site-button btn-reset" aria-label="Toggle menu" aria-pressed="false">
+      <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-menu"></use></svg>
+    </button>
+  </div>
+
+  <nav aria-label="Main" id="site-nav" class="site-nav">
+  
+  
+    <ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration.html" class="nav-list-link">Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples.html" class="nav-list-link">Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">HF-MAX22200 Documentation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/" class="nav-list-link">HF-MAX22200 Driver</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup.html" class="nav-list-link">Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation.html" class="nav-list-link">Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration.html" class="nav-list-link">Platform Integration Guide</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart.html" class="nav-list-link">Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting.html" class="nav-list-link">Troubleshooting</a></li></ul>
+  
+</nav>
+
+
+
+
+  
+  
+    <footer class="site-footer">
+      This site uses <a href="https://github.com/just-the-docs/just-the-docs">Just the Docs</a>, a documentation theme for Jekyll.
+    </footer>
+  
+</div>
+
+  
+  <div class="main" id="top">
+    <div id="main-header" class="main-header">
+  
+    
+
+<div class="search" role="search">
+  <div class="search-input-wrap">
+    <input type="text" id="search-input" class="search-input" tabindex="0" placeholder="Search HardFOC MAX22200 Driver - development" aria-label="Search HardFOC MAX22200 Driver - development" autocomplete="off">
+    <label for="search-input" class="search-label"><svg viewBox="0 0 24 24" class="search-icon"><use xlink:href="#svg-search"></use></svg></label>
+  </div>
+  <div id="search-results" class="search-results"></div>
+</div>
+
+  
+  
+  
+    <nav aria-label="Auxiliary" class="aux-nav">
+  <ul class="aux-nav-list">
+    
+      <li class="aux-nav-list-item">
+        <a href="/hf-max22200-driver/development/api/index.html" class="site-button"
+          
+        >
+          📖 API Reference
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-max22200-driver" class="site-button"
+          
+        >
+          📚 GitHub Repository
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-max22200-driver/issues" class="site-button"
+          
+        >
+          🐛 Report Issues
+        </a>
+      </li>
+    
+      <li class="aux-nav-list-item">
+        <a href="https://github.com/n3b3x/hf-max22200-driver/stargazers" class="site-button"
+          
+        >
+          ⭐ Star on GitHub
+        </a>
+      </li>
+    
+  </ul>
+</nav>
+
+  
+</div>
+
+    <div class="main-content-wrap">
+      
+      <div id="main-content" class="main-content">
+        <main>
+          
+            <h1 id="api-reference">
+  
+  
+    <a href="#api-reference" class="anchor-heading" aria-labelledby="api-reference"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> API Reference
+  
+  
+</h1>
+    
+
+<p>Complete reference documentation for all public methods and types in the MAX22200 driver.</p>
+<h2 id="source-code">
+  
+  
+    <a href="#source-code" class="anchor-heading" aria-labelledby="source-code"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Source Code
+  
+  
+</h2>
+    
+
+<ul>
+  <li><strong>Main Header</strong>: <a href="../inc/max22200.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp</code></a></li>
+  <li><strong>SPI Interface</strong>: <a href="../inc/max22200_spi_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200_spi_interface.hpp</code></a></li>
+  <li><strong>Types</strong>: <a href="../inc/max22200_types.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp</code></a></li>
+  <li><strong>Implementation</strong>: <a href="../src/max22200.cpp"><code class="language-plaintext highlighter-rouge">src/max22200.cpp</code></a></li>
+</ul>
+<h2 id="core-class">
+  
+  
+    <a href="#core-class" class="anchor-heading" aria-labelledby="core-class"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Core Class
+  
+  
+</h2>
+    
+<h3 id="max22200spitype">
+  
+  
+    <a href="#max22200spitype" class="anchor-heading" aria-labelledby="max22200spitype"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">MAX22200&lt;SpiType&gt;</code>
+  
+  
+</h3>
+    
+
+<p>Main driver class for interfacing with the MAX22200 octal solenoid and motor driver.</p>
+
+<p><strong>Template Parameter</strong>: <code class="language-plaintext highlighter-rouge">SpiType</code> - Your SPI interface implementation (must inherit from <code class="language-plaintext highlighter-rouge">max22200::SpiInterface&lt;SpiType&gt;</code>)</p>
+
+<p><strong>Location</strong>: <a href="../inc/max22200.hpp#L64"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L64</code></a></p>
+
+<p><strong>Constructor:</strong></p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="k">explicit</span> <span class="nf">MAX22200</span><span class="p">(</span><span class="n">SpiType</span> <span class="o">&amp;</span><span class="n">spi_interface</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">enable_diagnostics</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p><strong>Location</strong>: <a href="../inc/max22200.hpp#L73"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L73</code></a></p>
+<h2 id="methods">
+  
+  
+    <a href="#methods" class="anchor-heading" aria-labelledby="methods"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Methods
+  
+  
+</h2>
+    
+<h3 id="initialization">
+  
+  
+    <a href="#initialization" class="anchor-heading" aria-labelledby="initialization"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Initialization
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus Initialize()</code></td>
+      <td><a href="../inc/max22200.hpp#L100"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L100</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus Deinitialize()</code></td>
+      <td><a href="../inc/max22200.hpp#L110"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L110</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">Reset()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus Reset()</code></td>
+      <td><a href="../inc/max22200.hpp#L120"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L120</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="global-configuration">
+  
+  
+    <a href="#global-configuration" class="anchor-heading" aria-labelledby="global-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Global Configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureGlobal()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureGlobal(const GlobalConfig &amp;config)</code></td>
+      <td><a href="../inc/max22200.hpp#L130"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L130</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetGlobalConfig()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetGlobalConfig(GlobalConfig &amp;config) const</code></td>
+      <td><a href="../inc/max22200.hpp#L138"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L138</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetSleepMode()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetSleepMode(bool enable)</code></td>
+      <td><a href="../inc/max22200.hpp#L146"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L146</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetDiagnosticMode()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetDiagnosticMode(bool enable)</code></td>
+      <td><a href="../inc/max22200.hpp#L154"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L154</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetIntegratedCurrentSensing()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetIntegratedCurrentSensing(bool enable)</code></td>
+      <td><a href="../inc/max22200.hpp#L162"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L162</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="channel-configuration">
+  
+  
+    <a href="#channel-configuration" class="anchor-heading" aria-labelledby="channel-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel Configuration
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureChannel()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &amp;config)</code></td>
+      <td><a href="../inc/max22200.hpp#L173"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L173</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetChannelConfig()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &amp;config) const</code></td>
+      <td><a href="../inc/max22200.hpp#L182"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L182</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureAllChannels()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureAllChannels(const ChannelConfigArray &amp;configs)</code></td>
+      <td><a href="../inc/max22200.hpp#L190"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L190</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetAllChannelConfigs()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetAllChannelConfigs(ChannelConfigArray &amp;configs) const</code></td>
+      <td><a href="../inc/max22200.hpp#L198"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L198</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="channel-control">
+  
+  
+    <a href="#channel-control" class="anchor-heading" aria-labelledby="channel-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel Control
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EnableChannel()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus EnableChannel(uint8_t channel, bool enable)</code></td>
+      <td><a href="../inc/max22200.hpp#L209"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L209</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EnableAllChannels()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus EnableAllChannels(bool enable)</code></td>
+      <td><a href="../inc/max22200.hpp#L217"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L217</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelDriveMode()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelDriveMode(uint8_t channel, DriveMode mode)</code></td>
+      <td><a href="../inc/max22200.hpp#L226"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L226</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelBridgeMode()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelBridgeMode(uint8_t channel, BridgeMode mode)</code></td>
+      <td><a href="../inc/max22200.hpp#L235"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L235</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelPolarity()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelPolarity(uint8_t channel, OutputPolarity polarity)</code></td>
+      <td><a href="../inc/max22200.hpp#L244"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L244</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="current-control">
+  
+  
+    <a href="#current-control" class="anchor-heading" aria-labelledby="current-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Current Control
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetHitCurrent()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHitCurrent(uint8_t channel, uint16_t current)</code></td>
+      <td><a href="../inc/max22200.hpp#L255"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L255</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetHoldCurrent()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHoldCurrent(uint8_t channel, uint16_t current)</code></td>
+      <td><a href="../inc/max22200.hpp#L264"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L264</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetCurrents()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current)</code></td>
+      <td><a href="../inc/max22200.hpp#L274"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L274</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetCurrents()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetCurrents(uint8_t channel, uint16_t &amp;hit_current, uint16_t &amp;hold_current) const</code></td>
+      <td><a href="../inc/max22200.hpp#L285"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L285</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="timing-control">
+  
+  
+    <a href="#timing-control" class="anchor-heading" aria-labelledby="timing-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Timing Control
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetHitTime()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHitTime(uint8_t channel, uint16_t time)</code></td>
+      <td><a href="../inc/max22200.hpp#L297"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L297</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetHitTime()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetHitTime(uint8_t channel, uint16_t &amp;time) const</code></td>
+      <td><a href="../inc/max22200.hpp#L306"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L306</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="status-and-diagnostics">
+  
+  
+    <a href="#status-and-diagnostics" class="anchor-heading" aria-labelledby="status-and-diagnostics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Status and Diagnostics
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadFaultStatus()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadFaultStatus(FaultStatus &amp;status) const</code></td>
+      <td><a href="../inc/max22200.hpp#L316"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L316</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ClearFaultStatus()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ClearFaultStatus()</code></td>
+      <td><a href="../inc/max22200.hpp#L325"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L325</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadChannelStatus()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadChannelStatus(uint8_t channel, ChannelStatus &amp;status) const</code></td>
+      <td><a href="../inc/max22200.hpp#L334"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L334</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadAllChannelStatuses()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadAllChannelStatuses(ChannelStatusArray &amp;statuses) const</code></td>
+      <td><a href="../inc/max22200.hpp#L342"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L342</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetStatistics()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetStatistics(DriverStatistics &amp;stats) const</code></td>
+      <td><a href="../inc/max22200.hpp#L350"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L350</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ResetStatistics()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus ResetStatistics()</code></td>
+      <td><a href="../inc/max22200.hpp#L359"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L359</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="callbacks">
+  
+  
+    <a href="#callbacks" class="anchor-heading" aria-labelledby="callbacks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Callbacks
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetFaultCallback()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">void SetFaultCallback(FaultCallback callback, void *user_data = nullptr)</code></td>
+      <td><a href="../inc/max22200.hpp#L369"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L369</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetStateChangeCallback()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">void SetStateChangeCallback(StateChangeCallback callback, void *user_data = nullptr)</code></td>
+      <td><a href="../inc/max22200.hpp#L377"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L377</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="utility">
+  
+  
+    <a href="#utility" class="anchor-heading" aria-labelledby="utility"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Utility
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Signature</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">bool IsInitialized() const</code></td>
+      <td><a href="../inc/max22200.hpp#L387"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L387</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">IsValidChannel()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">static constexpr bool IsValidChannel(uint8_t channel)</code></td>
+      <td><a href="../inc/max22200.hpp#L395"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L395</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetVersion()</code></td>
+      <td><code class="language-plaintext highlighter-rouge">static constexpr const char *GetVersion()</code></td>
+      <td><a href="../inc/max22200.hpp#L404"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L404</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h2 id="types">
+  
+  
+    <a href="#types" class="anchor-heading" aria-labelledby="types"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Types
+  
+  
+</h2>
+    
+<h3 id="enumerations">
+  
+  
+    <a href="#enumerations" class="anchor-heading" aria-labelledby="enumerations"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Enumerations
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Values</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatus</code></td>
+      <td><code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">INITIALIZATION_ERROR</code>, <code class="language-plaintext highlighter-rouge">COMMUNICATION_ERROR</code>, <code class="language-plaintext highlighter-rouge">INVALID_PARAMETER</code>, <code class="language-plaintext highlighter-rouge">HARDWARE_FAULT</code>, <code class="language-plaintext highlighter-rouge">TIMEOUT</code></td>
+      <td><a href="../inc/max22200_types.hpp#L201"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L201</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DriveMode</code></td>
+      <td><code class="language-plaintext highlighter-rouge">CDR</code>, <code class="language-plaintext highlighter-rouge">VDR</code></td>
+      <td><a href="../inc/max22200_types.hpp#L23"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L23</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BridgeMode</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HALF_BRIDGE</code>, <code class="language-plaintext highlighter-rouge">FULL_BRIDGE</code></td>
+      <td><a href="../inc/max22200_types.hpp#L31"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L31</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">OutputPolarity</code></td>
+      <td><code class="language-plaintext highlighter-rouge">NORMAL</code>, <code class="language-plaintext highlighter-rouge">INVERTED</code></td>
+      <td><a href="../inc/max22200_types.hpp#L39"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L39</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FaultType</code></td>
+      <td><code class="language-plaintext highlighter-rouge">OCP</code>, <code class="language-plaintext highlighter-rouge">OL</code>, <code class="language-plaintext highlighter-rouge">DPM</code>, <code class="language-plaintext highlighter-rouge">UVLO</code>, <code class="language-plaintext highlighter-rouge">HHF</code>, <code class="language-plaintext highlighter-rouge">TSD</code></td>
+      <td><a href="../inc/max22200_types.hpp#L47"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L47</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChannelState</code></td>
+      <td><code class="language-plaintext highlighter-rouge">DISABLED</code>, <code class="language-plaintext highlighter-rouge">ENABLED</code>, <code class="language-plaintext highlighter-rouge">HIT_PHASE</code>, <code class="language-plaintext highlighter-rouge">HOLD_PHASE</code>, <code class="language-plaintext highlighter-rouge">FAULT</code></td>
+      <td><a href="../inc/max22200_types.hpp#L213"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L213</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="structures">
+  
+  
+    <a href="#structures" class="anchor-heading" aria-labelledby="structures"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Structures
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Description</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChannelConfig</code></td>
+      <td>Channel configuration structure</td>
+      <td><a href="../inc/max22200_types.hpp#L62"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L62</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GlobalConfig</code></td>
+      <td>Global configuration structure</td>
+      <td><a href="../inc/max22200_types.hpp#L106"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L106</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FaultStatus</code></td>
+      <td>Fault status structure</td>
+      <td><a href="../inc/max22200_types.hpp#L128"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L128</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChannelStatus</code></td>
+      <td>Channel status structure</td>
+      <td><a href="../inc/max22200_types.hpp#L182"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L182</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatistics</code></td>
+      <td>Driver statistics structure</td>
+      <td><a href="../inc/max22200_types.hpp#L262"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L262</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="type-aliases">
+  
+  
+    <a href="#type-aliases" class="anchor-heading" aria-labelledby="type-aliases"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Type Aliases
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Definition</th>
+      <th>Location</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChannelConfigArray</code></td>
+      <td><code class="language-plaintext highlighter-rouge">std::array&lt;ChannelConfig, 8&gt;</code></td>
+      <td><a href="../inc/max22200_types.hpp#L224"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L224</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChannelStatusArray</code></td>
+      <td><code class="language-plaintext highlighter-rouge">std::array&lt;ChannelStatus, 8&gt;</code></td>
+      <td><a href="../inc/max22200_types.hpp#L229"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L229</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FaultCallback</code></td>
+      <td><code class="language-plaintext highlighter-rouge">void (*)(uint8_t channel, FaultType fault_type, void *user_data)</code></td>
+      <td><a href="../inc/max22200_types.hpp#L243"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L243</code></a></td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">StateChangeCallback</code></td>
+      <td><code class="language-plaintext highlighter-rouge">void (*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data)</code></td>
+      <td><a href="../inc/max22200_types.hpp#L254"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L254</code></a></td>
+    </tr>
+  </tbody>
+</table></div><hr />
+
+<p><strong>Navigation</strong>
+⬅️ <a href="/hf-max22200-driver/development/docs/configuration.html">Configuration</a> | <a href="/hf-max22200-driver/development/docs/examples.html">Next: Examples ➡️</a> | <a href="/hf-max22200-driver/development/docs/">Back to Index</a></p>
+
+          
+
+          
+            
+          
+        </main>
+        
+
+  <hr>
+  <footer>
+    
+
+    <!-- =============================================================================
+     Custom Footer Content for HardFOC Driver Documentation
+     =============================================================================
+     This footer is displayed at the bottom of every page.
+     ============================================================================= -->
+
+<footer class="site-footer">
+  <div class="site-footer-credits">
+    <p>Built with ❤️ using <a href="https://just-the-docs.github.io/just-the-docs/">Just the Docs</a></p>
+    <p>
+      <a href="https://github.com/n3b3x/hf-max22200-driver/development/blob/main/LICENSE">GPL v3 License</a> • 
+      <a href="https://github.com/n3b3x/hf-max22200-driver/development">View on GitHub</a>
+    </p>
+  </div>
+</footer>
+
+
+
+    
+  </footer>
+
+
+      </div>
+    </div>
+    
+      
+<button id="search-button" class="search-button btn-reset" aria-label="Focus on search">
+  <svg viewBox="0 0 24 24" class="icon" aria-hidden="true"><use xlink:href="#svg-search"></use></svg>
+</button>
+
+
+<div class="search-overlay"></div>
+
+    
+  </div>
+
+  
+</body>
+</html>
+
