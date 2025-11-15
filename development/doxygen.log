@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.BAITV2
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.BAITV2' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.XyZBDR
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.XyZBDR' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/src/max22200.cpp:2: warning: the name 'MAX22200.cpp' supplied as the argument in the \file statement is not an input file
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:80: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
@@ -12,19 +12,19 @@ warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.BAITV2' has b
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:321: warning: The following parameter of print_test_summary(const TestResults &test_results, const char *test_suite_name, const char *tag) is not documented:
   parameter 'tag'
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:8: warning: unable to resolve reference to '-overview' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:9: warning: unable to resolve reference to '-features' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:10: warning: unable to resolve reference to '-quick-start' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:11: warning: unable to resolve reference to '-installation' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:12: warning: unable to resolve reference to '-api-reference' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:13: warning: unable to resolve reference to '-examples' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:14: warning: unable to resolve reference to '-documentation' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:15: warning: unable to resolve reference to '-contributing' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:16: warning: unable to resolve reference to '-license' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:73: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:73: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/quickstart.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:78: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/platform_integration.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:85: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:103: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/api_reference.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:110: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/examples.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:114: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/index.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:11: warning: unable to resolve reference to '-overview' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:12: warning: unable to resolve reference to '-features' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:13: warning: unable to resolve reference to '-quick-start' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:14: warning: unable to resolve reference to '-installation' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:15: warning: unable to resolve reference to '-api-reference' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:16: warning: unable to resolve reference to '-examples' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:17: warning: unable to resolve reference to '-documentation' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:18: warning: unable to resolve reference to '-contributing' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:19: warning: unable to resolve reference to '-license' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:76: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:76: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/quickstart.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:81: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/platform_integration.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:88: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:106: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/api_reference.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:113: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/examples.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:117: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/index.md' for \ref command
