@@ -37,7 +37,7 @@
 *.out
 *.app
 
-# debug information files
+# Debug information files
 *.dwo
 
 # Build directories (ESP-IDF and general)
@@ -78,6 +78,17 @@ Makefile
 **/docs/html/
 **/docs/doxygen/
 docs/doxygen/
+docs/html/
+
+# VSCode user-specific files (keep .vscode/ but ignore user files)
+.vscode/settings.json.user
+.vscode/*.backup
+
+# IDE settings
+.idea/
+*.swp
+*.swo
+*~
 
 # Python
 .venv/
@@ -90,15 +101,35 @@ __pycache__/
 
 # Cache
 **/.cache/
+.cache/
 
 # Compile commands
 **/compile_commands.json
+compile_commands.json
 
 # Log files
 **/logs/
 **/*.log
+logs/
+
+# CI/CD
+ci_build_path/
+actionlint*
+**/actionlint*
+
+# Node modules
+**/node_modules/
+node_modules/
+package-lock.json
+package*.json
 
 # OS files
 .DS_Store
 **/.DS_Store
+*.DS_Store
 Thumbs.db
+**/Thumbs.db
+
+# Backup files
+**/*.bak*
+*.bak
