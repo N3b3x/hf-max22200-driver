@@ -12,6 +12,7 @@
 #include <memory>
 
 #include "esp32_max22200_spi.hpp"
+#include "esp32_max22200_test_config.hpp"
 #include "max22200.hpp"
 #include "TestFramework.h"
 #include "freertos/FreeRTOS.h"
@@ -50,18 +51,8 @@ static std::unique_ptr<max22200::MAX22200<Esp32Max22200Spi>> g_driver;
  * @brief Initialize test resources
  */
 static bool init_test_resources() noexcept {
-  // Create SPI interface
-  Esp32Max22200Spi::SPIConfig spi_config;
-  spi_config.host = SPI2_HOST;
-  spi_config.miso_pin = GPIO_NUM_2;
-  spi_config.mosi_pin = GPIO_NUM_7;
-  spi_config.sclk_pin = GPIO_NUM_6;
-  spi_config.cs_pin = GPIO_NUM_10;
-  spi_config.frequency = 10000000; // 10 MHz
-  spi_config.mode = 0;             // SPI Mode 0
-  spi_config.queue_size = 1;
-
-  g_spi_interface = std::make_unique<Esp32Max22200Spi>(spi_config);
+  // Create SPI interface using centralized test config
+  g_spi_interface = CreateEsp32Max22200Spi();
 
   // Create driver instance
   g_driver = std::make_unique<max22200::MAX22200<Esp32Max22200Spi>>(*g_spi_interface);
