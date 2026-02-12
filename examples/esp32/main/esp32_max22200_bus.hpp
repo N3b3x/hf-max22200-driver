@@ -1,5 +1,5 @@
 /**
- * @file esp32_max22200_spi.hpp
+ * @file esp32_max22200_bus.hpp
  * @brief ESP32 SPI transport implementation for MAX22200 driver (header-only)
  *
  * This file provides the ESP32-specific implementation of the
@@ -26,24 +26,27 @@
 #include <memory>
 
 /**
- * @class Esp32Max22200Spi
+ * @class Esp32Max22200SpiBus
  * @brief ESP32 SPI transport implementation for MAX22200 driver
  *
  * This class implements the max22200::SpiInterface using ESP-IDF's SPI
  * driver with CRTP pattern. It supports configurable SPI pins, frequency, and
  * chip select.
  */
-class Esp32Max22200Spi : public max22200::SpiInterface<Esp32Max22200Spi> {
+class Esp32Max22200SpiBus : public max22200::SpiInterface<Esp32Max22200SpiBus> {
 public:
   /**
    * @brief SPI configuration structure
+   *
+   * Pin members have no defaults; set them from your board config
+   * (e.g. MAX22200_TestConfig::SPIPins) so wiring is explicit per target.
    */
   struct SPIConfig {
-    spi_host_device_t host = SPI2_HOST; ///< SPI host (SPI2_HOST for ESP32-C6)
-    gpio_num_t miso_pin = GPIO_NUM_2;   ///< MISO pin (default GPIO2 for ESP32-C6)
-    gpio_num_t mosi_pin = GPIO_NUM_7;   ///< MOSI pin (default GPIO7 for ESP32-C6)
-    gpio_num_t sclk_pin = GPIO_NUM_6;   ///< SCLK pin (default GPIO6 for ESP32-C6)
-    gpio_num_t cs_pin = GPIO_NUM_10;    ///< CS pin (default GPIO10)
+    spi_host_device_t host = SPI2_HOST; ///< SPI host (e.g. SPI2_HOST for ESP32-C6)
+    gpio_num_t miso_pin;   ///< MISO pin (set from board config)
+    gpio_num_t mosi_pin;   ///< MOSI pin (set from board config)
+    gpio_num_t sclk_pin;   ///< SCLK pin (set from board config)
+    gpio_num_t cs_pin;     ///< CS pin (set from board config)
     uint32_t frequency = 10000000;      ///< SPI frequency in Hz (default 10MHz)
     uint8_t mode = 0;       ///< SPI mode (default 0: CPOL=0, CPHA=0)
     uint8_t queue_size = 1; ///< Transaction queue size
@@ -52,21 +55,16 @@ public:
   };
 
   /**
-   * @brief Constructor with default SPI configuration
-   */
-  Esp32Max22200Spi() : Esp32Max22200Spi(SPIConfig{}) {}
-
-  /**
-   * @brief Constructor with custom SPI configuration
+   * @brief Constructor with SPI configuration (pins must be set by caller)
    * @param config SPI configuration parameters
    */
-  explicit Esp32Max22200Spi(const SPIConfig &config)
+  explicit Esp32Max22200SpiBus(const SPIConfig &config)
       : config_(config), spi_device_(nullptr), initialized_(false) {}
 
   /**
    * @brief Destructor - cleans up SPI resources
    */
-  ~Esp32Max22200Spi() {
+  ~Esp32Max22200SpiBus() {
     if (spi_device_ != nullptr) {
       spi_bus_remove_device(spi_device_);
       spi_bus_free(config_.host);
@@ -169,7 +167,7 @@ private:
   SPIConfig config_;               ///< SPI configuration
   spi_device_handle_t spi_device_; ///< SPI device handle
   bool initialized_;               ///< Initialization state
-  static constexpr const char *TAG = "Esp32Max22200Spi"; ///< Logging tag
+  static constexpr const char *TAG = "Esp32Max22200SpiBus"; ///< Logging tag
 
   /**
    * @brief Initialize SPI bus
@@ -226,17 +224,17 @@ private:
 };
 
 /**
- * @brief Factory function to create a configured Esp32Max22200Spi instance
+ * @brief Factory function to create a configured Esp32Max22200SpiBus instance
  *
- * Creates an Esp32Max22200Spi using pin and parameter values from
+ * Creates an Esp32Max22200SpiBus using pin and parameter values from
  * MAX22200_TestConfig namespace (esp32_max22200_test_config.hpp).
  *
- * @return std::unique_ptr<Esp32Max22200Spi> Configured SPI interface
+ * @return std::unique_ptr<Esp32Max22200SpiBus> Configured SPI interface
  */
-inline auto CreateEsp32Max22200Spi() noexcept -> std::unique_ptr<Esp32Max22200Spi> {
+inline auto CreateEsp32Max22200SpiBus() noexcept -> std::unique_ptr<Esp32Max22200SpiBus> {
   using namespace MAX22200_TestConfig;
 
-  Esp32Max22200Spi::SPIConfig config;
+  Esp32Max22200SpiBus::SPIConfig config;
 
   // SPI pins from esp32_max22200_test_config.hpp
   config.host = SPI2_HOST;
@@ -252,5 +250,5 @@ inline auto CreateEsp32Max22200Spi() noexcept -> std::unique_ptr<Esp32Max22200Sp
   config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
   config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
 
-  return std::make_unique<Esp32Max22200Spi>(config);
+  return std::make_unique<Esp32Max22200SpiBus>(config);
 }

@@ -1,16 +1,9 @@
 /**
  * @file max22200.hpp
  * @brief Main driver class for MAX22200 octal solenoid and motor driver
- * @author MAX22200 Driver Library
- * @date 2024
- *
- * This file contains the main MAX22200 driver class that provides
- * a comprehensive interface for controlling the MAX22200 IC.
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
-#ifndef MAX22200_H
-#define MAX22200_H
-
+#pragma once
 #include "max22200_registers.hpp"
 #include "max22200_types.hpp"
 #include "max22200_spi_interface.hpp"
@@ -442,9 +435,8 @@ private:
 
 // Include template implementation
 #define MAX22200_HEADER_INCLUDED
-#include "../src/max22200.cpp"
+// NOLINTNEXTLINE(bugprone-suspicious-include) - Intentional: template implementation file
+#include "../src/max22200.ipp"
 #undef MAX22200_HEADER_INCLUDED
 
 } // namespace max22200
-
-#endif // MAX22200_H

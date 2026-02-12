@@ -1,16 +1,9 @@
 /**
  * @file max22200_types.hpp
  * @brief Type definitions and structures for MAX22200 driver
- * @author MAX22200 Driver Library
- * @date 2024
- *
- * This file contains all type definitions, structures, and enums
- * used by the MAX22200 driver library.
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
-#ifndef MAX22200_TYPES_H
-#define MAX22200_TYPES_H
-
+#pragma once
 #include "max22200_registers.hpp"
 #include <array>
 #include <cstdint>
@@ -288,5 +281,3 @@ struct DriverStatistics {
 };
 
 } // namespace max22200
-
-#endif // MAX22200_TYPES_H

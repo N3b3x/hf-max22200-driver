@@ -11,7 +11,7 @@
 
 #include <memory>
 
-#include "esp32_max22200_spi.hpp"
+#include "esp32_max22200_bus.hpp"
 #include "esp32_max22200_test_config.hpp"
 #include "max22200.hpp"
 #include "TestFramework.h"
@@ -40,8 +40,8 @@ static constexpr bool ENABLE_BASIC_TESTS = true;
 //=============================================================================
 // SHARED TEST RESOURCES
 //=============================================================================
-static std::unique_ptr<Esp32Max22200Spi> g_spi_interface;
-static std::unique_ptr<max22200::MAX22200<Esp32Max22200Spi>> g_driver;
+static std::unique_ptr<Esp32Max22200SpiBus> g_spi_interface;
+static std::unique_ptr<max22200::MAX22200<Esp32Max22200SpiBus>> g_driver;
 
 //=============================================================================
 // TEST HELPER FUNCTIONS
@@ -52,10 +52,10 @@ static std::unique_ptr<max22200::MAX22200<Esp32Max22200Spi>> g_driver;
  */
 static bool init_test_resources() noexcept {
   // Create SPI interface using centralized test config
-  g_spi_interface = CreateEsp32Max22200Spi();
+  g_spi_interface = CreateEsp32Max22200SpiBus();
 
   // Create driver instance
-  g_driver = std::make_unique<max22200::MAX22200<Esp32Max22200Spi>>(*g_spi_interface);
+  g_driver = std::make_unique<max22200::MAX22200<Esp32Max22200SpiBus>>(*g_spi_interface);
 
   ESP_LOGI(TAG, "Test resources initialized");
   return true;
@@ -100,18 +100,18 @@ static bool test_basic_initialization() noexcept {
   }
 
   // Test channel validation
-  if (!max22200::MAX22200<Esp32Max22200Spi>::IsValidChannel(0)) {
+  if (!max22200::MAX22200<Esp32Max22200SpiBus>::IsValidChannel(0)) {
     ESP_LOGE(TAG, "Channel 0 should be valid");
     return false;
   }
 
-  if (max22200::MAX22200<Esp32Max22200Spi>::IsValidChannel(8)) {
+  if (max22200::MAX22200<Esp32Max22200SpiBus>::IsValidChannel(8)) {
     ESP_LOGE(TAG, "Channel 8 should be invalid");
     return false;
   }
 
   // Test version retrieval
-  const char *version = max22200::MAX22200<Esp32Max22200Spi>::GetVersion();
+  const char *version = max22200::MAX22200<Esp32Max22200SpiBus>::GetVersion();
   if (version == nullptr) {
     ESP_LOGE(TAG, "Version string is null");
     return false;

@@ -1,14 +1,8 @@
 /**
- * @file MAX22200.cpp
+ * @file max22200.ipp
  * @brief Implementation of MAX22200 driver class
- * @author MAX22200 Driver Library
- * @date 2024
- *
- * This file contains the implementation of the MAX22200 driver class,
- * providing comprehensive control over the MAX22200 octal solenoid
- * and motor driver IC.
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
 #ifndef MAX22200_IMPL
 #define MAX22200_IMPL
 

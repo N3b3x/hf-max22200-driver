@@ -21,44 +21,42 @@
 #include <cstdint>
 
 /**
- * @class Esp32Max22200Spi
+ * @class Esp32Max22200SpiBus
  * @brief ESP32 SPI transport implementation for MAX22200 driver
  *
  * This class implements the max22200::SpiInterface using ESP-IDF's SPI
  * driver with CRTP pattern. It supports configurable SPI pins, frequency, and
  * chip select.
  */
-class Esp32Max22200Spi : public max22200::SpiInterface<Esp32Max22200Spi> {
+class Esp32Max22200SpiBus : public max22200::SpiInterface<Esp32Max22200SpiBus> {
 public:
   /**
    * @brief SPI configuration structure
+   *
+   * Pin members have no defaults; set them from your board config so
+   * wiring is explicit per target.
    */
   struct SPIConfig {
-    spi_host_device_t host = SPI2_HOST; ///< SPI host (SPI2_HOST for ESP32-C6)
-    gpio_num_t miso_pin = GPIO_NUM_2;   ///< MISO pin (default GPIO2)
-    gpio_num_t mosi_pin = GPIO_NUM_7;   ///< MOSI pin (default GPIO7)
-    gpio_num_t sclk_pin = GPIO_NUM_6;   ///< SCLK pin (default GPIO6)
-    gpio_num_t cs_pin = GPIO_NUM_10;    ///< CS pin (default GPIO10)
+    spi_host_device_t host = SPI2_HOST; ///< SPI host (e.g. SPI2_HOST for ESP32-C6)
+    gpio_num_t miso_pin;   ///< MISO pin (set from board config)
+    gpio_num_t mosi_pin;   ///< MOSI pin (set from board config)
+    gpio_num_t sclk_pin;   ///< SCLK pin (set from board config)
+    gpio_num_t cs_pin;     ///< CS pin (set from board config)
     uint32_t frequency = 10000000;      ///< SPI frequency in Hz (default 10MHz)
     uint8_t mode = 0;                   ///< SPI mode (default 0: CPOL=0, CPHA=0)
     uint8_t queue_size = 1;             ///< Transaction queue size
   };
 
   /**
-   * @brief Constructor with default SPI configuration
-   */
-  Esp32Max22200Spi() : Esp32Max22200Spi(SPIConfig{}) {}
-
-  /**
-   * @brief Constructor with custom SPI configuration
+   * @brief Constructor with SPI configuration (pins must be set by caller)
    * @param config SPI configuration parameters
    */
-  explicit Esp32Max22200Spi(const SPIConfig& config);
+  explicit Esp32Max22200SpiBus(const SPIConfig& config);
 
   /**
    * @brief Destructor - cleans up SPI resources
    */
-  ~Esp32Max22200Spi();
+  ~Esp32Max22200SpiBus();
 
   /**
    * @brief Initialize the SPI bus
@@ -100,7 +98,7 @@ private:
   SPIConfig config_;               ///< SPI configuration
   spi_device_handle_t spi_device_; ///< SPI device handle
   bool initialized_;               ///< Initialization state
-  static constexpr const char* TAG = "Esp32Max22200Spi"; ///< Logging tag
+  static constexpr const char* TAG = "Esp32Max22200SpiBus"; ///< Logging tag
 
   /**
    * @brief Initialize SPI bus

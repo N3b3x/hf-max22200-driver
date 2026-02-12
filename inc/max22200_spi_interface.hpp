@@ -1,18 +1,9 @@
 /**
  * @file max22200_spi_interface.hpp
  * @brief CRTP-based template interface for SPI communication
- * @author MAX22200 Driver Library
- * @date 2024
- *
- * This file defines a CRTP (Curiously Recurring Template Pattern) interface
- * for SPI communication, providing hardware abstraction for the MAX22200
- * driver. This approach provides compile-time polymorphism without virtual
- * function overhead.
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
-#ifndef SPI_INTERFACE_H
-#define SPI_INTERFACE_H
-
+#pragma once
 #include <cstddef>
 #include <cstdint>
 
@@ -134,5 +125,3 @@ protected:
 };
 
 } // namespace max22200
-
-#endif // SPI_INTERFACE_H

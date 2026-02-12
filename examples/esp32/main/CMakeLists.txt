@@ -78,7 +78,7 @@ set(MAIN_REQUIRES
 # Component Registration
 # =============================================================================
 # Additional source files for the component
-# (ESP32 SPI bus implementation is header-only in esp32_max22200_spi.hpp)
+# (ESP32 SPI bus implementation is header-only in esp32_max22200_bus.hpp)
 
 # Register the main component with ESP-IDF build system
 idf_component_register(
@@ -91,7 +91,7 @@ idf_component_register(
 # Compiler Configuration
 # =============================================================================
 # Set C++ standard
-target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_17)
+target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_20)
 
 # =============================================================================
 # Build Type Specific Compiler Flags

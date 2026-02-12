@@ -1,16 +1,9 @@
 /**
  * @file max22200_registers.hpp
  * @brief Register definitions and constants for MAX22200 IC
- * @author MAX22200 Driver Library
- * @date 2024
- *
- * This file contains all register addresses, bit field definitions,
- * and constants for the MAX22200 octal solenoid and motor driver.
+ * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
-
-#ifndef MAX22200_REGISTERS_H
-#define MAX22200_REGISTERS_H
-
+#pragma once
 #include <cstdint>
 
 namespace max22200 {
@@ -217,5 +210,3 @@ constexpr uint8_t getChannelTimingReg(uint8_t channel) {
 }
 
 } // namespace max22200
-
-#endif // MAX22200_REGISTERS_H
