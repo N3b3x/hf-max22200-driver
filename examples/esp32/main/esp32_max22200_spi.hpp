@@ -1,5 +1,5 @@
 /**
- * @file esp32_max22200_bus.hpp
+ * @file esp32_max22200_spi.hpp
  * @brief ESP32 SPI transport implementation for MAX22200 driver (header-only)
  *
  * This file provides the ESP32-specific implementation of the
@@ -26,30 +26,24 @@
 #include <memory>
 
 /**
- * @class Esp32Max22200SpiBus
+ * @class Esp32Max22200Spi
  * @brief ESP32 SPI transport implementation for MAX22200 driver
  *
  * This class implements the max22200::SpiInterface using ESP-IDF's SPI
  * driver with CRTP pattern. It supports configurable SPI pins, frequency, and
  * chip select.
  */
-class Esp32Max22200SpiBus : public max22200::SpiInterface<Esp32Max22200SpiBus> {
+class Esp32Max22200Spi : public max22200::SpiInterface<Esp32Max22200Spi> {
 public:
   /**
    * @brief SPI configuration structure
-   *
-   * Pin members have no defaults; set them from your board config
-   * (e.g. MAX22200_TestConfig::SPIPins) so wiring is explicit per target.
    */
   struct SPIConfig {
-    spi_host_device_t host = SPI2_HOST; ///< SPI host (e.g. SPI2_HOST for ESP32-C6)
-    gpio_num_t miso_pin;   ///< MISO pin (set from board config)
-    gpio_num_t mosi_pin;   ///< MOSI pin (set from board config)
-    gpio_num_t sclk_pin;   ///< SCLK pin (set from board config)
-    gpio_num_t cs_pin;     ///< CS pin (set from board config)
-    int16_t enable_pin = -1;  ///< ENABLE pin (active-high, -1 = not configured)
-    int16_t fault_pin = -1;   ///< FAULT pin (active-low, open-drain input, -1 = not configured)
-    int16_t cmd_pin = -1;     ///< CMD pin (active-high = SPI mode, -1 = not configured)
+    spi_host_device_t host = SPI2_HOST; ///< SPI host (SPI2_HOST for ESP32-C6)
+    gpio_num_t miso_pin = GPIO_NUM_2;   ///< MISO pin (default GPIO2 for ESP32-C6)
+    gpio_num_t mosi_pin = GPIO_NUM_7;   ///< MOSI pin (default GPIO7 for ESP32-C6)
+    gpio_num_t sclk_pin = GPIO_NUM_6;   ///< SCLK pin (default GPIO6 for ESP32-C6)
+    gpio_num_t cs_pin = GPIO_NUM_10;    ///< CS pin (default GPIO10)
     uint32_t frequency = 10000000;      ///< SPI frequency in Hz (default 10MHz)
     uint8_t mode = 0;       ///< SPI mode (default 0: CPOL=0, CPHA=0)
     uint8_t queue_size = 1; ///< Transaction queue size
@@ -58,16 +52,21 @@ public:
   };
 
   /**
-   * @brief Constructor with SPI configuration (pins must be set by caller)
+   * @brief Constructor with default SPI configuration
+   */
+  Esp32Max22200Spi() : Esp32Max22200Spi(SPIConfig{}) {}
+
+  /**
+   * @brief Constructor with custom SPI configuration
    * @param config SPI configuration parameters
    */
-  explicit Esp32Max22200SpiBus(const SPIConfig &config)
+  explicit Esp32Max22200Spi(const SPIConfig &config)
       : config_(config), spi_device_(nullptr), initialized_(false) {}
 
   /**
    * @brief Destructor - cleans up SPI resources
    */
-  ~Esp32Max22200SpiBus() {
+  ~Esp32Max22200Spi() {
     if (spi_device_ != nullptr) {
       spi_bus_remove_device(spi_device_);
       spi_bus_free(config_.host);
@@ -82,11 +81,6 @@ public:
   bool Initialize() {
     if (initialized_) {
       return true;
-    }
-
-    if (!initializeGPIO()) {
-      ESP_LOGE(TAG, "Failed to initialize GPIO pins");
-      return false;
     }
 
     if (!initializeSPI()) {
@@ -171,107 +165,11 @@ public:
     return initialized_ && (spi_device_ != nullptr);
   }
 
-  // ── GPIO Pin Control ─────────────────────────────────────────────────
-
-  /**
-   * @brief Set a control pin to the specified signal state
-   *
-   * Maps GpioSignal to physical level based on pin polarity:
-   * - ENABLE: active-high (ACTIVE → GPIO 1, INACTIVE → GPIO 0)
-   * - CMD:    active-high (ACTIVE → GPIO 1, INACTIVE → GPIO 0)
-   * - FAULT:  read-only, GpioSet on FAULT returns silently
-   *
-   * @param pin   Which control pin to drive
-   * @param signal ACTIVE to assert, INACTIVE to deassert
-   */
-  void GpioSet(max22200::CtrlPin pin, max22200::GpioSignal signal) {
-    int gpio_pin = -1;
-    int level = 0;
-    switch (pin) {
-      case max22200::CtrlPin::ENABLE:
-        gpio_pin = config_.enable_pin;
-        level = (signal == max22200::GpioSignal::ACTIVE) ? 1 : 0; // Active-high
-        break;
-      case max22200::CtrlPin::CMD:
-        gpio_pin = config_.cmd_pin;
-        level = (signal == max22200::GpioSignal::ACTIVE) ? 1 : 0; // Active-high
-        break;
-      case max22200::CtrlPin::FAULT:
-        return; // FAULT is read-only
-    }
-    if (gpio_pin >= 0) {
-      gpio_set_level(static_cast<gpio_num_t>(gpio_pin), level);
-    }
-  }
-
-  /**
-   * @brief Read the current state of a control pin
-   *
-   * Primarily used for reading the FAULT pin:
-   * - FAULT: active-low (GPIO 0 → ACTIVE, GPIO 1 → INACTIVE)
-   *
-   * @param pin    Which control pin to read
-   * @param signal Receives the current signal state
-   * @return true if read was successful, false if pin not configured
-   */
-  bool GpioRead(max22200::CtrlPin pin, max22200::GpioSignal &signal) {
-    if (pin != max22200::CtrlPin::FAULT || config_.fault_pin < 0) {
-      return false;
-    }
-    int level = gpio_get_level(static_cast<gpio_num_t>(config_.fault_pin));
-    // FAULT is active-low: physical 0 = fault present (ACTIVE)
-    signal = (level == 0) ? max22200::GpioSignal::ACTIVE
-                          : max22200::GpioSignal::INACTIVE;
-    return true;
-  }
-
 private:
   SPIConfig config_;               ///< SPI configuration
   spi_device_handle_t spi_device_; ///< SPI device handle
   bool initialized_;               ///< Initialization state
-  static constexpr const char *TAG = "Esp32Max22200SpiBus"; ///< Logging tag
-
-  /**
-   * @brief Initialize GPIO pins (ENABLE, FAULT, CMD)
-   * @return true if successful, false otherwise
-   */
-  bool initializeGPIO() {
-    // Configure output pins (ENABLE, CMD)
-    auto configure_output = [this](int16_t pin, const char *name, int initial) -> bool {
-      if (pin < 0) return true; // Not configured, skip
-      gpio_config_t cfg = {
-          .pin_bit_mask = (1ULL << pin),
-          .mode = GPIO_MODE_OUTPUT,
-          .pull_up_en = GPIO_PULLUP_DISABLE,
-          .pull_down_en = GPIO_PULLDOWN_DISABLE,
-          .intr_type = GPIO_INTR_DISABLE};
-      if (gpio_config(&cfg) != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to configure %s pin (GPIO%d)", name, pin);
-        return false;
-      }
-      gpio_set_level(static_cast<gpio_num_t>(pin), initial);
-      ESP_LOGI(TAG, "%s pin (GPIO%d) initialized, level=%d", name, pin, initial);
-      return true;
-    };
-    if (!configure_output(config_.enable_pin, "ENABLE", 0)) return false;
-    if (!configure_output(config_.cmd_pin, "CMD", 1)) return false; // CMD HIGH = SPI mode
-
-    // Configure FAULT as input with pull-up (active-low, open-drain)
-    if (config_.fault_pin >= 0) {
-      gpio_config_t cfg = {
-          .pin_bit_mask = (1ULL << config_.fault_pin),
-          .mode = GPIO_MODE_INPUT,
-          .pull_up_en = GPIO_PULLUP_ENABLE,
-          .pull_down_en = GPIO_PULLDOWN_DISABLE,
-          .intr_type = GPIO_INTR_DISABLE};
-      if (gpio_config(&cfg) != ESP_OK) {
-        ESP_LOGE(TAG, "Failed to configure FAULT pin (GPIO%d)", config_.fault_pin);
-        return false;
-      }
-      ESP_LOGI(TAG, "FAULT pin (GPIO%d) initialized as input", config_.fault_pin);
-    }
-    return true;
-  }
+  static constexpr const char *TAG = "Esp32Max22200Spi"; ///< Logging tag
 
   /**
    * @brief Initialize SPI bus
@@ -328,17 +226,17 @@ private:
 };
 
 /**
- * @brief Factory function to create a configured Esp32Max22200SpiBus instance
+ * @brief Factory function to create a configured Esp32Max22200Spi instance
  *
- * Creates an Esp32Max22200SpiBus using pin and parameter values from
+ * Creates an Esp32Max22200Spi using pin and parameter values from
  * MAX22200_TestConfig namespace (esp32_max22200_test_config.hpp).
  *
- * @return std::unique_ptr<Esp32Max22200SpiBus> Configured SPI interface
+ * @return std::unique_ptr<Esp32Max22200Spi> Configured SPI interface
  */
-inline auto CreateEsp32Max22200SpiBus() noexcept -> std::unique_ptr<Esp32Max22200SpiBus> {
+inline auto CreateEsp32Max22200Spi() noexcept -> std::unique_ptr<Esp32Max22200Spi> {
   using namespace MAX22200_TestConfig;
 
-  Esp32Max22200SpiBus::SPIConfig config;
+  Esp32Max22200Spi::SPIConfig config;
 
   // SPI pins from esp32_max22200_test_config.hpp
   config.host = SPI2_HOST;
@@ -354,10 +252,5 @@ inline auto CreateEsp32Max22200SpiBus() noexcept -> std::unique_ptr<Esp32Max2220
   config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
   config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
 
-  // Control pins from esp32_max22200_test_config.hpp
-  config.enable_pin = ControlPins::ENABLE;
-  config.fault_pin = ControlPins::FAULT;
-  config.cmd_pin = ControlPins::CMD;
-
-  return std::make_unique<Esp32Max22200SpiBus>(config);
+  return std::make_unique<Esp32Max22200Spi>(config);
 }

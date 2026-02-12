@@ -22,7 +22,7 @@
  * @brief Enable detailed SPI transaction logging
  * 
  * @details
- * When enabled (set to 1), the Esp32Max22200SpiBus will log detailed
+ * When enabled (set to 1), the Esp32Max22200Spi will log detailed
  * information about each SPI transaction including:
  * - TX/RX frame bytes
  * - Register read/write details
@@ -44,10 +44,10 @@ namespace MAX22200_TestConfig {
  * Ensure your hardware matches these pin assignments or modify accordingly.
  */
 struct SPIPins {
-    static constexpr uint8_t MISO = 37;          ///< GPIO37 - SPI MISO (Master In Slave Out)
-    static constexpr uint8_t MOSI = 35;          ///< GPIO35 - SPI MOSI (Master Out Slave In)
-    static constexpr uint8_t SCLK = 36;          ///< GPIO36 - SPI Clock
-    static constexpr uint8_t CS   = 38;         ///< GPIO38 - Chip Select (active low)
+    static constexpr uint8_t MISO = 2;          ///< GPIO2 - SPI MISO (Master In Slave Out)
+    static constexpr uint8_t MOSI = 7;          ///< GPIO7 - SPI MOSI (Master Out Slave In)
+    static constexpr uint8_t SCLK = 6;          ///< GPIO6 - SPI Clock
+    static constexpr uint8_t CS   = 10;         ///< GPIO10 - Chip Select (active low)
 };
 
 /**
@@ -77,7 +77,7 @@ struct ControlPins {
  * - CS hold time: 0ns min after SCLK
  */
 struct SPIParams {
-    static constexpr uint32_t FREQUENCY = 1000000;  ///< 1MHz SPI frequency (standalone max)
+    static constexpr uint32_t FREQUENCY = 10000000;  ///< 10MHz SPI frequency (standalone max)
     static constexpr uint8_t MODE = 0;               ///< SPI Mode 0 (CPOL=0, CPHA=0)
     static constexpr uint8_t QUEUE_SIZE = 1;         ///< Transaction queue size
     static constexpr uint8_t CS_ENA_PRETRANS = 1;    ///< CS asserted N clock cycles before transaction

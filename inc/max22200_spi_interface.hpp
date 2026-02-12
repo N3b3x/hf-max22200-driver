@@ -9,6 +9,43 @@
 
 namespace max22200 {
 
+// ============================================================================
+// GPIO Enums -- Standardised Control Pin Model
+// ============================================================================
+
+/**
+ * @enum CtrlPin
+ * @brief Identifies the hardware control pins of the MAX22200.
+ *
+ * Used with `GpioSet()` / `GpioRead()` / `GpioSetActive()` / `GpioSetInactive()`
+ * to control the IC's dedicated GPIO pins through the SpiInterface.
+ *
+ * The mapping from `GpioSignal::ACTIVE` / `INACTIVE` to physical HIGH / LOW
+ * is determined by the platform bus implementation, based on the board's
+ * active-level design:
+ * - **ENABLE**: Active-high (ACTIVE → physical HIGH, enables driver outputs)
+ * - **FAULT**:  Active-low  (ACTIVE → physical LOW, fault condition present)
+ * - **CMD**:    Active-high (ACTIVE → physical HIGH, SPI register mode)
+ */
+enum class CtrlPin : uint8_t {
+  ENABLE = 0, ///< Output enable (active-high on the physical pin)
+  FAULT,      ///< Fault status output (active-low, open-drain)
+  CMD         ///< Command mode select (HIGH = SPI register, LOW = direct drive)
+};
+
+/**
+ * @enum GpioSignal
+ * @brief Abstract signal level for control pins.
+ *
+ * Decouples the driver's intent from the physical pin polarity. The platform
+ * bus implementation translates `ACTIVE` / `INACTIVE` to the correct
+ * electrical level for each pin.
+ */
+enum class GpioSignal : uint8_t {
+  INACTIVE = 0, ///< Pin function is deasserted
+  ACTIVE   = 1  ///< Pin function is asserted
+};
+
 /**
  * @brief CRTP-based template interface for SPI communication
  *
@@ -102,6 +139,53 @@ public:
    * @return true if interface is ready, false otherwise
    */
   bool IsReady() const { return static_cast<const Derived *>(this)->IsReady(); }
+
+  // --------------------------------------------------------------------------
+  /// @name GPIO Pin Control
+  ///
+  /// Unified interface for controlling MAX22200 hardware control pins. The
+  /// platform bus implementation maps GpioSignal::ACTIVE/INACTIVE to the
+  /// correct physical level for each pin based on its polarity.
+  /// @{
+
+  /**
+   * @brief Set a control pin to the specified signal state.
+   *
+   * @param[in] pin     Which control pin to drive (ENABLE, CMD).
+   * @param[in] signal  ACTIVE to assert the pin function, INACTIVE to deassert.
+   */
+  void GpioSet(CtrlPin pin, GpioSignal signal) {
+    static_cast<Derived *>(this)->GpioSet(pin, signal);
+  }
+
+  /**
+   * @brief Read the current state of a control pin.
+   *
+   * Primarily used for reading the FAULT pin status.
+   *
+   * @param[in]  pin     Which control pin to read.
+   * @param[out] signal  Receives the current signal state.
+   * @return true if the read was successful, false otherwise.
+   */
+  bool GpioRead(CtrlPin pin, GpioSignal &signal) {
+    return static_cast<Derived *>(this)->GpioRead(pin, signal);
+  }
+
+  /**
+   * @brief Assert a control pin (set to ACTIVE).
+   * Convenience wrapper for `GpioSet(pin, GpioSignal::ACTIVE)`.
+   * @param[in] pin  Which control pin to assert.
+   */
+  void GpioSetActive(CtrlPin pin) { GpioSet(pin, GpioSignal::ACTIVE); }
+
+  /**
+   * @brief Deassert a control pin (set to INACTIVE).
+   * Convenience wrapper for `GpioSet(pin, GpioSignal::INACTIVE)`.
+   * @param[in] pin  Which control pin to deassert.
+   */
+  void GpioSetInactive(CtrlPin pin) { GpioSet(pin, GpioSignal::INACTIVE); }
+
+  /// @}
 
 protected:
   /**
