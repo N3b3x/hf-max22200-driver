@@ -12,8 +12,8 @@
 <area shape="poly" id="edge7_Node000001_Node000006" title=" " alt="" coords="342,28,426,70,423,75,339,33"/>
 <area shape="rect" id="Node000008" title=" " alt="" coords="590,79,677,104"/>
 <area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="369,28,577,75,576,80,368,33"/>
-<area shape="rect" id="Node000009" href="$max22200_8cpp.html" title=" " alt="" coords="701,79,854,104"/>
-<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="389,28,690,74,690,79,388,33"/>
+<area shape="rect" id="Node000009" href="$max22200_8ipp.html" title="Implementation of MAX22200 driver class." alt="" coords="701,79,851,104"/>
+<area shape="poly" id="edge13_Node000001_Node000009" title=" " alt="" coords="390,28,689,74,688,79,389,33"/>
 <area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="126,176,160,213,156,217,122,179"/>
 <area shape="poly" id="edge4_Node000004_Node000002" title=" " alt="" coords="187,106,139,145,136,141,183,102"/>
 <area shape="poly" id="edge6_Node000004_Node000003" title=" " alt="" coords="207,103,219,137,221,157,219,178,210,198,199,216,194,213,205,196,214,177,216,157,214,138,202,105"/>
@@ -21,6 +21,6 @@
 <area shape="poly" id="edge9_Node000006_Node000003" title=" " alt="" coords="464,104,462,141,456,161,445,179,429,190,406,200,348,216,225,235,224,230,347,211,405,195,426,186,441,175,452,159,457,140,459,104"/>
 <area shape="rect" id="Node000007" title=" " alt="" coords="361,152,431,177"/>
 <area shape="poly" id="edge8_Node000006_Node000007" title=" " alt="" coords="452,106,418,144,414,140,448,103"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="742,152,813,177"/>
-<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="780,104,780,138,775,138,775,104"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="741,152,811,177"/>
+<area shape="poly" id="edge14_Node000009_Node000010" title=" " alt="" coords="779,104,779,138,773,138,773,104"/>
 </map>

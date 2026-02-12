@@ -1,8 +1,8 @@
 <map id="examples/esp32/main/esp32_max22200_test_config.hpp" name="examples/esp32/main/esp32_max22200_test_config.hpp">
-<area shape="rect" id="Node000001" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="83,5,256,60"/>
-<area shape="rect" id="Node000002" href="$esp32__max22200__spi_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="5,108,200,148"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="145,73,118,110,114,106,140,70"/>
-<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="68,196,271,251"/>
-<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="199,71,215,107,218,128,215,149,205,174,191,197,187,194,200,172,209,147,213,128,209,109,194,73"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="126,158,153,194,148,197,122,161"/>
+<area shape="rect" id="Node000001" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="86,5,259,60"/>
+<area shape="rect" id="Node000002" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="5,108,204,148"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="148,73,121,110,116,106,143,70"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="71,196,274,251"/>
+<area shape="poly" id="edge3_Node000001_Node000003" title=" " alt="" coords="202,71,218,107,221,128,218,149,208,174,195,197,190,194,203,172,213,147,216,128,213,109,197,73"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="128,157,156,194,151,197,124,160"/>
 </map>

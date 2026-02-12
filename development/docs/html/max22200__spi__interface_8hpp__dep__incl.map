@@ -1,10 +1,10 @@
 <map id="inc/max22200_spi_interface.hpp" name="inc/max22200_spi_interface.hpp">
-<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="82,5,315,31"/>
-<area shape="rect" id="Node000002" href="$esp32__max22200__spi_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="5,79,200,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,41,128,81,124,76,172,37"/>
-<area shape="rect" id="Node000004" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="225,86,367,111"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,37,283,84,280,88,222,41"/>
-<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="97,167,300,221"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,126,173,165,170,168,130,130"/>
-<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="276,123,228,168,224,165,272,119"/>
+<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="85,5,319,31"/>
+<area shape="rect" id="Node000002" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="5,79,204,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="179,41,130,81,126,76,175,37"/>
+<area shape="rect" id="Node000004" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="228,86,371,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="229,37,287,84,283,88,225,41"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="101,167,303,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="136,126,176,165,173,168,132,130"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="279,123,231,168,228,165,276,119"/>
 </map>

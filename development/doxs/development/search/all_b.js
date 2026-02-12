@@ -4,8 +4,8 @@ var searchData=
   ['max22200_1',['max22200',['../namespacemax22200.html',1,'']]],
   ['max22200_2',['MAX22200',['../classmax22200_1_1MAX22200.html#a840a285c03a03a8d3a41229592086d5a',1,'max22200::MAX22200::MAX22200(SpiType &amp;spi_interface, bool enable_diagnostics=true)'],['../classmax22200_1_1MAX22200.html#a1a5811278eab14201ed40efafd42a98c',1,'max22200::MAX22200::MAX22200(const MAX22200 &amp;)=delete'],['../classmax22200_1_1MAX22200.html#a75323ec337980f5840e4999a61689e27',1,'max22200::MAX22200::MAX22200(MAX22200 &amp;&amp;)=default']]],
   ['max22200_20driver_3',['HF-MAX22200 Driver',['../index.html',1,'']]],
-  ['max22200_2ecpp_4',['max22200.cpp',['../max22200_8cpp.html',1,'']]],
-  ['max22200_2ehpp_5',['max22200.hpp',['../max22200_8hpp.html',1,'']]],
+  ['max22200_2ehpp_4',['max22200.hpp',['../max22200_8hpp.html',1,'']]],
+  ['max22200_2eipp_5',['max22200.ipp',['../max22200_8ipp.html',1,'']]],
   ['max22200_3a_3achannelconfigbits_6',['ChannelConfigBits',['../namespacemax22200_1_1ChannelConfigBits.html',1,'max22200']]],
   ['max22200_3a_3achannelenable_7',['ChannelEnable',['../namespacemax22200_1_1ChannelEnable.html',1,'max22200']]],
   ['max22200_3a_3acurrentrange_8',['CurrentRange',['../namespacemax22200_1_1CurrentRange.html',1,'max22200']]],
@@ -15,7 +15,7 @@ var searchData=
   ['max22200_3a_3atimingrange_12',['TimingRange',['../namespacemax22200_1_1TimingRange.html',1,'max22200']]],
   ['max22200_5fcomprehensive_5ftest_2ecpp_13',['max22200_comprehensive_test.cpp',['../max22200__comprehensive__test_8cpp.html',1,'']]],
   ['max22200_5fheader_5fincluded_14',['MAX22200_HEADER_INCLUDED',['../max22200_8hpp.html#a3e9b3b86c15cf59a72d870bb109a7a98',1,'max22200.hpp']]],
-  ['max22200_5fimpl_15',['MAX22200_IMPL',['../max22200_8cpp.html#abf8805f38b50db415d044d9dc3abbd74',1,'max22200.cpp']]],
+  ['max22200_5fimpl_15',['MAX22200_IMPL',['../max22200_8ipp.html#abf8805f38b50db415d044d9dc3abbd74',1,'max22200.ipp']]],
   ['max22200_5fregisters_2ehpp_16',['max22200_registers.hpp',['../max22200__registers_8hpp.html',1,'']]],
   ['max22200_5fspi_5finterface_2ehpp_17',['max22200_spi_interface.hpp',['../max22200__spi__interface_8hpp.html',1,'']]],
   ['max22200_5ftestconfig_18',['MAX22200_TestConfig',['../namespaceMAX22200__TestConfig.html',1,'']]],
@@ -35,9 +35,9 @@ var searchData=
   ['min_5fhit_5ftime_32',['MIN_HIT_TIME',['../namespacemax22200_1_1TimingRange.html#a805ccb975cbd95d81d0cd4a5ba338c92',1,'max22200::TimingRange']]],
   ['min_5fhold_5fcurrent_33',['MIN_HOLD_CURRENT',['../namespacemax22200_1_1CurrentRange.html#a0cb4fd2f2a89cd5298d81aa599406e3b',1,'max22200::CurrentRange']]],
   ['miso_34',['MISO',['../structMAX22200__TestConfig_1_1SPIPins.html#a6f6eb0f1401d8b131249060e4759b9ee',1,'MAX22200_TestConfig::SPIPins']]],
-  ['miso_5fpin_35',['miso_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['mode_36',['mode',['../structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['miso_5fpin_35',['miso_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['mode_36',['mode',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9',1,'Esp32Max22200SpiBus::SPIConfig']]],
   ['mode_37',['MODE',['../structMAX22200__TestConfig_1_1SPIParams.html#ad63f667aa7bc9c0df3467602cbcc5eff',1,'MAX22200_TestConfig::SPIParams']]],
   ['mosi_38',['MOSI',['../structMAX22200__TestConfig_1_1SPIPins.html#a6134984da373ec4bd3e33c7f5cef78dd',1,'MAX22200_TestConfig::SPIPins']]],
-  ['mosi_5fpin_39',['mosi_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3',1,'Esp32Max22200Spi::SPIConfig']]]
+  ['mosi_5fpin_39',['mosi_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b',1,'Esp32Max22200SpiBus::SPIConfig']]]
 ];

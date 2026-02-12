@@ -14,5 +14,5 @@ var searchData=
   ['hit_5ftime_11',['hit_time',['../structmax22200_1_1ChannelConfig.html#aefc7ca5063b6c9f50e23620f6de3567d',1,'max22200::ChannelConfig']]],
   ['hold_5fcurrent_12',['hold_current',['../structmax22200_1_1ChannelConfig.html#a156989985bc3ca34f4692f7baf80e6ab',1,'max22200::ChannelConfig']]],
   ['hold_5fphase_13',['HOLD_PHASE',['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422ae77d7787acc0512a80703ca3c166b024',1,'max22200']]],
-  ['host_14',['host',['../structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a',1,'Esp32Max22200Spi::SPIConfig']]]
+  ['host_14',['host',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#aa938e1494d3fea17573718776d361b3f',1,'Esp32Max22200SpiBus::SPIConfig']]]
 ];

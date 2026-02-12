@@ -10,9 +10,9 @@ var searchData=
   ['enabled_7',['enabled',['../structmax22200_1_1ChannelConfig.html#ac6d455474e1ec3559b8de60fe00b029a',1,'max22200::ChannelConfig::enabled'],['../structmax22200_1_1ChannelStatus.html#ae9c0967964320310e19c5abc46ca101e',1,'max22200::ChannelStatus::enabled']]],
   ['enabled_8',['ENABLED',['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422ac8cf6eea8f096ed51160b484d97c5bbd',1,'max22200']]],
   ['ensure_5fgpio14_5finitialized_9',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]],
-  ['esp32_5fmax22200_5fenable_5fdetailed_5fspi_5flogging_10',['ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING',['../esp32__max22200__test__config_8hpp.html#a26ef05b7f869884bdc82189a98463b34',1,'esp32_max22200_test_config.hpp']]],
-  ['esp32_5fmax22200_5fspi_2ehpp_11',['esp32_max22200_spi.hpp',['../esp32__max22200__spi_8hpp.html',1,'']]],
+  ['esp32_5fmax22200_5fbus_2ehpp_10',['esp32_max22200_bus.hpp',['../esp32__max22200__bus_8hpp.html',1,'']]],
+  ['esp32_5fmax22200_5fenable_5fdetailed_5fspi_5flogging_11',['ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING',['../esp32__max22200__test__config_8hpp.html#a26ef05b7f869884bdc82189a98463b34',1,'esp32_max22200_test_config.hpp']]],
   ['esp32_5fmax22200_5ftest_5fconfig_2ehpp_12',['esp32_max22200_test_config.hpp',['../esp32__max22200__test__config_8hpp.html',1,'']]],
-  ['esp32max22200spi_13',['Esp32Max22200Spi',['../classEsp32Max22200Spi.html',1,'Esp32Max22200Spi'],['../classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991',1,'Esp32Max22200Spi::Esp32Max22200Spi()'],['../classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798',1,'Esp32Max22200Spi::Esp32Max22200Spi(const SPIConfig &amp;config)']]],
+  ['esp32max22200spibus_13',['Esp32Max22200SpiBus',['../classEsp32Max22200SpiBus.html',1,'Esp32Max22200SpiBus'],['../classEsp32Max22200SpiBus.html#aa0cffecd6c4f89202b16f504cef855f2',1,'Esp32Max22200SpiBus::Esp32Max22200SpiBus()']]],
   ['examples_14',['📊 Examples',['../index.html#autotoc_md7',1,'']]]
 ];

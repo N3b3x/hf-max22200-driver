@@ -14,9 +14,9 @@ var searchData=
   ['min_5fhit_5ftime_11',['MIN_HIT_TIME',['../namespacemax22200_1_1TimingRange.html#a805ccb975cbd95d81d0cd4a5ba338c92',1,'max22200::TimingRange']]],
   ['min_5fhold_5fcurrent_12',['MIN_HOLD_CURRENT',['../namespacemax22200_1_1CurrentRange.html#a0cb4fd2f2a89cd5298d81aa599406e3b',1,'max22200::CurrentRange']]],
   ['miso_13',['MISO',['../structMAX22200__TestConfig_1_1SPIPins.html#a6f6eb0f1401d8b131249060e4759b9ee',1,'MAX22200_TestConfig::SPIPins']]],
-  ['miso_5fpin_14',['miso_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['mode_15',['mode',['../structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['miso_5fpin_14',['miso_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['mode_15',['mode',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9',1,'Esp32Max22200SpiBus::SPIConfig']]],
   ['mode_16',['MODE',['../structMAX22200__TestConfig_1_1SPIParams.html#ad63f667aa7bc9c0df3467602cbcc5eff',1,'MAX22200_TestConfig::SPIParams']]],
   ['mosi_17',['MOSI',['../structMAX22200__TestConfig_1_1SPIPins.html#a6134984da373ec4bd3e33c7f5cef78dd',1,'MAX22200_TestConfig::SPIPins']]],
-  ['mosi_5fpin_18',['mosi_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3',1,'Esp32Max22200Spi::SPIConfig']]]
+  ['mosi_5fpin_18',['mosi_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b',1,'Esp32Max22200SpiBus::SPIConfig']]]
 ];

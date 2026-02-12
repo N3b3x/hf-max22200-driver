@@ -12,10 +12,10 @@
 #include "esp_log.h"
 #include <cstring>
 
-Esp32Max22200Spi::Esp32Max22200Spi(const SPIConfig& config)
+Esp32Max22200SpiBus::Esp32Max22200SpiBus(const SPIConfig& config)
     : config_(config), spi_device_(nullptr), initialized_(false) {}
 
-Esp32Max22200Spi::~Esp32Max22200Spi() {
+Esp32Max22200SpiBus::~Esp32Max22200SpiBus() {
   if (spi_device_ != nullptr) {
     spi_bus_remove_device(spi_device_);
     spi_bus_free(config_.host);
@@ -23,7 +23,7 @@ Esp32Max22200Spi::~Esp32Max22200Spi() {
   }
 }
 
-bool Esp32Max22200Spi::Initialize() {
+bool Esp32Max22200SpiBus::Initialize() {
   if (initialized_) {
     return true;
   }
@@ -44,7 +44,7 @@ bool Esp32Max22200Spi::Initialize() {
   return true;
 }
 
-bool Esp32Max22200Spi::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
+bool Esp32Max22200SpiBus::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t length) {
   if (!initialized_ || spi_device_ == nullptr) {
     ESP_LOGE(TAG, "SPI not initialized");
     return false;
@@ -64,13 +64,13 @@ bool Esp32Max22200Spi::Transfer(const uint8_t* tx_data, uint8_t* rx_data, size_t
   return true;
 }
 
-void Esp32Max22200Spi::SetChipSelect(bool state) {
+void Esp32Max22200SpiBus::SetChipSelect(bool state) {
   // CS is handled automatically by ESP-IDF SPI driver
   // This function is kept for interface compatibility
   (void)state;
 }
 
-bool Esp32Max22200Spi::Configure(uint32_t speed_hz, uint8_t mode, bool msb_first) {
+bool Esp32Max22200SpiBus::Configure(uint32_t speed_hz, uint8_t mode, bool msb_first) {
   if (!initialized_) {
     ESP_LOGE(TAG, "SPI not initialized");
     return false;
@@ -85,11 +85,11 @@ bool Esp32Max22200Spi::Configure(uint32_t speed_hz, uint8_t mode, bool msb_first
   return true;
 }
 
-bool Esp32Max22200Spi::IsReady() const {
+bool Esp32Max22200SpiBus::IsReady() const {
   return initialized_ && (spi_device_ != nullptr);
 }
 
-bool Esp32Max22200Spi::initializeSPI() {
+bool Esp32Max22200SpiBus::initializeSPI() {
   spi_bus_config_t bus_cfg = {};
   bus_cfg.mosi_io_num = config_.mosi_pin;
   bus_cfg.miso_io_num = config_.miso_pin;
@@ -107,7 +107,7 @@ bool Esp32Max22200Spi::initializeSPI() {
   return true;
 }
 
-bool Esp32Max22200Spi::addSPIDevice() {
+bool Esp32Max22200SpiBus::addSPIDevice() {
   spi_device_interface_config_t dev_cfg = {};
   dev_cfg.clock_speed_hz = config_.frequency;
   dev_cfg.mode = config_.mode;

@@ -1,0 +1,7 @@
+<map id="src/max22200.ipp" name="src/max22200.ipp">
+<area shape="rect" id="Node000001" title="Implementation of MAX22200 driver class." alt="" coords="37,5,176,31"/>
+<area shape="rect" id="Node000002" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="35,79,178,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="109,44,109,79,104,79,104,44"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="5,152,208,207"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="109,118,109,152,104,152,104,118"/>
+</map>
