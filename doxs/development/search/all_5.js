@@ -12,7 +12,7 @@ var searchData=
   ['faulttype_9',['FaultType',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44',1,'max22200']]],
   ['features_10',['✨ Features',['../index.html#autotoc_md3',1,'']]],
   ['flip_5ftest_5fprogress_5findicator_11',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
-  ['frequency_12',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]],
-  ['frequency_13',['frequency',['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['frequency_12',['frequency',['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['frequency_13',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]],
   ['full_5fbridge_14',['FULL_BRIDGE',['../namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5a7305a85abf67484338999671810656ae',1,'max22200']]]
 ];
