@@ -124,6 +124,21 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad12425ba4fa46a5e31156d335ade9810" id="r_ad12425ba4fa46a5e31156d335ade9810"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad12425ba4fa46a5e31156d335ade9810">IsReady</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
 <tr class="memdesc:ad12425ba4fa46a5e31156d335ade9810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interface is ready.  <br /></td></tr>
 <tr class="separator:ad12425ba4fa46a5e31156d335ade9810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr><td colspan="2"><div class="groupHeader">GPIO Pin Control</div></td></tr>
+<tr><td colspan="2"><div class="groupText"><p>Unified interface for controlling <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> hardware control pins. The platform bus implementation maps <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a>/INACTIVE to the correct physical level for each pin based on its polarity. </p>
+</div></td></tr>
+<tr class="memitem:aa4e100ba6824321c1dae87f4c61079b8" id="r_aa4e100ba6824321c1dae87f4c61079b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa4e100ba6824321c1dae87f4c61079b8">GpioSet</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>, <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a> <a class="el" href="classmax22200_1_1MAX22200.html">signal</a>)</td></tr>
+<tr class="memdesc:aa4e100ba6824321c1dae87f4c61079b8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a control pin to the specified signal state.  <br /></td></tr>
+<tr class="separator:aa4e100ba6824321c1dae87f4c61079b8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a111b256a31bd35527c9d0cb874d39d47" id="r_a111b256a31bd35527c9d0cb874d39d47"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a111b256a31bd35527c9d0cb874d39d47">GpioRead</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>, <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a> &amp;<a class="el" href="classmax22200_1_1MAX22200.html">signal</a>)</td></tr>
+<tr class="memdesc:a111b256a31bd35527c9d0cb874d39d47"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the current state of a control pin.  <br /></td></tr>
+<tr class="separator:a111b256a31bd35527c9d0cb874d39d47"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa58f9210a8462fe54d4c93e55c8f440c" id="r_aa58f9210a8462fe54d4c93e55c8f440c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa58f9210a8462fe54d4c93e55c8f440c">GpioSetActive</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>)</td></tr>
+<tr class="memdesc:aa58f9210a8462fe54d4c93e55c8f440c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Assert a control pin (set to ACTIVE). Convenience wrapper for <code>GpioSet(pin, GpioSignal::ACTIVE)</code>.  <br /></td></tr>
+<tr class="separator:aa58f9210a8462fe54d4c93e55c8f440c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a186da92403ffedd170b845fe10beeafc" id="r_a186da92403ffedd170b845fe10beeafc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a186da92403ffedd170b845fe10beeafc">GpioSetInactive</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>)</td></tr>
+<tr class="memdesc:a186da92403ffedd170b845fe10beeafc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deassert a control pin (set to INACTIVE). Convenience wrapper for <code>GpioSet(pin, GpioSignal::INACTIVE)</code>.  <br /></td></tr>
+<tr class="separator:a186da92403ffedd170b845fe10beeafc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -158,7 +173,7 @@ class max22200::SpiInterface&lt; Derived &gt;</div><p>CRTP-based template interf
 <div class="line">  <span class="comment">// ... implement other methods</span></div>
 <div class="line">};</div>
 <div class="ttc" id="aclassmax22200_1_1MAX22200_html"><div class="ttname"><a href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a></div><div class="ttdef"><b>Definition</b> max22200.hpp:57</div></div>
-<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:36</div></div>
+<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:73</div></div>
 </div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Derived</td><td>The derived class type (CRTP pattern) </td></tr>
@@ -327,6 +342,158 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if configuration was successful, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="a111b256a31bd35527c9d0cb874d39d47" name="a111b256a31bd35527c9d0cb874d39d47"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a111b256a31bd35527c9d0cb874d39d47">&#9670;&#160;</a></span>GpioRead()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt;::GpioRead </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a></td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>signal</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Read the current state of a control pin. </p>
+<p>Primarily used for reading the FAULT pin status.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to read. </td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">signal</td><td>Receives the current signal state. </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the read was successful, false otherwise. </dd></dl>
+
+</div>
+</div>
+<a id="aa4e100ba6824321c1dae87f4c61079b8" name="aa4e100ba6824321c1dae87f4c61079b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa4e100ba6824321c1dae87f4c61079b8">&#9670;&#160;</a></span>GpioSet()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt;::GpioSet </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a></td>          <td class="paramname"><span class="paramname"><em>pin</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a></td>          <td class="paramname"><span class="paramname"><em>signal</em></span>&#160;)</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set a control pin to the specified signal state. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to drive (ENABLE, CMD). </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">signal</td><td>ACTIVE to assert the pin function, INACTIVE to deassert. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aa58f9210a8462fe54d4c93e55c8f440c" name="aa58f9210a8462fe54d4c93e55c8f440c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa58f9210a8462fe54d4c93e55c8f440c">&#9670;&#160;</a></span>GpioSetActive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt;::GpioSetActive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a></td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Assert a control pin (set to ACTIVE). Convenience wrapper for <code>GpioSet(pin, GpioSignal::ACTIVE)</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to assert. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a186da92403ffedd170b845fe10beeafc" name="a186da92403ffedd170b845fe10beeafc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a186da92403ffedd170b845fe10beeafc">&#9670;&#160;</a></span>GpioSetInactive()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt;::GpioSetInactive </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a></td>          <td class="paramname"><span class="paramname"><em>pin</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Deassert a control pin (set to INACTIVE). Convenience wrapper for <code>GpioSet(pin, GpioSignal::INACTIVE)</code>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to deassert. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>

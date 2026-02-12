@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['cdr_0',['CDR',['../namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376',1,'max22200']]],
-  ['communication_5ferror_1',['COMMUNICATION_ERROR',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27baca3a06257167acb5cd86e22cb0289115',1,'max22200']]]
+  ['active_0',['ACTIVE',['../namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115',1,'max22200']]]
 ];

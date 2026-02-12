@@ -172,6 +172,17 @@ Typedefs</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="enum-members" name="enum-members"></a>
 Enumerations</h2></td></tr>
+<tr class="memitem:af428d5c782976c9e2a6521b9401a3db8" id="r_af428d5c782976c9e2a6521b9401a3db8"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> : uint8_t { <a class="el" href="#af428d5c782976c9e2a6521b9401a3db8ab332708e4304e13c9b424e7465254954">ENABLE</a> = 0
+, <a class="el" href="#af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72">FAULT</a>
+, <a class="el" href="#af428d5c782976c9e2a6521b9401a3db8aa28966bac17b8eef99c5afa5eb594130">CMD</a>
+ }</td></tr>
+<tr class="memdesc:af428d5c782976c9e2a6521b9401a3db8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Identifies the hardware control pins of the MAX22200.  <a href="#af428d5c782976c9e2a6521b9401a3db8">More...</a><br /></td></tr>
+<tr class="separator:af428d5c782976c9e2a6521b9401a3db8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aacf1ddc59c91ce8cf173bc60bfffeff1" id="r_aacf1ddc59c91ce8cf173bc60bfffeff1"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a> : uint8_t { <a class="el" href="#aacf1ddc59c91ce8cf173bc60bfffeff1a6b273343c454f9c53dcfc9c4ccf171d2">INACTIVE</a> = 0
+, <a class="el" href="#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115">ACTIVE</a> = 1
+ }</td></tr>
+<tr class="memdesc:aacf1ddc59c91ce8cf173bc60bfffeff1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Abstract signal level for control pins.  <a href="#aacf1ddc59c91ce8cf173bc60bfffeff1">More...</a><br /></td></tr>
+<tr class="separator:aacf1ddc59c91ce8cf173bc60bfffeff1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b4eec1a1d40f726831b9fb75f74b591" id="r_a2b4eec1a1d40f726831b9fb75f74b591"><td class="memItemLeft" align="right" valign="top">enum class &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2b4eec1a1d40f726831b9fb75f74b591">DriveMode</a> : uint8_t { <a class="el" href="#a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376">CDR</a> = 0
 , <a class="el" href="#a2b4eec1a1d40f726831b9fb75f74b591a3b69142b3958e8139663fbb85ffce84e">VDR</a> = 1
  }</td></tr>
@@ -418,6 +429,44 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a id="af428d5c782976c9e2a6521b9401a3db8" name="af428d5c782976c9e2a6521b9401a3db8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af428d5c782976c9e2a6521b9401a3db8">&#9670;&#160;</a></span>CtrlPin</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">enum</a> <a class="el" href="classmax22200_1_1MAX22200.html">class</a> <a class="el" href="#af428d5c782976c9e2a6521b9401a3db8">max22200::CtrlPin</a> : <a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Identifies the hardware control pins of the <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a>. </p>
+<p>Used with <code>GpioSet()</code> / <code>GpioRead()</code> / <code>GpioSetActive()</code> / <code>GpioSetInactive()</code> to control the IC's dedicated GPIO pins through the <a class="el" href="classmax22200_1_1SpiInterface.html" title="CRTP-based template interface for SPI communication.">SpiInterface</a>.</p>
+<p>The mapping from <code><a class="el" href="#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a></code> / <code>INACTIVE</code> to physical HIGH / LOW is determined by the platform bus implementation, based on the board's active-level design:</p><ul>
+<li><b>ENABLE</b>: Active-high (ACTIVE → physical HIGH, enables driver outputs)</li>
+<li><b>FAULT</b>: Active-low (ACTIVE → physical LOW, fault condition present)</li>
+<li><b>CMD</b>: Active-high (ACTIVE → physical HIGH, SPI register mode) </li>
+</ul>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="af428d5c782976c9e2a6521b9401a3db8ab332708e4304e13c9b424e7465254954" name="af428d5c782976c9e2a6521b9401a3db8ab332708e4304e13c9b424e7465254954"></a>ENABLE&#160;</td><td class="fielddoc"><p>Output enable (active-high on the physical pin) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72" name="af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72"></a>FAULT&#160;</td><td class="fielddoc"><p>Fault status output (active-low, open-drain) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="af428d5c782976c9e2a6521b9401a3db8aa28966bac17b8eef99c5afa5eb594130" name="af428d5c782976c9e2a6521b9401a3db8aa28966bac17b8eef99c5afa5eb594130"></a>CMD&#160;</td><td class="fielddoc"><p>Command mode select (HIGH = SPI register, LOW = direct drive) </p>
+</td></tr>
+</table>
+
+</div>
+</div>
 <a id="a2b4eec1a1d40f726831b9fb75f74b591" name="a2b4eec1a1d40f726831b9fb75f74b591"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a2b4eec1a1d40f726831b9fb75f74b591">&#9670;&#160;</a></span>DriveMode</h2>
 
@@ -519,6 +568,37 @@ Variables</h2></td></tr>
 <tr><td class="fieldname"><a id="aa095193e585b7c2b7cae49c701df7a44a20cb7d0b2ed081378e7ba466b36b2942" name="aa095193e585b7c2b7cae49c701df7a44a20cb7d0b2ed081378e7ba466b36b2942"></a>HHF&#160;</td><td class="fielddoc"><p>HIT current not reached. </p>
 </td></tr>
 <tr><td class="fieldname"><a id="aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce" name="aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce"></a>TSD&#160;</td><td class="fielddoc"><p>Thermal shutdown. </p>
+</td></tr>
+</table>
+
+</div>
+</div>
+<a id="aacf1ddc59c91ce8cf173bc60bfffeff1" name="aacf1ddc59c91ce8cf173bc60bfffeff1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aacf1ddc59c91ce8cf173bc60bfffeff1">&#9670;&#160;</a></span>GpioSignal</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">enum</a> <a class="el" href="classmax22200_1_1MAX22200.html">class</a> <a class="el" href="#aacf1ddc59c91ce8cf173bc60bfffeff1">max22200::GpioSignal</a> : <a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">strong</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Abstract signal level for control pins. </p>
+<p>Decouples the driver's intent from the physical pin polarity. The platform bus implementation translates <code>ACTIVE</code> / <code>INACTIVE</code> to the correct electrical level for each pin. </p>
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="aacf1ddc59c91ce8cf173bc60bfffeff1a6b273343c454f9c53dcfc9c4ccf171d2" name="aacf1ddc59c91ce8cf173bc60bfffeff1a6b273343c454f9c53dcfc9c4ccf171d2"></a>INACTIVE&#160;</td><td class="fielddoc"><p>Pin function is deasserted. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" name="aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115"></a>ACTIVE&#160;</td><td class="fielddoc"><p>Pin function is asserted. </p>
 </td></tr>
 </table>
 

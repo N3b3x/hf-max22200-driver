@@ -1,8 +1,11 @@
 var structEsp32Max22200SpiBus_1_1SPIConfig =
 [
+    [ "cmd_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#ac82cec8d62b1afc28c99cb5df1be2b12", null ],
     [ "cs_ena_posttrans", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a7a645e43a476799d81290205dce821c1", null ],
     [ "cs_ena_pretrans", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a37138bd9faccd8fdb74967f2a77fe3fd", null ],
     [ "cs_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#ad42300e795136eacee060bc9789d442a", null ],
+    [ "enable_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a43c870a88674bedf95622f82ebe591ec", null ],
+    [ "fault_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a547981c04a7ee5bb6a50916ec8eb6b1a", null ],
     [ "frequency", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a1b7c2d3ffe0f7a031c82caa607e8c242", null ],
     [ "host", "structEsp32Max22200SpiBus_1_1SPIConfig.html#aa938e1494d3fea17573718776d361b3f", null ],
     [ "miso_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30", null ],

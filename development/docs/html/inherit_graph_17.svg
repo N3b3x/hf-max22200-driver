@@ -11,10 +11,10 @@
 <!-- Node0 -->
 <g id="Node000000" class="node">
 <title>Node0</title>
-<g id="a_Node000000"><a xlink:href="structMAX22200__TestConfig_1_1TestConfig.html" target="_top" xlink:title="Test Configuration.">
+<g id="a_Node000000"><a xlink:href="structMAX22200__TestConfig_1_1SupplyVoltage.html" target="_top" xlink:title="Supply Voltage Specifications (volts)">
 <polygon fill="white" stroke="#666666" points="125,-30 0,-30 0,0 125,0 125,-30"/>
 <text text-anchor="start" x="8" y="-18" font-family="Helvetica,sans-Serif" font-size="10.00">MAX22200_TestConfig</text>
-<text text-anchor="middle" x="62.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::TestConfig</text>
+<text text-anchor="middle" x="62.5" y="-7" font-family="Helvetica,sans-Serif" font-size="10.00">::SupplyVoltage</text>
 </a>
 </g>
 </g>

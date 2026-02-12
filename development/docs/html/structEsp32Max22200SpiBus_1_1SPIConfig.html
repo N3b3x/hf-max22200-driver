@@ -123,6 +123,15 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:ad42300e795136eacee060bc9789d442a" id="r_ad42300e795136eacee060bc9789d442a"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad42300e795136eacee060bc9789d442a">cs_pin</a></td></tr>
 <tr class="memdesc:ad42300e795136eacee060bc9789d442a"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS pin (set from board config)  <br /></td></tr>
 <tr class="separator:ad42300e795136eacee060bc9789d442a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a43c870a88674bedf95622f82ebe591ec" id="r_a43c870a88674bedf95622f82ebe591ec"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43c870a88674bedf95622f82ebe591ec">enable_pin</a> = -1</td></tr>
+<tr class="memdesc:a43c870a88674bedf95622f82ebe591ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">ENABLE pin (active-high, -1 = not configured)  <br /></td></tr>
+<tr class="separator:a43c870a88674bedf95622f82ebe591ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a547981c04a7ee5bb6a50916ec8eb6b1a" id="r_a547981c04a7ee5bb6a50916ec8eb6b1a"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a547981c04a7ee5bb6a50916ec8eb6b1a">fault_pin</a> = -1</td></tr>
+<tr class="memdesc:a547981c04a7ee5bb6a50916ec8eb6b1a"><td class="mdescLeft">&#160;</td><td class="mdescRight">FAULT pin (active-low, open-drain input, -1 = not configured)  <br /></td></tr>
+<tr class="separator:a547981c04a7ee5bb6a50916ec8eb6b1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac82cec8d62b1afc28c99cb5df1be2b12" id="r_ac82cec8d62b1afc28c99cb5df1be2b12"><td class="memItemLeft" align="right" valign="top">int16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac82cec8d62b1afc28c99cb5df1be2b12">cmd_pin</a> = -1</td></tr>
+<tr class="memdesc:ac82cec8d62b1afc28c99cb5df1be2b12"><td class="mdescLeft">&#160;</td><td class="mdescRight">CMD pin (active-high = SPI mode, -1 = not configured)  <br /></td></tr>
+<tr class="separator:ac82cec8d62b1afc28c99cb5df1be2b12"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1b7c2d3ffe0f7a031c82caa607e8c242" id="r_a1b7c2d3ffe0f7a031c82caa607e8c242"><td class="memItemLeft" align="right" valign="top">uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b7c2d3ffe0f7a031c82caa607e8c242">frequency</a> = 10000000</td></tr>
 <tr class="memdesc:a1b7c2d3ffe0f7a031c82caa607e8c242"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI frequency in Hz (default 10MHz)  <br /></td></tr>
 <tr class="separator:a1b7c2d3ffe0f7a031c82caa607e8c242"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,6 +152,22 @@ Public Attributes</h2></td></tr>
 <div class="textblock"><p>SPI configuration structure. </p>
 <p>Pin members have no defaults; set them from your board config (e.g. <a class="el" href="structMAX22200__TestConfig_1_1SPIPins.html" title="SPI Configuration for ESP32-C6.">MAX22200_TestConfig::SPIPins</a>) so wiring is explicit per target. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac82cec8d62b1afc28c99cb5df1be2b12" name="ac82cec8d62b1afc28c99cb5df1be2b12"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac82cec8d62b1afc28c99cb5df1be2b12">&#9670;&#160;</a></span>cmd_pin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t Esp32Max22200SpiBus::SPIConfig::cmd_pin = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CMD pin (active-high = SPI mode, -1 = not configured) </p>
+
+</div>
+</div>
 <a id="a7a645e43a476799d81290205dce821c1" name="a7a645e43a476799d81290205dce821c1"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7a645e43a476799d81290205dce821c1">&#9670;&#160;</a></span>cs_ena_posttrans</h2>
 
@@ -188,6 +213,38 @@ Public Attributes</h2></td></tr>
 </div><div class="memdoc">
 
 <p>CS pin (set from board config) </p>
+
+</div>
+</div>
+<a id="a43c870a88674bedf95622f82ebe591ec" name="a43c870a88674bedf95622f82ebe591ec"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a43c870a88674bedf95622f82ebe591ec">&#9670;&#160;</a></span>enable_pin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t Esp32Max22200SpiBus::SPIConfig::enable_pin = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>ENABLE pin (active-high, -1 = not configured) </p>
+
+</div>
+</div>
+<a id="a547981c04a7ee5bb6a50916ec8eb6b1a" name="a547981c04a7ee5bb6a50916ec8eb6b1a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a547981c04a7ee5bb6a50916ec8eb6b1a">&#9670;&#160;</a></span>fault_pin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int16_t Esp32Max22200SpiBus::SPIConfig::fault_pin = -1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>FAULT pin (active-low, open-drain input, -1 = not configured) </p>
 
 </div>
 </div>
