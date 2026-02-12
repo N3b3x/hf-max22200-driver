@@ -103,77 +103,214 @@ $(function(){initNavTree('esp32__max22200__spi_8hpp_source.html',''); initResiza
 </div><!--header-->
 <div class="contents">
 <a href="esp32__max22200__spi_8hpp.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#pragma once</span></div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#include &quot;<a class="code" href="max22200__spi__interface_8hpp.html">../../../inc/max22200_spi_interface.hpp</a>&quot;</span></div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;driver/spi_master.h&quot;</span></div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;esp_log.h&quot;</span></div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
-<div class="foldopen" id="foldopen00031" data-start="{" data-end="};">
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a> : <span class="keyword">public</span> <a class="code hl_class" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt;Esp32Max22200Spi&gt; {</div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span><span class="preprocessor">#pragma once</span></div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span><span class="preprocessor">#include &quot;<a class="code" href="max22200__spi__interface_8hpp.html">../../../inc/max22200_spi_interface.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="preprocessor">#include &quot;<a class="code" href="esp32__max22200__test__config_8hpp.html">esp32_max22200_test_config.hpp</a>&quot;</span></div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span><span class="preprocessor">#include &quot;driver/gpio.h&quot;</span></div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span><span class="preprocessor">#include &quot;driver/spi_master.h&quot;</span></div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span><span class="preprocessor">#include &quot;esp_log.h&quot;</span></div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span><span class="preprocessor">#include &lt;cstddef&gt;</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="preprocessor">#include &lt;cstdint&gt;</span></div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="preprocessor">#include &lt;cstring&gt;</span></div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="preprocessor">#include &lt;memory&gt;</span></div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
 <div class="foldopen" id="foldopen00036" data-start="{" data-end="};">
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html">   36</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">SPIConfig</a> {</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">   37</a></span>    spi_host_device_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">host</a> = SPI2_HOST; </div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">   38</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">miso_pin</a> = GPIO_NUM_2;   </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">   39</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">mosi_pin</a> = GPIO_NUM_7;   </div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">   40</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">sclk_pin</a> = GPIO_NUM_6;   </div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">   41</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">cs_pin</a> = GPIO_NUM_10;    </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">   42</a></span>    uint32_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">frequency</a> = 10000000;      </div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">   43</a></span>    uint8_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">mode</a> = 0;       </div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">   44</a></span>    uint8_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">queue_size</a> = 1; </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>  };</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html">   36</a></span><span class="keyword">class </span><a class="code hl_class" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a> : <span class="keyword">public</span> <a class="code hl_class" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt;Esp32Max22200Spi&gt; {</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span><span class="keyword">public</span>:</div>
+<div class="foldopen" id="foldopen00041" data-start="{" data-end="};">
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html">   41</a></span>  <span class="keyword">struct </span><a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">SPIConfig</a> {</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">   42</a></span>    spi_host_device_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">host</a> = SPI2_HOST; </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">   43</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">miso_pin</a> = GPIO_NUM_2;   </div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">   44</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">mosi_pin</a> = GPIO_NUM_7;   </div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">   45</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">sclk_pin</a> = GPIO_NUM_6;   </div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">   46</a></span>    gpio_num_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">cs_pin</a> = GPIO_NUM_10;    </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">   47</a></span>    uint32_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">frequency</a> = 10000000;      </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">   48</a></span>    uint8_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">mode</a> = 0;       </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno"><a class="line" href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">   49</a></span>    uint8_t <a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">queue_size</a> = 1; </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>  };</div>
 </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00050" name="l00050"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">   50</a></span>  <a class="code hl_function" href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">Esp32Max22200Spi</a>() : <a class="code hl_class" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a>(<a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">SPIConfig</a>{}) {}</div>
 <div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">Esp32Max22200Spi</a>(<span class="keyword">const</span> SPIConfig &amp;config);</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>  <a class="code hl_function" href="classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810">~Esp32Max22200Spi</a>();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732">Initialize</a>();</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48">Transfer</a>(<span class="keyword">const</span> uint8_t *tx_data, uint8_t *rx_data, <span class="keywordtype">size_t</span> length);</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span> </div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd">SetChipSelect</a>(<span class="keywordtype">bool</span> state);</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
-<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194">Configure</a>(uint32_t speed_hz, uint8_t mode, <span class="keywordtype">bool</span> msb_first = <span class="keyword">true</span>);</div>
-<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span> </div>
-<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a">IsReady</a>() <span class="keyword">const</span>;</div>
-<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span> </div>
-<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00100" name="l00100"></a><span class="lineno">  100</span>  SPIConfig config_;               </div>
-<div class="line"><a id="l00101" name="l00101"></a><span class="lineno">  101</span>  spi_device_handle_t spi_device_; </div>
-<div class="line"><a id="l00102" name="l00102"></a><span class="lineno">  102</span>  <span class="keywordtype">bool</span> initialized_;               </div>
-<div class="line"><a id="l00103" name="l00103"></a><span class="lineno">  103</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *TAG = <span class="stringliteral">&quot;Esp32Max22200Spi&quot;</span>; </div>
-<div class="line"><a id="l00104" name="l00104"></a><span class="lineno">  104</span> </div>
-<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>  <span class="keywordtype">bool</span> initializeSPI();</div>
-<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span> </div>
-<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>  <span class="keywordtype">bool</span> addSPIDevice();</div>
-<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>};</div>
+<div class="line"><a id="l00055" name="l00055"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">   55</a></span>  <a class="code hl_function" href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">Esp32Max22200Spi</a>() : <a class="code hl_class" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a>(<a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">SPIConfig</a>{}) {}</div>
+<div class="line"><a id="l00056" name="l00056"></a><span class="lineno">   56</span> </div>
+<div class="foldopen" id="foldopen00061" data-start="{" data-end="}">
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798">   61</a></span>  <span class="keyword">explicit</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798">Esp32Max22200Spi</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">SPIConfig</a> &amp;config)</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>      : config_(config), spi_device_(nullptr), initialized_(false) {}</div>
 </div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html"><div class="ttname"><a href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a></div><div class="ttdoc">ESP32 SPI transport implementation for MAX22200 driver.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:31</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_a2d009f467e577f98e66c8f740e301fbd"><div class="ttname"><a href="classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd">Esp32Max22200Spi::SetChipSelect</a></div><div class="ttdeci">void SetChipSelect(bool state)</div><div class="ttdoc">Set chip select state.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:68</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_a37ae6d8375dcebda41a86495f1a88c48"><div class="ttname"><a href="classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48">Esp32Max22200Spi::Transfer</a></div><div class="ttdeci">bool Transfer(const uint8_t *tx_data, uint8_t *rx_data, size_t length)</div><div class="ttdoc">Perform a full-duplex SPI data transfer.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:47</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_a5543f4ece9adef4e31b489c020fea991"><div class="ttname"><a href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">Esp32Max22200Spi::Esp32Max22200Spi</a></div><div class="ttdeci">Esp32Max22200Spi()</div><div class="ttdoc">Constructor with default SPI configuration.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:50</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_a9dec56bfa1ac2f6048bb1c66aa282f6a"><div class="ttname"><a href="classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a">Esp32Max22200Spi::IsReady</a></div><div class="ttdeci">bool IsReady() const</div><div class="ttdoc">Check if SPI interface is ready.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:90</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_ac0ab70f8becb277bd6f3ce02ef76c810"><div class="ttname"><a href="classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810">Esp32Max22200Spi::~Esp32Max22200Spi</a></div><div class="ttdeci">~Esp32Max22200Spi()</div><div class="ttdoc">Destructor - cleans up SPI resources.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:18</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_ac24c5bb3015c3980f806736eb186e194"><div class="ttname"><a href="classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194">Esp32Max22200Spi::Configure</a></div><div class="ttdeci">bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first=true)</div><div class="ttdoc">Configure SPI parameters.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:74</div></div>
-<div class="ttc" id="aclassEsp32Max22200Spi_html_aeb91b4f0e2333fc5104ff6672031d732"><div class="ttname"><a href="classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732">Esp32Max22200Spi::Initialize</a></div><div class="ttdeci">bool Initialize()</div><div class="ttdoc">Initialize the SPI bus.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.cpp:26</div></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
+<div class="foldopen" id="foldopen00067" data-start="{" data-end="}">
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810">   67</a></span>  <a class="code hl_function" href="classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810">~Esp32Max22200Spi</a>() {</div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordflow">if</span> (spi_device_ != <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>      spi_bus_remove_device(spi_device_);</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>      spi_bus_free(config_.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">host</a>);</div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>      spi_device_ = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    }</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>  }</div>
+</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="foldopen" id="foldopen00079" data-start="{" data-end="}">
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732">   79</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732">Initialize</a>() {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    <span class="keywordflow">if</span> (initialized_) {</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>      <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    }</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <span class="keywordflow">if</span> (!initializeSPI()) {</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Failed to initialize SPI bus&quot;</span>);</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>    }</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>    <span class="keywordflow">if</span> (!addSPIDevice()) {</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Failed to add SPI device&quot;</span>);</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>      spi_bus_free(config_.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">host</a>);</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span>    }</div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span> </div>
+<div class="line"><a id="l00095" name="l00095"></a><span class="lineno">   95</span>    initialized_ = <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00096" name="l00096"></a><span class="lineno">   96</span>    ESP_LOGI(TAG, <span class="stringliteral">&quot;SPI interface initialized successfully&quot;</span>);</div>
+<div class="line"><a id="l00097" name="l00097"></a><span class="lineno">   97</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00098" name="l00098"></a><span class="lineno">   98</span>  }</div>
+</div>
+<div class="line"><a id="l00099" name="l00099"></a><span class="lineno">   99</span> </div>
+<div class="foldopen" id="foldopen00107" data-start="{" data-end="}">
+<div class="line"><a id="l00107" name="l00107"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48">  107</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48">Transfer</a>(<span class="keyword">const</span> uint8_t *tx_data, uint8_t *rx_data, <span class="keywordtype">size_t</span> length) {</div>
+<div class="line"><a id="l00108" name="l00108"></a><span class="lineno">  108</span>    <span class="keywordflow">if</span> (!initialized_ || spi_device_ == <span class="keyword">nullptr</span>) {</div>
+<div class="line"><a id="l00109" name="l00109"></a><span class="lineno">  109</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;SPI not initialized&quot;</span>);</div>
+<div class="line"><a id="l00110" name="l00110"></a><span class="lineno">  110</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00111" name="l00111"></a><span class="lineno">  111</span>    }</div>
+<div class="line"><a id="l00112" name="l00112"></a><span class="lineno">  112</span> </div>
+<div class="line"><a id="l00113" name="l00113"></a><span class="lineno">  113</span>    spi_transaction_t trans = {};</div>
+<div class="line"><a id="l00114" name="l00114"></a><span class="lineno">  114</span>    trans.length = length * 8; <span class="comment">// Length in bits</span></div>
+<div class="line"><a id="l00115" name="l00115"></a><span class="lineno">  115</span>    trans.tx_buffer = tx_data;</div>
+<div class="line"><a id="l00116" name="l00116"></a><span class="lineno">  116</span>    trans.rx_buffer = rx_data;</div>
+<div class="line"><a id="l00117" name="l00117"></a><span class="lineno">  117</span> </div>
+<div class="line"><a id="l00118" name="l00118"></a><span class="lineno">  118</span>    esp_err_t ret = spi_device_transmit(spi_device_, &amp;trans);</div>
+<div class="line"><a id="l00119" name="l00119"></a><span class="lineno">  119</span>    <span class="keywordflow">if</span> (ret != ESP_OK) {</div>
+<div class="line"><a id="l00120" name="l00120"></a><span class="lineno">  120</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;SPI transfer failed: %s&quot;</span>, esp_err_to_name(ret));</div>
+<div class="line"><a id="l00121" name="l00121"></a><span class="lineno">  121</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00122" name="l00122"></a><span class="lineno">  122</span>    }</div>
+<div class="line"><a id="l00123" name="l00123"></a><span class="lineno">  123</span> </div>
+<div class="line"><a id="l00124" name="l00124"></a><span class="lineno">  124</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00125" name="l00125"></a><span class="lineno">  125</span>  }</div>
+</div>
+<div class="line"><a id="l00126" name="l00126"></a><span class="lineno">  126</span> </div>
+<div class="foldopen" id="foldopen00131" data-start="{" data-end="}">
+<div class="line"><a id="l00131" name="l00131"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd">  131</a></span>  <span class="keywordtype">void</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd">SetChipSelect</a>(<span class="keywordtype">bool</span> state) {</div>
+<div class="line"><a id="l00132" name="l00132"></a><span class="lineno">  132</span>    <span class="comment">// CS is handled automatically by ESP-IDF SPI driver</span></div>
+<div class="line"><a id="l00133" name="l00133"></a><span class="lineno">  133</span>    <span class="comment">// This function is kept for interface compatibility</span></div>
+<div class="line"><a id="l00134" name="l00134"></a><span class="lineno">  134</span>    (void)state;</div>
+<div class="line"><a id="l00135" name="l00135"></a><span class="lineno">  135</span>  }</div>
+</div>
+<div class="line"><a id="l00136" name="l00136"></a><span class="lineno">  136</span> </div>
+<div class="foldopen" id="foldopen00144" data-start="{" data-end="}">
+<div class="line"><a id="l00144" name="l00144"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194">  144</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194">Configure</a>(uint32_t speed_hz, uint8_t mode, <span class="keywordtype">bool</span> msb_first = <span class="keyword">true</span>) {</div>
+<div class="line"><a id="l00145" name="l00145"></a><span class="lineno">  145</span>    <span class="keywordflow">if</span> (!initialized_) {</div>
+<div class="line"><a id="l00146" name="l00146"></a><span class="lineno">  146</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;SPI not initialized&quot;</span>);</div>
+<div class="line"><a id="l00147" name="l00147"></a><span class="lineno">  147</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00148" name="l00148"></a><span class="lineno">  148</span>    }</div>
+<div class="line"><a id="l00149" name="l00149"></a><span class="lineno">  149</span> </div>
+<div class="line"><a id="l00150" name="l00150"></a><span class="lineno">  150</span>    <span class="comment">// ESP-IDF doesn&#39;t support runtime reconfiguration easily</span></div>
+<div class="line"><a id="l00151" name="l00151"></a><span class="lineno">  151</span>    <span class="comment">// Configuration is set during device addition</span></div>
+<div class="line"><a id="l00152" name="l00152"></a><span class="lineno">  152</span>    (void)speed_hz;</div>
+<div class="line"><a id="l00153" name="l00153"></a><span class="lineno">  153</span>    (void)mode;</div>
+<div class="line"><a id="l00154" name="l00154"></a><span class="lineno">  154</span>    (void)msb_first;</div>
+<div class="line"><a id="l00155" name="l00155"></a><span class="lineno">  155</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00156" name="l00156"></a><span class="lineno">  156</span>  }</div>
+</div>
+<div class="line"><a id="l00157" name="l00157"></a><span class="lineno">  157</span> </div>
+<div class="foldopen" id="foldopen00162" data-start="{" data-end="}">
+<div class="line"><a id="l00162" name="l00162"></a><span class="lineno"><a class="line" href="classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a">  162</a></span>  <span class="keywordtype">bool</span> <a class="code hl_function" href="classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a">IsReady</a>()<span class="keyword"> const </span>{</div>
+<div class="line"><a id="l00163" name="l00163"></a><span class="lineno">  163</span>    <span class="keywordflow">return</span> initialized_ &amp;&amp; (spi_device_ != <span class="keyword">nullptr</span>);</div>
+<div class="line"><a id="l00164" name="l00164"></a><span class="lineno">  164</span>  }</div>
+</div>
+<div class="line"><a id="l00165" name="l00165"></a><span class="lineno">  165</span> </div>
+<div class="line"><a id="l00166" name="l00166"></a><span class="lineno">  166</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00167" name="l00167"></a><span class="lineno">  167</span>  SPIConfig config_;               </div>
+<div class="line"><a id="l00168" name="l00168"></a><span class="lineno">  168</span>  spi_device_handle_t spi_device_; </div>
+<div class="line"><a id="l00169" name="l00169"></a><span class="lineno">  169</span>  <span class="keywordtype">bool</span> initialized_;               </div>
+<div class="line"><a id="l00170" name="l00170"></a><span class="lineno">  170</span>  <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keyword">const</span> <span class="keywordtype">char</span> *TAG = <span class="stringliteral">&quot;Esp32Max22200Spi&quot;</span>; </div>
+<div class="line"><a id="l00171" name="l00171"></a><span class="lineno">  171</span> </div>
+<div class="line"><a id="l00176" name="l00176"></a><span class="lineno">  176</span>  <span class="keywordtype">bool</span> initializeSPI() {</div>
+<div class="line"><a id="l00177" name="l00177"></a><span class="lineno">  177</span>    spi_bus_config_t bus_cfg = {};</div>
+<div class="line"><a id="l00178" name="l00178"></a><span class="lineno">  178</span>    bus_cfg.mosi_io_num = config_.mosi_pin;</div>
+<div class="line"><a id="l00179" name="l00179"></a><span class="lineno">  179</span>    bus_cfg.miso_io_num = config_.miso_pin;</div>
+<div class="line"><a id="l00180" name="l00180"></a><span class="lineno">  180</span>    bus_cfg.sclk_io_num = config_.sclk_pin;</div>
+<div class="line"><a id="l00181" name="l00181"></a><span class="lineno">  181</span>    bus_cfg.quadwp_io_num = -1;</div>
+<div class="line"><a id="l00182" name="l00182"></a><span class="lineno">  182</span>    bus_cfg.quadhd_io_num = -1;</div>
+<div class="line"><a id="l00183" name="l00183"></a><span class="lineno">  183</span>    bus_cfg.max_transfer_sz = 64; <span class="comment">// MAX22200 uses 3-byte transfers</span></div>
+<div class="line"><a id="l00184" name="l00184"></a><span class="lineno">  184</span> </div>
+<div class="line"><a id="l00185" name="l00185"></a><span class="lineno">  185</span>    esp_err_t ret = spi_bus_initialize(config_.host, &amp;bus_cfg, SPI_DMA_CH_AUTO);</div>
+<div class="line"><a id="l00186" name="l00186"></a><span class="lineno">  186</span>    <span class="keywordflow">if</span> (ret != ESP_OK) {</div>
+<div class="line"><a id="l00187" name="l00187"></a><span class="lineno">  187</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Failed to initialize SPI bus: %s&quot;</span>, esp_err_to_name(ret));</div>
+<div class="line"><a id="l00188" name="l00188"></a><span class="lineno">  188</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00189" name="l00189"></a><span class="lineno">  189</span>    }</div>
+<div class="line"><a id="l00190" name="l00190"></a><span class="lineno">  190</span> </div>
+<div class="line"><a id="l00191" name="l00191"></a><span class="lineno">  191</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00192" name="l00192"></a><span class="lineno">  192</span>  }</div>
+<div class="line"><a id="l00193" name="l00193"></a><span class="lineno">  193</span> </div>
+<div class="line"><a id="l00198" name="l00198"></a><span class="lineno">  198</span>  <span class="keywordtype">bool</span> addSPIDevice() {</div>
+<div class="line"><a id="l00199" name="l00199"></a><span class="lineno">  199</span>    spi_device_interface_config_t dev_cfg = {};</div>
+<div class="line"><a id="l00200" name="l00200"></a><span class="lineno">  200</span>    dev_cfg.clock_speed_hz = config_.frequency;</div>
+<div class="line"><a id="l00201" name="l00201"></a><span class="lineno">  201</span>    dev_cfg.mode = config_.mode;</div>
+<div class="line"><a id="l00202" name="l00202"></a><span class="lineno">  202</span>    dev_cfg.spics_io_num = config_.cs_pin;</div>
+<div class="line"><a id="l00203" name="l00203"></a><span class="lineno">  203</span>    dev_cfg.queue_size = config_.queue_size;</div>
+<div class="line"><a id="l00204" name="l00204"></a><span class="lineno">  204</span>    dev_cfg.flags = 0;</div>
+<div class="line"><a id="l00205" name="l00205"></a><span class="lineno">  205</span>    dev_cfg.pre_cb = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00206" name="l00206"></a><span class="lineno">  206</span> </div>
+<div class="line"><a id="l00207" name="l00207"></a><span class="lineno">  207</span>    esp_err_t ret = spi_bus_add_device(config_.host, &amp;dev_cfg, &amp;spi_device_);</div>
+<div class="line"><a id="l00208" name="l00208"></a><span class="lineno">  208</span>    <span class="keywordflow">if</span> (ret != ESP_OK) {</div>
+<div class="line"><a id="l00209" name="l00209"></a><span class="lineno">  209</span>      ESP_LOGE(TAG, <span class="stringliteral">&quot;Failed to add SPI device: %s&quot;</span>, esp_err_to_name(ret));</div>
+<div class="line"><a id="l00210" name="l00210"></a><span class="lineno">  210</span>      <span class="keywordflow">return</span> <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00211" name="l00211"></a><span class="lineno">  211</span>    }</div>
+<div class="line"><a id="l00212" name="l00212"></a><span class="lineno">  212</span> </div>
+<div class="line"><a id="l00213" name="l00213"></a><span class="lineno">  213</span>    <span class="keywordflow">return</span> <span class="keyword">true</span>;</div>
+<div class="line"><a id="l00214" name="l00214"></a><span class="lineno">  214</span>  }</div>
+<div class="line"><a id="l00215" name="l00215"></a><span class="lineno">  215</span>};</div>
+</div>
+<div class="line"><a id="l00216" name="l00216"></a><span class="lineno">  216</span> </div>
+<div class="foldopen" id="foldopen00225" data-start="{" data-end="}">
+<div class="line"><a id="l00225" name="l00225"></a><span class="lineno"><a class="line" href="esp32__max22200__spi_8hpp.html#a9c0ec8c334e30fc0f051d44ec36e492a">  225</a></span><span class="keyword">inline</span> <span class="keyword">auto</span> <a class="code hl_function" href="esp32__max22200__spi_8hpp.html#a9c0ec8c334e30fc0f051d44ec36e492a">CreateEsp32Max22200Spi</a>() noexcept -&gt; std::unique_ptr&lt;<a class="code hl_class" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a>&gt; {</div>
+<div class="line"><a id="l00226" name="l00226"></a><span class="lineno">  226</span>  <span class="keyword">using namespace </span><a class="code hl_namespace" href="namespaceMAX22200__TestConfig.html">MAX22200_TestConfig</a>;</div>
+<div class="line"><a id="l00227" name="l00227"></a><span class="lineno">  227</span> </div>
+<div class="line"><a id="l00228" name="l00228"></a><span class="lineno">  228</span>  <a class="code hl_struct" href="structEsp32Max22200Spi_1_1SPIConfig.html">Esp32Max22200Spi::SPIConfig</a> config;</div>
+<div class="line"><a id="l00229" name="l00229"></a><span class="lineno">  229</span> </div>
+<div class="line"><a id="l00230" name="l00230"></a><span class="lineno">  230</span>  <span class="comment">// SPI pins from esp32_max22200_test_config.hpp</span></div>
+<div class="line"><a id="l00231" name="l00231"></a><span class="lineno">  231</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">host</a> = SPI2_HOST;</div>
+<div class="line"><a id="l00232" name="l00232"></a><span class="lineno">  232</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">miso_pin</a> = <span class="keyword">static_cast&lt;</span>gpio_num_t<span class="keyword">&gt;</span>(SPIPins::MISO);</div>
+<div class="line"><a id="l00233" name="l00233"></a><span class="lineno">  233</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">mosi_pin</a> = <span class="keyword">static_cast&lt;</span>gpio_num_t<span class="keyword">&gt;</span>(SPIPins::MOSI);</div>
+<div class="line"><a id="l00234" name="l00234"></a><span class="lineno">  234</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">sclk_pin</a> = <span class="keyword">static_cast&lt;</span>gpio_num_t<span class="keyword">&gt;</span>(SPIPins::SCLK);</div>
+<div class="line"><a id="l00235" name="l00235"></a><span class="lineno">  235</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">cs_pin</a> = <span class="keyword">static_cast&lt;</span>gpio_num_t<span class="keyword">&gt;</span>(SPIPins::CS);</div>
+<div class="line"><a id="l00236" name="l00236"></a><span class="lineno">  236</span> </div>
+<div class="line"><a id="l00237" name="l00237"></a><span class="lineno">  237</span>  <span class="comment">// SPI parameters from esp32_max22200_test_config.hpp</span></div>
+<div class="line"><a id="l00238" name="l00238"></a><span class="lineno">  238</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">frequency</a> = SPIParams::FREQUENCY;</div>
+<div class="line"><a id="l00239" name="l00239"></a><span class="lineno">  239</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">mode</a> = SPIParams::MODE;</div>
+<div class="line"><a id="l00240" name="l00240"></a><span class="lineno">  240</span>  config.<a class="code hl_variable" href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">queue_size</a> = SPIParams::QUEUE_SIZE;</div>
+<div class="line"><a id="l00241" name="l00241"></a><span class="lineno">  241</span> </div>
+<div class="line"><a id="l00242" name="l00242"></a><span class="lineno">  242</span>  <span class="keywordflow">return</span> std::make_unique&lt;Esp32Max22200Spi&gt;(config);</div>
+<div class="line"><a id="l00243" name="l00243"></a><span class="lineno">  243</span>}</div>
+</div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html"><div class="ttname"><a href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a></div><div class="ttdoc">ESP32 SPI transport implementation for MAX22200 driver.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:36</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_a2d009f467e577f98e66c8f740e301fbd"><div class="ttname"><a href="classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd">Esp32Max22200Spi::SetChipSelect</a></div><div class="ttdeci">void SetChipSelect(bool state)</div><div class="ttdoc">Set chip select state.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:131</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_a37ae6d8375dcebda41a86495f1a88c48"><div class="ttname"><a href="classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48">Esp32Max22200Spi::Transfer</a></div><div class="ttdeci">bool Transfer(const uint8_t *tx_data, uint8_t *rx_data, size_t length)</div><div class="ttdoc">Perform a full-duplex SPI data transfer.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:107</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_a400330848ca13f5fa0d7b6395af3e798"><div class="ttname"><a href="classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798">Esp32Max22200Spi::Esp32Max22200Spi</a></div><div class="ttdeci">Esp32Max22200Spi(const SPIConfig &amp;config)</div><div class="ttdoc">Constructor with custom SPI configuration.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:61</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_a5543f4ece9adef4e31b489c020fea991"><div class="ttname"><a href="classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991">Esp32Max22200Spi::Esp32Max22200Spi</a></div><div class="ttdeci">Esp32Max22200Spi()</div><div class="ttdoc">Constructor with default SPI configuration.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:55</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_a9dec56bfa1ac2f6048bb1c66aa282f6a"><div class="ttname"><a href="classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a">Esp32Max22200Spi::IsReady</a></div><div class="ttdeci">bool IsReady() const</div><div class="ttdoc">Check if SPI interface is ready.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:162</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_ac0ab70f8becb277bd6f3ce02ef76c810"><div class="ttname"><a href="classEsp32Max22200Spi.html#ac0ab70f8becb277bd6f3ce02ef76c810">Esp32Max22200Spi::~Esp32Max22200Spi</a></div><div class="ttdeci">~Esp32Max22200Spi()</div><div class="ttdoc">Destructor - cleans up SPI resources.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:67</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_ac24c5bb3015c3980f806736eb186e194"><div class="ttname"><a href="classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194">Esp32Max22200Spi::Configure</a></div><div class="ttdeci">bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first=true)</div><div class="ttdoc">Configure SPI parameters.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:144</div></div>
+<div class="ttc" id="aclassEsp32Max22200Spi_html_aeb91b4f0e2333fc5104ff6672031d732"><div class="ttname"><a href="classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732">Esp32Max22200Spi::Initialize</a></div><div class="ttdeci">bool Initialize()</div><div class="ttdoc">Initialize the SPI bus.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:79</div></div>
 <div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:45</div></div>
+<div class="ttc" id="aesp32__max22200__spi_8hpp_html_a9c0ec8c334e30fc0f051d44ec36e492a"><div class="ttname"><a href="esp32__max22200__spi_8hpp.html#a9c0ec8c334e30fc0f051d44ec36e492a">CreateEsp32Max22200Spi</a></div><div class="ttdeci">auto CreateEsp32Max22200Spi() noexcept -&gt; std::unique_ptr&lt; Esp32Max22200Spi &gt;</div><div class="ttdoc">Factory function to create a configured Esp32Max22200Spi instance.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:225</div></div>
+<div class="ttc" id="aesp32__max22200__test__config_8hpp_html"><div class="ttname"><a href="esp32__max22200__test__config_8hpp.html">esp32_max22200_test_config.hpp</a></div><div class="ttdoc">Hardware configuration for MAX22200 driver on ESP32-C6.</div></div>
 <div class="ttc" id="amax22200__spi__interface_8hpp_html"><div class="ttname"><a href="max22200__spi__interface_8hpp.html">max22200_spi_interface.hpp</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html">Esp32Max22200Spi::SPIConfig</a></div><div class="ttdoc">SPI configuration structure.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:36</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a11c07a745febf3b3451e0e26131fcaf1"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">Esp32Max22200Spi::SPIConfig::frequency</a></div><div class="ttdeci">uint32_t frequency</div><div class="ttdoc">SPI frequency in Hz (default 10MHz)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:42</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a306da642c5c68514fa9b303b36303c49"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">Esp32Max22200Spi::SPIConfig::queue_size</a></div><div class="ttdeci">uint8_t queue_size</div><div class="ttdoc">Transaction queue size.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:44</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a3fb1a9ca2e5205a125291db05a07bf41"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">Esp32Max22200Spi::SPIConfig::cs_pin</a></div><div class="ttdeci">gpio_num_t cs_pin</div><div class="ttdoc">CS pin (default GPIO10)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:41</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a41f938606ac606ca53b9ddb1703923b3"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">Esp32Max22200Spi::SPIConfig::mosi_pin</a></div><div class="ttdeci">gpio_num_t mosi_pin</div><div class="ttdoc">MOSI pin (default GPIO7)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:39</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a60eeee22e460b4d8a5cb2884d2b40498"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">Esp32Max22200Spi::SPIConfig::mode</a></div><div class="ttdeci">uint8_t mode</div><div class="ttdoc">SPI mode (default 0: CPOL=0, CPHA=0)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:43</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a9ad25b0562c0e63080f6b2ee496c4087"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">Esp32Max22200Spi::SPIConfig::miso_pin</a></div><div class="ttdeci">gpio_num_t miso_pin</div><div class="ttdoc">MISO pin (default GPIO2)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:38</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_ac51f4a623074ce299b7d271f8b8e5069"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">Esp32Max22200Spi::SPIConfig::sclk_pin</a></div><div class="ttdeci">gpio_num_t sclk_pin</div><div class="ttdoc">SCLK pin (default GPIO6)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:40</div></div>
-<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_afa026a784d63d13baa85466561f1136a"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">Esp32Max22200Spi::SPIConfig::host</a></div><div class="ttdeci">spi_host_device_t host</div><div class="ttdoc">SPI host (SPI2_HOST for ESP32-C6)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:37</div></div>
+<div class="ttc" id="anamespaceMAX22200__TestConfig_html"><div class="ttname"><a href="namespaceMAX22200__TestConfig.html">MAX22200_TestConfig</a></div><div class="ttdef"><b>Definition</b> esp32_max22200_test_config.hpp:38</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html">Esp32Max22200Spi::SPIConfig</a></div><div class="ttdoc">SPI configuration structure.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:41</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a11c07a745febf3b3451e0e26131fcaf1"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1">Esp32Max22200Spi::SPIConfig::frequency</a></div><div class="ttdeci">uint32_t frequency</div><div class="ttdoc">SPI frequency in Hz (default 10MHz)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:47</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a306da642c5c68514fa9b303b36303c49"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49">Esp32Max22200Spi::SPIConfig::queue_size</a></div><div class="ttdeci">uint8_t queue_size</div><div class="ttdoc">Transaction queue size.</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:49</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a3fb1a9ca2e5205a125291db05a07bf41"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41">Esp32Max22200Spi::SPIConfig::cs_pin</a></div><div class="ttdeci">gpio_num_t cs_pin</div><div class="ttdoc">CS pin (default GPIO10)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:46</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a41f938606ac606ca53b9ddb1703923b3"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3">Esp32Max22200Spi::SPIConfig::mosi_pin</a></div><div class="ttdeci">gpio_num_t mosi_pin</div><div class="ttdoc">MOSI pin (default GPIO7)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:44</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a60eeee22e460b4d8a5cb2884d2b40498"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498">Esp32Max22200Spi::SPIConfig::mode</a></div><div class="ttdeci">uint8_t mode</div><div class="ttdoc">SPI mode (default 0: CPOL=0, CPHA=0)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:48</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_a9ad25b0562c0e63080f6b2ee496c4087"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087">Esp32Max22200Spi::SPIConfig::miso_pin</a></div><div class="ttdeci">gpio_num_t miso_pin</div><div class="ttdoc">MISO pin (default GPIO2)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:43</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_ac51f4a623074ce299b7d271f8b8e5069"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069">Esp32Max22200Spi::SPIConfig::sclk_pin</a></div><div class="ttdeci">gpio_num_t sclk_pin</div><div class="ttdoc">SCLK pin (default GPIO6)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:45</div></div>
+<div class="ttc" id="astructEsp32Max22200Spi_1_1SPIConfig_html_afa026a784d63d13baa85466561f1136a"><div class="ttname"><a href="structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a">Esp32Max22200Spi::SPIConfig::host</a></div><div class="ttdeci">spi_host_device_t host</div><div class="ttdoc">SPI host (SPI2_HOST for ESP32-C6)</div><div class="ttdef"><b>Definition</b> esp32_max22200_spi.hpp:42</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

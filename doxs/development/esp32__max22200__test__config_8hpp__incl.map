@@ -1,0 +1,5 @@
+<map id="examples/esp32/main/esp32_max22200_test_config.hpp" name="examples/esp32/main/esp32_max22200_test_config.hpp">
+<area shape="rect" id="Node000001" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="5,5,179,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="59,108,125,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="95,60,95,94,89,94,89,60"/>
+</map>

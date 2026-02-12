@@ -1,12 +1,10 @@
 <map id="inc/max22200_spi_interface.hpp" name="inc/max22200_spi_interface.hpp">
-<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="111,5,345,31"/>
-<area shape="rect" id="Node000002" href="$esp32__max22200__spi_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver." alt="" coords="35,79,229,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="205,41,157,81,153,76,202,37"/>
-<area shape="rect" id="Node000005" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="254,86,397,111"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="255,37,313,84,309,88,251,41"/>
-<area shape="rect" id="Node000003" href="$esp32__max22200__spi_8cpp.html" title="ESP32 SPI transport implementation for MAX22200 driver." alt="" coords="5,174,200,214"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="124,133,111,175,106,173,119,131"/>
-<area shape="rect" id="Node000004" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="224,167,427,221"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="185,122,272,164,270,169,182,127"/>
-<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="328,125,328,166,323,166,323,125"/>
+<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="82,5,315,31"/>
+<area shape="rect" id="Node000002" href="$esp32__max22200__spi_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="5,79,200,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="176,41,128,81,124,76,172,37"/>
+<area shape="rect" id="Node000004" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="225,86,367,111"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="225,37,283,84,280,88,222,41"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32&#45;C6." alt="" coords="97,167,300,221"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="134,126,173,165,170,168,130,130"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="276,123,228,168,224,165,272,119"/>
 </map>

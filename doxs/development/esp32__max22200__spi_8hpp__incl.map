@@ -1,17 +1,24 @@
 <map id="examples/esp32/main/esp32_max22200_spi.hpp" name="examples/esp32/main/esp32_max22200_spi.hpp">
-<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver." alt="" coords="161,5,356,45"/>
-<area shape="rect" id="Node000002" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="26,93,176,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="225,48,149,89,146,85,223,43"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="14,181,84,207"/>
-<area shape="poly" id="edge7_Node000001_Node000003" title=" " alt="" coords="161,44,72,65,37,79,15,95,9,112,11,132,20,151,32,169,27,172,15,154,6,133,3,112,11,92,34,74,70,60,160,38"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="118,181,185,207"/>
-<area shape="poly" id="edge8_Node000001_Node000004" title=" " alt="" coords="248,47,169,171,164,168,244,44"/>
-<area shape="rect" id="Node000005" title=" " alt="" coords="252,101,356,126"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="271,44,293,87,289,89,266,47"/>
-<area shape="rect" id="Node000006" title=" " alt="" coords="380,101,526,126"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="302,43,416,93,413,98,300,48"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="551,101,635,126"/>
-<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="347,43,539,91,549,94,548,99,538,96,346,48"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,135,67,171,62,168,86,132"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="116,132,139,168,134,171,111,135"/>
+<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="402,5,597,45"/>
+<area shape="rect" id="Node000002" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="27,93,178,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,48,192,96,191,90,412,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="11,181,82,207"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="402,28,295,31,179,41,126,50,79,62,41,77,16,95,9,112,11,131,19,151,30,168,25,171,14,153,5,132,4,111,12,92,39,72,77,57,125,45,179,36,295,26,402,23"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="182,181,249,207"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="402,32,361,38,318,50,279,69,244,95,232,111,225,130,218,168,213,167,220,128,228,109,240,91,276,64,317,45,359,33,401,26"/>
+<area shape="rect" id="Node000005" href="$esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="254,93,423,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="465,48,387,89,384,85,463,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="448,101,552,126"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="502,46,502,87,497,87,497,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="576,101,722,126"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="534,43,619,92,616,96,531,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="747,101,831,126"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="570,43,735,91,744,94,743,99,733,96,568,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="856,101,922,126"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="598,38,716,59,844,91,852,93,850,98,843,96,715,64,597,43"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="946,101,1024,126"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="597,33,757,55,846,71,935,91,945,94,943,99,934,96,845,76,756,60,597,39"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,135,65,172,60,168,87,132"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="131,131,189,171,186,175,128,136"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="310,136,247,176,244,172,307,131"/>
 </map>

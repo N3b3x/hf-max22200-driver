@@ -95,28 +95,32 @@ $(function(){initNavTree('esp32__max22200__spi_8hpp.html',''); initResizable(); 
 
 <div class="header">
   <div class="summary">
-<a href="#nested-classes">Classes</a>  </div>
+<a href="#nested-classes">Classes</a> &#124;
+<a href="#func-members">Functions</a>  </div>
   <div class="headertitle"><div class="title">esp32_max22200_spi.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>ESP32 SPI transport implementation for MAX22200 driver.  
+<p>ESP32 SPI transport implementation for MAX22200 driver (header-only)  
 <a href="#details">More...</a></p>
 <div class="textblock"><code>#include &quot;<a class="el" href="max22200__spi__interface_8hpp_source.html">../../../inc/max22200_spi_interface.hpp</a>&quot;</code><br />
+<code>#include &quot;<a class="el" href="esp32__max22200__test__config_8hpp_source.html">esp32_max22200_test_config.hpp</a>&quot;</code><br />
 <code>#include &quot;driver/gpio.h&quot;</code><br />
 <code>#include &quot;driver/spi_master.h&quot;</code><br />
 <code>#include &quot;esp_log.h&quot;</code><br />
 <code>#include &lt;cstddef&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
+<code>#include &lt;cstring&gt;</code><br />
+<code>#include &lt;memory&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for esp32_max22200_spi.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__max22200__spi_8hpp__incl.svg" width="640" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__max22200__spi_8hpp__incl.svg" width="1030" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__max22200__spi_8hpp__dep__incl.svg" width="432" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="esp32__max22200__spi_8hpp__dep__incl.svg" width="214" height="154"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="esp32__max22200__spi_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -129,14 +133,51 @@ Classes</h2></td></tr>
 <tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structEsp32Max22200Spi_1_1SPIConfig.html">Esp32Max22200Spi::SPIConfig</a></td></tr>
 <tr class="memdesc:"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI configuration structure.  <a href="structEsp32Max22200Spi_1_1SPIConfig.html#details">More...</a><br /></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:a9c0ec8c334e30fc0f051d44ec36e492a" id="r_a9c0ec8c334e30fc0f051d44ec36e492a"><td class="memItemLeft" align="right" valign="top">auto&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c0ec8c334e30fc0f051d44ec36e492a">CreateEsp32Max22200Spi</a> () noexcept -&gt; std::unique_ptr&lt; <a class="el" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a> &gt;</td></tr>
+<tr class="memdesc:a9c0ec8c334e30fc0f051d44ec36e492a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Factory function to create a configured <a class="el" href="classEsp32Max22200Spi.html" title="ESP32 SPI transport implementation for MAX22200 driver.">Esp32Max22200Spi</a> instance.  <br /></td></tr>
+<tr class="separator:a9c0ec8c334e30fc0f051d44ec36e492a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>ESP32 SPI transport implementation for MAX22200 driver. </p>
+<div class="textblock"><p>ESP32 SPI transport implementation for MAX22200 driver (header-only) </p>
 <p>This file provides the ESP32-specific implementation of the <a class="el" href="classmax22200_1_1SpiInterface.html" title="CRTP-based template interface for SPI communication.">max22200::SpiInterface</a> for communicating with MAX22200 octal solenoid and motor driver over SPI.</p>
-<dl class="section author"><dt>Author</dt><dd>HardFOC Development Team </dd></dl>
+<p>Header-only implementation — no separate .cpp file needed.</p>
+<dl class="section author"><dt>Author</dt><dd>N3b3x </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>HardFOC </dd></dl>
-</div></div><!-- contents -->
+</div><h2 class="groupheader">Function Documentation</h2>
+<a id="a9c0ec8c334e30fc0f051d44ec36e492a" name="a9c0ec8c334e30fc0f051d44ec36e492a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c0ec8c334e30fc0f051d44ec36e492a">&#9670;&#160;</a></span>CreateEsp32Max22200Spi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">auto CreateEsp32Max22200Spi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> -&gt; std::unique_ptr&lt;<a class="el" href="classEsp32Max22200Spi.html">Esp32Max22200Spi</a>&gt; </td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Factory function to create a configured <a class="el" href="classEsp32Max22200Spi.html" title="ESP32 SPI transport implementation for MAX22200 driver.">Esp32Max22200Spi</a> instance. </p>
+<p>Creates an <a class="el" href="classEsp32Max22200Spi.html" title="ESP32 SPI transport implementation for MAX22200 driver.">Esp32Max22200Spi</a> using pin and parameter values from <a class="el" href="namespaceMAX22200__TestConfig.html">MAX22200_TestConfig</a> namespace (<a class="el" href="esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32-C6.">esp32_max22200_test_config.hpp</a>).</p>
+<dl class="section return"><dt>Returns</dt><dd>std::unique_ptr&lt;Esp32Max22200Spi&gt; Configured SPI interface </dd></dl>
+
+</div>
+</div>
+</div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
