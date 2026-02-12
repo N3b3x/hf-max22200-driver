@@ -112,13 +112,13 @@ Public Attributes</h2></td></tr>
 <tr class="memdesc:afa026a784d63d13baa85466561f1136a"><td class="mdescLeft">&#160;</td><td class="mdescRight">SPI host (SPI2_HOST for ESP32-C6)  <br /></td></tr>
 <tr class="separator:afa026a784d63d13baa85466561f1136a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9ad25b0562c0e63080f6b2ee496c4087" id="r_a9ad25b0562c0e63080f6b2ee496c4087"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9ad25b0562c0e63080f6b2ee496c4087">miso_pin</a> = GPIO_NUM_2</td></tr>
-<tr class="memdesc:a9ad25b0562c0e63080f6b2ee496c4087"><td class="mdescLeft">&#160;</td><td class="mdescRight">MISO pin (default GPIO2)  <br /></td></tr>
+<tr class="memdesc:a9ad25b0562c0e63080f6b2ee496c4087"><td class="mdescLeft">&#160;</td><td class="mdescRight">MISO pin (default GPIO2 for ESP32-C6)  <br /></td></tr>
 <tr class="separator:a9ad25b0562c0e63080f6b2ee496c4087"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a41f938606ac606ca53b9ddb1703923b3" id="r_a41f938606ac606ca53b9ddb1703923b3"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a41f938606ac606ca53b9ddb1703923b3">mosi_pin</a> = GPIO_NUM_7</td></tr>
-<tr class="memdesc:a41f938606ac606ca53b9ddb1703923b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">MOSI pin (default GPIO7)  <br /></td></tr>
+<tr class="memdesc:a41f938606ac606ca53b9ddb1703923b3"><td class="mdescLeft">&#160;</td><td class="mdescRight">MOSI pin (default GPIO7 for ESP32-C6)  <br /></td></tr>
 <tr class="separator:a41f938606ac606ca53b9ddb1703923b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac51f4a623074ce299b7d271f8b8e5069" id="r_ac51f4a623074ce299b7d271f8b8e5069"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac51f4a623074ce299b7d271f8b8e5069">sclk_pin</a> = GPIO_NUM_6</td></tr>
-<tr class="memdesc:ac51f4a623074ce299b7d271f8b8e5069"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCLK pin (default GPIO6)  <br /></td></tr>
+<tr class="memdesc:ac51f4a623074ce299b7d271f8b8e5069"><td class="mdescLeft">&#160;</td><td class="mdescRight">SCLK pin (default GPIO6 for ESP32-C6)  <br /></td></tr>
 <tr class="separator:ac51f4a623074ce299b7d271f8b8e5069"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3fb1a9ca2e5205a125291db05a07bf41" id="r_a3fb1a9ca2e5205a125291db05a07bf41"><td class="memItemLeft" align="right" valign="top">gpio_num_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3fb1a9ca2e5205a125291db05a07bf41">cs_pin</a> = GPIO_NUM_10</td></tr>
 <tr class="memdesc:a3fb1a9ca2e5205a125291db05a07bf41"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS pin (default GPIO10)  <br /></td></tr>
@@ -132,10 +132,48 @@ Public Attributes</h2></td></tr>
 <tr class="memitem:a306da642c5c68514fa9b303b36303c49" id="r_a306da642c5c68514fa9b303b36303c49"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a306da642c5c68514fa9b303b36303c49">queue_size</a> = 1</td></tr>
 <tr class="memdesc:a306da642c5c68514fa9b303b36303c49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transaction queue size.  <br /></td></tr>
 <tr class="separator:a306da642c5c68514fa9b303b36303c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abb8c656244858970f4dbb60823e292e1" id="r_abb8c656244858970f4dbb60823e292e1"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abb8c656244858970f4dbb60823e292e1">cs_ena_pretrans</a> = 1</td></tr>
+<tr class="memdesc:abb8c656244858970f4dbb60823e292e1"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS asserted N clock cycles before transaction.  <br /></td></tr>
+<tr class="separator:abb8c656244858970f4dbb60823e292e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad22c6678cc6f1e1e6042a380db4febc8" id="r_ad22c6678cc6f1e1e6042a380db4febc8"><td class="memItemLeft" align="right" valign="top">uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad22c6678cc6f1e1e6042a380db4febc8">cs_ena_posttrans</a> = 1</td></tr>
+<tr class="memdesc:ad22c6678cc6f1e1e6042a380db4febc8"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS held N clock cycles after transaction.  <br /></td></tr>
+<tr class="separator:ad22c6678cc6f1e1e6042a380db4febc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SPI configuration structure. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ad22c6678cc6f1e1e6042a380db4febc8" name="ad22c6678cc6f1e1e6042a380db4febc8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad22c6678cc6f1e1e6042a380db4febc8">&#9670;&#160;</a></span>cs_ena_posttrans</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Esp32Max22200Spi::SPIConfig::cs_ena_posttrans = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CS held N clock cycles after transaction. </p>
+
+</div>
+</div>
+<a id="abb8c656244858970f4dbb60823e292e1" name="abb8c656244858970f4dbb60823e292e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abb8c656244858970f4dbb60823e292e1">&#9670;&#160;</a></span>cs_ena_pretrans</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">uint8_t Esp32Max22200Spi::SPIConfig::cs_ena_pretrans = 1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>CS asserted N clock cycles before transaction. </p>
+
+</div>
+</div>
 <a id="a3fb1a9ca2e5205a125291db05a07bf41" name="a3fb1a9ca2e5205a125291db05a07bf41"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3fb1a9ca2e5205a125291db05a07bf41">&#9670;&#160;</a></span>cs_pin</h2>
 
@@ -196,7 +234,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>MISO pin (default GPIO2) </p>
+<p>MISO pin (default GPIO2 for ESP32-C6) </p>
 
 </div>
 </div>
@@ -228,7 +266,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>MOSI pin (default GPIO7) </p>
+<p>MOSI pin (default GPIO7 for ESP32-C6) </p>
 
 </div>
 </div>
@@ -260,7 +298,7 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>SCLK pin (default GPIO6) </p>
+<p>SCLK pin (default GPIO6 for ESP32-C6) </p>
 
 </div>
 </div>

@@ -117,6 +117,12 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:ad5bd9ccd802235a47f46b27b0becfb54" id="r_ad5bd9ccd802235a47f46b27b0becfb54"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5bd9ccd802235a47f46b27b0becfb54">QUEUE_SIZE</a> = 1</td></tr>
 <tr class="memdesc:ad5bd9ccd802235a47f46b27b0becfb54"><td class="mdescLeft">&#160;</td><td class="mdescRight">Transaction queue size.  <br /></td></tr>
 <tr class="separator:ad5bd9ccd802235a47f46b27b0becfb54"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7c99e52412d1988a41b62e76fdfee487" id="r_a7c99e52412d1988a41b62e76fdfee487"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7c99e52412d1988a41b62e76fdfee487">CS_ENA_PRETRANS</a> = 1</td></tr>
+<tr class="memdesc:a7c99e52412d1988a41b62e76fdfee487"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS asserted N clock cycles before transaction.  <br /></td></tr>
+<tr class="separator:a7c99e52412d1988a41b62e76fdfee487"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af179e82813d55b49e398934e4f839622" id="r_af179e82813d55b49e398934e4f839622"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af179e82813d55b49e398934e4f839622">CS_ENA_POSTTRANS</a> = 1</td></tr>
+<tr class="memdesc:af179e82813d55b49e398934e4f839622"><td class="mdescLeft">&#160;</td><td class="mdescRight">CS held N clock cycles after transaction.  <br /></td></tr>
+<tr class="separator:af179e82813d55b49e398934e4f839622"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>SPI Communication Parameters. </p>
@@ -128,6 +134,54 @@ Static Public Attributes</h2></td></tr>
 <li>CS hold time: 0ns min after SCLK </li>
 </ul>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="af179e82813d55b49e398934e4f839622" name="af179e82813d55b49e398934e4f839622"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af179e82813d55b49e398934e4f839622">&#9670;&#160;</a></span>CS_ENA_POSTTRANS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200_TestConfig::SPIParams::CS_ENA_POSTTRANS = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CS held N clock cycles after transaction. </p>
+
+</div>
+</div>
+<a id="a7c99e52412d1988a41b62e76fdfee487" name="a7c99e52412d1988a41b62e76fdfee487"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7c99e52412d1988a41b62e76fdfee487">&#9670;&#160;</a></span>CS_ENA_PRETRANS</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint8_t MAX22200_TestConfig::SPIParams::CS_ENA_PRETRANS = 1</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CS asserted N clock cycles before transaction. </p>
+
+</div>
+</div>
 <a id="adecf8d704b7f408777de224d6734fefe" name="adecf8d704b7f408777de224d6734fefe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adecf8d704b7f408777de224d6734fefe">&#9670;&#160;</a></span>FREQUENCY</h2>
 

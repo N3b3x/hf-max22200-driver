@@ -7,6 +7,6 @@ var searchData=
   ['fault_5fevents_4',['fault_events',['../structmax22200_1_1DriverStatistics.html#a3a0d44b5b54a48618353dcafbfdc2e91',1,'max22200::DriverStatistics']]],
   ['fault_5fmask_5',['FAULT_MASK',['../namespacemax22200_1_1Registers.html#ac6fc2c3ccdf456ffe13eb0a41e9d1d5d',1,'max22200::Registers']]],
   ['fault_5fstatus_6',['FAULT_STATUS',['../namespacemax22200_1_1Registers.html#aeb82f50868a1427969454af1877eadd2',1,'max22200::Registers']]],
-  ['frequency_7',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]],
-  ['frequency_8',['frequency',['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig']]]
+  ['frequency_7',['frequency',['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['frequency_8',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]]
 ];

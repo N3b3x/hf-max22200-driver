@@ -80,6 +80,8 @@ struct SPIParams {
     static constexpr uint32_t FREQUENCY = 10000000;  ///< 10MHz SPI frequency (standalone max)
     static constexpr uint8_t MODE = 0;               ///< SPI Mode 0 (CPOL=0, CPHA=0)
     static constexpr uint8_t QUEUE_SIZE = 1;         ///< Transaction queue size
+    static constexpr uint8_t CS_ENA_PRETRANS = 1;    ///< CS asserted N clock cycles before transaction
+    static constexpr uint8_t CS_ENA_POSTTRANS = 1;   ///< CS held N clock cycles after transaction
 };
 
 /**

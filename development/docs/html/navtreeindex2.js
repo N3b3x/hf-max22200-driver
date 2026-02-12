@@ -1,5 +1,7 @@
 var NAVTREEINDEX2 =
 {
+"structmax22200_1_1ChannelConfig.html#adb0e7181def63a1d8834ccadcf975f0e":[10,0,0,7,0],
+"structmax22200_1_1ChannelConfig.html#aefc7ca5063b6c9f50e23620f6de3567d":[10,0,0,7,6],
 "structmax22200_1_1ChannelConfig.html#aefc7ca5063b6c9f50e23620f6de3567d":[11,0,0,0,6],
 "structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f":[10,0,0,7,9],
 "structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f":[11,0,0,0,9],

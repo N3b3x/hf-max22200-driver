@@ -44,6 +44,10 @@ var searchData=
   ['cmd_41',['CMD',['../structMAX22200__TestConfig_1_1ControlPins.html#acaf1798c2e902d4d61a07f84ba40e341',1,'MAX22200_TestConfig::ControlPins']]],
   ['completion_5fsemaphore_42',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
   ['cs_43',['CS',['../structMAX22200__TestConfig_1_1SPIPins.html#a742d1daba4b2e405922039f2c289e4dc',1,'MAX22200_TestConfig::SPIPins']]],
-  ['cs_5fpin_44',['cs_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['current_5freading_45',['current_reading',['../structmax22200_1_1ChannelStatus.html#aeeefca969bad67d54ec1c6c5f6a1d115',1,'max22200::ChannelStatus']]]
+  ['cs_5fena_5fposttrans_44',['CS_ENA_POSTTRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#af179e82813d55b49e398934e4f839622',1,'MAX22200_TestConfig::SPIParams']]],
+  ['cs_5fena_5fposttrans_45',['cs_ena_posttrans',['../structEsp32Max22200Spi_1_1SPIConfig.html#ad22c6678cc6f1e1e6042a380db4febc8',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['cs_5fena_5fpretrans_46',['cs_ena_pretrans',['../structEsp32Max22200Spi_1_1SPIConfig.html#abb8c656244858970f4dbb60823e292e1',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['cs_5fena_5fpretrans_47',['CS_ENA_PRETRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#a7c99e52412d1988a41b62e76fdfee487',1,'MAX22200_TestConfig::SPIParams']]],
+  ['cs_5fpin_48',['cs_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['current_5freading_49',['current_reading',['../structmax22200_1_1ChannelStatus.html#aeeefca969bad67d54ec1c6c5f6a1d115',1,'max22200::ChannelStatus']]]
 ];
