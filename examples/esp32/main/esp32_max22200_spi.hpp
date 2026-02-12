@@ -40,13 +40,15 @@ public:
    */
   struct SPIConfig {
     spi_host_device_t host = SPI2_HOST; ///< SPI host (SPI2_HOST for ESP32-C6)
-    gpio_num_t miso_pin = GPIO_NUM_2;   ///< MISO pin (default GPIO2)
-    gpio_num_t mosi_pin = GPIO_NUM_7;   ///< MOSI pin (default GPIO7)
-    gpio_num_t sclk_pin = GPIO_NUM_6;   ///< SCLK pin (default GPIO6)
+    gpio_num_t miso_pin = GPIO_NUM_2;   ///< MISO pin (default GPIO2 for ESP32-C6)
+    gpio_num_t mosi_pin = GPIO_NUM_7;   ///< MOSI pin (default GPIO7 for ESP32-C6)
+    gpio_num_t sclk_pin = GPIO_NUM_6;   ///< SCLK pin (default GPIO6 for ESP32-C6)
     gpio_num_t cs_pin = GPIO_NUM_10;    ///< CS pin (default GPIO10)
     uint32_t frequency = 10000000;      ///< SPI frequency in Hz (default 10MHz)
     uint8_t mode = 0;       ///< SPI mode (default 0: CPOL=0, CPHA=0)
     uint8_t queue_size = 1; ///< Transaction queue size
+    uint8_t cs_ena_pretrans = 1;  ///< CS asserted N clock cycles before transaction
+    uint8_t cs_ena_posttrans = 1; ///< CS held N clock cycles after transaction
   };
 
   /**
@@ -181,6 +183,7 @@ private:
     bus_cfg.quadwp_io_num = -1;
     bus_cfg.quadhd_io_num = -1;
     bus_cfg.max_transfer_sz = 64; // MAX22200 uses 3-byte transfers
+    bus_cfg.flags = SPICOMMON_BUSFLAG_MASTER;
 
     esp_err_t ret = spi_bus_initialize(config_.host, &bus_cfg, SPI_DMA_CH_AUTO);
     if (ret != ESP_OK) {
@@ -197,12 +200,20 @@ private:
    */
   bool addSPIDevice() {
     spi_device_interface_config_t dev_cfg = {};
+    dev_cfg.command_bits = 0;
+    dev_cfg.address_bits = 0;
+    dev_cfg.dummy_bits = 0;
     dev_cfg.clock_speed_hz = config_.frequency;
     dev_cfg.mode = config_.mode;
+    dev_cfg.duty_cycle_pos = 128;
     dev_cfg.spics_io_num = config_.cs_pin;
     dev_cfg.queue_size = config_.queue_size;
+    dev_cfg.cs_ena_pretrans = config_.cs_ena_pretrans;
+    dev_cfg.cs_ena_posttrans = config_.cs_ena_posttrans;
     dev_cfg.flags = 0;
+    dev_cfg.input_delay_ns = 0;
     dev_cfg.pre_cb = nullptr;
+    dev_cfg.post_cb = nullptr;
 
     esp_err_t ret = spi_bus_add_device(config_.host, &dev_cfg, &spi_device_);
     if (ret != ESP_OK) {
@@ -238,6 +249,8 @@ inline auto CreateEsp32Max22200Spi() noexcept -> std::unique_ptr<Esp32Max22200Sp
   config.frequency = SPIParams::FREQUENCY;
   config.mode = SPIParams::MODE;
   config.queue_size = SPIParams::QUEUE_SIZE;
+  config.cs_ena_pretrans = SPIParams::CS_ENA_PRETRANS;
+  config.cs_ena_posttrans = SPIParams::CS_ENA_POSTTRANS;
 
   return std::make_unique<Esp32Max22200Spi>(config);
 }
