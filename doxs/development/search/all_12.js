@@ -17,7 +17,7 @@ var searchData=
   ['total_5fexecution_5ftime_5fus_14',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5ftests_15',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
   ['total_5ftransfers_16',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
-  ['transfer_17',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()']]],
+  ['transfer_17',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]],
   ['tsd_18',['TSD',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce',1,'max22200']]],
   ['tsd_5fmask_19',['TSD_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a8a3ad68d7b4817bd2dcc57fe2b2f7242',1,'max22200::FaultStatusBits']]],
   ['tsd_5fpos_20',['TSD_POS',['../namespacemax22200_1_1FaultStatusBits.html#a2f548569ff32fe86d20504038413d7f1',1,'max22200::FaultStatusBits']]]

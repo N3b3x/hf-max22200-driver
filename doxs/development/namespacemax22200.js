@@ -118,6 +118,11 @@ var namespacemax22200 =
       [ "HOLD_PHASE", "namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422ae77d7787acc0512a80703ca3c166b024", null ],
       [ "FAULT", "namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422a893b3aaf1661e3717b18e8335ff93a72", null ]
     ] ],
+    [ "CtrlPin", "namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8", [
+      [ "ENABLE", "namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8ab332708e4304e13c9b424e7465254954", null ],
+      [ "FAULT", "namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72", null ],
+      [ "CMD", "namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8aa28966bac17b8eef99c5afa5eb594130", null ]
+    ] ],
     [ "DriveMode", "namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591", [
       [ "CDR", "namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a96e2018b8ce480feee232b6c570aa376", null ],
       [ "VDR", "namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a3b69142b3958e8139663fbb85ffce84e", null ]
@@ -137,6 +142,10 @@ var namespacemax22200 =
       [ "UVLO", "namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a747160ed904511b8086c45e27df12777", null ],
       [ "HHF", "namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a20cb7d0b2ed081378e7ba466b36b2942", null ],
       [ "TSD", "namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce", null ]
+    ] ],
+    [ "GpioSignal", "namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1", [
+      [ "INACTIVE", "namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a6b273343c454f9c53dcfc9c4ccf171d2", null ],
+      [ "ACTIVE", "namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115", null ]
     ] ],
     [ "OutputPolarity", "namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71", [
       [ "NORMAL", "namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71a1e23852820b9154316c7c06e2b7ba051", null ],

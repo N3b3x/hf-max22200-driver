@@ -15,5 +15,10 @@ var searchData=
   ['getsuccessrate_12',['getSuccessRate',['../structmax22200_1_1DriverStatistics.html#a37bd3bcbbf066835e8abdfb0e928d27f',1,'max22200::DriverStatistics']]],
   ['getversion_13',['GetVersion',['../classmax22200_1_1MAX22200.html#a0b1f85258162db3931fd794bc44f2409',1,'max22200::MAX22200']]],
   ['global_5fconfig_14',['GLOBAL_CONFIG',['../namespacemax22200_1_1Registers.html#a4f1ca9b3c1baba87139f9a804e096386',1,'max22200::Registers']]],
-  ['globalconfig_15',['GlobalConfig',['../structmax22200_1_1GlobalConfig.html',1,'max22200::GlobalConfig'],['../structmax22200_1_1GlobalConfig.html#ab7cb2b231bc242c3bc6d9a7b01f33b4b',1,'max22200::GlobalConfig::GlobalConfig()']]]
+  ['globalconfig_15',['GlobalConfig',['../structmax22200_1_1GlobalConfig.html',1,'max22200::GlobalConfig'],['../structmax22200_1_1GlobalConfig.html#ab7cb2b231bc242c3bc6d9a7b01f33b4b',1,'max22200::GlobalConfig::GlobalConfig()']]],
+  ['gpioread_16',['GpioRead',['../classmax22200_1_1SpiInterface.html#a111b256a31bd35527c9d0cb874d39d47',1,'max22200::SpiInterface::GpioRead()'],['../classEsp32Max22200SpiBus.html#aed444b34fe84097b60ffbe6312c6525a',1,'Esp32Max22200SpiBus::GpioRead()']]],
+  ['gpioset_17',['GpioSet',['../classmax22200_1_1SpiInterface.html#aa4e100ba6824321c1dae87f4c61079b8',1,'max22200::SpiInterface::GpioSet()'],['../classEsp32Max22200SpiBus.html#a57354378af9335b6427c393c58fe3877',1,'Esp32Max22200SpiBus::GpioSet()']]],
+  ['gpiosetactive_18',['GpioSetActive',['../classmax22200_1_1SpiInterface.html#aa58f9210a8462fe54d4c93e55c8f440c',1,'max22200::SpiInterface']]],
+  ['gpiosetinactive_19',['GpioSetInactive',['../classmax22200_1_1SpiInterface.html#a186da92403ffedd170b845fe10beeafc',1,'max22200::SpiInterface']]],
+  ['gpiosignal_20',['GpioSignal',['../namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1',1,'max22200']]]
 ];
