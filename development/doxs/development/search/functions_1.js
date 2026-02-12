@@ -7,5 +7,6 @@ var searchData=
   ['configure_4',['Configure',['../classmax22200_1_1SpiInterface.html#a3ce7e42eff0d1918f54162d97efc38b4',1,'max22200::SpiInterface::Configure()'],['../classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194',1,'Esp32Max22200Spi::Configure()']]],
   ['configureallchannels_5',['ConfigureAllChannels',['../classmax22200_1_1MAX22200.html#abf903c6831169d667c47aea3ed078bf0',1,'max22200::MAX22200']]],
   ['configurechannel_6',['ConfigureChannel',['../classmax22200_1_1MAX22200.html#a4f408001924084364f6e85ee2a5cafc6',1,'max22200::MAX22200']]],
-  ['configureglobal_7',['ConfigureGlobal',['../classmax22200_1_1MAX22200.html#a15c417b2d35d9348451222c5609e247d',1,'max22200::MAX22200']]]
+  ['configureglobal_7',['ConfigureGlobal',['../classmax22200_1_1MAX22200.html#a15c417b2d35d9348451222c5609e247d',1,'max22200::MAX22200']]],
+  ['createesp32max22200spi_8',['CreateEsp32Max22200Spi',['../esp32__max22200__spi_8hpp.html#a9c0ec8c334e30fc0f051d44ec36e492a',1,'esp32_max22200_spi.hpp']]]
 ];

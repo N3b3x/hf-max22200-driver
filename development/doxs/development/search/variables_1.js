@@ -41,7 +41,9 @@ var searchData=
   ['ch7_5fen_5fpos_38',['CH7_EN_POS',['../namespacemax22200_1_1ChannelEnable.html#a3cfb24f13cf17cf10bc8a88f1f2a39c2',1,'max22200::ChannelEnable']]],
   ['ch7_5ftiming_39',['CH7_TIMING',['../namespacemax22200_1_1Registers.html#a448ef83d262f5496695bfac1d8da6ad2',1,'max22200::Registers']]],
   ['channel_5fenable_40',['CHANNEL_ENABLE',['../namespacemax22200_1_1Registers.html#a87abc962c94e1072dff963aeeacb5646',1,'max22200::Registers']]],
-  ['completion_5fsemaphore_41',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
-  ['cs_5fpin_42',['cs_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['current_5freading_43',['current_reading',['../structmax22200_1_1ChannelStatus.html#aeeefca969bad67d54ec1c6c5f6a1d115',1,'max22200::ChannelStatus']]]
+  ['cmd_41',['CMD',['../structMAX22200__TestConfig_1_1ControlPins.html#acaf1798c2e902d4d61a07f84ba40e341',1,'MAX22200_TestConfig::ControlPins']]],
+  ['completion_5fsemaphore_42',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
+  ['cs_43',['CS',['../structMAX22200__TestConfig_1_1SPIPins.html#a742d1daba4b2e405922039f2c289e4dc',1,'MAX22200_TestConfig::SPIPins']]],
+  ['cs_5fpin_44',['cs_pin',['../structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41',1,'Esp32Max22200Spi::SPIConfig']]],
+  ['current_5freading_45',['current_reading',['../structmax22200_1_1ChannelStatus.html#aeeefca969bad67d54ec1c6c5f6a1d115',1,'max22200::ChannelStatus']]]
 ];

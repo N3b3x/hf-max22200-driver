@@ -1,4 +1,8 @@
 var searchData=
 [
-  ['vdr_0',['VDR',['../namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591a3b69142b3958e8139663fbb85ffce84e',1,'max22200']]]
+  ['undervoltage_5flockout_0',['undervoltage_lockout',['../structmax22200_1_1FaultStatus.html#aba0c9b0342513fe65599dea48a68a456',1,'max22200::FaultStatus']]],
+  ['uptime_5fms_1',['uptime_ms',['../structmax22200_1_1DriverStatistics.html#a83443a1da4dc00b15dde24af340d6fae',1,'max22200::DriverStatistics']]],
+  ['uvlo_2',['UVLO',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a747160ed904511b8086c45e27df12777',1,'max22200']]],
+  ['uvlo_5fmask_3',['UVLO_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a3bbdb4af954c6784da4f2b64ae941bcb',1,'max22200::FaultStatusBits']]],
+  ['uvlo_5fpos_4',['UVLO_POS',['../namespacemax22200_1_1FaultStatusBits.html#a788294e2934e251e22f48d97ddcd7d27',1,'max22200::FaultStatusBits']]]
 ];

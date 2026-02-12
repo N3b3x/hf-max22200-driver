@@ -1,5 +1,17 @@
 var searchData=
 [
-  ['queue_5fsize_0',['queue_size',['../structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49',1,'Esp32Max22200Spi::SPIConfig']]],
-  ['quick_20start_1',['🚀 Quick Start',['../index.html#autotoc_md4',1,'']]]
+  ['parallel_5fmask_0',['PARALLEL_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#ae4945c07d7db7a5e46790ef5f14fad4a',1,'max22200::ChannelConfigBits']]],
+  ['parallel_5fmode_1',['parallel_mode',['../structmax22200_1_1ChannelConfig.html#a1804d898a42237ec2ebb58f0eee8c43d',1,'max22200::ChannelConfig']]],
+  ['parallel_5fpos_2',['PARALLEL_POS',['../namespacemax22200_1_1ChannelConfigBits.html#aafa4ac1ee9c7146df84d54b8a88c0d87',1,'max22200::ChannelConfigBits']]],
+  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['plunger_5fmovement_4',['plunger_movement',['../structmax22200_1_1FaultStatus.html#af6848eed80754f48d3491855c9b2c61d',1,'max22200::FaultStatus']]],
+  ['polarity_5',['polarity',['../structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f',1,'max22200::ChannelConfig']]],
+  ['polarity_5fmask_6',['POLARITY_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#a209bc96630e68d3d450ec5a783486993',1,'max22200::ChannelConfigBits']]],
+  ['polarity_5fpos_7',['POLARITY_POS',['../namespacemax22200_1_1ChannelConfigBits.html#af2ebf82312cb901a7fbaf6eb53001652',1,'max22200::ChannelConfigBits']]],
+  ['poll_5finterval_5fms_8',['POLL_INTERVAL_MS',['../structMAX22200__TestConfig_1_1Diagnostics.html#a928b54298c77f409b114d0121c6e222d',1,'MAX22200_TestConfig::Diagnostics']]],
+  ['power_5fon_5fdelay_5fms_9',['POWER_ON_DELAY_MS',['../structMAX22200__TestConfig_1_1Timing.html#ade029318255e3b7b35958ff8a1082cc6',1,'MAX22200_TestConfig::Timing']]],
+  ['print_5ftest_5fsection_5ffooter_10',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fheader_11',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fstatus_12',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
+  ['print_5ftest_5fsummary_13',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
 ];

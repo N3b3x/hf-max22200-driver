@@ -1,8 +1,24 @@
 var searchData=
 [
-  ['undervoltage_5flockout_0',['undervoltage_lockout',['../structmax22200_1_1FaultStatus.html#aba0c9b0342513fe65599dea48a68a456',1,'max22200::FaultStatus']]],
-  ['uptime_5fms_1',['uptime_ms',['../structmax22200_1_1DriverStatistics.html#a83443a1da4dc00b15dde24af340d6fae',1,'max22200::DriverStatistics']]],
-  ['uvlo_2',['UVLO',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a747160ed904511b8086c45e27df12777',1,'max22200']]],
-  ['uvlo_5fmask_3',['UVLO_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a3bbdb4af954c6784da4f2b64ae941bcb',1,'max22200::FaultStatusBits']]],
-  ['uvlo_5fpos_4',['UVLO_POS',['../namespacemax22200_1_1FaultStatusBits.html#a788294e2934e251e22f48d97ddcd7d27',1,'max22200::FaultStatusBits']]]
+  ['table_20of_20contents_0',['📚 Table of Contents',['../index.html#autotoc_md1',1,'']]],
+  ['tag_1',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
+  ['temperature_2',['Temperature',['../structMAX22200__TestConfig_1_1Temperature.html',1,'MAX22200_TestConfig']]],
+  ['test_5fduration_5fms_3',['TEST_DURATION_MS',['../structMAX22200__TestConfig_1_1TestConfig.html#a18e10e0caee62921c8d75788b4351845',1,'MAX22200_TestConfig::TestConfig']]],
+  ['test_5ffunc_4',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
+  ['test_5fname_5',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
+  ['test_5ftask_5ftrampoline_6',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
+  ['testconfig_7',['TestConfig',['../structMAX22200__TestConfig_1_1TestConfig.html',1,'MAX22200_TestConfig']]],
+  ['testframework_2eh_8',['TestFramework.h',['../TestFramework_8h.html',1,'']]],
+  ['testresults_9',['TestResults',['../structTestResults.html',1,'']]],
+  ['testtaskcontext_10',['TestTaskContext',['../structTestTaskContext.html',1,'']]],
+  ['thermal_5fshutdown_11',['thermal_shutdown',['../structmax22200_1_1FaultStatus.html#a3cf7286894481d923f60012734c213f5',1,'max22200::FaultStatus']]],
+  ['timeout_12',['TIMEOUT',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27ba070a0fb40f6c308ab544b227660aadff',1,'max22200']]],
+  ['timing_13',['Timing',['../structMAX22200__TestConfig_1_1Timing.html',1,'MAX22200_TestConfig']]],
+  ['total_5fexecution_5ftime_5fus_14',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
+  ['total_5ftests_15',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
+  ['total_5ftransfers_16',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
+  ['transfer_17',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]],
+  ['tsd_18',['TSD',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce',1,'max22200']]],
+  ['tsd_5fmask_19',['TSD_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a8a3ad68d7b4817bd2dcc57fe2b2f7242',1,'max22200::FaultStatusBits']]],
+  ['tsd_5fpos_20',['TSD_POS',['../namespacemax22200_1_1FaultStatusBits.html#a2f548569ff32fe86d20504038413d7f1',1,'max22200::FaultStatusBits']]]
 ];
