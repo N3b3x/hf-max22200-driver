@@ -1,0 +1,24 @@
+<map id="examples/esp32/main/esp32_max22200_bus.hpp" name="examples/esp32/main/esp32_max22200_bus.hpp">
+<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="400,5,599,45"/>
+<area shape="rect" id="Node000002" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="27,93,178,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="413,48,192,96,191,90,412,43"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="11,181,82,207"/>
+<area shape="poly" id="edge9_Node000001_Node000003" title=" " alt="" coords="400,28,293,31,178,41,125,50,78,62,41,77,16,95,9,112,11,131,19,151,30,168,25,171,14,153,5,132,4,111,12,92,38,72,76,57,124,45,177,36,293,26,400,23"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="182,181,249,207"/>
+<area shape="poly" id="edge10_Node000001_Node000004" title=" " alt="" coords="400,32,359,39,317,51,278,69,244,95,232,111,225,130,218,168,213,167,220,128,228,109,240,91,275,65,316,46,358,34,399,26"/>
+<area shape="rect" id="Node000005" href="$esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="254,93,423,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="465,48,387,89,384,85,463,43"/>
+<area shape="rect" id="Node000006" title=" " alt="" coords="448,101,552,126"/>
+<area shape="poly" id="edge6_Node000001_Node000006" title=" " alt="" coords="502,46,502,87,497,87,497,46"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="576,101,722,126"/>
+<area shape="poly" id="edge7_Node000001_Node000007" title=" " alt="" coords="534,43,619,92,616,96,531,48"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="747,101,831,126"/>
+<area shape="poly" id="edge8_Node000001_Node000008" title=" " alt="" coords="570,43,735,91,744,94,743,99,733,96,568,48"/>
+<area shape="rect" id="Node000009" title=" " alt="" coords="856,101,922,126"/>
+<area shape="poly" id="edge11_Node000001_Node000009" title=" " alt="" coords="600,38,718,59,844,91,852,93,850,98,843,96,716,65,599,43"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="946,101,1024,126"/>
+<area shape="poly" id="edge12_Node000001_Node000010" title=" " alt="" coords="599,34,758,55,847,71,935,91,945,94,943,99,934,96,846,76,757,60,599,39"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="91,135,65,172,60,168,87,132"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="131,131,189,171,186,175,128,136"/>
+<area shape="poly" id="edge5_Node000005_Node000004" title=" " alt="" coords="310,136,247,176,244,172,307,131"/>
+</map>
