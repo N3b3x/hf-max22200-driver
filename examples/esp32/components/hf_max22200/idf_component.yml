@@ -5,7 +5,7 @@ description: "Hardware-agnostic MAX22200 octal solenoid/motor driver with SPI in
 
 maintainers:
   - "HardFOC"
-license: "MIT"
+license: "GPL-3.0"
 
 url: https://www.analog.com/en/products/max22200.html
 repository: https://github.com/N3b3x/hf-max22200-driver
