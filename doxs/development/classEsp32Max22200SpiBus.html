@@ -152,6 +152,16 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:aed444b34fe84097b60ffbe6312c6525a" id="r_aed444b34fe84097b60ffbe6312c6525a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aed444b34fe84097b60ffbe6312c6525a">GpioRead</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">max22200::CtrlPin</a> pin, <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">max22200::GpioSignal</a> &amp;signal)</td></tr>
 <tr class="memdesc:aed444b34fe84097b60ffbe6312c6525a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Read the current state of a control pin.  <br /></td></tr>
 <tr class="separator:aed444b34fe84097b60ffbe6312c6525a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aea73143f3d7629a0eb778be9502fd50f" id="r_aea73143f3d7629a0eb778be9502fd50f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aea73143f3d7629a0eb778be9502fd50f">SetTrigA</a> (bool active)</td></tr>
+<tr class="memdesc:aea73143f3d7629a0eb778be9502fd50f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set TRIGA pin level (direct-drive trigger A)  <br /></td></tr>
+<tr class="separator:aea73143f3d7629a0eb778be9502fd50f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4cd7be791905ae03084203886fa59f8e" id="r_a4cd7be791905ae03084203886fa59f8e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4cd7be791905ae03084203886fa59f8e">SetTrigB</a> (bool active)</td></tr>
+<tr class="memdesc:a4cd7be791905ae03084203886fa59f8e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set TRIGB pin level (direct-drive trigger B)  <br /></td></tr>
+<tr class="separator:a4cd7be791905ae03084203886fa59f8e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a46499e01f3f36170db6af88bbe705559" id="r_a46499e01f3f36170db6af88bbe705559"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a46499e01f3f36170db6af88bbe705559">HasTrigA</a> () const</td></tr>
+<tr class="separator:a46499e01f3f36170db6af88bbe705559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a22022f5608ddfa0118e24c38451fb425" id="r_a22022f5608ddfa0118e24c38451fb425"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a22022f5608ddfa0118e24c38451fb425">HasTrigB</a> () const</td></tr>
+<tr class="separator:a22022f5608ddfa0118e24c38451fb425"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header pub_methods_classmax22200_1_1SpiInterface"><td colspan="2" onclick="javascript:dynsection.toggleInherit('pub_methods_classmax22200_1_1SpiInterface')"><img src="closed.png" alt="-"/>&#160;Public Member Functions inherited from <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface&lt; Esp32Max22200SpiBus &gt;</a></td></tr>
 <tr class="memitem:a50b6e9cae519e2ddaff0b4d66c089150 inherit pub_methods_classmax22200_1_1SpiInterface" id="r_a50b6e9cae519e2ddaff0b4d66c089150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmax22200_1_1SpiInterface.html#a50b6e9cae519e2ddaff0b4d66c089150">Initialize</a> ()</td></tr>
 <tr class="memdesc:a50b6e9cae519e2ddaff0b4d66c089150 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the SPI interface.  <br /></td></tr>
@@ -394,6 +404,58 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a46499e01f3f36170db6af88bbe705559" name="a46499e01f3f36170db6af88bbe705559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a46499e01f3f36170db6af88bbe705559">&#9670;&#160;</a></span>HasTrigA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Esp32Max22200SpiBus::HasTrigA </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>true if TRIGA pin is configured </dd></dl>
+
+</div>
+</div>
+<a id="a22022f5608ddfa0118e24c38451fb425" name="a22022f5608ddfa0118e24c38451fb425"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a22022f5608ddfa0118e24c38451fb425">&#9670;&#160;</a></span>HasTrigB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Esp32Max22200SpiBus::HasTrigB </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section return"><dt>Returns</dt><dd>true if TRIGB pin is configured </dd></dl>
+
+</div>
+</div>
 <a id="a7e22c380606f962251f7c81932e6b3b2" name="a7e22c380606f962251f7c81932e6b3b2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7e22c380606f962251f7c81932e6b3b2">&#9670;&#160;</a></span>Initialize()</h2>
 
@@ -477,6 +539,72 @@ Additional Inherited Members</h2></td></tr>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">state</td><td>true to assert CS (active low), false to deassert </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="aea73143f3d7629a0eb778be9502fd50f" name="aea73143f3d7629a0eb778be9502fd50f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aea73143f3d7629a0eb778be9502fd50f">&#9670;&#160;</a></span>SetTrigA()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Esp32Max22200SpiBus::SetTrigA </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>active</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set TRIGA pin level (direct-drive trigger A) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">active</td><td>true = drive high (inactive), false = drive low (trigger) </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a4cd7be791905ae03084203886fa59f8e" name="a4cd7be791905ae03084203886fa59f8e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4cd7be791905ae03084203886fa59f8e">&#9670;&#160;</a></span>SetTrigB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Esp32Max22200SpiBus::SetTrigB </td>
+          <td>(</td>
+          <td class="paramtype">bool</td>          <td class="paramname"><span class="paramname"><em>active</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set TRIGB pin level (direct-drive trigger B) </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">active</td><td>true = drive high (inactive), false = drive low (trigger) </td></tr>
   </table>
   </dd>
 </dl>
