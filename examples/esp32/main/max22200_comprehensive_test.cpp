@@ -48,9 +48,25 @@ static std::unique_ptr<max22200::MAX22200<Esp32Max22200SpiBus>> g_driver;
 //=============================================================================
 
 /**
+ * @brief Log pin configuration from test config (for verification and debugging)
+ */
+static void log_pin_config() noexcept {
+  using namespace MAX22200_TestConfig;
+  ESP_LOGI(TAG, "Pin config: MISO=%d MOSI=%d SCLK=%d CS=%d",
+           static_cast<int>(SPIPins::MISO), static_cast<int>(SPIPins::MOSI),
+           static_cast<int>(SPIPins::SCLK), static_cast<int>(SPIPins::CS));
+  ESP_LOGI(TAG, "Control pins: EN=%d FAILTN=%d CMD=%d TRIGA=%d TRIGB=%d",
+           static_cast<int>(ControlPins::ENABLE), static_cast<int>(ControlPins::FAULT),
+           static_cast<int>(ControlPins::CMD), static_cast<int>(ControlPins::TRIGA),
+           static_cast<int>(ControlPins::TRIGB));
+}
+
+/**
  * @brief Initialize test resources
  */
 static bool init_test_resources() noexcept {
+  log_pin_config();
+
   // Create SPI interface using centralized test config
   g_spi_interface = CreateEsp32Max22200SpiBus();
 
@@ -203,6 +219,80 @@ static bool test_fault_status() noexcept {
   return true;
 }
 
+/**
+ * @brief Test control pins (ENABLE, CMD, FAULT) via bus interface
+ */
+static bool test_control_pins() noexcept {
+  if (!g_spi_interface || !g_spi_interface->IsReady()) {
+    ESP_LOGE(TAG, "SPI interface not ready");
+    return false;
+  }
+
+  using namespace max22200;
+
+  // CMD high = SPI register mode (required for our driver)
+  g_spi_interface->GpioSetActive(CtrlPin::CMD);
+  vTaskDelay(pdMS_TO_TICKS(10));
+
+  // ENABLE: assert then deassert (exercise the pin)
+  g_spi_interface->GpioSetActive(CtrlPin::ENABLE);
+  vTaskDelay(pdMS_TO_TICKS(5));
+  g_spi_interface->GpioSetInactive(CtrlPin::ENABLE);
+  vTaskDelay(pdMS_TO_TICKS(5));
+  g_spi_interface->GpioSetActive(CtrlPin::ENABLE);
+  vTaskDelay(pdMS_TO_TICKS(5));
+
+  // Read FAULT pin (hardware line)
+  GpioSignal fault_signal = GpioSignal::INACTIVE;
+  if (g_spi_interface->GpioRead(CtrlPin::FAULT, fault_signal)) {
+    ESP_LOGI(TAG, "FAULT pin read: %s",
+             fault_signal == GpioSignal::ACTIVE ? "ACTIVE (fault)" : "INACTIVE (ok)");
+  } else {
+    ESP_LOGW(TAG, "FAULT pin not configured or read failed");
+  }
+
+  ESP_LOGI(TAG, "Control pins test passed");
+  return true;
+}
+
+/**
+ * @brief Test TRIGA/TRIGB trigger pins (direct-drive triggers)
+ */
+static bool test_trigger_pins() noexcept {
+  if (!g_spi_interface || !g_spi_interface->IsReady()) {
+    ESP_LOGE(TAG, "SPI interface not ready");
+    return false;
+  }
+
+  if (!g_spi_interface->HasTrigA() && !g_spi_interface->HasTrigB()) {
+    ESP_LOGW(TAG, "TRIGA/TRIGB not configured, skipping trigger pin test");
+    return true;
+  }
+
+  // Drive trigger pins high (inactive), then briefly low (trigger), then high again
+  if (g_spi_interface->HasTrigA()) {
+    g_spi_interface->SetTrigA(true);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    g_spi_interface->SetTrigA(false);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    g_spi_interface->SetTrigA(true);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    ESP_LOGI(TAG, "TRIGA cycled (high -> low -> high)");
+  }
+  if (g_spi_interface->HasTrigB()) {
+    g_spi_interface->SetTrigB(true);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    g_spi_interface->SetTrigB(false);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    g_spi_interface->SetTrigB(true);
+    vTaskDelay(pdMS_TO_TICKS(2));
+    ESP_LOGI(TAG, "TRIGB cycled (high -> low -> high)");
+  }
+
+  ESP_LOGI(TAG, "Trigger pins test passed");
+  return true;
+}
+
 //=============================================================================
 // MAIN TEST RUNNER
 //=============================================================================
@@ -236,6 +326,8 @@ extern "C" void app_main() {
       RUN_TEST_IN_TASK("channel_configuration", test_channel_configuration,
                        8192, 1);
       RUN_TEST_IN_TASK("fault_status", test_fault_status, 8192, 1);
+      RUN_TEST_IN_TASK("control_pins", test_control_pins, 8192, 1);
+      RUN_TEST_IN_TASK("trigger_pins", test_trigger_pins, 8192, 1);
       flip_test_progress_indicator(););
 
   // Cleanup
