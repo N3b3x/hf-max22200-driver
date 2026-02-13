@@ -57,7 +57,7 @@ struct SPIPins {
  */
 struct ControlPins {
     static constexpr int8_t ENABLE = 2;          ///< Enable pin (active-high)
-    static constexpr int8_t FAULT = 42;           ///< Fault output (FAILTN, active-low, open-drain)
+    static constexpr int8_t FAULT = 42;           ///< Fault output (FAILTN, active-low, inactive-high, open-drain)
     static constexpr int8_t CMD = 39;             ///< CMD pin (high = SPI register mode, low = direct drive)
     static constexpr int8_t TRIGA = 40;           ///< TRIGA trigger input (direct drive)
     static constexpr int8_t TRIGB = 41;           ///< TRIGB trigger input (direct drive)

@@ -140,6 +140,17 @@ public:
    */
   bool IsReady() const { return static_cast<const Derived *>(this)->IsReady(); }
 
+  /**
+   * @brief Blocking delay in microseconds (from comm/CRTP implementation).
+   *
+   * Used for device timing requirements, e.g. MAX22200 power-up delay
+   * (0.5 ms after ENABLE) before first SPI access. Platform implements
+   * the actual wait (e.g. esp_rom_delay_us, or RTOS-aware delay).
+   *
+   * @param us  Delay duration in microseconds.
+   */
+  void DelayUs(uint32_t us) { static_cast<Derived *>(this)->DelayUs(us); }
+
   // --------------------------------------------------------------------------
   /// @name GPIO Pin Control
   ///

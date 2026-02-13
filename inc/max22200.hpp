@@ -59,8 +59,10 @@ public:
   /**
    * @brief Constructor
    *
- * @param spi_interface Reference to SPI interface implementation (must
- * inherit from max22200::SpiInterface<SpiType>)
+   * @param spi_interface Reference to SPI interface implementation (must
+   * inherit from max22200::SpiInterface<SpiType>). Must outlive this driver:
+   * destroy the MAX22200 before the SPI bus so the destructor can deassert
+   * the ENABLE pin.
    * @param enable_diagnostics Enable diagnostic features (default: true)
    */
   explicit MAX22200(SpiType &spi_interface, bool enable_diagnostics = true);
@@ -68,7 +70,9 @@ public:
   /**
    * @brief Destructor
    *
-   * Safely shuts down the driver and disables all channels.
+   * Calls Deinitialize() if initialized (disables channels, sleep, then
+   * deasserts ENABLE). The SPI interface must still be valid during
+   * destruction so ENABLE can be driven low.
    */
   ~MAX22200();
 
@@ -175,6 +179,15 @@ public:
   DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &config) const;
 
   /**
+   * @brief Read a 16-bit register (for debug/diagnostics)
+   *
+   * @param reg Register address (0x00-0xFF)
+   * @param value Reference to store the read value
+   * @return DriverStatus indicating success or failure
+   */
+  DriverStatus ReadRegister(uint8_t reg, uint16_t &value) const;
+
+  /**
    * @brief Configure all channels at once
    *
    * @param configs Array of channel configurations
@@ -190,7 +203,28 @@ public:
    */
   DriverStatus GetAllChannelConfigs(ChannelConfigArray &configs) const;
 
-  // Channel Control Methods
+  // Device and Channel Control Methods
+
+  /**
+   * @brief Assert or deassert the device ENABLE pin (hardware enable).
+   *
+   * Gives the user direct control of the ENABLE pin. When false, the device
+   * is disabled (outputs off); when true, the device is enabled. The driver
+   * also manages ENABLE automatically in Initialize() (assert) and
+   * Deinitialize() / destructor (deassert).
+   *
+   * @param enable true to assert ENABLE (device on), false to deassert (device off)
+   * @return DriverStatus::OK on success, INITIALIZATION_ERROR if not initialized
+   */
+  DriverStatus SetDeviceEnable(bool enable);
+
+  /**
+   * @brief Read the current state of the device ENABLE pin.
+   *
+   * @param[out] enable true if ENABLE is asserted (device on), false otherwise
+   * @return DriverStatus::OK on success, INITIALIZATION_ERROR if not initialized
+   */
+  DriverStatus GetDeviceEnable(bool &enable) const;
 
   /**
    * @brief Enable or disable a specific channel

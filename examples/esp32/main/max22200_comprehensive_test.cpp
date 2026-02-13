@@ -9,11 +9,13 @@
  * @copyright HardFOC
  */
 
+#include <cinttypes>
 #include <memory>
 
 #include "esp32_max22200_bus.hpp"
 #include "esp32_max22200_test_config.hpp"
 #include "max22200.hpp"
+#include "max22200_registers.hpp"
 #include "TestFramework.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -79,13 +81,16 @@ static bool init_test_resources() noexcept {
 
 /**
  * @brief Cleanup test resources
+ *
+ * Destruction order: driver first, then SPI bus. The driver destructor
+ * deasserts ENABLE via the bus; the bus must still be valid at that time.
  */
 static void cleanup_test_resources() noexcept {
   if (g_driver && g_driver->IsInitialized()) {
     g_driver->Deinitialize();
   }
-  g_driver.reset();
-  g_spi_interface.reset();
+  g_driver.reset();       // Driver destroyed first: deasserts ENABLE using bus
+  g_spi_interface.reset(); // Bus destroyed after
   ESP_LOGI(TAG, "Test resources cleaned up");
 }
 
@@ -146,15 +151,16 @@ static bool test_channel_configuration() noexcept {
     return false;
   }
 
-  // Configure channel 0
+  // Configure channel 0 (use values that fit the current register format:
+  // driver packs hit/hold as 8 bits each in 16-bit register, so 0-255)
   ChannelConfig config;
   config.enabled = true;
   config.drive_mode = DriveMode::CDR;
   config.bridge_mode = BridgeMode::HALF_BRIDGE;
   config.parallel_mode = false;
   config.polarity = OutputPolarity::NORMAL;
-  config.hit_current = 500;
-  config.hold_current = 200;
+  config.hit_current = 200;
+  config.hold_current = 150;
   config.hit_time = 1000;
 
   DriverStatus status = g_driver->ConfigureChannel(0, config);
@@ -162,6 +168,12 @@ static bool test_channel_configuration() noexcept {
     ESP_LOGE(TAG, "Failed to configure channel 0");
     return false;
   }
+
+  // Build expected channel config register value (what we sent)
+  const uint16_t sent_config = (config.drive_mode == DriveMode::VDR ? ChannelConfigBits::DRIVE_MODE_MASK : 0u) |
+                               (config.bridge_mode == BridgeMode::FULL_BRIDGE ? ChannelConfigBits::BRIDGE_MODE_MASK : 0u) |
+                               (config.parallel_mode ? ChannelConfigBits::PARALLEL_MASK : 0u) |
+                               (config.polarity == OutputPolarity::INVERTED ? ChannelConfigBits::POLARITY_MASK : 0u);
 
   // Read back configuration
   ChannelConfig read_config;
@@ -171,13 +183,50 @@ static bool test_channel_configuration() noexcept {
     return false;
   }
 
-  // Verify configuration matches
-  if (read_config.drive_mode != config.drive_mode ||
-      read_config.bridge_mode != config.bridge_mode ||
-      read_config.hit_current != config.hit_current ||
-      read_config.hold_current != config.hold_current ||
-      read_config.hit_time != config.hit_time) {
-    ESP_LOGE(TAG, "Channel configuration mismatch");
+  // Raw read of channel config register for debug (actual received bytes)
+  uint16_t received_config = 0;
+  if (g_driver->ReadRegister(getChannelConfigReg(0), received_config) != DriverStatus::OK) {
+    ESP_LOGE(TAG, "Failed to read channel 0 config register raw");
+  } else {
+    ESP_LOGI(TAG, "Channel config register: sent=0x%04" PRIX16 " received=0x%04" PRIX16,
+             sent_config, received_config);
+  }
+
+  // Require full round-trip: if we write then read, values must match.
+  // A mismatch indicates broken SPI communication or wrong register usage.
+  bool mode_ok = (read_config.drive_mode == config.drive_mode &&
+                  read_config.bridge_mode == config.bridge_mode &&
+                  read_config.parallel_mode == config.parallel_mode &&
+                  read_config.polarity == config.polarity);
+  bool current_ok = (read_config.hit_current == config.hit_current &&
+                     read_config.hold_current == config.hold_current);
+  bool timing_ok = (read_config.hit_time == config.hit_time);
+
+  if (!mode_ok) {
+    ESP_LOGE(TAG, "Channel configuration mismatch (config register)");
+    ESP_LOGE(TAG, "  drive_mode: expected=%d read=%d",
+             static_cast<int>(config.drive_mode),
+             static_cast<int>(read_config.drive_mode));
+    ESP_LOGE(TAG, "  bridge_mode: expected=%d read=%d",
+             static_cast<int>(config.bridge_mode),
+             static_cast<int>(read_config.bridge_mode));
+    ESP_LOGE(TAG, "  (raw register: sent=0x%04" PRIX16 " received=0x%04" PRIX16 ")",
+             sent_config, received_config);
+    return false;
+  }
+
+  if (!current_ok || !timing_ok) {
+    ESP_LOGE(TAG, "Channel current/timing read-back mismatch (communication/register failure)");
+    ESP_LOGE(TAG, "  hit_current: expected=%u read=%u",
+             static_cast<unsigned>(config.hit_current),
+             static_cast<unsigned>(read_config.hit_current));
+    ESP_LOGE(TAG, "  hold_current: expected=%u read=%u",
+             static_cast<unsigned>(config.hold_current),
+             static_cast<unsigned>(read_config.hold_current));
+    ESP_LOGE(TAG, "  hit_time: expected=%u read=%u",
+             static_cast<unsigned>(config.hit_time),
+             static_cast<unsigned>(read_config.hit_time));
+    ESP_LOGE(TAG, "  Fix: ensure SPI (MISO) and register map match MAX22200; expected must equal read after write.");
     return false;
   }
 
@@ -214,6 +263,20 @@ static bool test_fault_status() noexcept {
   uint8_t fault_count = fault_status.getFaultCount();
 
   ESP_LOGI(TAG, "Fault status: has_fault=%d, count=%d", has_fault, fault_count);
+  if (has_fault) {
+    if (fault_status.overcurrent_protection)
+      ESP_LOGI(TAG, "  fault: OCP (overcurrent protection)");
+    if (fault_status.open_load)
+      ESP_LOGI(TAG, "  fault: OL (open load)");
+    if (fault_status.plunger_movement)
+      ESP_LOGI(TAG, "  fault: DPM (plunger movement)");
+    if (fault_status.undervoltage_lockout)
+      ESP_LOGI(TAG, "  fault: UVLO (undervoltage lockout)");
+    if (fault_status.hit_current_not_reached)
+      ESP_LOGI(TAG, "  fault: HHF (hit current not reached)");
+    if (fault_status.thermal_shutdown)
+      ESP_LOGI(TAG, "  fault: TSD (thermal shutdown)");
+  }
 
   ESP_LOGI(TAG, "Fault status test passed");
   return true;

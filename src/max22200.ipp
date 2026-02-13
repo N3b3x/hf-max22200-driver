@@ -23,7 +23,9 @@ MAX22200<SpiType>::MAX22200(SpiType &spi_interface, bool enable_diagnostics)
   statistics_ = DriverStatistics();
 }
 
-// Destructor
+// Destructor: disables device via ENABLE pin. SpiType (bus) must still be valid
+// when the driver is destroyed—destroy the driver before the SPI bus (e.g. g_driver.reset()
+// before g_spi_interface.reset()) so ENABLE can be driven low before GPIO/SPI teardown.
 template <typename SpiType> MAX22200<SpiType>::~MAX22200() {
   if (initialized_) {
     Deinitialize();
@@ -49,9 +51,15 @@ template <typename SpiType> DriverStatus MAX22200<SpiType>::Initialize() {
     return DriverStatus::INITIALIZATION_ERROR;
   }
 
+  // Enable the device (ENABLE pin active-high). Per MAX22200 startup flowchart,
+  // a power-up delay is required before any SPI; the comm implementation provides it.
+  spi_interface_.GpioSetActive(CtrlPin::ENABLE);
+  spi_interface_.DelayUs(500);  // POWER-UP 0.5 ms minimum before first SPI
+
   // Reset the device
   DriverStatus status = Reset();
   if (status != DriverStatus::OK) {
+    spi_interface_.GpioSetInactive(CtrlPin::ENABLE);
     updateStatistics(false);
     return status;
   }
@@ -66,6 +74,7 @@ template <typename SpiType> DriverStatus MAX22200<SpiType>::Initialize() {
 
   status = ConfigureGlobal(global_config);
   if (status != DriverStatus::OK) {
+    spi_interface_.GpioSetInactive(CtrlPin::ENABLE);
     updateStatistics(false);
     return status;
   }
@@ -78,20 +87,49 @@ template <typename SpiType> DriverStatus MAX22200<SpiType>::Initialize() {
   return DriverStatus::OK;
 }
 
-// Deinitialize the MAX22200 driver
+// Deinitialize the MAX22200 driver. ENABLE is deasserted last so the device is
+// fully off after channels are disabled and sleep is set.
 template <typename SpiType> DriverStatus MAX22200<SpiType>::Deinitialize() {
   if (!initialized_) {
     return DriverStatus::OK;
   }
 
-  // Disable all channels
+  // Safe shutdown: disable outputs, then sleep, then remove enable.
   EnableAllChannels(false);
-
-  // Put device into sleep mode
   SetSleepMode(true);
+  spi_interface_.GpioSetInactive(CtrlPin::ENABLE);
 
   initialized_ = false;
   updateStatistics(true);
+  return DriverStatus::OK;
+}
+
+// User control of device ENABLE pin
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::SetDeviceEnable(bool enable) {
+  if (!initialized_) {
+    updateStatistics(false);
+    return DriverStatus::INITIALIZATION_ERROR;
+  }
+  if (enable) {
+    spi_interface_.GpioSetActive(CtrlPin::ENABLE);
+  } else {
+    spi_interface_.GpioSetInactive(CtrlPin::ENABLE);
+  }
+  updateStatistics(true);
+  return DriverStatus::OK;
+}
+
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::GetDeviceEnable(bool &enable) const {
+  if (!initialized_) {
+    return DriverStatus::INITIALIZATION_ERROR;
+  }
+  GpioSignal signal;
+  if (!spi_interface_.GpioRead(CtrlPin::ENABLE, signal)) {
+    return DriverStatus::COMMUNICATION_ERROR;
+  }
+  enable = (signal == GpioSignal::ACTIVE);
   return DriverStatus::OK;
 }
 
@@ -221,7 +259,8 @@ DriverStatus MAX22200<SpiType>::ConfigureChannel(uint8_t channel,
     return DriverStatus::INVALID_PARAMETER;
   }
 
-  // Write channel configuration
+  // Channel config order per MAX22200: CFG (drive/bridge/parallel/polarity),
+  // then current (HIT/HOLD), then timing (hit time), then channel enable.
   uint16_t config_value = buildChannelConfigValue(config);
   DriverStatus status =
       writeRegister(getChannelConfigReg(channel), config_value);
@@ -245,10 +284,16 @@ DriverStatus MAX22200<SpiType>::ConfigureChannel(uint8_t channel,
     return status;
   }
 
-  // Update channel enable register
-  status = updateChannelEnableRegister();
+  // Apply channel enable state to CHANNEL_ENABLE register (per-flowchart ONCHx)
+  status = EnableChannel(channel, config.enabled);
   updateStatistics(status == DriverStatus::OK);
   return status;
+}
+
+// Read a 16-bit register (public, for debug)
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::ReadRegister(uint8_t reg, uint16_t &value) const {
+  return readRegister(reg, value);
 }
 
 // Get configuration of a specific channel
@@ -260,7 +305,8 @@ DriverStatus MAX22200<SpiType>::GetChannelConfig(uint8_t channel,
     return DriverStatus::INVALID_PARAMETER;
   }
 
-  // Read channel configuration
+  // Read channel configuration (mask to defined bits 0-3; reserved bits
+  // may read undefined on device or when not connected)
   uint16_t config_value;
   DriverStatus status =
       readRegister(getChannelConfigReg(channel), config_value);
@@ -268,8 +314,11 @@ DriverStatus MAX22200<SpiType>::GetChannelConfig(uint8_t channel,
     updateStatistics(false);
     return status;
   }
-
-  config = parseChannelConfigValue(config_value);
+  constexpr uint16_t CH_CONFIG_MASK = ChannelConfigBits::DRIVE_MODE_MASK |
+                                      ChannelConfigBits::BRIDGE_MODE_MASK |
+                                      ChannelConfigBits::PARALLEL_MASK |
+                                      ChannelConfigBits::POLARITY_MASK;
+  config = parseChannelConfigValue(config_value & CH_CONFIG_MASK);
 
   // Read current settings
   uint16_t current_value;
