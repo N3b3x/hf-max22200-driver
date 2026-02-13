@@ -97,6 +97,7 @@ $(function(){initNavTree('classEsp32Max22200SpiBus.html',''); initResizable(); }
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="classEsp32Max22200SpiBus-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Esp32Max22200SpiBus Class Reference</div></div>
 </div><!--header-->
@@ -135,7 +136,6 @@ Public Member Functions</h2></td></tr>
 <tr class="memdesc:a7e22c380606f962251f7c81932e6b3b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initialize the SPI bus.  <br /></td></tr>
 <tr class="separator:a7e22c380606f962251f7c81932e6b3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0fed6c43b129fb21201cb0a6f27ba065" id="r_a0fed6c43b129fb21201cb0a6f27ba065"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fed6c43b129fb21201cb0a6f27ba065">Transfer</a> (const uint8_t *tx_data, uint8_t *rx_data, size_t length)</td></tr>
-<tr class="memdesc:a0fed6c43b129fb21201cb0a6f27ba065"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a full-duplex SPI data transfer.  <br /></td></tr>
 <tr class="separator:a0fed6c43b129fb21201cb0a6f27ba065"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4dba2ad15c51b3bb40cc2acd230175df" id="r_a4dba2ad15c51b3bb40cc2acd230175df"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4dba2ad15c51b3bb40cc2acd230175df">SetChipSelect</a> (bool state)</td></tr>
 <tr class="memdesc:a4dba2ad15c51b3bb40cc2acd230175df"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set chip select state.  <br /></td></tr>
@@ -146,6 +146,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a4b4d3e76767a3c5da03fab8c93426e22" id="r_a4b4d3e76767a3c5da03fab8c93426e22"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4b4d3e76767a3c5da03fab8c93426e22">IsReady</a> () const</td></tr>
 <tr class="memdesc:a4b4d3e76767a3c5da03fab8c93426e22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interface is ready.  <br /></td></tr>
 <tr class="separator:a4b4d3e76767a3c5da03fab8c93426e22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3d2856a7731b58588ef9e38102ad019c" id="r_a3d2856a7731b58588ef9e38102ad019c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3d2856a7731b58588ef9e38102ad019c">DelayUs</a> (uint32_t us)</td></tr>
+<tr class="memdesc:a3d2856a7731b58588ef9e38102ad019c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking delay in microseconds (for MAX22200 power-up, etc.). Uses ESP-ROM delay so it is safe before scheduler or with SPI timing.  <br /></td></tr>
+<tr class="separator:a3d2856a7731b58588ef9e38102ad019c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a57354378af9335b6427c393c58fe3877" id="r_a57354378af9335b6427c393c58fe3877"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a57354378af9335b6427c393c58fe3877">GpioSet</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">max22200::CtrlPin</a> pin, <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">max22200::GpioSignal</a> signal)</td></tr>
 <tr class="memdesc:a57354378af9335b6427c393c58fe3877"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a control pin to the specified signal state.  <br /></td></tr>
 <tr class="separator:a57354378af9335b6427c393c58fe3877"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -178,6 +181,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad12425ba4fa46a5e31156d335ade9810 inherit pub_methods_classmax22200_1_1SpiInterface" id="r_ad12425ba4fa46a5e31156d335ade9810"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmax22200_1_1SpiInterface.html#ad12425ba4fa46a5e31156d335ade9810">IsReady</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
 <tr class="memdesc:ad12425ba4fa46a5e31156d335ade9810 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interface is ready.  <br /></td></tr>
 <tr class="separator:ad12425ba4fa46a5e31156d335ade9810 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d05a8769954eeef57fa096422139d5 inherit pub_methods_classmax22200_1_1SpiInterface" id="r_af9d05a8769954eeef57fa096422139d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmax22200_1_1SpiInterface.html#af9d05a8769954eeef57fa096422139d5">DelayUs</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">us</a>)</td></tr>
+<tr class="memdesc:af9d05a8769954eeef57fa096422139d5 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking delay in microseconds (from comm/CRTP implementation).  <br /></td></tr>
+<tr class="separator:af9d05a8769954eeef57fa096422139d5 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa4e100ba6824321c1dae87f4c61079b8 inherit pub_methods_classmax22200_1_1SpiInterface" id="r_aa4e100ba6824321c1dae87f4c61079b8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmax22200_1_1SpiInterface.html#aa4e100ba6824321c1dae87f4c61079b8">GpioSet</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>, <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1">GpioSignal</a> <a class="el" href="classmax22200_1_1MAX22200.html">signal</a>)</td></tr>
 <tr class="memdesc:aa4e100ba6824321c1dae87f4c61079b8 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set a control pin to the specified signal state.  <br /></td></tr>
 <tr class="separator:aa4e100ba6824321c1dae87f4c61079b8 inherit pub_methods_classmax22200_1_1SpiInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -190,6 +196,12 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a186da92403ffedd170b845fe10beeafc inherit pub_methods_classmax22200_1_1SpiInterface" id="r_a186da92403ffedd170b845fe10beeafc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classmax22200_1_1SpiInterface.html#a186da92403ffedd170b845fe10beeafc">GpioSetInactive</a> (<a class="el" href="namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8">CtrlPin</a> <a class="el" href="classmax22200_1_1MAX22200.html">pin</a>)</td></tr>
 <tr class="memdesc:a186da92403ffedd170b845fe10beeafc inherit pub_methods_classmax22200_1_1SpiInterface"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deassert a control pin (set to INACTIVE). Convenience wrapper for <code>GpioSet(pin, GpioSignal::INACTIVE)</code>.  <br /></td></tr>
 <tr class="separator:a186da92403ffedd170b845fe10beeafc inherit pub_methods_classmax22200_1_1SpiInterface"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a67c65f54c7267bfd96b06c0ff691e4ac" id="r_a67c65f54c7267bfd96b06c0ff691e4ac"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67c65f54c7267bfd96b06c0ff691e4ac">LOG_SPI_HEX</a> = true</td></tr>
+<tr class="memdesc:a67c65f54c7267bfd96b06c0ff691e4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a full-duplex SPI data transfer.  <br /></td></tr>
+<tr class="separator:a67c65f54c7267bfd96b06c0ff691e4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="inherited" name="inherited"></a>
 Additional Inherited Members</h2></td></tr>
@@ -319,6 +331,33 @@ Additional Inherited Members</h2></td></tr>
 
 </div>
 </div>
+<a id="a3d2856a7731b58588ef9e38102ad019c" name="a3d2856a7731b58588ef9e38102ad019c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3d2856a7731b58588ef9e38102ad019c">&#9670;&#160;</a></span>DelayUs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Esp32Max22200SpiBus::DelayUs </td>
+          <td>(</td>
+          <td class="paramtype">uint32_t</td>          <td class="paramname"><span class="paramname"><em>us</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blocking delay in microseconds (for MAX22200 power-up, etc.). Uses ESP-ROM delay so it is safe before scheduler or with SPI timing. </p>
+
+</div>
+</div>
 <a id="aed444b34fe84097b60ffbe6312c6525a" name="aed444b34fe84097b60ffbe6312c6525a"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#aed444b34fe84097b60ffbe6312c6525a">&#9670;&#160;</a></span>GpioRead()</h2>
 
@@ -347,8 +386,9 @@ Additional Inherited Members</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Read the current state of a control pin. </p>
-<p>Primarily used for reading the FAULT pin:</p><ul>
-<li>FAULT: active-low (GPIO 0 → ACTIVE, GPIO 1 → INACTIVE)</li>
+<p>FAULT pin: active-low, inactive-high.</p><ul>
+<li>ACTIVE (fault present) = physical LOW (GPIO 0)</li>
+<li>INACTIVE (no fault) = physical HIGH (GPIO 1), e.g. pull-up when open-drain released</li>
 </ul>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -643,6 +683,29 @@ Additional Inherited Members</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a67c65f54c7267bfd96b06c0ff691e4ac" name="a67c65f54c7267bfd96b06c0ff691e4ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a67c65f54c7267bfd96b06c0ff691e4ac">&#9670;&#160;</a></span>LOG_SPI_HEX</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr bool Esp32Max22200SpiBus::LOG_SPI_HEX = true</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
 <p>Perform a full-duplex SPI data transfer. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
@@ -652,7 +715,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). </dd></dl>
 
 </div>
 </div>

@@ -20,8 +20,10 @@
 #include "driver/gpio.h"
 #include "driver/spi_master.h"
 #include "esp_log.h"
+#include "esp_rom_sys.h"
 #include <cstddef>
 #include <cstdint>
+#include <cstdio>
 #include <cstring>
 #include <memory>
 
@@ -48,7 +50,7 @@ public:
     gpio_num_t sclk_pin;   ///< SCLK pin (set from board config)
     gpio_num_t cs_pin;     ///< CS pin (set from board config)
     int16_t enable_pin = -1;  ///< ENABLE pin (active-high, -1 = not configured)
-    int16_t fault_pin = -1;   ///< FAULT pin (active-low, open-drain input, -1 = not configured)
+    int16_t fault_pin = -1;   ///< FAULT pin (active-low, inactive-high; open-drain input; -1 = not configured)
     int16_t cmd_pin = -1;     ///< CMD pin (active-high = SPI mode, -1 = not configured)
     int16_t triga_pin = -1;   ///< TRIGA trigger pin (direct drive, -1 = not configured)
     int16_t trigb_pin = -1;   ///< TRIGB trigger pin (direct drive, -1 = not configured)
@@ -114,6 +116,9 @@ public:
    * @param length Number of bytes to transfer
    * @return true if successful, false otherwise
    */
+  /** If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). */
+  static constexpr bool LOG_SPI_HEX = true;
+
   bool Transfer(const uint8_t *tx_data, uint8_t *rx_data, size_t length) {
     if (!initialized_ || spi_device_ == nullptr) {
       ESP_LOGE(TAG, "SPI not initialized");
@@ -129,6 +134,23 @@ public:
     if (ret != ESP_OK) {
       ESP_LOGE(TAG, "SPI transfer failed: %s", esp_err_to_name(ret));
       return false;
+    }
+
+    if (LOG_SPI_HEX && tx_data != nullptr && rx_data != nullptr && length > 0) {
+      if (length == 3) {
+        ESP_LOGI(TAG, "SPI: TX1=0x%02X RX1=0x%02X  TX2=0x%02X RX2=0x%02X  TX3=0x%02X RX3=0x%02X",
+                 tx_data[0], rx_data[0], tx_data[1], rx_data[1], tx_data[2], rx_data[2]);
+      } else {
+        char buf[128];
+        int n = 0;
+        n += snprintf(buf + n, sizeof(buf) - n, "SPI TX:");
+        for (size_t i = 0; i < length && n < (int)sizeof(buf) - 4; i++)
+          n += snprintf(buf + n, sizeof(buf) - n, " %02X", tx_data[i]);
+        n += snprintf(buf + n, sizeof(buf) - n, "  RX:");
+        for (size_t i = 0; i < length && n < (int)sizeof(buf) - 4; i++)
+          n += snprintf(buf + n, sizeof(buf) - n, " %02X", rx_data[i]);
+        ESP_LOGI(TAG, "%s", buf);
+      }
     }
 
     return true;
@@ -173,6 +195,14 @@ public:
     return initialized_ && (spi_device_ != nullptr);
   }
 
+  /**
+   * @brief Blocking delay in microseconds (for MAX22200 power-up, etc.).
+   * Uses ESP-ROM delay so it is safe before scheduler or with SPI timing.
+   */
+  void DelayUs(uint32_t us) {
+    esp_rom_delay_us(us);
+  }
+
   // ── GPIO Pin Control ─────────────────────────────────────────────────
 
   /**
@@ -209,8 +239,9 @@ public:
   /**
    * @brief Read the current state of a control pin
    *
-   * Primarily used for reading the FAULT pin:
-   * - FAULT: active-low (GPIO 0 → ACTIVE, GPIO 1 → INACTIVE)
+   * FAULT pin: active-low, inactive-high.
+   * - ACTIVE  (fault present) = physical LOW  (GPIO 0)
+   * - INACTIVE (no fault)     = physical HIGH (GPIO 1), e.g. pull-up when open-drain released
    *
    * @param pin    Which control pin to read
    * @param signal Receives the current signal state
@@ -221,7 +252,7 @@ public:
       return false;
     }
     int level = gpio_get_level(static_cast<gpio_num_t>(config_.fault_pin));
-    // FAULT is active-low: physical 0 = fault present (ACTIVE)
+    // Active-low: low = fault (ACTIVE), high = no fault (INACTIVE)
     signal = (level == 0) ? max22200::GpioSignal::ACTIVE
                           : max22200::GpioSignal::INACTIVE;
     return true;
@@ -285,7 +316,7 @@ private:
     if (!configure_output(config_.triga_pin, "TRIGA", 1)) return false; // TRIGA high = inactive
     if (!configure_output(config_.trigb_pin, "TRIGB", 1)) return false; // TRIGB high = inactive
 
-    // Configure FAULT as input with pull-up (active-low, open-drain)
+    // FAULT: input, active-low, inactive-high. Pull-up so inactive = high when open-drain released.
     if (config_.fault_pin >= 0) {
       gpio_config_t cfg = {
           .pin_bit_mask = (1ULL << config_.fault_pin),
@@ -297,7 +328,7 @@ private:
         ESP_LOGE(TAG, "Failed to configure FAULT pin (GPIO%d)", config_.fault_pin);
         return false;
       }
-      ESP_LOGI(TAG, "FAULT pin (GPIO%d) initialized as input", config_.fault_pin);
+      ESP_LOGI(TAG, "FAULT pin (GPIO%d) initialized as input (active-low, inactive-high)", config_.fault_pin);
     }
     return true;
   }

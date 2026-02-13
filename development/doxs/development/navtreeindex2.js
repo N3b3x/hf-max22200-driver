@@ -1,5 +1,14 @@
 var NAVTREEINDEX2 =
 {
+"structEsp32Max22200SpiBus_1_1SPIConfig.html#ad42300e795136eacee060bc9789d442a":[11,0,3,0,3],
+"structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b":[11,0,3,0,10],
+"structEsp32Max22200Spi_1_1SPIConfig.html":[11,0,2,0],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1":[11,0,2,0,3],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a306da642c5c68514fa9b303b36303c49":[11,0,2,0,8],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41":[11,0,2,0,2],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3":[11,0,2,0,7],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498":[11,0,2,0,6],
+"structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087":[11,0,2,0,5],
 "structEsp32Max22200Spi_1_1SPIConfig.html#abb8c656244858970f4dbb60823e292e1":[11,0,2,0,1],
 "structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069":[11,0,2,0,9],
 "structEsp32Max22200Spi_1_1SPIConfig.html#ad22c6678cc6f1e1e6042a380db4febc8":[11,0,2,0,0],

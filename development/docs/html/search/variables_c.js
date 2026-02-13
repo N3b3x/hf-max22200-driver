@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['parallel_5fmask_0',['PARALLEL_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#ae4945c07d7db7a5e46790ef5f14fad4a',1,'max22200::ChannelConfigBits']]],
-  ['parallel_5fmode_1',['parallel_mode',['../structmax22200_1_1ChannelConfig.html#a1804d898a42237ec2ebb58f0eee8c43d',1,'max22200::ChannelConfig']]],
-  ['parallel_5fpos_2',['PARALLEL_POS',['../namespacemax22200_1_1ChannelConfigBits.html#aafa4ac1ee9c7146df84d54b8a88c0d87',1,'max22200::ChannelConfigBits']]],
-  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['plunger_5fmovement_4',['plunger_movement',['../structmax22200_1_1FaultStatus.html#af6848eed80754f48d3491855c9b2c61d',1,'max22200::FaultStatus']]],
-  ['polarity_5',['polarity',['../structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f',1,'max22200::ChannelConfig']]],
-  ['polarity_5fmask_6',['POLARITY_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#a209bc96630e68d3d450ec5a783486993',1,'max22200::ChannelConfigBits']]],
-  ['polarity_5fpos_7',['POLARITY_POS',['../namespacemax22200_1_1ChannelConfigBits.html#af2ebf82312cb901a7fbaf6eb53001652',1,'max22200::ChannelConfigBits']]],
-  ['poll_5finterval_5fms_8',['POLL_INTERVAL_MS',['../structMAX22200__TestConfig_1_1Diagnostics.html#a928b54298c77f409b114d0121c6e222d',1,'MAX22200_TestConfig::Diagnostics']]],
-  ['power_5fon_5fdelay_5fms_9',['POWER_ON_DELAY_MS',['../structMAX22200__TestConfig_1_1Timing.html#ade029318255e3b7b35958ff8a1082cc6',1,'MAX22200_TestConfig::Timing']]]
+  ['ocp_5fmask_0',['OCP_MASK',['../namespacemax22200_1_1FaultStatusBits.html#aae367d15435c5bf7a2e106d4a94ee8f1',1,'max22200::FaultStatusBits']]],
+  ['ocp_5fpos_1',['OCP_POS',['../namespacemax22200_1_1FaultStatusBits.html#a4b2f5b0fc6efecc953e8d273f13d163e',1,'max22200::FaultStatusBits']]],
+  ['ol_5fmask_2',['OL_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a590cddba07ca43bb798fba012822811b',1,'max22200::FaultStatusBits']]],
+  ['ol_5fpos_3',['OL_POS',['../namespacemax22200_1_1FaultStatusBits.html#a8a2945974eeacb9ede3f34539f26d5c7',1,'max22200::FaultStatusBits']]],
+  ['open_5fload_4',['open_load',['../structmax22200_1_1FaultStatus.html#aeb4605ae6bf8258bddc29eb973411e5d',1,'max22200::FaultStatus']]],
+  ['operating_5fmax_5',['OPERATING_MAX',['../structMAX22200__TestConfig_1_1Temperature.html#a7faddb0d1f38cc92f6e1f00cbe80b7ef',1,'MAX22200_TestConfig::Temperature']]],
+  ['operating_5fmin_6',['OPERATING_MIN',['../structMAX22200__TestConfig_1_1Temperature.html#a2c6e05a4a0c9ae3288e136721faa000f',1,'MAX22200_TestConfig::Temperature']]],
+  ['overcurrent_5fprotection_7',['overcurrent_protection',['../structmax22200_1_1FaultStatus.html#ab3a94b1f3fad4e0b77e3ea1e7653aa6a',1,'max22200::FaultStatus']]]
 ];

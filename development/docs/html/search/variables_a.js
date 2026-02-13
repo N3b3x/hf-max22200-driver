@@ -1,5 +1,22 @@
 var searchData=
 [
-  ['num_5fchannels_0',['NUM_CHANNELS',['../structMAX22200__TestConfig_1_1ChannelLimits.html#a2d7f03c7968218fc8fee14c2c11f4a7e',1,'MAX22200_TestConfig::ChannelLimits']]],
-  ['num_5fchannels_5f_1',['NUM_CHANNELS_',['../namespacemax22200.html#ade1e463aec90832776b7b35c6200c3a7',1,'max22200']]]
+  ['max_5ferror_5fcount_0',['MAX_ERROR_COUNT',['../structMAX22200__TestConfig_1_1AppConfig.html#a35797154b341685d27637501e8096a74',1,'MAX22200_TestConfig::AppConfig']]],
+  ['max_5fhit_5fcurrent_1',['MAX_HIT_CURRENT',['../namespacemax22200_1_1CurrentRange.html#ab0ce63096cc419a8bfccf27d35eacd16',1,'max22200::CurrentRange']]],
+  ['max_5fhit_5fcurrent_5fma_2',['MAX_HIT_CURRENT_MA',['../structMAX22200__TestConfig_1_1ChannelLimits.html#af7e5cceeffddb2318eb29ec4555c244a',1,'MAX22200_TestConfig::ChannelLimits']]],
+  ['max_5fhit_5ftime_3',['MAX_HIT_TIME',['../namespacemax22200_1_1TimingRange.html#af37cb4e2385cfd08c4887c4a344d016d',1,'max22200::TimingRange']]],
+  ['max_5fhit_5ftime_5fms_4',['MAX_HIT_TIME_MS',['../structMAX22200__TestConfig_1_1ChannelLimits.html#af00c82a0e69035aaf25b529619434c49',1,'MAX22200_TestConfig::ChannelLimits']]],
+  ['max_5fhold_5fcurrent_5',['MAX_HOLD_CURRENT',['../namespacemax22200_1_1CurrentRange.html#aace76a059914b6acee0ae56bcf001fa0',1,'max22200::CurrentRange']]],
+  ['max_5fhold_5fcurrent_5fma_6',['MAX_HOLD_CURRENT_MA',['../structMAX22200__TestConfig_1_1ChannelLimits.html#ac657c1e951b5e1809a8590eb05300314',1,'MAX22200_TestConfig::ChannelLimits']]],
+  ['max_5fretry_5fcount_7',['MAX_RETRY_COUNT',['../structMAX22200__TestConfig_1_1Diagnostics.html#a92a64a7740944b048fc68015b5d857b7',1,'MAX22200_TestConfig::Diagnostics']]],
+  ['max_5fspi_5ffreq_5fdaisy_5fchain_5f_8',['MAX_SPI_FREQ_DAISY_CHAIN_',['../namespacemax22200.html#a10792d535c2b89f6c57ecc8cc5a97b71',1,'max22200']]],
+  ['max_5fspi_5ffreq_5fstandalone_5f_9',['MAX_SPI_FREQ_STANDALONE_',['../namespacemax22200.html#aa433a968c342b863d10b8af9fe7786cc',1,'max22200']]],
+  ['min_5fhit_5fcurrent_10',['MIN_HIT_CURRENT',['../namespacemax22200_1_1CurrentRange.html#a316088024fa57c2954b377fbdaa7361d',1,'max22200::CurrentRange']]],
+  ['min_5fhit_5ftime_11',['MIN_HIT_TIME',['../namespacemax22200_1_1TimingRange.html#a805ccb975cbd95d81d0cd4a5ba338c92',1,'max22200::TimingRange']]],
+  ['min_5fhold_5fcurrent_12',['MIN_HOLD_CURRENT',['../namespacemax22200_1_1CurrentRange.html#a0cb4fd2f2a89cd5298d81aa599406e3b',1,'max22200::CurrentRange']]],
+  ['miso_13',['MISO',['../structMAX22200__TestConfig_1_1SPIPins.html#a6f6eb0f1401d8b131249060e4759b9ee',1,'MAX22200_TestConfig::SPIPins']]],
+  ['miso_5fpin_14',['miso_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30',1,'Esp32Max22200SpiBus::SPIConfig::miso_pin'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087',1,'Esp32Max22200Spi::SPIConfig::miso_pin']]],
+  ['mode_15',['mode',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9',1,'Esp32Max22200SpiBus::SPIConfig::mode'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498',1,'Esp32Max22200Spi::SPIConfig::mode']]],
+  ['mode_16',['MODE',['../structMAX22200__TestConfig_1_1SPIParams.html#ad63f667aa7bc9c0df3467602cbcc5eff',1,'MAX22200_TestConfig::SPIParams']]],
+  ['mosi_17',['MOSI',['../structMAX22200__TestConfig_1_1SPIPins.html#a6134984da373ec4bd3e33c7f5cef78dd',1,'MAX22200_TestConfig::SPIPins']]],
+  ['mosi_5fpin_18',['mosi_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b',1,'Esp32Max22200SpiBus::SPIConfig::mosi_pin'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3',1,'Esp32Max22200Spi::SPIConfig::mosi_pin']]]
 ];

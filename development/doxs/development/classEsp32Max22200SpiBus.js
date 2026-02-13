@@ -4,6 +4,7 @@ var classEsp32Max22200SpiBus =
     [ "Esp32Max22200SpiBus", "classEsp32Max22200SpiBus.html#aa0cffecd6c4f89202b16f504cef855f2", null ],
     [ "~Esp32Max22200SpiBus", "classEsp32Max22200SpiBus.html#a0bdf87e6690826bc7943fe862cdf70e6", null ],
     [ "Configure", "classEsp32Max22200SpiBus.html#ae024457c948003e5e3a35250beb9b769", null ],
+    [ "DelayUs", "classEsp32Max22200SpiBus.html#a3d2856a7731b58588ef9e38102ad019c", null ],
     [ "GpioRead", "classEsp32Max22200SpiBus.html#aed444b34fe84097b60ffbe6312c6525a", null ],
     [ "GpioSet", "classEsp32Max22200SpiBus.html#a57354378af9335b6427c393c58fe3877", null ],
     [ "HasTrigA", "classEsp32Max22200SpiBus.html#a46499e01f3f36170db6af88bbe705559", null ],

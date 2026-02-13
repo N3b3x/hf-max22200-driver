@@ -124,6 +124,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad12425ba4fa46a5e31156d335ade9810" id="r_ad12425ba4fa46a5e31156d335ade9810"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad12425ba4fa46a5e31156d335ade9810">IsReady</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
 <tr class="memdesc:ad12425ba4fa46a5e31156d335ade9810"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if SPI interface is ready.  <br /></td></tr>
 <tr class="separator:ad12425ba4fa46a5e31156d335ade9810"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9d05a8769954eeef57fa096422139d5" id="r_af9d05a8769954eeef57fa096422139d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af9d05a8769954eeef57fa096422139d5">DelayUs</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">us</a>)</td></tr>
+<tr class="memdesc:af9d05a8769954eeef57fa096422139d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Blocking delay in microseconds (from comm/CRTP implementation).  <br /></td></tr>
+<tr class="separator:af9d05a8769954eeef57fa096422139d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr><td colspan="2"><div class="groupHeader">GPIO Pin Control</div></td></tr>
 <tr><td colspan="2"><div class="groupText"><p>Unified interface for controlling <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> hardware control pins. The platform bus implementation maps <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a>/INACTIVE to the correct physical level for each pin based on its polarity. </p>
 </div></td></tr>
@@ -342,6 +345,42 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>true if configuration was successful, false otherwise </dd></dl>
+
+</div>
+</div>
+<a id="af9d05a8769954eeef57fa096422139d5" name="af9d05a8769954eeef57fa096422139d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9d05a8769954eeef57fa096422139d5">&#9670;&#160;</a></span>DelayUs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt; </div>
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> <a class="el" href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">Derived</a> &gt;::DelayUs </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>us</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Blocking delay in microseconds (from comm/CRTP implementation). </p>
+<p>Used for device timing requirements, e.g. <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> power-up delay (0.5 ms after ENABLE) before first SPI access. Platform implements the actual wait (e.g. esp_rom_delay_us, or RTOS-aware delay).</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">us</td><td>Delay duration in microseconds. </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
