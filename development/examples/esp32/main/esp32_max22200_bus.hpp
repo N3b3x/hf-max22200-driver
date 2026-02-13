@@ -50,6 +50,8 @@ public:
     int16_t enable_pin = -1;  ///< ENABLE pin (active-high, -1 = not configured)
     int16_t fault_pin = -1;   ///< FAULT pin (active-low, open-drain input, -1 = not configured)
     int16_t cmd_pin = -1;     ///< CMD pin (active-high = SPI mode, -1 = not configured)
+    int16_t triga_pin = -1;   ///< TRIGA trigger pin (direct drive, -1 = not configured)
+    int16_t trigb_pin = -1;   ///< TRIGB trigger pin (direct drive, -1 = not configured)
     uint32_t frequency = 10000000;      ///< SPI frequency in Hz (default 10MHz)
     uint8_t mode = 0;       ///< SPI mode (default 0: CPOL=0, CPHA=0)
     uint8_t queue_size = 1; ///< Transaction queue size
@@ -225,6 +227,31 @@ public:
     return true;
   }
 
+  /**
+   * @brief Set TRIGA pin level (direct-drive trigger A)
+   * @param active true = drive high (inactive), false = drive low (trigger)
+   */
+  void SetTrigA(bool active) {
+    if (config_.triga_pin >= 0) {
+      gpio_set_level(static_cast<gpio_num_t>(config_.triga_pin), active ? 1 : 0);
+    }
+  }
+
+  /**
+   * @brief Set TRIGB pin level (direct-drive trigger B)
+   * @param active true = drive high (inactive), false = drive low (trigger)
+   */
+  void SetTrigB(bool active) {
+    if (config_.trigb_pin >= 0) {
+      gpio_set_level(static_cast<gpio_num_t>(config_.trigb_pin), active ? 1 : 0);
+    }
+  }
+
+  /** @return true if TRIGA pin is configured */
+  bool HasTrigA() const { return config_.triga_pin >= 0; }
+  /** @return true if TRIGB pin is configured */
+  bool HasTrigB() const { return config_.trigb_pin >= 0; }
+
 private:
   SPIConfig config_;               ///< SPI configuration
   spi_device_handle_t spi_device_; ///< SPI device handle
@@ -255,6 +282,8 @@ private:
     };
     if (!configure_output(config_.enable_pin, "ENABLE", 0)) return false;
     if (!configure_output(config_.cmd_pin, "CMD", 1)) return false; // CMD HIGH = SPI mode
+    if (!configure_output(config_.triga_pin, "TRIGA", 1)) return false; // TRIGA high = inactive
+    if (!configure_output(config_.trigb_pin, "TRIGB", 1)) return false; // TRIGB high = inactive
 
     // Configure FAULT as input with pull-up (active-low, open-drain)
     if (config_.fault_pin >= 0) {
@@ -358,6 +387,8 @@ inline auto CreateEsp32Max22200SpiBus() noexcept -> std::unique_ptr<Esp32Max2220
   config.enable_pin = ControlPins::ENABLE;
   config.fault_pin = ControlPins::FAULT;
   config.cmd_pin = ControlPins::CMD;
+  config.triga_pin = ControlPins::TRIGA;
+  config.trigb_pin = ControlPins::TRIGB;
 
   return std::make_unique<Esp32Max22200SpiBus>(config);
 }

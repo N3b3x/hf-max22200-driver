@@ -13,5 +13,7 @@ var searchData=
   ['setintegratedcurrentsensing_10',['SetIntegratedCurrentSensing',['../classmax22200_1_1MAX22200.html#a1ee426eb4a5d0d0ea988ea0b7c13a5d0',1,'max22200::MAX22200']]],
   ['setsleepmode_11',['SetSleepMode',['../classmax22200_1_1MAX22200.html#a10ed4c05cfbf5b70a72362508a4e709f',1,'max22200::MAX22200']]],
   ['setstatechangecallback_12',['SetStateChangeCallback',['../classmax22200_1_1MAX22200.html#a1b85ea4458f8b4364e5927da89171c37',1,'max22200::MAX22200']]],
-  ['spiinterface_13',['SpiInterface',['../classmax22200_1_1SpiInterface.html#a5b4ea12fdd1eac04ec3c4600fad4cc3a',1,'max22200::SpiInterface::SpiInterface()=default'],['../classmax22200_1_1SpiInterface.html#a6bc215d54eb536bcee360880c6ed345d',1,'max22200::SpiInterface::SpiInterface(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a2056b5452ad6992144bb096ab701cad3',1,'max22200::SpiInterface::SpiInterface(SpiInterface &amp;&amp;)=default']]]
+  ['settriga_13',['SetTrigA',['../classEsp32Max22200SpiBus.html#aea73143f3d7629a0eb778be9502fd50f',1,'Esp32Max22200SpiBus']]],
+  ['settrigb_14',['SetTrigB',['../classEsp32Max22200SpiBus.html#a4cd7be791905ae03084203886fa59f8e',1,'Esp32Max22200SpiBus']]],
+  ['spiinterface_15',['SpiInterface',['../classmax22200_1_1SpiInterface.html#a5b4ea12fdd1eac04ec3c4600fad4cc3a',1,'max22200::SpiInterface::SpiInterface()=default'],['../classmax22200_1_1SpiInterface.html#a6bc215d54eb536bcee360880c6ed345d',1,'max22200::SpiInterface::SpiInterface(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a2056b5452ad6992144bb096ab701cad3',1,'max22200::SpiInterface::SpiInterface(SpiInterface &amp;&amp;)=default']]]
 ];

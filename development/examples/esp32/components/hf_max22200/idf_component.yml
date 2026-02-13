@@ -1,8 +1,28 @@
+---
 name: hf-max22200-driver
 version: "1.0.0"
-description: Hardware-agnostic MAX22200 driver component
+description: "Hardware-agnostic MAX22200 octal solenoid/motor driver with SPI interface"
+
 maintainers:
   - "HardFOC"
+license: "MIT"
+
+url: https://www.analog.com/en/products/max22200.html
+repository: https://github.com/N3b3x/hf-max22200-driver
+issues: https://github.com/N3b3x/hf-max22200-driver/issues
+
 targets:
   - esp32
   - esp32c6
+  - esp32s3
+
+dependencies:
+  idf: ">=5.0.0"
+
+tags:
+  - "max22200"
+  - "solenoid"
+  - "motor-driver"
+  - "driver"
+  - "spi"
+  - "hardware-agnostic"

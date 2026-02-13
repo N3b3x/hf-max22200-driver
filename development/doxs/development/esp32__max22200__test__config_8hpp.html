@@ -161,7 +161,7 @@ Macros</h2></td></tr>
 <tr class="memitem:a26ef05b7f869884bdc82189a98463b34" id="r_a26ef05b7f869884bdc82189a98463b34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26ef05b7f869884bdc82189a98463b34">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a26ef05b7f869884bdc82189a98463b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable detailed SPI transaction logging.  <br /></td></tr>
 <tr class="separator:a26ef05b7f869884bdc82189a98463b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a241256c18e675d15b6efbd02b53eedd6" id="r_a241256c18e675d15b6efbd02b53eedd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a241256c18e675d15b6efbd02b53eedd6">MAX22200_VALIDATE_GPIO</a>(pin)&#160;&#160;&#160;    static_assert((pin) &gt;= 0 &amp;&amp; (pin) &lt; 30, &quot;Invalid GPIO pin number for ESP32-C6&quot;)</td></tr>
+<tr class="memitem:a241256c18e675d15b6efbd02b53eedd6" id="r_a241256c18e675d15b6efbd02b53eedd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a241256c18e675d15b6efbd02b53eedd6">MAX22200_VALIDATE_GPIO</a>(pin)&#160;&#160;&#160;    static_assert((pin) &gt;= 0 &amp;&amp; (pin) &lt;= 48, &quot;Invalid GPIO pin number for ESP32-C6&quot;)</td></tr>
 <tr class="memdesc:a241256c18e675d15b6efbd02b53eedd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hardware configuration validation.  <br /></td></tr>
 <tr class="separator:a241256c18e675d15b6efbd02b53eedd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -204,14 +204,14 @@ Macros</h2></td></tr>
           <td class="memname">#define MAX22200_VALIDATE_GPIO</td>
           <td>(</td>
           <td class="paramtype"></td>          <td class="paramname"><span class="paramname">pin</span></td><td>)</td>
-          <td>&#160;&#160;&#160;    static_assert((pin) &gt;= 0 &amp;&amp; (pin) &lt; 30, &quot;Invalid GPIO pin number for ESP32-C6&quot;)</td>
+          <td>&#160;&#160;&#160;    static_assert((pin) &gt;= 0 &amp;&amp; (pin) &lt;= 48, &quot;Invalid GPIO pin number for ESP32-C6&quot;)</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
 <p>Hardware configuration validation. </p>
 <p>Compile-time checks to ensure configuration is valid.</p>
-<p>Helper macro for compile-time GPIO pin validation </p>
+<p>Helper macro for compile-time GPIO pin validation (ESP32-C6 allows 0–48) </p>
 
 </div>
 </div>

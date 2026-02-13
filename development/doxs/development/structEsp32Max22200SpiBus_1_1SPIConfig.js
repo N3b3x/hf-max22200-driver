@@ -12,5 +12,7 @@ var structEsp32Max22200SpiBus_1_1SPIConfig =
     [ "mode", "structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9", null ],
     [ "mosi_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b", null ],
     [ "queue_size", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a8f9037ce27cf8d62d8446a17726c7306", null ],
-    [ "sclk_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a1e5f22d053ede2c9d3312fa8008097be", null ]
+    [ "sclk_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a1e5f22d053ede2c9d3312fa8008097be", null ],
+    [ "triga_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a064b8564e7fd3e175fc19c780cac502a", null ],
+    [ "trigb_pin", "structEsp32Max22200SpiBus_1_1SPIConfig.html#a3a5eb59738a8f68788cbf7f1c8ff4a6f", null ]
 ];

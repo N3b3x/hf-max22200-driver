@@ -1,5 +1,11 @@
 var NAVTREEINDEX2 =
 {
+"structEsp32Max22200Spi_1_1SPIConfig.html#abb8c656244858970f4dbb60823e292e1":[11,0,2,0,1],
+"structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069":[11,0,2,0,9],
+"structEsp32Max22200Spi_1_1SPIConfig.html#ad22c6678cc6f1e1e6042a380db4febc8":[11,0,2,0,0],
+"structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a":[11,0,2,0,4],
+"structMAX22200__TestConfig_1_1AppConfig.html":[10,0,1,0],
+"structMAX22200__TestConfig_1_1AppConfig.html":[11,0,1,0],
 "structMAX22200__TestConfig_1_1ChannelLimits.html":[10,0,1,1],
 "structMAX22200__TestConfig_1_1ChannelLimits.html":[11,0,1,1],
 "structMAX22200__TestConfig_1_1ControlPins.html":[10,0,1,2],

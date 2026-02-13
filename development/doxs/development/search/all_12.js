@@ -18,7 +18,11 @@ var searchData=
   ['total_5ftests_15',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
   ['total_5ftransfers_16',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
   ['transfer_17',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]],
-  ['tsd_18',['TSD',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce',1,'max22200']]],
-  ['tsd_5fmask_19',['TSD_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a8a3ad68d7b4817bd2dcc57fe2b2f7242',1,'max22200::FaultStatusBits']]],
-  ['tsd_5fpos_20',['TSD_POS',['../namespacemax22200_1_1FaultStatusBits.html#a2f548569ff32fe86d20504038413d7f1',1,'max22200::FaultStatusBits']]]
+  ['triga_18',['TRIGA',['../structMAX22200__TestConfig_1_1ControlPins.html#a165030a7805e715a91f582afc9f29f03',1,'MAX22200_TestConfig::ControlPins']]],
+  ['triga_5fpin_19',['triga_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a064b8564e7fd3e175fc19c780cac502a',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['trigb_20',['TRIGB',['../structMAX22200__TestConfig_1_1ControlPins.html#a76634399765d728482158db43a3f35e1',1,'MAX22200_TestConfig::ControlPins']]],
+  ['trigb_5fpin_21',['trigb_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a3a5eb59738a8f68788cbf7f1c8ff4a6f',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['tsd_22',['TSD',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a167666837b80a00e45923b2137eefbce',1,'max22200']]],
+  ['tsd_5fmask_23',['TSD_MASK',['../namespacemax22200_1_1FaultStatusBits.html#a8a3ad68d7b4817bd2dcc57fe2b2f7242',1,'max22200::FaultStatusBits']]],
+  ['tsd_5fpos_24',['TSD_POS',['../namespacemax22200_1_1FaultStatusBits.html#a2f548569ff32fe86d20504038413d7f1',1,'max22200::FaultStatusBits']]]
 ];

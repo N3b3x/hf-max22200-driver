@@ -1,5 +1,9 @@
 var NAVTREEINDEX1 =
 {
+"max22200__registers_8hpp.html#a9a7a3c237bc3480b19c87b4621fbaa75":[12,0,1,1,82],
+"max22200__registers_8hpp.html#a9f39e2e8fe356d6d26c84aa43322e7a7":[12,0,1,1,11],
+"max22200__registers_8hpp.html#aa433a968c342b863d10b8af9fe7786cc":[12,0,1,1,66],
+"max22200__registers_8hpp.html#aa5123e8dc5d69560050c76cf16b2ba60":[12,0,1,1,4],
 "max22200__registers_8hpp.html#aa65ca9852cebdce801584c1fd94c18c4":[12,0,1,1,48],
 "max22200__registers_8hpp.html#aa68926b7ec3787c68eafc8b37c91e603":[12,0,1,1,58],
 "max22200__registers_8hpp.html#aa8603b567e019d000ef7465792ce361f":[12,0,1,1,25],
@@ -224,9 +228,11 @@ var NAVTREEINDEX1 =
 "namespaces.html":[10,0],
 "pages.html":[],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html":[11,0,3,0],
+"structEsp32Max22200SpiBus_1_1SPIConfig.html#a064b8564e7fd3e175fc19c780cac502a":[11,0,3,0,13],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a1b7c2d3ffe0f7a031c82caa607e8c242":[11,0,3,0,6],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a1e5f22d053ede2c9d3312fa8008097be":[11,0,3,0,12],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a37138bd9faccd8fdb74967f2a77fe3fd":[11,0,3,0,2],
+"structEsp32Max22200SpiBus_1_1SPIConfig.html#a3a5eb59738a8f68788cbf7f1c8ff4a6f":[11,0,3,0,14],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a43c870a88674bedf95622f82ebe591ec":[11,0,3,0,4],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a547981c04a7ee5bb6a50916ec8eb6b1a":[11,0,3,0,5],
 "structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30":[11,0,3,0,8],
@@ -243,11 +249,5 @@ var NAVTREEINDEX1 =
 "structEsp32Max22200Spi_1_1SPIConfig.html#a3fb1a9ca2e5205a125291db05a07bf41":[11,0,2,0,2],
 "structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3":[11,0,2,0,7],
 "structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498":[11,0,2,0,6],
-"structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087":[11,0,2,0,5],
-"structEsp32Max22200Spi_1_1SPIConfig.html#abb8c656244858970f4dbb60823e292e1":[11,0,2,0,1],
-"structEsp32Max22200Spi_1_1SPIConfig.html#ac51f4a623074ce299b7d271f8b8e5069":[11,0,2,0,9],
-"structEsp32Max22200Spi_1_1SPIConfig.html#ad22c6678cc6f1e1e6042a380db4febc8":[11,0,2,0,0],
-"structEsp32Max22200Spi_1_1SPIConfig.html#afa026a784d63d13baa85466561f1136a":[11,0,2,0,4],
-"structMAX22200__TestConfig_1_1AppConfig.html":[10,0,1,0],
-"structMAX22200__TestConfig_1_1AppConfig.html":[11,0,1,0]
+"structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087":[11,0,2,0,5]
 };

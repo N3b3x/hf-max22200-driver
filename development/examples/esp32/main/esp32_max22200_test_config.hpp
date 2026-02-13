@@ -39,27 +39,28 @@ namespace MAX22200_TestConfig {
 
 /**
  * @brief SPI Configuration for ESP32-C6
- * 
- * These pins are used for SPI communication with the MAX22200.
- * Ensure your hardware matches these pin assignments or modify accordingly.
+ *
+ * Hardware mapping: MISO 37, MOSI 35, SCK 36, CS 38.
  */
 struct SPIPins {
-    static constexpr uint8_t MISO = 2;          ///< GPIO2 - SPI MISO (Master In Slave Out)
-    static constexpr uint8_t MOSI = 7;          ///< GPIO7 - SPI MOSI (Master Out Slave In)
-    static constexpr uint8_t SCLK = 6;          ///< GPIO6 - SPI Clock
-    static constexpr uint8_t CS   = 10;         ///< GPIO10 - Chip Select (active low)
+    static constexpr uint8_t MISO = 37;          ///< GPIO37 - SPI MISO (Master In Slave Out)
+    static constexpr uint8_t MOSI = 35;          ///< GPIO35 - SPI MOSI (Master Out Slave In)
+    static constexpr uint8_t SCLK = 36;          ///< GPIO36 - SPI Clock (SCK)
+    static constexpr uint8_t CS   = 38;          ///< GPIO38 - Chip Select (active low)
 };
 
 /**
  * @brief Control GPIO Pins for MAX22200
- * 
- * These pins control device operation and status monitoring.
+ *
+ * EN=2, FAILTN=42 (fault), CMD=39, TRIGA=40, TRIGB=41.
  * Set to -1 if not connected/configured.
  */
 struct ControlPins {
-    static constexpr int8_t FAULT = -1;         ///< Fault output pin (active low, open-drain)
-    static constexpr int8_t ENABLE = -1;        ///< Enable pin (if externally controlled)
-    static constexpr int8_t CMD = -1;           ///< CMD pin (high = SPI register mode, low = direct drive)
+    static constexpr int8_t ENABLE = 2;          ///< Enable pin (active-high)
+    static constexpr int8_t FAULT = 42;           ///< Fault output (FAILTN, active-low, open-drain)
+    static constexpr int8_t CMD = 39;             ///< CMD pin (high = SPI register mode, low = direct drive)
+    static constexpr int8_t TRIGA = 40;           ///< TRIGA trigger input (direct drive)
+    static constexpr int8_t TRIGB = 41;           ///< TRIGB trigger input (direct drive)
 };
 
 /**
@@ -191,7 +192,7 @@ static_assert(MAX22200_TestConfig::ChannelLimits::NUM_CHANNELS == 8,
               "MAX22200 has exactly 8 channels");
 
 /**
- * @brief Helper macro for compile-time GPIO pin validation
+ * @brief Helper macro for compile-time GPIO pin validation (ESP32-C6 allows 0–48)
  */
 #define MAX22200_VALIDATE_GPIO(pin) \
-    static_assert((pin) >= 0 && (pin) < 30, "Invalid GPIO pin number for ESP32-C6")
+    static_assert((pin) >= 0 && (pin) <= 48, "Invalid GPIO pin number for ESP32-C6")
