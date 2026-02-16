@@ -43,8 +43,8 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
     max22200::ChannelConfig config;
     config.drive_mode = max22200::DriveMode::CDR;
     config.side_mode = max22200::SideMode::LOW_SIDE;
-    config.hit_current_value = 500.0f;   // 500 mA
-    config.hold_current_value = 200.0f;  // 200 mA
+    config.hit_setpoint = 500.0f;   // 500 mA
+    config.hold_setpoint = 200.0f;  // 200 mA
     config.hit_time_ms = 10.0f;          // 10 ms
     config.full_scale_current_ma = 1000;                // IFS for conversion (e.g. from SetBoardConfig)
     config.master_clock_80khz = false;                // 100 kHz base (from STATUS)
@@ -104,8 +104,8 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_current_value = 500.0f;   // 500 mA (CDR)
-config.hold_current_value = 200.0f; // 200 mA
+config.hit_setpoint = 500.0f;   // 500 mA (CDR)
+config.hold_setpoint = 200.0f; // 200 mA
 config.hit_time_ms = 10.0f;         // 10 ms
 config.full_scale_current_ma = 1000;               // Full-scale current (required for CDR)
 config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
@@ -154,8 +154,8 @@ void app_main() {
     max22200::ChannelConfig config;
     config.drive_mode = max22200::DriveMode::CDR;
     config.side_mode = max22200::SideMode::LOW_SIDE;
-    config.hit_current_value = 500.0f;
-    config.hold_current_value = 200.0f;
+    config.hit_setpoint = 500.0f;
+    config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
     config.full_scale_current_ma = 1000;
     config.master_clock_80khz = false;

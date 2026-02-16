@@ -390,8 +390,8 @@ global_config.sleep_mode = false;
 ChannelConfig channel_config;
 channel_config.drive_mode = DriveMode::CDR;
 channel_config.side_mode = SideMode::LOW_SIDE;
-channel_config.hit_current_value = 500.0f;   // mA
-channel_config.hold_current_value = 200.0f;  // mA
+channel_config.hit_setpoint = 500.0f;   // mA
+channel_config.hold_setpoint = 200.0f;  // mA
 channel_config.hit_time_ms = 10.0f;
 channel_config.full_scale_current_ma = 1000;
   channel_config.master_clock_80khz = false;

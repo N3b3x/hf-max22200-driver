@@ -67,7 +67,7 @@ idf_component_register(
 # Compiler Configuration
 # =============================================================================
 # Set C++ standard (use INTERFACE since this may be an INTERFACE library)
-target_compile_features(${COMPONENT_LIB} INTERFACE cxx_std_17)
+target_compile_features(${COMPONENT_LIB} INTERFACE cxx_std_20)
 
 # =============================================================================
 # Compiler Flags

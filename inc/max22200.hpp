@@ -94,16 +94,18 @@ namespace max22200 {
  * @code
  * MySPI spi;
  * MAX22200<MySPI> driver(spi);
+ * driver.SetBoardConfig(BoardConfig(30.0f, false));  // IFS from RREF
  *
  * if (driver.Initialize() == DriverStatus::OK) {
  *     ChannelConfig config;
- *     config.drive_mode = DriveMode::CDR;      // Current Drive Regulation
- *     config.side_mode = SideMode::LOW_SIDE;    // Low-side only for CDR
- *     config.hit_current = 80;                  // 7-bit (0-127), IHIT = 80/127 × IFS
- *     config.hold_current = 40;                 // 7-bit (0-127), IHOLD = 40/127 × IFS
- *     config.hit_time = 100;                    // 8-bit (0-255), tHIT = 100 × 40 / fCHOP
- *     config.chop_freq = ChopFreq::FMAIN_DIV2; // 50kHz (if FREQM=0)
- *     config.hit_current_check_enabled = true;  // Enable HIT current check
+ *     config.drive_mode = DriveMode::CDR;
+ *     config.side_mode = SideMode::LOW_SIDE;
+ *     config.full_scale_current_ma = 500;
+ *     config.hit_setpoint = 400.0f;   // mA
+ *     config.hold_setpoint = 200.0f;  // mA
+ *     config.hit_time_ms = 10.0f;
+ *     config.chop_freq = ChopFreq::FMAIN_DIV2;
+ *     config.hit_current_check_enabled = true;
  *
  *     driver.ConfigureChannel(0, config);
  *     driver.EnableChannel(0);
@@ -112,11 +114,11 @@ namespace max22200 {
  *
  * @example Fast HOLD current update (8-bit mode):
  * @code
- * // Update HOLD current on-the-fly while channel is operating (CFG_CH MSB = HFS | HOLD[6:0])
+ * // Update HOLD on-the-fly: CFG_CH[31:24] = HFS (bit 7) | HOLD[6:0] (bits 6:0)
  * ChannelConfig config;
  * driver.GetChannelConfig(0, config);
- * config.hold_current = 60;  // New HOLD current
- * driver.WriteRegister8(RegBank::CFG_CH0, (config.half_full_scale ? 0x80u : 0u) | (config.hold_current & 0x7Fu));
+ * uint8_t hold_raw = 60;  // 7-bit raw (0-127); or derive from config.hold_setpoint
+ * driver.WriteRegister8(RegBank::CFG_CH0, (config.half_full_scale ? 0x80u : 0u) | (hold_raw & 0x7Fu));
  * @endcode
  *
  * @example Channel-pair configuration (parallel mode):

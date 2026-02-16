@@ -331,8 +331,8 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
     max22200::ChannelConfig config;
     config.drive_mode = max22200::DriveMode::CDR;
     config.side_mode = max22200::SideMode::LOW_SIDE;
-    config.hit_current_value = 500.0f;
-    config.hold_current_value = 200.0f;
+    config.hit_setpoint = 500.0f;
+    config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
     config.full_scale_current_ma = 1000;
     config.master_clock_80khz = false;

@@ -21,8 +21,8 @@ Channels are configured via `ChannelConfig` and written with `ConfigureChannel()
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_current_value = 500.0f;   // 500 mA (CDR)
-config.hold_current_value = 200.0f;  // 200 mA
+config.hit_setpoint = 500.0f;   // 500 mA (CDR)
+config.hold_setpoint = 200.0f;  // 200 mA
 config.hit_time_ms = 10.0f;          // 10 ms
 config.full_scale_current_ma = 1000;                // Full-scale current (required for CDR)
 config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
@@ -69,14 +69,14 @@ driver.SetHoldCurrentMa(0, 200);
 driver.SetHitTimeMs(0, 10.0f);   // 10 ms (converted from fCHOP)
 ```
 
-**Option B — Set user units on ChannelConfig directly:** Set `hit_current_value`, `hold_current_value`, `hit_time_ms`, and context (`full_scale_current_ma`, `master_clock_80khz`, `chop_freq`), then call `ConfigureChannel()`. The class computes register values in `toRegister()`.
+**Option B — Set user units on ChannelConfig directly:** Set `hit_setpoint`, `hold_setpoint`, `hit_time_ms`, and context (`full_scale_current_ma`, `master_clock_80khz`, `chop_freq`), then call `ConfigureChannel()`. The class computes register values in `toRegister()`.
 
 ```cpp
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_current_value = 500.0f;   // mA
-config.hold_current_value = 200.0f;  // mA
+config.hit_setpoint = 500.0f;   // mA
+config.hold_setpoint = 200.0f;  // mA
 config.hit_time_ms = 10.0f;
 config.full_scale_current_ma = 500;                 // from BoardConfig
 config.master_clock_80khz = false;                // from ReadStatus(status)
@@ -84,7 +84,7 @@ config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 driver.ConfigureChannel(0, config);
 ```
 
-For VDR, set `hit_current_value` and `hold_current_value` as duty percent (0–100). Helpers `currentMaToRaw()`, `hitTimeMsToRaw()`, and `getChopFreqKhz()` are in `max22200_types.hpp` for custom conversion.
+For VDR, set `hit_setpoint` and `hold_setpoint` as duty percent (0–100). Helpers `currentMaToRaw()`, `hitTimeMsToRaw()`, and `getChopFreqKhz()` are in `max22200_types.hpp` for custom conversion.
 
 ### Human-Readable Probes on ChannelConfig
 
@@ -191,8 +191,8 @@ Initialization sets ACTIVE=1 and ENABLE high; `Deinitialize()` sets ACTIVE=0 and
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_current_value = 800.0f;  // mA
-config.hold_current_value = 200.0f;
+config.hit_setpoint = 800.0f;  // mA
+config.hold_setpoint = 200.0f;
 config.hit_time_ms = 50.0f;
 config.full_scale_current_ma = 1000;
 config.master_clock_80khz = false;
@@ -211,8 +211,8 @@ Set channel pair to `ChannelMode::HBRIDGE` in STATUS (both channels off), config
 ```cpp
 config.drive_mode = max22200::DriveMode::VDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_current_value = 60.0f;   // duty %
-config.hold_current_value = 20.0f;
+config.hit_setpoint = 60.0f;   // duty %
+config.hold_setpoint = 20.0f;
 config.hit_time_ms = 100.0f;
 config.master_clock_80khz = false;
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;

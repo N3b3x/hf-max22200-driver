@@ -22,7 +22,7 @@
  * @brief Enable detailed SPI transaction logging
  *
  * @details
- * When enabled (set to 1), the Esp32Max22200Spi will log detailed
+ * When enabled (set to 1), the Esp32Max22200SpiBus will log detailed
  * information about each SPI transaction including:
  * - TX/RX frame bytes
  * - Register read/write details

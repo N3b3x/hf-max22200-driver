@@ -302,8 +302,8 @@ static bool test_channel_configuration() noexcept {
   // For test, use IFS = 1000 mA, so 80/127 × 1000 ≈ 630 mA
   config.full_scale_current_ma = 1000;
   config.master_clock_80khz = false;  // 100 kHz base
-  config.hit_current_value = (80.0f / 127.0f) * 1000.0f;  // ≈ 630 mA
-  config.hold_current_value = (40.0f / 127.0f) * 1000.0f; // ≈ 315 mA
+  config.hit_setpoint = (80.0f / 127.0f) * 1000.0f;  // ≈ 630 mA
+  config.hold_setpoint = (40.0f / 127.0f) * 1000.0f; // ≈ 315 mA
   config.hit_time_ms = 10.0f;  // 10 ms (will convert to register value based on fCHOP)
   config.half_full_scale = false;
   config.trigger_from_pin = false;
@@ -356,14 +356,14 @@ static bool test_channel_configuration() noexcept {
     ok = false;
   }
   const float tolerance = 1.0f;
-  if (std::abs(read_config.hit_current_value - config.hit_current_value) > tolerance) {
-    ESP_LOGE(TAG, "  hit_current_value mismatch: expected=%.1f read=%.1f",
-             config.hit_current_value, read_config.hit_current_value);
+  if (std::abs(read_config.hit_setpoint - config.hit_setpoint) > tolerance) {
+    ESP_LOGE(TAG, "  hit_setpoint mismatch: expected=%.1f read=%.1f",
+             config.hit_setpoint, read_config.hit_setpoint);
     ok = false;
   }
-  if (std::abs(read_config.hold_current_value - config.hold_current_value) > tolerance) {
-    ESP_LOGE(TAG, "  hold_current_value mismatch: expected=%.1f read=%.1f",
-             config.hold_current_value, read_config.hold_current_value);
+  if (std::abs(read_config.hold_setpoint - config.hold_setpoint) > tolerance) {
+    ESP_LOGE(TAG, "  hold_setpoint mismatch: expected=%.1f read=%.1f",
+             config.hold_setpoint, read_config.hold_setpoint);
     ok = false;
   }
   if (std::abs(read_config.hit_time_ms - config.hit_time_ms) > 1.0f) {

@@ -96,7 +96,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 **Solutions:**
 
 1. **Check Load**: Verify load is within specifications (1A RMS max per channel)
-2. **Reduce Current**: Lower hit_current_value and hold_current_value (or use SetHitCurrentMa/SetHoldCurrentMa)
+2. **Reduce Current**: Lower hit_setpoint and hold_setpoint (or use set_hit_ma/set_hold_ma or SetHitCurrentMa/SetHoldCurrentMa)
 3. **Check for Shorts**: Verify no short circuits in wiring
 4. **Clear Fault**: Read fault status to clear, then reconfigure
 
@@ -256,7 +256,7 @@ driver.SetFaultCallback(fault_handler);
 
 ### Q: What is the maximum current per channel?
 
-**A:** Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_current_value and hold_current_value in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.
+**A:** Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_setpoint and hold_setpoint in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.
 
 ### Q: Can I use multiple channels simultaneously?
 

@@ -306,13 +306,13 @@ inline const char *FaultTypeToStr(FaultType ft) {
  * ### User Units (Primary Storage)
  *
  * **CDR Mode**:
- * - `hit_current_value` and `hold_current_value` are in **milliamps (mA)**
- * - Example: `hit_current_value = 500.0f` means 500 mA
+ * - `hit_setpoint` and `hold_setpoint` are in **milliamps (mA)**
+ * - Use `set_hit_ma()` / `set_hold_ma()` or assign directly; `hit_ma()` / `hold_ma()` to read
  * - Requires `full_scale_current_ma` to be set for conversion to 7-bit register value
  *
  * **VDR Mode**:
- * - `hit_current_value` and `hold_current_value` are **duty cycle percentages (0-100)**
- * - Example: `hit_current_value = 80.0f` means 80% duty cycle
+ * - `hit_setpoint` and `hold_setpoint` are **duty cycle percentages (0-100)**
+ * - Use `set_hit_duty_percent()` / `set_hold_duty_percent()` or assign directly; `hit_duty_percent()` / `hold_duty_percent()` to read
  *
  * **HIT Time**:
  * - `hit_time_ms` is in **milliseconds**
@@ -349,15 +349,11 @@ inline const char *FaultTypeToStr(FaultType ft) {
  */
 struct ChannelConfig {
   // ── User Units (Primary Storage) ──────────────────────────────────────────
-  // These are the "proper units" - the class computes register values from these
+  // CDR: setpoint in mA. VDR: setpoint in duty % (0–100). Use accessors for intent-revealing names.
 
-  float    hit_current_value;  ///< HIT value in user units:
-                               ///< CDR: current in mA (e.g. 500.0 for 500 mA)
-                               ///< VDR: duty cycle in percent (e.g. 80.0 for 80%)
-  float    hold_current_value; ///< HOLD value in user units:
-                               ///< CDR: current in mA
-                               ///< VDR: duty cycle in percent
-  float    hit_time_ms;        ///< HIT time in milliseconds
+  float    hit_setpoint;   ///< HIT setpoint: CDR = mA, VDR = duty % (0–100)
+  float    hold_setpoint;  ///< HOLD setpoint: CDR = mA, VDR = duty % (0–100)
+  float    hit_time_ms;    ///< HIT time in milliseconds
                                ///< 0.0 = no HIT time
                                ///< < 0.0 or >= 1000000.0 = continuous (infinite)
 
@@ -384,7 +380,7 @@ struct ChannelConfig {
    * @brief Default constructor — safe defaults
    */
   ChannelConfig()
-      : hit_current_value(0.0f), hold_current_value(0.0f), hit_time_ms(0.0f),
+      : hit_setpoint(0.0f), hold_setpoint(0.0f), hit_time_ms(0.0f),
         full_scale_current_ma(1000), master_clock_80khz(false),
         half_full_scale(false), trigger_from_pin(false),
         drive_mode(DriveMode::CDR), side_mode(SideMode::LOW_SIDE),
@@ -392,60 +388,70 @@ struct ChannelConfig {
         open_load_detection_enabled(false), plunger_movement_detection_enabled(false),
         hit_current_check_enabled(false) {}
 
+  // ── Mode-aware accessors (same storage; use for clear intent at call site) ─
+  void set_hit_ma(float ma) { hit_setpoint = ma; }
+  void set_hold_ma(float ma) { hold_setpoint = ma; }
+  void set_hit_duty_percent(float pct) { hit_setpoint = pct; }
+  void set_hold_duty_percent(float pct) { hold_setpoint = pct; }
+  float hit_ma() const { return hit_setpoint; }
+  float hold_ma() const { return hold_setpoint; }
+  float hit_duty_percent() const { return hit_setpoint; }
+  float hold_duty_percent() const { return hold_setpoint; }
+
   /**
    * @brief Build 32-bit register value from user units
    *
-   * Computes raw register values from hit_current_value, hold_current_value,
+   * Computes raw register values from hit_setpoint, hold_setpoint,
    * and hit_time_ms using full_scale_current_ma, master_clock_80khz, and chop_freq for conversion.
    *
    * @note Requires full_scale_current_ma > 0 for CDR mode (for current conversion).
    * @note Uses master_clock_80khz and chop_freq for hit_time_ms → register conversion.
    */
   uint32_t toRegister() const {
-    // Convert hit_current_value to raw 7-bit
+    // Convert hit_setpoint to raw 7-bit
     uint8_t hit_raw;
     if (drive_mode == DriveMode::CDR) {
-      // CDR: hit_current_value is in mA
+      // CDR: hit_setpoint is in mA
       if (full_scale_current_ma == 0) {
         hit_raw = 0;  // Invalid IFS
-      } else if (hit_current_value >= static_cast<float>(full_scale_current_ma)) {
+      } else if (hit_setpoint >= static_cast<float>(full_scale_current_ma)) {
         hit_raw = 127;
       } else {
-        uint32_t ma = static_cast<uint32_t>(hit_current_value + 0.5f);
+        uint32_t ma = static_cast<uint32_t>(hit_setpoint + 0.5f);
         hit_raw = currentMaToRaw(full_scale_current_ma, ma);
       }
     } else {
-      // VDR: hit_current_value is duty percent (0-100)
-      if (hit_current_value <= 0.0f) {
+      // VDR: hit_setpoint is duty percent (0-100)
+      if (hit_setpoint <= 0.0f) {
         hit_raw = 0;
-      } else if (hit_current_value >= 100.0f) {
+      } else if (hit_setpoint >= 100.0f) {
         hit_raw = 127;
       } else {
-        uint32_t r = static_cast<uint32_t>((hit_current_value / 100.0f) * 127.0f + 0.5f);
+        uint32_t r = static_cast<uint32_t>((hit_setpoint / 100.0f) * 127.0f + 0.5f);
         hit_raw = (r > 127u) ? 127u : static_cast<uint8_t>(r);
       }
     }
 
-    // Convert hold_current_value to raw 7-bit
+    // Convert hold_setpoint to raw 7-bit
     uint8_t hold_raw;
     if (drive_mode == DriveMode::CDR) {
-      // CDR: hold_current_value is in mA
+      // CDR: hold_setpoint is in mA
       if (full_scale_current_ma == 0) {
         hold_raw = 0;
-      } else if (hold_current_value >= static_cast<float>(full_scale_current_ma)) {
+      } else if (hold_setpoint >= static_cast<float>(full_scale_current_ma)) {
         hold_raw = 127;
       } else {
-        uint32_t ma = static_cast<uint32_t>(hold_current_value + 0.5f);
+        uint32_t ma = static_cast<uint32_t>(hold_setpoint + 0.5f);
         hold_raw = currentMaToRaw(full_scale_current_ma, ma);
       }
     } else {
-      // VDR: hold_current_value is duty percent (0-100)
-      if (hold_current_value <= 0.0f) {
+      // VDR: hold_setpoint is duty percent (0-100)
+      if (hold_setpoint <= 0.0f) {
         hold_raw = 0;
-      } else if (hold_current_value >= 100.0f) {
+      } else if (hold_setpoint >= 100.0f) {
         hold_raw = 127;
       } else {
-        uint32_t r = static_cast<uint32_t>((hold_current_value / 100.0f) * 127.0f + 0.5f);
+        uint32_t r = static_cast<uint32_t>((hold_setpoint / 100.0f) * 127.0f + 0.5f);
         hold_raw = (r > 127u) ? 127u : static_cast<uint8_t>(r);
       }
     }
@@ -503,16 +509,16 @@ struct ChannelConfig {
     if (drive_mode == DriveMode::CDR) {
       // CDR: raw → mA
       if (full_scale_current_ma > 0) {
-        hit_current_value = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
-        hold_current_value = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
+        hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
+        hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
       } else {
-        hit_current_value = 0.0f;
-        hold_current_value = 0.0f;
+        hit_setpoint = 0.0f;
+        hold_setpoint = 0.0f;
       }
     } else {
       // VDR: raw → duty percent
-      hit_current_value = (static_cast<float>(hit_raw) / 127.0f) * 100.0f;
-      hold_current_value = (static_cast<float>(hold_raw) / 127.0f) * 100.0f;
+      hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * 100.0f;
+      hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * 100.0f;
     }
 
     // Convert hit_time raw → ms
