@@ -1,143 +1,178 @@
 # API Reference
 
-Complete reference documentation for all public methods and types in the MAX22200 driver.
+Reference for the MAX22200 driver public API. For register-level detail see `max22200_registers.hpp` and the datasheet.
 
 ## Source Code
 
-- **Main Header**: [`inc/max22200.hpp`](../inc/max22200.hpp)
-- **SPI Interface**: [`inc/max22200_spi_interface.hpp`](../inc/max22200_spi_interface.hpp)
+- **Main header**: [`inc/max22200.hpp`](../inc/max22200.hpp)
+- **SPI interface**: [`inc/max22200_spi_interface.hpp`](../inc/max22200_spi_interface.hpp)
 - **Types**: [`inc/max22200_types.hpp`](../inc/max22200_types.hpp)
 
-## Core Class
+## Core Class: `MAX22200<SpiType>`
 
-### `MAX22200<SpiType>`
+Template parameter: `SpiType` — your SPI implementation (must inherit `max22200::SpiInterface<SpiType>`).
 
-Main driver class for interfacing with the MAX22200 octal solenoid and motor driver.
+**Constructor:** `explicit MAX22200(SpiType &spi_interface);`
 
-**Template Parameter**: `SpiType` - Your SPI interface implementation (must inherit from `max22200::SpiInterface<SpiType>`)
-
-**Location**: [`inc/max22200.hpp#L64`](../inc/max22200.hpp#L64)
-
-**Constructor:**
-
-```cpp
-explicit MAX22200(SpiType &spi_interface, bool enable_diagnostics = true);
-```
-
-**Location**: [`inc/max22200.hpp#L73`](../inc/max22200.hpp#L73)
+---
 
 ## Methods
 
 ### Initialization
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `Initialize()` | `DriverStatus Initialize()` | [`inc/max22200.hpp#L100`](../inc/max22200.hpp#L100) |
-| `Deinitialize()` | `DriverStatus Deinitialize()` | [`inc/max22200.hpp#L110`](../inc/max22200.hpp#L110) |
-| `Reset()` | `DriverStatus Reset()` | [`inc/max22200.hpp#L120`](../inc/max22200.hpp#L120) |
+| Method | Description |
+|--------|-------------|
+| `Initialize()` | Full init per datasheet: ENABLE high, read STATUS (clear UVM), write STATUS (ACTIVE=1), cache STATUS |
+| `Deinitialize()` | Disable all channels, ACTIVE=0, ENABLE low |
+| `IsInitialized()` | Returns whether driver is initialized |
 
-### Global Configuration
+### STATUS Register
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `ConfigureGlobal()` | `DriverStatus ConfigureGlobal(const GlobalConfig &config)` | [`inc/max22200.hpp#L130`](../inc/max22200.hpp#L130) |
-| `GetGlobalConfig()` | `DriverStatus GetGlobalConfig(GlobalConfig &config) const` | [`inc/max22200.hpp#L138`](../inc/max22200.hpp#L138) |
-| `SetSleepMode()` | `DriverStatus SetSleepMode(bool enable)` | [`inc/max22200.hpp#L146`](../inc/max22200.hpp#L146) |
-| `SetDiagnosticMode()` | `DriverStatus SetDiagnosticMode(bool enable)` | [`inc/max22200.hpp#L154`](../inc/max22200.hpp#L154) |
-| `SetIntegratedCurrentSensing()` | `DriverStatus SetIntegratedCurrentSensing(bool enable)` | [`inc/max22200.hpp#L162`](../inc/max22200.hpp#L162) |
+| Method | Description |
+|--------|-------------|
+| `ReadStatus(StatusConfig &status)` | Read 32-bit STATUS |
+| `WriteStatus(const StatusConfig &status)` | Write STATUS (writable bits only) |
 
 ### Channel Configuration
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `ConfigureChannel()` | `DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &config)` | [`inc/max22200.hpp#L173`](../inc/max22200.hpp#L173) |
-| `GetChannelConfig()` | `DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &config) const` | [`inc/max22200.hpp#L182`](../inc/max22200.hpp#L182) |
-| `ConfigureAllChannels()` | `DriverStatus ConfigureAllChannels(const ChannelConfigArray &configs)` | [`inc/max22200.hpp#L190`](../inc/max22200.hpp#L190) |
-| `GetAllChannelConfigs()` | `DriverStatus GetAllChannelConfigs(ChannelConfigArray &configs) const` | [`inc/max22200.hpp#L198`](../inc/max22200.hpp#L198) |
+| Method | Description |
+|--------|-------------|
+| `ConfigureChannel(uint8_t channel, const ChannelConfig &config)` | Write full CFG_CHx for channel |
+| `GetChannelConfig(uint8_t channel, ChannelConfig &config)` | Read channel config |
+| `ConfigureAllChannels(const ChannelConfigArray &configs)` | Configure all 8 channels |
+| `GetAllChannelConfigs(ChannelConfigArray &configs)` | Read all channel configs |
 
 ### Channel Control
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `EnableChannel()` | `DriverStatus EnableChannel(uint8_t channel, bool enable)` | [`inc/max22200.hpp#L209`](../inc/max22200.hpp#L209) |
-| `EnableAllChannels()` | `DriverStatus EnableAllChannels(bool enable)` | [`inc/max22200.hpp#L217`](../inc/max22200.hpp#L217) |
-| `SetChannelDriveMode()` | `DriverStatus SetChannelDriveMode(uint8_t channel, DriveMode mode)` | [`inc/max22200.hpp#L226`](../inc/max22200.hpp#L226) |
-| `SetChannelBridgeMode()` | `DriverStatus SetChannelBridgeMode(uint8_t channel, BridgeMode mode)` | [`inc/max22200.hpp#L235`](../inc/max22200.hpp#L235) |
-| `SetChannelPolarity()` | `DriverStatus SetChannelPolarity(uint8_t channel, OutputPolarity polarity)` | [`inc/max22200.hpp#L244`](../inc/max22200.hpp#L244) |
+| Method | Description |
+|--------|-------------|
+| `EnableChannel(uint8_t channel)` | Set ONCH bit for channel |
+| `DisableChannel(uint8_t channel)` | Clear ONCH bit |
+| `SetChannelEnabled(uint8_t channel, bool enable)` | Turn channel on/off by bool |
+| `EnableAllChannels()` | Set all ONCH bits |
+| `DisableAllChannels()` | Clear all ONCH bits |
+| `SetAllChannelsEnabled(bool enable)` | All channels on or off |
+| `SetChannelsOn(uint8_t channel_mask)` | Set ONCH from bitmask (bit N = channel N) |
+| `SetFullBridgeState(uint8_t pair_index, FullBridgeState state)` | Set HiZ/Forward/Reverse/Brake for pair 0–3 |
 
-### Current Control
+### Faults
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `SetHitCurrent()` | `DriverStatus SetHitCurrent(uint8_t channel, uint16_t current)` | [`inc/max22200.hpp#L255`](../inc/max22200.hpp#L255) |
-| `SetHoldCurrent()` | `DriverStatus SetHoldCurrent(uint8_t channel, uint16_t current)` | [`inc/max22200.hpp#L264`](../inc/max22200.hpp#L264) |
-| `SetCurrents()` | `DriverStatus SetCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current)` | [`inc/max22200.hpp#L274`](../inc/max22200.hpp#L274) |
-| `GetCurrents()` | `DriverStatus GetCurrents(uint8_t channel, uint16_t &hit_current, uint16_t &hold_current) const` | [`inc/max22200.hpp#L285`](../inc/max22200.hpp#L285) |
+| Method | Description |
+|--------|-------------|
+| `ReadFaultRegister(FaultStatus &faults)` | Read FAULT register (OCP/HHF/OLF/DPM per channel); read clears flags |
+| `ClearAllFaults()` | Clear all fault flags (read FAULT, discard) |
+| `ClearChannelFaults(uint8_t channel_mask, FaultStatus *out)` | Clear faults for selected channels (MAX22200A); optional snapshot |
+| `ReadFaultRegisterSelectiveClear(...)` | Advanced: per-type clear masks (MAX22200A) |
+| `ReadFaultFlags(StatusConfig &status)` | Read fault flags from STATUS |
+| `ClearFaultFlags()` | Clear by reading STATUS |
+| `GetFaultPinState(bool &fault_active)` | Read nFAULT pin |
+| `GetLastFaultByte()` | STATUS[7:0] from last Command Register write (e.g. COMER = 0x04) |
 
-### Timing Control
+### DPM
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `SetHitTime()` | `DriverStatus SetHitTime(uint8_t channel, uint16_t time)` | [`inc/max22200.hpp#L297`](../inc/max22200.hpp#L297) |
-| `GetHitTime()` | `DriverStatus GetHitTime(uint8_t channel, uint16_t &time) const` | [`inc/max22200.hpp#L306`](../inc/max22200.hpp#L306) |
+| Method | Description |
+|--------|-------------|
+| `ConfigureDpm(float start_current_ma, float dip_threshold_ma, float debounce_ms)` | Set DPM in mA and ms (uses board IFS) |
+| `ReadDpmConfig(DpmConfig &config)` | Read CFG_DPM |
+| `WriteDpmConfig(const DpmConfig &config)` | Write CFG_DPM |
 
-### Status and Diagnostics
+### Device Control
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `ReadFaultStatus()` | `DriverStatus ReadFaultStatus(FaultStatus &status) const` | [`inc/max22200.hpp#L316`](../inc/max22200.hpp#L316) |
-| `ClearFaultStatus()` | `DriverStatus ClearFaultStatus()` | [`inc/max22200.hpp#L325`](../inc/max22200.hpp#L325) |
-| `ReadChannelStatus()` | `DriverStatus ReadChannelStatus(uint8_t channel, ChannelStatus &status) const` | [`inc/max22200.hpp#L334`](../inc/max22200.hpp#L334) |
-| `ReadAllChannelStatuses()` | `DriverStatus ReadAllChannelStatuses(ChannelStatusArray &statuses) const` | [`inc/max22200.hpp#L342`](../inc/max22200.hpp#L342) |
-| `GetStatistics()` | `DriverStatus GetStatistics(DriverStatistics &stats) const` | [`inc/max22200.hpp#L350`](../inc/max22200.hpp#L350) |
-| `ResetStatistics()` | `DriverStatus ResetStatistics()` | [`inc/max22200.hpp#L359`](../inc/max22200.hpp#L359) |
+| Method | Description |
+|--------|-------------|
+| `EnableDevice()` | ENABLE pin high |
+| `DisableDevice()` | ENABLE pin low |
+| `SetDeviceEnable(bool enable)` | Set ENABLE pin |
 
-### Callbacks
+### Board and Convenience APIs
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `SetFaultCallback()` | `void SetFaultCallback(FaultCallback callback, void *user_data = nullptr)` | [`inc/max22200.hpp#L369`](../inc/max22200.hpp#L369) |
-| `SetStateChangeCallback()` | `void SetStateChangeCallback(StateChangeCallback callback, void *user_data = nullptr)` | [`inc/max22200.hpp#L377`](../inc/max22200.hpp#L377) |
+| Method | Description |
+|--------|-------------|
+| `SetBoardConfig(const BoardConfig &config)` | Set IFS and optional max current/duty limits |
+| `GetBoardConfig()` | Get current board config |
 
-### Utility
+**Current (CDR):**  
+`SetHitCurrentMa`, `SetHoldCurrentMa`, `SetHitCurrentA`, `SetHoldCurrentA`, `SetHitCurrentPercent`, `SetHoldCurrentPercent`,  
+`GetHitCurrentMa`, `GetHoldCurrentMa`, `GetHitCurrentPercent`, `GetHoldCurrentPercent`
 
-| Method | Signature | Location |
-|--------|-----------|----------|
-| `IsInitialized()` | `bool IsInitialized() const` | [`inc/max22200.hpp#L387`](../inc/max22200.hpp#L387) |
-| `IsValidChannel()` | `static constexpr bool IsValidChannel(uint8_t channel)` | [`inc/max22200.hpp#L395`](../inc/max22200.hpp#L395) |
-| `GetVersion()` | `static constexpr const char *GetVersion()` | [`inc/max22200.hpp#L404`](../inc/max22200.hpp#L404) |
+**Duty (VDR):**  
+`SetHitDutyPercent`, `SetHoldDutyPercent`, `GetHitDutyPercent`, `GetHoldDutyPercent`  
+`GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq, bool slew_rate_control_enabled, DutyLimits &limits)` (static)
 
-## Types
+**HIT time:**  
+`SetHitTimeMs(uint8_t channel, float ms)`, `GetHitTimeMs(uint8_t channel, float &ms)`
+
+**One-shot config:**  
+`ConfigureChannelCdr(channel, hit_ma, hold_ma, hit_time_ms, ...)`,  
+`ConfigureChannelVdr(channel, hit_duty_percent, hold_duty_percent, hit_time_ms, ...)`
+
+### Raw Registers (Debug)
+
+| Method | Description |
+|--------|-------------|
+| `ReadRegister32(uint8_t bank, uint32_t &value)` | Read 32-bit register |
+| `WriteRegister32(uint8_t bank, uint32_t value)` | Write 32-bit register |
+| `ReadRegister8(uint8_t bank, uint8_t &value)` | Read 8-bit MSB |
+| `WriteRegister8(uint8_t bank, uint8_t value)` | Write 8-bit MSB |
+
+### Statistics and Callbacks
+
+| Method | Description |
+|--------|-------------|
+| `GetStatistics()` | Return DriverStatistics (transfers, faults, uptime, etc.) |
+| `ResetStatistics()` | Reset statistics |
+| `SetFaultCallback(FaultCallback, void *user_data)` | Fault event callback |
+| `SetStateChangeCallback(StateChangeCallback, void *user_data)` | State change callback |
+
+### Validation
+
+| Method | Description |
+|--------|-------------|
+| `IsValidChannel(uint8_t channel)` | Static: true if channel < 8 |
+
+---
+
+## Types (`max22200_types.hpp`)
 
 ### Enumerations
 
-| Type | Values | Location |
-|------|--------|----------|
-| `DriverStatus` | `OK`, `INITIALIZATION_ERROR`, `COMMUNICATION_ERROR`, `INVALID_PARAMETER`, `HARDWARE_FAULT`, `TIMEOUT` | [`inc/max22200_types.hpp#L201`](../inc/max22200_types.hpp#L201) |
-| `DriveMode` | `CDR`, `VDR` | [`inc/max22200_types.hpp#L23`](../inc/max22200_types.hpp#L23) |
-| `BridgeMode` | `HALF_BRIDGE`, `FULL_BRIDGE` | [`inc/max22200_types.hpp#L31`](../inc/max22200_types.hpp#L31) |
-| `OutputPolarity` | `NORMAL`, `INVERTED` | [`inc/max22200_types.hpp#L39`](../inc/max22200_types.hpp#L39) |
-| `FaultType` | `OCP`, `OL`, `DPM`, `UVLO`, `HHF`, `TSD` | [`inc/max22200_types.hpp#L47`](../inc/max22200_types.hpp#L47) |
-| `ChannelState` | `DISABLED`, `ENABLED`, `HIT_PHASE`, `HOLD_PHASE`, `FAULT` | [`inc/max22200_types.hpp#L213`](../inc/max22200_types.hpp#L213) |
+| Type | Values | Notes |
+|------|--------|--------|
+| `DriverStatus` | `OK`, `INITIALIZATION_ERROR`, `COMMUNICATION_ERROR`, `INVALID_PARAMETER`, `HARDWARE_FAULT`, `TIMEOUT` | Use `DriverStatusToStr(s)` for logging |
+| `DriveMode` | `CDR`, `VDR` | Current vs voltage regulation |
+| `SideMode` | `LOW_SIDE`, `HIGH_SIDE` | Load to VM vs GND |
+| `ChannelMode` | `INDEPENDENT`, `PARALLEL`, `HBRIDGE` | Per pair (CM10, CM32, CM54, CM76) |
+| `ChopFreq` | `FMAIN_DIV4`, `FMAIN_DIV3`, `FMAIN_DIV2`, `FMAIN` | Chopping frequency divider |
+| `FaultType` | `OCP`, `HHF`, `OLF`, `DPM`, `OVT`, `UVM`, `COMER` | Use `FaultTypeToStr(ft)` for "Overcurrent", "HIT not reached", etc. |
+| `FullBridgeState` | `HiZ`, `Forward`, `Reverse`, `Brake` | For H-bridge pairs |
+| `ChannelState` | `DISABLED`, `ENABLED`, `HIT_PHASE`, `HOLD_PHASE`, `FAULT` | For state callbacks |
 
 ### Structures
 
-| Type | Description | Location |
-|------|-------------|----------|
-| `ChannelConfig` | Channel configuration structure | [`inc/max22200_types.hpp#L62`](../inc/max22200_types.hpp#L62) |
-| `GlobalConfig` | Global configuration structure | [`inc/max22200_types.hpp#L106`](../inc/max22200_types.hpp#L106) |
-| `FaultStatus` | Fault status structure | [`inc/max22200_types.hpp#L128`](../inc/max22200_types.hpp#L128) |
-| `ChannelStatus` | Channel status structure | [`inc/max22200_types.hpp#L182`](../inc/max22200_types.hpp#L182) |
-| `DriverStatistics` | Driver statistics structure | [`inc/max22200_types.hpp#L262`](../inc/max22200_types.hpp#L262) |
+| Type | Description |
+|------|-------------|
+| `ChannelConfig` | CFG_CHx in **user units**: hit_current_value (mA for CDR, % for VDR), hold_current_value, hit_time_ms; context: full_scale_current_ma, master_clock_80khz; register fields: drive_mode, side_mode, chop_freq, half_full_scale, trigger_from_pin, slew_rate_control_enabled, open_load_detection_enabled, plunger_movement_detection_enabled, hit_current_check_enabled. toRegister() computes raw from user units. fromRegister(val, full_scale_current_ma, master_clock_80khz) fills user units. Helpers: isCdr(), isVdr(), isLowSide(), isHighSide(), hasHitTime(), isContinuousHit(), isHalfFullScale(), isSlewRateControlEnabled(), isOpenLoadDetectionEnabled(), isPlungerMovementDetectionEnabled(), isHitCurrentCheckEnabled(), getChopFreq(). |
+| `StatusConfig` | STATUS: channels_on_mask, fault masks (overtemperature_masked, overcurrent_masked, …), master_clock_80khz, channel_pair_mode_10/32/54/76, active, fault flags (overtemperature, overcurrent, …). Helpers: `hasOvertemperature()`, `hasOvercurrent()`, `hasOpenLoadFault()`, `hasHitNotReached()`, `hasPlungerMovementFault()`, `hasCommunicationError()`, `hasUndervoltage()`, `isActive()`, `isChannelOn(ch)`, `channelCountOn()`, `isOvertemperatureMasked()`, … `getChannelPairMode10()` … `getChannelPairMode76()`, `is100KHzBase()`, `is80KHzBase()`, `getChannelsOnMask()`. |
+| `FaultStatus` | FAULT: overcurrent_channel_mask, hit_not_reached_channel_mask, open_load_fault_channel_mask, plunger_movement_fault_channel_mask (per-channel masks). Helpers: `hasFault()`, `getFaultCount()`, `hasOvercurrent()`, `hasHitNotReached()`, `hasOpenLoadFault()`, `hasPlungerMovementFault()`, `hasFaultOnChannel(ch)`, `hasOvercurrentOnChannel(ch)`, … `channelsWithAnyFault()`. |
+| `DpmConfig` | CFG_DPM: plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold. Helpers: `getPlungerMovementStartCurrent()`, `getPlungerMovementDebounceTime()`, `getPlungerMovementCurrentThreshold()`. |
+| `BoardConfig` | full_scale_current_ma, max_current_ma, max_duty_percent. Constructor `BoardConfig(rref_kohm, half_full_scale)` for IFS from RREF. Helpers: `hasMaxCurrentLimit()`, `hasMaxDutyLimit()`, `hasIfsConfigured()`, `getFullScaleCurrentMa()`, `getMaxCurrentLimitMa()`, `getMaxDutyLimitPercent()`. |
+| `DutyLimits` | min_percent, max_percent. Helpers: `getMinPercent()`, `getMaxPercent()`, `inRange(percent)`, `clamp(percent)`. |
+| `DriverStatistics` | total_transfers, failed_transfers, fault_events, state_changes, uptime_ms. Helpers: `getSuccessRate()`, `hasFailures()`, `isHealthy()`, `getTotalTransfers()`, … |
 
 ### Type Aliases
 
-| Type | Definition | Location |
-|------|------------|----------|
-| `ChannelConfigArray` | `std::array<ChannelConfig, 8>` | [`inc/max22200_types.hpp#L224`](../inc/max22200_types.hpp#L224) |
-| `ChannelStatusArray` | `std::array<ChannelStatus, 8>` | [`inc/max22200_types.hpp#L229`](../inc/max22200_types.hpp#L229) |
-| `FaultCallback` | `void (*)(uint8_t channel, FaultType fault_type, void *user_data)` | [`inc/max22200_types.hpp#L243`](../inc/max22200_types.hpp#L243) |
-| `StateChangeCallback` | `void (*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data)` | [`inc/max22200_types.hpp#L254`](../inc/max22200_types.hpp#L254) |
+| Type | Definition |
+|------|------------|
+| `ChannelConfigArray` | `std::array<ChannelConfig, 8>` |
+| `FaultCallback` | `void (*)(uint8_t channel, FaultType fault_type, void *user_data)` |
+| `StateChangeCallback` | `void (*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data)` |
+
+### Helper Functions
+
+| Function | Description |
+|----------|-------------|
+| `DriverStatusToStr(DriverStatus s)` | Human-readable status string |
+| `FaultTypeToStr(FaultType ft)` | Human-readable fault name (e.g. "Overcurrent", "HIT not reached") |
 
 ---
 

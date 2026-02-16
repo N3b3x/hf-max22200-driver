@@ -328,10 +328,17 @@ MyPlatformSPI spi(/* your config */);
 max22200::MAX22200 driver(spi);
 
 if (driver.Initialize() == max22200::DriverStatus::OK) {
-    // Test basic operations
     max22200::ChannelConfig config;
-    config.enabled = true;
+    config.drive_mode = max22200::DriveMode::CDR;
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 500.0f;
+    config.hold_current_value = 200.0f;
+    config.hit_time_ms = 10.0f;
+    config.full_scale_current_ma = 1000;
+    config.master_clock_80khz = false;
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     driver.ConfigureChannel(0, config);
+    driver.EnableChannel(0);
 }
 ```
 

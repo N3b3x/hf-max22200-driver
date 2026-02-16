@@ -1,7 +1,7 @@
 ---
 layout: default
 title: "💡 Examples"
-description: "Complete example walkthroughs for the MAX22200 driver"
+description: "Example walkthroughs for the MAX22200 driver"
 nav_order: 7
 parent: "📚 Documentation"
 permalink: /docs/examples/
@@ -9,220 +9,224 @@ permalink: /docs/examples/
 
 # Examples
 
-This guide provides complete, working examples demonstrating various use cases for the MAX22200 driver.
+Working examples using the current driver API (STATUS, CFG_CHx, FAULT, CFG_DPM, and types in `max22200_types.hpp`).
 
-## Example 1: Basic Solenoid Control
+## Example 1: Basic Solenoid Control (CDR)
 
-This example shows basic solenoid control with hit and hold currents.
+CDR mode, low-side, with hit/hold current and HIT time.
 
 ```cpp
 #include "max22200.hpp"
-#include "esp32_max22200_spi.hpp"
 
 void app_main() {
-    // 1. Configure SPI
-    Esp32Max22200Spi::SPIConfig spi_config;
-    spi_config.host = SPI2_HOST;
-    spi_config.miso_pin = GPIO_NUM_2;
-    spi_config.mosi_pin = GPIO_NUM_7;
-    spi_config.sclk_pin = GPIO_NUM_6;
-    spi_config.cs_pin = GPIO_NUM_10;
-    spi_config.frequency = 10000000;
-    spi_config.mode = 0;
-    
-    Esp32Max22200Spi spi(spi_config);
-    spi.Initialize();
-    
-    // 2. Create driver
+    // SPI setup (implement SpiInterface for your platform)
+    MySpi spi;
     max22200::MAX22200 driver(spi);
-    
-    // 3. Initialize
+
     if (driver.Initialize() != max22200::DriverStatus::OK) {
         printf("Initialization failed\n");
         return;
     }
-    
-    // 4. Configure channel 0 for solenoid
+
     max22200::ChannelConfig config;
-    config.enabled = true;
     config.drive_mode = max22200::DriveMode::CDR;
-    config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-    config.hit_current = 800;   // 800 mA hit current
-    config.hold_current = 200;  // 200 mA hold current
-    config.hit_time = 50;       // 50 ms hit time
-    
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 800.0f;  // mA
+    config.hold_current_value = 200.0f;
+    config.hit_time_ms = 50.0f;
+    config.full_scale_current_ma = 1000;
+    config.master_clock_80khz = false;
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+    config.hit_current_check_enabled = true;
+
     driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
-    
+    driver.EnableChannel(0);
+
     printf("Solenoid enabled\n");
 }
 ```
 
----
+## Example 2: Motor with H-Bridge Pair
 
-## Example 2: Motor Control with Full-Bridge
-
-This example demonstrates motor control using full-bridge mode.
+Use channel-pair mode HBRIDGE and set full-bridge state.
 
 ```cpp
 #include "max22200.hpp"
 
 void app_main() {
-    // ... SPI setup (same as Example 1)
-    
+    MySpi spi;
     max22200::MAX22200 driver(spi);
     driver.Initialize();
-    
-    // Configure channel 0 for motor
-    max22200::ChannelConfig config;
-    config.enabled = true;
-    config.drive_mode = max22200::DriveMode::CDR;
-    config.bridge_mode = max22200::BridgeMode::FULL_BRIDGE;
-    config.hit_current = 500;
-    config.hold_current = 500;
-    config.hit_time = 0;  // Continuous operation
-    
-    driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
-    
-    // Read current
-    uint16_t current;
-    if (driver.ReadCurrent(0, current) == max22200::DriverStatus::OK) {
-        printf("Motor current: %u mA\n", current);
-    }
+
+    // Set pair 0 (ch0–ch1) to H-bridge; both channels must be off first
+    max22200::StatusConfig status;
+    driver.ReadStatus(status);
+    status.channels_on_mask = 0;
+    status.channel_pair_mode_10 = max22200::ChannelMode::HBRIDGE;
+    driver.WriteStatus(status);
+
+    // Configure both channels (forward uses ch1 config, reverse uses ch0)
+    max22200::ChannelConfig cfg;
+    cfg.drive_mode = max22200::DriveMode::CDR;
+    cfg.side_mode = max22200::SideMode::LOW_SIDE;
+    cfg.hit_current_value = 500.0f;
+    cfg.hold_current_value = 500.0f;
+    cfg.hit_time_ms = -1.0f;  // Continuous
+    cfg.full_scale_current_ma = 1000;
+    cfg.master_clock_80khz = false;
+    cfg.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+    driver.ConfigureChannel(0, cfg);
+    driver.ConfigureChannel(1, cfg);
+
+    // Drive forward
+    driver.SetFullBridgeState(0, max22200::FullBridgeState::Forward);
 }
 ```
 
----
+## Example 3: Fault Handling and Human-Readable Fault Names
 
-## Example 3: Fault Handling with Callbacks
-
-This example shows how to handle faults using callbacks.
+Use `ReadFaultRegister`, probe helpers, and `FaultTypeToStr()` for logging.
 
 ```cpp
 #include "max22200.hpp"
 
 void fault_handler(uint8_t channel, max22200::FaultType fault_type, void *user_data) {
-    const char* fault_names[] = {
-        "OCP", "OL", "DPM", "UVLO", "HHF", "TSD"
-    };
-    printf("Fault on channel %d: %s\n", channel, fault_names[static_cast<int>(fault_type)]);
+    printf("Fault on channel %u: %s\n", channel, max22200::FaultTypeToStr(fault_type));
 }
 
 void app_main() {
-    // ... SPI setup
-    
+    MySpi spi;
     max22200::MAX22200 driver(spi);
     driver.Initialize();
-    
-    // Set fault callback
     driver.SetFaultCallback(fault_handler);
-    
-    // Configure and enable channel
+
     max22200::ChannelConfig config;
-    config.enabled = true;
     config.drive_mode = max22200::DriveMode::CDR;
-    config.hit_current = 500;
-    config.hold_current = 200;
-    
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 500.0f;
+    config.hold_current_value = 200.0f;
+    config.hit_time_ms = 10.0f;
+    config.full_scale_current_ma = 1000;
+    config.master_clock_80khz = false;
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
-    
-    // Monitor for faults
-    while (true) {
+    driver.EnableChannel(0);
+
+    for (;;) {
         max22200::FaultStatus faults;
-        driver.ReadFaultStatus(faults);
-        
+        driver.ReadFaultRegister(faults);
+
         if (faults.hasFault()) {
-            printf("Fault detected: %d faults\n", faults.getFaultCount());
+            printf("Faults: %u (mask 0x%02X)\n", faults.getFaultCount(), faults.channelsWithAnyFault());
+            if (faults.hasOvercurrent()) printf("  Overcurrent\n");
+            if (faults.hasHitNotReached()) printf("  HIT not reached\n");
+            if (faults.hasOpenLoadFault()) printf("  Open-load\n");
+            if (faults.hasPlungerMovementFault()) printf("  Plunger movement\n");
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(100));
     }
 }
 ```
 
----
+## Example 4: Multiple Channels and Status
 
-## Example 4: Multiple Channels
-
-This example demonstrates controlling multiple channels.
+Use `ReadStatus()` for channel on/off and `ReadFaultRegister()` for per-channel faults.
 
 ```cpp
 #include "max22200.hpp"
 
 void app_main() {
-    // ... SPI setup
-    
+    MySpi spi;
     max22200::MAX22200 driver(spi);
     driver.Initialize();
-    
-    // Configure multiple channels
+
     for (uint8_t ch = 0; ch < 8; ch++) {
         max22200::ChannelConfig config;
-        config.enabled = true;
         config.drive_mode = max22200::DriveMode::CDR;
-        config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-        config.hit_current = 500;
-        config.hold_current = 200;
-        config.hit_time = 100;
-        
+        config.side_mode = max22200::SideMode::LOW_SIDE;
+        config.hit_current_value = 400.0f;
+        config.hold_current_value = 150.0f;
+        config.hit_time_ms = 10.0f;
+        config.full_scale_current_ma = 1000;
+        config.master_clock_80khz = false;
+        config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
         driver.ConfigureChannel(ch, config);
     }
-    
-    // Enable all channels
-    driver.EnableAllChannels(true);
-    
-    // Read status of all channels
-    max22200::ChannelStatusArray statuses;
-    driver.ReadAllChannelStatuses(statuses);
-    
+
+    driver.SetChannelsOn(0x0F);  // Channels 0–3 on
+
+    max22200::StatusConfig status;
+    driver.ReadStatus(status);
+    printf("Channels on: %u\n", status.channelCountOn());
     for (uint8_t ch = 0; ch < 8; ch++) {
-        printf("Channel %d: enabled=%d, current=%u\n", 
-               ch, statuses[ch].enabled, statuses[ch].current_reading);
+        if (status.isChannelOn(ch)) printf("  Channel %u on\n", ch);
+    }
+
+    max22200::FaultStatus faults;
+    driver.ReadFaultRegister(faults);
+    for (uint8_t ch = 0; ch < 8; ch++) {
+        if (faults.hasFaultOnChannel(ch)) {
+            printf("  Channel %u fault (OCP=%d HHF=%d OLF=%d DPM=%d)\n",
+                   ch, faults.hasOvercurrentOnChannel(ch), faults.hasHitNotReachedOnChannel(ch),
+                   faults.hasOpenLoadFaultOnChannel(ch), faults.hasPlungerMovementFaultOnChannel(ch));
+        }
     }
 }
 ```
 
----
+## Example 5: Board Config and Current in mA
 
-## Example 5: Current Monitoring
-
-This example demonstrates continuous current monitoring.
+Set IFS via `BoardConfig`, then use mA and ms APIs.
 
 ```cpp
 #include "max22200.hpp"
 
 void app_main() {
-    // ... SPI setup
-    
+    MySpi spi;
     max22200::MAX22200 driver(spi);
     driver.Initialize();
-    
-    // Enable ICS
-    driver.SetIntegratedCurrentSensing(true);
-    
-    // Configure channel
-    max22200::ChannelConfig config;
-    config.enabled = true;
-    config.drive_mode = max22200::DriveMode::CDR;
-    config.hit_current = 500;
-    config.hold_current = 200;
-    
-    driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
-    
-    // Monitor current
-    while (true) {
-        uint16_t current;
-        if (driver.ReadCurrent(0, current) == max22200::DriverStatus::OK) {
-            printf("Current: %u mA\n", current);
-        }
-        
-        vTaskDelay(pdMS_TO_TICKS(100));
-    }
+
+    max22200::BoardConfig board(30.0f, false);
+    board.max_current_ma = 800;
+    driver.SetBoardConfig(board);
+
+    driver.ConfigureChannelCdr(0, 500, 200, 10.0f);  // 500 mA hit, 200 mA hold, 10 ms
+    driver.EnableChannel(0);
+
+    uint32_t hit_ma = 0, hold_ma = 0;
+    driver.GetHitCurrentMa(0, hit_ma);
+    driver.GetHoldCurrentMa(0, hold_ma);
+    printf("Channel 0: hit=%" PRIu32 " mA, hold=%" PRIu32 " mA\n", hit_ma, hold_ma);
 }
 ```
+
+## Example 6: ESP32 Solenoid / Valve Test (All 8 Channels)
+
+The **solenoid valve test** app (`max22200_solenoid_valve_test`) is a dedicated ESP32 application that exercises the driver on valves with full diagnostics. It uses the same C21-style profile on all 8 channels and runs sequential (follow-up) and parallel clicking patterns.
+
+**What it does:**
+
+- Configures all 8 channels with the same valve profile (C21: 100 ms hit, 50% hold, low-side CDR or VDR per `C21ValveConfig`).
+- **Sequential pattern**: Enables channel 0, holds 200 ms, disables; then ch1 … ch7 with 80 ms gap between channels.
+- **Parallel pattern**: Turns all channels on for 500 ms, then all off.
+- Logs **full diagnostics** after init and after each pattern:
+  - STATUS (ACTIVE, fault flags, channels on mask)
+  - FAULT register (OCP, HHF, OLF, DPM per channel)
+  - Last fault byte from Command Register (hex + bit decode)
+  - nFAULT pin state
+  - Per-channel config readback (raw register + hit/hold/hit_time, CDR/VDR, LS/HS)
+  - BoardConfig (IFS, max current, max duty)
+  - Driver statistics (transfers, failed, faults, uptime, success %)
+
+**Build and run (from `examples/esp32`):**
+
+```bash
+./scripts/build_app.sh max22200_solenoid_valve_test Debug
+./scripts/flash_app.sh max22200_solenoid_valve_test Debug
+```
+
+Valve profile (CDR vs VDR, hit/hold, hit time) is set in `esp32_max22200_test_config.hpp` via `C21ValveConfig`. See `examples/esp32/README.md` for the full **Solenoid / Valve Test** section.
 
 ---
 
@@ -232,18 +236,19 @@ void app_main() {
 
 ```bash
 cd examples/esp32
-idf.py build flash monitor
+./scripts/build_app.sh max22200_comprehensive_test Debug   # or max22200_solenoid_valve_test
+./scripts/flash_app.sh max22200_comprehensive_test Debug
 ```
 
 ### Other Platforms
 
-For other platforms, implement the SPI interface and compile with C++20 support.
+Implement `max22200::SpiInterface<YourSpi>` for your platform and build with C++20. See [Platform Integration](platform_integration.md).
 
 ## Next Steps
 
-- Review the [API Reference](api_reference.md) for method details
-- Check [Troubleshooting](troubleshooting.md) if you encounter issues
-- Explore the [examples directory](../examples/) for more examples
+- [API Reference](api_reference.md) for all methods and types
+- [Configuration](configuration.md) for STATUS, fault masks, and DPM
+- [Troubleshooting](troubleshooting.md) for common issues
 
 ---
 

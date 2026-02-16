@@ -39,17 +39,20 @@ max22200::MAX22200 driver(spi);
 
 // 3. Initialize
 if (driver.Initialize() == max22200::DriverStatus::OK) {
-    // 4. Configure channel 0
+    // 4. Configure channel 0 (CDR, low-side; user units: mA and ms)
     max22200::ChannelConfig config;
-    config.enabled = true;
     config.drive_mode = max22200::DriveMode::CDR;
-    config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-    config.hit_current = 500;   // 500 mA hit current
-    config.hold_current = 200;  // 200 mA hold current
-    config.hit_time = 1000;     // 1000 ms hit time
-    
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 500.0f;   // 500 mA
+    config.hold_current_value = 200.0f;  // 200 mA
+    config.hit_time_ms = 10.0f;          // 10 ms
+    config.full_scale_current_ma = 1000;                // IFS for conversion (e.g. from SetBoardConfig)
+    config.master_clock_80khz = false;                // 100 kHz base (from STATUS)
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+    config.hit_current_check_enabled = true;                // Enable HIT current check
+
     driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
+    driver.EnableChannel(0);
 }
 ```
 
@@ -99,20 +102,32 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
 
 ```cpp
 max22200::ChannelConfig config;
-config.enabled = true;
-config.drive_mode = max22200::DriveMode::CDR;  // Current Drive Regulation
-config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-config.hit_current = 500;   // Hit current in mA (0-1023)
-config.hold_current = 200;  // Hold current in mA (0-1023)
-config.hit_time = 1000;     // Hit time in ms (0-65535)
+config.drive_mode = max22200::DriveMode::CDR;
+config.side_mode = max22200::SideMode::LOW_SIDE;
+config.hit_current_value = 500.0f;   // 500 mA (CDR)
+config.hold_current_value = 200.0f; // 200 mA
+config.hit_time_ms = 10.0f;         // 10 ms
+config.full_scale_current_ma = 1000;               // Full-scale current (required for CDR)
+config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
+config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+config.hit_current_check_enabled = true;
 
 driver.ConfigureChannel(0, config);
+```
+
+Alternatively, set board config first then use convenience APIs:
+
+```cpp
+max22200::BoardConfig board(30.0f, false); // IFS from RREF
+driver.SetBoardConfig(board);
+driver.SetHitCurrentMa(0, 500);  // Channel 0, 500 mA
+driver.SetHoldCurrentMa(0, 200);
 ```
 
 ### Step 6: Enable Channel
 
 ```cpp
-driver.EnableChannel(0, true);
+driver.EnableChannel(0);
 ```
 
 ## Complete Example with Error Handling
@@ -135,38 +150,40 @@ void app_main() {
         return;
     }
     
-    // Configure channel
+    // Configure channel (user units: mA and ms)
     max22200::ChannelConfig config;
-    config.enabled = true;
     config.drive_mode = max22200::DriveMode::CDR;
-    config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-    config.hit_current = 500;
-    config.hold_current = 200;
-    config.hit_time = 1000;
-    
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 500.0f;
+    config.hold_current_value = 200.0f;
+    config.hit_time_ms = 10.0f;
+    config.full_scale_current_ma = 1000;
+    config.master_clock_80khz = false;
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+
     status = driver.ConfigureChannel(0, config);
     if (status != max22200::DriverStatus::OK) {
         printf("Channel configuration failed\n");
         return;
     }
-    
+
     // Enable channel
-    driver.EnableChannel(0, true);
-    
-    // Read current
-    uint16_t current;
-    if (driver.ReadCurrent(0, current) == max22200::DriverStatus::OK) {
-        printf("Channel 0 current: %u mA\n", current);
+    driver.EnableChannel(0);
+
+    // Read configured current in mA (requires SetBoardConfig with IFS)
+    uint32_t current_ma = 0;
+    if (driver.GetHitCurrentMa(0, current_ma) == max22200::DriverStatus::OK) {
+        printf("Channel 0 hit current: %" PRIu32 " mA\n", current_ma);
     }
 }
 ```
 
 ## Expected Output
 
-When running this example, you should see:
+When running this example (with `SetBoardConfig` set for your IFS), you should see the configured current in mA, for example:
 
 ```
-Channel 0 current: 500 mA
+Channel 0 hit current: 500 mA
 ```
 
 ## Troubleshooting

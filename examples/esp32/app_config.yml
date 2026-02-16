@@ -30,6 +30,19 @@ apps:
     featured: true
     documentation: "README.md"
 
+  # --------------------------------------------------------------------------
+  # Solenoid / Valve test (all 8 channels, C21-style, diagnostics)
+  # --------------------------------------------------------------------------
+  max22200_solenoid_valve_test:
+    description: "Solenoid/valve test: all 8 channels, C21 hit/hold, sequential and parallel patterns, full diagnostics"
+    source_file: "max22200_solenoid_valve_test.cpp"
+    category: "test"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: false
+    featured: true
+    documentation: "README.md"
+
 # ============================================================================
 # BUILD CONFIGURATION (ESP-IDF Standard Build Types)
 # ============================================================================

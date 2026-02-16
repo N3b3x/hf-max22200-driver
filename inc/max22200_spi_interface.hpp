@@ -1,6 +1,47 @@
 /**
  * @file max22200_spi_interface.hpp
  * @brief CRTP-based template interface for SPI communication
+ *
+ * This file defines the hardware abstraction layer (HAL) interface for SPI
+ * communication and GPIO control required by the MAX22200 driver. Platform-specific
+ * implementations (e.g., ESP32, STM32) must inherit from SpiInterface and implement
+ * all pure virtual methods.
+ *
+ * ## MAX22200 SPI Requirements
+ *
+ * ### SPI Mode
+ * - **Mode 0 only** (CPOL=0, CPHA=0)
+ * - Clock idle LOW, data sampled on rising edge, output on falling edge
+ *
+ * ### SPI Clock Speed
+ * - **Standalone**: Up to 10 MHz
+ * - **Daisy-chain**: Up to 5 MHz
+ * - Minimum clock period: 100ns (tCLK)
+ *
+ * ### SPI Signals
+ * - **SCK**: SPI clock (input, internal pulldown)
+ * - **CSB**: Chip select (active-low, internal pullup)
+ * - **SDI**: Serial data in (MOSI, internal pulldown)
+ * - **SDO**: Serial data out (MISO, open-drain, requires external pullup)
+ * - **CMD**: Command mode select (must be controlled via GPIO)
+ *
+ * ### CMD Pin Control
+ * The CMD pin is critical for the two-phase SPI protocol:
+ * - **HIGH**: Command Register write mode (Phase 1)
+ * - **LOW**: Data register read/write mode (Phase 2)
+ * - Must be held HIGH during the rising edge of CSB for Command Register writes
+ * - Setup time: 20ns (tCMS) before CSB rising edge
+ *
+ * ### ENABLE Pin Control
+ * - **HIGH**: Device enabled (normal operation)
+ * - **LOW**: Device disabled (sleep mode, < 11μA consumption)
+ * - Enable time (tEN): 0.5ms from rising edge to SPI ready
+ *
+ * ### FAULT Pin Reading
+ * - **Open-drain output** (requires external pullup)
+ * - **LOW**: Fault condition present (active-low)
+ * - **HIGH**: No fault (or masked fault)
+ *
  * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
 #pragma once
@@ -122,9 +163,18 @@ public:
    * data mode, and bit order.
    *
    * @param speed_hz SPI clock speed in Hz
+   *                 - Standalone: Up to 10 MHz
+   *                 - Daisy-chain: Up to 5 MHz
+   *                 - Minimum period: 100ns (10 MHz max)
    * @param mode SPI mode (0-3) defining clock polarity and phase
+   *             - **Must be Mode 0** (CPOL=0, CPHA=0) for MAX22200
+   *             - Clock idle LOW, data sampled on rising edge
    * @param msb_first true for MSB first, false for LSB first
+   *                  - **Must be true** (MSB first) for MAX22200
    * @return true if configuration was successful, false otherwise
+   *
+   * @note MAX22200 requires Mode 0 and MSB-first bit order.
+   * @note Clock speed should not exceed 10 MHz (standalone) or 5 MHz (daisy-chain).
    */
   bool Configure(uint32_t speed_hz, uint8_t mode, bool msb_first = true) {
     return static_cast<Derived *>(this)->Configure(speed_hz, mode, msb_first);
@@ -162,8 +212,21 @@ public:
   /**
    * @brief Set a control pin to the specified signal state.
    *
-   * @param[in] pin     Which control pin to drive (ENABLE, CMD).
+   * Controls the MAX22200 hardware control pins (ENABLE, CMD, FAULT).
+   * The platform implementation maps GpioSignal::ACTIVE/INACTIVE to the
+   * correct physical level based on each pin's polarity.
+   *
+   * @param[in] pin     Which control pin to drive:
+   *                    - **ENABLE**: Active-high (ACTIVE = HIGH, enables device)
+   *                    - **CMD**: Active-high (ACTIVE = HIGH, Command Register mode)
+   *                    - **FAULT**: Read-only (use GpioRead instead)
    * @param[in] signal  ACTIVE to assert the pin function, INACTIVE to deassert.
+   *
+   * @note For CMD pin: Must be held HIGH during Command Register writes.
+   * @note For ENABLE pin: 0.5ms delay required after setting HIGH before SPI access.
+   * @note FAULT pin is read-only (open-drain output from device).
+   *
+   * @see GpioSetActive(), GpioSetInactive() for convenience wrappers
    */
   void GpioSet(CtrlPin pin, GpioSignal signal) {
     static_cast<Derived *>(this)->GpioSet(pin, signal);
@@ -172,11 +235,20 @@ public:
   /**
    * @brief Read the current state of a control pin.
    *
-   * Primarily used for reading the FAULT pin status.
+   * Primarily used for reading the FAULT pin status to detect fault conditions.
    *
-   * @param[in]  pin     Which control pin to read.
-   * @param[out] signal  Receives the current signal state.
+   * @param[in]  pin     Which control pin to read:
+   *                     - **FAULT**: Active-low (ACTIVE = LOW = fault present)
+   *                     - **ENABLE**: Can be read to verify state
+   *                     - **CMD**: Can be read to verify state
+   * @param[out] signal  Receives the current signal state:
+   *                     - GpioSignal::ACTIVE = fault present (for FAULT pin)
+   *                     - GpioSignal::INACTIVE = no fault (for FAULT pin)
    * @return true if the read was successful, false otherwise.
+   *
+   * @note FAULT pin is open-drain and requires external pullup resistor.
+   * @note FAULT pin is LOW when any unmasked fault is active.
+   * @note Reading FAULT pin does not clear fault flags (use ReadFaultRegister()).
    */
   bool GpioRead(CtrlPin pin, GpioSignal &signal) {
     return static_cast<Derived *>(this)->GpioRead(pin, signal);

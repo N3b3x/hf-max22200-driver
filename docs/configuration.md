@@ -9,201 +9,221 @@ permalink: /docs/configuration/
 
 # Configuration
 
-This guide covers all configuration options available for the MAX22200 driver.
+This guide covers configuration options for the MAX22200 driver, aligned with the device registers (STATUS, CFG_CHx, CFG_DPM) and types in `max22200_types.hpp`.
 
-## Channel Configuration
+## Channel Configuration (CFG_CHx)
 
 ### Basic Channel Setup
 
+Channels are configured via `ChannelConfig` and written with `ConfigureChannel()`. **ChannelConfig stores user units** (mA for CDR, % for VDR, ms for hit time) and computes register values when writing. Set `full_scale_current_ma` and `master_clock_80khz` for correct conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see [Channel Control](#channel-control)).
+
 ```cpp
 max22200::ChannelConfig config;
-config.enabled = true;
-config.drive_mode = max22200::DriveMode::CDR;  // Current Drive Regulation
-config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-config.parallel_mode = false;
-config.polarity = max22200::OutputPolarity::NORMAL;
-config.hit_current = 500;   // Hit current (0-1023)
-config.hold_current = 200;  // Hold current (0-1023)
-config.hit_time = 1000;     // Hit time in ms (0-65535)
+config.drive_mode = max22200::DriveMode::CDR;
+config.side_mode = max22200::SideMode::LOW_SIDE;
+config.hit_current_value = 500.0f;   // 500 mA (CDR)
+config.hold_current_value = 200.0f;  // 200 mA
+config.hit_time_ms = 10.0f;          // 10 ms
+config.full_scale_current_ma = 1000;                // Full-scale current (required for CDR)
+config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
+config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+config.hit_current_check_enabled = true;                // HIT current check (HHF fault if IHIT not reached)
+config.open_load_detection_enabled = false;
+config.plunger_movement_detection_enabled = false;
 
 driver.ConfigureChannel(0, config);
 ```
 
 ### Drive Modes
 
-#### CDR (Current Drive Regulation)
+- **CDR (Current Drive Regulation)**  
+  `config.drive_mode = max22200::DriveMode::CDR;`  
+  Regulates current to hit/hold levels. Only supported in low-side mode.
+
+- **VDR (Voltage Drive Regulation)**  
+  `config.drive_mode = max22200::DriveMode::VDR;`  
+  Duty-cycle control. Supported in both low-side and high-side.
+
+### Side Mode (Low-Side vs High-Side)
+
+- **Low-side**  
+  `config.side_mode = max22200::SideMode::LOW_SIDE;`  
+  Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM.
+
+- **High-side**  
+  `config.side_mode = max22200::SideMode::HIGH_SIDE;`  
+  Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.
+
+### Current and Timing in Real Units
+
+**Option A — Driver APIs (recommended):** Set IFS with `BoardConfig`, then use mA/ms APIs:
 
 ```cpp
+max22200::BoardConfig board(30.0f, false);
+board.max_current_ma = 800;      // Optional safety limit (0 = no limit)
+board.max_duty_percent = 90;    // Optional for VDR (0 = no limit)
+driver.SetBoardConfig(board);
+
+driver.SetHitCurrentMa(0, 500);   // Channel 0, 500 mA
+driver.SetHoldCurrentMa(0, 200);
+driver.SetHitTimeMs(0, 10.0f);   // 10 ms (converted from fCHOP)
+```
+
+**Option B — Set user units on ChannelConfig directly:** Set `hit_current_value`, `hold_current_value`, `hit_time_ms`, and context (`full_scale_current_ma`, `master_clock_80khz`, `chop_freq`), then call `ConfigureChannel()`. The class computes register values in `toRegister()`.
+
+```cpp
+max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
+config.side_mode = max22200::SideMode::LOW_SIDE;
+config.hit_current_value = 500.0f;   // mA
+config.hold_current_value = 200.0f;  // mA
+config.hit_time_ms = 10.0f;
+config.full_scale_current_ma = 500;                 // from BoardConfig
+config.master_clock_80khz = false;                // from ReadStatus(status)
+config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+driver.ConfigureChannel(0, config);
 ```
 
-- Regulates current to hit_current during hit phase
-- Regulates current to hold_current during hold phase
-- Best for solenoids and motors requiring constant current
+For VDR, set `hit_current_value` and `hold_current_value` as duty percent (0–100). Helpers `currentMaToRaw()`, `hitTimeMsToRaw()`, and `getChopFreqKhz()` are in `max22200_types.hpp` for custom conversion.
 
-#### VDR (Voltage Drive Regulation)
+### Human-Readable Probes on ChannelConfig
+
+You can query config with inline helpers (see `max22200_types.hpp`):
+
+- `config.isCdr()` / `config.isVdr()`, `config.isLowSide()` / `config.isHighSide()`
+- `config.hasHitTime()`, `config.isContinuousHit()` (hit_time_ms > 0 or continuous)
+- `config.isHalfFullScale()`, `config.isSlewRateControlEnabled()`, `config.isOpenLoadDetectionEnabled()`, `config.isPlungerMovementDetectionEnabled()`, `config.isHitCurrentCheckEnabled()`
+
+## STATUS Register (StatusConfig)
+
+The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with `ReadStatus()` and `WriteStatus()`.
+
+### Channel On/Off (ONCH)
+
+- `status.channels_on_mask` — bitmask: bit N = channel N on (1) or off (0).
+- Helpers: `status.isChannelOn(ch)`, `status.channelCountOn()`, `status.getChannelsOnMask()`.
+
+### Fault Masks (M_OVT, M_OCP, …)
+
+When a mask bit is 1, that fault does not assert the nFAULT pin. Use the human-readable helpers:
+
+- `status.isOvertemperatureMasked()`, `status.isOvercurrentMasked()`, `status.isOpenLoadFaultMasked()`, `status.isHitNotReachedMasked()`, `status.isPlungerMovementFaultMasked()`, `status.isCommunicationErrorMasked()`, `status.isUndervoltageMasked()`.
+
+### Fault Flags (Read-Only)
+
+After `ReadStatus(status)` or `ReadFaultFlags(status)`:
+
+- `status.hasOvertemperature()`, `status.hasOvercurrent()`, `status.hasOpenLoadFault()`, `status.hasHitNotReached()`, `status.hasPlungerMovementFault()`, `status.hasCommunicationError()`, `status.hasUndervoltage()`, `status.hasFault()`, `status.isActive()`.
+
+### Channel-Pair Mode (CM10, CM32, CM54, CM76)
+
+Pairs (0–1, 2–3, 4–5, 6–7) can be INDEPENDENT, PARALLEL, or HBRIDGE. Change only when both channels in the pair are off.
+
+- `status.getChannelPairMode10()`, `getChannelPairMode32()`, `getChannelPairMode54()`, `getChannelPairMode76()` return `ChannelMode`.
+
+### Master Frequency (FREQM)
+
+- `status.is100KHzBase()` / `status.is80KHzBase()` — base clock for chopping frequency.
+
+## FAULT Register (FaultStatus)
+
+Per-channel fault bits (OCP, HHF, OLF, DPM) are read with `ReadFaultRegister(faults)`. Reading clears flags (and deasserts nFAULT when no other faults remain). Use human-readable probes:
+
+- `faults.hasOvercurrent()`, `faults.hasHitNotReached()`, `faults.hasOpenLoadFault()`, `faults.hasPlungerMovementFault()`
+- `faults.hasFaultOnChannel(ch)`, `faults.hasOvercurrentOnChannel(ch)`, etc.
+- `faults.channelsWithAnyFault()` — bitmask of channels with any fault.
+- `FaultTypeToStr(fault_type)` for logging (e.g. "Overcurrent", "HIT not reached").
+
+Clearing:
+
+- `ClearAllFaults()` — clear all and discard.
+- `ClearChannelFaults(channel_mask, &faults)` — clear selected channels (MAX22200A); optional snapshot in `faults`.
+
+## DPM Configuration (CFG_DPM)
+
+Plunger movement detection is global; enable per channel with `config.plunger_movement_detection_enabled = true` (low-side only). Configure in real units:
 
 ```cpp
-config.drive_mode = max22200::DriveMode::VDR;
+driver.ConfigureDpm(200.0f, 50.0f, 2.0f);
+// start_current_ma, dip_threshold_ma, debounce_ms (converted at 25 kHz)
 ```
 
-- Applies constant voltage during hit phase
-- Regulates current to hold_current during hold phase
-- Best for applications requiring fast response
-
-### Bridge Modes
-
-#### Half-Bridge Mode
-
-```cpp
-config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-```
-
-- Load connected between OUTA and GND
-- OUTB not used
-- Single-ended drive
-
-#### Full-Bridge Mode
-
-```cpp
-config.bridge_mode = max22200::BridgeMode::FULL_BRIDGE;
-```
-
-- Load connected between OUTA and OUTB
-- Bidirectional drive
-- Can reverse current direction
-
-### Current Settings
-
-```cpp
-// Set hit and hold currents separately
-driver.SetHitCurrent(0, 500);   // Channel 0, 500 mA
-driver.SetHoldCurrent(0, 200);  // Channel 0, 200 mA
-
-// Or set both at once
-driver.SetCurrents(0, 500, 200);  // Channel 0, hit=500mA, hold=200mA
-```
-
-**Current Range**: 0-1023 (10-bit resolution)
-
-### Hit Time
-
-```cpp
-driver.SetHitTime(0, 1000);  // Channel 0, 1000 ms
-```
-
-**Time Range**: 0-65535 ms
-
-## Global Configuration
-
-### Global Settings
-
-```cpp
-max22200::GlobalConfig global_config;
-global_config.reset = false;
-global_config.sleep_mode = false;
-global_config.diagnostic_enable = true;
-global_config.ics_enable = true;  // Integrated Current Sensing
-global_config.daisy_chain_mode = false;
-
-driver.ConfigureGlobal(global_config);
-```
-
-### Sleep Mode
-
-```cpp
-driver.SetSleepMode(true);   // Enable sleep mode
-driver.SetSleepMode(false);  // Disable sleep mode
-```
-
-### Diagnostic Mode
-
-```cpp
-driver.SetDiagnosticMode(true);  // Enable diagnostics
-```
-
-### Integrated Current Sensing (ICS)
-
-```cpp
-driver.SetIntegratedCurrentSensing(true);  // Enable ICS
-```
+Or read/write raw `DpmConfig` (plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold) with `ReadDpmConfig()` / `WriteDpmConfig()`. Use `getPlungerMovementStartCurrent()`, `getPlungerMovementDebounceTime()`, `getPlungerMovementCurrentThreshold()` for readable access.
 
 ## Channel Control
 
 ### Enable/Disable Channels
 
 ```cpp
-// Enable single channel
-driver.EnableChannel(0, true);
+driver.EnableChannel(0);
+driver.DisableChannel(0);
+driver.SetChannelEnabled(0, true);   // or false
 
-// Disable single channel
-driver.EnableChannel(0, false);
-
-// Enable all channels
-driver.EnableAllChannels(true);
-
-// Disable all channels
-driver.EnableAllChannels(false);
+driver.EnableAllChannels();
+driver.DisableAllChannels();
+driver.SetAllChannelsEnabled(true); // or false
+driver.SetChannelsOn((1u << 0) | (1u << 2));  // Channels 0 and 2 on
 ```
 
-### Individual Channel Settings
+### Full-Bridge Pairs
+
+When a pair is configured as HBRIDGE in STATUS (e.g. `status.channel_pair_mode_10 = ChannelMode::HBRIDGE`), use:
 
 ```cpp
-// Set drive mode
-driver.SetChannelDriveMode(0, max22200::DriveMode::CDR);
-
-// Set bridge mode
-driver.SetChannelBridgeMode(0, max22200::BridgeMode::FULL_BRIDGE);
-
-// Set polarity
-driver.SetChannelPolarity(0, max22200::OutputPolarity::INVERTED);
+driver.SetFullBridgeState(0, max22200::FullBridgeState::Forward);  // pair 0 = ch0–ch1
 ```
 
-## Recommended Settings
+## Device Enable (ENABLE Pin)
 
-### For Solenoid Control
+```cpp
+driver.EnableDevice();   // ENABLE pin high — SPI and channels active
+driver.DisableDevice();  // ENABLE pin low — low power
+driver.SetDeviceEnable(true);  // or false
+```
+
+Initialization sets ACTIVE=1 and ENABLE high; `Deinitialize()` sets ACTIVE=0 and ENABLE low.
+
+## Recommended Setups
+
+### Solenoid (CDR, low-side)
 
 ```cpp
 max22200::ChannelConfig config;
-config.enabled = true;
 config.drive_mode = max22200::DriveMode::CDR;
-config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-config.hit_current = 800;   // High current for pull-in
-config.hold_current = 200;  // Lower current for holding
-config.hit_time = 50;       // Short hit time
+config.side_mode = max22200::SideMode::LOW_SIDE;
+config.hit_current_value = 800.0f;  // mA
+config.hold_current_value = 200.0f;
+config.hit_time_ms = 50.0f;
+config.full_scale_current_ma = 1000;
+config.master_clock_80khz = false;
+config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+config.hit_current_check_enabled = true;
+driver.ConfigureChannel(0, config);
+driver.EnableChannel(0);
 ```
 
-### For Motor Control
+### Motor (H-bridge pair)
+
+Set channel pair to `ChannelMode::HBRIDGE` in STATUS (both channels off), configure both channels, then use `SetFullBridgeState(pair_index, Forward)` or `Reverse`, etc.
+
+### Low-Power (VDR)
 
 ```cpp
-max22200::ChannelConfig config;
-config.enabled = true;
-config.drive_mode = max22200::DriveMode::CDR;
-config.bridge_mode = max22200::BridgeMode::FULL_BRIDGE;
-config.hit_current = 500;
-config.hold_current = 500;
-config.hit_time = 0;  // Continuous operation
-```
-
-### For Low-Power Applications
-
-```cpp
-max22200::ChannelConfig config;
-config.enabled = true;
 config.drive_mode = max22200::DriveMode::VDR;
-config.bridge_mode = max22200::BridgeMode::HALF_BRIDGE;
-config.hit_current = 300;
-config.hold_current = 100;
-config.hit_time = 100;
+config.side_mode = max22200::SideMode::LOW_SIDE;
+config.hit_current_value = 60.0f;   // duty %
+config.hold_current_value = 20.0f;
+config.hit_time_ms = 100.0f;
+config.master_clock_80khz = false;
+config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 ```
 
 ## Next Steps
 
-- See [Examples](examples.md) for configuration examples
-- Review [API Reference](api_reference.md) for all configuration methods
+- See [Examples](examples.md) for full code.
+- [API Reference](api_reference.md) for all methods and types.
 
 ---
 
 **Navigation**
 ⬅️ [Platform Integration](platform_integration.md) | [Next: API Reference ➡️](api_reference.md) | [Back to Index](index.md)
-

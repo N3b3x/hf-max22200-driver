@@ -9,7 +9,7 @@ permalink: /docs/troubleshooting/
 
 # Troubleshooting
 
-This guide helps you diagnose and resolve common issues when using the MAX22200 driver.
+This guide helps you diagnose and resolve common issues when using the MAX22200 driver. For a detailed analysis of SPI command bytes, write/read byte order, and decoding (and why raw register HEX comparison is used for pass/fail), see [SPI Protocol Analysis](spi_protocol_analysis.md).
 
 ## Common Error Messages
 
@@ -84,8 +84,8 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 
 **Symptoms:**
 
-- `FaultStatus.overcurrent_protection` is true
-- Channel disabled automatically
+- `FaultStatus::hasOvercurrent()` is true (or per-channel `hasOvercurrentOnChannel(ch)`)
+- nFAULT pin asserted; channel may be disabled depending on mask
 
 **Causes:**
 
@@ -96,7 +96,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 **Solutions:**
 
 1. **Check Load**: Verify load is within specifications (1A RMS max per channel)
-2. **Reduce Current**: Lower hit_current and hold_current settings
+2. **Reduce Current**: Lower hit_current_value and hold_current_value (or use SetHitCurrentMa/SetHoldCurrentMa)
 3. **Check for Shorts**: Verify no short circuits in wiring
 4. **Clear Fault**: Read fault status to clear, then reconfigure
 
@@ -212,21 +212,30 @@ max22200::MAX22200 driver(spi, true);  // Enable diagnostics
 
 ```cpp
 max22200::FaultStatus faults;
-driver.ReadFaultStatus(faults);
+driver.ReadFaultRegister(faults);
 
 if (faults.hasFault()) {
     printf("Faults detected: %d\n", faults.getFaultCount());
 }
 ```
 
-### Read Channel Status
+### Read Channel and Fault Status
+
+Use STATUS for channel on/off and FAULT for per-channel fault flags:
 
 ```cpp
-max22200::ChannelStatus status;
-driver.ReadChannelStatus(0, status);
+max22200::StatusConfig status;
+driver.ReadStatus(status);
+bool ch0_on = status.isChannelOn(0);
 
-printf("Channel 0: enabled=%d, fault=%d, current=%u\n",
-       status.enabled, status.fault_active, status.current_reading);
+max22200::FaultStatus faults;
+driver.ReadFaultRegister(faults);
+bool ch0_fault = faults.hasFaultOnChannel(0);
+if (faults.hasOvercurrent()) { /* ... */ }
+
+// Configured current in mA (after SetBoardConfig)
+uint32_t hit_ma = 0;
+driver.GetHitCurrentMa(0, hit_ma);
 ```
 
 ### Use Callbacks
@@ -247,7 +256,7 @@ driver.SetFaultCallback(fault_handler);
 
 ### Q: What is the maximum current per channel?
 
-**A:** Each channel can handle up to 1A RMS. The hit_current and hold_current settings use 10-bit values (0-1023) that map to the actual current range.
+**A:** Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_current_value and hold_current_value in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.
 
 ### Q: Can I use multiple channels simultaneously?
 

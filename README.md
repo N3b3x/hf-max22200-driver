@@ -68,16 +68,19 @@ max22200::MAX22200 driver(spi);
 
 // 3. Initialize
 if (driver.Initialize() == max22200::DriverStatus::OK) {
-    // 4. Configure channel 0
+    // 4. Configure channel 0 (CDR, low-side; 7-bit currents, 8-bit hit time)
     max22200::ChannelConfig config;
-    config.enabled = true;
     config.drive_mode = max22200::DriveMode::CDR;
-    config.hit_current = 500;
-    config.hold_current = 200;
-    config.hit_time = 1000;
-    
+    config.side_mode = max22200::SideMode::LOW_SIDE;
+    config.hit_current_value = 500.0f;   // mA (set full_scale_current_ma for CDR)
+    config.hold_current_value = 200.0f;
+    config.hit_time_ms = 10.0f;
+    config.full_scale_current_ma = 1000;
+    config.master_clock_80khz = false;
+    config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
+
     driver.ConfigureChannel(0, config);
-    driver.EnableChannel(0, true);
+    driver.EnableChannel(0);
 }
 ```
 
@@ -99,17 +102,19 @@ For detailed installation instructions, see [docs/installation.md](docs/installa
 
 | Method | Description |
 |--------|-------------|
-| `Initialize()` | Initialize the driver |
-| `Deinitialize()` | Safely shut down the driver |
-| `Reset()` | Perform software reset |
-| `ConfigureChannel()` | Configure a channel |
-| `EnableChannel()` | Enable/disable a channel |
-| `GetChannelStatus()` | Get channel status |
-| `GetFaultStatus()` | Get fault status |
-| `ReadCurrent()` | Read current via ICS |
-| `SetSleepMode()` | Enable/disable sleep mode |
-| `SetFaultCallback()` | Set fault callback function |
-| `GetStatistics()` | Get driver statistics |
+| `Initialize()` / `Deinitialize()` | Initialize or shut down (ENABLE, STATUS ACTIVE) |
+| `ConfigureChannel()` | Configure a channel (CFG_CHx) |
+| `EnableChannel()` / `DisableChannel()` | Turn a channel on or off |
+| `EnableAllChannels()` / `DisableAllChannels()` | Turn all channels on or off |
+| `SetChannelsOn(mask)` | Set which channels are on (bitmask) |
+| `ReadStatus()` / `WriteStatus()` | Read/write STATUS (ONCH, fault masks, ACTIVE) |
+| `ReadFaultRegister()` / `ClearAllFaults()` | Read or clear per-channel faults (OCP, HHF, OLF, DPM) |
+| `SetBoardConfig()` | Set IFS and limits for mA/% APIs |
+| `SetHitCurrentMa()` / `GetHitCurrentMa()` | Set/get current in mA (CDR) |
+| `ConfigureDpm()` | Configure plunger movement detection in mA/ms |
+| `EnableDevice()` / `DisableDevice()` | ENABLE pin on/off |
+| `SetFaultCallback()` | Fault event callback; use `FaultTypeToStr()` for names |
+| `GetStatistics()` | Driver statistics |
 
 For complete API documentation, see [docs/api_reference.md](docs/api_reference.md).
 

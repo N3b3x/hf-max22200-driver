@@ -1,6 +1,71 @@
 /**
  * @file max22200.hpp
  * @brief Main driver class for MAX22200 octal solenoid and motor driver
+ *
+ * This file provides the main MAX22200 driver class template that implements
+ * the two-phase SPI protocol per MAX22200 datasheet (Rev 1, 3/25, Document 19-100531).
+ *
+ * ## Two-Phase SPI Protocol
+ *
+ * The MAX22200 uses a **two-phase SPI protocol** for all register access:
+ *
+ * ### Phase 1: Command Register Write
+ * - **CMD pin HIGH** (must be held HIGH during entire transfer)
+ * - Write 8-bit Command Register (1 byte SPI transfer)
+ * - Device responds with STATUS[7:0] (Fault Flag Byte) on SDO
+ * - Check for communication error: STATUS[7:0] = 0x04 (COMER flag)
+ *
+ * ### Phase 2: Data Transfer
+ * - **CMD pin LOW** (must be LOW for data transfer)
+ * - Read or write data register:
+ *   - **8-bit mode**: Transfer 1 byte (MSB only, for fast updates)
+ *   - **32-bit mode**: Transfer 4 bytes (full register)
+ *
+ * ## Initialization Sequence
+ *
+ * Per datasheet Figure 6 (Programming Flow Chart):
+ *
+ * 1. **Power-up**: Set ENABLE pin HIGH, wait 0.5ms (tEN)
+ * 2. **Read STATUS**: Clear UVM flag and deassert nFAULT pin
+ * 3. **Write STATUS**: Set ACTIVE=1, configure HW (CMxy bits), set fault masks
+ * 4. **Configure Channels**: Write CFG_CHx for each channel (HIT/HOLD currents, timing, etc.)
+ * 5. **Read STATUS**: Verify UVM cleared and no faults
+ * 6. **Ready**: Channels can now be activated via ONCH bits
+ *
+ * ## Timing Specifications
+ *
+ * - **Enable time (tEN)**: 0.5ms from ENABLE rising edge to SPI ready
+ * - **Wake-up time (tWU)**: 2.5ms from ACTIVE=1 to normal operation (OUT_ active)
+ * - **Disable time (tDIS)**: 2.5ms from ENABLE falling edge to OUT_ tristate
+ * - **Dead time (tDEAD)**: 200ns dead zone to prevent current feedthrough
+ * - **SPI clock period (tCLK)**: Minimum 100ns (max 10MHz standalone, 5MHz daisy-chain)
+ *
+ * ## Restrictions and Limitations
+ *
+ * - **VDRnCDR and HSnLS bits** can only be modified when:
+ *   - All channels are OFF (ONCHx = 0 for all channels)
+ *   - Both TRIGA and TRIGB inputs are logic-low
+ *
+ * - **CDR mode** is only supported in **low-side** operation (HSnLS = 0)
+ *
+ * - **High-side mode** (HSnLS = 1) only supports **VDR mode**
+ *
+ * - **Channel-pair mode (CMxy)** can only be changed when both channels in the pair are OFF
+ *
+ * - **HFS, SRC, and DPM** are only available for **low-side** applications
+ *
+ * ## Fast 8-Bit Updates
+ *
+ * For low-latency control, certain operations can use 8-bit MSB-only transfers:
+ *
+ * - **Channel ON/OFF**: Write STATUS[31:24] (ONCH byte) — fast channel activation
+ * - **HOLD current update**: Write CFG_CHx[31:24] (HOLD + HFS) — dynamic current control
+ * - **OCP status**: Read FAULT[31:24] (OCP byte) — quick fault check
+ *
+ * @note All SPI transfers must use **Mode 0** (CPOL=0, CPHA=0).
+ * @note The CMD pin must be held HIGH during the rising edge of CSB for Command Register writes.
+ * @note Communication errors (COMER) are detected by checking STATUS[7:0] = 0x04 after Command Register write.
+ *
  * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
 #pragma once
@@ -9,468 +74,827 @@
 #include "max22200_spi_interface.hpp"
 #include <array>
 #include <cstdint>
-#include <functional>
 
 namespace max22200 {
 
 /**
  * @brief Main driver class for MAX22200 IC
  *
- * This class provides a comprehensive interface for controlling the MAX22200
- * octal solenoid and motor driver. It supports all features of the IC including
- * current regulation, voltage regulation, integrated current sensing, and
- * comprehensive fault detection.
+ * This class provides a high-level API for controlling the MAX22200 octal
+ * solenoid and motor driver. It handles the two-phase SPI protocol internally
+ * and provides convenient methods for channel configuration, control, and fault monitoring.
  *
  * @tparam SpiType The SPI interface implementation type that inherits from
- * max22200::SpiInterface<SpiType>
+ *                 max22200::SpiInterface<SpiType>. Must implement:
+ *                 - Transfer() for SPI data transfer
+ *                 - GpioSet() for CMD/ENABLE/FAULT pin control
+ *                 - GpioGet() for FAULT pin reading
  *
- * @note This class is designed for embedded systems and does not use
- * exceptions. All error conditions are reported through return values.
- *
- * @note The driver uses CRTP-based SPI interface for zero virtual call
- * overhead.
- *
- * @example Basic usage:
+ * @example Basic usage (CDR mode):
  * @code
- * // Create SPI interface implementation
- * class MySPI : public max22200::SpiInterface<MySPI> { ... };
  * MySPI spi;
- *
- * // Create MAX22200 driver
  * MAX22200<MySPI> driver(spi);
  *
- * // Initialize the driver
  * if (driver.Initialize() == DriverStatus::OK) {
- *     // Configure channel 0
  *     ChannelConfig config;
- *     config.enabled = true;
- *     config.drive_mode = DriveMode::CDR;
- *     config.hit_current = 500;
- *     config.hold_current = 200;
- *     config.hit_time = 1000;
+ *     config.drive_mode = DriveMode::CDR;      // Current Drive Regulation
+ *     config.side_mode = SideMode::LOW_SIDE;    // Low-side only for CDR
+ *     config.hit_current = 80;                  // 7-bit (0-127), IHIT = 80/127 × IFS
+ *     config.hold_current = 40;                 // 7-bit (0-127), IHOLD = 40/127 × IFS
+ *     config.hit_time = 100;                    // 8-bit (0-255), tHIT = 100 × 40 / fCHOP
+ *     config.chop_freq = ChopFreq::FMAIN_DIV2; // 50kHz (if FREQM=0)
+ *     config.hit_current_check_enabled = true;  // Enable HIT current check
  *
  *     driver.ConfigureChannel(0, config);
- *     driver.EnableChannel(0, true);
+ *     driver.EnableChannel(0);
  * }
+ * @endcode
+ *
+ * @example Fast HOLD current update (8-bit mode):
+ * @code
+ * // Update HOLD current on-the-fly while channel is operating (CFG_CH MSB = HFS | HOLD[6:0])
+ * ChannelConfig config;
+ * driver.GetChannelConfig(0, config);
+ * config.hold_current = 60;  // New HOLD current
+ * driver.WriteRegister8(RegBank::CFG_CH0, (config.half_full_scale ? 0x80u : 0u) | (config.hold_current & 0x7Fu));
+ * @endcode
+ *
+ * @example Channel-pair configuration (parallel mode):
+ * @code
+ * StatusConfig status;
+ * driver.ReadStatus(status);
+ * status.channel_pair_mode_10 = ChannelMode::PARALLEL;  // Channels 0-1 in parallel
+ * status.channels_on_mask = 0;  // Both channels must be OFF
+ * driver.WriteStatus(status);
+ * // Now configure channel 0 (channel 1 config is ignored)
  * @endcode
  */
 template <typename SpiType> class MAX22200 {
 public:
   /**
-   * @brief Constructor
+   * @brief Constructor (SPI only; set board config later with SetBoardConfig())
    *
-   * @param spi_interface Reference to SPI interface implementation (must
-   * inherit from max22200::SpiInterface<SpiType>). Must outlive this driver:
-   * destroy the MAX22200 before the SPI bus so the destructor can deassert
-   * the ENABLE pin.
-   * @param enable_diagnostics Enable diagnostic features (default: true)
+   * Use when board config is unknown at construction (e.g. loaded from NVS or
+   * another source after the driver is created). Unit APIs (SetHitCurrentMa,
+   * ConfigureChannelCdr, etc.) require IFS to be set and will return
+   * INVALID_PARAMETER if full_scale_current_ma is 0.
+   *
+   * @param spi_interface Reference to SPI interface implementation
    */
-  explicit MAX22200(SpiType &spi_interface, bool enable_diagnostics = true);
+  explicit MAX22200(SpiType &spi_interface);
 
   /**
-   * @brief Destructor
+   * @brief Constructor with board config (SPI + IFS/limits)
    *
-   * Calls Deinitialize() if initialized (disables channels, sleep, then
-   * deasserts ENABLE). The SPI interface must still be valid during
-   * destruction so ENABLE can be driven low.
+   * Use when the board is known at construction (e.g. fixed RREF). The driver
+   * is immediately valid for unit-based APIs without calling SetBoardConfig().
+   *
+   * @param spi_interface Reference to SPI interface implementation
+   * @param board_config   Board configuration (IFS from RREF, optional limits)
+   */
+  MAX22200(SpiType &spi_interface, const BoardConfig &board_config);
+
+  /**
+   * @brief Destructor — calls Deinitialize() if initialized
    */
   ~MAX22200();
 
-  // Disable copy constructor and assignment operator
+  // Disable copy
   MAX22200(const MAX22200 &) = delete;
   MAX22200 &operator=(const MAX22200 &) = delete;
-
-  // Enable move constructor and assignment operator
   MAX22200(MAX22200 &&) = default;
-  MAX22200 &
-  operator=(MAX22200 &&) = delete; // Can't move due to reference member
+  MAX22200 &operator=(MAX22200 &&) = delete;
+
+  // =========================================================================
+  // Initialization
+  // =========================================================================
 
   /**
-   * @brief Initialize the MAX22200 driver
+   * @brief Initialize the driver per datasheet flowchart (Figure 6)
    *
-   * This method initializes the SPI interface and configures the MAX22200
-   * with default settings. It should be called before using any other
-   * driver functions.
+   * Performs the complete initialization sequence as specified in the MAX22200
+   * datasheet Programming Flow Chart:
    *
-   * @return DriverStatus indicating success or failure
+   * 1. **Initialize SPI**: Configure SPI interface to Mode 0 (CPOL=0, CPHA=0)
+   * 2. **Power-up**: Set ENABLE pin HIGH, wait 0.5ms (tEN) for SPI ready
+   * 3. **Read STATUS**: Clear UVM flag and deassert nFAULT pin
+   *    - Checks for communication error (STATUS[7:0] = 0x04)
+   *    - If COMER detected, initialization fails
+   * 4. **Write STATUS**: Set ACTIVE=1, configure default HW settings
+   *    - All channels OFF (ONCH = 0)
+   *    - All channel pairs in INDEPENDENT mode
+   *    - Fault masks set to defaults (M_COMF = 1, others = 0)
+   * 5. **Cache STATUS**: Store STATUS for fast ONCH updates
+   *
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::COMMUNICATION_ERROR if COMER flag detected
+   * @return DriverStatus::INITIALIZATION_ERROR if SPI or GPIO operations fail
+   *
+   * @note After Initialize(), channels must be configured with ConfigureChannel()
+   *       before they can be enabled.
+   * @note The device enters normal operation after ACTIVE=1 with a wake-up time
+   *       of 2.5ms (tWU). Channels can be enabled immediately after Initialize().
+   *
+   * @see MAX22200 datasheet Figure 6: Programming Flow Chart
    */
   DriverStatus Initialize();
 
   /**
-   * @brief Deinitialize the MAX22200 driver
+   * @brief Deinitialize — disable channels, ACTIVE=0, ENABLE low
    *
-   * Safely shuts down the driver, disables all channels, and puts the
-   * device into sleep mode.
+   * Performs a clean shutdown sequence:
+   * 1. Disable all channels (ONCH = 0)
+   * 2. Set ACTIVE=0 (device enters low-power mode)
+   * 3. Set ENABLE pin LOW (device enters sleep mode)
    *
-   * @return DriverStatus indicating success or failure
+   * After Deinitialize(), the device consumes < 11μA from VM.
+   *
+   * @return DriverStatus::OK on success
+   *
+   * @note All channels are three-stated when ACTIVE=0.
+   * @note It takes 2.5ms (tDIS) from ENABLE falling edge to OUT_ tristate.
    */
   DriverStatus Deinitialize();
 
   /**
-   * @brief Reset the MAX22200 device
-   *
-   * Performs a software reset of the MAX22200 device, clearing all
-   * configuration and returning to default state.
-   *
-   * @return DriverStatus indicating success or failure
+   * @brief Check if driver is initialized
    */
-  DriverStatus Reset();
+  bool IsInitialized() const;
 
-  // Global Configuration Methods
+  // =========================================================================
+  // STATUS Register Operations
+  // =========================================================================
 
   /**
-   * @brief Configure global settings
-   *
-   * @param config Global configuration structure
-   * @return DriverStatus indicating success or failure
+   * @brief Read the full 32-bit STATUS register
    */
-  DriverStatus ConfigureGlobal(const GlobalConfig &config);
+  DriverStatus ReadStatus(StatusConfig &status) const;
 
   /**
-   * @brief Get current global configuration
-   *
-   * @param config Reference to store the current configuration
-   * @return DriverStatus indicating success or failure
+   * @brief Write the STATUS register (writable bits only)
    */
-  DriverStatus GetGlobalConfig(GlobalConfig &config) const;
+  DriverStatus WriteStatus(const StatusConfig &status);
+
+  // =========================================================================
+  // Channel Configuration (CFG_CHx)
+  // =========================================================================
 
   /**
-   * @brief Enable or disable sleep mode
+   * @brief Configure a channel (write full 32-bit CFG_CHx register)
    *
-   * @param enable true to enable sleep mode, false to disable
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus SetSleepMode(bool enable);
-
-  /**
-   * @brief Enable or disable diagnostic features
-   *
-   * @param enable true to enable diagnostics, false to disable
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus SetDiagnosticMode(bool enable);
-
-  /**
-   * @brief Enable or disable integrated current sensing
-   *
-   * @param enable true to enable ICS, false to disable
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus SetIntegratedCurrentSensing(bool enable);
-
-  // Channel Configuration Methods
-
-  /**
-   * @brief Configure a specific channel
+   * Writes the complete 32-bit configuration register for the specified channel.
+   * This includes all drive parameters: HIT/HOLD currents, timing, drive mode, etc.
    *
    * @param channel Channel number (0-7)
    * @param config Channel configuration structure
-   * @return DriverStatus indicating success or failure
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if channel >= 8
+   *
+   * @note For channels in PARALLEL mode, only the lower channel number's
+   *       configuration is used (e.g., configure channel 0 for pair 0-1).
+   * @note For channels in HBRIDGE mode, both channels' configurations are used
+   *       (CFG_CHy for forward, CFG_CHx for reverse).
+   * @note VDRnCDR and HSnLS bits can only be changed when all channels are OFF
+   *       and both TRIGA and TRIGB are logic-low.
+   * @note FREQ_CFG and SRC can be changed "on-the-fly" while channel is operating.
+   *
+   * @see ChannelConfig for detailed field descriptions
    */
   DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &config);
 
   /**
-   * @brief Get configuration of a specific channel
-   *
+   * @brief Read a channel's configuration
    * @param channel Channel number (0-7)
-   * @param config Reference to store the channel configuration
-   * @return DriverStatus indicating success or failure
+   * @param config Reference to store configuration
    */
   DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &config) const;
 
   /**
-   * @brief Read a 16-bit register (for debug/diagnostics)
-   *
-   * @param reg Register address (0x00-0xFF)
-   * @param value Reference to store the read value
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ReadRegister(uint8_t reg, uint16_t &value) const;
-
-  /**
-   * @brief Configure all channels at once
-   *
-   * @param configs Array of channel configurations
-   * @return DriverStatus indicating success or failure
+   * @brief Configure all channels
    */
   DriverStatus ConfigureAllChannels(const ChannelConfigArray &configs);
 
   /**
-   * @brief Get configuration of all channels
-   *
-   * @param configs Reference to store the channel configurations
-   * @return DriverStatus indicating success or failure
+   * @brief Get all channel configurations
    */
   DriverStatus GetAllChannelConfigs(ChannelConfigArray &configs) const;
 
-  // Device and Channel Control Methods
+  // =========================================================================
+  // Channel Enable/Disable (ONCH bits in STATUS register)
+  // =========================================================================
 
   /**
-   * @brief Assert or deassert the device ENABLE pin (hardware enable).
+   * @brief Turn on a channel (set ONCHx = 1)
    *
-   * Gives the user direct control of the ENABLE pin. When false, the device
-   * is disabled (outputs off); when true, the device is enabled. The driver
-   * also manages ENABLE automatically in Initialize() (assert) and
-   * Deinitialize() / destructor (deassert).
+   * Sets the ONCHx bit so the channel is active (delivering current).
    *
-   * @param enable true to assert ENABLE (device on), false to deassert (device off)
-   * @return DriverStatus::OK on success, INITIALIZATION_ERROR if not initialized
+   * @param channel Channel number (0-7)
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if channel >= 8
+   *
+   * @note Use DisableChannel() to turn off. For multiple channels use SetChannelsOn().
+   * @note Channel must be configured with ConfigureChannel() before enabling.
+   */
+  DriverStatus EnableChannel(uint8_t channel);
+
+  /**
+   * @brief Turn off a channel (set ONCHx = 0)
+   * @param channel Channel number (0-7)
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if channel >= 8
+   */
+  DriverStatus DisableChannel(uint8_t channel);
+
+  /**
+   * @brief Set a channel on or off (convenience when toggling from a variable)
+   * @param channel Channel number (0-7)
+   * @param enable  true = on, false = off
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus SetChannelEnabled(uint8_t channel, bool enable);
+
+  /**
+   * @brief Turn on all channels
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus EnableAllChannels();
+
+  /**
+   * @brief Turn off all channels
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus DisableAllChannels();
+
+  /**
+   * @brief Set all channels on or off at once (convenience when toggling from a variable)
+   * @param enable true = all on, false = all off
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus SetAllChannelsEnabled(bool enable);
+
+  /**
+   * @brief Set which channels are on (fast multi-channel update)
+   *
+   * Updates all eight ONCH bits in one 8-bit write. Bit N = 1 means channel N
+   * is on; 0 means off. Use this instead of multiple EnableChannel() calls when
+   * updating several channels at once.
+   *
+   * @param channel_mask Bitmask: bit 0 = channel 0, bit 1 = channel 1, ... bit 7 = channel 7
+   * @return DriverStatus::OK on success
+   *
+   * @example Turn on channels 0, 2, and 5:
+   * @code
+   * driver.SetChannelsOn((1u << 0) | (1u << 2) | (1u << 5));
+   * @endcode
+   */
+  DriverStatus SetChannelsOn(uint8_t channel_mask);
+
+  /**
+   * @brief Set full-bridge state for a channel pair (datasheet Table 7)
+   *
+   * Updates ONCHx and ONCHy for the given pair to achieve HiZ, Forward,
+   * Reverse, or Brake. Other channels' ONCH bits are preserved.
+   *
+   * @param pair_index Pair index 0–3 (0 = ch0–ch1, 1 = ch2–ch3, 2 = ch4–ch5, 3 = ch6–ch7)
+   * @param state     FullBridgeState::HiZ, Forward, Reverse, or Brake
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if pair_index > 3
+   *
+   * @note The pair must be configured as HBRIDGE in STATUS (CMxy = 10).
+   * @see FullBridgeState, StatusConfig::cm10, ChannelMode::HBRIDGE
+   */
+  DriverStatus SetFullBridgeState(uint8_t pair_index, FullBridgeState state);
+
+  // =========================================================================
+  // Fault Operations
+  // =========================================================================
+
+  /**
+   * @brief Read per-channel fault register (FAULT)
+   *
+   * Reads the FAULT register (OCP, HHF, OLF, DPM per channel). Reading also
+   * clears the flags and deasserts nFAULT when no other faults remain.
+   *
+   * @param faults Reference to FaultStatus to populate
+   * @return DriverStatus::OK on success
+   *
+   * @see ClearAllFaults() to clear without keeping the result
+   * @see ClearChannelFaults() to clear only specific channels (MAX22200A)
+   */
+  DriverStatus ReadFaultRegister(FaultStatus &faults) const;
+
+  /**
+   * @brief Clear all fault flags (read FAULT register and discard)
+   *
+   * Clears OCP, HHF, OLF, and DPM for all channels and deasserts nFAULT.
+   * Use when you only need to clear and do not need the fault snapshot.
+   *
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus ClearAllFaults();
+
+  /**
+   * @brief Clear fault flags for selected channels only (MAX22200A)
+   *
+   * On MAX22200A, clears OCP/HHF/OLF/DPM only for channels whose bit is set
+   * in channel_mask. On MAX22200, the device clears all flags on any read
+   * (same as ClearAllFaults).
+   *
+   * @param channel_mask Bit N = 1 to clear faults for channel N (0–7)
+   * @param out_faults  Optional: if non-null, filled with FAULT state after clear
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus ClearChannelFaults(uint8_t channel_mask, FaultStatus *out_faults = nullptr) const;
+
+  /**
+   * @brief [Advanced] Read FAULT register with per-type selective clear (MAX22200A)
+   *
+   * For MAX22200A only: separate masks for OCP, HHF, OLF, DPM let you clear
+   * only certain fault types per channel. On MAX22200, SDI is ignored and
+   * all flags are cleared. Prefer ClearAllFaults() or ClearChannelFaults()
+   * for normal use.
+   *
+   * @param ocp_mask  Channel mask for OCP bits to clear (bit N = channel N)
+   * @param hhf_mask  Channel mask for HHF bits to clear
+   * @param olf_mask  Channel mask for OLF bits to clear
+   * @param dpm_mask  Channel mask for DPM bits to clear
+   * @param faults    Populated with FAULT register value after the read
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus ReadFaultRegisterSelectiveClear(uint8_t ocp_mask,
+                                              uint8_t hhf_mask,
+                                              uint8_t olf_mask,
+                                              uint8_t dpm_mask,
+                                              FaultStatus &faults) const;
+
+  /**
+   * @brief Read fault flags from STATUS register
+   */
+  DriverStatus ReadFaultFlags(StatusConfig &status) const;
+
+  /**
+   * @brief Clear fault flags by reading STATUS register
+   */
+  DriverStatus ClearFaultFlags();
+
+  // =========================================================================
+  // DPM Configuration (CFG_DPM, 0x0A)
+  // =========================================================================
+
+  /**
+   * @brief Configure DPM in real units (easy API)
+   *
+   * Sets start current, dip threshold, and debounce time. Uses board IFS for
+   * current conversion and a default 25 kHz chopping frequency for debounce.
+   * Call SetBoardConfig() first so IFS is set.
+   *
+   * @param start_current_ma  Current (mA) above which DPM monitors for dip
+   * @param dip_threshold_ma Minimum dip amplitude (mA) to count as valid
+   * @param debounce_ms      Min dip duration (ms); converted to chopping periods at 25 kHz
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if IFS not set or values out of range
+   *
+   * @note For custom fCHOP or raw register control use ReadDpmConfig/WriteDpmConfig.
+   */
+  DriverStatus ConfigureDpm(float start_current_ma, float dip_threshold_ma,
+                           float debounce_ms);
+
+  /**
+   * @brief Read DPM algorithm configuration (CFG_DPM register)
+   *
+   * DPM settings are global and apply to all channels that have DPM_EN set.
+   *
+   * @param config Reference to DpmConfig to populate
+   * @return DriverStatus::OK on success
+   *
+   * @see DpmConfig, WriteDpmConfig, ConfigureDpm
+   */
+  DriverStatus ReadDpmConfig(DpmConfig &config) const;
+
+  /**
+   * @brief Write DPM algorithm configuration (CFG_DPM register)
+   *
+   * @param config DPM configuration (plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold)
+   * @return DriverStatus::OK on success
+   *
+   * @see DpmConfig, ReadDpmConfig, ConfigureDpm
+   */
+  DriverStatus WriteDpmConfig(const DpmConfig &config);
+
+  // =========================================================================
+  // Device Control
+  // =========================================================================
+
+  /**
+   * @brief Enable device (ENABLE pin high); SPI and channels can be used
+   */
+  DriverStatus EnableDevice();
+
+  /**
+   * @brief Disable device (ENABLE pin low); low-power state
+   */
+  DriverStatus DisableDevice();
+
+  /**
+   * @brief Set ENABLE pin state (true = on, false = off)
+   *
+   * Prefer EnableDevice() / DisableDevice() for clarity.
    */
   DriverStatus SetDeviceEnable(bool enable);
 
   /**
-   * @brief Read the current state of the device ENABLE pin.
-   *
-   * @param[out] enable true if ENABLE is asserted (device on), false otherwise
-   * @return DriverStatus::OK on success, INITIALIZATION_ERROR if not initialized
+   * @brief Read nFAULT pin state (true = fault active, false = no fault)
    */
-  DriverStatus GetDeviceEnable(bool &enable) const;
+  DriverStatus GetFaultPinState(bool &fault_active) const;
+
+  // =========================================================================
+  // Raw Register Access (for debug)
+  // =========================================================================
 
   /**
-   * @brief Enable or disable a specific channel
+   * @brief Read a 32-bit register by bank address
+   */
+  DriverStatus ReadRegister32(uint8_t bank, uint32_t &value) const;
+
+  /**
+   * @brief Write a 32-bit register by bank address
+   */
+  DriverStatus WriteRegister32(uint8_t bank, uint32_t value);
+
+  /**
+   * @brief Read 8-bit MSB of a register (fast 8-bit mode)
+   */
+  DriverStatus ReadRegister8(uint8_t bank, uint8_t &value) const;
+
+  /**
+   * @brief Write 8-bit MSB of a register (fast 8-bit mode)
+   */
+  DriverStatus WriteRegister8(uint8_t bank, uint8_t value);
+
+  /**
+   * @brief Get last fault flags byte received from Command Register write
+   *
+   * Every time the Command Register is written (Phase 1 of SPI protocol),
+   * the device responds with STATUS[7:0] (Fault Flag Byte) on SDO. This method
+   * returns the most recent value received.
+   *
+   * @return STATUS[7:0] byte from last Command Register write
+   *
+   * @note Check for communication error: return value = 0x04 (COMER flag)
+   * @note This byte contains: OVT, OCP, OLF, HHF, DPM, COMER, UVM, ACTIVE bits
+   *
+   * @example Check for communication error:
+   * @code
+   * uint8_t fault_byte = driver.GetLastFaultByte();
+   * if (fault_byte == 0x04) {
+   *     // Communication error detected
+   * }
+   * @endcode
+   */
+  uint8_t GetLastFaultByte() const;
+
+  // =========================================================================
+  // Statistics
+  // =========================================================================
+
+  DriverStatistics GetStatistics() const;
+  void ResetStatistics();
+
+  // =========================================================================
+  // Callbacks
+  // =========================================================================
+
+  void SetFaultCallback(FaultCallback callback, void *user_data);
+  void SetStateChangeCallback(StateChangeCallback callback, void *user_data);
+
+  // =========================================================================
+  // Board/Scale Configuration (for unit-based APIs)
+  // =========================================================================
+
+  /**
+   * @brief Set board configuration (IFS, max current, max duty)
+   *
+   * Configures the full-scale current and optional safety limits used by
+   * convenience APIs (SetHitCurrentMa, SetHitDutyPercent, etc.). Can be
+   * called at any time to change limits; IFS is required for unit-based APIs.
+   *
+   * @param config Board configuration (IFS in mA, optional max limits)
+   *
+   * @note Alternatively pass BoardConfig at construction:
+   *       MAX22200 driver(spi, BoardConfig(30.0f, false));
+   */
+  void SetBoardConfig(const BoardConfig &config);
+
+  /**
+   * @brief Get current board configuration
+   */
+  BoardConfig GetBoardConfig() const;
+
+  // =========================================================================
+  // Convenience APIs: Current in Real Units (CDR Mode)
+  // =========================================================================
+
+  /**
+   * @brief Set HIT current in milliamps (CDR mode)
+   *
+   * Converts mA to 7-bit register value: raw = round((ma / IFS_ma) × 127).
+   * Clamps to max_current_ma if set, then to 0-127.
    *
    * @param channel Channel number (0-7)
-   * @param enable true to enable, false to disable
-   * @return DriverStatus indicating success or failure
+   * @param ma     Current in milliamps
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::INVALID_PARAMETER if channel >= 8 or IFS not configured
    */
-  DriverStatus EnableChannel(uint8_t channel, bool enable);
+  DriverStatus SetHitCurrentMa(uint8_t channel, uint32_t ma);
 
   /**
-   * @brief Enable or disable all channels
+   * @brief Set HOLD current in milliamps (CDR mode)
+   */
+  DriverStatus SetHoldCurrentMa(uint8_t channel, uint32_t ma);
+
+  /**
+   * @brief Set HIT current in Amps (CDR mode)
    *
-   * @param enable true to enable all, false to disable all
-   * @return DriverStatus indicating success or failure
+   * Convenience wrapper: converts A to mA and calls SetHitCurrentMa.
    */
-  DriverStatus EnableAllChannels(bool enable);
+  DriverStatus SetHitCurrentA(uint8_t channel, float amps);
 
   /**
-   * @brief Set channel drive mode
+   * @brief Set HOLD current in Amps (CDR mode)
+   */
+  DriverStatus SetHoldCurrentA(uint8_t channel, float amps);
+
+  /**
+   * @brief Set HIT current as percentage of IFS (CDR mode)
    *
    * @param channel Channel number (0-7)
-   * @param mode Drive mode (CDR or VDR)
-   * @return DriverStatus indicating success or failure
+   * @param percent Percentage (0-100)
+   * @return DriverStatus::OK on success
    */
-  DriverStatus SetChannelDriveMode(uint8_t channel, DriveMode mode);
+  DriverStatus SetHitCurrentPercent(uint8_t channel, float percent);
 
   /**
-   * @brief Set channel bridge mode
+   * @brief Set HOLD current as percentage of IFS (CDR mode)
+   */
+  DriverStatus SetHoldCurrentPercent(uint8_t channel, float percent);
+
+  /**
+   * @brief Get HIT current in milliamps (CDR mode)
+   *
+   * Reads channel config and converts: ma = (hit_current / 127.0) × IFS_ma
+   */
+  DriverStatus GetHitCurrentMa(uint8_t channel, uint32_t &ma) const;
+
+  /**
+   * @brief Get HOLD current in milliamps (CDR mode)
+   */
+  DriverStatus GetHoldCurrentMa(uint8_t channel, uint32_t &ma) const;
+
+  /**
+   * @brief Get HIT current as percentage of IFS (CDR mode)
+   */
+  DriverStatus GetHitCurrentPercent(uint8_t channel, float &percent) const;
+
+  /**
+   * @brief Get HOLD current as percentage of IFS (CDR mode)
+   */
+  DriverStatus GetHoldCurrentPercent(uint8_t channel, float &percent) const;
+
+  // =========================================================================
+  // Convenience APIs: Duty Cycle in Percent (VDR Mode)
+  // =========================================================================
+
+  /**
+   * @brief Set HIT duty cycle in percent (VDR mode)
+   *
+   * Converts percent to 7-bit: raw = round((pct / 100) × 127).
+   * Clamps to max_duty_percent if set, then to [δMIN, δMAX] based on FREQM,
+   * FREQ_CFG, and SRC settings.
    *
    * @param channel Channel number (0-7)
-   * @param mode Bridge mode (half or full)
-   * @return DriverStatus indicating success or failure
+   * @param percent Duty cycle in percent (0-100)
+   * @return DriverStatus::OK on success
    */
-  DriverStatus SetChannelBridgeMode(uint8_t channel, BridgeMode mode);
+  DriverStatus SetHitDutyPercent(uint8_t channel, float percent);
 
   /**
-   * @brief Set channel output polarity
+   * @brief Set HOLD duty cycle in percent (VDR mode)
+   */
+  DriverStatus SetHoldDutyPercent(uint8_t channel, float percent);
+
+  /**
+   * @brief Get HIT duty cycle in percent (VDR mode)
+   *
+   * Reads channel config: percent = (hit_current / 127.0) × 100
+   */
+  DriverStatus GetHitDutyPercent(uint8_t channel, float &percent) const;
+
+  /**
+   * @brief Get HOLD duty cycle in percent (VDR mode)
+   */
+  DriverStatus GetHoldDutyPercent(uint8_t channel, float &percent) const;
+
+  /**
+   * @brief Get duty cycle limits (δMIN, δMAX) for a configuration
+   *
+   * Returns the minimum and maximum duty cycle percentages based on FREQM,
+   * FREQ_CFG, and SRC settings (datasheet Table 2).
+   *
+   * @param master_clock_80khz Master clock 80 kHz base (from STATUS register)
+   * @param chop_freq Chopping frequency divider
+   * @param slew_rate_control_enabled Slew rate control enabled
+   * @param limits    Output: min_percent and max_percent
+   * @return DriverStatus::OK on success
+   */
+  static DriverStatus GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq,
+                                    bool slew_rate_control_enabled, DutyLimits &limits);
+
+  // =========================================================================
+  // Convenience APIs: HIT Time in Milliseconds
+  // =========================================================================
+
+  /**
+   * @brief Set HIT time in milliseconds
+   *
+   * Converts ms to 8-bit register value: HIT_T = round((ms / 1000) × fCHOP / 40).
+   * Needs FREQM (from STATUS) and channel's chop_freq to compute fCHOP.
    *
    * @param channel Channel number (0-7)
-   * @param polarity Output polarity (normal or inverted)
-   * @return DriverStatus indicating success or failure
+   * @param ms     HIT time in milliseconds (0 = no HIT, -1 or 0xFFFF = continuous)
+   * @return DriverStatus::OK on success
    */
-  DriverStatus SetChannelPolarity(uint8_t channel, OutputPolarity polarity);
-
-  // Current Control Methods
+  DriverStatus SetHitTimeMs(uint8_t channel, float ms);
 
   /**
-   * @brief Set HIT current for a channel
+   * @brief Get HIT time in milliseconds
    *
-   * @param channel Channel number (0-7)
-   * @param current HIT current value (0-1023)
-   * @return DriverStatus indicating success or failure
+   * Reads channel config and STATUS (FREQM): ms = (HIT_T × 40 / fCHOP) × 1000
    */
-  DriverStatus SetHitCurrent(uint8_t channel, uint16_t current);
+  DriverStatus GetHitTimeMs(uint8_t channel, float &ms) const;
+
+  // =========================================================================
+  // Convenience APIs: One-Shot Channel Configuration
+  // =========================================================================
 
   /**
-   * @brief Set HOLD current for a channel
+   * @brief Configure channel in real units (CDR mode)
    *
-   * @param channel Channel number (0-7)
-   * @param current HOLD current value (0-1023)
-   * @return DriverStatus indicating success or failure
+   * Convenience method that sets all channel parameters using real units
+   * (mA, ms) instead of raw register values.
+   * Units: hit_ma (mA), hold_ma (mA), hit_time_ms (ms).
+   *
+   * @param channel      Channel number (0-7)
+   * @param hit_ma       HIT current in milliamps
+   * @param hold_ma      HOLD current in milliamps
+   * @param hit_time_ms  HIT time in milliseconds (-1 = continuous)
+   * @param side_mode    Low-side or high-side (default: LOW_SIDE)
+   * @param chop_freq    Chopping frequency (default: FMAIN_DIV4)
+   * @param slew_rate_control_enabled Slew rate control (default: false)
+   * @param open_load_detection_enabled Open load detection (default: false)
+   * @param plunger_movement_detection_enabled DPM detection (default: false)
+   * @param hit_current_check_enabled HIT current check (default: false)
+   * @return DriverStatus::OK on success
    */
-  DriverStatus SetHoldCurrent(uint8_t channel, uint16_t current);
+  DriverStatus ConfigureChannelCdr(uint8_t channel, uint32_t hit_ma,
+                                   uint32_t hold_ma, float hit_time_ms,
+                                   SideMode side_mode = SideMode::LOW_SIDE,
+                                   ChopFreq chop_freq = ChopFreq::FMAIN_DIV4,
+                                   bool slew_rate_control_enabled = false,
+                                   bool open_load_detection_enabled = false,
+                                   bool plunger_movement_detection_enabled = false,
+                                   bool hit_current_check_enabled = false);
 
   /**
-   * @brief Set both HIT and HOLD currents for a channel
+   * @brief Configure channel in real units (VDR mode)
    *
-   * @param channel Channel number (0-7)
-   * @param hit_current HIT current value (0-1023)
-   * @param hold_current HOLD current value (0-1023)
-   * @return DriverStatus indicating success or failure
+   * Convenience method for VDR mode using duty cycle percentages.
+   * Units: hit_duty_percent (%), hold_duty_percent (%), hit_time_ms (ms).
+   *
+   * @param channel         Channel number (0-7)
+   * @param hit_duty_percent HIT duty cycle in percent (0-100)
+   * @param hold_duty_percent HOLD duty cycle in percent (0-100)
+   * @param hit_time_ms      HIT time in milliseconds (-1 = continuous)
+   * @param side_mode        Low-side or high-side
+   * @param chop_freq        Chopping frequency
+   * @param slew_rate_control_enabled Slew rate control
+   * @param open_load_detection_enabled Open load detection
+   * @param plunger_movement_detection_enabled DPM detection (low-side only)
+   * @param hit_current_check_enabled HIT current check
+   * @return DriverStatus::OK on success
    */
-  DriverStatus SetCurrents(uint8_t channel, uint16_t hit_current,
-                           uint16_t hold_current);
+  DriverStatus ConfigureChannelVdr(uint8_t channel, float hit_duty_percent,
+                                   float hold_duty_percent, float hit_time_ms,
+                                   SideMode side_mode = SideMode::LOW_SIDE,
+                                   ChopFreq chop_freq = ChopFreq::FMAIN_DIV4,
+                                   bool slew_rate_control_enabled = false,
+                                   bool open_load_detection_enabled = false,
+                                   bool plunger_movement_detection_enabled = false,
+                                   bool hit_current_check_enabled = false);
 
-  /**
-   * @brief Get current settings for a channel
-   *
-   * @param channel Channel number (0-7)
-   * @param hit_current Reference to store HIT current
-   * @param hold_current Reference to store HOLD current
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus GetCurrents(uint8_t channel, uint16_t &hit_current,
-                           uint16_t &hold_current) const;
+  // =========================================================================
+  // Validation
+  // =========================================================================
 
-  // Timing Control Methods
-
-  /**
-   * @brief Set HIT time for a channel
-   *
-   * @param channel Channel number (0-7)
-   * @param time HIT time value (0-65535)
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus SetHitTime(uint8_t channel, uint16_t time);
-
-  /**
-   * @brief Get HIT time for a channel
-   *
-   * @param channel Channel number (0-7)
-   * @param time Reference to store HIT time
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus GetHitTime(uint8_t channel, uint16_t &time) const;
-
-  // Status and Diagnostic Methods
-
-  /**
-   * @brief Read fault status
-   *
-   * @param status Reference to store fault status
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ReadFaultStatus(FaultStatus &status) const;
-
-  /**
-   * @brief Clear fault status
-   *
-   * Clears all fault flags in the device.
-   *
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ClearFaultStatus();
-
-  /**
-   * @brief Read channel status
-   *
-   * @param channel Channel number (0-7)
-   * @param status Reference to store channel status
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ReadChannelStatus(uint8_t channel, ChannelStatus &status) const;
-
-  /**
-   * @brief Read all channel statuses
-   *
-   * @param statuses Reference to store channel statuses
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ReadAllChannelStatuses(ChannelStatusArray &statuses) const;
-
-  /**
-   * @brief Get driver statistics
-   *
-   * @param stats Reference to store driver statistics
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus GetStatistics(DriverStatistics &stats) const;
-
-  /**
-   * @brief Reset driver statistics
-   *
-   * Resets all driver statistics to zero.
-   *
-   * @return DriverStatus indicating success or failure
-   */
-  DriverStatus ResetStatistics();
-
-  // Callback Methods
-
-  /**
-   * @brief Set fault callback function
-   *
-   * @param callback Function to call when a fault occurs
-   * @param user_data User data to pass to callback
-   */
-  void SetFaultCallback(FaultCallback callback, void *user_data = nullptr);
-
-  /**
-   * @brief Set state change callback function
-   *
-   * @param callback Function to call when channel state changes
-   * @param user_data User data to pass to callback
-   */
-  void SetStateChangeCallback(StateChangeCallback callback,
-                              void *user_data = nullptr);
-
-  // Utility Methods
-
-  /**
-   * @brief Check if driver is initialized
-   *
-   * @return true if driver is initialized, false otherwise
-   */
-  bool IsInitialized() const;
-
-  /**
-   * @brief Check if a channel is valid
-   *
-   * @param channel Channel number to check
-   * @return true if channel is valid (0-7), false otherwise
-   */
-  static constexpr bool IsValidChannel(uint8_t channel) {
-    return channel < NUM_CHANNELS_;
-  }
-
-  /**
-   * @brief Get driver version string
-   *
-   * @return Version string
-   */
-  static constexpr const char *GetVersion() { return "1.0.0"; }
+  static bool IsValidChannel(uint8_t channel) { return channel < NUM_CHANNELS_; }
 
 private:
-  // Private member variables
-  SpiType &spi_interface_;              ///< Reference to SPI interface
-  bool initialized_;                    ///< Initialization state
-  bool diagnostics_enabled_;            ///< Diagnostic mode state
-  mutable DriverStatistics statistics_; ///< Driver statistics
+  SpiType &spi_interface_;
+  bool initialized_;
+  mutable DriverStatistics statistics_;
+  mutable uint8_t last_fault_byte_;  ///< STATUS[7:0] from last Command Reg write
+  StatusConfig cached_status_;       ///< Cached STATUS for ONCH updates
+  BoardConfig board_config_;         ///< Board configuration (IFS, max limits)
 
-  // Callback functions
-  FaultCallback fault_callback_;       ///< Fault callback function
-  void *fault_user_data_;              ///< User data for fault callback
-  StateChangeCallback state_callback_; ///< State change callback function
-  void *state_user_data_;              ///< User data for state callback
+  FaultCallback fault_callback_;
+  void *fault_user_data_;
+  StateChangeCallback state_callback_;
+  void *state_user_data_;
 
-  // Private methods
-  DriverStatus writeRegister(uint8_t reg, uint16_t value) const;
-  DriverStatus readRegister(uint8_t reg, uint16_t &value) const;
-  DriverStatus writeRegisterArray(uint8_t reg, const uint8_t *data,
-                                  size_t length) const;
-  DriverStatus readRegisterArray(uint8_t reg, uint8_t *data,
-                                 size_t length) const;
+  // ── Core SPI protocol (two-phase) ──────────────────────────────────────
 
-  DriverStatus updateChannelEnableRegister() const;
-  DriverStatus updateGlobalConfigRegister() const;
+  /**
+   * @brief Write the 8-bit Command Register (Phase 1 of two-phase SPI protocol)
+   *
+   * Performs Phase 1 of the MAX22200 SPI protocol:
+   * 1. Set CMD pin HIGH (must be HIGH during entire transfer)
+  2. Transfer 1 byte (Command Register)
+   * 3. Device responds with STATUS[7:0] on SDO (Fault Flag Byte)
+   * 4. Store STATUS[7:0] in last_fault_byte_ for diagnostic purposes
+   * 5. Set CMD pin LOW (ready for Phase 2)
+   *
+   * @param bank      Register bank address (A_BNK, 0x00-0x0A)
+   *                  - 0x00: STATUS
+   *                  - 0x01-0x08: CFG_CH0 through CFG_CH7
+   *                  - 0x09: FAULT
+   *                  - 0x0A: CFG_DPM
+   * @param is_write  true for write operation (RB/W = 1), false for read (RB/W = 0)
+   * @param mode8     true for 8-bit MSB only access, false for 32-bit full register
+   * @return DriverStatus::OK on success
+   * @return DriverStatus::COMMUNICATION_ERROR if SPI transfer fails
+   *
+   * @note The CMD pin must be held HIGH during the rising edge of CSB.
+   * @note Check GetLastFaultByte() after this call to detect communication errors
+   *       (STATUS[7:0] = 0x04 indicates COMER).
+   * @note After calling this, call writeData32/readData32 or writeData8/readData8
+   *       to complete Phase 2 of the protocol.
+   *
+   * @see MAX22200 datasheet section "Command Register Description (COMMAND)"
+   */
+  DriverStatus writeCommandRegister(uint8_t bank, bool is_write,
+                                    bool mode8 = false) const;
+
+  /**
+   * @brief Write 32-bit data register (Phase 2, after Command Register)
+   */
+  DriverStatus writeData32(uint32_t value) const;
+
+  /**
+   * @brief Read 32-bit data register (Phase 2, after Command Register)
+   */
+  DriverStatus readData32(uint32_t &value) const;
+
+  /**
+   * @brief Read 32-bit data register with custom TX (Phase 2). Used for
+   *        MAX22200A selective fault clear (SDI bits select which bits to clear).
+   */
+  DriverStatus readData32WithTx(const uint8_t tx[4], uint32_t &value) const;
+
+  /**
+   * @brief Write 8-bit data register (Phase 2, after Command Register)
+   */
+  DriverStatus writeData8(uint8_t value) const;
+
+  /**
+   * @brief Read 8-bit data register (Phase 2, after Command Register)
+   */
+  DriverStatus readData8(uint8_t &value) const;
+
+  // ── Convenience wrappers ───────────────────────────────────────────────
+
+  /**
+   * @brief Full 32-bit register write (Command Register + data)
+   */
+  DriverStatus writeReg32(uint8_t bank, uint32_t value) const;
+
+  /**
+   * @brief Full 32-bit register read (Command Register + data)
+   */
+  DriverStatus readReg32(uint8_t bank, uint32_t &value) const;
+
+  /**
+   * @brief Full 8-bit MSB register write (Command Register + data)
+   */
+  DriverStatus writeReg8(uint8_t bank, uint8_t value) const;
+
+  /**
+   * @brief Full 8-bit MSB register read (Command Register + data)
+   */
+  DriverStatus readReg8(uint8_t bank, uint8_t &value) const;
 
   void updateStatistics(bool success) const;
-  void triggerFaultCallback(uint8_t channel, FaultType fault_type) const;
-  void triggerStateChangeCallback(uint8_t channel, ChannelState old_state,
-                                  ChannelState new_state) const;
-
-  // Helper methods for register manipulation
-  uint16_t buildChannelConfigValue(const ChannelConfig &config) const;
-  ChannelConfig parseChannelConfigValue(uint16_t value) const;
-  uint16_t buildGlobalConfigValue(const GlobalConfig &config) const;
-  GlobalConfig parseGlobalConfigValue(uint16_t value) const;
-  FaultStatus parseFaultStatusValue(uint16_t value) const;
 };
 
-// Include template implementation
-#define MAX22200_HEADER_INCLUDED
-// NOLINTNEXTLINE(bugprone-suspicious-include) - Intentional: template implementation file
-#include "../src/max22200.ipp"
-#undef MAX22200_HEADER_INCLUDED
-
 } // namespace max22200
+
+// Include implementation
+#include "../src/max22200.ipp"
