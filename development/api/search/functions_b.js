@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['readallchannelstatuses_0',['ReadAllChannelStatuses',['../classmax22200_1_1MAX22200.html#a49d6dfdfca859aefe38d3058ecdf8dda',1,'max22200::MAX22200']]],
-  ['readchannelstatus_1',['ReadChannelStatus',['../classmax22200_1_1MAX22200.html#a09072905ff56151c81e9e520ea2378b1',1,'max22200::MAX22200']]],
-  ['readfaultstatus_2',['ReadFaultStatus',['../classmax22200_1_1MAX22200.html#afdb7587400be896fac014abac9a221c8',1,'max22200::MAX22200']]],
-  ['readregister_3',['ReadRegister',['../classmax22200_1_1MAX22200.html#a443f887083c4d883cf3659a3844cd59c',1,'max22200::MAX22200']]],
-  ['reset_4',['Reset',['../classmax22200_1_1MAX22200.html#a0d82cf603cfaa05ce5153b7d19945e75',1,'max22200::MAX22200']]],
-  ['resetstatistics_5',['ResetStatistics',['../classmax22200_1_1MAX22200.html#a9af2937b9d84d1d866b1e6fc7c2651ca',1,'max22200::MAX22200']]]
+  ['print_5ftest_5fsection_5ffooter_0',['print_test_section_footer',['../TestFramework_8h.html#a5fe4d7658c49a1f3999cd09c0db952c0',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fheader_1',['print_test_section_header',['../TestFramework_8h.html#a5c46ab8dc59b071f0843bc287145d5f1',1,'TestFramework.h']]],
+  ['print_5ftest_5fsection_5fstatus_2',['print_test_section_status',['../TestFramework_8h.html#a200bb35a3a48c625b9cb8d2511d6bd87',1,'TestFramework.h']]],
+  ['print_5ftest_5fsummary_3',['print_test_summary',['../TestFramework_8h.html#ab7e4c076755ecdf2ad6212cb8f6578ab',1,'TestFramework.h']]]
 ];

@@ -176,7 +176,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -272,11 +272,11 @@
 </h1>
     
 
-<p>This guide covers all configuration options available for the MAX22200 driver.</p>
-<h2 id="channel-configuration">
+<p>This guide covers configuration options for the MAX22200 driver, aligned with the device registers (STATUS, CFG_CHx, CFG_DPM) and types in <code class="language-plaintext highlighter-rouge">max22200_types.hpp</code>.</p>
+<h2 id="channel-configuration-cfg_chx">
   
   
-    <a href="#channel-configuration" class="anchor-heading" aria-labelledby="channel-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel Configuration
+    <a href="#channel-configuration-cfg_chx" class="anchor-heading" aria-labelledby="channel-configuration-cfg_chx"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel Configuration (CFG_CHx)
   
   
 </h2>
@@ -290,6 +290,8 @@
 </h3>
     
 
+<p>Channels are configured via <code class="language-plaintext highlighter-rouge">ChannelConfig</code> and written with <code class="language-plaintext highlighter-rouge">ConfigureChannel()</code>. <strong>ChannelConfig stores user units</strong> (mA for CDR, % for VDR, ms for hit time) and computes register values when writing. Set <code class="language-plaintext highlighter-rouge">full_scale_current_ma</code> and <code class="language-plaintext highlighter-rouge">master_clock_80khz</code> for correct conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see <a href="#channel-control">Channel Control</a>).</p>
+
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
@@ -301,15 +303,21 @@
 9
 10
 11
+12
+13
+14
 </pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>  <span class="c1">// Current Drive Regulation</span>
-<span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">parallel_mode</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">polarity</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">OutputPolarity</span><span class="o">::</span><span class="n">NORMAL</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>   <span class="c1">// Hit current (0-1023)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>  <span class="c1">// Hold current (0-1023)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>     <span class="c1">// Hit time in ms (0-65535)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// 500 mA (CDR)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// 200 mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>          <span class="c1">// 10 ms</span>
+<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>                <span class="c1">// Full-scale current (required for CDR)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// 100 kHz base (required for hit_time conversion)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                <span class="c1">// HIT current check (HHF fault if IHIT not reached)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">open_load_detection_enabled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">plunger_movement_detection_enabled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
 <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -321,140 +329,50 @@
   
 </h3>
     
-<h4 id="cdr-current-drive-regulation">
-  
-  
-    <a href="#cdr-current-drive-regulation" class="anchor-heading" aria-labelledby="cdr-current-drive-regulation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CDR (Current Drive Regulation)
-  
-  
-</h4>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <ul>
-  <li>Regulates current to hit_current during hit phase</li>
-  <li>Regulates current to hold_current during hold phase</li>
-  <li>Best for solenoids and motors requiring constant current</li>
+  <li>
+    <p><strong>CDR (Current Drive Regulation)</strong><br />
+<code class="language-plaintext highlighter-rouge">config.drive_mode = max22200::DriveMode::CDR;</code><br />
+Regulates current to hit/hold levels. Only supported in low-side mode.</p>
+  </li>
+  <li>
+    <p><strong>VDR (Voltage Drive Regulation)</strong><br />
+<code class="language-plaintext highlighter-rouge">config.drive_mode = max22200::DriveMode::VDR;</code><br />
+Duty-cycle control. Supported in both low-side and high-side.</p>
+  </li>
 </ul>
-<h4 id="vdr-voltage-drive-regulation">
+<h3 id="side-mode-low-side-vs-high-side">
   
   
-    <a href="#vdr-voltage-drive-regulation" class="anchor-heading" aria-labelledby="vdr-voltage-drive-regulation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> VDR (Voltage Drive Regulation)
-  
-  
-</h4>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">VDR</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<ul>
-  <li>Applies constant voltage during hit phase</li>
-  <li>Regulates current to hold_current during hold phase</li>
-  <li>Best for applications requiring fast response</li>
-</ul>
-<h3 id="bridge-modes">
-  
-  
-    <a href="#bridge-modes" class="anchor-heading" aria-labelledby="bridge-modes"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Bridge Modes
-  
-  
-</h3>
-    
-<h4 id="half-bridge-mode">
-  
-  
-    <a href="#half-bridge-mode" class="anchor-heading" aria-labelledby="half-bridge-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Half-Bridge Mode
-  
-  
-</h4>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<ul>
-  <li>Load connected between OUTA and GND</li>
-  <li>OUTB not used</li>
-  <li>Single-ended drive</li>
-</ul>
-<h4 id="full-bridge-mode">
-  
-  
-    <a href="#full-bridge-mode" class="anchor-heading" aria-labelledby="full-bridge-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Full-Bridge Mode
-  
-  
-</h4>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">FULL_BRIDGE</span><span class="p">;</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<ul>
-  <li>Load connected between OUTA and OUTB</li>
-  <li>Bidirectional drive</li>
-  <li>Can reverse current direction</li>
-</ul>
-<h3 id="current-settings">
-  
-  
-    <a href="#current-settings" class="anchor-heading" aria-labelledby="current-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Current Settings
+    <a href="#side-mode-low-side-vs-high-side" class="anchor-heading" aria-labelledby="side-mode-low-side-vs-high-side"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Side Mode (Low-Side vs High-Side)
   
   
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-</pre></td><td class="rouge-code"><pre><span class="c1">// Set hit and hold currents separately</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetHitCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>   <span class="c1">// Channel 0, 500 mA</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetHoldCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>  <span class="c1">// Channel 0, 200 mA</span>
-
-<span class="c1">// Or set both at once</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetCurrents</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>  <span class="c1">// Channel 0, hit=500mA, hold=200mA</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<p><strong>Current Range</strong>: 0-1023 (10-bit resolution)</p>
-<h3 id="hit-time">
+<ul>
+  <li>
+    <p><strong>Low-side</strong><br />
+<code class="language-plaintext highlighter-rouge">config.side_mode = max22200::SideMode::LOW_SIDE;</code><br />
+Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM.</p>
+  </li>
+  <li>
+    <p><strong>High-side</strong><br />
+<code class="language-plaintext highlighter-rouge">config.side_mode = max22200::SideMode::HIGH_SIDE;</code><br />
+Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
+  </li>
+</ul>
+<h3 id="current-and-timing-in-real-units">
   
   
-    <a href="#hit-time" class="anchor-heading" aria-labelledby="hit-time"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Hit Time
+    <a href="#current-and-timing-in-real-units" class="anchor-heading" aria-labelledby="current-and-timing-in-real-units"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Current and Timing in Real Units
   
   
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetHitTime</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">);</span>  <span class="c1">// Channel 0, 1000 ms</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<p><strong>Time Range</strong>: 0-65535 ms</p>
-<h2 id="global-configuration">
-  
-  
-    <a href="#global-configuration" class="anchor-heading" aria-labelledby="global-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Global Configuration
-  
-  
-</h2>
-    
-<h3 id="global-settings">
-  
-  
-    <a href="#global-settings" class="anchor-heading" aria-labelledby="global-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Global Settings
-  
-  
-</h3>
-    
+<p><strong>Option A — Driver APIs (recommended):</strong> Set IFS with <code class="language-plaintext highlighter-rouge">BoardConfig</code>, then use mA/ms APIs:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -464,53 +382,176 @@
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">GlobalConfig</span> <span class="n">global_config</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">reset</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">sleep_mode</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">diagnostic_enable</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">ics_enable</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>  <span class="c1">// Integrated Current Sensing</span>
-<span class="n">global_config</span><span class="p">.</span><span class="n">daisy_chain_mode</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">BoardConfig</span> <span class="nf">board</span><span class="p">(</span><span class="mf">30.0</span><span class="n">f</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
+<span class="n">board</span><span class="p">.</span><span class="n">max_current_ma</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>      <span class="c1">// Optional safety limit (0 = no limit)</span>
+<span class="n">board</span><span class="p">.</span><span class="n">max_duty_percent</span> <span class="o">=</span> <span class="mi">90</span><span class="p">;</span>    <span class="c1">// Optional for VDR (0 = no limit)</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetBoardConfig</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
 
-<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureGlobal</span><span class="p">(</span><span class="n">global_config</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetHitCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>   <span class="c1">// Channel 0, 500 mA</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetHoldCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetHitTimeMs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">);</span>   <span class="c1">// 10 ms (converted from fCHOP)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="sleep-mode">
-  
-  
-    <a href="#sleep-mode" class="anchor-heading" aria-labelledby="sleep-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Sleep Mode
-  
-  
-</h3>
-    
+
+<p><strong>Option B — Set user units on ChannelConfig directly:</strong> Set <code class="language-plaintext highlighter-rouge">hit_current_value</code>, <code class="language-plaintext highlighter-rouge">hold_current_value</code>, <code class="language-plaintext highlighter-rouge">hit_time_ms</code>, and context (<code class="language-plaintext highlighter-rouge">full_scale_current_ma</code>, <code class="language-plaintext highlighter-rouge">master_clock_80khz</code>, <code class="language-plaintext highlighter-rouge">chop_freq</code>), then call <code class="language-plaintext highlighter-rouge">ConfigureChannel()</code>. The class computes register values in <code class="language-plaintext highlighter-rouge">toRegister()</code>.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetSleepMode</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>   <span class="c1">// Enable sleep mode</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetSleepMode</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>  <span class="c1">// Disable sleep mode</span>
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// from BoardConfig</span>
+<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// from ReadStatus(status)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="diagnostic-mode">
+
+<p>For VDR, set <code class="language-plaintext highlighter-rouge">hit_current_value</code> and <code class="language-plaintext highlighter-rouge">hold_current_value</code> as duty percent (0–100). Helpers <code class="language-plaintext highlighter-rouge">currentMaToRaw()</code>, <code class="language-plaintext highlighter-rouge">hitTimeMsToRaw()</code>, and <code class="language-plaintext highlighter-rouge">getChopFreqKhz()</code> are in <code class="language-plaintext highlighter-rouge">max22200_types.hpp</code> for custom conversion.</p>
+<h3 id="human-readable-probes-on-channelconfig">
   
   
-    <a href="#diagnostic-mode" class="anchor-heading" aria-labelledby="diagnostic-mode"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Diagnostic Mode
+    <a href="#human-readable-probes-on-channelconfig" class="anchor-heading" aria-labelledby="human-readable-probes-on-channelconfig"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Human-Readable Probes on ChannelConfig
   
   
 </h3>
     
 
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetDiagnosticMode</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">// Enable diagnostics</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="integrated-current-sensing-ics">
+<p>You can query config with inline helpers (see <code class="language-plaintext highlighter-rouge">max22200_types.hpp</code>):</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">config.isCdr()</code> / <code class="language-plaintext highlighter-rouge">config.isVdr()</code>, <code class="language-plaintext highlighter-rouge">config.isLowSide()</code> / <code class="language-plaintext highlighter-rouge">config.isHighSide()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">config.hasHitTime()</code>, <code class="language-plaintext highlighter-rouge">config.isContinuousHit()</code> (hit_time_ms &gt; 0 or continuous)</li>
+  <li><code class="language-plaintext highlighter-rouge">config.isHalfFullScale()</code>, <code class="language-plaintext highlighter-rouge">config.isSlewRateControlEnabled()</code>, <code class="language-plaintext highlighter-rouge">config.isOpenLoadDetectionEnabled()</code>, <code class="language-plaintext highlighter-rouge">config.isPlungerMovementDetectionEnabled()</code>, <code class="language-plaintext highlighter-rouge">config.isHitCurrentCheckEnabled()</code></li>
+</ul>
+<h2 id="status-register-statusconfig">
   
   
-    <a href="#integrated-current-sensing-ics" class="anchor-heading" aria-labelledby="integrated-current-sensing-ics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Integrated Current Sensing (ICS)
+    <a href="#status-register-statusconfig" class="anchor-heading" aria-labelledby="status-register-statusconfig"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> STATUS Register (StatusConfig)
+  
+  
+</h2>
+    
+
+<p>The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with <code class="language-plaintext highlighter-rouge">ReadStatus()</code> and <code class="language-plaintext highlighter-rouge">WriteStatus()</code>.</p>
+<h3 id="channel-onoff-onch">
+  
+  
+    <a href="#channel-onoff-onch" class="anchor-heading" aria-labelledby="channel-onoff-onch"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel On/Off (ONCH)
   
   
 </h3>
     
 
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">status.channels_on_mask</code> — bitmask: bit N = channel N on (1) or off (0).</li>
+  <li>Helpers: <code class="language-plaintext highlighter-rouge">status.isChannelOn(ch)</code>, <code class="language-plaintext highlighter-rouge">status.channelCountOn()</code>, <code class="language-plaintext highlighter-rouge">status.getChannelsOnMask()</code>.</li>
+</ul>
+<h3 id="fault-masks-m_ovt-m_ocp-">
+  
+  
+    <a href="#fault-masks-m_ovt-m_ocp-" class="anchor-heading" aria-labelledby="fault-masks-m_ovt-m_ocp-"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Fault Masks (M_OVT, M_OCP, …)
+  
+  
+</h3>
+    
+
+<p>When a mask bit is 1, that fault does not assert the nFAULT pin. Use the human-readable helpers:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">status.isOvertemperatureMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isOvercurrentMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isOpenLoadFaultMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isHitNotReachedMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isPlungerMovementFaultMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isCommunicationErrorMasked()</code>, <code class="language-plaintext highlighter-rouge">status.isUndervoltageMasked()</code>.</li>
+</ul>
+<h3 id="fault-flags-read-only">
+  
+  
+    <a href="#fault-flags-read-only" class="anchor-heading" aria-labelledby="fault-flags-read-only"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Fault Flags (Read-Only)
+  
+  
+</h3>
+    
+
+<p>After <code class="language-plaintext highlighter-rouge">ReadStatus(status)</code> or <code class="language-plaintext highlighter-rouge">ReadFaultFlags(status)</code>:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">status.hasOvertemperature()</code>, <code class="language-plaintext highlighter-rouge">status.hasOvercurrent()</code>, <code class="language-plaintext highlighter-rouge">status.hasOpenLoadFault()</code>, <code class="language-plaintext highlighter-rouge">status.hasHitNotReached()</code>, <code class="language-plaintext highlighter-rouge">status.hasPlungerMovementFault()</code>, <code class="language-plaintext highlighter-rouge">status.hasCommunicationError()</code>, <code class="language-plaintext highlighter-rouge">status.hasUndervoltage()</code>, <code class="language-plaintext highlighter-rouge">status.hasFault()</code>, <code class="language-plaintext highlighter-rouge">status.isActive()</code>.</li>
+</ul>
+<h3 id="channel-pair-mode-cm10-cm32-cm54-cm76">
+  
+  
+    <a href="#channel-pair-mode-cm10-cm32-cm54-cm76" class="anchor-heading" aria-labelledby="channel-pair-mode-cm10-cm32-cm54-cm76"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Channel-Pair Mode (CM10, CM32, CM54, CM76)
+  
+  
+</h3>
+    
+
+<p>Pairs (0–1, 2–3, 4–5, 6–7) can be INDEPENDENT, PARALLEL, or HBRIDGE. Change only when both channels in the pair are off.</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">status.getChannelPairMode10()</code>, <code class="language-plaintext highlighter-rouge">getChannelPairMode32()</code>, <code class="language-plaintext highlighter-rouge">getChannelPairMode54()</code>, <code class="language-plaintext highlighter-rouge">getChannelPairMode76()</code> return <code class="language-plaintext highlighter-rouge">ChannelMode</code>.</li>
+</ul>
+<h3 id="master-frequency-freqm">
+  
+  
+    <a href="#master-frequency-freqm" class="anchor-heading" aria-labelledby="master-frequency-freqm"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Master Frequency (FREQM)
+  
+  
+</h3>
+    
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">status.is100KHzBase()</code> / <code class="language-plaintext highlighter-rouge">status.is80KHzBase()</code> — base clock for chopping frequency.</li>
+</ul>
+<h2 id="fault-register-faultstatus">
+  
+  
+    <a href="#fault-register-faultstatus" class="anchor-heading" aria-labelledby="fault-register-faultstatus"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> FAULT Register (FaultStatus)
+  
+  
+</h2>
+    
+
+<p>Per-channel fault bits (OCP, HHF, OLF, DPM) are read with <code class="language-plaintext highlighter-rouge">ReadFaultRegister(faults)</code>. Reading clears flags (and deasserts nFAULT when no other faults remain). Use human-readable probes:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">faults.hasOvercurrent()</code>, <code class="language-plaintext highlighter-rouge">faults.hasHitNotReached()</code>, <code class="language-plaintext highlighter-rouge">faults.hasOpenLoadFault()</code>, <code class="language-plaintext highlighter-rouge">faults.hasPlungerMovementFault()</code></li>
+  <li><code class="language-plaintext highlighter-rouge">faults.hasFaultOnChannel(ch)</code>, <code class="language-plaintext highlighter-rouge">faults.hasOvercurrentOnChannel(ch)</code>, etc.</li>
+  <li><code class="language-plaintext highlighter-rouge">faults.channelsWithAnyFault()</code> — bitmask of channels with any fault.</li>
+  <li><code class="language-plaintext highlighter-rouge">FaultTypeToStr(fault_type)</code> for logging (e.g. “Overcurrent”, “HIT not reached”).</li>
+</ul>
+
+<p>Clearing:</p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">ClearAllFaults()</code> — clear all and discard.</li>
+  <li><code class="language-plaintext highlighter-rouge">ClearChannelFaults(channel_mask, &amp;faults)</code> — clear selected channels (MAX22200A); optional snapshot in <code class="language-plaintext highlighter-rouge">faults</code>.</li>
+</ul>
+<h2 id="dpm-configuration-cfg_dpm">
+  
+  
+    <a href="#dpm-configuration-cfg_dpm" class="anchor-heading" aria-labelledby="dpm-configuration-cfg_dpm"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DPM Configuration (CFG_DPM)
+  
+  
+</h2>
+    
+
+<p>Plunger movement detection is global; enable per channel with <code class="language-plaintext highlighter-rouge">config.plunger_movement_detection_enabled = true</code> (low-side only). Configure in real units:</p>
+
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetIntegratedCurrentSensing</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">// Enable ICS</span>
+2
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">ConfigureDpm</span><span class="p">(</span><span class="mf">200.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">50.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">2.0</span><span class="n">f</span><span class="p">);</span>
+<span class="c1">// start_current_ma, dip_threshold_ma, debounce_ms (converted at 25 kHz)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Or read/write raw <code class="language-plaintext highlighter-rouge">DpmConfig</code> (plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold) with <code class="language-plaintext highlighter-rouge">ReadDpmConfig()</code> / <code class="language-plaintext highlighter-rouge">WriteDpmConfig()</code>. Use <code class="language-plaintext highlighter-rouge">getPlungerMovementStartCurrent()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementDebounceTime()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementCurrentThreshold()</code> for readable access.</p>
 <h2 id="channel-control">
   
   
@@ -536,25 +577,59 @@
 6
 7
 8
-9
-10
-11
-</pre></td><td class="rouge-code"><pre><span class="c1">// Enable single channel</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">DisableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetChannelEnabled</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>   <span class="c1">// or false</span>
 
-<span class="c1">// Disable single channel</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span>
-
-<span class="c1">// Enable all channels</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">EnableAllChannels</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>
-
-<span class="c1">// Disable all channels</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">EnableAllChannels</span><span class="p">(</span><span class="nb">false</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">EnableAllChannels</span><span class="p">();</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">DisableAllChannels</span><span class="p">();</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetAllChannelsEnabled</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span> <span class="c1">// or false</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetChannelsOn</span><span class="p">((</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">|</span> <span class="p">(</span><span class="mi">1u</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">));</span>  <span class="c1">// Channels 0 and 2 on</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="individual-channel-settings">
+<h3 id="full-bridge-pairs">
   
   
-    <a href="#individual-channel-settings" class="anchor-heading" aria-labelledby="individual-channel-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Individual Channel Settings
+    <a href="#full-bridge-pairs" class="anchor-heading" aria-labelledby="full-bridge-pairs"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Full-Bridge Pairs
+  
+  
+</h3>
+    
+
+<p>When a pair is configured as HBRIDGE in STATUS (e.g. <code class="language-plaintext highlighter-rouge">status.channel_pair_mode_10 = ChannelMode::HBRIDGE</code>), use:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetFullBridgeState</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max22200</span><span class="o">::</span><span class="n">FullBridgeState</span><span class="o">::</span><span class="n">Forward</span><span class="p">);</span>  <span class="c1">// pair 0 = ch0–ch1</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h2 id="device-enable-enable-pin">
+  
+  
+    <a href="#device-enable-enable-pin" class="anchor-heading" aria-labelledby="device-enable-enable-pin"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Device Enable (ENABLE Pin)
+  
+  
+</h2>
+    
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">EnableDevice</span><span class="p">();</span>   <span class="c1">// ENABLE pin high — SPI and channels active</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">DisableDevice</span><span class="p">();</span>  <span class="c1">// ENABLE pin low — low power</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetDeviceEnable</span><span class="p">(</span><span class="nb">true</span><span class="p">);</span>  <span class="c1">// or false</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Initialization sets ACTIVE=1 and ENABLE high; <code class="language-plaintext highlighter-rouge">Deinitialize()</code> sets ACTIVE=0 and ENABLE low.</p>
+<h2 id="recommended-setups">
+  
+  
+    <a href="#recommended-setups" class="anchor-heading" aria-labelledby="recommended-setups"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Recommended Setups
+  
+  
+</h2>
+    
+<h3 id="solenoid-cdr-low-side">
+  
+  
+    <a href="#solenoid-cdr-low-side" class="anchor-heading" aria-labelledby="solenoid-cdr-low-side"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Solenoid (CDR, low-side)
   
   
 </h3>
@@ -568,51 +643,37 @@
 6
 7
 8
-</pre></td><td class="rouge-code"><pre><span class="c1">// Set drive mode</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetChannelDriveMode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">);</span>
-
-<span class="c1">// Set bridge mode</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetChannelBridgeMode</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">FULL_BRIDGE</span><span class="p">);</span>
-
-<span class="c1">// Set polarity</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">SetChannelPolarity</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">max22200</span><span class="o">::</span><span class="n">OutputPolarity</span><span class="o">::</span><span class="n">INVERTED</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h2 id="recommended-settings">
-  
-  
-    <a href="#recommended-settings" class="anchor-heading" aria-labelledby="recommended-settings"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Recommended Settings
-  
-  
-</h2>
-    
-<h3 id="for-solenoid-control">
-  
-  
-    <a href="#for-solenoid-control" class="anchor-heading" aria-labelledby="for-solenoid-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> For Solenoid Control
-  
-  
-</h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
+9
+10
+11
+12
 </pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">800</span><span class="p">;</span>   <span class="c1">// High current for pull-in</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>  <span class="c1">// Lower current for holding</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">50</span><span class="p">;</span>       <span class="c1">// Short hit time</span>
+<span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">800.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">50.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="for-motor-control">
+<h3 id="motor-h-bridge-pair">
   
   
-    <a href="#for-motor-control" class="anchor-heading" aria-labelledby="for-motor-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> For Motor Control
+    <a href="#motor-h-bridge-pair" class="anchor-heading" aria-labelledby="motor-h-bridge-pair"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Motor (H-bridge pair)
+  
+  
+</h3>
+    
+
+<p>Set channel pair to <code class="language-plaintext highlighter-rouge">ChannelMode::HBRIDGE</code> in STATUS (both channels off), configure both channels, then use <code class="language-plaintext highlighter-rouge">SetFullBridgeState(pair_index, Forward)</code> or <code class="language-plaintext highlighter-rouge">Reverse</code>, etc.</p>
+<h3 id="low-power-vdr">
+  
+  
+    <a href="#low-power-vdr" class="anchor-heading" aria-labelledby="low-power-vdr"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Low-Power (VDR)
   
   
 </h3>
@@ -625,37 +686,13 @@
 5
 6
 7
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">FULL_BRIDGE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>  <span class="c1">// Continuous operation</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="for-low-power-applications">
-  
-  
-    <a href="#for-low-power-applications" class="anchor-heading" aria-labelledby="for-low-power-applications"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> For Low-Power Applications
-  
-  
-</h3>
-    
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-2
-3
-4
-5
-6
-7
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">VDR</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">300</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">VDR</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">60.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// duty %</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">20.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">100.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="next-steps">
   
@@ -667,8 +704,8 @@
     
 
 <ul>
-  <li>See <a href="/hf-max22200-driver/development/docs/examples/">Examples</a> for configuration examples</li>
-  <li>Review <a href="/hf-max22200-driver/development/docs/api_reference.html">API Reference</a> for all configuration methods</li>
+  <li>See <a href="/hf-max22200-driver/development/docs/examples/">Examples</a> for full code.</li>
+  <li><a href="/hf-max22200-driver/development/docs/api_reference.html">API Reference</a> for all methods and types.</li>
 </ul><hr />
 
 <p><strong>Navigation</strong>

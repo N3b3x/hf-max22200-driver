@@ -101,7 +101,7 @@ $(function(){initNavTree('structMAX22200__TestConfig_1_1ChannelLimits.html','');
 </div><!--header-->
 <div class="contents">
 
-<p>Channel Count and Limits.  
+<p>Channel Count and Register Limits (per datasheet)  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="esp32__max22200__test__config_8hpp_source.html">esp32_max22200_test_config.hpp</a>&gt;</code></p>
@@ -111,22 +111,22 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a2d7f03c7968218fc8fee14c2c11f4a7e" id="r_a2d7f03c7968218fc8fee14c2c11f4a7e"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a2d7f03c7968218fc8fee14c2c11f4a7e">NUM_CHANNELS</a> = 8</td></tr>
 <tr class="memdesc:a2d7f03c7968218fc8fee14c2c11f4a7e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Total number of channels.  <br /></td></tr>
 <tr class="separator:a2d7f03c7968218fc8fee14c2c11f4a7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af7e5cceeffddb2318eb29ec4555c244a" id="r_af7e5cceeffddb2318eb29ec4555c244a"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af7e5cceeffddb2318eb29ec4555c244a">MAX_HIT_CURRENT_MA</a> = 1000</td></tr>
-<tr class="memdesc:af7e5cceeffddb2318eb29ec4555c244a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT current (mA)  <br /></td></tr>
-<tr class="separator:af7e5cceeffddb2318eb29ec4555c244a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac657c1e951b5e1809a8590eb05300314" id="r_ac657c1e951b5e1809a8590eb05300314"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac657c1e951b5e1809a8590eb05300314">MAX_HOLD_CURRENT_MA</a> = 500</td></tr>
-<tr class="memdesc:ac657c1e951b5e1809a8590eb05300314"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HOLD current (mA)  <br /></td></tr>
-<tr class="separator:ac657c1e951b5e1809a8590eb05300314"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af00c82a0e69035aaf25b529619434c49" id="r_af00c82a0e69035aaf25b529619434c49"><td class="memItemLeft" align="right" valign="top">static constexpr uint16_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af00c82a0e69035aaf25b529619434c49">MAX_HIT_TIME_MS</a> = 2000</td></tr>
-<tr class="memdesc:af00c82a0e69035aaf25b529619434c49"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT time (ms)  <br /></td></tr>
-<tr class="separator:af00c82a0e69035aaf25b529619434c49"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c01ecc2f3f2f1d1acf70f4b4381e2f2" id="r_a9c01ecc2f3f2f1d1acf70f4b4381e2f2"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9c01ecc2f3f2f1d1acf70f4b4381e2f2">MAX_HIT_CURRENT</a> = 127</td></tr>
+<tr class="memdesc:a9c01ecc2f3f2f1d1acf70f4b4381e2f2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT current register value (7-bit)  <br /></td></tr>
+<tr class="separator:a9c01ecc2f3f2f1d1acf70f4b4381e2f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a268855ff50901d4f24bdb029db4fff30" id="r_a268855ff50901d4f24bdb029db4fff30"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a268855ff50901d4f24bdb029db4fff30">MAX_HOLD_CURRENT</a> = 127</td></tr>
+<tr class="memdesc:a268855ff50901d4f24bdb029db4fff30"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HOLD current register value (7-bit)  <br /></td></tr>
+<tr class="separator:a268855ff50901d4f24bdb029db4fff30"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abaf2e1b3d67d5adff676f3f13a0ed3f6" id="r_abaf2e1b3d67d5adff676f3f13a0ed3f6"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abaf2e1b3d67d5adff676f3f13a0ed3f6">MAX_HIT_TIME</a> = 255</td></tr>
+<tr class="memdesc:abaf2e1b3d67d5adff676f3f13a0ed3f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Maximum HIT time register value (8-bit)  <br /></td></tr>
+<tr class="separator:abaf2e1b3d67d5adff676f3f13a0ed3f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Channel Count and Limits. </p>
-<p>The MAX22200 is an octal (8-channel) solenoid/motor driver. </p>
+<div class="textblock"><p>Channel Count and Register Limits (per datasheet) </p>
+<p>HIT/HOLD currents are 7-bit (0-127), HIT time is 8-bit (0-255). </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
-<a id="af7e5cceeffddb2318eb29ec4555c244a" name="af7e5cceeffddb2318eb29ec4555c244a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af7e5cceeffddb2318eb29ec4555c244a">&#9670;&#160;</a></span>MAX_HIT_CURRENT_MA</h2>
+<a id="a9c01ecc2f3f2f1d1acf70f4b4381e2f2" name="a9c01ecc2f3f2f1d1acf70f4b4381e2f2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9c01ecc2f3f2f1d1acf70f4b4381e2f2">&#9670;&#160;</a></span>MAX_HIT_CURRENT</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -135,7 +135,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint16_t MAX22200_TestConfig::ChannelLimits::MAX_HIT_CURRENT_MA = 1000</td>
+          <td class="memname">constexpr uint8_t MAX22200_TestConfig::ChannelLimits::MAX_HIT_CURRENT = 127</td>
         </tr>
       </table>
   </td>
@@ -145,12 +145,12 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Maximum HIT current (mA) </p>
+<p>Maximum HIT current register value (7-bit) </p>
 
 </div>
 </div>
-<a id="af00c82a0e69035aaf25b529619434c49" name="af00c82a0e69035aaf25b529619434c49"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af00c82a0e69035aaf25b529619434c49">&#9670;&#160;</a></span>MAX_HIT_TIME_MS</h2>
+<a id="abaf2e1b3d67d5adff676f3f13a0ed3f6" name="abaf2e1b3d67d5adff676f3f13a0ed3f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abaf2e1b3d67d5adff676f3f13a0ed3f6">&#9670;&#160;</a></span>MAX_HIT_TIME</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -159,7 +159,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint16_t MAX22200_TestConfig::ChannelLimits::MAX_HIT_TIME_MS = 2000</td>
+          <td class="memname">constexpr uint8_t MAX22200_TestConfig::ChannelLimits::MAX_HIT_TIME = 255</td>
         </tr>
       </table>
   </td>
@@ -169,12 +169,12 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Maximum HIT time (ms) </p>
+<p>Maximum HIT time register value (8-bit) </p>
 
 </div>
 </div>
-<a id="ac657c1e951b5e1809a8590eb05300314" name="ac657c1e951b5e1809a8590eb05300314"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac657c1e951b5e1809a8590eb05300314">&#9670;&#160;</a></span>MAX_HOLD_CURRENT_MA</h2>
+<a id="a268855ff50901d4f24bdb029db4fff30" name="a268855ff50901d4f24bdb029db4fff30"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a268855ff50901d4f24bdb029db4fff30">&#9670;&#160;</a></span>MAX_HOLD_CURRENT</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -183,7 +183,7 @@ Static Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr uint16_t MAX22200_TestConfig::ChannelLimits::MAX_HOLD_CURRENT_MA = 500</td>
+          <td class="memname">constexpr uint8_t MAX22200_TestConfig::ChannelLimits::MAX_HOLD_CURRENT = 127</td>
         </tr>
       </table>
   </td>
@@ -193,7 +193,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Maximum HOLD current (mA) </p>
+<p>Maximum HOLD current register value (7-bit) </p>
 
 </div>
 </div>

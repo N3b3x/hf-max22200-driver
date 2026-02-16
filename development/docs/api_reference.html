@@ -170,7 +170,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -258,7 +258,7 @@
 </h1>
     
 
-<p>Complete reference documentation for all public methods and types in the MAX22200 driver.</p>
+<p>Reference for the MAX22200 driver public API. For register-level detail see <code class="language-plaintext highlighter-rouge">max22200_registers.hpp</code> and the datasheet.</p>
 <h2 id="source-code">
   
   
@@ -269,40 +269,22 @@
     
 
 <ul>
-  <li><strong>Main Header</strong>: <a href="../inc/max22200.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp</code></a></li>
-  <li><strong>SPI Interface</strong>: <a href="../inc/max22200_spi_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200_spi_interface.hpp</code></a></li>
+  <li><strong>Main header</strong>: <a href="../inc/max22200.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp</code></a></li>
+  <li><strong>SPI interface</strong>: <a href="../inc/max22200_spi_interface.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200_spi_interface.hpp</code></a></li>
   <li><strong>Types</strong>: <a href="../inc/max22200_types.hpp"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp</code></a></li>
 </ul>
-<h2 id="core-class">
+<h2 id="core-class-max22200spitype">
   
   
-    <a href="#core-class" class="anchor-heading" aria-labelledby="core-class"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Core Class
+    <a href="#core-class-max22200spitype" class="anchor-heading" aria-labelledby="core-class-max22200spitype"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Core Class: <code class="language-plaintext highlighter-rouge">MAX22200&lt;SpiType&gt;</code>
   
   
 </h2>
     
-<h3 id="max22200spitype">
-  
-  
-    <a href="#max22200spitype" class="anchor-heading" aria-labelledby="max22200spitype"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> <code class="language-plaintext highlighter-rouge">MAX22200&lt;SpiType&gt;</code>
-  
-  
-</h3>
-    
 
-<p>Main driver class for interfacing with the MAX22200 octal solenoid and motor driver.</p>
+<p>Template parameter: <code class="language-plaintext highlighter-rouge">SpiType</code> — your SPI implementation (must inherit <code class="language-plaintext highlighter-rouge">max22200::SpiInterface&lt;SpiType&gt;</code>).</p>
 
-<p><strong>Template Parameter</strong>: <code class="language-plaintext highlighter-rouge">SpiType</code> - Your SPI interface implementation (must inherit from <code class="language-plaintext highlighter-rouge">max22200::SpiInterface&lt;SpiType&gt;</code>)</p>
-
-<p><strong>Location</strong>: <a href="../inc/max22200.hpp#L64"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L64</code></a></p>
-
-<p><strong>Constructor:</strong></p>
-
-<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="k">explicit</span> <span class="nf">MAX22200</span><span class="p">(</span><span class="n">SpiType</span> <span class="o">&amp;</span><span class="n">spi_interface</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">enable_diagnostics</span> <span class="o">=</span> <span class="nb">true</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div>
-
-<p><strong>Location</strong>: <a href="../inc/max22200.hpp#L73"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L73</code></a></p>
+<p><strong>Constructor:</strong> <code class="language-plaintext highlighter-rouge">explicit MAX22200(SpiType &amp;spi_interface);</code></p><hr />
 <h2 id="methods">
   
   
@@ -324,32 +306,28 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus Initialize()</code></td>
-      <td><a href="../inc/max22200.hpp#L100"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L100</code></a></td>
+      <td>Full init per datasheet: ENABLE high, read STATUS (clear UVM), write STATUS (ACTIVE=1), cache STATUS</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus Deinitialize()</code></td>
-      <td><a href="../inc/max22200.hpp#L110"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L110</code></a></td>
+      <td>Disable all channels, ACTIVE=0, ENABLE low</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Reset()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus Reset()</code></td>
-      <td><a href="../inc/max22200.hpp#L120"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L120</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
+      <td>Returns whether driver is initialized</td>
     </tr>
   </tbody>
 </table></div>
-<h3 id="global-configuration">
+<h3 id="status-register">
   
   
-    <a href="#global-configuration" class="anchor-heading" aria-labelledby="global-configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Global Configuration
+    <a href="#status-register" class="anchor-heading" aria-labelledby="status-register"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> STATUS Register
   
   
 </h3>
@@ -359,35 +337,17 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ConfigureGlobal()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureGlobal(const GlobalConfig &amp;config)</code></td>
-      <td><a href="../inc/max22200.hpp#L130"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L130</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ReadStatus(StatusConfig &amp;status)</code></td>
+      <td>Read 32-bit STATUS</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetGlobalConfig()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetGlobalConfig(GlobalConfig &amp;config) const</code></td>
-      <td><a href="../inc/max22200.hpp#L138"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L138</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetSleepMode()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetSleepMode(bool enable)</code></td>
-      <td><a href="../inc/max22200.hpp#L146"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L146</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetDiagnosticMode()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetDiagnosticMode(bool enable)</code></td>
-      <td><a href="../inc/max22200.hpp#L154"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L154</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetIntegratedCurrentSensing()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetIntegratedCurrentSensing(bool enable)</code></td>
-      <td><a href="../inc/max22200.hpp#L162"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L162</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">WriteStatus(const StatusConfig &amp;status)</code></td>
+      <td>Write STATUS (writable bits only)</td>
     </tr>
   </tbody>
 </table></div>
@@ -404,30 +364,25 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ConfigureChannel()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureChannel(uint8_t channel, const ChannelConfig &amp;config)</code></td>
-      <td><a href="../inc/max22200.hpp#L173"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L173</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureChannel(uint8_t channel, const ChannelConfig &amp;config)</code></td>
+      <td>Write full CFG_CHx for channel</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetChannelConfig()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetChannelConfig(uint8_t channel, ChannelConfig &amp;config) const</code></td>
-      <td><a href="../inc/max22200.hpp#L182"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L182</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">GetChannelConfig(uint8_t channel, ChannelConfig &amp;config)</code></td>
+      <td>Read channel config</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ConfigureAllChannels()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ConfigureAllChannels(const ChannelConfigArray &amp;configs)</code></td>
-      <td><a href="../inc/max22200.hpp#L190"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L190</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureAllChannels(const ChannelConfigArray &amp;configs)</code></td>
+      <td>Configure all 8 channels</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetAllChannelConfigs()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetAllChannelConfigs(ChannelConfigArray &amp;configs) const</code></td>
-      <td><a href="../inc/max22200.hpp#L198"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L198</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">GetAllChannelConfigs(ChannelConfigArray &amp;configs)</code></td>
+      <td>Read all channel configs</td>
     </tr>
   </tbody>
 </table></div>
@@ -444,42 +399,48 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">EnableChannel()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus EnableChannel(uint8_t channel, bool enable)</code></td>
-      <td><a href="../inc/max22200.hpp#L209"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L209</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">EnableChannel(uint8_t channel)</code></td>
+      <td>Set ONCH bit for channel</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DisableChannel(uint8_t channel)</code></td>
+      <td>Clear ONCH bit</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelEnabled(uint8_t channel, bool enable)</code></td>
+      <td>Turn channel on/off by bool</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">EnableAllChannels()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus EnableAllChannels(bool enable)</code></td>
-      <td><a href="../inc/max22200.hpp#L217"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L217</code></a></td>
+      <td>Set all ONCH bits</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetChannelDriveMode()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelDriveMode(uint8_t channel, DriveMode mode)</code></td>
-      <td><a href="../inc/max22200.hpp#L226"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L226</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">DisableAllChannels()</code></td>
+      <td>Clear all ONCH bits</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetChannelBridgeMode()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelBridgeMode(uint8_t channel, BridgeMode mode)</code></td>
-      <td><a href="../inc/max22200.hpp#L235"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L235</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">SetAllChannelsEnabled(bool enable)</code></td>
+      <td>All channels on or off</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetChannelPolarity()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetChannelPolarity(uint8_t channel, OutputPolarity polarity)</code></td>
-      <td><a href="../inc/max22200.hpp#L244"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L244</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelsOn(uint8_t channel_mask)</code></td>
+      <td>Set ONCH from bitmask (bit N = channel N)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetFullBridgeState(uint8_t pair_index, FullBridgeState state)</code></td>
+      <td>Set HiZ/Forward/Reverse/Brake for pair 0–3</td>
     </tr>
   </tbody>
 </table></div>
-<h3 id="current-control">
+<h3 id="faults">
   
   
-    <a href="#current-control" class="anchor-heading" aria-labelledby="current-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Current Control
+    <a href="#faults" class="anchor-heading" aria-labelledby="faults"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Faults
   
   
 </h3>
@@ -489,37 +450,48 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetHitCurrent()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHitCurrent(uint8_t channel, uint16_t current)</code></td>
-      <td><a href="../inc/max22200.hpp#L255"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L255</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ReadFaultRegister(FaultStatus &amp;faults)</code></td>
+      <td>Read FAULT register (OCP/HHF/OLF/DPM per channel); read clears flags</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetHoldCurrent()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHoldCurrent(uint8_t channel, uint16_t current)</code></td>
-      <td><a href="../inc/max22200.hpp#L264"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L264</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ClearAllFaults()</code></td>
+      <td>Clear all fault flags (read FAULT, discard)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetCurrents()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetCurrents(uint8_t channel, uint16_t hit_current, uint16_t hold_current)</code></td>
-      <td><a href="../inc/max22200.hpp#L274"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L274</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ClearChannelFaults(uint8_t channel_mask, FaultStatus *out)</code></td>
+      <td>Clear faults for selected channels (MAX22200A); optional snapshot</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetCurrents()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetCurrents(uint8_t channel, uint16_t &amp;hit_current, uint16_t &amp;hold_current) const</code></td>
-      <td><a href="../inc/max22200.hpp#L285"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L285</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ReadFaultRegisterSelectiveClear(...)</code></td>
+      <td>Advanced: per-type clear masks (MAX22200A)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadFaultFlags(StatusConfig &amp;status)</code></td>
+      <td>Read fault flags from STATUS</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ClearFaultFlags()</code></td>
+      <td>Clear by reading STATUS</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetFaultPinState(bool &amp;fault_active)</code></td>
+      <td>Read nFAULT pin</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">GetLastFaultByte()</code></td>
+      <td>STATUS[7:0] from last Command Register write (e.g. COMER = 0x04)</td>
     </tr>
   </tbody>
 </table></div>
-<h3 id="timing-control">
+<h3 id="dpm">
   
   
-    <a href="#timing-control" class="anchor-heading" aria-labelledby="timing-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Timing Control
+    <a href="#dpm" class="anchor-heading" aria-labelledby="dpm"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DPM
   
   
 </h3>
@@ -529,27 +501,28 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetHitTime()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus SetHitTime(uint8_t channel, uint16_t time)</code></td>
-      <td><a href="../inc/max22200.hpp#L297"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L297</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureDpm(float start_current_ma, float dip_threshold_ma, float debounce_ms)</code></td>
+      <td>Set DPM in mA and ms (uses board IFS)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetHitTime()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetHitTime(uint8_t channel, uint16_t &amp;time) const</code></td>
-      <td><a href="../inc/max22200.hpp#L306"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L306</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ReadDpmConfig(DpmConfig &amp;config)</code></td>
+      <td>Read CFG_DPM</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WriteDpmConfig(const DpmConfig &amp;config)</code></td>
+      <td>Write CFG_DPM</td>
     </tr>
   </tbody>
 </table></div>
-<h3 id="status-and-diagnostics">
+<h3 id="device-control">
   
   
-    <a href="#status-and-diagnostics" class="anchor-heading" aria-labelledby="status-and-diagnostics"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Status and Diagnostics
+    <a href="#device-control" class="anchor-heading" aria-labelledby="device-control"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Device Control
   
   
 </h3>
@@ -559,47 +532,140 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ReadFaultStatus()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadFaultStatus(FaultStatus &amp;status) const</code></td>
-      <td><a href="../inc/max22200.hpp#L316"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L316</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">EnableDevice()</code></td>
+      <td>ENABLE pin high</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ClearFaultStatus()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ClearFaultStatus()</code></td>
-      <td><a href="../inc/max22200.hpp#L325"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L325</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">DisableDevice()</code></td>
+      <td>ENABLE pin low</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ReadChannelStatus()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadChannelStatus(uint8_t channel, ChannelStatus &amp;status) const</code></td>
-      <td><a href="../inc/max22200.hpp#L334"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L334</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">SetDeviceEnable(bool enable)</code></td>
+      <td>Set ENABLE pin</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="board-and-convenience-apis">
+  
+  
+    <a href="#board-and-convenience-apis" class="anchor-heading" aria-labelledby="board-and-convenience-apis"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Board and Convenience APIs
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetBoardConfig(const BoardConfig &amp;config)</code></td>
+      <td>Set IFS and optional max current/duty limits</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ReadAllChannelStatuses()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ReadAllChannelStatuses(ChannelStatusArray &amp;statuses) const</code></td>
-      <td><a href="../inc/max22200.hpp#L342"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L342</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">GetBoardConfig()</code></td>
+      <td>Get current board config</td>
     </tr>
+  </tbody>
+</table></div>
+
+<p><strong>Current (CDR):</strong><br />
+<code class="language-plaintext highlighter-rouge">SetHitCurrentMa</code>, <code class="language-plaintext highlighter-rouge">SetHoldCurrentMa</code>, <code class="language-plaintext highlighter-rouge">SetHitCurrentA</code>, <code class="language-plaintext highlighter-rouge">SetHoldCurrentA</code>, <code class="language-plaintext highlighter-rouge">SetHitCurrentPercent</code>, <code class="language-plaintext highlighter-rouge">SetHoldCurrentPercent</code>,<br />
+<code class="language-plaintext highlighter-rouge">GetHitCurrentMa</code>, <code class="language-plaintext highlighter-rouge">GetHoldCurrentMa</code>, <code class="language-plaintext highlighter-rouge">GetHitCurrentPercent</code>, <code class="language-plaintext highlighter-rouge">GetHoldCurrentPercent</code></p>
+
+<p><strong>Duty (VDR):</strong><br />
+<code class="language-plaintext highlighter-rouge">SetHitDutyPercent</code>, <code class="language-plaintext highlighter-rouge">SetHoldDutyPercent</code>, <code class="language-plaintext highlighter-rouge">GetHitDutyPercent</code>, <code class="language-plaintext highlighter-rouge">GetHoldDutyPercent</code><br />
+<code class="language-plaintext highlighter-rouge">GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq, bool slew_rate_control_enabled, DutyLimits &amp;limits)</code> (static)</p>
+
+<p><strong>HIT time:</strong><br />
+<code class="language-plaintext highlighter-rouge">SetHitTimeMs(uint8_t channel, float ms)</code>, <code class="language-plaintext highlighter-rouge">GetHitTimeMs(uint8_t channel, float &amp;ms)</code></p>
+
+<p><strong>One-shot config:</strong><br />
+<code class="language-plaintext highlighter-rouge">ConfigureChannelCdr(channel, hit_ma, hold_ma, hit_time_ms, ...)</code>,<br />
+<code class="language-plaintext highlighter-rouge">ConfigureChannelVdr(channel, hit_duty_percent, hold_duty_percent, hit_time_ms, ...)</code></p>
+<h3 id="raw-registers-debug">
+  
+  
+    <a href="#raw-registers-debug" class="anchor-heading" aria-labelledby="raw-registers-debug"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Raw Registers (Debug)
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadRegister32(uint8_t bank, uint32_t &amp;value)</code></td>
+      <td>Read 32-bit register</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WriteRegister32(uint8_t bank, uint32_t value)</code></td>
+      <td>Write 32-bit register</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ReadRegister8(uint8_t bank, uint8_t &amp;value)</code></td>
+      <td>Read 8-bit MSB</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">WriteRegister8(uint8_t bank, uint8_t value)</code></td>
+      <td>Write 8-bit MSB</td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="statistics-and-callbacks">
+  
+  
+    <a href="#statistics-and-callbacks" class="anchor-heading" aria-labelledby="statistics-and-callbacks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Statistics and Callbacks
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Method</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">GetStatistics()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus GetStatistics(DriverStatistics &amp;stats) const</code></td>
-      <td><a href="../inc/max22200.hpp#L350"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L350</code></a></td>
+      <td>Return DriverStatistics (transfers, faults, uptime, etc.)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ResetStatistics()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">DriverStatus ResetStatistics()</code></td>
-      <td><a href="../inc/max22200.hpp#L359"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L359</code></a></td>
+      <td>Reset statistics</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetFaultCallback(FaultCallback, void *user_data)</code></td>
+      <td>Fault event callback</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetStateChangeCallback(StateChangeCallback, void *user_data)</code></td>
+      <td>State change callback</td>
     </tr>
   </tbody>
 </table></div>
-<h3 id="callbacks">
+<h3 id="validation">
   
   
-    <a href="#callbacks" class="anchor-heading" aria-labelledby="callbacks"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Callbacks
+    <a href="#validation" class="anchor-heading" aria-labelledby="validation"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Validation
   
   
 </h3>
@@ -609,62 +675,20 @@
   <thead>
     <tr>
       <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
+      <th>Description</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetFaultCallback()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void SetFaultCallback(FaultCallback callback, void *user_data = nullptr)</code></td>
-      <td><a href="../inc/max22200.hpp#L369"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L369</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetStateChangeCallback()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">void SetStateChangeCallback(StateChangeCallback callback, void *user_data = nullptr)</code></td>
-      <td><a href="../inc/max22200.hpp#L377"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L377</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">IsValidChannel(uint8_t channel)</code></td>
+      <td>Static: true if channel &lt; 8</td>
     </tr>
   </tbody>
-</table></div>
-<h3 id="utility">
+</table></div><hr />
+<h2 id="types-max22200_typeshpp">
   
   
-    <a href="#utility" class="anchor-heading" aria-labelledby="utility"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Utility
-  
-  
-</h3>
-    
-
-<div class="table-wrapper"><table>
-  <thead>
-    <tr>
-      <th>Method</th>
-      <th>Signature</th>
-      <th>Location</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">IsInitialized()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">bool IsInitialized() const</code></td>
-      <td><a href="../inc/max22200.hpp#L387"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L387</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">IsValidChannel()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">static constexpr bool IsValidChannel(uint8_t channel)</code></td>
-      <td><a href="../inc/max22200.hpp#L395"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L395</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetVersion()</code></td>
-      <td><code class="language-plaintext highlighter-rouge">static constexpr const char *GetVersion()</code></td>
-      <td><a href="../inc/max22200.hpp#L404"><code class="language-plaintext highlighter-rouge">inc/max22200.hpp#L404</code></a></td>
-    </tr>
-  </tbody>
-</table></div>
-<h2 id="types">
-  
-  
-    <a href="#types" class="anchor-heading" aria-labelledby="types"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Types
+    <a href="#types-max22200_typeshpp" class="anchor-heading" aria-labelledby="types-max22200_typeshpp"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Types (<code class="language-plaintext highlighter-rouge">max22200_types.hpp</code>)
   
   
 </h2>
@@ -683,39 +707,49 @@
     <tr>
       <th>Type</th>
       <th>Values</th>
-      <th>Location</th>
+      <th>Notes</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DriverStatus</code></td>
       <td><code class="language-plaintext highlighter-rouge">OK</code>, <code class="language-plaintext highlighter-rouge">INITIALIZATION_ERROR</code>, <code class="language-plaintext highlighter-rouge">COMMUNICATION_ERROR</code>, <code class="language-plaintext highlighter-rouge">INVALID_PARAMETER</code>, <code class="language-plaintext highlighter-rouge">HARDWARE_FAULT</code>, <code class="language-plaintext highlighter-rouge">TIMEOUT</code></td>
-      <td><a href="../inc/max22200_types.hpp#L201"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L201</code></a></td>
+      <td>Use <code class="language-plaintext highlighter-rouge">DriverStatusToStr(s)</code> for logging</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DriveMode</code></td>
       <td><code class="language-plaintext highlighter-rouge">CDR</code>, <code class="language-plaintext highlighter-rouge">VDR</code></td>
-      <td><a href="../inc/max22200_types.hpp#L23"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L23</code></a></td>
+      <td>Current vs voltage regulation</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">BridgeMode</code></td>
-      <td><code class="language-plaintext highlighter-rouge">HALF_BRIDGE</code>, <code class="language-plaintext highlighter-rouge">FULL_BRIDGE</code></td>
-      <td><a href="../inc/max22200_types.hpp#L31"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L31</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">SideMode</code></td>
+      <td><code class="language-plaintext highlighter-rouge">LOW_SIDE</code>, <code class="language-plaintext highlighter-rouge">HIGH_SIDE</code></td>
+      <td>Load to VM vs GND</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">OutputPolarity</code></td>
-      <td><code class="language-plaintext highlighter-rouge">NORMAL</code>, <code class="language-plaintext highlighter-rouge">INVERTED</code></td>
-      <td><a href="../inc/max22200_types.hpp#L39"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L39</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">ChannelMode</code></td>
+      <td><code class="language-plaintext highlighter-rouge">INDEPENDENT</code>, <code class="language-plaintext highlighter-rouge">PARALLEL</code>, <code class="language-plaintext highlighter-rouge">HBRIDGE</code></td>
+      <td>Per pair (CM10, CM32, CM54, CM76)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ChopFreq</code></td>
+      <td><code class="language-plaintext highlighter-rouge">FMAIN_DIV4</code>, <code class="language-plaintext highlighter-rouge">FMAIN_DIV3</code>, <code class="language-plaintext highlighter-rouge">FMAIN_DIV2</code>, <code class="language-plaintext highlighter-rouge">FMAIN</code></td>
+      <td>Chopping frequency divider</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">FaultType</code></td>
-      <td><code class="language-plaintext highlighter-rouge">OCP</code>, <code class="language-plaintext highlighter-rouge">OL</code>, <code class="language-plaintext highlighter-rouge">DPM</code>, <code class="language-plaintext highlighter-rouge">UVLO</code>, <code class="language-plaintext highlighter-rouge">HHF</code>, <code class="language-plaintext highlighter-rouge">TSD</code></td>
-      <td><a href="../inc/max22200_types.hpp#L47"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L47</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">OCP</code>, <code class="language-plaintext highlighter-rouge">HHF</code>, <code class="language-plaintext highlighter-rouge">OLF</code>, <code class="language-plaintext highlighter-rouge">DPM</code>, <code class="language-plaintext highlighter-rouge">OVT</code>, <code class="language-plaintext highlighter-rouge">UVM</code>, <code class="language-plaintext highlighter-rouge">COMER</code></td>
+      <td>Use <code class="language-plaintext highlighter-rouge">FaultTypeToStr(ft)</code> for “Overcurrent”, “HIT not reached”, etc.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FullBridgeState</code></td>
+      <td><code class="language-plaintext highlighter-rouge">HiZ</code>, <code class="language-plaintext highlighter-rouge">Forward</code>, <code class="language-plaintext highlighter-rouge">Reverse</code>, <code class="language-plaintext highlighter-rouge">Brake</code></td>
+      <td>For H-bridge pairs</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ChannelState</code></td>
       <td><code class="language-plaintext highlighter-rouge">DISABLED</code>, <code class="language-plaintext highlighter-rouge">ENABLED</code>, <code class="language-plaintext highlighter-rouge">HIT_PHASE</code>, <code class="language-plaintext highlighter-rouge">HOLD_PHASE</code>, <code class="language-plaintext highlighter-rouge">FAULT</code></td>
-      <td><a href="../inc/max22200_types.hpp#L213"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L213</code></a></td>
+      <td>For state callbacks</td>
     </tr>
   </tbody>
 </table></div>
@@ -733,34 +767,36 @@
     <tr>
       <th>Type</th>
       <th>Description</th>
-      <th>Location</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ChannelConfig</code></td>
-      <td>Channel configuration structure</td>
-      <td><a href="../inc/max22200_types.hpp#L62"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L62</code></a></td>
+      <td>CFG_CHx in <strong>user units</strong>: hit_current_value (mA for CDR, % for VDR), hold_current_value, hit_time_ms; context: full_scale_current_ma, master_clock_80khz; register fields: drive_mode, side_mode, chop_freq, half_full_scale, trigger_from_pin, slew_rate_control_enabled, open_load_detection_enabled, plunger_movement_detection_enabled, hit_current_check_enabled. toRegister() computes raw from user units. fromRegister(val, full_scale_current_ma, master_clock_80khz) fills user units. Helpers: isCdr(), isVdr(), isLowSide(), isHighSide(), hasHitTime(), isContinuousHit(), isHalfFullScale(), isSlewRateControlEnabled(), isOpenLoadDetectionEnabled(), isPlungerMovementDetectionEnabled(), isHitCurrentCheckEnabled(), getChopFreq().</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GlobalConfig</code></td>
-      <td>Global configuration structure</td>
-      <td><a href="../inc/max22200_types.hpp#L106"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L106</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">StatusConfig</code></td>
+      <td>STATUS: channels_on_mask, fault masks (overtemperature_masked, overcurrent_masked, …), master_clock_80khz, channel_pair_mode_10/32/54/76, active, fault flags (overtemperature, overcurrent, …). Helpers: <code class="language-plaintext highlighter-rouge">hasOvertemperature()</code>, <code class="language-plaintext highlighter-rouge">hasOvercurrent()</code>, <code class="language-plaintext highlighter-rouge">hasOpenLoadFault()</code>, <code class="language-plaintext highlighter-rouge">hasHitNotReached()</code>, <code class="language-plaintext highlighter-rouge">hasPlungerMovementFault()</code>, <code class="language-plaintext highlighter-rouge">hasCommunicationError()</code>, <code class="language-plaintext highlighter-rouge">hasUndervoltage()</code>, <code class="language-plaintext highlighter-rouge">isActive()</code>, <code class="language-plaintext highlighter-rouge">isChannelOn(ch)</code>, <code class="language-plaintext highlighter-rouge">channelCountOn()</code>, <code class="language-plaintext highlighter-rouge">isOvertemperatureMasked()</code>, … <code class="language-plaintext highlighter-rouge">getChannelPairMode10()</code> … <code class="language-plaintext highlighter-rouge">getChannelPairMode76()</code>, <code class="language-plaintext highlighter-rouge">is100KHzBase()</code>, <code class="language-plaintext highlighter-rouge">is80KHzBase()</code>, <code class="language-plaintext highlighter-rouge">getChannelsOnMask()</code>.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">FaultStatus</code></td>
-      <td>Fault status structure</td>
-      <td><a href="../inc/max22200_types.hpp#L128"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L128</code></a></td>
+      <td>FAULT: overcurrent_channel_mask, hit_not_reached_channel_mask, open_load_fault_channel_mask, plunger_movement_fault_channel_mask (per-channel masks). Helpers: <code class="language-plaintext highlighter-rouge">hasFault()</code>, <code class="language-plaintext highlighter-rouge">getFaultCount()</code>, <code class="language-plaintext highlighter-rouge">hasOvercurrent()</code>, <code class="language-plaintext highlighter-rouge">hasHitNotReached()</code>, <code class="language-plaintext highlighter-rouge">hasOpenLoadFault()</code>, <code class="language-plaintext highlighter-rouge">hasPlungerMovementFault()</code>, <code class="language-plaintext highlighter-rouge">hasFaultOnChannel(ch)</code>, <code class="language-plaintext highlighter-rouge">hasOvercurrentOnChannel(ch)</code>, … <code class="language-plaintext highlighter-rouge">channelsWithAnyFault()</code>.</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ChannelStatus</code></td>
-      <td>Channel status structure</td>
-      <td><a href="../inc/max22200_types.hpp#L182"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L182</code></a></td>
+      <td><code class="language-plaintext highlighter-rouge">DpmConfig</code></td>
+      <td>CFG_DPM: plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold. Helpers: <code class="language-plaintext highlighter-rouge">getPlungerMovementStartCurrent()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementDebounceTime()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementCurrentThreshold()</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">BoardConfig</code></td>
+      <td>full_scale_current_ma, max_current_ma, max_duty_percent. Constructor <code class="language-plaintext highlighter-rouge">BoardConfig(rref_kohm, half_full_scale)</code> for IFS from RREF. Helpers: <code class="language-plaintext highlighter-rouge">hasMaxCurrentLimit()</code>, <code class="language-plaintext highlighter-rouge">hasMaxDutyLimit()</code>, <code class="language-plaintext highlighter-rouge">hasIfsConfigured()</code>, <code class="language-plaintext highlighter-rouge">getFullScaleCurrentMa()</code>, <code class="language-plaintext highlighter-rouge">getMaxCurrentLimitMa()</code>, <code class="language-plaintext highlighter-rouge">getMaxDutyLimitPercent()</code>.</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DutyLimits</code></td>
+      <td>min_percent, max_percent. Helpers: <code class="language-plaintext highlighter-rouge">getMinPercent()</code>, <code class="language-plaintext highlighter-rouge">getMaxPercent()</code>, <code class="language-plaintext highlighter-rouge">inRange(percent)</code>, <code class="language-plaintext highlighter-rouge">clamp(percent)</code>.</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">DriverStatistics</code></td>
-      <td>Driver statistics structure</td>
-      <td><a href="../inc/max22200_types.hpp#L262"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L262</code></a></td>
+      <td>total_transfers, failed_transfers, fault_events, state_changes, uptime_ms. Helpers: <code class="language-plaintext highlighter-rouge">getSuccessRate()</code>, <code class="language-plaintext highlighter-rouge">hasFailures()</code>, <code class="language-plaintext highlighter-rouge">isHealthy()</code>, <code class="language-plaintext highlighter-rouge">getTotalTransfers()</code>, …</td>
     </tr>
   </tbody>
 </table></div>
@@ -778,29 +814,47 @@
     <tr>
       <th>Type</th>
       <th>Definition</th>
-      <th>Location</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ChannelConfigArray</code></td>
       <td><code class="language-plaintext highlighter-rouge">std::array&lt;ChannelConfig, 8&gt;</code></td>
-      <td><a href="../inc/max22200_types.hpp#L224"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L224</code></a></td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">ChannelStatusArray</code></td>
-      <td><code class="language-plaintext highlighter-rouge">std::array&lt;ChannelStatus, 8&gt;</code></td>
-      <td><a href="../inc/max22200_types.hpp#L229"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L229</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">FaultCallback</code></td>
       <td><code class="language-plaintext highlighter-rouge">void (*)(uint8_t channel, FaultType fault_type, void *user_data)</code></td>
-      <td><a href="../inc/max22200_types.hpp#L243"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L243</code></a></td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">StateChangeCallback</code></td>
       <td><code class="language-plaintext highlighter-rouge">void (*)(uint8_t channel, ChannelState old_state, ChannelState new_state, void *user_data)</code></td>
-      <td><a href="../inc/max22200_types.hpp#L254"><code class="language-plaintext highlighter-rouge">inc/max22200_types.hpp#L254</code></a></td>
+    </tr>
+  </tbody>
+</table></div>
+<h3 id="helper-functions">
+  
+  
+    <a href="#helper-functions" class="anchor-heading" aria-labelledby="helper-functions"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Helper Functions
+  
+  
+</h3>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th>Function</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">DriverStatusToStr(DriverStatus s)</code></td>
+      <td>Human-readable status string</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">FaultTypeToStr(FaultType ft)</code></td>
+      <td>Human-readable fault name (e.g. “Overcurrent”, “HIT not reached”)</td>
     </tr>
   </tbody>
 </table></div><hr />

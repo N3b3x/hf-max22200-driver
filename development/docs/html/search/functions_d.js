@@ -1,5 +1,25 @@
 var searchData=
 [
-  ['test_5ftask_5ftrampoline_0',['test_task_trampoline',['../TestFramework_8h.html#ae0c6ad85cd439fc16572fe4b495e5479',1,'TestFramework.h']]],
-  ['transfer_1',['Transfer',['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]]
+  ['setallchannelsenabled_0',['SetAllChannelsEnabled',['../classmax22200_1_1MAX22200.html#af0c5c984ed9aa092b9d3c14320c13f57',1,'max22200::MAX22200']]],
+  ['setboardconfig_1',['SetBoardConfig',['../classmax22200_1_1MAX22200.html#a3928b79dd35d626bd152855217f7e224',1,'max22200::MAX22200']]],
+  ['setchannelenabled_2',['SetChannelEnabled',['../classmax22200_1_1MAX22200.html#a0fd55dbff4a98fa48169de1c7abe95bb',1,'max22200::MAX22200']]],
+  ['setchannelson_3',['SetChannelsOn',['../classmax22200_1_1MAX22200.html#aa202f3f6d2aa304195dce77cb5e24f00',1,'max22200::MAX22200']]],
+  ['setchipselect_4',['SetChipSelect',['../classmax22200_1_1SpiInterface.html#aa23c61499025dc828d11103aa2941f1a',1,'max22200::SpiInterface::SetChipSelect()'],['../classEsp32Max22200SpiBus.html#a4dba2ad15c51b3bb40cc2acd230175df',1,'Esp32Max22200SpiBus::SetChipSelect()'],['../classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd',1,'Esp32Max22200Spi::SetChipSelect()']]],
+  ['setdeviceenable_5',['SetDeviceEnable',['../classmax22200_1_1MAX22200.html#a157f63ce29c7f7aa1e79749c0ad9c3fe',1,'max22200::MAX22200']]],
+  ['setfaultcallback_6',['SetFaultCallback',['../classmax22200_1_1MAX22200.html#a56050cdb42e14b233fd7c74d679c1fa5',1,'max22200::MAX22200']]],
+  ['setfullbridgestate_7',['SetFullBridgeState',['../classmax22200_1_1MAX22200.html#a4d07c92a3bb0bc8753684e6fd1219108',1,'max22200::MAX22200']]],
+  ['sethitcurrenta_8',['SetHitCurrentA',['../classmax22200_1_1MAX22200.html#a953826602c3a2bb2be23ef08bba1c3f2',1,'max22200::MAX22200']]],
+  ['sethitcurrentma_9',['SetHitCurrentMa',['../classmax22200_1_1MAX22200.html#a9ff235220cd1a8459a8beeb993fb25b6',1,'max22200::MAX22200']]],
+  ['sethitcurrentpercent_10',['SetHitCurrentPercent',['../classmax22200_1_1MAX22200.html#ae8d8a3089d7ecf7d033cc63dc77bd8bc',1,'max22200::MAX22200']]],
+  ['sethitdutypercent_11',['SetHitDutyPercent',['../classmax22200_1_1MAX22200.html#ab17659682c23cd549cf38c71cf474f76',1,'max22200::MAX22200']]],
+  ['sethittimems_12',['SetHitTimeMs',['../classmax22200_1_1MAX22200.html#aeb2d99370f9b9e9328979fe7fc223a9d',1,'max22200::MAX22200']]],
+  ['setholdcurrenta_13',['SetHoldCurrentA',['../classmax22200_1_1MAX22200.html#a666c23caff9c52c5333efdf6ec66665d',1,'max22200::MAX22200']]],
+  ['setholdcurrentma_14',['SetHoldCurrentMa',['../classmax22200_1_1MAX22200.html#ad6a32ada7d1ed443ef3502f683a0f53f',1,'max22200::MAX22200']]],
+  ['setholdcurrentpercent_15',['SetHoldCurrentPercent',['../classmax22200_1_1MAX22200.html#a8a35a20cd32e3646fcb8d00294e49c2a',1,'max22200::MAX22200']]],
+  ['setholddutypercent_16',['SetHoldDutyPercent',['../classmax22200_1_1MAX22200.html#a4d119a693918a324ae6563a7dc7dbe96',1,'max22200::MAX22200']]],
+  ['setstatechangecallback_17',['SetStateChangeCallback',['../classmax22200_1_1MAX22200.html#add7be3d09d29f9a7d8a144da6f5f12c4',1,'max22200::MAX22200']]],
+  ['settriga_18',['SetTrigA',['../classEsp32Max22200SpiBus.html#aea73143f3d7629a0eb778be9502fd50f',1,'Esp32Max22200SpiBus']]],
+  ['settrigb_19',['SetTrigB',['../classEsp32Max22200SpiBus.html#a4cd7be791905ae03084203886fa59f8e',1,'Esp32Max22200SpiBus']]],
+  ['spiinterface_20',['SpiInterface',['../classmax22200_1_1SpiInterface.html#a5b4ea12fdd1eac04ec3c4600fad4cc3a',1,'max22200::SpiInterface::SpiInterface()=default'],['../classmax22200_1_1SpiInterface.html#a6bc215d54eb536bcee360880c6ed345d',1,'max22200::SpiInterface::SpiInterface(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a2056b5452ad6992144bb096ab701cad3',1,'max22200::SpiInterface::SpiInterface(SpiInterface &amp;&amp;)=default']]],
+  ['statusconfig_21',['StatusConfig',['../structmax22200_1_1StatusConfig.html#af2aa80b98d6dc7ca8ecefcfaad96791c',1,'max22200::StatusConfig']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['gpiosignal_0',['GpioSignal',['../namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1',1,'max22200']]]
+  ['sidemode_0',['SideMode',['../namespacemax22200.html#a4f63d5a94ced7bc2f872014fab01f098',1,'max22200']]]
 ];

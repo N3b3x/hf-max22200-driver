@@ -170,7 +170,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -358,6 +358,9 @@ Interactive guides, examples, and step-by-step tutorials</p>
 25
 26
 27
+28
+29
+30
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
 </span>
 <span class="c1">// 1. Implement the SPI interface (see platform_integration.md)</span>
@@ -374,16 +377,19 @@ Interactive guides, examples, and step-by-step tutorials</p>
 
 <span class="c1">// 3. Initialize</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 4. Configure channel 0</span>
+    <span class="c1">// 4. Configure channel 0 (CDR, low-side; 7-bit currents, 8-bit hit time)</span>
     <span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-    
+    <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// mA (set full_scale_current_ma for CDR)</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+
     <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
@@ -427,48 +433,56 @@ Interactive guides, examples, and step-by-step tutorials</p>
   </thead>
   <tbody>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">Initialize()</code></td>
-      <td>Initialize the driver</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
-      <td>Safely shut down the driver</td>
-    </tr>
-    <tr>
-      <td><code class="language-plaintext highlighter-rouge">Reset()</code></td>
-      <td>Perform software reset</td>
+      <td><code class="language-plaintext highlighter-rouge">Initialize()</code> / <code class="language-plaintext highlighter-rouge">Deinitialize()</code></td>
+      <td>Initialize or shut down (ENABLE, STATUS ACTIVE)</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">ConfigureChannel()</code></td>
-      <td>Configure a channel</td>
+      <td>Configure a channel (CFG_CHx)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">EnableChannel()</code></td>
-      <td>Enable/disable a channel</td>
+      <td><code class="language-plaintext highlighter-rouge">EnableChannel()</code> / <code class="language-plaintext highlighter-rouge">DisableChannel()</code></td>
+      <td>Turn a channel on or off</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetChannelStatus()</code></td>
-      <td>Get channel status</td>
+      <td><code class="language-plaintext highlighter-rouge">EnableAllChannels()</code> / <code class="language-plaintext highlighter-rouge">DisableAllChannels()</code></td>
+      <td>Turn all channels on or off</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">GetFaultStatus()</code></td>
-      <td>Get fault status</td>
+      <td><code class="language-plaintext highlighter-rouge">SetChannelsOn(mask)</code></td>
+      <td>Set which channels are on (bitmask)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">ReadCurrent()</code></td>
-      <td>Read current via ICS</td>
+      <td><code class="language-plaintext highlighter-rouge">ReadStatus()</code> / <code class="language-plaintext highlighter-rouge">WriteStatus()</code></td>
+      <td>Read/write STATUS (ONCH, fault masks, ACTIVE)</td>
     </tr>
     <tr>
-      <td><code class="language-plaintext highlighter-rouge">SetSleepMode()</code></td>
-      <td>Enable/disable sleep mode</td>
+      <td><code class="language-plaintext highlighter-rouge">ReadFaultRegister()</code> / <code class="language-plaintext highlighter-rouge">ClearAllFaults()</code></td>
+      <td>Read or clear per-channel faults (OCP, HHF, OLF, DPM)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetBoardConfig()</code></td>
+      <td>Set IFS and limits for mA/% APIs</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">SetHitCurrentMa()</code> / <code class="language-plaintext highlighter-rouge">GetHitCurrentMa()</code></td>
+      <td>Set/get current in mA (CDR)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">ConfigureDpm()</code></td>
+      <td>Configure plunger movement detection in mA/ms</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">EnableDevice()</code> / <code class="language-plaintext highlighter-rouge">DisableDevice()</code></td>
+      <td>ENABLE pin on/off</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">SetFaultCallback()</code></td>
-      <td>Set fault callback function</td>
+      <td>Fault event callback; use <code class="language-plaintext highlighter-rouge">FaultTypeToStr()</code> for names</td>
     </tr>
     <tr>
       <td><code class="language-plaintext highlighter-rouge">GetStatistics()</code></td>
-      <td>Get driver statistics</td>
+      <td>Driver statistics</td>
     </tr>
   </tbody>
 </table></div>

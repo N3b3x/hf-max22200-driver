@@ -1,20 +1,11 @@
 var searchData=
 [
-  ['setchannelbridgemode_0',['SetChannelBridgeMode',['../classmax22200_1_1MAX22200.html#a5aa697681306f5e2db17c89de5412427',1,'max22200::MAX22200']]],
-  ['setchanneldrivemode_1',['SetChannelDriveMode',['../classmax22200_1_1MAX22200.html#a9d327a6935fad06bcba9b518946fcbed',1,'max22200::MAX22200']]],
-  ['setchannelpolarity_2',['SetChannelPolarity',['../classmax22200_1_1MAX22200.html#a4fb938664efaa2dde398dabc67bf2e03',1,'max22200::MAX22200']]],
-  ['setchipselect_3',['SetChipSelect',['../classmax22200_1_1SpiInterface.html#aa23c61499025dc828d11103aa2941f1a',1,'max22200::SpiInterface::SetChipSelect()'],['../classEsp32Max22200SpiBus.html#a4dba2ad15c51b3bb40cc2acd230175df',1,'Esp32Max22200SpiBus::SetChipSelect()'],['../classEsp32Max22200Spi.html#a2d009f467e577f98e66c8f740e301fbd',1,'Esp32Max22200Spi::SetChipSelect()']]],
-  ['setcurrents_4',['SetCurrents',['../classmax22200_1_1MAX22200.html#a2eebdeeb4e464a507c8aea5cd43a2164',1,'max22200::MAX22200']]],
-  ['setdeviceenable_5',['SetDeviceEnable',['../classmax22200_1_1MAX22200.html#a39d7e83d9ba4a31a908e3ac91b05845f',1,'max22200::MAX22200']]],
-  ['setdiagnosticmode_6',['SetDiagnosticMode',['../classmax22200_1_1MAX22200.html#ab128a603b66c831c5d8137dc57854858',1,'max22200::MAX22200']]],
-  ['setfaultcallback_7',['SetFaultCallback',['../classmax22200_1_1MAX22200.html#a9ef77915bedeea10805421ac04b87db5',1,'max22200::MAX22200']]],
-  ['sethitcurrent_8',['SetHitCurrent',['../classmax22200_1_1MAX22200.html#ac48db6c3c31859e5005d947eca2beb82',1,'max22200::MAX22200']]],
-  ['sethittime_9',['SetHitTime',['../classmax22200_1_1MAX22200.html#acded3adb154cf400ee6ca0e3351ef3dd',1,'max22200::MAX22200']]],
-  ['setholdcurrent_10',['SetHoldCurrent',['../classmax22200_1_1MAX22200.html#a5501eb2b392f05d7a170e83cee1005fe',1,'max22200::MAX22200']]],
-  ['setintegratedcurrentsensing_11',['SetIntegratedCurrentSensing',['../classmax22200_1_1MAX22200.html#a1ee426eb4a5d0d0ea988ea0b7c13a5d0',1,'max22200::MAX22200']]],
-  ['setsleepmode_12',['SetSleepMode',['../classmax22200_1_1MAX22200.html#a10ed4c05cfbf5b70a72362508a4e709f',1,'max22200::MAX22200']]],
-  ['setstatechangecallback_13',['SetStateChangeCallback',['../classmax22200_1_1MAX22200.html#a1b85ea4458f8b4364e5927da89171c37',1,'max22200::MAX22200']]],
-  ['settriga_14',['SetTrigA',['../classEsp32Max22200SpiBus.html#aea73143f3d7629a0eb778be9502fd50f',1,'Esp32Max22200SpiBus']]],
-  ['settrigb_15',['SetTrigB',['../classEsp32Max22200SpiBus.html#a4cd7be791905ae03084203886fa59f8e',1,'Esp32Max22200SpiBus']]],
-  ['spiinterface_16',['SpiInterface',['../classmax22200_1_1SpiInterface.html#a5b4ea12fdd1eac04ec3c4600fad4cc3a',1,'max22200::SpiInterface::SpiInterface()=default'],['../classmax22200_1_1SpiInterface.html#a6bc215d54eb536bcee360880c6ed345d',1,'max22200::SpiInterface::SpiInterface(const SpiInterface &amp;)=delete'],['../classmax22200_1_1SpiInterface.html#a2056b5452ad6992144bb096ab701cad3',1,'max22200::SpiInterface::SpiInterface(SpiInterface &amp;&amp;)=default']]]
+  ['readdpmconfig_0',['ReadDpmConfig',['../classmax22200_1_1MAX22200.html#a954e6242ee595056784164c23fc7caac',1,'max22200::MAX22200']]],
+  ['readfaultflags_1',['ReadFaultFlags',['../classmax22200_1_1MAX22200.html#a5a5eb5138a9479f297eac31aad340811',1,'max22200::MAX22200']]],
+  ['readfaultregister_2',['ReadFaultRegister',['../classmax22200_1_1MAX22200.html#aed74d2a7f8b4e3e4a8e4aaf0964b46f3',1,'max22200::MAX22200']]],
+  ['readfaultregisterselectiveclear_3',['ReadFaultRegisterSelectiveClear',['../classmax22200_1_1MAX22200.html#abe470fcd29ca6359dcb30391b5c7ff30',1,'max22200::MAX22200']]],
+  ['readregister32_4',['ReadRegister32',['../classmax22200_1_1MAX22200.html#a5141e07605df7a60c47852dd13e8f29a',1,'max22200::MAX22200']]],
+  ['readregister8_5',['ReadRegister8',['../classmax22200_1_1MAX22200.html#a036b8faa33340ace123f03195a58aff1',1,'max22200::MAX22200']]],
+  ['readstatus_6',['ReadStatus',['../classmax22200_1_1MAX22200.html#affc8972a21ff78c0faeb71a553449126',1,'max22200::MAX22200']]],
+  ['resetstatistics_7',['ResetStatistics',['../classmax22200_1_1MAX22200.html#a9defc6dbc606fb39a981ce7eacb13d28',1,'max22200::MAX22200']]]
 ];

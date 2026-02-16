@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['faulttype_0',['FaultType',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44',1,'max22200']]]
+  ['gpiosignal_0',['GpioSignal',['../namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1',1,'max22200']]]
 ];

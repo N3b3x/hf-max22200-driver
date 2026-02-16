@@ -1,23 +1,7 @@
 var searchData=
 [
-  ['get_5fsuccess_5fpercentage_0',['get_success_percentage',['../structTestResults.html#ab98f9ad5f994aa31bd7c0cd8ae551fb8',1,'TestResults']]],
-  ['get_5ftotal_5ftime_5fms_1',['get_total_time_ms',['../structTestResults.html#a6d2e718d81a8b4a4dcca515ee858de57',1,'TestResults']]],
-  ['getallchannelconfigs_2',['GetAllChannelConfigs',['../classmax22200_1_1MAX22200.html#a3b56b02c06a546159ff13d7d43278dcc',1,'max22200::MAX22200']]],
-  ['getchannelconfig_3',['GetChannelConfig',['../classmax22200_1_1MAX22200.html#a5155614b1cdc8c4c1701d56089124fc4',1,'max22200::MAX22200']]],
-  ['getchannelconfigreg_4',['getChannelConfigReg',['../namespacemax22200.html#a280cb12620b245b3a84173337eacc140',1,'max22200']]],
-  ['getchannelcurrentreg_5',['getChannelCurrentReg',['../namespacemax22200.html#a8e4487270b72212b6fc20a41f9ce6c78',1,'max22200']]],
-  ['getchanneltimingreg_6',['getChannelTimingReg',['../namespacemax22200.html#a1931d74c1b37646832b623a51b883dcb',1,'max22200']]],
-  ['getcurrents_7',['GetCurrents',['../classmax22200_1_1MAX22200.html#a1b07445faaa6f9e035c629e2ca7d3b95',1,'max22200::MAX22200']]],
-  ['getdeviceenable_8',['GetDeviceEnable',['../classmax22200_1_1MAX22200.html#af35d657cfa558058b273663974936270',1,'max22200::MAX22200']]],
-  ['getfaultcount_9',['getFaultCount',['../structmax22200_1_1FaultStatus.html#acb73d6c3e3dd4c9c459f7f040a864002',1,'max22200::FaultStatus']]],
-  ['getglobalconfig_10',['GetGlobalConfig',['../classmax22200_1_1MAX22200.html#a5dea4cc08bd4a3338a6f8c3f3ca2b554',1,'max22200::MAX22200']]],
-  ['gethittime_11',['GetHitTime',['../classmax22200_1_1MAX22200.html#a4dd5df8b2a48fcd708f4c49c88008668',1,'max22200::MAX22200']]],
-  ['getstatistics_12',['GetStatistics',['../classmax22200_1_1MAX22200.html#a693bdba7aecd1129b64cc8069a9141eb',1,'max22200::MAX22200']]],
-  ['getsuccessrate_13',['getSuccessRate',['../structmax22200_1_1DriverStatistics.html#a37bd3bcbbf066835e8abdfb0e928d27f',1,'max22200::DriverStatistics']]],
-  ['getversion_14',['GetVersion',['../classmax22200_1_1MAX22200.html#a0b1f85258162db3931fd794bc44f2409',1,'max22200::MAX22200']]],
-  ['globalconfig_15',['GlobalConfig',['../structmax22200_1_1GlobalConfig.html#ab7cb2b231bc242c3bc6d9a7b01f33b4b',1,'max22200::GlobalConfig']]],
-  ['gpioread_16',['GpioRead',['../classmax22200_1_1SpiInterface.html#a111b256a31bd35527c9d0cb874d39d47',1,'max22200::SpiInterface::GpioRead()'],['../classEsp32Max22200SpiBus.html#aed444b34fe84097b60ffbe6312c6525a',1,'Esp32Max22200SpiBus::GpioRead()']]],
-  ['gpioset_17',['GpioSet',['../classmax22200_1_1SpiInterface.html#aa4e100ba6824321c1dae87f4c61079b8',1,'max22200::SpiInterface::GpioSet()'],['../classEsp32Max22200SpiBus.html#a57354378af9335b6427c393c58fe3877',1,'Esp32Max22200SpiBus::GpioSet()']]],
-  ['gpiosetactive_18',['GpioSetActive',['../classmax22200_1_1SpiInterface.html#aa58f9210a8462fe54d4c93e55c8f440c',1,'max22200::SpiInterface']]],
-  ['gpiosetinactive_19',['GpioSetInactive',['../classmax22200_1_1SpiInterface.html#a186da92403ffedd170b845fe10beeafc',1,'max22200::SpiInterface']]]
+  ['faultstatus_0',['FaultStatus',['../structmax22200_1_1FaultStatus.html#a3f020a7c3fa1b5bbba61ca7b82b6e6ca',1,'max22200::FaultStatus']]],
+  ['faulttypetostr_1',['FaultTypeToStr',['../namespacemax22200.html#a44fc2cafd903163aebcc907711ff2aea',1,'max22200']]],
+  ['flip_5ftest_5fprogress_5findicator_2',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
+  ['fromregister_3',['fromRegister',['../structmax22200_1_1ChannelConfig.html#a0fe5a02e0a283e345a0bf637912da902',1,'max22200::ChannelConfig::fromRegister()'],['../structmax22200_1_1StatusConfig.html#a242a79a620c8af84b2eb9e1f6cfc1cac',1,'max22200::StatusConfig::fromRegister()'],['../structmax22200_1_1FaultStatus.html#aa8a82d49471b487e1ef6937316fd2302',1,'max22200::FaultStatus::fromRegister()'],['../structmax22200_1_1DpmConfig.html#abea418633d442e0b3c072260130de158',1,'max22200::DpmConfig::fromRegister()']]]
 ];

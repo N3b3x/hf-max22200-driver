@@ -102,7 +102,7 @@ $(function(){initNavTree('structmax22200_1_1FaultStatus.html',''); initResizable
 </div><!--header-->
 <div class="contents">
 
-<p>Fault status structure.  
+<p>Per-channel fault information from FAULT register (0x09)  
  <a href="#details">More...</a></p>
 
 <p><code>#include &lt;<a class="el" href="max22200__types_8hpp_source.html">max22200_types.hpp</a>&gt;</code></p>
@@ -110,39 +110,75 @@ $(function(){initNavTree('structmax22200_1_1FaultStatus.html',''); initResizable
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a3f020a7c3fa1b5bbba61ca7b82b6e6ca" id="r_a3f020a7c3fa1b5bbba61ca7b82b6e6ca"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3f020a7c3fa1b5bbba61ca7b82b6e6ca">FaultStatus</a> ()</td></tr>
-<tr class="memdesc:a3f020a7c3fa1b5bbba61ca7b82b6e6ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
 <tr class="separator:a3f020a7c3fa1b5bbba61ca7b82b6e6ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa8a82d49471b487e1ef6937316fd2302" id="r_aa8a82d49471b487e1ef6937316fd2302"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa8a82d49471b487e1ef6937316fd2302">fromRegister</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">val</a>)</td></tr>
+<tr class="separator:aa8a82d49471b487e1ef6937316fd2302"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a96bc66c963cabef81e2974c38d521b13" id="r_a96bc66c963cabef81e2974c38d521b13"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a96bc66c963cabef81e2974c38d521b13">hasFault</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
-<tr class="memdesc:a96bc66c963cabef81e2974c38d521b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if any fault is active.  <br /></td></tr>
+<tr class="memdesc:a96bc66c963cabef81e2974c38d521b13"><td class="mdescLeft">&#160;</td><td class="mdescRight">Check if any per-channel fault is active.  <br /></td></tr>
 <tr class="separator:a96bc66c963cabef81e2974c38d521b13"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acb73d6c3e3dd4c9c459f7f040a864002" id="r_acb73d6c3e3dd4c9c459f7f040a864002"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb73d6c3e3dd4c9c459f7f040a864002">getFaultCount</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
-<tr class="memdesc:acb73d6c3e3dd4c9c459f7f040a864002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get fault count.  <br /></td></tr>
+<tr class="memdesc:acb73d6c3e3dd4c9c459f7f040a864002"><td class="mdescLeft">&#160;</td><td class="mdescRight">Count total per-channel faults.  <br /></td></tr>
 <tr class="separator:acb73d6c3e3dd4c9c459f7f040a864002"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1afcb256c668593b964039897071c022" id="r_a1afcb256c668593b964039897071c022"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1afcb256c668593b964039897071c022">hasOvercurrent</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a1afcb256c668593b964039897071c022"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6b4ec8e76fe44358436edabe57f1ce26" id="r_a6b4ec8e76fe44358436edabe57f1ce26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a6b4ec8e76fe44358436edabe57f1ce26">hasHitNotReached</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a6b4ec8e76fe44358436edabe57f1ce26"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e0e0403ae94c19557a285e237641767" id="r_a4e0e0403ae94c19557a285e237641767"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4e0e0403ae94c19557a285e237641767">hasOpenLoadFault</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a4e0e0403ae94c19557a285e237641767"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3b3b49bc5b1c33805a1506dce55f46da" id="r_a3b3b49bc5b1c33805a1506dce55f46da"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3b3b49bc5b1c33805a1506dce55f46da">hasPlungerMovementFault</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a3b3b49bc5b1c33805a1506dce55f46da"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af700430a573ae360c17fe0267c3656e0" id="r_af700430a573ae360c17fe0267c3656e0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af700430a573ae360c17fe0267c3656e0">hasFaultOnChannel</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ch</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:af700430a573ae360c17fe0267c3656e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a687655ce5149458fa48aa3e9b3ff52a7" id="r_a687655ce5149458fa48aa3e9b3ff52a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a687655ce5149458fa48aa3e9b3ff52a7">hasOvercurrentOnChannel</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ch</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a687655ce5149458fa48aa3e9b3ff52a7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af563bc7e7955527f45380fd6f26fdbcb" id="r_af563bc7e7955527f45380fd6f26fdbcb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af563bc7e7955527f45380fd6f26fdbcb">hasHitNotReachedOnChannel</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ch</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:af563bc7e7955527f45380fd6f26fdbcb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b07c681c4ec8d1beb7fd0a9b29b7054" id="r_a0b07c681c4ec8d1beb7fd0a9b29b7054"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0b07c681c4ec8d1beb7fd0a9b29b7054">hasOpenLoadFaultOnChannel</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ch</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a0b07c681c4ec8d1beb7fd0a9b29b7054"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a271e02bc84bcfeb249c5ff13d30b436a" id="r_a271e02bc84bcfeb249c5ff13d30b436a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a271e02bc84bcfeb249c5ff13d30b436a">hasPlungerMovementFaultOnChannel</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ch</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a271e02bc84bcfeb249c5ff13d30b436a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab5b185a2192382ec96b32b9fb6eeca02" id="r_ab5b185a2192382ec96b32b9fb6eeca02"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab5b185a2192382ec96b32b9fb6eeca02">channelsWithAnyFault</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:ab5b185a2192382ec96b32b9fb6eeca02"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab3a94b1f3fad4e0b77e3ea1e7653aa6a" id="r_ab3a94b1f3fad4e0b77e3ea1e7653aa6a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab3a94b1f3fad4e0b77e3ea1e7653aa6a">overcurrent_protection</a></td></tr>
-<tr class="memdesc:ab3a94b1f3fad4e0b77e3ea1e7653aa6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Overcurrent protection fault.  <br /></td></tr>
-<tr class="separator:ab3a94b1f3fad4e0b77e3ea1e7653aa6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aeb4605ae6bf8258bddc29eb973411e5d" id="r_aeb4605ae6bf8258bddc29eb973411e5d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb4605ae6bf8258bddc29eb973411e5d">open_load</a></td></tr>
-<tr class="memdesc:aeb4605ae6bf8258bddc29eb973411e5d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open load detection fault.  <br /></td></tr>
-<tr class="separator:aeb4605ae6bf8258bddc29eb973411e5d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6848eed80754f48d3491855c9b2c61d" id="r_af6848eed80754f48d3491855c9b2c61d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af6848eed80754f48d3491855c9b2c61d">plunger_movement</a></td></tr>
-<tr class="memdesc:af6848eed80754f48d3491855c9b2c61d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Detection of plunger movement.  <br /></td></tr>
-<tr class="separator:af6848eed80754f48d3491855c9b2c61d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aba0c9b0342513fe65599dea48a68a456" id="r_aba0c9b0342513fe65599dea48a68a456"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aba0c9b0342513fe65599dea48a68a456">undervoltage_lockout</a></td></tr>
-<tr class="memdesc:aba0c9b0342513fe65599dea48a68a456"><td class="mdescLeft">&#160;</td><td class="mdescRight">Undervoltage lockout fault.  <br /></td></tr>
-<tr class="separator:aba0c9b0342513fe65599dea48a68a456"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a69868d2c7efe210087ee69d94dbff8d4" id="r_a69868d2c7efe210087ee69d94dbff8d4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a69868d2c7efe210087ee69d94dbff8d4">hit_current_not_reached</a></td></tr>
-<tr class="memdesc:a69868d2c7efe210087ee69d94dbff8d4"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current not reached fault.  <br /></td></tr>
-<tr class="separator:a69868d2c7efe210087ee69d94dbff8d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3cf7286894481d923f60012734c213f5" id="r_a3cf7286894481d923f60012734c213f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3cf7286894481d923f60012734c213f5">thermal_shutdown</a></td></tr>
-<tr class="memdesc:a3cf7286894481d923f60012734c213f5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Thermal shutdown fault.  <br /></td></tr>
-<tr class="separator:a3cf7286894481d923f60012734c213f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16017f50d085970c41fae33200f1df84" id="r_a16017f50d085970c41fae33200f1df84"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a16017f50d085970c41fae33200f1df84">overcurrent_channel_mask</a></td></tr>
+<tr class="memdesc:a16017f50d085970c41fae33200f1df84"><td class="mdescLeft">&#160;</td><td class="mdescRight">OCP per-channel bitmask (bit N = channel N)  <br /></td></tr>
+<tr class="separator:a16017f50d085970c41fae33200f1df84"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afa304aba813e60f85d434690482f38f4" id="r_afa304aba813e60f85d434690482f38f4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afa304aba813e60f85d434690482f38f4">hit_not_reached_channel_mask</a></td></tr>
+<tr class="memdesc:afa304aba813e60f85d434690482f38f4"><td class="mdescLeft">&#160;</td><td class="mdescRight">HHF per-channel bitmask (bit N = channel N)  <br /></td></tr>
+<tr class="separator:afa304aba813e60f85d434690482f38f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a088849be39d53d2c736eee36d1605" id="r_ad2a088849be39d53d2c736eee36d1605"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a088849be39d53d2c736eee36d1605">open_load_fault_channel_mask</a></td></tr>
+<tr class="memdesc:ad2a088849be39d53d2c736eee36d1605"><td class="mdescLeft">&#160;</td><td class="mdescRight">OLF per-channel bitmask (bit N = channel N)  <br /></td></tr>
+<tr class="separator:ad2a088849be39d53d2c736eee36d1605"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a34fd5261bae85fd1987f5f66d71677" id="r_a9a34fd5261bae85fd1987f5f66d71677"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a34fd5261bae85fd1987f5f66d71677">plunger_movement_fault_channel_mask</a></td></tr>
+<tr class="memdesc:a9a34fd5261bae85fd1987f5f66d71677"><td class="mdescLeft">&#160;</td><td class="mdescRight">DPM per-channel bitmask (bit N = channel N)  <br /></td></tr>
+<tr class="separator:a9a34fd5261bae85fd1987f5f66d71677"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Fault status structure. </p>
-<p>This structure contains the fault status information for the <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a>. </p>
+<div class="textblock"><p>Per-channel fault information from FAULT register (0x09) </p>
+<p>The FAULT register is 32-bit, read-only, and contains per-channel fault flags. Each fault type has an 8-bit field where bit N corresponds to channel N.</p>
+<h3><a class="anchor" id="autotoc_md53"></a>
+Register Layout</h3>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadNone">Byte   </th><th class="markdownTableHeadNone">Bits   </th><th class="markdownTableHeadNone">Field   </th><th class="markdownTableHeadNone">Description    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">3   </td><td class="markdownTableBodyNone">31:24   </td><td class="markdownTableBodyNone">OCP[7:0]   </td><td class="markdownTableBodyNone">Per-channel overcurrent flags    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">2   </td><td class="markdownTableBodyNone">23:16   </td><td class="markdownTableBodyNone">HHF[7:0]   </td><td class="markdownTableBodyNone">Per-channel HIT not reached flags    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyNone">1   </td><td class="markdownTableBodyNone">15:8   </td><td class="markdownTableBodyNone">OLF[7:0]   </td><td class="markdownTableBodyNone">Per-channel open-load flags    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">7:0   </td><td class="markdownTableBodyNone">DPM[7:0]   </td><td class="markdownTableBodyNone">Per-channel plunger movement flags   </td></tr>
+</table>
+<h3><a class="anchor" id="autotoc_md54"></a>
+Clearing Fault Flags</h3>
+<p><b><a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a></b>: Reading the FAULT register clears all fault flags simultaneously.</p>
+<p><b>MAX22200A</b> (recommended): Selective clear on read. To clear a specific fault bit, read the FAULT register while keeping the corresponding SDI bit HIGH for the channel(s) to clear. Only the bits corresponding to HIGH SDI bits are cleared.</p>
+<dl class="section note"><dt>Note</dt><dd>Channel 0 corresponds to the LSB (bit 0) of each fault byte. </dd>
+<dd>
+Reading the FAULT register also deasserts the nFAULT pin (if no other faults are active). </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a3f020a7c3fa1b5bbba61ca7b82b6e6ca" name="a3f020a7c3fa1b5bbba61ca7b82b6e6ca"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3f020a7c3fa1b5bbba61ca7b82b6e6ca">&#9670;&#160;</a></span>FaultStatus()</h2>
@@ -166,13 +202,66 @@ Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Default constructor. </p>
-<p>Initializes all fault flags to false. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a144">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab5b185a2192382ec96b32b9fb6eeca02" name="ab5b185a2192382ec96b32b9fb6eeca02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab5b185a2192382ec96b32b9fb6eeca02">&#9670;&#160;</a></span>channelsWithAnyFault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> max22200::FaultStatus::channelsWithAnyFault </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a162">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="aa8a82d49471b487e1ef6937316fd2302" name="aa8a82d49471b487e1ef6937316fd2302"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa8a82d49471b487e1ef6937316fd2302">&#9670;&#160;</a></span>fromRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> max22200::FaultStatus::fromRegister </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>val</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a145">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
 <a id="acb73d6c3e3dd4c9c459f7f040a864002" name="acb73d6c3e3dd4c9c459f7f040a864002"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#acb73d6c3e3dd4c9c459f7f040a864002">&#9670;&#160;</a></span>getFaultCount()</h2>
 
@@ -196,8 +285,9 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Get fault count. </p>
-<dl class="section return"><dt>Returns</dt><dd>Number of active faults </dd></dl>
+<p>Count total per-channel faults. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a151">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -224,105 +314,325 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Check if any fault is active. </p>
-<dl class="section return"><dt>Returns</dt><dd>true if any fault is active, false otherwise </dd></dl>
+<p>Check if any per-channel fault is active. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a150">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="af700430a573ae360c17fe0267c3656e0" name="af700430a573ae360c17fe0267c3656e0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af700430a573ae360c17fe0267c3656e0">&#9670;&#160;</a></span>hasFaultOnChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasFaultOnChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a156">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a6b4ec8e76fe44358436edabe57f1ce26" name="a6b4ec8e76fe44358436edabe57f1ce26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a6b4ec8e76fe44358436edabe57f1ce26">&#9670;&#160;</a></span>hasHitNotReached()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasHitNotReached </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a153">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="af563bc7e7955527f45380fd6f26fdbcb" name="af563bc7e7955527f45380fd6f26fdbcb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af563bc7e7955527f45380fd6f26fdbcb">&#9670;&#160;</a></span>hasHitNotReachedOnChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasHitNotReachedOnChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a159">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a4e0e0403ae94c19557a285e237641767" name="a4e0e0403ae94c19557a285e237641767"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4e0e0403ae94c19557a285e237641767">&#9670;&#160;</a></span>hasOpenLoadFault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasOpenLoadFault </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a154">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a0b07c681c4ec8d1beb7fd0a9b29b7054" name="a0b07c681c4ec8d1beb7fd0a9b29b7054"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0b07c681c4ec8d1beb7fd0a9b29b7054">&#9670;&#160;</a></span>hasOpenLoadFaultOnChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasOpenLoadFaultOnChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a160">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a1afcb256c668593b964039897071c022" name="a1afcb256c668593b964039897071c022"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1afcb256c668593b964039897071c022">&#9670;&#160;</a></span>hasOvercurrent()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasOvercurrent </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a152">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a687655ce5149458fa48aa3e9b3ff52a7" name="a687655ce5149458fa48aa3e9b3ff52a7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a687655ce5149458fa48aa3e9b3ff52a7">&#9670;&#160;</a></span>hasOvercurrentOnChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasOvercurrentOnChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a158">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a3b3b49bc5b1c33805a1506dce55f46da" name="a3b3b49bc5b1c33805a1506dce55f46da"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3b3b49bc5b1c33805a1506dce55f46da">&#9670;&#160;</a></span>hasPlungerMovementFault()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasPlungerMovementFault </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a155">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a271e02bc84bcfeb249c5ff13d30b436a" name="a271e02bc84bcfeb249c5ff13d30b436a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a271e02bc84bcfeb249c5ff13d30b436a">&#9670;&#160;</a></span>hasPlungerMovementFaultOnChannel()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hasPlungerMovementFaultOnChannel </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>ch</em></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a161">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a69868d2c7efe210087ee69d94dbff8d4" name="a69868d2c7efe210087ee69d94dbff8d4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a69868d2c7efe210087ee69d94dbff8d4">&#9670;&#160;</a></span>hit_current_not_reached</h2>
+<a id="afa304aba813e60f85d434690482f38f4" name="afa304aba813e60f85d434690482f38f4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afa304aba813e60f85d434690482f38f4">&#9670;&#160;</a></span>hit_not_reached_channel_mask</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::hit_current_not_reached</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> max22200::FaultStatus::hit_not_reached_channel_mask</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>HIT current not reached fault. </p>
+<p>HHF per-channel bitmask (bit N = channel N) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a141">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="aeb4605ae6bf8258bddc29eb973411e5d" name="aeb4605ae6bf8258bddc29eb973411e5d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aeb4605ae6bf8258bddc29eb973411e5d">&#9670;&#160;</a></span>open_load</h2>
+<a id="ad2a088849be39d53d2c736eee36d1605" name="ad2a088849be39d53d2c736eee36d1605"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a088849be39d53d2c736eee36d1605">&#9670;&#160;</a></span>open_load_fault_channel_mask</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::open_load</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> max22200::FaultStatus::open_load_fault_channel_mask</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Open load detection fault. </p>
+<p>OLF per-channel bitmask (bit N = channel N) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a142">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="ab3a94b1f3fad4e0b77e3ea1e7653aa6a" name="ab3a94b1f3fad4e0b77e3ea1e7653aa6a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ab3a94b1f3fad4e0b77e3ea1e7653aa6a">&#9670;&#160;</a></span>overcurrent_protection</h2>
+<a id="a16017f50d085970c41fae33200f1df84" name="a16017f50d085970c41fae33200f1df84"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a16017f50d085970c41fae33200f1df84">&#9670;&#160;</a></span>overcurrent_channel_mask</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::overcurrent_protection</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> max22200::FaultStatus::overcurrent_channel_mask</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Overcurrent protection fault. </p>
+<p>OCP per-channel bitmask (bit N = channel N) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a140">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="af6848eed80754f48d3491855c9b2c61d" name="af6848eed80754f48d3491855c9b2c61d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af6848eed80754f48d3491855c9b2c61d">&#9670;&#160;</a></span>plunger_movement</h2>
+<a id="a9a34fd5261bae85fd1987f5f66d71677" name="a9a34fd5261bae85fd1987f5f66d71677"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a34fd5261bae85fd1987f5f66d71677">&#9670;&#160;</a></span>plunger_movement_fault_channel_mask</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::plunger_movement</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> max22200::FaultStatus::plunger_movement_fault_channel_mask</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Detection of plunger movement. </p>
-
-</div>
-</div>
-<a id="a3cf7286894481d923f60012734c213f5" name="a3cf7286894481d923f60012734c213f5"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3cf7286894481d923f60012734c213f5">&#9670;&#160;</a></span>thermal_shutdown</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::thermal_shutdown</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Thermal shutdown fault. </p>
-
-</div>
-</div>
-<a id="aba0c9b0342513fe65599dea48a68a456" name="aba0c9b0342513fe65599dea48a68a456"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aba0c9b0342513fe65599dea48a68a456">&#9670;&#160;</a></span>undervoltage_lockout</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::FaultStatus::undervoltage_lockout</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-<p>Undervoltage lockout fault. </p>
+<p>DPM per-channel bitmask (bit N = channel N) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a143">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>

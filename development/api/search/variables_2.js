@@ -1,18 +1,17 @@
 var searchData=
 [
-  ['daisy_5fchain_5fmask_0',['DAISY_CHAIN_MASK',['../namespacemax22200_1_1GlobalConfigBits.html#a1bce7882eeff36ceeb40e1dd00f8dd04',1,'max22200::GlobalConfigBits']]],
-  ['daisy_5fchain_5fmode_1',['daisy_chain_mode',['../structmax22200_1_1GlobalConfig.html#ac71a1129b1be4651b6b4557d938e9927',1,'max22200::GlobalConfig']]],
-  ['daisy_5fchain_5fpos_2',['DAISY_CHAIN_POS',['../namespacemax22200_1_1GlobalConfigBits.html#ac89bf27cb40122f8fe43506242f1afd4',1,'max22200::GlobalConfigBits']]],
-  ['default_5fhit_5fcurrent_5fma_3',['DEFAULT_HIT_CURRENT_MA',['../structMAX22200__TestConfig_1_1TestConfig.html#afb71de801513e0bead83fa7e50a2660f',1,'MAX22200_TestConfig::TestConfig']]],
-  ['default_5fhit_5ftime_5fms_4',['DEFAULT_HIT_TIME_MS',['../structMAX22200__TestConfig_1_1TestConfig.html#aeaf511ec83b8031d3d928ee589d3b759',1,'MAX22200_TestConfig::TestConfig']]],
-  ['default_5fhold_5fcurrent_5fma_5',['DEFAULT_HOLD_CURRENT_MA',['../structMAX22200__TestConfig_1_1TestConfig.html#a54f5129497d4006ab95ebf2784a85326',1,'MAX22200_TestConfig::TestConfig']]],
-  ['diag_5fen_5fmask_6',['DIAG_EN_MASK',['../namespacemax22200_1_1GlobalConfigBits.html#aa65ca9852cebdce801584c1fd94c18c4',1,'max22200::GlobalConfigBits']]],
-  ['diag_5fen_5fpos_7',['DIAG_EN_POS',['../namespacemax22200_1_1GlobalConfigBits.html#abbd5f826e8a74240d8af5eeb3dc55efe',1,'max22200::GlobalConfigBits']]],
-  ['diagnostic_8',['DIAGNOSTIC',['../namespacemax22200_1_1Registers.html#af9fd4bd3a5ec14f94d8d04e4a7b6f01d',1,'max22200::Registers']]],
-  ['diagnostic_5fenable_9',['diagnostic_enable',['../structmax22200_1_1GlobalConfig.html#abe65fafdc3602f08e90260c5ff6b8f19',1,'max22200::GlobalConfig']]],
-  ['dpm_5fmask_10',['DPM_MASK',['../namespacemax22200_1_1FaultStatusBits.html#ac3eeb111c69f6a26f308396b00462c2c',1,'max22200::FaultStatusBits']]],
-  ['dpm_5fpos_11',['DPM_POS',['../namespacemax22200_1_1FaultStatusBits.html#ae52edf7852deabc4828f6c0f7eb4caf9',1,'max22200::FaultStatusBits']]],
-  ['drive_5fmode_12',['drive_mode',['../structmax22200_1_1ChannelConfig.html#ad5e23fc3312df705ed4933dd8c0106d0',1,'max22200::ChannelConfig']]],
-  ['drive_5fmode_5fmask_13',['DRIVE_MODE_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#ad675f3073f1045681ac801ab0941e333',1,'max22200::ChannelConfigBits']]],
-  ['drive_5fmode_5fpos_14',['DRIVE_MODE_POS',['../namespacemax22200_1_1ChannelConfigBits.html#abfcce0383f49071215d77e70d859b550',1,'max22200::ChannelConfigBits']]]
+  ['default_5fhit_5fcurrent_0',['DEFAULT_HIT_CURRENT',['../structMAX22200__TestConfig_1_1TestConfig.html#a5a70ba57468e65bad6d0201544599bd9',1,'MAX22200_TestConfig::TestConfig']]],
+  ['default_5fhit_5ftime_1',['DEFAULT_HIT_TIME',['../structMAX22200__TestConfig_1_1TestConfig.html#ad7b1b2bab505e2ee3b9b37248b8ec574',1,'MAX22200_TestConfig::TestConfig']]],
+  ['default_5fhold_5fcurrent_2',['DEFAULT_HOLD_CURRENT',['../structMAX22200__TestConfig_1_1TestConfig.html#a62f85a9ce34828b6463dd4b66b6e3df3',1,'MAX22200_TestConfig::TestConfig']]],
+  ['dpm_5fbit_3',['DPM_BIT',['../namespacemax22200_1_1StatusReg.html#aa15ffdb90b960ff9e0127eb039f0ced5',1,'max22200::StatusReg']]],
+  ['dpm_5fen_5fbit_4',['DPM_EN_BIT',['../namespacemax22200_1_1CfgChReg.html#a379c270b3b13617599f17c61cf6b73e9',1,'max22200::CfgChReg']]],
+  ['dpm_5fipth_5fmask_5',['DPM_IPTH_MASK',['../namespacemax22200_1_1CfgDpmReg.html#ad06b085c495ff5622c0f8b5c0880eb0c',1,'max22200::CfgDpmReg']]],
+  ['dpm_5fipth_5fshift_6',['DPM_IPTH_SHIFT',['../namespacemax22200_1_1CfgDpmReg.html#a70bca30870a60189caa805775a846f4b',1,'max22200::CfgDpmReg']]],
+  ['dpm_5fistart_5fmask_7',['DPM_ISTART_MASK',['../namespacemax22200_1_1CfgDpmReg.html#a61203d11441fc09197e3ed0b4a183638',1,'max22200::CfgDpmReg']]],
+  ['dpm_5fistart_5fshift_8',['DPM_ISTART_SHIFT',['../namespacemax22200_1_1CfgDpmReg.html#a5f7ca00818107bb82f63cf63ab49d660',1,'max22200::CfgDpmReg']]],
+  ['dpm_5fmask_9',['DPM_MASK',['../namespacemax22200_1_1FaultReg.html#ac9de5f0f6493be4d5d8932a2ed910206',1,'max22200::FaultReg']]],
+  ['dpm_5fshift_10',['DPM_SHIFT',['../namespacemax22200_1_1FaultReg.html#a7a7a50ff0af5618e345d86b2fe42829e',1,'max22200::FaultReg']]],
+  ['dpm_5ftdeb_5fmask_11',['DPM_TDEB_MASK',['../namespacemax22200_1_1CfgDpmReg.html#a05e2defa0a4024447c534a8a85705b34',1,'max22200::CfgDpmReg']]],
+  ['dpm_5ftdeb_5fshift_12',['DPM_TDEB_SHIFT',['../namespacemax22200_1_1CfgDpmReg.html#a02ff25f6177261f5ac7b90d7989c5beb',1,'max22200::CfgDpmReg']]],
+  ['drive_5fmode_13',['drive_mode',['../structmax22200_1_1ChannelConfig.html#ad5e23fc3312df705ed4933dd8c0106d0',1,'max22200::ChannelConfig']]]
 ];

@@ -200,6 +200,7 @@ The test suites use a centralized build system with scripts. Available applicati
 | **Application Name** | **Description** | **Hardware Required** |
 |----------------------|----------------|----------------------|
 | `max22200_comprehensive_test` | Comprehensive MAX22200 driver testing with all features | MAX22200 board |
+| `max22200_solenoid_valve_test` | Solenoid/valve test: all 8 channels, C21 hit/hold, sequential & parallel patterns, full diagnostics | MAX22200 board + valves (optional) |
 
 ### List Available Applications
 
@@ -334,6 +335,30 @@ The test framework provides:
 - Comprehensive test summary
 - Success percentage calculation
 
+### Solenoid / Valve Test
+
+**Application**: `max22200_solenoid_valve_test`
+
+Dedicated full driver check on valves. Configures **all 8 channels** with the same C21-style profile (100 ms hit, 50% hold, low-side CDR or VDR per `C21ValveConfig` in `esp32_max22200_test_config.hpp`). Runs synchronized patterns and logs comprehensive diagnostics.
+
+#### Features
+
+- **Same valve profile on all channels**: Hit time 100 ms, hold 50%, CDR or VDR at compile time.
+- **Sequential pattern**: Follow-up clicking — ch0 → ch1 → … → ch7 (each on 200 ms, 80 ms gap).
+- **Parallel pattern**: All 8 channels on together for 500 ms, then all off.
+- **Full diagnostics**: STATUS (ACTIVE, fault flags, channels on), FAULT register (OCP, HHF, OLF, DPM per channel), last fault byte (hex + decode), nFAULT pin state, per-channel config readback, board config, driver statistics. Formatted logging with section headers and tables for easy interpretation.
+
+#### Build and run
+
+```bash
+./scripts/build_app.sh max22200_solenoid_valve_test Debug
+./scripts/flash_app.sh max22200_solenoid_valve_test Debug
+```
+
+#### Configuration
+
+Valve profile is controlled by `C21ValveConfig` in `esp32_max22200_test_config.hpp`: `USE_CDR`, `HIT_TIME_MS`, `HOLD_PERCENT`, `HIT_PERCENT`. Timing constants (e.g. `SEQUENTIAL_HIT_MS`, `PARALLEL_HOLD_MS`) are in `max22200_solenoid_valve_test.cpp`.
+
 ---
 
 ## 🔧 Configuration
@@ -361,12 +386,16 @@ global_config.ics_enable = true;
 global_config.daisy_chain_mode = false;
 global_config.sleep_mode = false;
 
-// Channel configuration
+// Channel configuration (user units: mA and ms)
 ChannelConfig channel_config;
-channel_config.enabled = true;
 channel_config.drive_mode = DriveMode::CDR;
-channel_config.hit_current = 500;  // mA
-channel_config.hold_current = 200; // mA
+channel_config.side_mode = SideMode::LOW_SIDE;
+channel_config.hit_current_value = 500.0f;   // mA
+channel_config.hold_current_value = 200.0f;  // mA
+channel_config.hit_time_ms = 10.0f;
+channel_config.full_scale_current_ma = 1000;
+  channel_config.master_clock_80khz = false;
+channel_config.chop_freq = ChopFreq::FMAIN_DIV2;
 ```
 
 ---

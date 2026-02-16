@@ -114,7 +114,7 @@ Include dependency graph for max22200_spi_interface.hpp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="max22200__spi__interface_8hpp__dep__incl.svg" width="596" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="max22200__spi__interface_8hpp__dep__incl.svg" width="640" height="227"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="max22200__spi__interface_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -146,6 +146,53 @@ Enumerations</h2></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>CRTP-based template interface for SPI communication. </p>
+<p>This file defines the hardware abstraction layer (HAL) interface for SPI communication and GPIO control required by the MAX22200 driver. Platform-specific implementations (e.g., ESP32, STM32) must inherit from SpiInterface and implement all pure virtual methods.</p>
+<h2><a class="anchor" id="autotoc_md25"></a>
+MAX22200 SPI Requirements</h2>
+<h3><a class="anchor" id="autotoc_md26"></a>
+SPI Mode</h3>
+<ul>
+<li><b>Mode 0 only</b> (CPOL=0, CPHA=0)</li>
+<li>Clock idle LOW, data sampled on rising edge, output on falling edge</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md27"></a>
+SPI Clock Speed</h3>
+<ul>
+<li><b>Standalone</b>: Up to 10 MHz</li>
+<li><b>Daisy-chain</b>: Up to 5 MHz</li>
+<li>Minimum clock period: 100ns (tCLK)</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md28"></a>
+SPI Signals</h3>
+<ul>
+<li><b>SCK</b>: SPI clock (input, internal pulldown)</li>
+<li><b>CSB</b>: Chip select (active-low, internal pullup)</li>
+<li><b>SDI</b>: Serial data in (MOSI, internal pulldown)</li>
+<li><b>SDO</b>: Serial data out (MISO, open-drain, requires external pullup)</li>
+<li><b>CMD</b>: Command mode select (must be controlled via GPIO)</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md29"></a>
+CMD Pin Control</h3>
+<p>The CMD pin is critical for the two-phase SPI protocol:</p><ul>
+<li><b>HIGH</b>: Command Register write mode (Phase 1)</li>
+<li><b>LOW</b>: Data register read/write mode (Phase 2)</li>
+<li>Must be held HIGH during the rising edge of CSB for Command Register writes</li>
+<li>Setup time: 20ns (tCMS) before CSB rising edge</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md30"></a>
+ENABLE Pin Control</h3>
+<ul>
+<li><b>HIGH</b>: Device enabled (normal operation)</li>
+<li><b>LOW</b>: Device disabled (sleep mode, &lt; 11μA consumption)</li>
+<li>Enable time (tEN): 0.5ms from rising edge to SPI ready</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md31"></a>
+FAULT Pin Reading</h3>
+<ul>
+<li><b>Open-drain output</b> (requires external pullup)</li>
+<li><b>LOW</b>: Fault condition present (active-low)</li>
+<li><b>HIGH</b>: No fault (or masked fault)</li>
+</ul>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024-2025 HardFOC. All rights reserved. </dd></dl>
 </div></div><!-- contents -->
 </div><!-- doc-content -->

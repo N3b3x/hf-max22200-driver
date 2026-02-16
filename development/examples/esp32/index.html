@@ -170,7 +170,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -708,6 +708,11 @@ git submodule update <span class="nt">--init</span> <span class="nt">--recursive
       <td>Comprehensive MAX22200 driver testing with all features</td>
       <td>MAX22200 board</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max22200_solenoid_valve_test</code></td>
+      <td>Solenoid/valve test: all 8 channels, C21 hit/hold, sequential &amp; parallel patterns, full diagnostics</td>
+      <td>MAX22200 board + valves (optional)</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="list-available-applications">
@@ -945,7 +950,58 @@ idf.py <span class="nt">-p</span> /dev/ttyUSB0 monitor
   <li>GPIO14 progress indicator (toggles on each test)</li>
   <li>Comprehensive test summary</li>
   <li>Success percentage calculation</li>
-</ul><hr />
+</ul>
+<h3 id="solenoid--valve-test">
+  
+  
+    <a href="#solenoid--valve-test" class="anchor-heading" aria-labelledby="solenoid--valve-test"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Solenoid / Valve Test
+  
+  
+</h3>
+    
+
+<p><strong>Application</strong>: <code class="language-plaintext highlighter-rouge">max22200_solenoid_valve_test</code></p>
+
+<p>Dedicated full driver check on valves. Configures <strong>all 8 channels</strong> with the same C21-style profile (100 ms hit, 50% hold, low-side CDR or VDR per <code class="language-plaintext highlighter-rouge">C21ValveConfig</code> in <code class="language-plaintext highlighter-rouge">esp32_max22200_test_config.hpp</code>). Runs synchronized patterns and logs comprehensive diagnostics.</p>
+<h4 id="features">
+  
+  
+    <a href="#features" class="anchor-heading" aria-labelledby="features"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Features
+  
+  
+</h4>
+    
+
+<ul>
+  <li><strong>Same valve profile on all channels</strong>: Hit time 100 ms, hold 50%, CDR or VDR at compile time.</li>
+  <li><strong>Sequential pattern</strong>: Follow-up clicking — ch0 → ch1 → … → ch7 (each on 200 ms, 80 ms gap).</li>
+  <li><strong>Parallel pattern</strong>: All 8 channels on together for 500 ms, then all off.</li>
+  <li><strong>Full diagnostics</strong>: STATUS (ACTIVE, fault flags, channels on), FAULT register (OCP, HHF, OLF, DPM per channel), last fault byte (hex + decode), nFAULT pin state, per-channel config readback, board config, driver statistics. Formatted logging with section headers and tables for easy interpretation.</li>
+</ul>
+<h4 id="build-and-run">
+  
+  
+    <a href="#build-and-run" class="anchor-heading" aria-labelledby="build-and-run"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build and run
+  
+  
+</h4>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh max22200_solenoid_valve_test Debug
+./scripts/flash_app.sh max22200_solenoid_valve_test Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="configuration">
+  
+  
+    <a href="#configuration" class="anchor-heading" aria-labelledby="configuration"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Configuration
+  
+  
+</h4>
+    
+
+<p>Valve profile is controlled by <code class="language-plaintext highlighter-rouge">C21ValveConfig</code> in <code class="language-plaintext highlighter-rouge">esp32_max22200_test_config.hpp</code>: <code class="language-plaintext highlighter-rouge">USE_CDR</code>, <code class="language-plaintext highlighter-rouge">HIT_TIME_MS</code>, <code class="language-plaintext highlighter-rouge">HOLD_PERCENT</code>, <code class="language-plaintext highlighter-rouge">HIT_PERCENT</code>. Timing constants (e.g. <code class="language-plaintext highlighter-rouge">SEQUENTIAL_HIT_MS</code>, <code class="language-plaintext highlighter-rouge">PARALLEL_HOLD_MS</code>) are in <code class="language-plaintext highlighter-rouge">max22200_solenoid_valve_test.cpp</code>.</p><hr />
 <h2 id="-configuration">
   
   
@@ -998,6 +1054,10 @@ idf.py <span class="nt">-p</span> /dev/ttyUSB0 monitor
 11
 12
 13
+14
+15
+16
+17
 </pre></td><td class="rouge-code"><pre><span class="c1">// Global configuration</span>
 <span class="n">GlobalConfig</span> <span class="n">global_config</span><span class="p">;</span>
 <span class="n">global_config</span><span class="p">.</span><span class="n">diagnostic_enable</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
@@ -1005,12 +1065,16 @@ idf.py <span class="nt">-p</span> /dev/ttyUSB0 monitor
 <span class="n">global_config</span><span class="p">.</span><span class="n">daisy_chain_mode</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="n">global_config</span><span class="p">.</span><span class="n">sleep_mode</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-<span class="c1">// Channel configuration</span>
+<span class="c1">// Channel configuration (user units: mA and ms)</span>
 <span class="n">ChannelConfig</span> <span class="n">channel_config</span><span class="p">;</span>
-<span class="n">channel_config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 <span class="n">channel_config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-<span class="n">channel_config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>  <span class="c1">// mA</span>
-<span class="n">channel_config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span> <span class="c1">// mA</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// mA</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+  <span class="n">channel_config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+<span class="n">channel_config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div><hr />
 <h2 id="-troubleshooting">
   

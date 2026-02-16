@@ -176,7 +176,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -272,7 +272,7 @@
 </h1>
     
 
-<p>This guide helps you diagnose and resolve common issues when using the MAX22200 driver.</p>
+<p>This guide helps you diagnose and resolve common issues when using the MAX22200 driver. For a detailed analysis of SPI command bytes, write/read byte order, and decoding (and why raw register HEX comparison is used for pass/fail), see <a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html">SPI Protocol Analysis</a>.</p>
 <h2 id="common-error-messages">
   
   
@@ -390,8 +390,8 @@
 <p><strong>Symptoms:</strong></p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">FaultStatus.overcurrent_protection</code> is true</li>
-  <li>Channel disabled automatically</li>
+  <li><code class="language-plaintext highlighter-rouge">FaultStatus::hasOvercurrent()</code> is true (or per-channel <code class="language-plaintext highlighter-rouge">hasOvercurrentOnChannel(ch)</code>)</li>
+  <li>nFAULT pin asserted; channel may be disabled depending on mask</li>
 </ul>
 
 <p><strong>Causes:</strong></p>
@@ -406,7 +406,7 @@
 
 <ol>
   <li><strong>Check Load</strong>: Verify load is within specifications (1A RMS max per channel)</li>
-  <li><strong>Reduce Current</strong>: Lower hit_current and hold_current settings</li>
+  <li><strong>Reduce Current</strong>: Lower hit_current_value and hold_current_value (or use SetHitCurrentMa/SetHoldCurrentMa)</li>
   <li><strong>Check for Shorts</strong>: Verify no short circuits in wiring</li>
   <li><strong>Clear Fault</strong>: Read fault status to clear, then reconfigure</li>
 </ol><hr />
@@ -598,31 +598,47 @@
 5
 6
 </pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">FaultStatus</span> <span class="n">faults</span><span class="p">;</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ReadFaultStatus</span><span class="p">(</span><span class="n">faults</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ReadFaultRegister</span><span class="p">(</span><span class="n">faults</span><span class="p">);</span>
 
 <span class="k">if</span> <span class="p">(</span><span class="n">faults</span><span class="p">.</span><span class="n">hasFault</span><span class="p">())</span> <span class="p">{</span>
     <span class="n">printf</span><span class="p">(</span><span class="s">"Faults detected: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">faults</span><span class="p">.</span><span class="n">getFaultCount</span><span class="p">());</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
-<h3 id="read-channel-status">
+<h3 id="read-channel-and-fault-status">
   
   
-    <a href="#read-channel-status" class="anchor-heading" aria-labelledby="read-channel-status"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Read Channel Status
+    <a href="#read-channel-and-fault-status" class="anchor-heading" aria-labelledby="read-channel-and-fault-status"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Read Channel and Fault Status
   
   
 </h3>
     
+
+<p>Use STATUS for channel on/off and FAULT for per-channel fault flags:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 3
 4
 5
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelStatus</span> <span class="n">status</span><span class="p">;</span>
-<span class="n">driver</span><span class="p">.</span><span class="n">ReadChannelStatus</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">status</span><span class="p">);</span>
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">StatusConfig</span> <span class="n">status</span><span class="p">;</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ReadStatus</span><span class="p">(</span><span class="n">status</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">ch0_on</span> <span class="o">=</span> <span class="n">status</span><span class="p">.</span><span class="n">isChannelOn</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 
-<span class="n">printf</span><span class="p">(</span><span class="s">"Channel 0: enabled=%d, fault=%d, current=%u</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span>
-       <span class="n">status</span><span class="p">.</span><span class="n">enabled</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">fault_active</span><span class="p">,</span> <span class="n">status</span><span class="p">.</span><span class="n">current_reading</span><span class="p">);</span>
+<span class="n">max22200</span><span class="o">::</span><span class="n">FaultStatus</span> <span class="n">faults</span><span class="p">;</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">ReadFaultRegister</span><span class="p">(</span><span class="n">faults</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">ch0_fault</span> <span class="o">=</span> <span class="n">faults</span><span class="p">.</span><span class="n">hasFaultOnChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="k">if</span> <span class="p">(</span><span class="n">faults</span><span class="p">.</span><span class="n">hasOvercurrent</span><span class="p">())</span> <span class="p">{</span> <span class="cm">/* ... */</span> <span class="p">}</span>
+
+<span class="c1">// Configured current in mA (after SetBoardConfig)</span>
+<span class="kt">uint32_t</span> <span class="n">hit_ma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">GetHitCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">hit_ma</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="use-callbacks">
   
@@ -663,7 +679,7 @@
 </h3>
     
 
-<p><strong>A:</strong> Each channel can handle up to 1A RMS. The hit_current and hold_current settings use 10-bit values (0-1023) that map to the actual current range.</p>
+<p><strong>A:</strong> Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_current_value and hold_current_value in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.</p>
 <h3 id="q-can-i-use-multiple-channels-simultaneously">
   
   

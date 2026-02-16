@@ -175,15 +175,13 @@ class max22200::SpiInterface&lt; Derived &gt;</div><p>CRTP-based template interf
 <div class="line">  <span class="keywordtype">bool</span> Transfer(...) { ... }</div>
 <div class="line">  <span class="comment">// ... implement other methods</span></div>
 <div class="line">};</div>
-<div class="ttc" id="aclassmax22200_1_1MAX22200_html"><div class="ttname"><a href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a></div><div class="ttdef"><b>Definition</b> max22200.hpp:57</div></div>
-<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:73</div></div>
+<div class="ttc" id="aclassmax22200_1_1MAX22200_html"><div class="ttname"><a href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a></div><div class="ttdef"><b>Definition</b> max22200.hpp:132</div></div>
+<div class="ttc" id="aclassmax22200_1_1SpiInterface_html"><div class="ttname"><a href="classmax22200_1_1SpiInterface.html">max22200::SpiInterface</a></div><div class="ttdoc">CRTP-based template interface for SPI communication.</div><div class="ttdef"><b>Definition</b> max22200_spi_interface.hpp:114</div></div>
 </div><!-- fragment --><dl class="tparams"><dt>Template Parameters</dt><dd>
   <table class="tparams">
     <tr><td class="paramname">Derived</td><td>The derived class type (CRTP pattern) </td></tr>
   </table>
   </dd>
-</dl>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="Basic-example.html#_a0">Basic</a>.</dd>
 </dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="a5b4ea12fdd1eac04ec3c4600fad4cc3a" name="a5b4ea12fdd1eac04ec3c4600fad4cc3a"></a>
@@ -338,13 +336,28 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 <p>Sets up SPI communication parameters such as clock speed, data mode, and bit order.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">speed_hz</td><td>SPI clock speed in Hz </td></tr>
-    <tr><td class="paramname">mode</td><td>SPI mode (0-3) defining clock polarity and phase </td></tr>
-    <tr><td class="paramname">msb_first</td><td>true for MSB first, false for LSB first </td></tr>
+    <tr><td class="paramname">speed_hz</td><td>SPI clock speed in Hz<ul>
+<li>Standalone: Up to 10 MHz</li>
+<li>Daisy-chain: Up to 5 MHz</li>
+<li>Minimum period: 100ns (10 MHz max) </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">mode</td><td>SPI mode (0-3) defining clock polarity and phase<ul>
+<li><b>Must be Mode 0</b> (CPOL=0, CPHA=0) for <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a></li>
+<li>Clock idle LOW, data sampled on rising edge </li>
+</ul>
+</td></tr>
+    <tr><td class="paramname">msb_first</td><td>true for MSB first, false for LSB first<ul>
+<li><b>Must be true</b> (MSB first) for <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if configuration was successful, false otherwise </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if configuration was successful, false otherwise</dd></dl>
+<dl class="section note"><dt>Note</dt><dd><a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> requires Mode 0 and MSB-first bit order. </dd>
+<dd>
+Clock speed should not exceed 10 MHz (standalone) or 5 MHz (daisy-chain). </dd></dl>
 
 </div>
 </div>
@@ -414,15 +427,29 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 </div><div class="memdoc">
 
 <p>Read the current state of a control pin. </p>
-<p>Primarily used for reading the FAULT pin status.</p>
+<p>Primarily used for reading the FAULT pin status to detect fault conditions.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to read. </td></tr>
-    <tr><td class="paramdir">[out]</td><td class="paramname">signal</td><td>Receives the current signal state. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to read:<ul>
+<li><b>FAULT</b>: Active-low (ACTIVE = LOW = fault present)</li>
+<li><b>ENABLE</b>: Can be read to verify state</li>
+<li><b>CMD</b>: Can be read to verify state </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[out]</td><td class="paramname">signal</td><td>Receives the current signal state:<ul>
+<li><a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a> = fault present (for FAULT pin)</li>
+<li><a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a6b273343c454f9c53dcfc9c4ccf171d2" title="Pin function is deasserted.">GpioSignal::INACTIVE</a> = no fault (for FAULT pin) </li>
+</ul>
+</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if the read was successful, false otherwise. </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if the read was successful, false otherwise.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>FAULT pin is open-drain and requires external pullup resistor. </dd>
+<dd>
+FAULT pin is LOW when any unmasked fault is active. </dd>
+<dd>
+Reading FAULT pin does not clear fault flags (use ReadFaultRegister()). </dd></dl>
 
 </div>
 </div>
@@ -456,13 +483,25 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 </div><div class="memdoc">
 
 <p>Set a control pin to the specified signal state. </p>
+<p>Controls the <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> hardware control pins (ENABLE, CMD, FAULT). The platform implementation maps <a class="el" href="namespacemax22200.html#aacf1ddc59c91ce8cf173bc60bfffeff1a18ff74f43da410c5529f7d6fca84f115" title="Pin function is asserted.">GpioSignal::ACTIVE</a>/INACTIVE to the correct physical level based on each pin's polarity.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to drive (ENABLE, CMD). </td></tr>
-    <tr><td class="paramdir">[in]</td><td class="paramname">signal</td><td>ACTIVE to assert the pin function, INACTIVE to deassert. </td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">pin</td><td>Which control pin to drive:<ul>
+<li><b>ENABLE</b>: Active-high (ACTIVE = HIGH, enables device)</li>
+<li><b>CMD</b>: Active-high (ACTIVE = HIGH, Command Register mode)</li>
+<li><b>FAULT</b>: Read-only (use GpioRead instead) </li>
+</ul>
+</td></tr>
+    <tr><td class="paramdir">[in]</td><td class="paramname">signal</td><td>ACTIVE to assert the pin function, INACTIVE to deassert.</td></tr>
   </table>
   </dd>
 </dl>
+<dl class="section note"><dt>Note</dt><dd>For CMD pin: Must be held HIGH during Command Register writes. </dd>
+<dd>
+For ENABLE pin: 0.5ms delay required after setting HIGH before SPI access. </dd>
+<dd>
+FAULT pin is read-only (open-drain output from device).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="#aa58f9210a8462fe54d4c93e55c8f440c" title="Assert a control pin (set to ACTIVE). Convenience wrapper for GpioSet(pin, GpioSignal::ACTIVE).">GpioSetActive()</a>, <a class="el" href="#a186da92403ffedd170b845fe10beeafc" title="Deassert a control pin (set to INACTIVE). Convenience wrapper for GpioSet(pin, GpioSignal::INACTIVE).">GpioSetInactive()</a> for convenience wrappers </dd></dl>
 
 </div>
 </div>

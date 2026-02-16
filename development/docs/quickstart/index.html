@@ -176,7 +176,7 @@
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
       </button><a href="/hf-max22200-driver/development/" class="nav-list-link">HardFOC MAX22200 Driver</a><ul class="nav-list"><li class="nav-list-item"><button class="nav-list-expander btn-reset" aria-label="📚 Documentation submenu" aria-expanded="false">
         <svg viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="#svg-arrow-right"></use></svg>
-      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li></ul>
+      </button><a href="/hf-max22200-driver/development/docs/" class="nav-list-link">📚 Documentation</a><ul class="nav-list"><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/installation/" class="nav-list-link">🛠️ Installation</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/quickstart/" class="nav-list-link">⚡ Quick Start</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/hardware_setup/" class="nav-list-link">🔌 Hardware Setup</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/platform_integration/" class="nav-list-link">🔧 Platform Integration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/configuration/" class="nav-list-link">⚙️ Configuration</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/examples/" class="nav-list-link">💡 Examples</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/troubleshooting/" class="nav-list-link">🐛 Troubleshooting</a></li></ul></li></ul></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/api_reference.html" class="nav-list-link">API Reference</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/examples/esp32/" class="nav-list-link">MAX22200 ESP32-C6 Comprehensive Test Suite</a></li><li class="nav-list-item"><a href="/hf-max22200-driver/development/docs/spi_protocol_analysis.html" class="nav-list-link">SPI Protocol and Decode Analysis</a></li></ul>
   
 </nav>
 
@@ -327,6 +327,9 @@
 27
 28
 29
+30
+31
+32
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
 </span>
 <span class="c1">// 1. Implement the SPI interface</span>
@@ -344,17 +347,20 @@
 
 <span class="c1">// 3. Initialize</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 4. Configure channel 0</span>
+    <span class="c1">// 4. Configure channel 0 (CDR, low-side; user units: mA and ms)</span>
     <span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>   <span class="c1">// 500 mA hit current</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>  <span class="c1">// 200 mA hold current</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>     <span class="c1">// 1000 ms hit time</span>
-    
+    <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// 500 mA</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// 200 mA</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>          <span class="c1">// 10 ms</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>                <span class="c1">// IFS for conversion (e.g. from SetBoardConfig)</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// 100 kHz base (from STATUS)</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                <span class="c1">// Enable HIT current check</span>
+
     <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="step-by-step-explanation">
@@ -457,15 +463,33 @@
 7
 8
 9
+10
+11
+12
 </pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>  <span class="c1">// Current Drive Regulation</span>
-<span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>   <span class="c1">// Hit current in mA (0-1023)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>  <span class="c1">// Hold current in mA (0-1023)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>     <span class="c1">// Hit time in ms (0-65535)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// 500 mA (CDR)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span> <span class="c1">// 200 mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>         <span class="c1">// 10 ms</span>
+<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>               <span class="c1">// Full-scale current (required for CDR)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// 100 kHz base (required for hit_time conversion)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 
 <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Alternatively, set board config first then use convenience APIs:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">BoardConfig</span> <span class="nf">board</span><span class="p">(</span><span class="mf">30.0</span><span class="n">f</span><span class="p">,</span> <span class="nb">false</span><span class="p">);</span> <span class="c1">// IFS from RREF</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetBoardConfig</span><span class="p">(</span><span class="n">board</span><span class="p">);</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetHitCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">500</span><span class="p">);</span>  <span class="c1">// Channel 0, 500 mA</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetHoldCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">200</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h3 id="step-6-enable-channel">
   
@@ -477,7 +501,7 @@
     
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="complete-example-with-error-handling">
   
@@ -529,6 +553,8 @@
 39
 40
 41
+42
+43
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
 </span>
 <span class="k">class</span> <span class="nc">MySpi</span> <span class="o">:</span> <span class="k">public</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SpiInterface</span><span class="o">&lt;</span><span class="n">MySpi</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -546,28 +572,30 @@
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
     
-    <span class="c1">// Configure channel</span>
+    <span class="c1">// Configure channel (user units: mA and ms)</span>
     <span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">bridge_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">BridgeMode</span><span class="o">::</span><span class="n">HALF_BRIDGE</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_current</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hold_current</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_time</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-    
+    <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_current_value</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hold_current_value</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
+
     <span class="n">status</span> <span class="o">=</span> <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">status</span> <span class="o">!=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
         <span class="n">printf</span><span class="p">(</span><span class="s">"Channel configuration failed</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
         <span class="k">return</span><span class="p">;</span>
     <span class="p">}</span>
-    
+
     <span class="c1">// Enable channel</span>
-    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nb">true</span><span class="p">);</span>
-    
-    <span class="c1">// Read current</span>
-    <span class="kt">uint16_t</span> <span class="n">current</span><span class="p">;</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">ReadCurrent</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">current</span><span class="p">)</span> <span class="o">==</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">printf</span><span class="p">(</span><span class="s">"Channel 0 current: %u mA</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">current</span><span class="p">);</span>
+    <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+    <span class="c1">// Read configured current in mA (requires SetBoardConfig with IFS)</span>
+    <span class="kt">uint32_t</span> <span class="n">current_ma</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">GetHitCurrentMa</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">current_ma</span><span class="p">)</span> <span class="o">==</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">printf</span><span class="p">(</span><span class="s">"Channel 0 hit current: %"</span> <span class="n">PRIu32</span> <span class="s">" mA</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">current_ma</span><span class="p">);</span>
     <span class="p">}</span>
 <span class="p">}</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -580,10 +608,10 @@
 </h2>
     
 
-<p>When running this example, you should see:</p>
+<p>When running this example (with <code class="language-plaintext highlighter-rouge">SetBoardConfig</code> set for your IFS), you should see the configured current in mA, for example:</p>
 
 <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
-</pre></td><td class="rouge-code"><pre>Channel 0 current: 500 mA
+</pre></td><td class="rouge-code"><pre>Channel 0 hit current: 500 mA
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 <h2 id="troubleshooting">
   

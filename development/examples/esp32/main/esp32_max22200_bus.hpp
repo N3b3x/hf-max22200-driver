@@ -137,20 +137,15 @@ public:
     }
 
     if (LOG_SPI_HEX && tx_data != nullptr && rx_data != nullptr && length > 0) {
-      if (length == 3) {
-        ESP_LOGI(TAG, "SPI: TX1=0x%02X RX1=0x%02X  TX2=0x%02X RX2=0x%02X  TX3=0x%02X RX3=0x%02X",
-                 tx_data[0], rx_data[0], tx_data[1], rx_data[1], tx_data[2], rx_data[2]);
-      } else {
-        char buf[128];
-        int n = 0;
-        n += snprintf(buf + n, sizeof(buf) - n, "SPI TX:");
-        for (size_t i = 0; i < length && n < (int)sizeof(buf) - 4; i++)
-          n += snprintf(buf + n, sizeof(buf) - n, " %02X", tx_data[i]);
-        n += snprintf(buf + n, sizeof(buf) - n, "  RX:");
-        for (size_t i = 0; i < length && n < (int)sizeof(buf) - 4; i++)
-          n += snprintf(buf + n, sizeof(buf) - n, " %02X", rx_data[i]);
-        ESP_LOGI(TAG, "%s", buf);
-      }
+      char buf[128];
+      int n = 0;
+      n += snprintf(buf + n, sizeof(buf) - n, "SPI(%zu) TX:", length);
+      for (size_t i = 0; i < length && n < (int)sizeof(buf) - 6; i++)
+        n += snprintf(buf + n, sizeof(buf) - n, " %02X", tx_data[i]);
+      n += snprintf(buf + n, sizeof(buf) - n, "  RX:");
+      for (size_t i = 0; i < length && n < (int)sizeof(buf) - 6; i++)
+        n += snprintf(buf + n, sizeof(buf) - n, " %02X", rx_data[i]);
+      ESP_LOGI(TAG, "%s", buf);
     }
 
     return true;
@@ -336,8 +331,20 @@ private:
   /**
    * @brief Initialize SPI bus
    * @return true if successful, false otherwise
+   *
+   * MISO is connected to MAX22200 SDO (open-drain). Enable internal pull-up so the line
+   * stays high when SDO is not driving; this also reduces crosstalk from SCK onto MISO
+   * (which can appear as "SCK overlaid on MISO" on a scope). Safe to use even when the
+   * eval board already has an external 1k pull-up on SDO. Set before spi_bus_initialize().
    */
   bool initializeSPI() {
+    // Set MISO pull-up before SPI claims the pin (SDO is open-drain; pull high when released)
+    esp_err_t ret = ESP_OK;
+    ret = gpio_set_pull_mode(static_cast<gpio_num_t>(config_.miso_pin), GPIO_PULLUP_ONLY);
+    if (ret != ESP_OK) {
+      ESP_LOGW(TAG, "MISO pullup set failed: %s (external pullup on SDO recommended)", esp_err_to_name(ret));
+    }
+
     spi_bus_config_t bus_cfg = {};
     bus_cfg.mosi_io_num = config_.mosi_pin;
     bus_cfg.miso_io_num = config_.miso_pin;
@@ -347,7 +354,7 @@ private:
     bus_cfg.max_transfer_sz = 64; // MAX22200 uses 3-byte transfers
     bus_cfg.flags = SPICOMMON_BUSFLAG_MASTER;
 
-    esp_err_t ret = spi_bus_initialize(config_.host, &bus_cfg, SPI_DMA_CH_AUTO);
+    ret = spi_bus_initialize(config_.host, &bus_cfg, SPI_DMA_CH_AUTO);
     if (ret != ESP_OK) {
       ESP_LOGE(TAG, "Failed to initialize SPI bus: %s", esp_err_to_name(ret));
       return false;

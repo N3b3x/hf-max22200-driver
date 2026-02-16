@@ -95,14 +95,14 @@ $(function(){initNavTree('max22200_8ipp.html',''); initResizable(); });
 
 <div class="header">
   <div class="summary">
-<a href="#define-members">Macros</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">max22200.ipp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
 
-<p>Implementation of MAX22200 driver class.  
+<p>Template implementation for MAX22200 driver.  
 <a href="#details">More...</a></p>
-<div class="textblock"><code>#include &lt;string.h&gt;</code><br />
+<div class="textblock"><code>#include &lt;cstring&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for max22200.ipp:</div>
 <div class="dyncontent">
@@ -111,35 +111,21 @@ Include dependency graph for max22200.ipp:</div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8ipp__dep__incl.svg" width="214" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8ipp__dep__incl.svg" width="438" height="212"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="max22200_8ipp_source.html">Go to the source code of this file.</a></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:abf8805f38b50db415d044d9dc3abbd74" id="r_abf8805f38b50db415d044d9dc3abbd74"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abf8805f38b50db415d044d9dc3abbd74">MAX22200_IMPL</a></td></tr>
-<tr class="separator:abf8805f38b50db415d044d9dc3abbd74"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="namespaces" name="namespaces"></a>
+Namespaces</h2></td></tr>
+<tr class="memitem:namespacemax22200" id="r_namespacemax22200"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemax22200.html">max22200</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Implementation of MAX22200 driver class. </p>
+<div class="textblock"><p>Template implementation for MAX22200 driver. </p>
+<p>Implements the two-phase SPI protocol per MAX22200 datasheet (Rev 1, 3/25): Phase 1: CMD pin HIGH → write 8-bit Command Register → CMD pin LOW Phase 2: CMD pin LOW → read/write 8 or 32 bits of data</p>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024-2025 HardFOC. All rights reserved. </dd></dl>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="abf8805f38b50db415d044d9dc3abbd74" name="abf8805f38b50db415d044d9dc3abbd74"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#abf8805f38b50db415d044d9dc3abbd74">&#9670;&#160;</a></span>MAX22200_IMPL</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAX22200_IMPL</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
