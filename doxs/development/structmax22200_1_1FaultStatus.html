@@ -158,7 +158,7 @@ Public Attributes</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Per-channel fault information from FAULT register (0x09) </p>
 <p>The FAULT register is 32-bit, read-only, and contains per-channel fault flags. Each fault type has an 8-bit field where bit N corresponds to channel N.</p>
-<h3><a class="anchor" id="autotoc_md53"></a>
+<h3><a class="anchor" id="autotoc_md52"></a>
 Register Layout</h3>
 <table class="markdownTable">
 <tr class="markdownTableHead">
@@ -172,7 +172,7 @@ Register Layout</h3>
 <tr class="markdownTableRowEven">
 <td class="markdownTableBodyNone">0   </td><td class="markdownTableBodyNone">7:0   </td><td class="markdownTableBodyNone">DPM[7:0]   </td><td class="markdownTableBodyNone">Per-channel plunger movement flags   </td></tr>
 </table>
-<h3><a class="anchor" id="autotoc_md54"></a>
+<h3><a class="anchor" id="autotoc_md53"></a>
 Clearing Fault Flags</h3>
 <p><b><a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a></b>: Reading the FAULT register clears all fault flags simultaneously.</p>
 <p><b>MAX22200A</b> (recommended): Selective clear on read. To clear a specific fault bit, read the FAULT register while keeping the corresponding SDI bit HIGH for the channel(s) to clear. Only the bits corresponding to HIGH SDI bits are cleared.</p>
@@ -202,7 +202,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a152">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a153">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -230,7 +230,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a170">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a171">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -257,7 +257,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a153">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a154">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -286,7 +286,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>Count total per-channel faults. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a159">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a160">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -315,7 +315,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>Check if any per-channel fault is active. </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a158">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a159">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -342,7 +342,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a164">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a165">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -369,7 +369,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a161">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a162">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -396,7 +396,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a167">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a168">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -423,7 +423,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a162">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a163">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -450,7 +450,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a168">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a169">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -477,7 +477,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a160">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a161">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -504,7 +504,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a166">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a167">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -531,7 +531,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a163">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a164">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -558,7 +558,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
   </tr>
 </table>
 </div><div class="memdoc">
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a169">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a170">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -577,7 +577,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>HHF per-channel bitmask (bit N = channel N) </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a149">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a150">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -595,7 +595,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>OLF per-channel bitmask (bit N = channel N) </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a150">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a151">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -613,7 +613,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>OCP per-channel bitmask (bit N = channel N) </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a148">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a149">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
@@ -631,7 +631,7 @@ Reading the FAULT register also deasserts the nFAULT pin (if no other faults are
 </div><div class="memdoc">
 
 <p>DPM per-channel bitmask (bit N = channel N) </p>
-<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a151">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a152">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>

@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>HF-MAX22200 Driver: Class Members</title>
+<title>HF-MAX22200 Driver: Enable</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -68,7 +68,7 @@ $(function() {
 </div>
 <script type="text/javascript">
 /* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
-$(function(){initNavTree('functions_r.html',''); initResizable(); });
+$(function(){initNavTree('Enable-example.html',''); initResizable(); });
 /* @license-end */
 </script>
 <div id="doc-content">
@@ -93,22 +93,21 @@ $(function(){initNavTree('functions_r.html',''); initResizable(); });
 </div>
 </div>
 
+<div class="header">
+  <div class="headertitle"><div class="title">Enable</div></div>
+</div><!--header-->
 <div class="contents">
-<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
-
-<h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
-<li>ReadDpmConfig()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#a954e6242ee595056784164c23fc7caac">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadFaultFlags()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#a5a5eb5138a9479f297eac31aad340811">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadFaultRegister()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#aed74d2a7f8b4e3e4a8e4aaf0964b46f3">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadFaultRegisterSelectiveClear()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#abe470fcd29ca6359dcb30391b5c7ff30">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadRegister32()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#a5141e07605df7a60c47852dd13e8f29a">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadRegister8()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#a036b8faa33340ace123f03195a58aff1">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ReadStatus()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#affc8972a21ff78c0faeb71a553449126">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>ResetStatistics()&#160;:&#160;<a class="el" href="classmax22200_1_1MAX22200.html#a9defc6dbc606fb39a981ce7eacb13d28">max22200::MAX22200&lt; SpiType &gt;</a></li>
-<li>results&#160;:&#160;<a class="el" href="structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e">TestTaskContext</a></li>
-<li>RREF_KOHM&#160;:&#160;<a class="el" href="structMAX22200__TestConfig_1_1BoardTestConfig.html#a34bc32c3a306007e0db7d4bcb89a10b6">MAX22200_TestConfig::BoardTestConfig</a></li>
-</ul>
-</div><!-- contents -->
+<p>Enable or disable DPM (plunger movement detection) on selected channels.</p>
+<p>Enable or disable DPM (plunger movement detection) on selected channelsReads each channel's config, sets or clears the DPM_EN bit according to <code>channel_mask</code>, and writes the config back. All other channel settings are unchanged. DPM algorithm parameters (start current, debounce, threshold) are global and set via ConfigureDpm() or WriteDpmConfig().</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel_mask</td><td>Bit N = 1 to enable DPM on channel N, 0 to disable (channels 0–7). </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>DriverStatus::OK if all selected channels updated successfully.</dd></dl>
+<p>DPM on channels 0, 2, and 5: </p><div class="fragment"><div class="line">driver.SetDpmEnabledChannels((1u &lt;&lt; 0) | (1u &lt;&lt; 2) | (1u &lt;&lt; 5));</div>
+</div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

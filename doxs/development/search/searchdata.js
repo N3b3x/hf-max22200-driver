@@ -1,11 +1,11 @@
 var indexSectionsWithContent =
 {
   0: "0128abcdefghiklmnopqrstuvw~✨📄📊📖📚📦🔧🚀🤝",
-  1: "abcdefmst",
+  1: "bcdefmst",
   2: "m",
   3: "emrt",
   4: "abcdefghimoprstw~",
-  5: "acdefhilmnopqrstuv",
+  5: "acdefhlmnopqrstuv",
   6: "cfs",
   7: "cdfgs",
   8: "abcdefhiloprtuv",

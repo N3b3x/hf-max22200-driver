@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inter_5fframe_5fus_0',['INTER_FRAME_US',['../structMAX22200__TestConfig_1_1Timing.html#a3c224eb02e0fe8db90770b19c7353fa2',1,'MAX22200_TestConfig::Timing']]]
+  ['log_5fspi_5fhex_0',['LOG_SPI_HEX',['../classEsp32Max22200SpiBus.html#a67c65f54c7267bfd96b06c0ff691e4ac',1,'Esp32Max22200SpiBus']]]
 ];
