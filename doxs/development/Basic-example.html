@@ -112,16 +112,18 @@ $(function(){initNavTree('Basic-example.html',''); initResizable(); });
 </dl>
 <p>usage (CDR mode): </p><div class="fragment"><div class="line">MySPI spi;</div>
 <div class="line">MAX22200&lt;MySPI&gt; driver(spi);</div>
+<div class="line">driver.SetBoardConfig(BoardConfig(30.0f, <span class="keyword">false</span>));  <span class="comment">// IFS from RREF</span></div>
 <div class="line"> </div>
 <div class="line"><span class="keywordflow">if</span> (driver.Initialize() == DriverStatus::OK) {</div>
 <div class="line">    ChannelConfig config;</div>
-<div class="line">    config.drive_mode = DriveMode::CDR;      <span class="comment">// Current Drive Regulation</span></div>
-<div class="line">    config.side_mode = SideMode::LOW_SIDE;    <span class="comment">// Low-side only for CDR</span></div>
-<div class="line">    config.hit_current = 80;                  <span class="comment">// 7-bit (0-127), IHIT = 80/127 × IFS</span></div>
-<div class="line">    config.hold_current = 40;                 <span class="comment">// 7-bit (0-127), IHOLD = 40/127 × IFS</span></div>
-<div class="line">    config.hit_time = 100;                    <span class="comment">// 8-bit (0-255), tHIT = 100 × 40 / fCHOP</span></div>
-<div class="line">    config.chop_freq = ChopFreq::FMAIN_DIV2; <span class="comment">// 50kHz (if FREQM=0)</span></div>
-<div class="line">    config.hit_current_check_enabled = <span class="keyword">true</span>;  <span class="comment">// Enable HIT current check</span></div>
+<div class="line">    config.drive_mode = DriveMode::CDR;</div>
+<div class="line">    config.side_mode = SideMode::LOW_SIDE;</div>
+<div class="line">    config.full_scale_current_ma = 500;</div>
+<div class="line">    config.hit_setpoint = 400.0f;   <span class="comment">// mA</span></div>
+<div class="line">    config.hold_setpoint = 200.0f;  <span class="comment">// mA</span></div>
+<div class="line">    config.hit_time_ms = 10.0f;</div>
+<div class="line">    config.chop_freq = ChopFreq::FMAIN_DIV2;</div>
+<div class="line">    config.hit_current_check_enabled = <span class="keyword">true</span>;</div>
 <div class="line"> </div>
 <div class="line">    driver.ConfigureChannel(0, config);</div>
 <div class="line">    driver.EnableChannel(0);</div>
