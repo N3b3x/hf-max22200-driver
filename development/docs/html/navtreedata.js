@@ -72,7 +72,7 @@ var NAVTREEINDEX =
 "Basic-example.html",
 "functions_t.html",
 "namespacemax22200_1_1CfgChReg.html#a6dba8632c1cc630790abba9eea8a3068",
-"structmax22200_1_1DpmConfig.html#aff0483ef2694bee66809cd6eec785292"
+"structmax22200_1_1DpmConfig.html#abea418633d442e0b3c072260130de158"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

@@ -36,9 +36,9 @@ var searchData=
   ['completion_5fsemaphore_33',['completion_semaphore',['../structTestTaskContext.html#ab82bee11b198be2f2b4d6c908573ddb6',1,'TestTaskContext']]],
   ['continuous_5fhit_34',['CONTINUOUS_HIT',['../namespacemax22200_1_1CfgChReg.html#a16f0ce84d577578cccb3629c23869d7c',1,'max22200::CfgChReg']]],
   ['cs_35',['CS',['../structMAX22200__TestConfig_1_1SPIPins.html#a742d1daba4b2e405922039f2c289e4dc',1,'MAX22200_TestConfig::SPIPins']]],
-  ['cs_5fena_5fposttrans_36',['cs_ena_posttrans',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a7a645e43a476799d81290205dce821c1',1,'Esp32Max22200SpiBus::SPIConfig']]],
-  ['cs_5fena_5fposttrans_37',['CS_ENA_POSTTRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#af179e82813d55b49e398934e4f839622',1,'MAX22200_TestConfig::SPIParams']]],
-  ['cs_5fena_5fpretrans_38',['CS_ENA_PRETRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#a7c99e52412d1988a41b62e76fdfee487',1,'MAX22200_TestConfig::SPIParams']]],
-  ['cs_5fena_5fpretrans_39',['cs_ena_pretrans',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a37138bd9faccd8fdb74967f2a77fe3fd',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['cs_5fena_5fposttrans_36',['CS_ENA_POSTTRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#af179e82813d55b49e398934e4f839622',1,'MAX22200_TestConfig::SPIParams']]],
+  ['cs_5fena_5fposttrans_37',['cs_ena_posttrans',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a7a645e43a476799d81290205dce821c1',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['cs_5fena_5fpretrans_38',['cs_ena_pretrans',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a37138bd9faccd8fdb74967f2a77fe3fd',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['cs_5fena_5fpretrans_39',['CS_ENA_PRETRANS',['../structMAX22200__TestConfig_1_1SPIParams.html#a7c99e52412d1988a41b62e76fdfee487',1,'MAX22200_TestConfig::SPIParams']]],
   ['cs_5fpin_40',['cs_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad42300e795136eacee060bc9789d442a',1,'Esp32Max22200SpiBus::SPIConfig']]]
 ];

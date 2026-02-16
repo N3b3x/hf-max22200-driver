@@ -105,7 +105,7 @@ struct BoardTestConfig {
  * Min hit time per C21: 100 ms; PWM freq min 1 kHz.
  */
 struct C21ValveConfig {
-    static constexpr bool USE_CDR = true;   ///< true = CDR (current), false = VDR (PWM duty)
+    static constexpr bool USE_CDR = false;   ///< true = CDR (current), false = VDR (PWM duty)
     static constexpr float HIT_TIME_MS = 100.0f;   ///< Min hit time per C21 (ms)
 
     /// CDR mode: hit and hold current in mA (board IFS must be >= these)
@@ -117,6 +117,20 @@ struct C21ValveConfig {
     static constexpr float HOLD_PERCENT = 50.0f;
 
     static constexpr uint8_t CHANNEL = 0;   ///< Channel used for C21 (low-side)
+};
+
+/**
+ * @brief Solenoid valve test pattern timing (used by max22200_solenoid_valve_test)
+ *
+ * Sequential pattern: ch0 → ch1 → … → ch7; each channel on for SEQUENTIAL_HIT_MS,
+ * SEQUENTIAL_GAP_MS between channels. Parallel pattern: all channels on for
+ * PARALLEL_HOLD_MS. PATTERN_PAUSE_MS is the pause between pattern runs.
+ */
+struct SolenoidValvePatternConfig {
+    static constexpr uint32_t SEQUENTIAL_HIT_MS = 200;   ///< Time (ms) each channel is on in sequential pattern
+    static constexpr uint32_t SEQUENTIAL_GAP_MS = 80;   ///< Delay (ms) between channels in sequential pattern
+    static constexpr uint32_t PARALLEL_HOLD_MS = 500;   ///< Time (ms) all channels on in parallel pattern
+    static constexpr uint32_t PATTERN_PAUSE_MS = 400;   ///< Pause (ms) between pattern runs
 };
 
 } // namespace MAX22200_TestConfig
