@@ -1,8 +1,9 @@
 var searchData=
 [
-  ['half_5fbridge_0',['HALF_BRIDGE',['../namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5acc802a2b27f559fe3917a33918f3ce73',1,'max22200']]],
-  ['hardware_5ffault_1',['HARDWARE_FAULT',['../namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27ba26fbfa51c0f7c7dc7255456ec5787aeb',1,'max22200']]],
-  ['hhf_2',['HHF',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44a20cb7d0b2ed081378e7ba466b36b2942',1,'max22200']]],
-  ['hit_5fphase_3',['HIT_PHASE',['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422a2eda3353145f7836f539037355133107',1,'max22200']]],
-  ['hold_5fphase_4',['HOLD_PHASE',['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422ae77d7787acc0512a80703ca3c166b024',1,'max22200']]]
+  ['fault_0',['FAULT',['../namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72',1,'max22200::FAULT'],['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422a893b3aaf1661e3717b18e8335ff93a72',1,'max22200::FAULT']]],
+  ['fmain_1',['FMAIN',['../namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68a99b02e4cd82cf34a88d86ced493bb5ce',1,'max22200']]],
+  ['fmain_5fdiv2_2',['FMAIN_DIV2',['../namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68a2b9279ec47f4a52bdc719f4b6601a80e',1,'max22200']]],
+  ['fmain_5fdiv3_3',['FMAIN_DIV3',['../namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68ac7348c24de4d8da0dea8b9f459dc0124',1,'max22200']]],
+  ['fmain_5fdiv4_4',['FMAIN_DIV4',['../namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68aadb0f3011be1fe53d65b834d55721fe1',1,'max22200']]],
+  ['forward_5',['Forward',['../namespacemax22200.html#a6635e7b8136acb977eb22ce7c6b46450a67d2f6740a8eaebf4d5c6f79be8da481',1,'max22200']]]
 ];

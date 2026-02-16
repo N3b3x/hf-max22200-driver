@@ -1,19 +1,9 @@
 var searchData=
 [
-  ['failed_5ftests_0',['failed_tests',['../structTestResults.html#a0acef46f38f27f0fbb8fa822bb218b3a',1,'TestResults']]],
-  ['failed_5ftransfers_1',['failed_transfers',['../structmax22200_1_1DriverStatistics.html#ac3695c05d3171e5e60bd1029b4942339',1,'max22200::DriverStatistics']]],
-  ['fault_2',['FAULT',['../structMAX22200__TestConfig_1_1ControlPins.html#a540e65d1cf818ddab7c4b3b08fd68190',1,'MAX22200_TestConfig::ControlPins::FAULT'],['../namespacemax22200.html#af428d5c782976c9e2a6521b9401a3db8a893b3aaf1661e3717b18e8335ff93a72',1,'max22200::FAULT'],['../namespacemax22200.html#a3adda2d31ce48d65560f257a36a4e422a893b3aaf1661e3717b18e8335ff93a72',1,'max22200::FAULT']]],
-  ['fault_5factive_3',['fault_active',['../structmax22200_1_1ChannelStatus.html#a456e620f43284a10d02b6b7810d90896',1,'max22200::ChannelStatus']]],
-  ['fault_5fevents_4',['fault_events',['../structmax22200_1_1DriverStatistics.html#a3a0d44b5b54a48618353dcafbfdc2e91',1,'max22200::DriverStatistics']]],
-  ['fault_5fmask_5',['FAULT_MASK',['../namespacemax22200_1_1Registers.html#ac6fc2c3ccdf456ffe13eb0a41e9d1d5d',1,'max22200::Registers']]],
-  ['fault_5fpin_6',['fault_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a547981c04a7ee5bb6a50916ec8eb6b1a',1,'Esp32Max22200SpiBus::SPIConfig']]],
-  ['fault_5fstatus_7',['FAULT_STATUS',['../namespacemax22200_1_1Registers.html#aeb82f50868a1427969454af1877eadd2',1,'max22200::Registers']]],
-  ['faultcallback_8',['FaultCallback',['../namespacemax22200.html#aee8356bd3f2f5ecfa4f677e643f16d46',1,'max22200']]],
-  ['faultstatus_9',['FaultStatus',['../structmax22200_1_1FaultStatus.html',1,'max22200::FaultStatus'],['../structmax22200_1_1FaultStatus.html#a3f020a7c3fa1b5bbba61ca7b82b6e6ca',1,'max22200::FaultStatus::FaultStatus()']]],
-  ['faulttype_10',['FaultType',['../namespacemax22200.html#aa095193e585b7c2b7cae49c701df7a44',1,'max22200']]],
-  ['features_11',['✨ Features',['../index.html#autotoc_md3',1,'']]],
-  ['flip_5ftest_5fprogress_5findicator_12',['flip_test_progress_indicator',['../TestFramework_8h.html#a7bb80345e5681c19686df292fa897daf',1,'TestFramework.h']]],
-  ['frequency_13',['frequency',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a1b7c2d3ffe0f7a031c82caa607e8c242',1,'Esp32Max22200SpiBus::SPIConfig::frequency'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig::frequency']]],
-  ['frequency_14',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]],
-  ['full_5fbridge_15',['FULL_BRIDGE',['../namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5a7305a85abf67484338999671810656ae',1,'max22200']]]
+  ['behavior_0',['DPM Algorithm Behavior',['../namespacemax22200_1_1CfgDpmReg.html#autotoc_md24',1,'']]],
+  ['bit_20layout_1',['Bit Layout',['../namespacemax22200_1_1CommandReg.html#autotoc_md10',1,'']]],
+  ['bit_20updates_2',['Fast 8-Bit Updates',['../max22200_8hpp.html#autotoc_md6',1,'']]],
+  ['boardconfig_3',['BoardConfig',['../structmax22200_1_1BoardConfig.html',1,'max22200::BoardConfig'],['../structmax22200_1_1BoardConfig.html#a1a5ed662347dba72a981ddda587c493d',1,'max22200::BoardConfig::BoardConfig()'],['../structmax22200_1_1BoardConfig.html#a36ae5c9e6d918651db21706019320de5',1,'max22200::BoardConfig::BoardConfig(float rref_kohm, bool hfs)']]],
+  ['brake_4',['Brake',['../namespacemax22200.html#a6635e7b8136acb977eb22ce7c6b46450a9af901a16c3d66abda1f656f0b7c4e15',1,'max22200']]],
+  ['build_5',['build',['../namespacemax22200_1_1CommandReg.html#a6fc80a9b0f7e63b68ef97fb1fd2231bd',1,'max22200::CommandReg']]]
 ];

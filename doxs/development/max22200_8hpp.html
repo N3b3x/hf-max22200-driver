@@ -96,8 +96,7 @@ $(function(){initNavTree('max22200_8hpp.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#nested-classes">Classes</a> &#124;
-<a href="#namespaces">Namespaces</a> &#124;
-<a href="#define-members">Macros</a>  </div>
+<a href="#namespaces">Namespaces</a>  </div>
   <div class="headertitle"><div class="title">max22200.hpp File Reference</div></div>
 </div><!--header-->
 <div class="contents">
@@ -109,17 +108,16 @@ $(function(){initNavTree('max22200_8hpp.html',''); initResizable(); });
 <code>#include &quot;<a class="el" href="max22200__spi__interface_8hpp_source.html">max22200_spi_interface.hpp</a>&quot;</code><br />
 <code>#include &lt;array&gt;</code><br />
 <code>#include &lt;cstdint&gt;</code><br />
-<code>#include &lt;functional&gt;</code><br />
 <code>#include &quot;<a class="el" href="max22200_8ipp_source.html">../src/max22200.ipp</a>&quot;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for max22200.hpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8hpp__incl.svg" width="858" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8hpp__incl.svg" width="747" height="256"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><div class="textblock"><div class="dynheader">
 This graph shows which files directly or indirectly include this file:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8hpp__dep__incl.svg" width="214" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="max22200_8hpp__dep__incl.svg" width="438" height="139"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div>
 <p><a href="max22200_8hpp_source.html">Go to the source code of this file.</a></p>
@@ -133,31 +131,79 @@ Classes</h2></td></tr>
 Namespaces</h2></td></tr>
 <tr class="memitem:namespacemax22200" id="r_namespacemax22200"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacemax22200.html">max22200</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
-Macros</h2></td></tr>
-<tr class="memitem:a3e9b3b86c15cf59a72d870bb109a7a98" id="r_a3e9b3b86c15cf59a72d870bb109a7a98"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3e9b3b86c15cf59a72d870bb109a7a98">MAX22200_HEADER_INCLUDED</a></td></tr>
-<tr class="separator:a3e9b3b86c15cf59a72d870bb109a7a98"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Main driver class for MAX22200 octal solenoid and motor driver. </p>
+<p>This file provides the main MAX22200 driver class template that implements the two-phase SPI protocol per MAX22200 datasheet (Rev 1, 3/25, Document 19-100531).</p>
+<h2><a class="anchor" id="autotoc_md0"></a>
+Two-Phase SPI Protocol</h2>
+<p>The MAX22200 uses a <b>two-phase SPI protocol</b> for all register access:</p>
+<h3><a class="anchor" id="autotoc_md1"></a>
+Phase 1: Command Register Write</h3>
+<ul>
+<li><b>CMD pin HIGH</b> (must be held HIGH during entire transfer)</li>
+<li>Write 8-bit Command Register (1 byte SPI transfer)</li>
+<li>Device responds with STATUS[7:0] (Fault Flag Byte) on SDO</li>
+<li>Check for communication error: STATUS[7:0] = 0x04 (COMER flag)</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md2"></a>
+Phase 2: Data Transfer</h3>
+<ul>
+<li><b>CMD pin LOW</b> (must be LOW for data transfer)</li>
+<li>Read or write data register:<ul>
+<li><b>8-bit mode</b>: Transfer 1 byte (MSB only, for fast updates)</li>
+<li><b>32-bit mode</b>: Transfer 4 bytes (full register)</li>
+</ul>
+</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md3"></a>
+Initialization Sequence</h2>
+<p>Per datasheet Figure 6 (Programming Flow Chart):</p>
+<ol type="1">
+<li><b>Power-up</b>: Set ENABLE pin HIGH, wait 0.5ms (tEN)</li>
+<li><b>Read STATUS</b>: Clear UVM flag and deassert nFAULT pin</li>
+<li><b>Write STATUS</b>: Set ACTIVE=1, configure HW (CMxy bits), set fault masks</li>
+<li><b>Configure Channels</b>: Write CFG_CHx for each channel (HIT/HOLD currents, timing, etc.)</li>
+<li><b>Read STATUS</b>: Verify UVM cleared and no faults</li>
+<li><b>Ready</b>: Channels can now be activated via ONCH bits</li>
+</ol>
+<h2><a class="anchor" id="autotoc_md4"></a>
+Timing Specifications</h2>
+<ul>
+<li><b>Enable time (tEN)</b>: 0.5ms from ENABLE rising edge to SPI ready</li>
+<li><b>Wake-up time (tWU)</b>: 2.5ms from ACTIVE=1 to normal operation (OUT_ active)</li>
+<li><b>Disable time (tDIS)</b>: 2.5ms from ENABLE falling edge to OUT_ tristate</li>
+<li><b>Dead time (tDEAD)</b>: 200ns dead zone to prevent current feedthrough</li>
+<li><b>SPI clock period (tCLK)</b>: Minimum 100ns (max 10MHz standalone, 5MHz daisy-chain)</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md5"></a>
+Restrictions and Limitations</h2>
+<ul>
+<li><b>VDRnCDR and HSnLS bits</b> can only be modified when:<ul>
+<li>All channels are OFF (ONCHx = 0 for all channels)</li>
+<li>Both TRIGA and TRIGB inputs are logic-low</li>
+</ul>
+</li>
+<li><b>CDR mode</b> is only supported in <b>low-side</b> operation (HSnLS = 0)</li>
+<li><b>High-side mode</b> (HSnLS = 1) only supports <b>VDR mode</b></li>
+<li><b>Channel-pair mode (CMxy)</b> can only be changed when both channels in the pair are OFF</li>
+<li><b>HFS, SRC, and DPM</b> are only available for <b>low-side</b> applications</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md6"></a>
+Fast 8-Bit Updates</h2>
+<p>For low-latency control, certain operations can use 8-bit MSB-only transfers:</p>
+<ul>
+<li><b>Channel ON/OFF</b>: Write STATUS[31:24] (ONCH byte) — fast channel activation</li>
+<li><b>HOLD current update</b>: Write CFG_CHx[31:24] (HOLD + HFS) — dynamic current control</li>
+<li><b>OCP status</b>: Read FAULT[31:24] (OCP byte) — quick fault check</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>All SPI transfers must use <b>Mode 0</b> (CPOL=0, CPHA=0). </dd>
+<dd>
+The CMD pin must be held HIGH during the rising edge of CSB for Command Register writes. </dd>
+<dd>
+Communication errors (COMER) are detected by checking STATUS[7:0] = 0x04 after Command Register write.</dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright (c) 2024-2025 HardFOC. All rights reserved. </dd></dl>
-</div><h2 class="groupheader">Macro Definition Documentation</h2>
-<a id="a3e9b3b86c15cf59a72d870bb109a7a98" name="a3e9b3b86c15cf59a72d870bb109a7a98"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a3e9b3b86c15cf59a72d870bb109a7a98">&#9670;&#160;</a></span>MAX22200_HEADER_INCLUDED</h2>
-
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">#define MAX22200_HEADER_INCLUDED</td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-</div><!-- contents -->
+</div></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->

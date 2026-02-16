@@ -1,13 +1,8 @@
 var searchData=
 [
-  ['parallel_5fmask_0',['PARALLEL_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#ae4945c07d7db7a5e46790ef5f14fad4a',1,'max22200::ChannelConfigBits']]],
-  ['parallel_5fmode_1',['parallel_mode',['../structmax22200_1_1ChannelConfig.html#a1804d898a42237ec2ebb58f0eee8c43d',1,'max22200::ChannelConfig']]],
-  ['parallel_5fpos_2',['PARALLEL_POS',['../namespacemax22200_1_1ChannelConfigBits.html#aafa4ac1ee9c7146df84d54b8a88c0d87',1,'max22200::ChannelConfigBits']]],
-  ['passed_5ftests_3',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
-  ['plunger_5fmovement_4',['plunger_movement',['../structmax22200_1_1FaultStatus.html#af6848eed80754f48d3491855c9b2c61d',1,'max22200::FaultStatus']]],
-  ['polarity_5',['polarity',['../structmax22200_1_1ChannelConfig.html#af8347571b0436614afb459c8234b4e3f',1,'max22200::ChannelConfig']]],
-  ['polarity_5fmask_6',['POLARITY_MASK',['../namespacemax22200_1_1ChannelConfigBits.html#a209bc96630e68d3d450ec5a783486993',1,'max22200::ChannelConfigBits']]],
-  ['polarity_5fpos_7',['POLARITY_POS',['../namespacemax22200_1_1ChannelConfigBits.html#af2ebf82312cb901a7fbaf6eb53001652',1,'max22200::ChannelConfigBits']]],
-  ['poll_5finterval_5fms_8',['POLL_INTERVAL_MS',['../structMAX22200__TestConfig_1_1Diagnostics.html#a928b54298c77f409b114d0121c6e222d',1,'MAX22200_TestConfig::Diagnostics']]],
-  ['power_5fon_5fdelay_5fms_9',['POWER_ON_DELAY_MS',['../structMAX22200__TestConfig_1_1Timing.html#ade029318255e3b7b35958ff8a1082cc6',1,'MAX22200_TestConfig::Timing']]]
+  ['rated_5fcurrent_5fma_0',['RATED_CURRENT_MA',['../structMAX22200__TestConfig_1_1C21ValveConfig.html#a31196ef892d051396f23525be989f927',1,'MAX22200_TestConfig::C21ValveConfig']]],
+  ['rbw_5fpos_1',['RBW_POS',['../namespacemax22200_1_1CommandReg.html#a78cf3ba992bfd333f7d5e3ad5f7f70cb',1,'max22200::CommandReg']]],
+  ['rbw_5fread_2',['RBW_READ',['../namespacemax22200_1_1CommandReg.html#aa53dc719e51e24442a0a72adc5d89738',1,'max22200::CommandReg']]],
+  ['rbw_5fwrite_3',['RBW_WRITE',['../namespacemax22200_1_1CommandReg.html#a0d94b433814453a077e6422c41b00c9b',1,'max22200::CommandReg']]],
+  ['results_4',['results',['../structTestTaskContext.html#a1c97680bd267a35637278ea10a3fae0e',1,'TestTaskContext']]]
 ];

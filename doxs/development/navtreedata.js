@@ -25,16 +25,16 @@
 var NAVTREE =
 [
   [ "HF-MAX22200 Driver", "index.html", [
-    [ "📚 Table of Contents", "index.html#autotoc_md1", null ],
-    [ "📦 Overview", "index.html#autotoc_md2", null ],
-    [ "✨ Features", "index.html#autotoc_md3", null ],
-    [ "🚀 Quick Start", "index.html#autotoc_md4", null ],
-    [ "🔧 Installation", "index.html#autotoc_md5", null ],
-    [ "📖 API Reference", "index.html#autotoc_md6", null ],
-    [ "📊 Examples", "index.html#autotoc_md7", null ],
-    [ "📚 Documentation", "index.html#autotoc_md8", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md9", null ],
-    [ "📄 License", "index.html#autotoc_md10", null ],
+    [ "📚 Table of Contents", "index.html#autotoc_md58", null ],
+    [ "📦 Overview", "index.html#autotoc_md59", null ],
+    [ "✨ Features", "index.html#autotoc_md60", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md61", null ],
+    [ "🔧 Installation", "index.html#autotoc_md62", null ],
+    [ "📖 API Reference", "index.html#autotoc_md63", null ],
+    [ "📊 Examples", "index.html#autotoc_md64", null ],
+    [ "📚 Documentation", "index.html#autotoc_md65", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md66", null ],
+    [ "📄 License", "index.html#autotoc_md67", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -50,7 +50,7 @@ var NAVTREE =
       [ "Class Index", "classes.html", null ],
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
-        [ "All", "functions.html", null ],
+        [ "All", "functions.html", "functions_dup" ],
         [ "Functions", "functions_func.html", null ],
         [ "Variables", "functions_vars.html", null ]
       ] ]
@@ -70,8 +70,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"max22200__registers_8hpp.html#a87abc962c94e1072dff963aeeacb5646",
-"structEsp32Max22200SpiBus_1_1SPIConfig.html#ad42300e795136eacee060bc9789d442a"
+"functions_m.html",
+"namespacemax22200_1_1CfgChReg.html#a08d6377cb68250c98a11d880748d272b",
+"structmax22200_1_1DpmConfig.html#a07da05733b88e37a96c0ff82a5f6c015"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

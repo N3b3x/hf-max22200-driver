@@ -110,45 +110,133 @@ $(function(){initNavTree('structmax22200_1_1ChannelConfig.html',''); initResizab
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adb0e7181def63a1d8834ccadcf975f0e" id="r_adb0e7181def63a1d8834ccadcf975f0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#adb0e7181def63a1d8834ccadcf975f0e">ChannelConfig</a> ()</td></tr>
-<tr class="memdesc:adb0e7181def63a1d8834ccadcf975f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor.  <br /></td></tr>
+<tr class="memdesc:adb0e7181def63a1d8834ccadcf975f0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor — safe defaults.  <br /></td></tr>
 <tr class="separator:adb0e7181def63a1d8834ccadcf975f0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1a209a068b603f1f00f58f04f1df043" id="r_aa1a209a068b603f1f00f58f04f1df043"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa1a209a068b603f1f00f58f04f1df043">ChannelConfig</a> (<a class="el" href="classmax22200_1_1MAX22200.html">bool</a> <a class="el" href="classmax22200_1_1MAX22200.html">en</a>, <a class="el" href="namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591">DriveMode</a> <a class="el" href="classmax22200_1_1MAX22200.html">dm</a>, <a class="el" href="namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5">BridgeMode</a> <a class="el" href="classmax22200_1_1MAX22200.html">bm</a>, <a class="el" href="classmax22200_1_1MAX22200.html">bool</a> <a class="el" href="classmax22200_1_1MAX22200.html">pm</a>, <a class="el" href="namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71">OutputPolarity</a> <a class="el" href="classmax22200_1_1MAX22200.html">pol</a>, <a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">hc</a>, <a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">hdc</a>, <a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">ht</a>)</td></tr>
-<tr class="memdesc:aa1a209a068b603f1f00f58f04f1df043"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor with parameters.  <br /></td></tr>
-<tr class="separator:aa1a209a068b603f1f00f58f04f1df043"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b458155b39094a3e9a251d487534110" id="r_a1b458155b39094a3e9a251d487534110"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1b458155b39094a3e9a251d487534110">toRegister</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="memdesc:a1b458155b39094a3e9a251d487534110"><td class="mdescLeft">&#160;</td><td class="mdescRight">Build 32-bit register value from user units.  <br /></td></tr>
+<tr class="separator:a1b458155b39094a3e9a251d487534110"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0fe5a02e0a283e345a0bf637912da902" id="r_a0fe5a02e0a283e345a0bf637912da902"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0fe5a02e0a283e345a0bf637912da902">fromRegister</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">val</a>, <a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">full_scale_current_ma_param</a>, <a class="el" href="classmax22200_1_1MAX22200.html">bool</a> <a class="el" href="classmax22200_1_1MAX22200.html">master_clock_80khz_param</a>)</td></tr>
+<tr class="memdesc:a0fe5a02e0a283e345a0bf637912da902"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parse a 32-bit register value into user units.  <br /></td></tr>
+<tr class="separator:a0fe5a02e0a283e345a0bf637912da902"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a38809f6bf4a4fe13dcc54d5f5efff0bc" id="r_a38809f6bf4a4fe13dcc54d5f5efff0bc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a38809f6bf4a4fe13dcc54d5f5efff0bc">isCdr</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a38809f6bf4a4fe13dcc54d5f5efff0bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab2ace2d6bd673094c7c36b88128fc7b9" id="r_ab2ace2d6bd673094c7c36b88128fc7b9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab2ace2d6bd673094c7c36b88128fc7b9">isVdr</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:ab2ace2d6bd673094c7c36b88128fc7b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acaae51b69f2467c2e4ac112f28e5bcd3" id="r_acaae51b69f2467c2e4ac112f28e5bcd3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acaae51b69f2467c2e4ac112f28e5bcd3">isLowSide</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:acaae51b69f2467c2e4ac112f28e5bcd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac0e552a5644d048aba8de149459c3559" id="r_ac0e552a5644d048aba8de149459c3559"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac0e552a5644d048aba8de149459c3559">isHighSide</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:ac0e552a5644d048aba8de149459c3559"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8f353afd61b3af6e25823f179d455eaf" id="r_a8f353afd61b3af6e25823f179d455eaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8f353afd61b3af6e25823f179d455eaf">hasHitTime</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a8f353afd61b3af6e25823f179d455eaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af50db366ea93d31bfc80c769f6d700ed" id="r_af50db366ea93d31bfc80c769f6d700ed"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af50db366ea93d31bfc80c769f6d700ed">isContinuousHit</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:af50db366ea93d31bfc80c769f6d700ed"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab285f25abe0f556f7dca3b46e7ea19f5" id="r_ab285f25abe0f556f7dca3b46e7ea19f5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab285f25abe0f556f7dca3b46e7ea19f5">isTriggeredBySpi</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:ab285f25abe0f556f7dca3b46e7ea19f5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a254eda496074953b33383b2939c2f77b" id="r_a254eda496074953b33383b2939c2f77b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a254eda496074953b33383b2939c2f77b">isTriggeredByPin</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a254eda496074953b33383b2939c2f77b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab784df2a0acffbb5fa95df38ac75ddcc" id="r_ab784df2a0acffbb5fa95df38ac75ddcc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab784df2a0acffbb5fa95df38ac75ddcc">isHalfFullScale</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:ab784df2a0acffbb5fa95df38ac75ddcc"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a55040d1ebada3a4b335b34f543a8f426" id="r_a55040d1ebada3a4b335b34f543a8f426"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a55040d1ebada3a4b335b34f543a8f426">isSlewRateControlEnabled</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a55040d1ebada3a4b335b34f543a8f426"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2ec50bf5b2cca347ce5ccf9efaad8ae" id="r_af2ec50bf5b2cca347ce5ccf9efaad8ae"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af2ec50bf5b2cca347ce5ccf9efaad8ae">isOpenLoadDetectionEnabled</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:af2ec50bf5b2cca347ce5ccf9efaad8ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a191e0f89e386ea453a55433cd39cfe81" id="r_a191e0f89e386ea453a55433cd39cfe81"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a191e0f89e386ea453a55433cd39cfe81">isPlungerMovementDetectionEnabled</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a191e0f89e386ea453a55433cd39cfe81"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f770996e72f9e890db993659720b9f3" id="r_a5f770996e72f9e890db993659720b9f3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f770996e72f9e890db993659720b9f3">isHitCurrentCheckEnabled</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="separator:a5f770996e72f9e890db993659720b9f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad2a2f66e8b0dd3e2052da6323d1106e5" id="r_ad2a2f66e8b0dd3e2052da6323d1106e5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68">ChopFreq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad2a2f66e8b0dd3e2052da6323d1106e5">getChopFreq</a> () <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="memdesc:ad2a2f66e8b0dd3e2052da6323d1106e5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chopping frequency config (FREQ_CFG); see ChopFreq enum.  <br /></td></tr>
+<tr class="separator:ad2a2f66e8b0dd3e2052da6323d1106e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-attribs" name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ac6d455474e1ec3559b8de60fe00b029a" id="r_ac6d455474e1ec3559b8de60fe00b029a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac6d455474e1ec3559b8de60fe00b029a">enabled</a></td></tr>
-<tr class="memdesc:ac6d455474e1ec3559b8de60fe00b029a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel enable state.  <br /></td></tr>
-<tr class="separator:ac6d455474e1ec3559b8de60fe00b029a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54d62ebaf7d8b67a477784d7c8909153" id="r_a54d62ebaf7d8b67a477784d7c8909153"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a54d62ebaf7d8b67a477784d7c8909153">hit_current_value</a></td></tr>
+<tr class="separator:a54d62ebaf7d8b67a477784d7c8909153"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5d0cf73ed469c95778a3489ab7943691" id="r_a5d0cf73ed469c95778a3489ab7943691"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5d0cf73ed469c95778a3489ab7943691">hold_current_value</a></td></tr>
+<tr class="separator:a5d0cf73ed469c95778a3489ab7943691"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a819281ccb3abbf156dea8ac28b8226f9" id="r_a819281ccb3abbf156dea8ac28b8226f9"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">float</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a819281ccb3abbf156dea8ac28b8226f9">hit_time_ms</a></td></tr>
+<tr class="separator:a819281ccb3abbf156dea8ac28b8226f9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0aa6f9621304935d407f45fc956f0607" id="r_a0aa6f9621304935d407f45fc956f0607"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0aa6f9621304935d407f45fc956f0607">full_scale_current_ma</a></td></tr>
+<tr class="separator:a0aa6f9621304935d407f45fc956f0607"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebada20f8e0041756125823b5019e69d" id="r_aebada20f8e0041756125823b5019e69d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebada20f8e0041756125823b5019e69d">master_clock_80khz</a></td></tr>
+<tr class="separator:aebada20f8e0041756125823b5019e69d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4a7336991a6e94ba5a1d906f99227457" id="r_a4a7336991a6e94ba5a1d906f99227457"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4a7336991a6e94ba5a1d906f99227457">half_full_scale</a></td></tr>
+<tr class="separator:a4a7336991a6e94ba5a1d906f99227457"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a58285da411a5fa6563403c98a360c3d6" id="r_a58285da411a5fa6563403c98a360c3d6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a58285da411a5fa6563403c98a360c3d6">trigger_from_pin</a></td></tr>
+<tr class="separator:a58285da411a5fa6563403c98a360c3d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad5e23fc3312df705ed4933dd8c0106d0" id="r_ad5e23fc3312df705ed4933dd8c0106d0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591">DriveMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad5e23fc3312df705ed4933dd8c0106d0">drive_mode</a></td></tr>
-<tr class="memdesc:ad5e23fc3312df705ed4933dd8c0106d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive mode (CDR or VDR)  <br /></td></tr>
+<tr class="memdesc:ad5e23fc3312df705ed4933dd8c0106d0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Drive mode: CDR (current) or VDR (voltage)  <br /></td></tr>
 <tr class="separator:ad5e23fc3312df705ed4933dd8c0106d0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a68843e3c0dd76bb34dc032922b1cdc07" id="r_a68843e3c0dd76bb34dc032922b1cdc07"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5">BridgeMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a68843e3c0dd76bb34dc032922b1cdc07">bridge_mode</a></td></tr>
-<tr class="memdesc:a68843e3c0dd76bb34dc032922b1cdc07"><td class="mdescLeft">&#160;</td><td class="mdescRight">Bridge mode (half or full)  <br /></td></tr>
-<tr class="separator:a68843e3c0dd76bb34dc032922b1cdc07"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1804d898a42237ec2ebb58f0eee8c43d" id="r_a1804d898a42237ec2ebb58f0eee8c43d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1804d898a42237ec2ebb58f0eee8c43d">parallel_mode</a></td></tr>
-<tr class="memdesc:a1804d898a42237ec2ebb58f0eee8c43d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parallel mode enable.  <br /></td></tr>
-<tr class="separator:a1804d898a42237ec2ebb58f0eee8c43d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af8347571b0436614afb459c8234b4e3f" id="r_af8347571b0436614afb459c8234b4e3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71">OutputPolarity</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af8347571b0436614afb459c8234b4e3f">polarity</a></td></tr>
-<tr class="memdesc:af8347571b0436614afb459c8234b4e3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Output polarity.  <br /></td></tr>
-<tr class="separator:af8347571b0436614afb459c8234b4e3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09724805d7724387b8cd9cac0aad3e23" id="r_a09724805d7724387b8cd9cac0aad3e23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a09724805d7724387b8cd9cac0aad3e23">hit_current</a></td></tr>
-<tr class="memdesc:a09724805d7724387b8cd9cac0aad3e23"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current setting (0-1023)  <br /></td></tr>
-<tr class="separator:a09724805d7724387b8cd9cac0aad3e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a156989985bc3ca34f4692f7baf80e6ab" id="r_a156989985bc3ca34f4692f7baf80e6ab"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a156989985bc3ca34f4692f7baf80e6ab">hold_current</a></td></tr>
-<tr class="memdesc:a156989985bc3ca34f4692f7baf80e6ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">HOLD current setting (0-1023)  <br /></td></tr>
-<tr class="separator:a156989985bc3ca34f4692f7baf80e6ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aefc7ca5063b6c9f50e23620f6de3567d" id="r_aefc7ca5063b6c9f50e23620f6de3567d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aefc7ca5063b6c9f50e23620f6de3567d">hit_time</a></td></tr>
-<tr class="memdesc:aefc7ca5063b6c9f50e23620f6de3567d"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT time setting (0-65535)  <br /></td></tr>
-<tr class="separator:aefc7ca5063b6c9f50e23620f6de3567d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97337d9d02ad0e1590cba4f1ed99e260" id="r_a97337d9d02ad0e1590cba4f1ed99e260"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a4f63d5a94ced7bc2f872014fab01f098">SideMode</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a97337d9d02ad0e1590cba4f1ed99e260">side_mode</a></td></tr>
+<tr class="memdesc:a97337d9d02ad0e1590cba4f1ed99e260"><td class="mdescLeft">&#160;</td><td class="mdescRight">Side mode: LOW_SIDE (CDR/VDR) or HIGH_SIDE (VDR only)  <br /></td></tr>
+<tr class="separator:a97337d9d02ad0e1590cba4f1ed99e260"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aec329f017c155bac46890ae105144f8a" id="r_aec329f017c155bac46890ae105144f8a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68">ChopFreq</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aec329f017c155bac46890ae105144f8a">chop_freq</a></td></tr>
+<tr class="memdesc:aec329f017c155bac46890ae105144f8a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Chopping frequency divider (FREQ_CFG[1:0])  <br /></td></tr>
+<tr class="separator:aec329f017c155bac46890ae105144f8a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa6abd7c1dfc13d964d581b837c8689a3" id="r_aa6abd7c1dfc13d964d581b837c8689a3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aa6abd7c1dfc13d964d581b837c8689a3">slew_rate_control_enabled</a></td></tr>
+<tr class="memdesc:aa6abd7c1dfc13d964d581b837c8689a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Slew rate control enable; reduces EMI; fCHOP &lt; 50 kHz.  <br /></td></tr>
+<tr class="separator:aa6abd7c1dfc13d964d581b837c8689a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3856294b68c876db41c97500609e9fc1" id="r_a3856294b68c876db41c97500609e9fc1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a3856294b68c876db41c97500609e9fc1">open_load_detection_enabled</a></td></tr>
+<tr class="memdesc:a3856294b68c876db41c97500609e9fc1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Open-load detection enable.  <br /></td></tr>
+<tr class="separator:a3856294b68c876db41c97500609e9fc1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9a34fa107efe2576f9807214552e7b46" id="r_a9a34fa107efe2576f9807214552e7b46"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a9a34fa107efe2576f9807214552e7b46">plunger_movement_detection_enabled</a></td></tr>
+<tr class="memdesc:a9a34fa107efe2576f9807214552e7b46"><td class="mdescLeft">&#160;</td><td class="mdescRight">Plunger movement detection enable (low-side only)  <br /></td></tr>
+<tr class="separator:a9a34fa107efe2576f9807214552e7b46"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5f63e2900357be94a30858b783169dea" id="r_a5f63e2900357be94a30858b783169dea"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5f63e2900357be94a30858b783169dea">hit_current_check_enabled</a></td></tr>
+<tr class="memdesc:a5f63e2900357be94a30858b783169dea"><td class="mdescLeft">&#160;</td><td class="mdescRight">HIT current check enable (HHF fault if IHIT not reached)  <br /></td></tr>
+<tr class="separator:a5f63e2900357be94a30858b783169dea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Channel configuration structure. </p>
-<p>This structure contains all configuration parameters for a single channel of the <a class="el" href="classmax22200_1_1MAX22200.html">MAX22200</a> driver. </p>
+<p>Stores configuration in <b>user units</b> (mA for CDR, % for VDR, ms for hit time) and automatically computes register values when <code><a class="el" href="#a1b458155b39094a3e9a251d487534110" title="Build 32-bit register value from user units.">toRegister()</a></code> is called.</p>
+<h3><a class="anchor" id="autotoc_md47"></a>
+User Units (Primary Storage)</h3>
+<p><b>CDR Mode</b>:</p><ul>
+<li><code>hit_current_value</code> and <code>hold_current_value</code> are in <b>milliamps (mA)</b></li>
+<li>Example: <code>hit_current_value = 500.0f</code> means 500 mA</li>
+<li>Requires <code>full_scale_current_ma</code> to be set for conversion to 7-bit register value</li>
+</ul>
+<p><b>VDR Mode</b>:</p><ul>
+<li><code>hit_current_value</code> and <code>hold_current_value</code> are <b>duty cycle percentages (0-100)</b></li>
+<li>Example: <code>hit_current_value = 80.0f</code> means 80% duty cycle</li>
+</ul>
+<p><b>HIT Time</b>:</p><ul>
+<li><code>hit_time_ms</code> is in <b>milliseconds</b></li>
+<li><code>0.0f</code> = no HIT time</li>
+<li><code>&lt; 0.0f</code> or <code>&gt;= 1000000.0f</code> = continuous (infinite)</li>
+<li>Requires <code>master_clock_80khz</code> and <code>chop_freq</code> for conversion to 8-bit register value</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md48"></a>
+Context Fields (Required for Conversion)</h3>
+<ul>
+<li><code>full_scale_current_ma</code>: Full-scale current in mA (required for CDR mode)</li>
+<li><code>master_clock_80khz</code>: Master clock 80 kHz base (required for hit_time_ms conversion)</li>
+<li><code>chop_freq</code>: Chopping frequency divider (required for hit_time_ms conversion)</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md49"></a>
+Register Conversion</h3>
+<ul>
+<li><code><a class="el" href="#a1b458155b39094a3e9a251d487534110" title="Build 32-bit register value from user units.">toRegister()</a></code> computes raw register values from user units using context</li>
+<li><code>fromRegister(val, full_scale_current_ma, master_clock_80khz)</code> converts raw register → user units</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md50"></a>
+Restrictions</h3>
+<ul>
+<li><code>drive_mode</code> and <code>side_mode</code> can only be changed when:<ul>
+<li>All channels are OFF (ONCHx = 0 for all channels)</li>
+<li>Both TRIGA and TRIGB inputs are logic-low</li>
+</ul>
+</li>
+<li>CDR mode (<code>drive_mode = CDR</code>) is only supported in low-side mode (<code>side_mode = LOW_SIDE</code>)</li>
+<li>High-side mode (<code>side_mode = HIGH_SIDE</code>) only supports VDR mode</li>
+<li><code>half_full_scale</code> is only available for low-side applications</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd>See <a class="el" href="max22200__registers_8hpp.html" title="Register definitions and constants for MAX22200 IC.">max22200_registers.hpp</a> for detailed bit field definitions. </dd>
+<dd>
+The driver's <code>GetChannelConfig()</code> automatically sets <code>full_scale_current_ma</code> and <code>master_clock_80khz</code> from <code><a class="el" href="structmax22200_1_1BoardConfig.html" title="Board/scale configuration for unit-based APIs.">BoardConfig</a></code> and <code><a class="el" href="structmax22200_1_1StatusConfig.html" title="STATUS register structure.">StatusConfig</a></code> when reading from hardware. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a id="adb0e7181def63a1d8834ccadcf975f0e" name="adb0e7181def63a1d8834ccadcf975f0e"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#adb0e7181def63a1d8834ccadcf975f0e">&#9670;&#160;</a></span>ChannelConfig() <span class="overload">[1/2]</span></h2>
+<h2 class="memtitle"><span class="permalink"><a href="#adb0e7181def63a1d8834ccadcf975f0e">&#9670;&#160;</a></span>ChannelConfig()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -170,13 +258,15 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Default constructor. </p>
-<p>Initializes the channel configuration with default values. </p>
+<p>Default constructor — safe defaults. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a41">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="aa1a209a068b603f1f00f58f04f1df043" name="aa1a209a068b603f1f00f58f04f1df043"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aa1a209a068b603f1f00f58f04f1df043">&#9670;&#160;</a></span>ChannelConfig() <span class="overload">[2/2]</span></h2>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a0fe5a02e0a283e345a0bf637912da902" name="a0fe5a02e0a283e345a0bf637912da902"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0fe5a02e0a283e345a0bf637912da902">&#9670;&#160;</a></span>fromRegister()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -185,44 +275,19 @@ Public Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">max22200::ChannelConfig::ChannelConfig </td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">void</a> max22200::ChannelConfig::fromRegister </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>en</em>, </span></td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>val</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacemax22200.html#a2b4eec1a1d40f726831b9fb75f74b591">DriveMode</a></td>          <td class="paramname"><span class="paramname"><em>dm</em>, </span></td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a></td>          <td class="paramname"><span class="paramname"><em>full_scale_current_ma_param</em>, </span></td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5">BridgeMode</a></td>          <td class="paramname"><span class="paramname"><em>bm</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>pm</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71">OutputPolarity</a></td>          <td class="paramname"><span class="paramname"><em>pol</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>hc</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>hdc</em>, </span></td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a></td>          <td class="paramname"><span class="paramname"><em>ht</em></span>&#160;)</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>master_clock_80khz_param</em></span>&#160;)</td>
         </tr>
       </table>
   </td>
@@ -232,37 +297,450 @@ Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Constructor with parameters. </p>
+<p>Parse a 32-bit register value into user units. </p>
+<p>Converts raw register values to user units (mA for CDR, % for VDR, ms for hit_time). Requires full_scale_current_ma and master_clock_80khz to be set for proper conversion.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">en</td><td>Channel enable state </td></tr>
-    <tr><td class="paramname">dm</td><td>Drive mode </td></tr>
-    <tr><td class="paramname">bm</td><td>Bridge mode </td></tr>
-    <tr><td class="paramname">pm</td><td>Parallel mode </td></tr>
-    <tr><td class="paramname">pol</td><td>Output polarity </td></tr>
-    <tr><td class="paramname">hc</td><td>HIT current </td></tr>
-    <tr><td class="paramname">hdc</td><td>HOLD current </td></tr>
-    <tr><td class="paramname">ht</td><td>HIT time </td></tr>
+    <tr><td class="paramname">val</td><td>32-bit register value from CFG_CHx </td></tr>
+    <tr><td class="paramname">full_scale_current_ma_param</td><td>Full-scale current in mA (for CDR mode conversion) </td></tr>
+    <tr><td class="paramname">master_clock_80khz_param</td><td>Master clock 80 kHz base (for hit_time conversion) </td></tr>
   </table>
   </dd>
+</dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a55">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ad2a2f66e8b0dd3e2052da6323d1106e5" name="ad2a2f66e8b0dd3e2052da6323d1106e5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad2a2f66e8b0dd3e2052da6323d1106e5">&#9670;&#160;</a></span>getChopFreq()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68">ChopFreq</a> max22200::ChannelConfig::getChopFreq </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Chopping frequency config (FREQ_CFG); see ChopFreq enum. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a69">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a8f353afd61b3af6e25823f179d455eaf" name="a8f353afd61b3af6e25823f179d455eaf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8f353afd61b3af6e25823f179d455eaf">&#9670;&#160;</a></span>hasHitTime()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::hasHitTime </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a60">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a38809f6bf4a4fe13dcc54d5f5efff0bc" name="a38809f6bf4a4fe13dcc54d5f5efff0bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a38809f6bf4a4fe13dcc54d5f5efff0bc">&#9670;&#160;</a></span>isCdr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isCdr </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a56">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="af50db366ea93d31bfc80c769f6d700ed" name="af50db366ea93d31bfc80c769f6d700ed"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af50db366ea93d31bfc80c769f6d700ed">&#9670;&#160;</a></span>isContinuousHit()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isContinuousHit </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a61">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ab784df2a0acffbb5fa95df38ac75ddcc" name="ab784df2a0acffbb5fa95df38ac75ddcc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab784df2a0acffbb5fa95df38ac75ddcc">&#9670;&#160;</a></span>isHalfFullScale()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isHalfFullScale </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a64">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ac0e552a5644d048aba8de149459c3559" name="ac0e552a5644d048aba8de149459c3559"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac0e552a5644d048aba8de149459c3559">&#9670;&#160;</a></span>isHighSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isHighSide </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a59">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a5f770996e72f9e890db993659720b9f3" name="a5f770996e72f9e890db993659720b9f3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f770996e72f9e890db993659720b9f3">&#9670;&#160;</a></span>isHitCurrentCheckEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isHitCurrentCheckEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a68">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="acaae51b69f2467c2e4ac112f28e5bcd3" name="acaae51b69f2467c2e4ac112f28e5bcd3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acaae51b69f2467c2e4ac112f28e5bcd3">&#9670;&#160;</a></span>isLowSide()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isLowSide </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a58">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="af2ec50bf5b2cca347ce5ccf9efaad8ae" name="af2ec50bf5b2cca347ce5ccf9efaad8ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af2ec50bf5b2cca347ce5ccf9efaad8ae">&#9670;&#160;</a></span>isOpenLoadDetectionEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isOpenLoadDetectionEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a66">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a191e0f89e386ea453a55433cd39cfe81" name="a191e0f89e386ea453a55433cd39cfe81"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a191e0f89e386ea453a55433cd39cfe81">&#9670;&#160;</a></span>isPlungerMovementDetectionEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isPlungerMovementDetectionEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a67">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a55040d1ebada3a4b335b34f543a8f426" name="a55040d1ebada3a4b335b34f543a8f426"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a55040d1ebada3a4b335b34f543a8f426">&#9670;&#160;</a></span>isSlewRateControlEnabled()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isSlewRateControlEnabled </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a65">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a254eda496074953b33383b2939c2f77b" name="a254eda496074953b33383b2939c2f77b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a254eda496074953b33383b2939c2f77b">&#9670;&#160;</a></span>isTriggeredByPin()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isTriggeredByPin </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a63">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ab285f25abe0f556f7dca3b46e7ea19f5" name="ab285f25abe0f556f7dca3b46e7ea19f5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab285f25abe0f556f7dca3b46e7ea19f5">&#9670;&#160;</a></span>isTriggeredBySpi()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isTriggeredBySpi </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a62">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="ab2ace2d6bd673094c7c36b88128fc7b9" name="ab2ace2d6bd673094c7c36b88128fc7b9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab2ace2d6bd673094c7c36b88128fc7b9">&#9670;&#160;</a></span>isVdr()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::isVdr </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a57">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a1b458155b39094a3e9a251d487534110" name="a1b458155b39094a3e9a251d487534110"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b458155b39094a3e9a251d487534110">&#9670;&#160;</a></span>toRegister()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> max22200::ChannelConfig::toRegister </td>
+          <td>(</td>
+          <td class="paramname"><span class="paramname"></span></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Build 32-bit register value from user units. </p>
+<p>Computes raw register values from hit_current_value, hold_current_value, and hit_time_ms using full_scale_current_ma, master_clock_80khz, and chop_freq for conversion.</p>
+<dl class="section note"><dt>Note</dt><dd>Requires full_scale_current_ma &gt; 0 for CDR mode (for current conversion). </dd>
+<dd>
+Uses master_clock_80khz and chop_freq for hit_time_ms → register conversion. </dd></dl>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a42">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
 </dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a id="a68843e3c0dd76bb34dc032922b1cdc07" name="a68843e3c0dd76bb34dc032922b1cdc07"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a68843e3c0dd76bb34dc032922b1cdc07">&#9670;&#160;</a></span>bridge_mode</h2>
+<a id="aec329f017c155bac46890ae105144f8a" name="aec329f017c155bac46890ae105144f8a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aec329f017c155bac46890ae105144f8a">&#9670;&#160;</a></span>chop_freq</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacemax22200.html#a5881d07776cc183d5ef3df49d1d31bf5">BridgeMode</a> max22200::ChannelConfig::bridge_mode</td>
+          <td class="memname"><a class="el" href="namespacemax22200.html#ab65bdcc280c1987cc70a925ba8418f68">ChopFreq</a> max22200::ChannelConfig::chop_freq</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Bridge mode (half or full) </p>
+<p>Chopping frequency divider (FREQ_CFG[1:0]) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a36">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
@@ -278,103 +756,218 @@ Public Attributes</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
-<p>Drive mode (CDR or VDR) </p>
+<p>Drive mode: CDR (current) or VDR (voltage) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a34">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="ac6d455474e1ec3559b8de60fe00b029a" name="ac6d455474e1ec3559b8de60fe00b029a"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#ac6d455474e1ec3559b8de60fe00b029a">&#9670;&#160;</a></span>enabled</h2>
+<a id="a0aa6f9621304935d407f45fc956f0607" name="a0aa6f9621304935d407f45fc956f0607"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0aa6f9621304935d407f45fc956f0607">&#9670;&#160;</a></span>full_scale_current_ma</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::enabled</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a> max22200::ChannelConfig::full_scale_current_ma</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Channel enable state. </p>
+<p>Full-scale current in mA (for CDR mode conversion) Must be set for CDR mode; ignored for VDR </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a30">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="a09724805d7724387b8cd9cac0aad3e23" name="a09724805d7724387b8cd9cac0aad3e23"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a09724805d7724387b8cd9cac0aad3e23">&#9670;&#160;</a></span>hit_current</h2>
+<a id="a4a7336991a6e94ba5a1d906f99227457" name="a4a7336991a6e94ba5a1d906f99227457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4a7336991a6e94ba5a1d906f99227457">&#9670;&#160;</a></span>half_full_scale</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> max22200::ChannelConfig::hit_current</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::half_full_scale</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>HIT current setting (0-1023) </p>
+<p>Half full-scale (false=1x, true=0.5x IFS) When true: IFS halved, RON doubled; low-side only </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a32">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="aefc7ca5063b6c9f50e23620f6de3567d" name="aefc7ca5063b6c9f50e23620f6de3567d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aefc7ca5063b6c9f50e23620f6de3567d">&#9670;&#160;</a></span>hit_time</h2>
+<a id="a5f63e2900357be94a30858b783169dea" name="a5f63e2900357be94a30858b783169dea"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5f63e2900357be94a30858b783169dea">&#9670;&#160;</a></span>hit_current_check_enabled</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> max22200::ChannelConfig::hit_time</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::hit_current_check_enabled</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>HIT time setting (0-65535) </p>
+<p>HIT current check enable (HHF fault if IHIT not reached) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a40">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="a156989985bc3ca34f4692f7baf80e6ab" name="a156989985bc3ca34f4692f7baf80e6ab"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a156989985bc3ca34f4692f7baf80e6ab">&#9670;&#160;</a></span>hold_current</h2>
+<a id="a54d62ebaf7d8b67a477784d7c8909153" name="a54d62ebaf7d8b67a477784d7c8909153"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54d62ebaf7d8b67a477784d7c8909153">&#9670;&#160;</a></span>hit_current_value</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">uint16_t</a> max22200::ChannelConfig::hold_current</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">float</a> max22200::ChannelConfig::hit_current_value</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>HOLD current setting (0-1023) </p>
+<p>HIT value in user units: CDR: current in mA (e.g. 500.0 for 500 mA) VDR: duty cycle in percent (e.g. 80.0 for 80%) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a27">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="a1804d898a42237ec2ebb58f0eee8c43d" name="a1804d898a42237ec2ebb58f0eee8c43d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1804d898a42237ec2ebb58f0eee8c43d">&#9670;&#160;</a></span>parallel_mode</h2>
+<a id="a819281ccb3abbf156dea8ac28b8226f9" name="a819281ccb3abbf156dea8ac28b8226f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a819281ccb3abbf156dea8ac28b8226f9">&#9670;&#160;</a></span>hit_time_ms</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::parallel_mode</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">float</a> max22200::ChannelConfig::hit_time_ms</td>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Parallel mode enable. </p>
+<p>HIT time in milliseconds 0.0 = no HIT time &lt; 0.0 or &gt;= 1000000.0 = continuous (infinite) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a29">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
-<a id="af8347571b0436614afb459c8234b4e3f" name="af8347571b0436614afb459c8234b4e3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af8347571b0436614afb459c8234b4e3f">&#9670;&#160;</a></span>polarity</h2>
+<a id="a5d0cf73ed469c95778a3489ab7943691" name="a5d0cf73ed469c95778a3489ab7943691"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5d0cf73ed469c95778a3489ab7943691">&#9670;&#160;</a></span>hold_current_value</h2>
 
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="namespacemax22200.html#aeff4db11c7846219d0852e9979ccfc71">OutputPolarity</a> max22200::ChannelConfig::polarity</td>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">float</a> max22200::ChannelConfig::hold_current_value</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>HOLD value in user units: CDR: current in mA VDR: duty cycle in percent </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a28">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="aebada20f8e0041756125823b5019e69d" name="aebada20f8e0041756125823b5019e69d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebada20f8e0041756125823b5019e69d">&#9670;&#160;</a></span>master_clock_80khz</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::master_clock_80khz</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Master clock base (false = 100 kHz, true = 80 kHz) Required for hit_time_ms → register conversion </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a31">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a3856294b68c876db41c97500609e9fc1" name="a3856294b68c876db41c97500609e9fc1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3856294b68c876db41c97500609e9fc1">&#9670;&#160;</a></span>open_load_detection_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::open_load_detection_enabled</td>
         </tr>
       </table>
 </div><div class="memdoc">
 
-<p>Output polarity. </p>
+<p>Open-load detection enable. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a38">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a9a34fa107efe2576f9807214552e7b46" name="a9a34fa107efe2576f9807214552e7b46"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9a34fa107efe2576f9807214552e7b46">&#9670;&#160;</a></span>plunger_movement_detection_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::plunger_movement_detection_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Plunger movement detection enable (low-side only) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a39">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a97337d9d02ad0e1590cba4f1ed99e260" name="a97337d9d02ad0e1590cba4f1ed99e260"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a97337d9d02ad0e1590cba4f1ed99e260">&#9670;&#160;</a></span>side_mode</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemax22200.html#a4f63d5a94ced7bc2f872014fab01f098">SideMode</a> max22200::ChannelConfig::side_mode</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Side mode: LOW_SIDE (CDR/VDR) or HIGH_SIDE (VDR only) </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a35">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="aa6abd7c1dfc13d964d581b837c8689a3" name="aa6abd7c1dfc13d964d581b837c8689a3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa6abd7c1dfc13d964d581b837c8689a3">&#9670;&#160;</a></span>slew_rate_control_enabled</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::slew_rate_control_enabled</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Slew rate control enable; reduces EMI; fCHOP &lt; 50 kHz. </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a37">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
+
+</div>
+</div>
+<a id="a58285da411a5fa6563403c98a360c3d6" name="a58285da411a5fa6563403c98a360c3d6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a58285da411a5fa6563403c98a360c3d6">&#9670;&#160;</a></span>trigger_from_pin</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classmax22200_1_1MAX22200.html">bool</a> max22200::ChannelConfig::trigger_from_pin</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Trigger source (false=SPI ONCH, true=TRIG pin) When true: Channel controlled by TRIGA/TRIGB pins </p>
+<dl class="section examples"><dt>Examples</dt><dd><a class="el" href="_2home_2runner_2work_2hf-max22200-driver_2hf-max22200-driver_2inc_2max22200_types_8hpp-example.html#a33">/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_types.hpp</a>.</dd>
+</dl>
 
 </div>
 </div>
