@@ -34,8 +34,7 @@ void app_main() {
     config.hit_setpoint = 800.0f;  // mA
     config.hold_setpoint = 200.0f;
     config.hit_time_ms = 50.0f;
-    // IFS from SetBoardConfig; not set on ChannelConfig
-    config.master_clock_80khz = false;
+    // IFS from SetBoardConfig; driver uses cached STATUS for hit time
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     config.hit_current_check_enabled = true;
 
@@ -73,7 +72,6 @@ void app_main() {
     cfg.hold_setpoint = 500.0f;
     cfg.hit_time_ms = -1.0f;  // Continuous
     // IFS from SetBoardConfig
-    cfg.master_clock_80khz = false;
     cfg.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     driver.ConfigureChannel(0, cfg);
     driver.ConfigureChannel(1, cfg);
@@ -106,8 +104,7 @@ void app_main() {
     config.hit_setpoint = 500.0f;
     config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
-    // IFS from SetBoardConfig; not set on ChannelConfig
-    config.master_clock_80khz = false;
+    // IFS from SetBoardConfig; driver uses cached STATUS for hit time
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     driver.ConfigureChannel(0, config);
     driver.EnableChannel(0);
@@ -148,8 +145,7 @@ void app_main() {
         config.hit_setpoint = 400.0f;
         config.hold_setpoint = 150.0f;
         config.hit_time_ms = 10.0f;
-        // IFS from SetBoardConfig; not set on ChannelConfig
-        config.master_clock_80khz = false;
+        // IFS from SetBoardConfig; driver uses cached STATUS for hit time
         config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
         driver.ConfigureChannel(ch, config);
     }

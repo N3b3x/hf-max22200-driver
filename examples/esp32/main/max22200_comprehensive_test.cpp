@@ -306,10 +306,15 @@ static bool test_channel_configuration() noexcept {
   constexpr float kChannelTestHitMa = 630.0f;
   constexpr float kChannelTestHoldMa = 315.0f;
 
+  StatusConfig st;
+  if (g_driver->ReadStatus(st) != DriverStatus::OK) {
+    ESP_LOGE(TAG, "ReadStatus failed");
+    return false;
+  }
+
   ChannelConfig config;
   config.drive_mode = DriveMode::CDR;
   config.side_mode = SideMode::LOW_SIDE;
-  config.master_clock_80khz = false;  // 100 kHz base
   config.hit_setpoint = kChannelTestHitMa;
   config.hold_setpoint = kChannelTestHoldMa;
   config.hit_time_ms = 10.0f;     // 10 ms (converted to register from fCHOP)
@@ -321,8 +326,8 @@ static bool test_channel_configuration() noexcept {
   config.plunger_movement_detection_enabled = false;
   config.hit_current_check_enabled = false;
 
-  // Driver uses board IFS when writing; match that for round-trip comparison
-  uint32_t sent_val = config.toRegister(board_ifs_ma);
+  // Driver uses board IFS and cached STATUS (FREQM) when writing; match for round-trip comparison
+  uint32_t sent_val = config.toRegister(board_ifs_ma, st.master_clock_80khz);
   ESP_LOGI(TAG, "[cfg] Writing CFG_CH0: 0x%08" PRIX32, sent_val);
 
   DriverStatus status = g_driver->ConfigureChannel(0, config);
@@ -336,7 +341,7 @@ static bool test_channel_configuration() noexcept {
     return false;
   }
 
-  uint32_t read_val = read_config.toRegister(board_ifs_ma);
+  uint32_t read_val = read_config.toRegister(board_ifs_ma, st.master_clock_80khz);
   ESP_LOGI(TAG, "[cfg] Read back CFG_CH0: 0x%08" PRIX32, read_val);
 
   uint32_t raw_val = 0;
@@ -351,34 +356,28 @@ static bool test_channel_configuration() noexcept {
   }
 
   // Raw mismatch: report decoded fields to help debug
-  bool ok = true;
   if (read_config.drive_mode != config.drive_mode) {
     ESP_LOGE(TAG, "  drive_mode mismatch: expected=%d read=%d",
              static_cast<int>(config.drive_mode),
              static_cast<int>(read_config.drive_mode));
-    ok = false;
   }
   if (read_config.side_mode != config.side_mode) {
     ESP_LOGE(TAG, "  side_mode mismatch: expected=%d read=%d",
              static_cast<int>(config.side_mode),
              static_cast<int>(read_config.side_mode));
-    ok = false;
   }
   const float tolerance = 1.0f;
   if (std::abs(read_config.hit_setpoint - config.hit_setpoint) > tolerance) {
     ESP_LOGE(TAG, "  hit_setpoint mismatch: expected=%.1f read=%.1f",
              config.hit_setpoint, read_config.hit_setpoint);
-    ok = false;
   }
   if (std::abs(read_config.hold_setpoint - config.hold_setpoint) > tolerance) {
     ESP_LOGE(TAG, "  hold_setpoint mismatch: expected=%.1f read=%.1f",
              config.hold_setpoint, read_config.hold_setpoint);
-    ok = false;
   }
   if (std::abs(read_config.hit_time_ms - config.hit_time_ms) > 1.0f) {
     ESP_LOGE(TAG, "  hit_time_ms mismatch: expected=%.2f read=%.2f",
              config.hit_time_ms, read_config.hit_time_ms);
-    ok = false;
   }
 
   ESP_LOGE(TAG, "Channel configuration mismatch (sent=0x%08" PRIX32 " raw=0x%08" PRIX32 ")",

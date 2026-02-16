@@ -72,7 +72,6 @@
 #include "max22200_registers.hpp"
 #include "max22200_types.hpp"
 #include "max22200_spi_interface.hpp"
-#include <array>
 #include <cstdint>
 
 namespace max22200 {
@@ -446,12 +445,12 @@ public:
    * @brief Configure DPM in real units (easy API)
    *
    * Sets start current, dip threshold, and debounce time. Uses board IFS for
-   * current conversion and a default 25 kHz chopping frequency for debounce.
-   * Call SetBoardConfig() first so IFS is set.
+   * current conversion and cached STATUS (FREQM) + FMAIN_DIV4 for debounce fCHOP.
+   * Call SetBoardConfig() first so IFS is set; call ReadStatus or Initialize so cache is valid.
    *
    * @param start_current_ma  Current (mA) above which DPM monitors for dip
    * @param dip_threshold_ma Minimum dip amplitude (mA) to count as valid
-   * @param debounce_ms      Min dip duration (ms); converted to chopping periods at 25 kHz
+   * @param debounce_ms      Min dip duration (ms); converted to chopping periods using actual fCHOP
    * @return DriverStatus::OK on success
    * @return DriverStatus::INVALID_PARAMETER if IFS not set or values out of range
    *
@@ -481,6 +480,24 @@ public:
    * @see DpmConfig, ReadDpmConfig, ConfigureDpm
    */
   DriverStatus WriteDpmConfig(const DpmConfig &config);
+
+  /**
+   * @brief Enable or disable DPM (plunger movement detection) on selected channels
+   *
+   * Reads each channel's config, sets or clears the DPM_EN bit according to
+   * @p channel_mask, and writes the config back. All other channel settings
+   * are unchanged. DPM algorithm parameters (start current, debounce, threshold)
+   * are global and set via ConfigureDpm() or WriteDpmConfig().
+   *
+   * @param channel_mask Bit N = 1 to enable DPM on channel N, 0 to disable (channels 0–7).
+   * @return DriverStatus::OK if all selected channels updated successfully.
+   *
+   * @example Enable DPM on channels 0, 2, and 5:
+   * @code
+   * driver.SetDpmEnabledChannels((1u << 0) | (1u << 2) | (1u << 5));
+   * @endcode
+   */
+  DriverStatus SetDpmEnabledChannels(uint8_t channel_mask);
 
   // =========================================================================
   // Device Control
@@ -710,6 +727,18 @@ public:
   static DriverStatus GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq,
                                     bool slew_rate_control_enabled, DutyLimits &limits);
 
+  /**
+   * @brief Get duty cycle limits for a channel (uses channel's chop_freq and SRC)
+   *
+   * Reads the channel config and uses cached STATUS (FREQM) to return δMIN/δMAX.
+   * Convenience wrapper when configuring VDR on a specific channel.
+   *
+   * @param channel Channel number (0-7)
+   * @param limits  Output: min_percent and max_percent
+   * @return DriverStatus::OK on success
+   */
+  DriverStatus GetDutyLimits(uint8_t channel, DutyLimits &limits) const;
+
   // =========================================================================
   // Convenience APIs: HIT Time in Milliseconds
   // =========================================================================
@@ -803,7 +832,7 @@ private:
   bool initialized_;
   mutable DriverStatistics statistics_;
   mutable uint8_t last_fault_byte_;  ///< STATUS[7:0] from last Command Reg write
-  StatusConfig cached_status_;       ///< Cached STATUS for ONCH updates
+  mutable StatusConfig cached_status_;  ///< Cached STATUS (updated by ReadStatus/WriteStatus/Init)
   BoardConfig board_config_;         ///< Board configuration (IFS, max limits)
 
   FaultCallback fault_callback_;

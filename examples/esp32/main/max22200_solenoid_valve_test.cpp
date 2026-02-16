@@ -92,7 +92,6 @@ static ChannelConfig make_valve_channel_config() {
   ChannelConfig config;
   config.drive_mode = C21ValveConfig::USE_CDR ? DriveMode::CDR : DriveMode::VDR;
   config.side_mode = SideMode::LOW_SIDE;
-  config.master_clock_80khz = false;
   config.hit_time_ms = C21ValveConfig::HIT_TIME_MS;
   config.half_full_scale = false;
   config.trigger_from_pin = false;
@@ -230,7 +229,7 @@ static void log_diagnostics(const char *phase) {
   for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
     ChannelConfig cfg;
     if (g_driver->GetChannelConfig(ch, cfg) != DriverStatus::OK) continue;
-    uint32_t raw = cfg.toRegister(board.full_scale_current_ma);
+    uint32_t raw = cfg.toRegister(board.full_scale_current_ma, status.master_clock_80khz);
     ESP_LOGI(TAG, "    CH%u  raw=0x%08" PRIX32 "  hit=%.1f hold=%.1f hit_time_ms=%.1f %s %s",
              ch, raw, cfg.hit_setpoint, cfg.hold_setpoint, cfg.hit_time_ms,
              cfg.drive_mode == DriveMode::CDR ? "CDR" : "VDR",

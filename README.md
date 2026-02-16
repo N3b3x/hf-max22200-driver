@@ -78,7 +78,6 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
     config.hit_setpoint = 500.0f;   // desired current, mA
     config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
-    config.master_clock_80khz = false;
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 
     driver.ConfigureChannel(0, config);

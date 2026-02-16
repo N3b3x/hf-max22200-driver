@@ -393,8 +393,7 @@ channel_config.side_mode = SideMode::LOW_SIDE;
 channel_config.hit_setpoint = 500.0f;   // mA
 channel_config.hold_setpoint = 200.0f;  // mA
 channel_config.hit_time_ms = 10.0f;
-// IFS from SetBoardConfig (not set on ChannelConfig)
-  channel_config.master_clock_80khz = false;
+// IFS from SetBoardConfig; driver uses cached STATUS for hit time
 channel_config.chop_freq = ChopFreq::FMAIN_DIV2;
 ```
 

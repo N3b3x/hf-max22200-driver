@@ -9,6 +9,7 @@
  * @copyright Copyright (c) 2024-2025 HardFOC. All rights reserved.
  */
 #pragma once
+#include <cmath>
 #include <cstring>
 
 namespace max22200 {
@@ -164,6 +165,7 @@ DriverStatus MAX22200<SpiType>::ReadStatus(StatusConfig &status) const {
   DriverStatus result = readReg32(RegBank::STATUS, raw);
   if (result == DriverStatus::OK) {
     status.fromRegister(raw);
+    cached_status_ = status;  // Keep cache in sync for FREQM, ONCH, duty limits, etc.
   }
   return result;
 }
@@ -203,7 +205,7 @@ DriverStatus MAX22200<SpiType>::ConfigureChannel(uint8_t channel,
     return DriverStatus::INVALID_PARAMETER;
   }
 
-  uint32_t reg_val = config.toRegister(board_config_.full_scale_current_ma);
+  uint32_t reg_val = config.toRegister(board_config_.full_scale_current_ma, cached_status_.master_clock_80khz);
   DriverStatus result = writeReg32(getChannelCfgBank(channel), reg_val);
   updateStatistics(result == DriverStatus::OK);
   return result;
@@ -423,6 +425,26 @@ DriverStatus MAX22200<SpiType>::WriteDpmConfig(const DpmConfig &config) {
 }
 
 template <typename SpiType>
+DriverStatus MAX22200<SpiType>::SetDpmEnabledChannels(uint8_t channel_mask) {
+  for (uint8_t ch = 0; ch < NUM_CHANNELS_; ++ch) {
+    ChannelConfig config;
+    DriverStatus result = GetChannelConfig(ch, config);
+    if (result != DriverStatus::OK) {
+      return result;
+    }
+    bool enable = (channel_mask & (1u << ch)) != 0;
+    if (config.plunger_movement_detection_enabled != enable) {
+      config.plunger_movement_detection_enabled = enable;
+      result = ConfigureChannel(ch, config);
+      if (result != DriverStatus::OK) {
+        return result;
+      }
+    }
+  }
+  return DriverStatus::OK;
+}
+
+template <typename SpiType>
 DriverStatus MAX22200<SpiType>::ConfigureDpm(float start_current_ma,
                                               float dip_threshold_ma,
                                               float debounce_ms) {
@@ -442,8 +464,10 @@ DriverStatus MAX22200<SpiType>::ConfigureDpm(float start_current_ma,
   ratio = dip_threshold_ma / static_cast<float>(board_config_.full_scale_current_ma);
   uint32_t ipth = static_cast<uint32_t>(ratio * 127.0f + 0.5f);
   config.plunger_movement_current_threshold = (ipth > 15) ? 15 : static_cast<uint8_t>(ipth);
-  // TDEB = plunger_movement_debounce_time / fCHOP; use default fCHOP = 25 kHz => value = debounce_ms * 25
-  uint32_t periods = static_cast<uint32_t>(debounce_ms * 25.0f + 0.5f);
+  // TDEB = plunger_movement_debounce_time / fCHOP; use actual fCHOP from cached STATUS (FREQM + FMAIN_DIV4)
+  uint32_t fchop_khz = getChopFreqKhz(cached_status_.master_clock_80khz, ChopFreq::FMAIN_DIV4);
+  float periods_f = debounce_ms * static_cast<float>(fchop_khz) + 0.5f;
+  uint32_t periods = static_cast<uint32_t>(periods_f);
   config.plunger_movement_debounce_time = (periods > 15) ? 15 : static_cast<uint8_t>(periods);
   return WriteDpmConfig(config);
 }
@@ -931,7 +955,6 @@ DriverStatus MAX22200<SpiType>::SetHitDutyPercent(uint8_t channel, float percent
   // Set user unit directly (VDR mode)
   config.drive_mode = DriveMode::VDR;
   config.hit_setpoint = percent;
-  config.master_clock_80khz = cached_status_.master_clock_80khz;  // Ensure context is set
   return ConfigureChannel(channel, config);
 }
 
@@ -964,7 +987,6 @@ DriverStatus MAX22200<SpiType>::SetHoldDutyPercent(uint8_t channel, float percen
   // Set user unit directly (VDR mode)
   config.drive_mode = DriveMode::VDR;
   config.hold_setpoint = percent;
-  config.master_clock_80khz = cached_status_.master_clock_80khz;  // Ensure context is set
   return ConfigureChannel(channel, config);
 }
 
@@ -1004,6 +1026,20 @@ DriverStatus MAX22200<SpiType>::GetHoldDutyPercent(uint8_t channel,
   // Return user unit directly (VDR mode stores duty %)
   percent = config.hold_setpoint;
   return DriverStatus::OK;
+}
+
+template <typename SpiType>
+DriverStatus MAX22200<SpiType>::GetDutyLimits(uint8_t channel, DutyLimits &limits) const {
+  if (!IsValidChannel(channel)) {
+    return DriverStatus::INVALID_PARAMETER;
+  }
+  ChannelConfig config;
+  DriverStatus result = GetChannelConfig(channel, config);
+  if (result != DriverStatus::OK) {
+    return result;
+  }
+  return GetDutyLimits(cached_status_.master_clock_80khz, config.chop_freq,
+                       config.slew_rate_control_enabled, limits);
 }
 
 template <typename SpiType>
@@ -1073,28 +1109,18 @@ DriverStatus MAX22200<SpiType>::SetHitTimeMs(uint8_t channel, float ms) {
     return result;
   }
 
-  // Compute fCHOP from FREQM + chop_freq
-  uint32_t fchop_khz;
-  switch (config.chop_freq) {
-    case ChopFreq::FMAIN_DIV4:
-      fchop_khz = cached_status_.master_clock_80khz ? 20 : 25;
-      break;
-    case ChopFreq::FMAIN_DIV3:
-      fchop_khz = cached_status_.master_clock_80khz ? 26 : 33;
-      break;
-    case ChopFreq::FMAIN_DIV2:
-      fchop_khz = cached_status_.master_clock_80khz ? 40 : 50;
-      break;
-    case ChopFreq::FMAIN:
-      fchop_khz = cached_status_.master_clock_80khz ? 80 : 100;
-      break;
-    default:
-      return DriverStatus::INVALID_PARAMETER;
+  // Reject NaN/Inf
+  if (!std::isfinite(ms)) {
+    updateStatistics(false);
+    return DriverStatus::INVALID_PARAMETER;
+  }
+  // Reject positive finite ms beyond 8-bit representable range (raw 1–254) for this channel's chop freq
+  if (ms > 0.0f && ms > getMaxHitTimeMs(cached_status_.master_clock_80khz, config.chop_freq)) {
+    updateStatistics(false);
+    return DriverStatus::INVALID_PARAMETER;
   }
 
-  // Set user unit directly
   config.hit_time_ms = ms;
-  config.master_clock_80khz = cached_status_.master_clock_80khz;  // Ensure context is set
   return ConfigureChannel(channel, config);
 }
 
@@ -1152,7 +1178,6 @@ DriverStatus MAX22200<SpiType>::ConfigureChannelCdr(
   config.hit_setpoint = static_cast<float>(hit_ma);
   config.hold_setpoint = static_cast<float>(hold_ma);
   config.hit_time_ms = hit_time_ms;
-  config.master_clock_80khz = cached_status_.master_clock_80khz;
 
   return ConfigureChannel(channel, config);
 }
@@ -1203,7 +1228,6 @@ DriverStatus MAX22200<SpiType>::ConfigureChannelVdr(
   config.hit_setpoint = hit_duty_percent;
   config.hold_setpoint = hold_duty_percent;
   config.hit_time_ms = hit_time_ms;
-  config.master_clock_80khz = cached_status_.master_clock_80khz;  // Set context for hit_time conversion
 
   return ConfigureChannel(channel, config);
 }

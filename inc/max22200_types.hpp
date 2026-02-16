@@ -263,6 +263,18 @@ inline uint8_t hitTimeMsToRaw(float ms, bool master_clock_80khz, ChopFreq cf) {
 }
 
 /**
+ * @brief Maximum representable HIT time in ms for raw values 1–254 (255 = continuous).
+ * @param master_clock_80khz false = 100 kHz base, true = 80 kHz base
+ * @param cf     Chopping frequency (FREQ_CFG)
+ * @return Max finite hit time in ms; values above this map to raw 255 (continuous)
+ */
+inline float getMaxHitTimeMs(bool master_clock_80khz, ChopFreq cf) {
+  const uint32_t fchop_khz = getChopFreqKhz(master_clock_80khz, cf);
+  const float fchop_hz = static_cast<float>(fchop_khz) * 1000.0f;
+  return (254.0f * 40.0f / fchop_hz) * 1000.0f;
+}
+
+/**
  * @brief Fault type enumeration
  */
 enum class FaultType : uint8_t {
@@ -318,17 +330,15 @@ inline const char *FaultTypeToStr(FaultType ft) {
  * - `hit_time_ms` is in **milliseconds**
  * - `0.0f` = no HIT time
  * - `< 0.0f` or `>= 1000000.0f` = continuous (infinite)
- * - Requires `master_clock_80khz` and `chop_freq` for conversion to 8-bit register value
- *
- * ### Context Fields
- *
- * - `master_clock_80khz`: Master clock base (required for hit_time_ms conversion)
- * - `chop_freq`: Chopping frequency divider (required for hit_time_ms conversion)
+ * - Requires master clock base (80 vs 100 kHz) and `chop_freq` for conversion to 8-bit register value.
+ *   The driver supplies this from STATUS (FREQM) when calling toRegister/fromRegister; not stored on config.
  *
  * ### Register Conversion
  *
- * - `toRegister(board_ifs_ma)` computes raw from user units; pass board IFS for CDR (driver does this in ConfigureChannel).
- * - `fromRegister(val, board_ifs_ma, master_clock_80khz)` converts raw → user units; IFS is not stored on config.
+ * - `toRegister(board_ifs_ma, master_clock_80khz)` computes raw from user units. Driver passes board IFS and
+ *   cached STATUS master clock in ConfigureChannel.
+ * - `fromRegister(val, board_ifs_ma, master_clock_80khz)` converts raw → user units; IFS and master clock
+ *   are not stored on config.
  *
  * ### Restrictions
  *
@@ -340,7 +350,9 @@ inline const char *FaultTypeToStr(FaultType ft) {
  *
  * - High-side mode (`side_mode = HIGH_SIDE`) only supports VDR mode
  *
- * - `half_full_scale` is only available for low-side applications
+ * - `half_full_scale` is only available for low-side applications. When HFS=1, effective IFS
+ *   for that channel is half of board IFS (datasheet KFS 7.5k vs 15k). toRegister/fromRegister
+ *   use this effective IFS for CDR mA ↔ raw conversion so setpoints stay in real mA.
  *
  * @note See max22200_registers.hpp for detailed bit field definitions.
  * @note The driver's `GetChannelConfig()` passes board IFS into `fromRegister()`; IFS is not stored on ChannelConfig.
@@ -354,10 +366,6 @@ struct ChannelConfig {
   float    hit_time_ms;    ///< HIT time in milliseconds
                                ///< 0.0 = no HIT time
                                ///< < 0.0 or >= 1000000.0 = continuous (infinite)
-
-  // ── Context for Conversion ──────────────────────────────────────────────────
-  bool     master_clock_80khz;     ///< Master clock base (false = 100 kHz, true = 80 kHz)
-                                   ///< Required for hit_time_ms → register conversion
 
   // ── Register Fields (Direct Mapping) ─────────────────────────────────────
   bool     half_full_scale;        ///< Half full-scale (false=1x, true=0.5x IFS)
@@ -377,12 +385,45 @@ struct ChannelConfig {
    */
   ChannelConfig()
       : hit_setpoint(0.0f), hold_setpoint(0.0f), hit_time_ms(0.0f),
-        master_clock_80khz(false),
         half_full_scale(false), trigger_from_pin(false),
         drive_mode(DriveMode::CDR), side_mode(SideMode::LOW_SIDE),
         chop_freq(ChopFreq::FMAIN_DIV4), slew_rate_control_enabled(false),
         open_load_detection_enabled(false), plunger_movement_detection_enabled(false),
         hit_current_check_enabled(false) {}
+
+  /**
+   * @brief Preset: solenoid in CDR mode (low-side, currents in mA)
+   *
+   * Sets drive_mode=CDR, side_mode=LOW_SIDE, chop_freq=FMAIN_DIV4 and common defaults.
+   * Call SetBoardConfig() before ConfigureChannel(); driver supplies IFS and FREQM.
+   */
+  static ChannelConfig makeSolenoidCdr(float hit_ma, float hold_ma, float hit_time_ms) {
+    ChannelConfig c;
+    c.drive_mode = DriveMode::CDR;
+    c.side_mode = SideMode::LOW_SIDE;
+    c.hit_setpoint = hit_ma;
+    c.hold_setpoint = hold_ma;
+    c.hit_time_ms = hit_time_ms;
+    c.chop_freq = ChopFreq::FMAIN_DIV4;
+    return c;
+  }
+
+  /**
+   * @brief Preset: solenoid in VDR mode (low-side, duty percent)
+   *
+   * Sets drive_mode=VDR, side_mode=LOW_SIDE, chop_freq=FMAIN_DIV4 and common defaults.
+   * hit_pct and hold_pct are 0–100. Call SetBoardConfig() before ConfigureChannel().
+   */
+  static ChannelConfig makeSolenoidVdr(float hit_pct, float hold_pct, float hit_time_ms) {
+    ChannelConfig c;
+    c.drive_mode = DriveMode::VDR;
+    c.side_mode = SideMode::LOW_SIDE;
+    c.hit_setpoint = hit_pct;
+    c.hold_setpoint = hold_pct;
+    c.hit_time_ms = hit_time_ms;
+    c.chop_freq = ChopFreq::FMAIN_DIV4;
+    return c;
+  }
 
   // ── Mode-aware accessors (same storage; use for clear intent at call site) ─
   void set_hit_ma(float ma) { hit_setpoint = ma; }
@@ -397,18 +438,22 @@ struct ChannelConfig {
   /**
    * @brief Build 32-bit register value from user units
    *
-   * For CDR, pass board IFS in mA (from SetBoardConfig). Driver calls this with board IFS in ConfigureChannel.
+   * For CDR, pass board IFS in mA (from SetBoardConfig). Driver calls this with board IFS and
+   * master clock from cached STATUS in ConfigureChannel.
    *
    * @param board_ifs_ma Board IFS in mA (required for CDR when > 0; 0 yields raw 0 in CDR).
-   * @note hit_time_ms → register uses master_clock_80khz and chop_freq.
+   * @param master_clock_80khz Master clock base from STATUS FREQM (false = 100 kHz, true = 80 kHz); used for hit_time conversion.
    */
-  uint32_t toRegister(uint32_t board_ifs_ma = 0) const {
-    const uint32_t ifs_ma = board_ifs_ma;
+  uint32_t toRegister(uint32_t board_ifs_ma = 0, bool master_clock_80khz = false) const {
+    // Effective IFS for CDR: HFS=1 halves the scale (datasheet KFS 7.5k vs 15k)
+    const uint32_t ifs_ma = (drive_mode == DriveMode::CDR && half_full_scale && board_ifs_ma >= 2u)
+                                ? (board_ifs_ma / 2u)
+                                : board_ifs_ma;
 
     // Convert hit_setpoint to raw 7-bit
     uint8_t hit_raw;
     if (drive_mode == DriveMode::CDR) {
-      // CDR: hit_setpoint is in mA
+      // CDR: hit_setpoint is in mA (relative to effective IFS for this channel)
       if (ifs_ma == 0) {
         hit_raw = 0;  // Invalid IFS
       } else if (hit_setpoint >= static_cast<float>(ifs_ma)) {
@@ -453,7 +498,7 @@ struct ChannelConfig {
       }
     }
 
-    // Convert hit_time_ms to raw 8-bit
+    // Convert hit_time_ms to raw 8-bit (master_clock_80khz from parameter, not stored on config)
     uint8_t hit_time_raw = hitTimeMsToRaw(hit_time_ms, master_clock_80khz, chop_freq);
 
     // Build register value
@@ -497,14 +542,15 @@ struct ChannelConfig {
     plunger_movement_detection_enabled = (val & CfgChReg::DPM_EN_BIT) != 0;
     hit_current_check_enabled = (val & CfgChReg::HHF_EN_BIT) != 0;
 
-    master_clock_80khz = master_clock_80khz_param;
-
-    // Convert raw → user units
+    // Convert raw → user units (master_clock_80khz_param used for hit_time only; not stored on config)
     if (drive_mode == DriveMode::CDR) {
-      // CDR: raw → mA
-      if (board_ifs_ma > 0) {
-        hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(board_ifs_ma);
-        hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(board_ifs_ma);
+      // CDR: raw → mA (use effective IFS when HFS=1)
+      const uint32_t effective_ifs = half_full_scale && board_ifs_ma >= 2u
+                                         ? (board_ifs_ma / 2u)
+                                         : board_ifs_ma;
+      if (effective_ifs > 0) {
+        hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(effective_ifs);
+        hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(effective_ifs);
       } else {
         hit_setpoint = 0.0f;
         hold_setpoint = 0.0f;
@@ -521,7 +567,7 @@ struct ChannelConfig {
     } else if (hit_time_raw == 255) {
       hit_time_ms = -1.0f;  // Continuous (infinite)
     } else {
-      uint32_t fchop_khz = getChopFreqKhz(master_clock_80khz, chop_freq);
+      uint32_t fchop_khz = getChopFreqKhz(master_clock_80khz_param, chop_freq);
       float fchop_hz = static_cast<float>(fchop_khz) * 1000.0f;
       hit_time_ms = (static_cast<float>(hit_time_raw) * 40.0f / fchop_hz) * 1000.0f;
     }

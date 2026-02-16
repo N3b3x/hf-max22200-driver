@@ -46,8 +46,7 @@ if (driver.Initialize() == max22200::DriverStatus::OK) {
     config.hit_setpoint = 500.0f;   // 500 mA
     config.hold_setpoint = 200.0f;  // 200 mA
     config.hit_time_ms = 10.0f;          // 10 ms
-    // IFS from SetBoardConfig; ChannelConfig does not store IFS
-    config.master_clock_80khz = false;                // 100 kHz base (from STATUS)
+    // IFS from SetBoardConfig; driver uses STATUS FREQM for hit time
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
     config.hit_current_check_enabled = true;                // Enable HIT current check
 
@@ -107,8 +106,7 @@ config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 500.0f;   // 500 mA (CDR)
 config.hold_setpoint = 200.0f; // 200 mA
 config.hit_time_ms = 10.0f;         // 10 ms
-// IFS from SetBoardConfig; not set on ChannelConfig
-config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
+// IFS from SetBoardConfig; driver uses cached STATUS for hit time
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 config.hit_current_check_enabled = true;
 
@@ -157,7 +155,6 @@ void app_main() {
     config.hit_setpoint = 500.0f;
     config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
-    config.master_clock_80khz = false;
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 
     status = driver.ConfigureChannel(0, config);

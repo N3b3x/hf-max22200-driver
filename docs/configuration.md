@@ -15,7 +15,7 @@ This guide covers configuration options for the MAX22200 driver, aligned with th
 
 ### Basic Channel Setup
 
-Channels are configured via `ChannelConfig` and written with `ConfigureChannel()`. **ChannelConfig stores user units** (mA for CDR, % for VDR, ms for hit time). For CDR, **IFS comes from the board** (SetBoardConfig with RREF)—you do not set it per channel. Call `SetBoardConfig(BoardConfig(rref_kohm, hfs))` first; the driver uses that IFS when writing. Set `master_clock_80khz` (or get it from ReadStatus) for hit_time conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see [Channel Control](#channel-control)).
+Channels are configured via `ChannelConfig` and written with `ConfigureChannel()`. **ChannelConfig stores user units** (mA for CDR, % for VDR, ms for hit time). For CDR, **IFS comes from the board** (SetBoardConfig with RREF)—you do not set it per channel. Call `SetBoardConfig(BoardConfig(rref_kohm, hfs))` first; the driver uses that IFS when writing. The driver gets the master clock (FREQM) from STATUS for hit_time conversion—you do not set it on ChannelConfig. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see [Channel Control](#channel-control)).
 
 ```cpp
 driver.SetBoardConfig(max22200::BoardConfig(30.0f, false));  // IFS from RREF (required for CDR)
@@ -26,7 +26,6 @@ config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 500.0f;   // desired current, mA
 config.hold_setpoint = 200.0f;  // mA
 config.hit_time_ms = 10.0f;     // 10 ms
-config.master_clock_80khz = false;  // 100 kHz base (for hit_time conversion)
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 config.hit_current_check_enabled = true;
 config.open_load_detection_enabled = false;
@@ -49,7 +48,7 @@ driver.ConfigureChannel(0, config);
 
 - **Low-side**  
   `config.side_mode = max22200::SideMode::LOW_SIDE;`  
-  Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM.
+  Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM. When `half_full_scale` is true, effective IFS for that channel is half of board IFS (driver uses it for mA ↔ raw conversion).
 
 - **High-side**  
   `config.side_mode = max22200::SideMode::HIGH_SIDE;`  
@@ -70,7 +69,7 @@ driver.SetHoldCurrentMa(0, 200);
 driver.SetHitTimeMs(0, 10.0f);   // 10 ms (converted from fCHOP)
 ```
 
-**Option B — Set user units on ChannelConfig directly:** Call `SetBoardConfig()` first (IFS from RREF). Set `hit_setpoint`, `hold_setpoint`, `hit_time_ms`, and `master_clock_80khz`, `chop_freq`. The driver uses board IFS for CDR conversion; ChannelConfig does not store IFS.
+**Option B — Set user units on ChannelConfig directly:** Call `SetBoardConfig()` first (IFS from RREF). Set `hit_setpoint`, `hold_setpoint`, `hit_time_ms`, and `chop_freq`. The driver uses board IFS (and STATUS FREQM for hit time) when writing; ChannelConfig does not store IFS or master clock.
 
 ```cpp
 driver.SetBoardConfig(max22200::BoardConfig(30.0f, false));  // IFS from RREF
@@ -81,7 +80,6 @@ config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 500.0f;   // mA
 config.hold_setpoint = 200.0f;  // mA
 config.hit_time_ms = 10.0f;
-config.master_clock_80khz = false;  // from ReadStatus(status)
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 driver.ConfigureChannel(0, config);
 ```
@@ -98,7 +96,7 @@ You can query config with inline helpers (see `max22200_types.hpp`):
 
 ## STATUS Register (StatusConfig)
 
-The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with `ReadStatus()` and `WriteStatus()`.
+The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with `ReadStatus()` and `WriteStatus()`. The driver keeps an internal cache of STATUS (updated on ReadStatus, WriteStatus, and Initialize) for hit-time and duty-limit conversions. If you write STATUS via `WriteRegister32(RegBank::STATUS, ...)`, that cache is not updated—prefer `WriteStatus(StatusConfig)` when changing STATUS.
 
 ### Channel On/Off (ONCH)
 
@@ -143,11 +141,11 @@ Clearing:
 
 ## DPM Configuration (CFG_DPM)
 
-Plunger movement detection is global; enable per channel with `config.plunger_movement_detection_enabled = true` (low-side only). Configure in real units:
+Plunger movement detection is global; enable per channel with `config.plunger_movement_detection_enabled = true` (low-side only), or in one call with `SetDpmEnabledChannels(channel_mask)` (bit N = 1 enables DPM on channel N). Configure algorithm in real units:
 
 ```cpp
 driver.ConfigureDpm(200.0f, 50.0f, 2.0f);
-// start_current_ma, dip_threshold_ma, debounce_ms (converted at 25 kHz)
+// start_current_ma, dip_threshold_ma, debounce_ms (debounce uses cached STATUS FREQM + FMAIN_DIV4 fCHOP)
 ```
 
 Or read/write raw `DpmConfig` (plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold) with `ReadDpmConfig()` / `WriteDpmConfig()`. Use `getPlungerMovementStartCurrent()`, `getPlungerMovementDebounceTime()`, `getPlungerMovementCurrentThreshold()` for readable access.
@@ -196,12 +194,13 @@ config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 800.0f;  // mA (IFS from SetBoardConfig)
 config.hold_setpoint = 200.0f;
 config.hit_time_ms = 50.0f;
-config.master_clock_80khz = false;
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 config.hit_current_check_enabled = true;
 driver.ConfigureChannel(0, config);
 driver.EnableChannel(0);
 ```
+
+Or use the preset: `auto config = max22200::ChannelConfig::makeSolenoidCdr(800.0f, 200.0f, 50.0f); config.hit_current_check_enabled = true; driver.ConfigureChannel(0, config);`
 
 ### Motor (H-bridge pair)
 
@@ -215,9 +214,10 @@ config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 60.0f;   // duty %
 config.hold_setpoint = 20.0f;
 config.hit_time_ms = 100.0f;
-config.master_clock_80khz = false;
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 ```
+
+Or: `auto config = max22200::ChannelConfig::makeSolenoidVdr(60.0f, 20.0f, 100.0f); driver.ConfigureChannel(0, config);`
 
 ## Next Steps
 
