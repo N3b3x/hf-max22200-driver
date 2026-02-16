@@ -308,7 +308,7 @@ inline const char *FaultTypeToStr(FaultType ft) {
  * **CDR Mode**:
  * - `hit_setpoint` and `hold_setpoint` are in **milliamps (mA)**
  * - Use `set_hit_ma()` / `set_hold_ma()` or assign directly; `hit_ma()` / `hold_ma()` to read
- * - Requires `full_scale_current_ma` to be set for conversion to 7-bit register value
+ * - Driver uses board IFS (SetBoardConfig) for mA → 7-bit in ConfigureChannel.
  *
  * **VDR Mode**:
  * - `hit_setpoint` and `hold_setpoint` are **duty cycle percentages (0-100)**
@@ -320,16 +320,15 @@ inline const char *FaultTypeToStr(FaultType ft) {
  * - `< 0.0f` or `>= 1000000.0f` = continuous (infinite)
  * - Requires `master_clock_80khz` and `chop_freq` for conversion to 8-bit register value
  *
- * ### Context Fields (Required for Conversion)
+ * ### Context Fields
  *
- * - `full_scale_current_ma`: Full-scale current in mA (required for CDR mode)
- * - `master_clock_80khz`: Master clock 80 kHz base (required for hit_time_ms conversion)
+ * - `master_clock_80khz`: Master clock base (required for hit_time_ms conversion)
  * - `chop_freq`: Chopping frequency divider (required for hit_time_ms conversion)
  *
  * ### Register Conversion
  *
- * - `toRegister()` computes raw register values from user units using context
- * - `fromRegister(val, full_scale_current_ma, master_clock_80khz)` converts raw register → user units
+ * - `toRegister(board_ifs_ma)` computes raw from user units; pass board IFS for CDR (driver does this in ConfigureChannel).
+ * - `fromRegister(val, board_ifs_ma, master_clock_80khz)` converts raw → user units; IFS is not stored on config.
  *
  * ### Restrictions
  *
@@ -344,8 +343,7 @@ inline const char *FaultTypeToStr(FaultType ft) {
  * - `half_full_scale` is only available for low-side applications
  *
  * @note See max22200_registers.hpp for detailed bit field definitions.
- * @note The driver's `GetChannelConfig()` automatically sets `full_scale_current_ma` and `master_clock_80khz` from
- *       `BoardConfig` and `StatusConfig` when reading from hardware.
+ * @note The driver's `GetChannelConfig()` passes board IFS into `fromRegister()`; IFS is not stored on ChannelConfig.
  */
 struct ChannelConfig {
   // ── User Units (Primary Storage) ──────────────────────────────────────────
@@ -357,9 +355,7 @@ struct ChannelConfig {
                                ///< 0.0 = no HIT time
                                ///< < 0.0 or >= 1000000.0 = continuous (infinite)
 
-  // ── Context for Conversion (Required for toRegister()) ───────────────────
-  uint32_t full_scale_current_ma;  ///< Full-scale current in mA (for CDR mode conversion)
-                                   ///< Must be set for CDR mode; ignored for VDR
+  // ── Context for Conversion ──────────────────────────────────────────────────
   bool     master_clock_80khz;     ///< Master clock base (false = 100 kHz, true = 80 kHz)
                                    ///< Required for hit_time_ms → register conversion
 
@@ -381,7 +377,7 @@ struct ChannelConfig {
    */
   ChannelConfig()
       : hit_setpoint(0.0f), hold_setpoint(0.0f), hit_time_ms(0.0f),
-        full_scale_current_ma(1000), master_clock_80khz(false),
+        master_clock_80khz(false),
         half_full_scale(false), trigger_from_pin(false),
         drive_mode(DriveMode::CDR), side_mode(SideMode::LOW_SIDE),
         chop_freq(ChopFreq::FMAIN_DIV4), slew_rate_control_enabled(false),
@@ -401,24 +397,25 @@ struct ChannelConfig {
   /**
    * @brief Build 32-bit register value from user units
    *
-   * Computes raw register values from hit_setpoint, hold_setpoint,
-   * and hit_time_ms using full_scale_current_ma, master_clock_80khz, and chop_freq for conversion.
+   * For CDR, pass board IFS in mA (from SetBoardConfig). Driver calls this with board IFS in ConfigureChannel.
    *
-   * @note Requires full_scale_current_ma > 0 for CDR mode (for current conversion).
-   * @note Uses master_clock_80khz and chop_freq for hit_time_ms → register conversion.
+   * @param board_ifs_ma Board IFS in mA (required for CDR when > 0; 0 yields raw 0 in CDR).
+   * @note hit_time_ms → register uses master_clock_80khz and chop_freq.
    */
-  uint32_t toRegister() const {
+  uint32_t toRegister(uint32_t board_ifs_ma = 0) const {
+    const uint32_t ifs_ma = board_ifs_ma;
+
     // Convert hit_setpoint to raw 7-bit
     uint8_t hit_raw;
     if (drive_mode == DriveMode::CDR) {
       // CDR: hit_setpoint is in mA
-      if (full_scale_current_ma == 0) {
+      if (ifs_ma == 0) {
         hit_raw = 0;  // Invalid IFS
-      } else if (hit_setpoint >= static_cast<float>(full_scale_current_ma)) {
+      } else if (hit_setpoint >= static_cast<float>(ifs_ma)) {
         hit_raw = 127;
       } else {
         uint32_t ma = static_cast<uint32_t>(hit_setpoint + 0.5f);
-        hit_raw = currentMaToRaw(full_scale_current_ma, ma);
+        hit_raw = currentMaToRaw(ifs_ma, ma);
       }
     } else {
       // VDR: hit_setpoint is duty percent (0-100)
@@ -436,13 +433,13 @@ struct ChannelConfig {
     uint8_t hold_raw;
     if (drive_mode == DriveMode::CDR) {
       // CDR: hold_setpoint is in mA
-      if (full_scale_current_ma == 0) {
+      if (ifs_ma == 0) {
         hold_raw = 0;
-      } else if (hold_setpoint >= static_cast<float>(full_scale_current_ma)) {
+      } else if (hold_setpoint >= static_cast<float>(ifs_ma)) {
         hold_raw = 127;
       } else {
         uint32_t ma = static_cast<uint32_t>(hold_setpoint + 0.5f);
-        hold_raw = currentMaToRaw(full_scale_current_ma, ma);
+        hold_raw = currentMaToRaw(ifs_ma, ma);
       }
     } else {
       // VDR: hold_setpoint is duty percent (0-100)
@@ -479,14 +476,13 @@ struct ChannelConfig {
   /**
    * @brief Parse a 32-bit register value into user units
    *
-   * Converts raw register values to user units (mA for CDR, % for VDR, ms for hit_time).
-   * Requires full_scale_current_ma and master_clock_80khz to be set for proper conversion.
+   * Converts raw to mA (CDR) or % (VDR) and hit_time_ms. IFS is not stored on config.
    *
    * @param val 32-bit register value from CFG_CHx
-   * @param full_scale_current_ma_param Full-scale current in mA (for CDR mode conversion)
+   * @param board_ifs_ma Board IFS in mA (for CDR raw→mA conversion)
    * @param master_clock_80khz_param   Master clock 80 kHz base (for hit_time conversion)
    */
-  void fromRegister(uint32_t val, uint32_t full_scale_current_ma_param, bool master_clock_80khz_param) {
+  void fromRegister(uint32_t val, uint32_t board_ifs_ma, bool master_clock_80khz_param) {
     // Parse register fields
     half_full_scale = (val & CfgChReg::HFS_BIT) != 0;
     uint8_t hold_raw = static_cast<uint8_t>((val >> CfgChReg::HOLD_SHIFT) & 0x7F);
@@ -501,16 +497,14 @@ struct ChannelConfig {
     plunger_movement_detection_enabled = (val & CfgChReg::DPM_EN_BIT) != 0;
     hit_current_check_enabled = (val & CfgChReg::HHF_EN_BIT) != 0;
 
-    // Store context
-    full_scale_current_ma = full_scale_current_ma_param;
     master_clock_80khz = master_clock_80khz_param;
 
     // Convert raw → user units
     if (drive_mode == DriveMode::CDR) {
       // CDR: raw → mA
-      if (full_scale_current_ma > 0) {
-        hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
-        hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(full_scale_current_ma);
+      if (board_ifs_ma > 0) {
+        hit_setpoint = (static_cast<float>(hit_raw) / 127.0f) * static_cast<float>(board_ifs_ma);
+        hold_setpoint = (static_cast<float>(hold_raw) / 127.0f) * static_cast<float>(board_ifs_ma);
       } else {
         hit_setpoint = 0.0f;
         hold_setpoint = 0.0f;

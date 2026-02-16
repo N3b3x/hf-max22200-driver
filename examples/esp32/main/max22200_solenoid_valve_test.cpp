@@ -55,7 +55,7 @@ static const char *TAG = "MAX22200_Valve";
 // CONFIGURATION
 //=============================================================================
 
-/** RREF in kΩ for BoardConfig(rref, hfs). Use value that gives IFS >= C21ValveConfig::RATED_CURRENT_MA (e.g. 30 kΩ, HFS=0 → IFS ≈ 500 mA). */
+/** RREF in kΩ for BoardConfig(rref, hfs). Use value so IFS >= C21ValveConfig::HIT_CURRENT_MA (e.g. 15 kΩ → IFS = 1000 mA). */
 static constexpr float VALVE_TEST_RREF_KOHM = 30.0f;
 static constexpr bool VALVE_TEST_HFS = false;
 
@@ -87,12 +87,11 @@ static bool require_ok(DriverStatus status, const char *op) {
   return true;
 }
 
-/** Build C21-style ChannelConfig for low-side valve (CDR or VDR per C21ValveConfig) */
-static ChannelConfig make_valve_channel_config(uint32_t full_scale_current_ma) {
+/** Build C21-style ChannelConfig for low-side valve (CDR or VDR per C21ValveConfig). IFS comes from board (SetBoardConfig). */
+static ChannelConfig make_valve_channel_config() {
   ChannelConfig config;
   config.drive_mode = C21ValveConfig::USE_CDR ? DriveMode::CDR : DriveMode::VDR;
   config.side_mode = SideMode::LOW_SIDE;
-  config.full_scale_current_ma = full_scale_current_ma;
   config.master_clock_80khz = false;
   config.hit_time_ms = C21ValveConfig::HIT_TIME_MS;
   config.half_full_scale = false;
@@ -104,9 +103,8 @@ static ChannelConfig make_valve_channel_config(uint32_t full_scale_current_ma) {
   config.hit_current_check_enabled = false;
 
   if (C21ValveConfig::USE_CDR) {
-    // Hit/hold in mA from valve rated current and percentages (driver clamps to IFS if needed)
-    config.hit_setpoint = (C21ValveConfig::HIT_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
-    config.hold_setpoint = (C21ValveConfig::HOLD_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
+    config.hit_setpoint = C21ValveConfig::HIT_CURRENT_MA;
+    config.hold_setpoint = C21ValveConfig::HOLD_CURRENT_MA;
   } else {
     config.hit_setpoint = C21ValveConfig::HIT_PERCENT;
     config.hold_setpoint = C21ValveConfig::HOLD_PERCENT;
@@ -216,7 +214,7 @@ static void log_diagnostics(const char *phase) {
       ESP_LOGI(TAG, "  >>> OLF per-ch 0x%02" PRIX8 " — open load / disconnected solenoid", faults.open_load_fault_channel_mask);
     if (faults.plunger_movement_fault_channel_mask)
       ESP_LOGI(TAG, "  >>> DPM per-ch 0x%02" PRIX8 " — plunger movement", faults.plunger_movement_fault_channel_mask);
-    for (uint8_t ch = 0; ch < ChannelLimits::NUM_CHANNELS; ch++) {
+    for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
       const bool ocp = (faults.overcurrent_channel_mask & (1u << ch)) != 0;
       const bool hhf = (faults.hit_not_reached_channel_mask & (1u << ch)) != 0;
       const bool olf = (faults.open_load_fault_channel_mask & (1u << ch)) != 0;
@@ -227,18 +225,18 @@ static void log_diagnostics(const char *phase) {
     ESP_LOGI(TAG, "  Legend: UVM=undervoltage OCP=short/overcurrent OLF=open/disconnected HHF=hit not reached DPM=plunger COMER=SPI OVT=thermal");
   }
 
+  BoardConfig board = g_driver->GetBoardConfig();
   ESP_LOGI(TAG, "  Channel config readback (summary):");
-  for (uint8_t ch = 0; ch < ChannelLimits::NUM_CHANNELS; ch++) {
+  for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
     ChannelConfig cfg;
     if (g_driver->GetChannelConfig(ch, cfg) != DriverStatus::OK) continue;
-    uint32_t raw = cfg.toRegister();
+    uint32_t raw = cfg.toRegister(board.full_scale_current_ma);
     ESP_LOGI(TAG, "    CH%u  raw=0x%08" PRIX32 "  hit=%.1f hold=%.1f hit_time_ms=%.1f %s %s",
              ch, raw, cfg.hit_setpoint, cfg.hold_setpoint, cfg.hit_time_ms,
              cfg.drive_mode == DriveMode::CDR ? "CDR" : "VDR",
              cfg.side_mode == SideMode::LOW_SIDE ? "LS" : "HS");
   }
 
-  BoardConfig board = g_driver->GetBoardConfig();
   ESP_LOGI(TAG, "  BoardConfig  IFS=%" PRIu32 " mA  max_current_ma=%" PRIu32 "  max_duty%%=%" PRIu8,
            board.full_scale_current_ma, board.max_current_ma, board.max_duty_percent);
 
@@ -256,7 +254,7 @@ static void log_diagnostics(const char *phase) {
 static void run_sequential_pattern() {
   ESP_LOGI(TAG, "");
   ESP_LOGI(TAG, "  ═══ SEQUENTIAL (follow-up clicking)  ch0 → ch1 → … → ch7  ═══");
-  for (uint8_t ch = 0; ch < ChannelLimits::NUM_CHANNELS; ch++) {
+  for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
     if (g_driver->EnableChannel(ch) != DriverStatus::OK) {
       ESP_LOGE(TAG, "  EnableChannel(%u) failed", ch);
       continue;
@@ -316,14 +314,12 @@ static bool init_driver_and_valve_config() {
   }
   if (!require_ok(g_driver->EnableDevice(), "EnableDevice()")) return false;
 
-  uint32_t ifs = board.full_scale_current_ma;
-
-  ChannelConfig valve_cfg = make_valve_channel_config(ifs);
+  ChannelConfig valve_cfg = make_valve_channel_config();
   ESP_LOGI(TAG, "Valve config: %s  hit=%.1f hold=%.1f hit_time_ms=%.1f (C21-style)",
            C21ValveConfig::USE_CDR ? "CDR" : "VDR",
            valve_cfg.hit_setpoint, valve_cfg.hold_setpoint, valve_cfg.hit_time_ms);
 
-  for (uint8_t ch = 0; ch < ChannelLimits::NUM_CHANNELS; ch++) {
+  for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
     if (!require_ok(g_driver->ConfigureChannel(ch, valve_cfg), "ConfigureChannel")) return false;
   }
   ESP_LOGI(TAG, "All 8 channels configured for valve profile.");

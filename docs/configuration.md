@@ -15,19 +15,20 @@ This guide covers configuration options for the MAX22200 driver, aligned with th
 
 ### Basic Channel Setup
 
-Channels are configured via `ChannelConfig` and written with `ConfigureChannel()`. **ChannelConfig stores user units** (mA for CDR, % for VDR, ms for hit time) and computes register values when writing. Set `full_scale_current_ma` and `master_clock_80khz` for correct conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see [Channel Control](#channel-control)).
+Channels are configured via `ChannelConfig` and written with `ConfigureChannel()`. **ChannelConfig stores user units** (mA for CDR, % for VDR, ms for hit time). For CDR, **IFS comes from the board** (SetBoardConfig with RREF)—you do not set it per channel. Call `SetBoardConfig(BoardConfig(rref_kohm, hfs))` first; the driver uses that IFS when writing. Set `master_clock_80khz` (or get it from ReadStatus) for hit_time conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see [Channel Control](#channel-control)).
 
 ```cpp
+driver.SetBoardConfig(max22200::BoardConfig(30.0f, false));  // IFS from RREF (required for CDR)
+
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_setpoint = 500.0f;   // 500 mA (CDR)
-config.hold_setpoint = 200.0f;  // 200 mA
-config.hit_time_ms = 10.0f;          // 10 ms
-config.full_scale_current_ma = 1000;                // Full-scale current (required for CDR)
-config.master_clock_80khz = false;                // 100 kHz base (required for hit_time conversion)
+config.hit_setpoint = 500.0f;   // desired current, mA
+config.hold_setpoint = 200.0f;  // mA
+config.hit_time_ms = 10.0f;     // 10 ms
+config.master_clock_80khz = false;  // 100 kHz base (for hit_time conversion)
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
-config.hit_current_check_enabled = true;                // HIT current check (HHF fault if IHIT not reached)
+config.hit_current_check_enabled = true;
 config.open_load_detection_enabled = false;
 config.plunger_movement_detection_enabled = false;
 
@@ -69,17 +70,18 @@ driver.SetHoldCurrentMa(0, 200);
 driver.SetHitTimeMs(0, 10.0f);   // 10 ms (converted from fCHOP)
 ```
 
-**Option B — Set user units on ChannelConfig directly:** Set `hit_setpoint`, `hold_setpoint`, `hit_time_ms`, and context (`full_scale_current_ma`, `master_clock_80khz`, `chop_freq`), then call `ConfigureChannel()`. The class computes register values in `toRegister()`.
+**Option B — Set user units on ChannelConfig directly:** Call `SetBoardConfig()` first (IFS from RREF). Set `hit_setpoint`, `hold_setpoint`, `hit_time_ms`, and `master_clock_80khz`, `chop_freq`. The driver uses board IFS for CDR conversion; ChannelConfig does not store IFS.
 
 ```cpp
+driver.SetBoardConfig(max22200::BoardConfig(30.0f, false));  // IFS from RREF
+
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
 config.hit_setpoint = 500.0f;   // mA
 config.hold_setpoint = 200.0f;  // mA
 config.hit_time_ms = 10.0f;
-config.full_scale_current_ma = 500;                 // from BoardConfig
-config.master_clock_80khz = false;                // from ReadStatus(status)
+config.master_clock_80khz = false;  // from ReadStatus(status)
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 driver.ConfigureChannel(0, config);
 ```
@@ -191,10 +193,9 @@ Initialization sets ACTIVE=1 and ENABLE high; `Deinitialize()` sets ACTIVE=0 and
 max22200::ChannelConfig config;
 config.drive_mode = max22200::DriveMode::CDR;
 config.side_mode = max22200::SideMode::LOW_SIDE;
-config.hit_setpoint = 800.0f;  // mA
+config.hit_setpoint = 800.0f;  // mA (IFS from SetBoardConfig)
 config.hold_setpoint = 200.0f;
 config.hit_time_ms = 50.0f;
-config.full_scale_current_ma = 1000;
 config.master_clock_80khz = false;
 config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 config.hit_current_check_enabled = true;

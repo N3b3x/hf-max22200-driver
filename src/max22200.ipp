@@ -190,10 +190,10 @@ DriverStatus MAX22200<SpiType>::ConfigureChannel(uint8_t channel,
     return DriverStatus::INVALID_PARAMETER;
   }
 
-  // Validate: ensure context is set for proper conversion
-  if (config.drive_mode == DriveMode::CDR && config.full_scale_current_ma == 0) {
+  // CDR requires board IFS (from SetBoardConfig); IFS is set by RREF, not per channel
+  if (config.drive_mode == DriveMode::CDR && board_config_.full_scale_current_ma == 0) {
     updateStatistics(false);
-    return DriverStatus::INVALID_PARAMETER;  // IFS required for CDR
+    return DriverStatus::INVALID_PARAMETER;  // Call SetBoardConfig with RREF first
   }
 
   // Datasheet: SRC mode only for fCHOP < 50 kHz
@@ -203,7 +203,7 @@ DriverStatus MAX22200<SpiType>::ConfigureChannel(uint8_t channel,
     return DriverStatus::INVALID_PARAMETER;
   }
 
-  uint32_t reg_val = config.toRegister();
+  uint32_t reg_val = config.toRegister(board_config_.full_scale_current_ma);
   DriverStatus result = writeReg32(getChannelCfgBank(channel), reg_val);
   updateStatistics(result == DriverStatus::OK);
   return result;
@@ -748,10 +748,8 @@ DriverStatus MAX22200<SpiType>::SetHitCurrentMa(uint8_t channel, uint32_t ma) {
   if (result != DriverStatus::OK) {
     return result;
   }
-  // Set user unit directly (CDR mode)
   config.drive_mode = DriveMode::CDR;
   config.hit_setpoint = static_cast<float>(ma);
-  config.full_scale_current_ma = board_config_.full_scale_current_ma;  // Ensure context is set
   return ConfigureChannel(channel, config);
 }
 
@@ -771,10 +769,8 @@ DriverStatus MAX22200<SpiType>::SetHoldCurrentMa(uint8_t channel, uint32_t ma) {
   if (result != DriverStatus::OK) {
     return result;
   }
-  // Set user unit directly (CDR mode)
   config.drive_mode = DriveMode::CDR;
   config.hold_setpoint = static_cast<float>(ma);
-  config.full_scale_current_ma = board_config_.full_scale_current_ma;  // Ensure context is set
   return ConfigureChannel(channel, config);
 }
 
@@ -868,9 +864,8 @@ DriverStatus MAX22200<SpiType>::GetHitCurrentPercent(uint8_t channel,
     return result;
   }
 
-  // Convert mA to percent of IFS (CDR mode)
-  if (config.full_scale_current_ma > 0) {
-    percent = (config.hit_setpoint / static_cast<float>(config.full_scale_current_ma)) * 100.0f;
+  if (board_config_.full_scale_current_ma > 0) {
+    percent = (config.hit_setpoint / static_cast<float>(board_config_.full_scale_current_ma)) * 100.0f;
   } else {
     percent = 0.0f;
   }
@@ -891,9 +886,8 @@ DriverStatus MAX22200<SpiType>::GetHoldCurrentPercent(uint8_t channel,
     return result;
   }
 
-  // Convert mA to percent of IFS (CDR mode)
-  if (config.full_scale_current_ma > 0) {
-    percent = (config.hold_setpoint / static_cast<float>(config.full_scale_current_ma)) * 100.0f;
+  if (board_config_.full_scale_current_ma > 0) {
+    percent = (config.hold_setpoint / static_cast<float>(board_config_.full_scale_current_ma)) * 100.0f;
   } else {
     percent = 0.0f;
   }
@@ -1158,8 +1152,7 @@ DriverStatus MAX22200<SpiType>::ConfigureChannelCdr(
   config.hit_setpoint = static_cast<float>(hit_ma);
   config.hold_setpoint = static_cast<float>(hold_ma);
   config.hit_time_ms = hit_time_ms;
-  config.full_scale_current_ma = board_config_.full_scale_current_ma;  // Set context for conversion
-  config.master_clock_80khz = cached_status_.master_clock_80khz;   // Set context for hit_time conversion
+  config.master_clock_80khz = cached_status_.master_clock_80khz;
 
   return ConfigureChannel(channel, config);
 }

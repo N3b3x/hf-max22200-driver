@@ -18,6 +18,10 @@
  * - **Error handling**: invalid channel (8), GetHitCurrentMa with IFS=0;
  *   expects DriverStatus::INVALID_PARAMETER where appropriate.
  *
+ * @par Config
+ * Board and channel-config test values (RREF, HFS, IFS, hit/hold setpoints) are defined
+ * in esp32_max22200_test_config.hpp: BoardTestConfig.
+ *
  * @par Build
  * From examples/esp32: `./scripts/build_app.sh max22200_comprehensive_test Debug`
  *
@@ -63,14 +67,7 @@ static constexpr bool ENABLE_UNIT_API_TESTS = true;
 /** Enable error-handling tests: invalid channel, zero IFS */
 static constexpr bool ENABLE_ERROR_HANDLING_TESTS = true;
 
-/** RREF in kΩ for BoardConfig constructor (e.g. 30 kΩ with HFS=0 → IFS ≈ 500 mA) */
-static constexpr float TEST_RREF_KOHM = 30.0f;
-/** Half full-scale flag for fromRref (false = full-scale, true = half-scale) */
-static constexpr bool TEST_HFS = false;
-/** Max current limit in mA for unit API tests (0 = no limit) */
-static constexpr uint32_t TEST_MAX_CURRENT_MA = 800;
-/** Max duty limit in percent for VDR unit API tests (0 = no limit) */
-static constexpr uint8_t TEST_MAX_DUTY_PERCENT = 90;
+// Board and test params are in esp32_max22200_test_config.hpp (BoardTestConfig)
 
 //=============================================================================
 // SHARED TEST RESOURCES
@@ -198,13 +195,21 @@ static bool init_test_resources() noexcept {
     return false;
   }
 
+  // Board config (RREF → IFS) is known at construction; from test config
+  using namespace MAX22200_TestConfig;
+  BoardConfig board(BoardTestConfig::RREF_KOHM, BoardTestConfig::HFS);
+  board.max_current_ma = BoardTestConfig::MAX_CURRENT_MA;
+  board.max_duty_percent = BoardTestConfig::MAX_DUTY_PERCENT;
+
   g_driver = std::make_unique<max22200::MAX22200<Esp32Max22200SpiBus>>(
-      *g_spi_interface);
+      *g_spi_interface, board);
   if (!g_driver) {
     ESP_LOGE(TAG, "Failed to create driver");
     return false;
   }
 
+  ESP_LOGI(TAG, "Board: RREF=%.1f kOhm HFS=%d IFS=%" PRIu32 " mA",
+           BoardTestConfig::RREF_KOHM, static_cast<int>(BoardTestConfig::HFS), board.full_scale_current_ma);
   ESP_LOGI(TAG, "Pin config: MISO=%d MOSI=%d SCLK=%d CS=%d",
            MAX22200_TestConfig::SPIPins::MISO,
            MAX22200_TestConfig::SPIPins::MOSI,
@@ -295,16 +300,19 @@ static bool test_channel_configuration() noexcept {
     return false;
   }
 
+  // Same board as construction; hit/hold chosen for predictable round-trip (→ raw 80/40 at IFS=1000)
+  using namespace MAX22200_TestConfig;
+  const uint32_t board_ifs_ma = g_driver->GetBoardConfig().full_scale_current_ma;
+  constexpr float kChannelTestHitMa = 630.0f;
+  constexpr float kChannelTestHoldMa = 315.0f;
+
   ChannelConfig config;
   config.drive_mode = DriveMode::CDR;
   config.side_mode = SideMode::LOW_SIDE;
-  // Set user units: 80/127 × IFS ≈ 630 mA (if IFS=1000 mA), 40/127 × IFS ≈ 315 mA
-  // For test, use IFS = 1000 mA, so 80/127 × 1000 ≈ 630 mA
-  config.full_scale_current_ma = 1000;
   config.master_clock_80khz = false;  // 100 kHz base
-  config.hit_setpoint = (80.0f / 127.0f) * 1000.0f;  // ≈ 630 mA
-  config.hold_setpoint = (40.0f / 127.0f) * 1000.0f; // ≈ 315 mA
-  config.hit_time_ms = 10.0f;  // 10 ms (will convert to register value based on fCHOP)
+  config.hit_setpoint = kChannelTestHitMa;
+  config.hold_setpoint = kChannelTestHoldMa;
+  config.hit_time_ms = 10.0f;     // 10 ms (converted to register from fCHOP)
   config.half_full_scale = false;
   config.trigger_from_pin = false;
   config.chop_freq = ChopFreq::FMAIN_DIV4;
@@ -313,7 +321,8 @@ static bool test_channel_configuration() noexcept {
   config.plunger_movement_detection_enabled = false;
   config.hit_current_check_enabled = false;
 
-  uint32_t sent_val = config.toRegister();
+  // Driver uses board IFS when writing; match that for round-trip comparison
+  uint32_t sent_val = config.toRegister(board_ifs_ma);
   ESP_LOGI(TAG, "[cfg] Writing CFG_CH0: 0x%08" PRIX32, sent_val);
 
   DriverStatus status = g_driver->ConfigureChannel(0, config);
@@ -327,7 +336,7 @@ static bool test_channel_configuration() noexcept {
     return false;
   }
 
-  uint32_t read_val = read_config.toRegister();
+  uint32_t read_val = read_config.toRegister(board_ifs_ma);
   ESP_LOGI(TAG, "[cfg] Read back CFG_CH0: 0x%08" PRIX32, read_val);
 
   uint32_t raw_val = 0;
@@ -521,7 +530,7 @@ static bool test_raw_register_read() noexcept {
 /**
  * @brief Test BoardConfig set/get and constructor from RREF
  *
- * Builds config with BoardConfig(TEST_RREF_KOHM, TEST_HFS), sets
+ * Builds config with BoardConfig(BoardTestConfig::RREF_KOHM, BoardTestConfig::HFS), sets
  * max_current_ma and max_duty_percent, writes via SetBoardConfig, reads with
  * GetBoardConfig and verifies all fields match.
  * @return true if readback matches
@@ -532,11 +541,12 @@ static bool test_board_config() noexcept {
     return false;
   }
 
+  using namespace MAX22200_TestConfig;
   ESP_LOGI(TAG, "[board] Setting BoardConfig from RREF=%.1f kOhm, HFS=%d",
-           TEST_RREF_KOHM, static_cast<int>(TEST_HFS));
-  BoardConfig board(TEST_RREF_KOHM, TEST_HFS);
-  board.max_current_ma = TEST_MAX_CURRENT_MA;
-  board.max_duty_percent = TEST_MAX_DUTY_PERCENT;
+           BoardTestConfig::RREF_KOHM, static_cast<int>(BoardTestConfig::HFS));
+  BoardConfig board(BoardTestConfig::RREF_KOHM, BoardTestConfig::HFS);
+  board.max_current_ma = BoardTestConfig::MAX_CURRENT_MA;
+  board.max_duty_percent = BoardTestConfig::MAX_DUTY_PERCENT;
 
   g_driver->SetBoardConfig(board);
   BoardConfig read_back = g_driver->GetBoardConfig();
@@ -556,7 +566,7 @@ static bool test_board_config() noexcept {
 /**
  * @brief Test current unit APIs in mA and percent (CDR)
  *
- * Sets BoardConfig via BoardConfig(rref, hfs), then SetHitCurrentMa(ch, 300), SetHoldCurrentMa(ch, 200),
+ * Uses board config from construction; SetHitCurrentMa(ch, 300), SetHoldCurrentMa(ch, 200),
  * GetHitCurrentMa, SetHoldCurrentPercent(ch, 40), GetHoldCurrentPercent. Logs set vs read values.
  * @return true if all driver calls succeed
  */
@@ -566,11 +576,9 @@ static bool test_unit_apis_current_ma_percent() noexcept {
     return false;
   }
 
-  // Ensure board config is set (IFS required for mA/percent APIs)
-  BoardConfig board(TEST_RREF_KOHM, TEST_HFS);
-  board.max_current_ma = TEST_MAX_CURRENT_MA;
-  g_driver->SetBoardConfig(board);
-  ESP_LOGI(TAG, "[unit_ma] BoardConfig set: IFS=%" PRIu32 " mA", board.full_scale_current_ma);
+  // IFS already set at driver construction (BoardTestConfig)
+  BoardConfig board = g_driver->GetBoardConfig();
+  ESP_LOGI(TAG, "[unit_ma] BoardConfig (from construction): IFS=%" PRIu32 " mA", board.full_scale_current_ma);
 
   const uint8_t ch = 0;
   const uint32_t set_ma = 300;
@@ -726,7 +734,7 @@ static bool test_get_duty_limits() noexcept {
 /**
  * @brief Test ConfigureChannelCdr and readback in mA/ms
  *
- * Sets BoardConfig, then ConfigureChannelCdr(ch=2, hit_ma=350, hold_ma=180, hit_time_ms=15)
+ * Uses board config from construction; ConfigureChannelCdr(ch=2, hit_ma=350, hold_ma=180, hit_time_ms=15)
  * with LOW_SIDE, FMAIN_DIV4. Reads back with GetHitCurrentMa, GetHoldCurrentMa, GetHitTimeMs
  * and logs values.
  * @return true if configure and all readbacks succeed
@@ -737,10 +745,7 @@ static bool test_configure_channel_cdr() noexcept {
     return false;
   }
 
-  BoardConfig board(TEST_RREF_KOHM, TEST_HFS);
-  board.max_current_ma = TEST_MAX_CURRENT_MA;
-  g_driver->SetBoardConfig(board);
-
+  // Board config (IFS) already set at driver construction
   const uint8_t ch = 2;
   const uint32_t hit_ma = 350;
   const uint32_t hold_ma = 180;
@@ -781,7 +786,7 @@ static bool test_configure_channel_cdr() noexcept {
 /**
  * @brief Test ConfigureChannelVdr and readback in percent/ms
  *
- * Sets BoardConfig (max_duty_percent), then ConfigureChannelVdr(ch=3, hit_duty=60%,
+ * Uses board config from construction; ConfigureChannelVdr(ch=3, hit_duty=60%,
  * hold_duty=35%, hit_time_ms=20). Reads back with GetHitDutyPercent, GetHoldDutyPercent,
  * GetHitTimeMs and logs.
  * @return true if configure and all readbacks succeed
@@ -792,10 +797,7 @@ static bool test_configure_channel_vdr() noexcept {
     return false;
   }
 
-  BoardConfig board(TEST_RREF_KOHM, TEST_HFS);
-  board.max_duty_percent = TEST_MAX_DUTY_PERCENT;
-  g_driver->SetBoardConfig(board);
-
+  // Board config (IFS, max_duty) already set at driver construction
   const uint8_t ch = 3;
   const float hit_duty = 60.0f;
   const float hold_duty = 35.0f;

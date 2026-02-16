@@ -256,7 +256,7 @@ driver.SetFaultCallback(fault_handler);
 
 ### Q: What is the maximum current per channel?
 
-**A:** Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_setpoint and hold_setpoint in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.
+**A:** Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_setpoint and hold_setpoint in mA; call SetBoardConfig(BoardConfig(rref, hfs)) first so the driver uses board IFS and converts to the device’s 7-bit (0–127) range when writing.
 
 ### Q: Can I use multiple channels simultaneously?
 

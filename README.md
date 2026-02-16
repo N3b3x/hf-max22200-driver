@@ -66,16 +66,18 @@ public:
 MySpi spi;
 max22200::MAX22200 driver(spi);
 
-// 3. Initialize
+// 3. Set board config (IFS from RREF; required for CDR)
+driver.SetBoardConfig(max22200::BoardConfig(30.0f, false));
+
+// 4. Initialize
 if (driver.Initialize() == max22200::DriverStatus::OK) {
-    // 4. Configure channel 0 (CDR, low-side; 7-bit currents, 8-bit hit time)
+    // 5. Configure channel 0 (CDR, low-side)
     max22200::ChannelConfig config;
     config.drive_mode = max22200::DriveMode::CDR;
     config.side_mode = max22200::SideMode::LOW_SIDE;
-    config.hit_setpoint = 500.0f;   // mA (set full_scale_current_ma for CDR)
+    config.hit_setpoint = 500.0f;   // desired current, mA
     config.hold_setpoint = 200.0f;
     config.hit_time_ms = 10.0f;
-    config.full_scale_current_ma = 1000;
     config.master_clock_80khz = false;
     config.chop_freq = max22200::ChopFreq::FMAIN_DIV2;
 

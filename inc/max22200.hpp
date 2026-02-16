@@ -100,8 +100,7 @@ namespace max22200 {
  *     ChannelConfig config;
  *     config.drive_mode = DriveMode::CDR;
  *     config.side_mode = SideMode::LOW_SIDE;
- *     config.full_scale_current_ma = 500;
- *     config.hit_setpoint = 400.0f;   // mA
+ *     config.hit_setpoint = 400.0f;   // desired current, mA (IFS from SetBoardConfig above)
  *     config.hold_setpoint = 200.0f;  // mA
  *     config.hit_time_ms = 10.0f;
  *     config.chop_freq = ChopFreq::FMAIN_DIV2;
@@ -138,8 +137,8 @@ public:
    *
    * Use when board config is unknown at construction (e.g. loaded from NVS or
    * another source after the driver is created). Unit APIs (SetHitCurrentMa,
-   * ConfigureChannelCdr, etc.) require IFS to be set and will return
-   * INVALID_PARAMETER if full_scale_current_ma is 0.
+   * ConfigureChannel with CDR, etc.) require IFS to be set (SetBoardConfig with RREF)
+   * and will return INVALID_PARAMETER if board IFS is 0.
    *
    * @param spi_interface Reference to SPI interface implementation
    */
