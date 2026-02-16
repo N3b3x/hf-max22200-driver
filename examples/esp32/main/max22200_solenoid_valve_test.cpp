@@ -10,9 +10,10 @@
  * and driver statistics.
  *
  * @details
- * - Uses C21ValveConfig from esp32_max22200_test_config.hpp (USE_CDR, HIT_TIME_MS,
- *   HOLD_PERCENT, HIT_PERCENT). All channels get the same configuration.
- * - Patterns: (1) Sequential: ch0 → ch1 → … → ch7 with delay between each.
+ * - Board: BoardTestConfig (RREF_KOHM, HFS). Channel profile: C21ValveConfig (USE_CDR,
+ *   HIT_TIME_MS, hit/hold currents or percent). All channels get the same configuration.
+ * - Pattern timings: SolenoidValvePatternConfig (SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS,
+ *   PARALLEL_HOLD_MS, PATTERN_PAUSE_MS). (1) Sequential: ch0 → ch1 → … → ch7 with delay between each.
  *   (2) Parallel: all channels on together, then off.
  * - Diagnostics: ReadStatus, ReadFaultRegister, GetLastFaultByte, GetFaultPinState,
  *   GetChannelConfig per channel, GetBoardConfig, GetStatistics; formatted
@@ -50,23 +51,6 @@ using namespace max22200;
 using namespace MAX22200_TestConfig;
 
 static const char *TAG = "MAX22200_Valve";
-
-//=============================================================================
-// CONFIGURATION
-//=============================================================================
-
-/** RREF in kΩ for BoardConfig(rref, hfs). Use value so IFS >= C21ValveConfig::HIT_CURRENT_MA (e.g. 15 kΩ → IFS = 1000 mA). */
-static constexpr float VALVE_TEST_RREF_KOHM = 30.0f;
-static constexpr bool VALVE_TEST_HFS = false;
-
-/** Hit phase duration (ms) when channel is on in sequential pattern */
-static constexpr uint32_t SEQUENTIAL_HIT_MS = 200;
-/** Delay between channels in sequential pattern (ms) */
-static constexpr uint32_t SEQUENTIAL_GAP_MS = 80;
-/** All-channels-on duration (ms) in parallel pattern */
-static constexpr uint32_t PARALLEL_HOLD_MS = 500;
-/** Pause between patterns (ms) */
-static constexpr uint32_t PATTERN_PAUSE_MS = 400;
 
 //=============================================================================
 // SHARED RESOURCES
@@ -249,7 +233,7 @@ static void log_diagnostics(const char *phase) {
 // PATTERNS
 //=============================================================================
 
-/** Sequential: ch0 → ch1 → … → ch7; each channel on for SEQUENTIAL_HIT_MS, gap SEQUENTIAL_GAP_MS */
+/** Sequential: ch0 → ch1 → … → ch7; timings from SolenoidValvePatternConfig. */
 static void run_sequential_pattern() {
   ESP_LOGI(TAG, "");
   ESP_LOGI(TAG, "  ═══ SEQUENTIAL (follow-up clicking)  ch0 → ch1 → … → ch7  ═══");
@@ -259,16 +243,16 @@ static void run_sequential_pattern() {
       continue;
     }
     ESP_LOGI(TAG, "  CH%u ON", ch);
-    vTaskDelay(pdMS_TO_TICKS(SEQUENTIAL_HIT_MS));
+    vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::SEQUENTIAL_HIT_MS));
     if (g_driver->DisableChannel(ch) != DriverStatus::OK) {
       ESP_LOGE(TAG, "  DisableChannel(%u) failed", ch);
     }
-    vTaskDelay(pdMS_TO_TICKS(SEQUENTIAL_GAP_MS));
+    vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::SEQUENTIAL_GAP_MS));
   }
   ESP_LOGI(TAG, "  Sequential pattern done.");
 }
 
-/** Parallel: all channels on, hold PARALLEL_HOLD_MS, then all off */
+/** Parallel: all channels on, hold SolenoidValvePatternConfig::PARALLEL_HOLD_MS, then all off */
 static void run_parallel_pattern() {
   ESP_LOGI(TAG, "");
   ESP_LOGI(TAG, "  ═══ PARALLEL (all channels on together)  ═══");
@@ -277,7 +261,7 @@ static void run_parallel_pattern() {
     return;
   }
   ESP_LOGI(TAG, "  All channels ON");
-  vTaskDelay(pdMS_TO_TICKS(PARALLEL_HOLD_MS));
+  vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PARALLEL_HOLD_MS));
   if (g_driver->SetChannelsOn(0) != DriverStatus::OK) {
     ESP_LOGE(TAG, "  SetChannelsOn(0) failed");
   }
@@ -295,7 +279,7 @@ static bool init_driver_and_valve_config() {
     ESP_LOGE(TAG, "Failed to create SPI interface");
     return false;
   }
-  BoardConfig board(VALVE_TEST_RREF_KOHM, VALVE_TEST_HFS);
+  BoardConfig board(BoardTestConfig::RREF_KOHM, BoardTestConfig::HFS);
   g_driver = std::make_unique<MAX22200<Esp32Max22200SpiBus>>(*g_spi_interface, board);
   if (!g_driver) {
     ESP_LOGE(TAG, "Failed to create driver");
@@ -355,11 +339,11 @@ extern "C" void app_main(void) {
   log_diagnostics("after init and channel config");
 
   run_sequential_pattern();
-  vTaskDelay(pdMS_TO_TICKS(PATTERN_PAUSE_MS));
+  vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
   log_diagnostics("after sequential pattern");
 
   run_parallel_pattern();
-  vTaskDelay(pdMS_TO_TICKS(PATTERN_PAUSE_MS));
+  vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
   log_diagnostics("after parallel pattern");
 
   cleanup_resources();
