@@ -1,12 +1,10 @@
 var hierarchy =
 [
-    [ "MAX22200_TestConfig::AppConfig", "structMAX22200__TestConfig_1_1AppConfig.html", null ],
     [ "max22200::BoardConfig", "structmax22200_1_1BoardConfig.html", null ],
+    [ "MAX22200_TestConfig::BoardTestConfig", "structMAX22200__TestConfig_1_1BoardTestConfig.html", null ],
     [ "MAX22200_TestConfig::C21ValveConfig", "structMAX22200__TestConfig_1_1C21ValveConfig.html", null ],
     [ "max22200::ChannelConfig", "structmax22200_1_1ChannelConfig.html", null ],
-    [ "MAX22200_TestConfig::ChannelLimits", "structMAX22200__TestConfig_1_1ChannelLimits.html", null ],
     [ "MAX22200_TestConfig::ControlPins", "structMAX22200__TestConfig_1_1ControlPins.html", null ],
-    [ "MAX22200_TestConfig::Diagnostics", "structMAX22200__TestConfig_1_1Diagnostics.html", null ],
     [ "max22200::DpmConfig", "structmax22200_1_1DpmConfig.html", null ],
     [ "max22200::DriverStatistics", "structmax22200_1_1DriverStatistics.html", null ],
     [ "max22200::DutyLimits", "structmax22200_1_1DutyLimits.html", null ],
@@ -20,10 +18,6 @@ var hierarchy =
     [ "MAX22200_TestConfig::SPIParams", "structMAX22200__TestConfig_1_1SPIParams.html", null ],
     [ "MAX22200_TestConfig::SPIPins", "structMAX22200__TestConfig_1_1SPIPins.html", null ],
     [ "max22200::StatusConfig", "structmax22200_1_1StatusConfig.html", null ],
-    [ "MAX22200_TestConfig::SupplyVoltage", "structMAX22200__TestConfig_1_1SupplyVoltage.html", null ],
-    [ "MAX22200_TestConfig::Temperature", "structMAX22200__TestConfig_1_1Temperature.html", null ],
-    [ "MAX22200_TestConfig::TestConfig", "structMAX22200__TestConfig_1_1TestConfig.html", null ],
     [ "TestResults", "structTestResults.html", null ],
-    [ "TestTaskContext", "structTestTaskContext.html", null ],
-    [ "MAX22200_TestConfig::Timing", "structMAX22200__TestConfig_1_1Timing.html", null ]
+    [ "TestTaskContext", "structTestTaskContext.html", null ]
 ];

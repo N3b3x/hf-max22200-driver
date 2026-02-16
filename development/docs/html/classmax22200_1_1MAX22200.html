@@ -200,6 +200,8 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a71982b3ae255918f2d38314bdebc7dc7" id="r_a71982b3ae255918f2d38314bdebc7dc7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a71982b3ae255918f2d38314bdebc7dc7">WriteDpmConfig</a> (<a class="el" href="classmax22200_1_1MAX22200.html">const</a> <a class="el" href="structmax22200_1_1DpmConfig.html">DpmConfig</a> &amp;<a class="el" href="classmax22200_1_1MAX22200.html">config</a>)</td></tr>
 <tr class="memdesc:a71982b3ae255918f2d38314bdebc7dc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Write DPM algorithm configuration (CFG_DPM register)  <br /></td></tr>
 <tr class="separator:a71982b3ae255918f2d38314bdebc7dc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acb7f2486ad25501af113e173a9a5caa7" id="r_acb7f2486ad25501af113e173a9a5caa7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acb7f2486ad25501af113e173a9a5caa7">SetDpmEnabledChannels</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">channel_mask</a>)</td></tr>
+<tr class="separator:acb7f2486ad25501af113e173a9a5caa7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a43d573705c2ff45581c8ef886d1f5840" id="r_a43d573705c2ff45581c8ef886d1f5840"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a43d573705c2ff45581c8ef886d1f5840">EnableDevice</a> ()</td></tr>
 <tr class="memdesc:a43d573705c2ff45581c8ef886d1f5840"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable device (ENABLE pin high); SPI and channels can be used.  <br /></td></tr>
 <tr class="separator:a43d573705c2ff45581c8ef886d1f5840"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -282,6 +284,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a8dde82de20500db1c49b6b4067c3da0e" id="r_a8dde82de20500db1c49b6b4067c3da0e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a8dde82de20500db1c49b6b4067c3da0e">GetHoldDutyPercent</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">channel</a>, <a class="el" href="classmax22200_1_1MAX22200.html">float</a> &amp;<a class="el" href="classmax22200_1_1MAX22200.html">percent</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
 <tr class="memdesc:a8dde82de20500db1c49b6b4067c3da0e"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get HOLD duty cycle in percent (VDR mode)  <br /></td></tr>
 <tr class="separator:a8dde82de20500db1c49b6b4067c3da0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a26a3bab6f8854cc53a4250efaac581d3" id="r_a26a3bab6f8854cc53a4250efaac581d3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26a3bab6f8854cc53a4250efaac581d3">GetDutyLimits</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">channel</a>, <a class="el" href="structmax22200_1_1DutyLimits.html">DutyLimits</a> &amp;<a class="el" href="classmax22200_1_1MAX22200.html">limits</a>) <a class="el" href="classmax22200_1_1MAX22200.html">const</a></td></tr>
+<tr class="memdesc:a26a3bab6f8854cc53a4250efaac581d3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get duty cycle limits for a channel (uses channel's chop_freq and SRC)  <br /></td></tr>
+<tr class="separator:a26a3bab6f8854cc53a4250efaac581d3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aeb2d99370f9b9e9328979fe7fc223a9d" id="r_aeb2d99370f9b9e9328979fe7fc223a9d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aeb2d99370f9b9e9328979fe7fc223a9d">SetHitTimeMs</a> (<a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a> <a class="el" href="classmax22200_1_1MAX22200.html">channel</a>, <a class="el" href="classmax22200_1_1MAX22200.html">float</a> <a class="el" href="classmax22200_1_1MAX22200.html">ms</a>)</td></tr>
 <tr class="memdesc:aeb2d99370f9b9e9328979fe7fc223a9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set HIT time in milliseconds.  <br /></td></tr>
 <tr class="separator:aeb2d99370f9b9e9328979fe7fc223a9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -330,7 +335,7 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 </div><div class="memdoc">
 
 <p>Constructor (SPI only; set board config later with <a class="el" href="#a3928b79dd35d626bd152855217f7e224" title="Set board configuration (IFS, max current, max duty)">SetBoardConfig()</a>) </p>
-<p>Use when board config is unknown at construction (e.g. loaded from NVS or another source after the driver is created). Unit APIs (SetHitCurrentMa, ConfigureChannelCdr, etc.) require IFS to be set and will return INVALID_PARAMETER if full_scale_current_ma is 0.</p>
+<p>Use when board config is unknown at construction (e.g. loaded from NVS or another source after the driver is created). Unit APIs (SetHitCurrentMa, ConfigureChannel with CDR, etc.) require IFS to be set (SetBoardConfig with RREF) and will return INVALID_PARAMETER if board IFS is 0.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">spi_interface</td><td>Reference to SPI interface implementation </td></tr>
@@ -783,12 +788,12 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 </div><div class="memdoc">
 
 <p>Configure DPM in real units (easy API) </p>
-<p>Sets start current, dip threshold, and debounce time. Uses board IFS for current conversion and a default 25 kHz chopping frequency for debounce. Call <a class="el" href="#a3928b79dd35d626bd152855217f7e224" title="Set board configuration (IFS, max current, max duty)">SetBoardConfig()</a> first so IFS is set.</p>
+<p>Sets start current, dip threshold, and debounce time. Uses board IFS for current conversion and cached STATUS (FREQM) + FMAIN_DIV4 for debounce fCHOP. Call <a class="el" href="#a3928b79dd35d626bd152855217f7e224" title="Set board configuration (IFS, max current, max duty)">SetBoardConfig()</a> first so IFS is set; call ReadStatus or Initialize so cache is valid.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">start_current_ma</td><td>Current (mA) above which DPM monitors for dip </td></tr>
     <tr><td class="paramname">dip_threshold_ma</td><td>Minimum dip amplitude (mA) to count as valid </td></tr>
-    <tr><td class="paramname">debounce_ms</td><td>Min dip duration (ms); converted to chopping periods at 25 kHz </td></tr>
+    <tr><td class="paramname">debounce_ms</td><td>Min dip duration (ms); converted to chopping periods using actual fCHOP </td></tr>
   </table>
   </dd>
 </dl>
@@ -1055,7 +1060,7 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 </div>
 </div>
 <a id="a508ea4db9fd7a4d8461eeb06f7cf1ab7" name="a508ea4db9fd7a4d8461eeb06f7cf1ab7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a508ea4db9fd7a4d8461eeb06f7cf1ab7">&#9670;&#160;</a></span>GetDutyLimits()</h2>
+<h2 class="memtitle"><span class="permalink"><a href="#a508ea4db9fd7a4d8461eeb06f7cf1ab7">&#9670;&#160;</a></span>GetDutyLimits() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -1100,6 +1105,40 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
     <tr><td class="paramname">master_clock_80khz</td><td>Master clock 80 kHz base (from STATUS register) </td></tr>
     <tr><td class="paramname">chop_freq</td><td>Chopping frequency divider </td></tr>
     <tr><td class="paramname">slew_rate_control_enabled</td><td>Slew rate control enabled </td></tr>
+    <tr><td class="paramname">limits</td><td>Output: min_percent and max_percent </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27bae0aa021e21dddbd6d8cecec71e9cf564" title="Operation successful.">DriverStatus::OK</a> on success </dd></dl>
+
+</div>
+</div>
+<a id="a26a3bab6f8854cc53a4250efaac581d3" name="a26a3bab6f8854cc53a4250efaac581d3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26a3bab6f8854cc53a4250efaac581d3">&#9670;&#160;</a></span>GetDutyLimits() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">SpiType</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a> <a class="el" href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">SpiType</a> &gt;::GetDutyLimits </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>channel</em>, </span></td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="structmax22200_1_1DutyLimits.html">DutyLimits</a> &amp;</td>          <td class="paramname"><span class="paramname"><em>limits</em></span>&#160;) const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Get duty cycle limits for a channel (uses channel's chop_freq and SRC) </p>
+<p>Reads the channel config and uses cached STATUS (FREQM) to return δMIN/δMAX. Convenience wrapper when configuring VDR on a specific channel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">channel</td><td>Channel number (0-7) </td></tr>
     <tr><td class="paramname">limits</td><td>Output: min_percent and max_percent </td></tr>
   </table>
   </dd>
@@ -1847,6 +1886,25 @@ template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a 
 
 <p>Set ENABLE pin state (true = on, false = off) </p>
 <p>Prefer <a class="el" href="#a43d573705c2ff45581c8ef886d1f5840" title="Enable device (ENABLE pin high); SPI and channels can be used.">EnableDevice()</a> / <a class="el" href="#a11a63692268a7fd8858dc1cf8fc75f41" title="Disable device (ENABLE pin low); low-power state.">DisableDevice()</a> for clarity. </p>
+
+</div>
+</div>
+<a id="acb7f2486ad25501af113e173a9a5caa7" name="acb7f2486ad25501af113e173a9a5caa7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acb7f2486ad25501af113e173a9a5caa7">&#9670;&#160;</a></span>SetDpmEnabledChannels()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<div class="memtemplate">
+template&lt;<a class="el" href="classmax22200_1_1MAX22200.html">typename</a> <a class="el" href="classmax22200_1_1MAX22200.html">SpiType</a> &gt; </div>
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="namespacemax22200.html#a63bc0b5401ad8c7106ce140926eab27b">DriverStatus</a> <a class="el" href="classmax22200_1_1MAX22200.html">max22200::MAX22200</a>&lt; <a class="el" href="classmax22200_1_1MAX22200.html">SpiType</a> &gt;::SetDpmEnabledChannels </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classmax22200_1_1MAX22200.html">uint8_t</a></td>          <td class="paramname"><span class="paramname"><em>channel_mask</em></span></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
 
 </div>
 </div>

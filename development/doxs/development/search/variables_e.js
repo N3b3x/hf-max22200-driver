@@ -1,11 +1,15 @@
 var searchData=
 [
-  ['sclk_0',['SCLK',['../structMAX22200__TestConfig_1_1SPIPins.html#a2c82c78d6a7fd2b44875ca01c05e867b',1,'MAX22200_TestConfig::SPIPins']]],
-  ['sclk_5fpin_1',['sclk_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a1e5f22d053ede2c9d3312fa8008097be',1,'Esp32Max22200SpiBus::SPIConfig']]],
-  ['side_5fmode_2',['side_mode',['../structmax22200_1_1ChannelConfig.html#a97337d9d02ad0e1590cba4f1ed99e260',1,'max22200::ChannelConfig']]],
-  ['slew_5frate_5fcontrol_5fenabled_3',['slew_rate_control_enabled',['../structmax22200_1_1ChannelConfig.html#aa6abd7c1dfc13d964d581b837c8689a3',1,'max22200::ChannelConfig']]],
-  ['src_5fbit_4',['SRC_BIT',['../namespacemax22200_1_1CfgChReg.html#a935cd4b4426143c027bc161e492f5b65',1,'max22200::CfgChReg']]],
-  ['state_5fchanges_5',['state_changes',['../structmax22200_1_1DriverStatistics.html#a77c0fc2ce3b3dd34a8f82a2e495b0956',1,'max22200::DriverStatistics']]],
-  ['stats_5freport_5finterval_5fms_6',['STATS_REPORT_INTERVAL_MS',['../structMAX22200__TestConfig_1_1AppConfig.html#abad69a621b2c3270caf4eb2cd0c1cc67',1,'MAX22200_TestConfig::AppConfig']]],
-  ['status_7',['STATUS',['../namespacemax22200_1_1RegBank.html#a1c9a3e196f6c07a4111614506688ffde',1,'max22200::RegBank']]]
+  ['tag_0',['tag',['../structTestTaskContext.html#ae51f49c33ea802bc7f8bdde560a27304',1,'TestTaskContext']]],
+  ['test_5ffunc_1',['test_func',['../structTestTaskContext.html#aa72faa223fd0ff992772b12458f62ec8',1,'TestTaskContext']]],
+  ['test_5fname_2',['test_name',['../structTestTaskContext.html#abcf19d2762ab98990c3fdc1eacf86130',1,'TestTaskContext']]],
+  ['total_5fexecution_5ftime_5fus_3',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
+  ['total_5ftests_4',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
+  ['total_5ftransfers_5',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
+  ['trgnspi_5fbit_6',['TRGNSPI_BIT',['../namespacemax22200_1_1CfgChReg.html#ab7b0767769a167c6bbcf2315bea02c42',1,'max22200::CfgChReg']]],
+  ['triga_7',['TRIGA',['../structMAX22200__TestConfig_1_1ControlPins.html#a165030a7805e715a91f582afc9f29f03',1,'MAX22200_TestConfig::ControlPins']]],
+  ['triga_5fpin_8',['triga_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a064b8564e7fd3e175fc19c780cac502a',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['trigb_9',['TRIGB',['../structMAX22200__TestConfig_1_1ControlPins.html#a76634399765d728482158db43a3f35e1',1,'MAX22200_TestConfig::ControlPins']]],
+  ['trigb_5fpin_10',['trigb_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a3a5eb59738a8f68788cbf7f1c8ff4a6f',1,'Esp32Max22200SpiBus::SPIConfig']]],
+  ['trigger_5ffrom_5fpin_11',['trigger_from_pin',['../structmax22200_1_1ChannelConfig.html#a58285da411a5fa6563403c98a360c3d6',1,'max22200::ChannelConfig']]]
 ];

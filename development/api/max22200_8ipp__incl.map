@@ -1,5 +1,7 @@
 <map id="src/max22200.ipp" name="src/max22200.ipp">
-<area shape="rect" id="Node000001" title="Template implementation for MAX22200 driver." alt="" coords="5,5,144,31"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="41,79,108,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="77,31,77,65,72,65,72,31"/>
+<area shape="rect" id="Node000001" title="Template implementation for MAX22200 driver." alt="" coords="11,5,150,31"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,79,68,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="76,32,53,68,49,66,71,30"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="93,79,159,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="90,30,114,66,109,69,86,32"/>
 </map>

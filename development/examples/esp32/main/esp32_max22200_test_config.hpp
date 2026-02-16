@@ -83,96 +83,40 @@ struct SPIParams {
 };
 
 /**
- * @brief Channel Count and Register Limits (per datasheet)
+ * @brief Board configuration for tests (single board: RREF via short = 15 kΩ)
  *
- * HIT/HOLD currents are 7-bit (0-127), HIT time is 8-bit (0-255).
+ * Board supports 30 kΩ or 15 kΩ (short on board by default = 15 kΩ).
+ * IFS = KFS×1000/RREF with KFS = 15k (HFS=0) or 7.5k (HFS=1). 15 kΩ → IFS = 1000 mA.
+ * NUM_CHANNELS: number of channels exposed on this board (e.g. 8 full, or 4 if only half wired).
  */
-struct ChannelLimits {
-    static constexpr uint8_t NUM_CHANNELS = 8;       ///< Total number of channels
-    static constexpr uint8_t MAX_HIT_CURRENT = 127;  ///< Maximum HIT current register value (7-bit)
-    static constexpr uint8_t MAX_HOLD_CURRENT = 127; ///< Maximum HOLD current register value (7-bit)
-    static constexpr uint8_t MAX_HIT_TIME = 255;     ///< Maximum HIT time register value (8-bit)
-};
-
-/**
- * @brief Supply Voltage Specifications (volts)
- */
-struct SupplyVoltage {
-    static constexpr float VM_MIN = 4.5f;    ///< Minimum VM voltage (V)
-    static constexpr float VM_NOM = 24.0f;   ///< Nominal VM voltage (V)
-    static constexpr float VM_MAX = 36.0f;   ///< Maximum VM voltage (V)
-    static constexpr float VDD_NOM = 3.3f;   ///< Logic supply voltage (V)
-};
-
-/**
- * @brief Temperature Specifications (celsius)
- */
-struct Temperature {
-    static constexpr int16_t OPERATING_MIN = -40;     ///< Minimum operating temp (°C)
-    static constexpr int16_t OPERATING_MAX = 85;      ///< Maximum operating temp (°C) per datasheet
-    static constexpr int16_t TSD_THRESHOLD = 145;     ///< Thermal shutdown threshold (°C)
-};
-
-/**
- * @brief Timing Parameters (per datasheet)
- */
-struct Timing {
-    static constexpr uint16_t POWER_UP_DELAY_US = 500;    ///< Power-up delay after ENABLE (μs)
-    static constexpr uint16_t INTER_FRAME_US = 1;         ///< Min time between SPI frames (μs)
-};
-
-/**
- * @brief Diagnostic Thresholds
- */
-struct Diagnostics {
-    static constexpr uint16_t POLL_INTERVAL_MS = 100;   ///< Diagnostic polling interval (ms)
-    static constexpr uint8_t MAX_RETRY_COUNT = 3;       ///< Maximum communication retries
-};
-
-/**
- * @brief Test Configuration
- *
- * Default parameters for testing. Values are register values (0-127 / 0-255).
- */
-struct TestConfig {
-    static constexpr uint8_t DEFAULT_HIT_CURRENT = 80;    ///< Default HIT current (7-bit register)
-    static constexpr uint8_t DEFAULT_HOLD_CURRENT = 40;   ///< Default HOLD current (7-bit register)
-    static constexpr uint8_t DEFAULT_HIT_TIME = 100;      ///< Default HIT time (8-bit register)
-    static constexpr uint16_t TEST_DURATION_MS = 5000;    ///< Test duration (ms)
-};
-
-/**
- * @brief Application-specific Configuration
- */
-struct AppConfig {
-    static constexpr bool ENABLE_DEBUG_LOGGING = true;
-    static constexpr bool ENABLE_SPI_LOGGING = false;
-    static constexpr bool ENABLE_PERFORMANCE_MONITORING = true;
-    static constexpr uint16_t STATS_REPORT_INTERVAL_MS = 10000;
-    static constexpr bool ENABLE_AUTO_RECOVERY = true;
-    static constexpr uint8_t MAX_ERROR_COUNT = 10;
+struct BoardTestConfig {
+    static constexpr float RREF_KOHM = 15.0f;   ///< RREF in kΩ (short default = 15 kΩ → IFS = 1000 mA)
+    static constexpr bool HFS = false;          ///< Half full-scale (false = full-scale)
+    static constexpr uint8_t NUM_CHANNELS = 8;   ///< Channels exposed on this board (MAX22200 has 8 max)
+    static constexpr uint32_t MAX_CURRENT_MA = 800;   ///< Optional safety limit (0 = no limit)
+    static constexpr uint8_t MAX_DUTY_PERCENT = 90;   ///< Optional for VDR (0 = no limit)
 };
 
 /**
  * @brief Parker C21 valve Hit and Hold (compile-time CDR vs VDR)
  *
- * Per C21 datasheet:
- * - Hit: rated voltage; Hold: 50% of rated
- * - Min hit time: 100 ms; PWM freq min: 1 kHz; Hold duty: 50%
- *
- * Set to true to drive C21 with CDR (current regulation, low-side only);
- * false for VDR (PWM duty: hit=100%, hold=50%).
+ * CDR mode: use HIT_CURRENT_MA and HOLD_CURRENT_MA (explicit currents).
+ * VDR mode: use HIT_PERCENT and HOLD_PERCENT (duty %, 0–100).
+ * Min hit time per C21: 100 ms; PWM freq min 1 kHz.
  */
 struct C21ValveConfig {
     static constexpr bool USE_CDR = true;   ///< true = CDR (current), false = VDR (PWM duty)
     static constexpr float HIT_TIME_MS = 100.0f;   ///< Min hit time per C21 (ms)
-    static constexpr float HOLD_PERCENT = 50.0f;   ///< Hold level: 50% of rated (duty or current)
-    static constexpr float HIT_PERCENT = 100.0f;   ///< Hit: full (100% duty or 100% IFS)
-    static constexpr uint8_t CHANNEL = 0;           ///< Channel used for C21 (low-side)
 
-    /// Rated current in mA (C21 valve spec). In CDR mode: hit = RATED_CURRENT_MA, hold = 50% of this.
-    /// Board IFS must be >= this (e.g. set RREF so IFS >= RATED_CURRENT_MA).
-    static constexpr uint32_t RATED_CURRENT_MA = 500u;
+    /// CDR mode: hit and hold current in mA (board IFS must be >= these)
+    static constexpr float HIT_CURRENT_MA = 500.0f;
+    static constexpr float HOLD_CURRENT_MA = 250.0f;
+
+    /// VDR mode only: duty cycle 0–100%
+    static constexpr float HIT_PERCENT = 100.0f;
+    static constexpr float HOLD_PERCENT = 50.0f;
+
+    static constexpr uint8_t CHANNEL = 0;   ///< Channel used for C21 (low-side)
 };
 
 } // namespace MAX22200_TestConfig
@@ -187,8 +131,8 @@ static_assert(MAX22200_TestConfig::SPIParams::FREQUENCY <= 10000000,
 static_assert(MAX22200_TestConfig::SPIParams::MODE == 0,
               "MAX22200 requires SPI Mode 0 (CPOL=0, CPHA=0) per datasheet");
 
-static_assert(MAX22200_TestConfig::ChannelLimits::NUM_CHANNELS == 8,
-              "MAX22200 has exactly 8 channels");
+static_assert(MAX22200_TestConfig::BoardTestConfig::NUM_CHANNELS >= 1u && MAX22200_TestConfig::BoardTestConfig::NUM_CHANNELS <= 8u,
+              "NUM_CHANNELS must be 1..8 (MAX22200 has 8 channels)");
 
 /**
  * @brief Helper macro for compile-time GPIO pin validation (ESP32-C6 allows 0-48)

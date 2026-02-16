@@ -290,7 +290,7 @@
 </h3>
     
 
-<p>Channels are configured via <code class="language-plaintext highlighter-rouge">ChannelConfig</code> and written with <code class="language-plaintext highlighter-rouge">ConfigureChannel()</code>. <strong>ChannelConfig stores user units</strong> (mA for CDR, % for VDR, ms for hit time) and computes register values when writing. Set <code class="language-plaintext highlighter-rouge">full_scale_current_ma</code> and <code class="language-plaintext highlighter-rouge">master_clock_80khz</code> for correct conversion. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see <a href="#channel-control">Channel Control</a>).</p>
+<p>Channels are configured via <code class="language-plaintext highlighter-rouge">ChannelConfig</code> and written with <code class="language-plaintext highlighter-rouge">ConfigureChannel()</code>. <strong>ChannelConfig stores user units</strong> (mA for CDR, % for VDR, ms for hit time). For CDR, <strong>IFS comes from the board</strong> (SetBoardConfig with RREF)—you do not set it per channel. Call <code class="language-plaintext highlighter-rouge">SetBoardConfig(BoardConfig(rref_kohm, hfs))</code> first; the driver uses that IFS when writing. The driver gets the master clock (FREQM) from STATUS for hit_time conversion—you do not set it on ChannelConfig. Channels are turned on/off via the STATUS register channels_on_mask (ONCH bits) (see <a href="#channel-control">Channel Control</a>).</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -306,16 +306,16 @@
 12
 13
 14
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetBoardConfig</span><span class="p">(</span><span class="n">max22200</span><span class="o">::</span><span class="n">BoardConfig</span><span class="p">(</span><span class="mf">30.0</span><span class="n">f</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>  <span class="c1">// IFS from RREF (required for CDR)</span>
+
+<span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// 500 mA (CDR)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// 200 mA</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>          <span class="c1">// 10 ms</span>
-<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>                <span class="c1">// Full-scale current (required for CDR)</span>
-<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// 100 kHz base (required for hit_time conversion)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// desired current, mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>     <span class="c1">// 10 ms</span>
 <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>                <span class="c1">// HIT current check (HHF fault if IHIT not reached)</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">open_load_detection_enabled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">plunger_movement_detection_enabled</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
@@ -355,7 +355,7 @@ Duty-cycle control. Supported in both low-side and high-side.</p>
   <li>
     <p><strong>Low-side</strong><br />
 <code class="language-plaintext highlighter-rouge">config.side_mode = max22200::SideMode::LOW_SIDE;</code><br />
-Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM.</p>
+Load between OUT and VM. Supports CDR and VDR, HFS, SRC, DPM. When <code class="language-plaintext highlighter-rouge">half_full_scale</code> is true, effective IFS for that channel is half of board IFS (driver uses it for mA ↔ raw conversion).</p>
   </li>
   <li>
     <p><strong>High-side</strong><br />
@@ -392,7 +392,7 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 <span class="n">driver</span><span class="p">.</span><span class="n">SetHitTimeMs</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">);</span>   <span class="c1">// 10 ms (converted from fCHOP)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
-<p><strong>Option B — Set user units on ChannelConfig directly:</strong> Set <code class="language-plaintext highlighter-rouge">hit_setpoint</code>, <code class="language-plaintext highlighter-rouge">hold_setpoint</code>, <code class="language-plaintext highlighter-rouge">hit_time_ms</code>, and context (<code class="language-plaintext highlighter-rouge">full_scale_current_ma</code>, <code class="language-plaintext highlighter-rouge">master_clock_80khz</code>, <code class="language-plaintext highlighter-rouge">chop_freq</code>), then call <code class="language-plaintext highlighter-rouge">ConfigureChannel()</code>. The class computes register values in <code class="language-plaintext highlighter-rouge">toRegister()</code>.</p>
+<p><strong>Option B — Set user units on ChannelConfig directly:</strong> Call <code class="language-plaintext highlighter-rouge">SetBoardConfig()</code> first (IFS from RREF). Set <code class="language-plaintext highlighter-rouge">hit_setpoint</code>, <code class="language-plaintext highlighter-rouge">hold_setpoint</code>, <code class="language-plaintext highlighter-rouge">hit_time_ms</code>, and <code class="language-plaintext highlighter-rouge">chop_freq</code>. The driver uses board IFS (and STATUS FREQM for hit time) when writing; ChannelConfig does not store IFS or master clock.</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
@@ -404,14 +404,14 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 8
 9
 10
-</pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">SetBoardConfig</span><span class="p">(</span><span class="n">max22200</span><span class="o">::</span><span class="n">BoardConfig</span><span class="p">(</span><span class="mf">30.0</span><span class="n">f</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>  <span class="c1">// IFS from RREF</span>
+
+<span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// mA</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>                 <span class="c1">// from BoardConfig</span>
-<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>                <span class="c1">// from ReadStatus(status)</span>
 <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
@@ -442,7 +442,7 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 </h2>
     
 
-<p>The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with <code class="language-plaintext highlighter-rouge">ReadStatus()</code> and <code class="language-plaintext highlighter-rouge">WriteStatus()</code>.</p>
+<p>The STATUS register holds channel on/off bits (ONCH), fault masks, channel-pair mode (CMxy), and the ACTIVE bit. Read/write with <code class="language-plaintext highlighter-rouge">ReadStatus()</code> and <code class="language-plaintext highlighter-rouge">WriteStatus()</code>. The driver keeps an internal cache of STATUS (updated on ReadStatus, WriteStatus, and Initialize) for hit-time and duty-limit conversions. If you write STATUS via <code class="language-plaintext highlighter-rouge">WriteRegister32(RegBank::STATUS, ...)</code>, that cache is not updated—prefer <code class="language-plaintext highlighter-rouge">WriteStatus(StatusConfig)</code> when changing STATUS.</p>
 <h3 id="channel-onoff-onch">
   
   
@@ -543,12 +543,12 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 </h2>
     
 
-<p>Plunger movement detection is global; enable per channel with <code class="language-plaintext highlighter-rouge">config.plunger_movement_detection_enabled = true</code> (low-side only). Configure in real units:</p>
+<p>Plunger movement detection is global; enable per channel with <code class="language-plaintext highlighter-rouge">config.plunger_movement_detection_enabled = true</code> (low-side only), or in one call with <code class="language-plaintext highlighter-rouge">SetDpmEnabledChannels(channel_mask)</code> (bit N = 1 enables DPM on channel N). Configure algorithm in real units:</p>
 
 <div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
 2
 </pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="p">.</span><span class="n">ConfigureDpm</span><span class="p">(</span><span class="mf">200.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">50.0</span><span class="n">f</span><span class="p">,</span> <span class="mf">2.0</span><span class="n">f</span><span class="p">);</span>
-<span class="c1">// start_current_ma, dip_threshold_ma, debounce_ms (converted at 25 kHz)</span>
+<span class="c1">// start_current_ma, dip_threshold_ma, debounce_ms (debounce uses cached STATUS FREQM + FMAIN_DIV4 fCHOP)</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
 
 <p>Or read/write raw <code class="language-plaintext highlighter-rouge">DpmConfig</code> (plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold) with <code class="language-plaintext highlighter-rouge">ReadDpmConfig()</code> / <code class="language-plaintext highlighter-rouge">WriteDpmConfig()</code>. Use <code class="language-plaintext highlighter-rouge">getPlungerMovementStartCurrent()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementDebounceTime()</code>, <code class="language-plaintext highlighter-rouge">getPlungerMovementCurrentThreshold()</code> for readable access.</p>
@@ -645,21 +645,19 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 8
 9
 10
-11
-12
 </pre></td><td class="rouge-code"><pre><span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">800.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA</span>
+<span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">800.0</span><span class="n">f</span><span class="p">;</span>  <span class="c1">// mA (IFS from SetBoardConfig)</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">50.0</span><span class="n">f</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_current_check_enabled</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
 <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Or use the preset: <code class="language-plaintext highlighter-rouge">auto config = max22200::ChannelConfig::makeSolenoidCdr(800.0f, 200.0f, 50.0f); config.hit_current_check_enabled = true; driver.ConfigureChannel(0, config);</code></p>
 <h3 id="motor-h-bridge-pair">
   
   
@@ -685,15 +683,15 @@ Load between OUT and GND. VDR only; no CDR, HFS, SRC, or DPM.</p>
 4
 5
 6
-7
 </pre></td><td class="rouge-code"><pre><span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">VDR</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">60.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// duty %</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">20.0</span><span class="n">f</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">100.0</span><span class="n">f</span><span class="p">;</span>
-<span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 </pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Or: <code class="language-plaintext highlighter-rouge">auto config = max22200::ChannelConfig::makeSolenoidVdr(60.0f, 20.0f, 100.0f); driver.ConfigureChannel(0, config);</code></p>
 <h2 id="next-steps">
   
   

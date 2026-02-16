@@ -118,8 +118,7 @@ $(function(){initNavTree('Basic-example.html',''); initResizable(); });
 <div class="line">    ChannelConfig config;</div>
 <div class="line">    config.drive_mode = DriveMode::CDR;</div>
 <div class="line">    config.side_mode = SideMode::LOW_SIDE;</div>
-<div class="line">    config.full_scale_current_ma = 500;</div>
-<div class="line">    config.hit_setpoint = 400.0f;   <span class="comment">// mA</span></div>
+<div class="line">    config.hit_setpoint = 400.0f;   <span class="comment">// desired current, mA (IFS from SetBoardConfig above)</span></div>
 <div class="line">    config.hold_setpoint = 200.0f;  <span class="comment">// mA</span></div>
 <div class="line">    config.hit_time_ms = 10.0f;</div>
 <div class="line">    config.chop_freq = ChopFreq::FMAIN_DIV2;</div>

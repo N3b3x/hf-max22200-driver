@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['esp32max22200spibus_0',['Esp32Max22200SpiBus',['../classEsp32Max22200SpiBus.html',1,'']]]
+  ['faultstatus_0',['FaultStatus',['../structmax22200_1_1FaultStatus.html',1,'max22200']]]
 ];

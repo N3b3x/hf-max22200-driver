@@ -25,16 +25,16 @@
 var NAVTREE =
 [
   [ "HF-MAX22200 Driver", "index.html", [
-    [ "📚 Table of Contents", "index.html#autotoc_md58", null ],
-    [ "📦 Overview", "index.html#autotoc_md59", null ],
-    [ "✨ Features", "index.html#autotoc_md60", null ],
-    [ "🚀 Quick Start", "index.html#autotoc_md61", null ],
-    [ "🔧 Installation", "index.html#autotoc_md62", null ],
-    [ "📖 API Reference", "index.html#autotoc_md63", null ],
-    [ "📊 Examples", "index.html#autotoc_md64", null ],
-    [ "📚 Documentation", "index.html#autotoc_md65", null ],
-    [ "🤝 Contributing", "index.html#autotoc_md66", null ],
-    [ "📄 License", "index.html#autotoc_md67", null ],
+    [ "📚 Table of Contents", "index.html#autotoc_md57", null ],
+    [ "📦 Overview", "index.html#autotoc_md58", null ],
+    [ "✨ Features", "index.html#autotoc_md59", null ],
+    [ "🚀 Quick Start", "index.html#autotoc_md60", null ],
+    [ "🔧 Installation", "index.html#autotoc_md61", null ],
+    [ "📖 API Reference", "index.html#autotoc_md62", null ],
+    [ "📊 Examples", "index.html#autotoc_md63", null ],
+    [ "📚 Documentation", "index.html#autotoc_md64", null ],
+    [ "🤝 Contributing", "index.html#autotoc_md65", null ],
+    [ "📄 License", "index.html#autotoc_md66", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -70,9 +70,9 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"functions_~.html",
-"namespacemax22200_1_1CfgChReg.html#aacbe02626c41195b6bd1cd727c20898f",
-"structmax22200_1_1DpmConfig.html#aa5441ac9564f97a9eea8a05a75943429"
+"functions_t.html",
+"namespacemax22200_1_1CfgChReg.html#a6dba8632c1cc630790abba9eea8a3068",
+"structmax22200_1_1DpmConfig.html#aff0483ef2694bee66809cd6eec785292"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

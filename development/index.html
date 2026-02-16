@@ -361,6 +361,7 @@ Interactive guides, examples, and step-by-step tutorials</p>
 28
 29
 30
+31
 </pre></td><td class="rouge-code"><pre><span class="cp">#include</span> <span class="cpf">"max22200.hpp"</span><span class="cp">
 </span>
 <span class="c1">// 1. Implement the SPI interface (see platform_integration.md)</span>
@@ -375,17 +376,18 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <span class="n">MySpi</span> <span class="n">spi</span><span class="p">;</span>
 <span class="n">max22200</span><span class="o">::</span><span class="n">MAX22200</span> <span class="n">driver</span><span class="p">(</span><span class="n">spi</span><span class="p">);</span>
 
-<span class="c1">// 3. Initialize</span>
+<span class="c1">// 3. Set board config (IFS from RREF; required for CDR)</span>
+<span class="n">driver</span><span class="p">.</span><span class="n">SetBoardConfig</span><span class="p">(</span><span class="n">max22200</span><span class="o">::</span><span class="n">BoardConfig</span><span class="p">(</span><span class="mf">30.0</span><span class="n">f</span><span class="p">,</span> <span class="nb">false</span><span class="p">));</span>
+
+<span class="c1">// 4. Initialize</span>
 <span class="k">if</span> <span class="p">(</span><span class="n">driver</span><span class="p">.</span><span class="n">Initialize</span><span class="p">()</span> <span class="o">==</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriverStatus</span><span class="o">::</span><span class="n">OK</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// 4. Configure channel 0 (CDR, low-side; 7-bit currents, 8-bit hit time)</span>
+    <span class="c1">// 5. Configure channel 0 (CDR, low-side)</span>
     <span class="n">max22200</span><span class="o">::</span><span class="n">ChannelConfig</span> <span class="n">config</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">drive_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">DriveMode</span><span class="o">::</span><span class="n">CDR</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">side_mode</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">SideMode</span><span class="o">::</span><span class="n">LOW_SIDE</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// mA (set full_scale_current_ma for CDR)</span>
+    <span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// desired current, mA</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
 
     <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>

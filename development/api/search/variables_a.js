@@ -1,24 +1,11 @@
 var searchData=
 [
-  ['ocp_5fbit_0',['OCP_BIT',['../namespacemax22200_1_1StatusReg.html#a7735f8ec46c6b4f88f9678ee13b9e6c9',1,'max22200::StatusReg']]],
-  ['ocp_5fmask_1',['OCP_MASK',['../namespacemax22200_1_1FaultReg.html#a43c0513d2e97f76e1b0ce39a3d5e2d77',1,'max22200::FaultReg']]],
-  ['ocp_5fshift_2',['OCP_SHIFT',['../namespacemax22200_1_1FaultReg.html#a3dbbd4c3a4bba50cbb277806056ce917',1,'max22200::FaultReg']]],
-  ['ol_5fen_5fbit_3',['OL_EN_BIT',['../namespacemax22200_1_1CfgChReg.html#a828ca6cd3c380152055781a978a2ce1c',1,'max22200::CfgChReg']]],
-  ['olf_5fbit_4',['OLF_BIT',['../namespacemax22200_1_1StatusReg.html#a7c536720dfe188fcfcc5c9f6df372051',1,'max22200::StatusReg']]],
-  ['olf_5fmask_5',['OLF_MASK',['../namespacemax22200_1_1FaultReg.html#a3947efe6f18719642ece93ccc2afaf90',1,'max22200::FaultReg']]],
-  ['olf_5fshift_6',['OLF_SHIFT',['../namespacemax22200_1_1FaultReg.html#a8768176b862271b529687841d1d74202',1,'max22200::FaultReg']]],
-  ['onch_5fmask_7',['ONCH_MASK',['../namespacemax22200_1_1StatusReg.html#ad2b3ebf87a85a2aab22eec5e1ab21abf',1,'max22200::StatusReg']]],
-  ['onch_5fshift_8',['ONCH_SHIFT',['../namespacemax22200_1_1StatusReg.html#ae4acf7125c14e4af4233923538b972fc',1,'max22200::StatusReg']]],
-  ['open_5fload_5fdetection_5fenabled_9',['open_load_detection_enabled',['../structmax22200_1_1ChannelConfig.html#a3856294b68c876db41c97500609e9fc1',1,'max22200::ChannelConfig']]],
-  ['open_5fload_5ffault_10',['open_load_fault',['../structmax22200_1_1StatusConfig.html#a20884aaefe7e223c670c63d2410a3b27',1,'max22200::StatusConfig']]],
-  ['open_5fload_5ffault_5fchannel_5fmask_11',['open_load_fault_channel_mask',['../structmax22200_1_1FaultStatus.html#ad2a088849be39d53d2c736eee36d1605',1,'max22200::FaultStatus']]],
-  ['open_5fload_5ffault_5fmasked_12',['open_load_fault_masked',['../structmax22200_1_1StatusConfig.html#a6307a849e2e1abf52d7382d4d2c01d61',1,'max22200::StatusConfig']]],
-  ['operating_5fmax_13',['OPERATING_MAX',['../structMAX22200__TestConfig_1_1Temperature.html#a7faddb0d1f38cc92f6e1f00cbe80b7ef',1,'MAX22200_TestConfig::Temperature']]],
-  ['operating_5fmin_14',['OPERATING_MIN',['../structMAX22200__TestConfig_1_1Temperature.html#a2c6e05a4a0c9ae3288e136721faa000f',1,'MAX22200_TestConfig::Temperature']]],
-  ['overcurrent_15',['overcurrent',['../structmax22200_1_1StatusConfig.html#a28a6507b388e0e4ac6c7f009dff2f9ac',1,'max22200::StatusConfig']]],
-  ['overcurrent_5fchannel_5fmask_16',['overcurrent_channel_mask',['../structmax22200_1_1FaultStatus.html#a16017f50d085970c41fae33200f1df84',1,'max22200::FaultStatus']]],
-  ['overcurrent_5fmasked_17',['overcurrent_masked',['../structmax22200_1_1StatusConfig.html#a8ba4512c10da016ab6588412f4ed6c1a',1,'max22200::StatusConfig']]],
-  ['overtemperature_18',['overtemperature',['../structmax22200_1_1StatusConfig.html#a973bb8ac784d4e37ecc6e4a3c4dcdf98',1,'max22200::StatusConfig']]],
-  ['overtemperature_5fmasked_19',['overtemperature_masked',['../structmax22200_1_1StatusConfig.html#aa0ed24420ba981960650be79120e05fc',1,'max22200::StatusConfig']]],
-  ['ovt_5fbit_20',['OVT_BIT',['../namespacemax22200_1_1StatusReg.html#a04b8bc996e00aa09851c21b9a27e0b92',1,'max22200::StatusReg']]]
+  ['passed_5ftests_0',['passed_tests',['../structTestResults.html#a55b5f813fe7b5863b46e03f2c7f761ea',1,'TestResults']]],
+  ['plunger_5fmovement_5fcurrent_5fthreshold_1',['plunger_movement_current_threshold',['../structmax22200_1_1DpmConfig.html#ab1635046e27ae10bacfb694df79d65e3',1,'max22200::DpmConfig']]],
+  ['plunger_5fmovement_5fdebounce_5ftime_2',['plunger_movement_debounce_time',['../structmax22200_1_1DpmConfig.html#aa60bcde51145ff25c45a974af4c854c0',1,'max22200::DpmConfig']]],
+  ['plunger_5fmovement_5fdetection_5fenabled_3',['plunger_movement_detection_enabled',['../structmax22200_1_1ChannelConfig.html#a9a34fa107efe2576f9807214552e7b46',1,'max22200::ChannelConfig']]],
+  ['plunger_5fmovement_5ffault_4',['plunger_movement_fault',['../structmax22200_1_1StatusConfig.html#ac6b8af0e779e791116f175edf075e05b',1,'max22200::StatusConfig']]],
+  ['plunger_5fmovement_5ffault_5fchannel_5fmask_5',['plunger_movement_fault_channel_mask',['../structmax22200_1_1FaultStatus.html#a9a34fd5261bae85fd1987f5f66d71677',1,'max22200::FaultStatus']]],
+  ['plunger_5fmovement_5ffault_5fmasked_6',['plunger_movement_fault_masked',['../structmax22200_1_1StatusConfig.html#af156ed03c855a2fbad6a714a89d683fe',1,'max22200::StatusConfig']]],
+  ['plunger_5fmovement_5fstart_5fcurrent_7',['plunger_movement_start_current',['../structmax22200_1_1DpmConfig.html#a683dd886e4618220bdb35152cac250ef',1,'max22200::DpmConfig']]]
 ];

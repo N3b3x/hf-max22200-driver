@@ -63,5 +63,6 @@ var max22200__types_8hpp =
     [ "DriverStatusToStr", "max22200__types_8hpp.html#a27e5a0026936447b0a076c37621be59b", null ],
     [ "FaultTypeToStr", "max22200__types_8hpp.html#a44fc2cafd903163aebcc907711ff2aea", null ],
     [ "getChopFreqKhz", "max22200__types_8hpp.html#a6d0504534109b4ee59755901057b7eb8", null ],
+    [ "getMaxHitTimeMs", "max22200__types_8hpp.html#adf9fde7e58661aef7d66e1ca940c1ea9", null ],
     [ "hitTimeMsToRaw", "max22200__types_8hpp.html#a5ad6efb6e9cf058e17546ad64bc48005", null ]
 ];

@@ -114,25 +114,23 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a44cff554e2f18ce9f436bf94a2208527" id="r_a44cff554e2f18ce9f436bf94a2208527"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a44cff554e2f18ce9f436bf94a2208527">HIT_TIME_MS</a> = 100.0f</td></tr>
 <tr class="memdesc:a44cff554e2f18ce9f436bf94a2208527"><td class="mdescLeft">&#160;</td><td class="mdescRight">Min hit time per C21 (ms)  <br /></td></tr>
 <tr class="separator:a44cff554e2f18ce9f436bf94a2208527"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad21802e602fc9546657ba103acc46fc7" id="r_ad21802e602fc9546657ba103acc46fc7"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad21802e602fc9546657ba103acc46fc7">HOLD_PERCENT</a> = 50.0f</td></tr>
-<tr class="memdesc:ad21802e602fc9546657ba103acc46fc7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hold level: 50% of rated (duty or current)  <br /></td></tr>
-<tr class="separator:ad21802e602fc9546657ba103acc46fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a24dfdef5c92cdb38193f06b89c621244" id="r_a24dfdef5c92cdb38193f06b89c621244"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a24dfdef5c92cdb38193f06b89c621244">HIT_CURRENT_MA</a> = 500.0f</td></tr>
+<tr class="memdesc:a24dfdef5c92cdb38193f06b89c621244"><td class="mdescLeft">&#160;</td><td class="mdescRight">CDR mode: hit and hold current in mA (board IFS must be &gt;= these)  <br /></td></tr>
+<tr class="separator:a24dfdef5c92cdb38193f06b89c621244"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a917918bfeb00a0236c56e5c0519021fe" id="r_a917918bfeb00a0236c56e5c0519021fe"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a917918bfeb00a0236c56e5c0519021fe">HOLD_CURRENT_MA</a> = 250.0f</td></tr>
+<tr class="separator:a917918bfeb00a0236c56e5c0519021fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:af29fcb5ccb9253f3419894191eca4d80" id="r_af29fcb5ccb9253f3419894191eca4d80"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af29fcb5ccb9253f3419894191eca4d80">HIT_PERCENT</a> = 100.0f</td></tr>
-<tr class="memdesc:af29fcb5ccb9253f3419894191eca4d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hit: full (100% duty or 100% IFS)  <br /></td></tr>
+<tr class="memdesc:af29fcb5ccb9253f3419894191eca4d80"><td class="mdescLeft">&#160;</td><td class="mdescRight">VDR mode only: duty cycle 0–100%.  <br /></td></tr>
 <tr class="separator:af29fcb5ccb9253f3419894191eca4d80"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad21802e602fc9546657ba103acc46fc7" id="r_ad21802e602fc9546657ba103acc46fc7"><td class="memItemLeft" align="right" valign="top">static constexpr float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad21802e602fc9546657ba103acc46fc7">HOLD_PERCENT</a> = 50.0f</td></tr>
+<tr class="separator:ad21802e602fc9546657ba103acc46fc7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a49adbe43623962ad94d5dfe0256eacd2" id="r_a49adbe43623962ad94d5dfe0256eacd2"><td class="memItemLeft" align="right" valign="top">static constexpr uint8_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a49adbe43623962ad94d5dfe0256eacd2">CHANNEL</a> = 0</td></tr>
 <tr class="memdesc:a49adbe43623962ad94d5dfe0256eacd2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Channel used for C21 (low-side)  <br /></td></tr>
 <tr class="separator:a49adbe43623962ad94d5dfe0256eacd2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a31196ef892d051396f23525be989f927" id="r_a31196ef892d051396f23525be989f927"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a31196ef892d051396f23525be989f927">RATED_CURRENT_MA</a> = 500u</td></tr>
-<tr class="separator:a31196ef892d051396f23525be989f927"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Parker C21 valve Hit and Hold (compile-time CDR vs VDR) </p>
-<p>Per C21 datasheet:</p><ul>
-<li>Hit: rated voltage; Hold: 50% of rated</li>
-<li>Min hit time: 100 ms; PWM freq min: 1 kHz; Hold duty: 50%</li>
-</ul>
-<p>Set to true to drive C21 with CDR (current regulation, low-side only); false for VDR (PWM duty: hit=100%, hold=50%). </p>
+<p>CDR mode: use HIT_CURRENT_MA and HOLD_CURRENT_MA (explicit currents). VDR mode: use HIT_PERCENT and HOLD_PERCENT (duty %, 0–100). Min hit time per C21: 100 ms; PWM freq min 1 kHz. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
 <a id="a49adbe43623962ad94d5dfe0256eacd2" name="a49adbe43623962ad94d5dfe0256eacd2"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a49adbe43623962ad94d5dfe0256eacd2">&#9670;&#160;</a></span>CHANNEL</h2>
@@ -158,6 +156,30 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a24dfdef5c92cdb38193f06b89c621244" name="a24dfdef5c92cdb38193f06b89c621244"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a24dfdef5c92cdb38193f06b89c621244">&#9670;&#160;</a></span>HIT_CURRENT_MA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr float MAX22200_TestConfig::C21ValveConfig::HIT_CURRENT_MA = 500.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>CDR mode: hit and hold current in mA (board IFS must be &gt;= these) </p>
+
+</div>
+</div>
 <a id="af29fcb5ccb9253f3419894191eca4d80" name="af29fcb5ccb9253f3419894191eca4d80"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#af29fcb5ccb9253f3419894191eca4d80">&#9670;&#160;</a></span>HIT_PERCENT</h2>
 
@@ -178,7 +200,7 @@ Static Public Attributes</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Hit: full (100% duty or 100% IFS) </p>
+<p>VDR mode only: duty cycle 0–100%. </p>
 
 </div>
 </div>
@@ -206,6 +228,28 @@ Static Public Attributes</h2></td></tr>
 
 </div>
 </div>
+<a id="a917918bfeb00a0236c56e5c0519021fe" name="a917918bfeb00a0236c56e5c0519021fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a917918bfeb00a0236c56e5c0519021fe">&#9670;&#160;</a></span>HOLD_CURRENT_MA</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr float MAX22200_TestConfig::C21ValveConfig::HOLD_CURRENT_MA = 250.0f</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a id="ad21802e602fc9546657ba103acc46fc7" name="ad21802e602fc9546657ba103acc46fc7"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ad21802e602fc9546657ba103acc46fc7">&#9670;&#160;</a></span>HOLD_PERCENT</h2>
 
@@ -225,31 +269,6 @@ Static Public Attributes</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
-
-<p>Hold level: 50% of rated (duty or current) </p>
-
-</div>
-</div>
-<a id="a31196ef892d051396f23525be989f927" name="a31196ef892d051396f23525be989f927"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a31196ef892d051396f23525be989f927">&#9670;&#160;</a></span>RATED_CURRENT_MA</h2>
-
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">constexpr uint32_t MAX22200_TestConfig::C21ValveConfig::RATED_CURRENT_MA = 500u</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Rated current in mA (C21 valve spec). In CDR mode: hit = RATED_CURRENT_MA, hold = 50% of this. Board IFS must be &gt;= this (e.g. set RREF so IFS &gt;= RATED_CURRENT_MA). </p>
 
 </div>
 </div>

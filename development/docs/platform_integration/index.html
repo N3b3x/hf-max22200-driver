@@ -936,7 +936,6 @@ abstraction. This design choice provides several critical benefits for embedded 
 13
 14
 15
-16
 </pre></td><td class="rouge-code"><pre><span class="n">MyPlatformSPI</span> <span class="nf">spi</span><span class="p">(</span><span class="cm">/* your config */</span><span class="p">);</span>
 <span class="n">max22200</span><span class="o">::</span><span class="n">MAX22200</span> <span class="nf">driver</span><span class="p">(</span><span class="n">spi</span><span class="p">);</span>
 
@@ -947,8 +946,7 @@ abstraction. This design choice provides several critical benefits for embedded 
     <span class="n">config</span><span class="p">.</span><span class="n">hit_setpoint</span> <span class="o">=</span> <span class="mf">500.0</span><span class="n">f</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hold_setpoint</span> <span class="o">=</span> <span class="mf">200.0</span><span class="n">f</span><span class="p">;</span>
     <span class="n">config</span><span class="p">.</span><span class="n">hit_time_ms</span> <span class="o">=</span> <span class="mf">10.0</span><span class="n">f</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">full_scale_current_ma</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
-    <span class="n">config</span><span class="p">.</span><span class="n">master_clock_80khz</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="c1">// IFS from SetBoardConfig (not set on ChannelConfig)</span>
     <span class="n">config</span><span class="p">.</span><span class="n">chop_freq</span> <span class="o">=</span> <span class="n">max22200</span><span class="o">::</span><span class="n">ChopFreq</span><span class="o">::</span><span class="n">FMAIN_DIV2</span><span class="p">;</span>
     <span class="n">driver</span><span class="p">.</span><span class="n">ConfigureChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">config</span><span class="p">);</span>
     <span class="n">driver</span><span class="p">.</span><span class="n">EnableChannel</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>

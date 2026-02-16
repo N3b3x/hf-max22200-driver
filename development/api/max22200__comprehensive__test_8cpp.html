@@ -117,7 +117,7 @@ $(function(){initNavTree('max22200__comprehensive__test_8cpp.html',''); initResi
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for max22200_comprehensive_test.cpp:</div>
 <div class="dyncontent">
-<div class="center"><iframe scrolling="no" frameborder="0" src="max22200__comprehensive__test_8cpp__incl.svg" width="2762" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
+<div class="center"><iframe scrolling="no" frameborder="0" src="max22200__comprehensive__test_8cpp__incl.svg" width="2566" height="374"><p><b>This browser is not able to show SVG: try Firefox, Chrome, Safari, or Opera instead.</b></p></iframe></div>
 </div>
 </div><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
@@ -134,6 +134,7 @@ Functions</h2></td></tr>
 <li><b>Unit APIs</b>: BoardConfig (SetBoardConfig/GetBoardConfig, BoardConfig(rref, hfs)), current in mA and percent (SetHitCurrentMa, SetHoldCurrentPercent, etc.), duty in percent (SetHitDutyPercent, GetDutyLimits), HIT time in ms (SetHitTimeMs, GetHitTimeMs), ConfigureChannelCdr, ConfigureChannelVdr.</li>
 <li><b>Error handling</b>: invalid channel (8), GetHitCurrentMa with IFS=0; expects DriverStatus::INVALID_PARAMETER where appropriate.</li>
 </ul>
+<dl class="section user"><dt>Config</dt><dd>Board and channel-config test values (RREF, HFS, IFS, hit/hold setpoints) are defined in <a class="el" href="esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32-C6.">esp32_max22200_test_config.hpp</a>: BoardTestConfig.</dd></dl>
 <dl class="section user"><dt>Build</dt><dd>From examples/esp32: <code>./scripts/build_app.sh max22200_comprehensive_test Debug</code></dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC Development Team </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2025 </dd></dl>

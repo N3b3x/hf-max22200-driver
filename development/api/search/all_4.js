@@ -9,8 +9,7 @@ var searchData=
   ['algorithm_20behavior_6',['DPM Algorithm Behavior',['../namespacemax22200_1_1CfgDpmReg.html#autotoc_md24',1,'']]],
   ['algorithm_20parameters_7',['DPM Algorithm Parameters',['../namespacemax22200_1_1CfgDpmReg.html#autotoc_md23',1,'']]],
   ['and_20limitations_8',['Restrictions and Limitations',['../max22200_8hpp.html#autotoc_md5',1,'']]],
-  ['api_20reference_9',['📖 API Reference',['../index.html#autotoc_md63',1,'']]],
+  ['api_20reference_9',['📖 API Reference',['../index.html#autotoc_md62',1,'']]],
   ['app_5fmain_10',['app_main',['../max22200__comprehensive__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;max22200_comprehensive_test.cpp'],['../max22200__solenoid__valve__test_8cpp.html#a630544a7f0a2cc40d8a7fefab7e2fe70',1,'app_main(void):&#160;max22200_solenoid_valve_test.cpp']]],
-  ['appconfig_11',['AppConfig',['../structMAX22200__TestConfig_1_1AppConfig.html',1,'MAX22200_TestConfig']]],
-  ['architecture_12',['MAX22200 Register Architecture',['../max22200__registers_8hpp.html#autotoc_md7',1,'']]]
+  ['architecture_11',['MAX22200 Register Architecture',['../max22200__registers_8hpp.html#autotoc_md7',1,'']]]
 ];

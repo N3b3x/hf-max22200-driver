@@ -75,6 +75,7 @@ Template parameter: `SpiType` — your SPI implementation (must inherit `max2220
 | `ConfigureDpm(float start_current_ma, float dip_threshold_ma, float debounce_ms)` | Set DPM in mA and ms (uses board IFS) |
 | `ReadDpmConfig(DpmConfig &config)` | Read CFG_DPM |
 | `WriteDpmConfig(const DpmConfig &config)` | Write CFG_DPM |
+| `SetDpmEnabledChannels(uint8_t channel_mask)` | Enable (bit=1) or disable (bit=0) DPM per channel; other channel settings unchanged |
 
 ### Device Control
 
@@ -97,7 +98,8 @@ Template parameter: `SpiType` — your SPI implementation (must inherit `max2220
 
 **Duty (VDR):**  
 `SetHitDutyPercent`, `SetHoldDutyPercent`, `GetHitDutyPercent`, `GetHoldDutyPercent`  
-`GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq, bool slew_rate_control_enabled, DutyLimits &limits)` (static)
+`GetDutyLimits(bool master_clock_80khz, ChopFreq chop_freq, bool slew_rate_control_enabled, DutyLimits &limits)` (static),  
+`GetDutyLimits(uint8_t channel, DutyLimits &limits)` (instance: uses channel config + cached STATUS)
 
 **HIT time:**  
 `SetHitTimeMs(uint8_t channel, float ms)`, `GetHitTimeMs(uint8_t channel, float &ms)`
@@ -111,7 +113,7 @@ Template parameter: `SpiType` — your SPI implementation (must inherit `max2220
 | Method | Description |
 |--------|-------------|
 | `ReadRegister32(uint8_t bank, uint32_t &value)` | Read 32-bit register |
-| `WriteRegister32(uint8_t bank, uint32_t value)` | Write 32-bit register |
+| `WriteRegister32(uint8_t bank, uint32_t value)` | Write 32-bit register (writing STATUS does not update driver cache; prefer WriteStatus) |
 | `ReadRegister8(uint8_t bank, uint8_t &value)` | Read 8-bit MSB |
 | `WriteRegister8(uint8_t bank, uint8_t value)` | Write 8-bit MSB |
 
@@ -151,7 +153,7 @@ Template parameter: `SpiType` — your SPI implementation (must inherit `max2220
 
 | Type | Description |
 |------|-------------|
-| `ChannelConfig` | CFG_CHx in **user units**: hit_setpoint (mA for CDR, % for VDR), hold_setpoint, hit_time_ms; context: full_scale_current_ma, master_clock_80khz; register fields: drive_mode, side_mode, chop_freq, half_full_scale, trigger_from_pin, slew_rate_control_enabled, open_load_detection_enabled, plunger_movement_detection_enabled, hit_current_check_enabled. toRegister() computes raw from user units. fromRegister(val, full_scale_current_ma, master_clock_80khz) fills user units. Accessors: set_hit_ma/set_hold_ma, set_hit_duty_percent/set_hold_duty_percent, hit_ma()/hold_ma(), hit_duty_percent()/hold_duty_percent(). Helpers: isCdr(), isVdr(), isLowSide(), isHighSide(), hasHitTime(), isContinuousHit(), isHalfFullScale(), isSlewRateControlEnabled(), isOpenLoadDetectionEnabled(), isPlungerMovementDetectionEnabled(), isHitCurrentCheckEnabled(), getChopFreq(). |
+| `ChannelConfig` | CFG_CHx in **user units**: hit_setpoint (mA for CDR, % for VDR), hold_setpoint, hit_time_ms; IFS and master clock come from driver (BoardConfig + STATUS), not stored on config. When half_full_scale is true, effective IFS is board IFS/2 for mA conversion. Register fields: drive_mode, side_mode, chop_freq, half_full_scale, trigger_from_pin, slew_rate_control_enabled, open_load_detection_enabled, plunger_movement_detection_enabled, hit_current_check_enabled. toRegister(board_ifs_ma, master_clock_80khz), fromRegister(val, board_ifs_ma, master_clock_80khz). Presets: makeSolenoidCdr(hit_ma, hold_ma, hit_time_ms), makeSolenoidVdr(hit_pct, hold_pct, hit_time_ms). Helpers: isCdr(), isVdr(), isLowSide(), isHighSide(), hasHitTime(), isContinuousHit(), isHalfFullScale(), getChopFreq(), etc. |
 | `StatusConfig` | STATUS: channels_on_mask, fault masks (overtemperature_masked, overcurrent_masked, …), master_clock_80khz, channel_pair_mode_10/32/54/76, active, fault flags (overtemperature, overcurrent, …). Helpers: `hasOvertemperature()`, `hasOvercurrent()`, `hasOpenLoadFault()`, `hasHitNotReached()`, `hasPlungerMovementFault()`, `hasCommunicationError()`, `hasUndervoltage()`, `isActive()`, `isChannelOn(ch)`, `channelCountOn()`, `isOvertemperatureMasked()`, … `getChannelPairMode10()` … `getChannelPairMode76()`, `is100KHzBase()`, `is80KHzBase()`, `getChannelsOnMask()`. |
 | `FaultStatus` | FAULT: overcurrent_channel_mask, hit_not_reached_channel_mask, open_load_fault_channel_mask, plunger_movement_fault_channel_mask (per-channel masks). Helpers: `hasFault()`, `getFaultCount()`, `hasOvercurrent()`, `hasHitNotReached()`, `hasOpenLoadFault()`, `hasPlungerMovementFault()`, `hasFaultOnChannel(ch)`, `hasOvercurrentOnChannel(ch)`, … `channelsWithAnyFault()`. |
 | `DpmConfig` | CFG_DPM: plunger_movement_start_current, plunger_movement_debounce_time, plunger_movement_current_threshold. Helpers: `getPlungerMovementStartCurrent()`, `getPlungerMovementDebounceTime()`, `getPlungerMovementCurrentThreshold()`. |

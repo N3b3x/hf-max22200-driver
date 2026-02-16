@@ -1,12 +1,13 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.tVY7yv
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.tVY7yv' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.JFNlYy
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.JFNlYy' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp:529: warning: Example /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp was already documented. Ignoring documentation found here.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:127: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:124: warning: included file 'Fast' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:134: warning: included file 'Channel-pair' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:361: warning: included file 'Turn' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:567: warning: included file 'Check' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:125: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:122: warning: included file 'Fast' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:132: warning: included file 'Channel-pair' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:359: warning: included file 'Turn' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:510: warning: included file 'Enable' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:583: warning: included file 'Check' is not found. Check your EXAMPLE_PATH
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:
@@ -25,10 +26,10 @@ warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.tVY7yv' has b
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:18: warning: unable to resolve reference to '-documentation' for \ref command
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:19: warning: unable to resolve reference to '-contributing' for \ref command
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:20: warning: unable to resolve reference to '-license' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:80: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:80: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/quickstart.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:85: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/platform_integration.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:92: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:112: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/api_reference.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:119: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/examples.md' for \ref command
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:123: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/index.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:81: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:81: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/quickstart.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:86: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/platform_integration.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:93: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/installation.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:113: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/api_reference.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:120: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/examples.md' for \ref command
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/README.md:124: warning: unable to resolve reference to '/home/runner/work/hf-max22200-driver/hf-max22200-driver/docs/index.md' for \ref command

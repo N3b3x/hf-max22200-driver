@@ -1,5 +1,22 @@
 var searchData=
 [
-  ['num_5fchannels_0',['NUM_CHANNELS',['../structMAX22200__TestConfig_1_1ChannelLimits.html#a2d7f03c7968218fc8fee14c2c11f4a7e',1,'MAX22200_TestConfig::ChannelLimits']]],
-  ['num_5fchannels_5f_1',['NUM_CHANNELS_',['../namespacemax22200.html#ade1e463aec90832776b7b35c6200c3a7',1,'max22200']]]
+  ['ocp_5fbit_0',['OCP_BIT',['../namespacemax22200_1_1StatusReg.html#a7735f8ec46c6b4f88f9678ee13b9e6c9',1,'max22200::StatusReg']]],
+  ['ocp_5fmask_1',['OCP_MASK',['../namespacemax22200_1_1FaultReg.html#a43c0513d2e97f76e1b0ce39a3d5e2d77',1,'max22200::FaultReg']]],
+  ['ocp_5fshift_2',['OCP_SHIFT',['../namespacemax22200_1_1FaultReg.html#a3dbbd4c3a4bba50cbb277806056ce917',1,'max22200::FaultReg']]],
+  ['ol_5fen_5fbit_3',['OL_EN_BIT',['../namespacemax22200_1_1CfgChReg.html#a828ca6cd3c380152055781a978a2ce1c',1,'max22200::CfgChReg']]],
+  ['olf_5fbit_4',['OLF_BIT',['../namespacemax22200_1_1StatusReg.html#a7c536720dfe188fcfcc5c9f6df372051',1,'max22200::StatusReg']]],
+  ['olf_5fmask_5',['OLF_MASK',['../namespacemax22200_1_1FaultReg.html#a3947efe6f18719642ece93ccc2afaf90',1,'max22200::FaultReg']]],
+  ['olf_5fshift_6',['OLF_SHIFT',['../namespacemax22200_1_1FaultReg.html#a8768176b862271b529687841d1d74202',1,'max22200::FaultReg']]],
+  ['onch_5fmask_7',['ONCH_MASK',['../namespacemax22200_1_1StatusReg.html#ad2b3ebf87a85a2aab22eec5e1ab21abf',1,'max22200::StatusReg']]],
+  ['onch_5fshift_8',['ONCH_SHIFT',['../namespacemax22200_1_1StatusReg.html#ae4acf7125c14e4af4233923538b972fc',1,'max22200::StatusReg']]],
+  ['open_5fload_5fdetection_5fenabled_9',['open_load_detection_enabled',['../structmax22200_1_1ChannelConfig.html#a3856294b68c876db41c97500609e9fc1',1,'max22200::ChannelConfig']]],
+  ['open_5fload_5ffault_10',['open_load_fault',['../structmax22200_1_1StatusConfig.html#a20884aaefe7e223c670c63d2410a3b27',1,'max22200::StatusConfig']]],
+  ['open_5fload_5ffault_5fchannel_5fmask_11',['open_load_fault_channel_mask',['../structmax22200_1_1FaultStatus.html#ad2a088849be39d53d2c736eee36d1605',1,'max22200::FaultStatus']]],
+  ['open_5fload_5ffault_5fmasked_12',['open_load_fault_masked',['../structmax22200_1_1StatusConfig.html#a6307a849e2e1abf52d7382d4d2c01d61',1,'max22200::StatusConfig']]],
+  ['overcurrent_13',['overcurrent',['../structmax22200_1_1StatusConfig.html#a28a6507b388e0e4ac6c7f009dff2f9ac',1,'max22200::StatusConfig']]],
+  ['overcurrent_5fchannel_5fmask_14',['overcurrent_channel_mask',['../structmax22200_1_1FaultStatus.html#a16017f50d085970c41fae33200f1df84',1,'max22200::FaultStatus']]],
+  ['overcurrent_5fmasked_15',['overcurrent_masked',['../structmax22200_1_1StatusConfig.html#a8ba4512c10da016ab6588412f4ed6c1a',1,'max22200::StatusConfig']]],
+  ['overtemperature_16',['overtemperature',['../structmax22200_1_1StatusConfig.html#a973bb8ac784d4e37ecc6e4a3c4dcdf98',1,'max22200::StatusConfig']]],
+  ['overtemperature_5fmasked_17',['overtemperature_masked',['../structmax22200_1_1StatusConfig.html#aa0ed24420ba981960650be79120e05fc',1,'max22200::StatusConfig']]],
+  ['ovt_5fbit_18',['OVT_BIT',['../namespacemax22200_1_1StatusReg.html#a04b8bc996e00aa09851c21b9a27e0b92',1,'max22200::StatusReg']]]
 ];
