@@ -8,13 +8,12 @@ var searchData=
   ['clearallfaults_5',['ClearAllFaults',['../classmax22200_1_1MAX22200.html#a65079d12a3111e01476dfb08cfe430b8',1,'max22200::MAX22200']]],
   ['clearchannelfaults_6',['ClearChannelFaults',['../classmax22200_1_1MAX22200.html#a52c9b4b648616f4119ccda6841ace87c',1,'max22200::MAX22200']]],
   ['clearfaultflags_7',['ClearFaultFlags',['../classmax22200_1_1MAX22200.html#aee559c6f5881ef27186d8192882a7235',1,'max22200::MAX22200']]],
-  ['configure_8',['Configure',['../classmax22200_1_1SpiInterface.html#a3ce7e42eff0d1918f54162d97efc38b4',1,'max22200::SpiInterface::Configure()'],['../classEsp32Max22200SpiBus.html#ae024457c948003e5e3a35250beb9b769',1,'Esp32Max22200SpiBus::Configure()'],['../classEsp32Max22200Spi.html#ac24c5bb3015c3980f806736eb186e194',1,'Esp32Max22200Spi::Configure()']]],
+  ['configure_8',['Configure',['../classmax22200_1_1SpiInterface.html#a3ce7e42eff0d1918f54162d97efc38b4',1,'max22200::SpiInterface::Configure()'],['../classEsp32Max22200SpiBus.html#ae024457c948003e5e3a35250beb9b769',1,'Esp32Max22200SpiBus::Configure()']]],
   ['configureallchannels_9',['ConfigureAllChannels',['../classmax22200_1_1MAX22200.html#a76bc43f4531b2153a7ea4f6e7e198d94',1,'max22200::MAX22200']]],
   ['configurechannel_10',['ConfigureChannel',['../classmax22200_1_1MAX22200.html#ad70aac658d37538c24aa96017302d7f4',1,'max22200::MAX22200']]],
   ['configurechannelcdr_11',['ConfigureChannelCdr',['../classmax22200_1_1MAX22200.html#ac2e58495bb500f40f6b30d504233f913',1,'max22200::MAX22200']]],
   ['configurechannelvdr_12',['ConfigureChannelVdr',['../classmax22200_1_1MAX22200.html#afa27a609728eed92fca7e67c6876ab1a',1,'max22200::MAX22200']]],
   ['configuredpm_13',['ConfigureDpm',['../classmax22200_1_1MAX22200.html#a92683b26a641253278c6f179255cedb5',1,'max22200::MAX22200']]],
-  ['createesp32max22200spi_14',['CreateEsp32Max22200Spi',['../esp32__max22200__spi_8hpp.html#a9c0ec8c334e30fc0f051d44ec36e492a',1,'esp32_max22200_spi.hpp']]],
-  ['createesp32max22200spibus_15',['CreateEsp32Max22200SpiBus',['../esp32__max22200__bus_8hpp.html#a18b9cd94c8a37e8cec20cfe944270bb7',1,'esp32_max22200_bus.hpp']]],
-  ['currentmatoraw_16',['currentMaToRaw',['../namespacemax22200.html#a0f432225a67ef3599c5a39238f286041',1,'max22200']]]
+  ['createesp32max22200spibus_14',['CreateEsp32Max22200SpiBus',['../esp32__max22200__bus_8hpp.html#a18b9cd94c8a37e8cec20cfe944270bb7',1,'esp32_max22200_bus.hpp']]],
+  ['currentmatoraw_15',['currentMaToRaw',['../namespacemax22200.html#a0f432225a67ef3599c5a39238f286041',1,'max22200']]]
 ];

@@ -406,7 +406,7 @@
 
 <ol>
   <li><strong>Check Load</strong>: Verify load is within specifications (1A RMS max per channel)</li>
-  <li><strong>Reduce Current</strong>: Lower hit_current_value and hold_current_value (or use SetHitCurrentMa/SetHoldCurrentMa)</li>
+  <li><strong>Reduce Current</strong>: Lower hit_setpoint and hold_setpoint (or use set_hit_ma/set_hold_ma or SetHitCurrentMa/SetHoldCurrentMa)</li>
   <li><strong>Check for Shorts</strong>: Verify no short circuits in wiring</li>
   <li><strong>Clear Fault</strong>: Read fault status to clear, then reconfigure</li>
 </ol><hr />
@@ -679,7 +679,7 @@
 </h3>
     
 
-<p><strong>A:</strong> Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_current_value and hold_current_value in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.</p>
+<p><strong>A:</strong> Each channel can handle up to 1A RMS. ChannelConfig stores currents in user units: for CDR use hit_setpoint and hold_setpoint in mA (with full_scale_current_ma set); the driver converts to the device’s 7-bit (0–127) range when writing.</p>
 <h3 id="q-can-i-use-multiple-channels-simultaneously">
   
   

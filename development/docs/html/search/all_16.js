@@ -20,7 +20,7 @@ var searchData=
   ['total_5fexecution_5ftime_5fus_17',['total_execution_time_us',['../structTestResults.html#a7eddc258a4288ac5f0a36a1008c9d014',1,'TestResults']]],
   ['total_5ftests_18',['total_tests',['../structTestResults.html#afe20b168a13950ffca7296c0c56d4359',1,'TestResults']]],
   ['total_5ftransfers_19',['total_transfers',['../structmax22200_1_1DriverStatistics.html#a3f290ce5573c74f86dcfc7a48db2d2e4',1,'max22200::DriverStatistics']]],
-  ['transfer_20',['Transfer',['../max22200_8hpp.html#autotoc_md2',1,'Phase 2: Data Transfer'],['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()'],['../classEsp32Max22200Spi.html#a37ae6d8375dcebda41a86495f1a88c48',1,'Esp32Max22200Spi::Transfer()']]],
+  ['transfer_20',['Transfer',['../max22200_8hpp.html#autotoc_md2',1,'Phase 2: Data Transfer'],['../classmax22200_1_1SpiInterface.html#a7d80d83722c5441fc701f1a7acebee11',1,'max22200::SpiInterface::Transfer()'],['../classEsp32Max22200SpiBus.html#a0fed6c43b129fb21201cb0a6f27ba065',1,'Esp32Max22200SpiBus::Transfer()']]],
   ['trgnspi_5fbit_21',['TRGNSPI_BIT',['../namespacemax22200_1_1CfgChReg.html#ab7b0767769a167c6bbcf2315bea02c42',1,'max22200::CfgChReg']]],
   ['triga_22',['TRIGA',['../structMAX22200__TestConfig_1_1ControlPins.html#a165030a7805e715a91f582afc9f29f03',1,'MAX22200_TestConfig::ControlPins']]],
   ['triga_5fpin_23',['triga_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a064b8564e7fd3e175fc19c780cac502a',1,'Esp32Max22200SpiBus::SPIConfig']]],

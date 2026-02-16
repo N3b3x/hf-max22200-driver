@@ -97,11 +97,11 @@ $(function(){initNavTree('Fast-example.html',''); initResizable(); });
   <div class="headertitle"><div class="title">Fast</div></div>
 </div><!--header-->
 <div class="contents">
-<p>HOLD current update (8-bit mode): </p><div class="fragment"><div class="line"><span class="comment">// Update HOLD current on-the-fly while channel is operating (CFG_CH MSB = HFS | HOLD[6:0])</span></div>
+<p>HOLD current update (8-bit mode): </p><div class="fragment"><div class="line"><span class="comment">// Update HOLD on-the-fly: CFG_CH[31:24] = HFS (bit 7) | HOLD[6:0] (bits 6:0)</span></div>
 <div class="line">ChannelConfig config;</div>
 <div class="line">driver.GetChannelConfig(0, config);</div>
-<div class="line">config.hold_current = 60;  <span class="comment">// New HOLD current</span></div>
-<div class="line">driver.WriteRegister8(RegBank::CFG_CH0, (config.half_full_scale ? 0x80u : 0u) | (config.hold_current &amp; 0x7Fu));</div>
+<div class="line">uint8_t hold_raw = 60;  <span class="comment">// 7-bit raw (0-127); or derive from config.hold_setpoint</span></div>
+<div class="line">driver.WriteRegister8(RegBank::CFG_CH0, (config.half_full_scale ? 0x80u : 0u) | (hold_raw &amp; 0x7Fu));</div>
 </div><!-- fragment --><div class="fragment"></div><!-- fragment --> </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

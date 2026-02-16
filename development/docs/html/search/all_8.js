@@ -15,9 +15,7 @@ var searchData=
   ['ensure_5fgpio14_5finitialized_12',['ensure_gpio14_initialized',['../TestFramework_8h.html#a57a48f91a141d98e45f82937581e1a97',1,'TestFramework.h']]],
   ['esp32_5fmax22200_5fbus_2ehpp_13',['esp32_max22200_bus.hpp',['../esp32__max22200__bus_8hpp.html',1,'']]],
   ['esp32_5fmax22200_5fenable_5fdetailed_5fspi_5flogging_14',['ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING',['../esp32__max22200__test__config_8hpp.html#a26ef05b7f869884bdc82189a98463b34',1,'esp32_max22200_test_config.hpp']]],
-  ['esp32_5fmax22200_5fspi_2ehpp_15',['esp32_max22200_spi.hpp',['../esp32__max22200__spi_8hpp.html',1,'']]],
-  ['esp32_5fmax22200_5ftest_5fconfig_2ehpp_16',['esp32_max22200_test_config.hpp',['../esp32__max22200__test__config_8hpp.html',1,'']]],
-  ['esp32max22200spi_17',['Esp32Max22200Spi',['../classEsp32Max22200Spi.html',1,'Esp32Max22200Spi'],['../classEsp32Max22200Spi.html#a5543f4ece9adef4e31b489c020fea991',1,'Esp32Max22200Spi::Esp32Max22200Spi()'],['../classEsp32Max22200Spi.html#a400330848ca13f5fa0d7b6395af3e798',1,'Esp32Max22200Spi::Esp32Max22200Spi(const SPIConfig &amp;config)']]],
-  ['esp32max22200spibus_18',['Esp32Max22200SpiBus',['../classEsp32Max22200SpiBus.html',1,'Esp32Max22200SpiBus'],['../classEsp32Max22200SpiBus.html#aa0cffecd6c4f89202b16f504cef855f2',1,'Esp32Max22200SpiBus::Esp32Max22200SpiBus()']]],
-  ['examples_19',['📊 Examples',['../index.html#autotoc_md64',1,'']]]
+  ['esp32_5fmax22200_5ftest_5fconfig_2ehpp_15',['esp32_max22200_test_config.hpp',['../esp32__max22200__test__config_8hpp.html',1,'']]],
+  ['esp32max22200spibus_16',['Esp32Max22200SpiBus',['../classEsp32Max22200SpiBus.html',1,'Esp32Max22200SpiBus'],['../classEsp32Max22200SpiBus.html#aa0cffecd6c4f89202b16f504cef855f2',1,'Esp32Max22200SpiBus::Esp32Max22200SpiBus()']]],
+  ['examples_17',['📊 Examples',['../index.html#autotoc_md64',1,'']]]
 ];

@@ -11,6 +11,6 @@ var searchData=
   ['freq_5fcfg_5fshift_8',['FREQ_CFG_SHIFT',['../namespacemax22200_1_1CfgChReg.html#aa621d96c3a31b687686fb1757fdba951',1,'max22200::CfgChReg']]],
   ['freqm_5fbit_9',['FREQM_BIT',['../namespacemax22200_1_1StatusReg.html#a9254273cef31940997d41db881d98ada',1,'max22200::StatusReg']]],
   ['frequency_10',['FREQUENCY',['../structMAX22200__TestConfig_1_1SPIParams.html#adecf8d704b7f408777de224d6734fefe',1,'MAX22200_TestConfig::SPIParams']]],
-  ['frequency_11',['frequency',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a1b7c2d3ffe0f7a031c82caa607e8c242',1,'Esp32Max22200SpiBus::SPIConfig::frequency'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a11c07a745febf3b3451e0e26131fcaf1',1,'Esp32Max22200Spi::SPIConfig::frequency']]],
+  ['frequency_11',['frequency',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a1b7c2d3ffe0f7a031c82caa607e8c242',1,'Esp32Max22200SpiBus::SPIConfig']]],
   ['full_5fscale_5fcurrent_5fma_12',['full_scale_current_ma',['../structmax22200_1_1ChannelConfig.html#a0aa6f9621304935d407f45fc956f0607',1,'max22200::ChannelConfig::full_scale_current_ma'],['../structmax22200_1_1BoardConfig.html#a0599d785377319b279712c25b2a83e0a',1,'max22200::BoardConfig::full_scale_current_ma']]]
 ];

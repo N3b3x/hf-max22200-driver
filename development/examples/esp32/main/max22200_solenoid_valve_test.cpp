@@ -105,11 +105,11 @@ static ChannelConfig make_valve_channel_config(uint32_t full_scale_current_ma) {
 
   if (C21ValveConfig::USE_CDR) {
     // Hit/hold in mA from valve rated current and percentages (driver clamps to IFS if needed)
-    config.hit_current_value = (C21ValveConfig::HIT_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
-    config.hold_current_value = (C21ValveConfig::HOLD_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
+    config.hit_setpoint = (C21ValveConfig::HIT_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
+    config.hold_setpoint = (C21ValveConfig::HOLD_PERCENT / 100.0f) * static_cast<float>(C21ValveConfig::RATED_CURRENT_MA);
   } else {
-    config.hit_current_value = C21ValveConfig::HIT_PERCENT;
-    config.hold_current_value = C21ValveConfig::HOLD_PERCENT;
+    config.hit_setpoint = C21ValveConfig::HIT_PERCENT;
+    config.hold_setpoint = C21ValveConfig::HOLD_PERCENT;
   }
   return config;
 }
@@ -233,7 +233,7 @@ static void log_diagnostics(const char *phase) {
     if (g_driver->GetChannelConfig(ch, cfg) != DriverStatus::OK) continue;
     uint32_t raw = cfg.toRegister();
     ESP_LOGI(TAG, "    CH%u  raw=0x%08" PRIX32 "  hit=%.1f hold=%.1f hit_time_ms=%.1f %s %s",
-             ch, raw, cfg.hit_current_value, cfg.hold_current_value, cfg.hit_time_ms,
+             ch, raw, cfg.hit_setpoint, cfg.hold_setpoint, cfg.hit_time_ms,
              cfg.drive_mode == DriveMode::CDR ? "CDR" : "VDR",
              cfg.side_mode == SideMode::LOW_SIDE ? "LS" : "HS");
   }
@@ -321,7 +321,7 @@ static bool init_driver_and_valve_config() {
   ChannelConfig valve_cfg = make_valve_channel_config(ifs);
   ESP_LOGI(TAG, "Valve config: %s  hit=%.1f hold=%.1f hit_time_ms=%.1f (C21-style)",
            C21ValveConfig::USE_CDR ? "CDR" : "VDR",
-           valve_cfg.hit_current_value, valve_cfg.hold_current_value, valve_cfg.hit_time_ms);
+           valve_cfg.hit_setpoint, valve_cfg.hold_setpoint, valve_cfg.hit_time_ms);
 
   for (uint8_t ch = 0; ch < ChannelLimits::NUM_CHANNELS; ch++) {
     if (!require_ok(g_driver->ConfigureChannel(ch, valve_cfg), "ConfigureChannel")) return false;

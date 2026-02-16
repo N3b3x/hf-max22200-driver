@@ -1,12 +1,12 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.LSMAH2
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.LSMAH2' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.tVY7yv
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.tVY7yv' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp:529: warning: Example /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp was already documented. Ignoring documentation found here.
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:125: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:122: warning: included file 'Fast' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:132: warning: included file 'Channel-pair' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:359: warning: included file 'Turn' is not found. Check your EXAMPLE_PATH
-/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:565: warning: included file 'Check' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:127: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:124: warning: included file 'Fast' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:134: warning: included file 'Channel-pair' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:361: warning: included file 'Turn' is not found. Check your EXAMPLE_PATH
+/home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:567: warning: included file 'Check' is not found. Check your EXAMPLE_PATH
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:383: warning: The following parameter of print_test_section_footer(const char *tag, const char *section_name, bool enabled=true) is not documented:
   parameter 'tag'
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/examples/esp32/main/TestFramework.h:357: warning: The following parameter of print_test_section_header(const char *tag, const char *section_name, bool enabled=true) is not documented:

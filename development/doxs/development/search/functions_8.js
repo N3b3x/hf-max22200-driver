@@ -1,7 +1,7 @@
 var searchData=
 [
   ['init_5ftest_5fprogress_5findicator_0',['init_test_progress_indicator',['../TestFramework_8h.html#a3967179ac699a5b02ef9787b549409fe',1,'TestFramework.h']]],
-  ['initialize_1',['Initialize',['../classmax22200_1_1MAX22200.html#aecaf3ba33a236f604cb4e95766f638f1',1,'max22200::MAX22200::Initialize()'],['../classmax22200_1_1SpiInterface.html#a50b6e9cae519e2ddaff0b4d66c089150',1,'max22200::SpiInterface::Initialize()'],['../classEsp32Max22200SpiBus.html#a7e22c380606f962251f7c81932e6b3b2',1,'Esp32Max22200SpiBus::Initialize()'],['../classEsp32Max22200Spi.html#aeb91b4f0e2333fc5104ff6672031d732',1,'Esp32Max22200Spi::Initialize()']]],
+  ['initialize_1',['Initialize',['../classmax22200_1_1MAX22200.html#aecaf3ba33a236f604cb4e95766f638f1',1,'max22200::MAX22200::Initialize()'],['../classmax22200_1_1SpiInterface.html#a50b6e9cae519e2ddaff0b4d66c089150',1,'max22200::SpiInterface::Initialize()'],['../classEsp32Max22200SpiBus.html#a7e22c380606f962251f7c81932e6b3b2',1,'Esp32Max22200SpiBus::Initialize()']]],
   ['inrange_2',['inRange',['../structmax22200_1_1DutyLimits.html#a4eca1ec13ed6eeaa0292dbf3c24e6727',1,'max22200::DutyLimits']]],
   ['is100khzbase_3',['is100KHzBase',['../structmax22200_1_1StatusConfig.html#a496e87746deffcc3899f51d6d5dd9ff4',1,'max22200::StatusConfig']]],
   ['is80khzbase_4',['is80KHzBase',['../structmax22200_1_1StatusConfig.html#a290b0b6af7819b2550a90413a99cfd0f',1,'max22200::StatusConfig']]],
@@ -23,7 +23,7 @@ var searchData=
   ['isovertemperaturemasked_20',['isOvertemperatureMasked',['../structmax22200_1_1StatusConfig.html#a2b987cb7ac08cae8483f919c1cf629d3',1,'max22200::StatusConfig']]],
   ['isplungermovementdetectionenabled_21',['isPlungerMovementDetectionEnabled',['../structmax22200_1_1ChannelConfig.html#a191e0f89e386ea453a55433cd39cfe81',1,'max22200::ChannelConfig']]],
   ['isplungermovementfaultmasked_22',['isPlungerMovementFaultMasked',['../structmax22200_1_1StatusConfig.html#ae6f2345b7d8aade8a9be12d1d181454f',1,'max22200::StatusConfig']]],
-  ['isready_23',['IsReady',['../classmax22200_1_1SpiInterface.html#ad12425ba4fa46a5e31156d335ade9810',1,'max22200::SpiInterface::IsReady()'],['../classEsp32Max22200SpiBus.html#a4b4d3e76767a3c5da03fab8c93426e22',1,'Esp32Max22200SpiBus::IsReady()'],['../classEsp32Max22200Spi.html#a9dec56bfa1ac2f6048bb1c66aa282f6a',1,'Esp32Max22200Spi::IsReady()']]],
+  ['isready_23',['IsReady',['../classmax22200_1_1SpiInterface.html#ad12425ba4fa46a5e31156d335ade9810',1,'max22200::SpiInterface::IsReady()'],['../classEsp32Max22200SpiBus.html#a4b4d3e76767a3c5da03fab8c93426e22',1,'Esp32Max22200SpiBus::IsReady()']]],
   ['isslewratecontrolenabled_24',['isSlewRateControlEnabled',['../structmax22200_1_1ChannelConfig.html#a55040d1ebada3a4b335b34f543a8f426',1,'max22200::ChannelConfig']]],
   ['istriggeredbypin_25',['isTriggeredByPin',['../structmax22200_1_1ChannelConfig.html#a254eda496074953b33383b2939c2f77b',1,'max22200::ChannelConfig']]],
   ['istriggeredbyspi_26',['isTriggeredBySpi',['../structmax22200_1_1ChannelConfig.html#ab285f25abe0f556f7dca3b46e7ea19f5',1,'max22200::ChannelConfig']]],

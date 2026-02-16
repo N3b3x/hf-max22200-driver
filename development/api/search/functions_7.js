@@ -20,5 +20,9 @@ var searchData=
   ['hastriga_17',['HasTrigA',['../classEsp32Max22200SpiBus.html#a46499e01f3f36170db6af88bbe705559',1,'Esp32Max22200SpiBus']]],
   ['hastrigb_18',['HasTrigB',['../classEsp32Max22200SpiBus.html#a22022f5608ddfa0118e24c38451fb425',1,'Esp32Max22200SpiBus']]],
   ['hasundervoltage_19',['hasUndervoltage',['../structmax22200_1_1StatusConfig.html#a221c32be7e5606009e3de423bd4c8de0',1,'max22200::StatusConfig']]],
-  ['hittimemstoraw_20',['hitTimeMsToRaw',['../namespacemax22200.html#a5ad6efb6e9cf058e17546ad64bc48005',1,'max22200']]]
+  ['hit_5fduty_5fpercent_20',['hit_duty_percent',['../structmax22200_1_1ChannelConfig.html#a6fe478021938a87139900b1fa0c57305',1,'max22200::ChannelConfig']]],
+  ['hit_5fma_21',['hit_ma',['../structmax22200_1_1ChannelConfig.html#a5d82b58f9d7f9d6479a702c60fe3d5b8',1,'max22200::ChannelConfig']]],
+  ['hittimemstoraw_22',['hitTimeMsToRaw',['../namespacemax22200.html#a5ad6efb6e9cf058e17546ad64bc48005',1,'max22200']]],
+  ['hold_5fduty_5fpercent_23',['hold_duty_percent',['../structmax22200_1_1ChannelConfig.html#a35f498c6ec2744a418fb77c69b5cc398',1,'max22200::ChannelConfig']]],
+  ['hold_5fma_24',['hold_ma',['../structmax22200_1_1ChannelConfig.html#a4a240c3a9107876ad47f7de9bcb65021',1,'max22200::ChannelConfig']]]
 ];

@@ -24,7 +24,6 @@ var annotated_dup =
       [ "TestConfig", "structMAX22200__TestConfig_1_1TestConfig.html", null ],
       [ "Timing", "structMAX22200__TestConfig_1_1Timing.html", null ]
     ] ],
-    [ "Esp32Max22200Spi", "classEsp32Max22200Spi.html", "classEsp32Max22200Spi" ],
     [ "Esp32Max22200SpiBus", "classEsp32Max22200SpiBus.html", "classEsp32Max22200SpiBus" ],
     [ "TestResults", "structTestResults.html", "structTestResults" ],
     [ "TestTaskContext", "structTestTaskContext.html", "structTestTaskContext" ]

@@ -22,11 +22,11 @@ var searchData=
   ['max_5fspi_5ffreq_5fstandalone_5f_19',['MAX_SPI_FREQ_STANDALONE_',['../namespacemax22200.html#aa433a968c342b863d10b8af9fe7786cc',1,'max22200']]],
   ['min_5fpercent_20',['min_percent',['../structmax22200_1_1DutyLimits.html#aa41add0141d72972551ba15cd06d5563',1,'max22200::DutyLimits']]],
   ['miso_21',['MISO',['../structMAX22200__TestConfig_1_1SPIPins.html#a6f6eb0f1401d8b131249060e4759b9ee',1,'MAX22200_TestConfig::SPIPins']]],
-  ['miso_5fpin_22',['miso_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30',1,'Esp32Max22200SpiBus::SPIConfig::miso_pin'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a9ad25b0562c0e63080f6b2ee496c4087',1,'Esp32Max22200Spi::SPIConfig::miso_pin']]],
+  ['miso_5fpin_22',['miso_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#a6fcecf2762de407979dba961141c4e30',1,'Esp32Max22200SpiBus::SPIConfig']]],
   ['mode_23',['MODE',['../structMAX22200__TestConfig_1_1SPIParams.html#ad63f667aa7bc9c0df3467602cbcc5eff',1,'MAX22200_TestConfig::SPIParams']]],
-  ['mode_24',['mode',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9',1,'Esp32Max22200SpiBus::SPIConfig::mode'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a60eeee22e460b4d8a5cb2884d2b40498',1,'Esp32Max22200Spi::SPIConfig::mode']]],
+  ['mode_24',['mode',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ad0c3809a022b29c073118241b85e7ef9',1,'Esp32Max22200SpiBus::SPIConfig']]],
   ['mode_5f32bit_25',['MODE_32BIT',['../namespacemax22200_1_1CommandReg.html#a7eac95409884c49075316b1e33256f21',1,'max22200::CommandReg']]],
   ['mode_5f8bit_26',['MODE_8BIT',['../namespacemax22200_1_1CommandReg.html#a4142c3b349c3ee64c68308b3c2ca03f6',1,'max22200::CommandReg']]],
   ['mosi_27',['MOSI',['../structMAX22200__TestConfig_1_1SPIPins.html#a6134984da373ec4bd3e33c7f5cef78dd',1,'MAX22200_TestConfig::SPIPins']]],
-  ['mosi_5fpin_28',['mosi_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b',1,'Esp32Max22200SpiBus::SPIConfig::mosi_pin'],['../structEsp32Max22200Spi_1_1SPIConfig.html#a41f938606ac606ca53b9ddb1703923b3',1,'Esp32Max22200Spi::SPIConfig::mosi_pin']]]
+  ['mosi_5fpin_28',['mosi_pin',['../structEsp32Max22200SpiBus_1_1SPIConfig.html#ae8cb0fa837af0571d1b97d284428c24b',1,'Esp32Max22200SpiBus::SPIConfig']]]
 ];
