@@ -120,11 +120,36 @@ Static Public Attributes</h2></td></tr>
 <tr class="memitem:a33684122add422a8a03812ed108119a1" id="r_a33684122add422a8a03812ed108119a1"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a33684122add422a8a03812ed108119a1">PATTERN_PAUSE_MS</a> = 400</td></tr>
 <tr class="memdesc:a33684122add422a8a03812ed108119a1"><td class="mdescLeft">&#160;</td><td class="mdescRight">Pause (ms) between pattern runs.  <br /></td></tr>
 <tr class="separator:a33684122add422a8a03812ed108119a1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac5842a2ca1e5a3f6361f504876308383" id="r_ac5842a2ca1e5a3f6361f504876308383"><td class="memItemLeft" align="right" valign="top">static constexpr uint32_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac5842a2ca1e5a3f6361f504876308383">LOOP_COUNT</a> = 10</td></tr>
+<tr class="separator:ac5842a2ca1e5a3f6361f504876308383"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Solenoid valve test pattern timing (used by max22200_solenoid_valve_test) </p>
-<p>Sequential pattern: ch0 → ch1 → … → ch7; each channel on for SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS between channels. Parallel pattern: all channels on for PARALLEL_HOLD_MS. PATTERN_PAUSE_MS is the pause between pattern runs. </p>
+<p>Sequential pattern: ch0 → ch1 → … → ch7; each channel on for SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS between channels. Parallel pattern: all channels on for PARALLEL_HOLD_MS. PATTERN_PAUSE_MS is the pause between pattern runs. LOOP_COUNT: 1 = one-shot (default), N = repeat N times, 0 = loop indefinitely. </p>
 </div><h2 class="groupheader">Member Data Documentation</h2>
+<a id="ac5842a2ca1e5a3f6361f504876308383" name="ac5842a2ca1e5a3f6361f504876308383"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac5842a2ca1e5a3f6361f504876308383">&#9670;&#160;</a></span>LOOP_COUNT</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr uint32_t MAX22200_TestConfig::SolenoidValvePatternConfig::LOOP_COUNT = 10</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span><span class="mlabel">constexpr</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>1 = one-shot, N = repeat N times, 0 = loop indefinitely </p>
+
+</div>
+</div>
 <a id="ae5d5d01b13fc3b768091612392754c1f" name="ae5d5d01b13fc3b768091612392754c1f"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#ae5d5d01b13fc3b768091612392754c1f">&#9670;&#160;</a></span>PARALLEL_HOLD_MS</h2>
 
