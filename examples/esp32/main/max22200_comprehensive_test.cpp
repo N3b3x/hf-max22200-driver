@@ -125,46 +125,54 @@ static void print_all_fault_diagnostics() noexcept {
 
   const bool any_status_fault = status.overtemperature || status.overcurrent || status.open_load_fault
       || status.hit_not_reached || status.plunger_movement_fault || status.communication_error || status.undervoltage;
+  const bool has_error = !status.active || any_status_fault || faults.hasFault() || nfault_active;
+  if (has_error) {
+    ESP_LOGE(TAG, "  ERROR: Device not operational or fault(s) present — ACTIVE=%d UVM=%d nFAULT_pin=%d (see causes below)",
+             status.active ? 1 : 0, status.undervoltage ? 1 : 0, nfault_active ? 1 : 0);
+  }
   if (any_status_fault || faults.hasFault()) {
-    ESP_LOGI(TAG, "  --- Faults set (possible causes) ---");
+    ESP_LOGE(TAG, "  --- Faults set (possible causes) ---");
     if (status.undervoltage)
-      ESP_LOGI(TAG, "  >>> UVM: Undervoltage — check VM supply and wiring");
+      ESP_LOGE(TAG, "  >>> UVM: Undervoltage — check VM supply and wiring");
     if (status.communication_error)
-      ESP_LOGI(TAG, "  >>> COMER: Communication error — check SPI (CS, CMD, MISO)");
+      ESP_LOGE(TAG, "  >>> COMER: Communication error — check SPI (CS, CMD, MISO)");
     if (status.overtemperature)
-      ESP_LOGI(TAG, "  >>> OVT: Overtemperature — check die/cooling");
+      ESP_LOGE(TAG, "  >>> OVT: Overtemperature — check die/cooling");
     if (status.overcurrent)
-      ESP_LOGI(TAG, "  >>> OCP: Overcurrent (global) — short or overload on a channel");
+      ESP_LOGE(TAG, "  >>> OCP: Overcurrent (global) — short or overload on a channel");
     if (status.open_load_fault)
-      ESP_LOGI(TAG, "  >>> OLF: Open load (global) — solenoid disconnected or broken wire");
+      ESP_LOGE(TAG, "  >>> OLF: Open load (global) — solenoid disconnected or broken wire");
     if (status.hit_not_reached)
-      ESP_LOGI(TAG, "  >>> HHF: Hit current not reached (global) — check supply/load");
+      ESP_LOGE(TAG, "  >>> HHF: Hit current not reached (global) — check supply/load");
     if (status.plunger_movement_fault)
-      ESP_LOGI(TAG, "  >>> DPM: Plunger movement fault (global)");
+      ESP_LOGE(TAG, "  >>> DPM: Plunger movement fault (global)");
     if (faults.overcurrent_channel_mask)
-      ESP_LOGI(TAG, "  >>> OCP per-ch: 0x%02X — short or overcurrent on channel(s)", faults.overcurrent_channel_mask);
+      ESP_LOGE(TAG, "  >>> OCP per-ch: 0x%02X — short or overcurrent on channel(s)", faults.overcurrent_channel_mask);
     if (faults.hit_not_reached_channel_mask)
-      ESP_LOGI(TAG, "  >>> HHF per-ch: 0x%02X — hit current not reached on channel(s)", faults.hit_not_reached_channel_mask);
+      ESP_LOGE(TAG, "  >>> HHF per-ch: 0x%02X — hit current not reached on channel(s)", faults.hit_not_reached_channel_mask);
     if (faults.open_load_fault_channel_mask)
-      ESP_LOGI(TAG, "  >>> OLF per-ch: 0x%02X — open load / disconnected solenoid on channel(s)", faults.open_load_fault_channel_mask);
+      ESP_LOGE(TAG, "  >>> OLF per-ch: 0x%02X — open load / disconnected solenoid on channel(s)", faults.open_load_fault_channel_mask);
     if (faults.plunger_movement_fault_channel_mask)
-      ESP_LOGI(TAG, "  >>> DPM per-ch: 0x%02X — plunger movement on channel(s)", faults.plunger_movement_fault_channel_mask);
+      ESP_LOGE(TAG, "  >>> DPM per-ch: 0x%02X — plunger movement on channel(s)", faults.plunger_movement_fault_channel_mask);
     for (uint8_t ch = 0; ch < 8; ch++) {
       const bool ocp = (faults.overcurrent_channel_mask & (1u << ch)) != 0;
       const bool hhf = (faults.hit_not_reached_channel_mask & (1u << ch)) != 0;
       const bool olf = (faults.open_load_fault_channel_mask & (1u << ch)) != 0;
       const bool dpm = (faults.plunger_movement_fault_channel_mask & (1u << ch)) != 0;
       if (ocp || hhf || olf || dpm) {
-        ESP_LOGI(TAG, "      CH%u: %s%s%s%s", ch,
+        ESP_LOGE(TAG, "      CH%u: %s%s%s%s", ch,
                  ocp ? "OCP " : "", hhf ? "HHF " : "", olf ? "OLF " : "", dpm ? "DPM" : "");
       }
     }
+  }
+  if (has_error && !any_status_fault && !faults.hasFault()) {
+    ESP_LOGE(TAG, "  --- ACTIVE=0 or nFAULT pin active (no status/fault flags) — check power and init ---");
   }
 
   ESP_LOGI(TAG, "  FAULT register: OCP=0x%02X HHF=0x%02X OLF=0x%02X DPM=0x%02X",
            faults.overcurrent_channel_mask, faults.hit_not_reached_channel_mask,
            faults.open_load_fault_channel_mask, faults.plunger_movement_fault_channel_mask);
-  ESP_LOGI(TAG, "  Last fault byte (CMD reg): 0x%02X (ACTIVE=%d OVT=%d OCP=%d OLF=%d HHF=%d DPM=%d COMER=%d UVM=%d)",
+  ESP_LOGI(TAG, "  Last fault byte (CMD reg): 0x%02X (ACTIVE=%d UVM=%d COMER=%d DPM=%d HHF=%d OLF=%d OCP=%d OVT=%d)",
            last_fault_byte,
            (last_fault_byte >> 0) & 1, (last_fault_byte >> 1) & 1, (last_fault_byte >> 2) & 1,
            (last_fault_byte >> 3) & 1, (last_fault_byte >> 4) & 1, (last_fault_byte >> 5) & 1,
@@ -172,8 +180,8 @@ static void print_all_fault_diagnostics() noexcept {
   ESP_LOGI(TAG, "  nFAULT pin: %s", nfault_active ? "ACTIVE (fault — pin low)" : "INACTIVE (no fault)");
 
   if (nfault_active || any_status_fault || faults.hasFault()) {
-    ESP_LOGI(TAG, "  --- Possible causes (solenoid/wiring) ---");
-    ESP_LOGI(TAG, "  UVM=undervoltage; OCP=short/overcurrent; OLF=open load/disconnected; HHF=hit not reached; DPM=plunger; COMER=SPI; OVT=thermal");
+    ESP_LOGE(TAG, "  --- Possible causes (solenoid/wiring) ---");
+    ESP_LOGE(TAG, "  UVM=undervoltage; OCP=short/overcurrent; OLF=open load/disconnected; HHF=hit not reached; DPM=plunger; COMER=SPI; OVT=thermal");
   }
   ESP_LOGI(TAG, "========================================");
   ESP_LOGI(TAG, "");
