@@ -13,8 +13,8 @@
  * - Board: BoardTestConfig (RREF_KOHM, HFS). Channel profile: C21ValveConfig (USE_CDR,
  *   HIT_TIME_MS, hit/hold currents or percent). All channels get the same configuration.
  * - Pattern timings: SolenoidValvePatternConfig (SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS,
- *   PARALLEL_HOLD_MS, PATTERN_PAUSE_MS). (1) Sequential: ch0 → ch1 → … → ch7 with delay between each.
- *   (2) Parallel: all channels on together, then off.
+ *   PARALLEL_HOLD_MS, PATTERN_PAUSE_MS, LOOP_COUNT). (1) Sequential: ch0 → ch1 → … → ch7 with delay between each.
+ *   (2) Parallel: all channels on together, then off. LOOP_COUNT: 1 = one-shot, N = N times, 0 = infinite.
  * - Diagnostics: ReadStatus, ReadFaultRegister, GetLastFaultByte, GetFaultPinState,
  *   GetChannelConfig per channel, GetBoardConfig, GetStatistics; formatted
  *   logging with section headers and tables for easy interpretation.
@@ -338,14 +338,20 @@ extern "C" void app_main(void) {
 
   log_diagnostics("after init and channel config");
 
-  run_sequential_pattern();
-  vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
-  log_diagnostics("after sequential pattern");
+  const uint32_t loop_count = SolenoidValvePatternConfig::LOOP_COUNT;
+  for (uint32_t iter = 1u; loop_count == 0u || iter <= loop_count; iter++) {
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "═══ Loop %" PRIu32 "%s ═══", iter, loop_count == 0u ? " (infinite)" : "");
 
-  run_parallel_pattern();
-  vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
-  log_diagnostics("after parallel pattern");
+    run_sequential_pattern();
+    vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
+    log_diagnostics("after sequential pattern");
+
+    run_parallel_pattern();
+    vTaskDelay(pdMS_TO_TICKS(SolenoidValvePatternConfig::PATTERN_PAUSE_MS));
+    log_diagnostics("after parallel pattern");
+  }
 
   cleanup_resources();
-  ESP_LOGI(TAG, "Solenoid valve test finished.");
+  ESP_LOGI(TAG, "Solenoid valve test finished (%" PRIu32 " loop(s)).", loop_count);
 }

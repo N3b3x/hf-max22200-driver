@@ -129,7 +129,7 @@ Functions</h2></td></tr>
 <p>Full driver check on valves: configures all 8 channels for the same valve profile (C21-style: 100 ms hit, 50% hold, low-side CDR or VDR per C21ValveConfig). Runs synchronized patterns (sequential follow-up clicking, parallel clicking) and logs comprehensive diagnostics: STATUS, FAULT, last fault byte, nFAULT pin, per-channel config readback, board config, and driver statistics.</p>
 <ul>
 <li>Board: BoardTestConfig (RREF_KOHM, HFS). Channel profile: C21ValveConfig (USE_CDR, HIT_TIME_MS, hit/hold currents or percent). All channels get the same configuration.</li>
-<li>Pattern timings: SolenoidValvePatternConfig (SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS, PARALLEL_HOLD_MS, PATTERN_PAUSE_MS). (1) Sequential: ch0 → ch1 → … → ch7 with delay between each. (2) Parallel: all channels on together, then off.</li>
+<li>Pattern timings: SolenoidValvePatternConfig (SEQUENTIAL_HIT_MS, SEQUENTIAL_GAP_MS, PARALLEL_HOLD_MS, PATTERN_PAUSE_MS, LOOP_COUNT). (1) Sequential: ch0 → ch1 → … → ch7 with delay between each. (2) Parallel: all channels on together, then off. LOOP_COUNT: 1 = one-shot, N = N times, 0 = infinite.</li>
 <li>Diagnostics: ReadStatus, ReadFaultRegister, GetLastFaultByte, GetFaultPinState, GetChannelConfig per channel, GetBoardConfig, GetStatistics; formatted logging with section headers and tables for easy interpretation.</li>
 </ul>
 <dl class="section user"><dt>Build</dt><dd>From examples/esp32: <code>./scripts/build_app.sh max22200_solenoid_valve_test Debug</code></dd></dl>
