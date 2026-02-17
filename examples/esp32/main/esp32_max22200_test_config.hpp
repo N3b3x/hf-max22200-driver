@@ -142,12 +142,15 @@ struct C21ValveConfig {
  * Sequential pattern: ch0 → ch1 → … → ch7; each channel on for SEQUENTIAL_HIT_MS,
  * SEQUENTIAL_GAP_MS between channels. Parallel pattern: all channels on for
  * PARALLEL_HOLD_MS. PATTERN_PAUSE_MS is the pause between pattern runs.
+ * LOOP_COUNT: 1 = one-shot (default), N = repeat N times, 0 = loop indefinitely.
  */
 struct SolenoidValvePatternConfig {
     static constexpr uint32_t SEQUENTIAL_HIT_MS = 200;   ///< Time (ms) each channel is on in sequential pattern
     static constexpr uint32_t SEQUENTIAL_GAP_MS = 80;   ///< Delay (ms) between channels in sequential pattern
     static constexpr uint32_t PARALLEL_HOLD_MS = 500;   ///< Time (ms) all channels on in parallel pattern
     static constexpr uint32_t PATTERN_PAUSE_MS = 400;   ///< Pause (ms) between pattern runs
+    /** 1 = one-shot, N = repeat N times, 0 = loop indefinitely */
+    static constexpr uint32_t LOOP_COUNT = 10;
 };
 
 } // namespace MAX22200_TestConfig
