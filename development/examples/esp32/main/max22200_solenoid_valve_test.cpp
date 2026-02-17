@@ -99,18 +99,18 @@ static ChannelConfig make_valve_channel_config() {
 // DIAGNOSTICS LOGGING
 //=============================================================================
 
-/** Decode STATUS[7:0] fault byte for logging (ACTIVE, UVM, COMER, DPM, HHF, OLF, OCP, OVT) */
+/** Decode STATUS[7:0] fault byte for logging; bit order per StatusReg: ACTIVE(0), UVM(1), COMER(2), DPM(3), HHF(4), OLF(5), OCP(6), OVT(7) */
 static void log_fault_byte(uint8_t fault_byte) {
-  const bool active   = (fault_byte & (1u << 0)) != 0;
-  const bool ovt      = (fault_byte & (1u << 1)) != 0;
-  const bool ocp      = (fault_byte & (1u << 2)) != 0;
-  const bool olf      = (fault_byte & (1u << 3)) != 0;
-  const bool hhf      = (fault_byte & (1u << 4)) != 0;
-  const bool dpm      = (fault_byte & (1u << 5)) != 0;
-  const bool comer    = (fault_byte & (1u << 6)) != 0;
-  const bool uvm      = (fault_byte & (1u << 7)) != 0;
-  ESP_LOGI(TAG, "  Fault byte 0x%02" PRIX8 "  ACTIVE=%d OVT=%d OCP=%d OLF=%d HHF=%d DPM=%d COMER=%d UVM=%d",
-           fault_byte, active ? 1 : 0, ovt ? 1 : 0, ocp ? 1 : 0, olf ? 1 : 0, hhf ? 1 : 0, dpm ? 1 : 0, comer ? 1 : 0, uvm ? 1 : 0);
+  const bool active = (fault_byte & (1u << 0)) != 0;
+  const bool uvm    = (fault_byte & (1u << 1)) != 0;
+  const bool comer  = (fault_byte & (1u << 2)) != 0;
+  const bool dpm    = (fault_byte & (1u << 3)) != 0;
+  const bool hhf    = (fault_byte & (1u << 4)) != 0;
+  const bool olf    = (fault_byte & (1u << 5)) != 0;
+  const bool ocp    = (fault_byte & (1u << 6)) != 0;
+  const bool ovt    = (fault_byte & (1u << 7)) != 0;
+  ESP_LOGI(TAG, "  Fault byte 0x%02" PRIX8 "  ACTIVE=%d UVM=%d COMER=%d DPM=%d HHF=%d OLF=%d OCP=%d OVT=%d",
+           fault_byte, active ? 1 : 0, uvm ? 1 : 0, comer ? 1 : 0, dpm ? 1 : 0, hhf ? 1 : 0, olf ? 1 : 0, ocp ? 1 : 0, ovt ? 1 : 0);
 }
 
 /** Full diagnostics: STATUS, FAULT, last fault byte, nFAULT, channel configs, board config, statistics */
@@ -173,39 +173,47 @@ static void log_diagnostics(const char *phase) {
 
   const bool any_status_fault = status.overtemperature || status.overcurrent || status.open_load_fault
       || status.hit_not_reached || status.plunger_movement_fault || status.communication_error || status.undervoltage;
+  const bool has_error = !status.active || fault_pin || any_status_fault || faults.hasFault();
+  if (has_error) {
+    ESP_LOGE(TAG, "  ERROR: Device not operational or fault(s) present — ACTIVE=%d UVM=%d nFAULT_pin=%s (see causes below)",
+             status.active ? 1 : 0, status.undervoltage ? 1 : 0, fault_pin ? "ACTIVE" : "inactive");
+  }
   if (fault_pin || any_status_fault || faults.hasFault()) {
-    ESP_LOGI(TAG, "  *** nFAULT/FAULTS ACTIVE — POSSIBLE CAUSES ***");
+    ESP_LOGE(TAG, "  *** nFAULT/FAULTS ACTIVE — POSSIBLE CAUSES ***");
     if (status.undervoltage)
-      ESP_LOGI(TAG, "  >>> UVM: Undervoltage — check VM supply and wiring");
+      ESP_LOGE(TAG, "  >>> UVM: Undervoltage — check VM supply and wiring");
     if (status.communication_error)
-      ESP_LOGI(TAG, "  >>> COMER: SPI communication error — check CS, CMD, MISO");
+      ESP_LOGE(TAG, "  >>> COMER: SPI communication error — check CS, CMD, MISO");
     if (status.overtemperature)
-      ESP_LOGI(TAG, "  >>> OVT: Overtemperature — check die/cooling");
+      ESP_LOGE(TAG, "  >>> OVT: Overtemperature — check die/cooling");
     if (status.overcurrent)
-      ESP_LOGI(TAG, "  >>> OCP: Overcurrent — short or overload");
+      ESP_LOGE(TAG, "  >>> OCP: Overcurrent — short or overload");
     if (status.open_load_fault)
-      ESP_LOGI(TAG, "  >>> OLF: Open load — solenoid disconnected or broken wire");
+      ESP_LOGE(TAG, "  >>> OLF: Open load — solenoid disconnected or broken wire");
     if (status.hit_not_reached)
-      ESP_LOGI(TAG, "  >>> HHF: Hit current not reached — check supply/load/wiring");
+      ESP_LOGE(TAG, "  >>> HHF: Hit current not reached — check supply/load/wiring");
     if (status.plunger_movement_fault)
-      ESP_LOGI(TAG, "  >>> DPM: Plunger movement fault");
+      ESP_LOGE(TAG, "  >>> DPM: Plunger movement fault");
     if (faults.overcurrent_channel_mask)
-      ESP_LOGI(TAG, "  >>> OCP per-ch 0x%02" PRIX8 " — short/overcurrent on channel(s)", faults.overcurrent_channel_mask);
+      ESP_LOGE(TAG, "  >>> OCP per-ch 0x%02" PRIX8 " — short/overcurrent on channel(s)", faults.overcurrent_channel_mask);
     if (faults.hit_not_reached_channel_mask)
-      ESP_LOGI(TAG, "  >>> HHF per-ch 0x%02" PRIX8 " — hit current not reached", faults.hit_not_reached_channel_mask);
+      ESP_LOGE(TAG, "  >>> HHF per-ch 0x%02" PRIX8 " — hit current not reached", faults.hit_not_reached_channel_mask);
     if (faults.open_load_fault_channel_mask)
-      ESP_LOGI(TAG, "  >>> OLF per-ch 0x%02" PRIX8 " — open load / disconnected solenoid", faults.open_load_fault_channel_mask);
+      ESP_LOGE(TAG, "  >>> OLF per-ch 0x%02" PRIX8 " — open load / disconnected solenoid", faults.open_load_fault_channel_mask);
     if (faults.plunger_movement_fault_channel_mask)
-      ESP_LOGI(TAG, "  >>> DPM per-ch 0x%02" PRIX8 " — plunger movement", faults.plunger_movement_fault_channel_mask);
+      ESP_LOGE(TAG, "  >>> DPM per-ch 0x%02" PRIX8 " — plunger movement", faults.plunger_movement_fault_channel_mask);
     for (uint8_t ch = 0; ch < BoardTestConfig::NUM_CHANNELS; ch++) {
       const bool ocp = (faults.overcurrent_channel_mask & (1u << ch)) != 0;
       const bool hhf = (faults.hit_not_reached_channel_mask & (1u << ch)) != 0;
       const bool olf = (faults.open_load_fault_channel_mask & (1u << ch)) != 0;
       const bool dpm = (faults.plunger_movement_fault_channel_mask & (1u << ch)) != 0;
       if (ocp || hhf || olf || dpm)
-        ESP_LOGI(TAG, "      CH%u: %s%s%s%s", ch, ocp ? "OCP " : "", hhf ? "HHF " : "", olf ? "OLF " : "", dpm ? "DPM" : "");
+        ESP_LOGE(TAG, "      CH%u: %s%s%s%s", ch, ocp ? "OCP " : "", hhf ? "HHF " : "", olf ? "OLF " : "", dpm ? "DPM" : "");
     }
-    ESP_LOGI(TAG, "  Legend: UVM=undervoltage OCP=short/overcurrent OLF=open/disconnected HHF=hit not reached DPM=plunger COMER=SPI OVT=thermal");
+    ESP_LOGE(TAG, "  Legend: UVM=undervoltage OCP=short/overcurrent OLF=open/disconnected HHF=hit not reached DPM=plunger COMER=SPI OVT=thermal");
+  }
+  if (has_error && !any_status_fault && !faults.hasFault()) {
+    ESP_LOGE(TAG, "  --- ACTIVE=0 or nFAULT pin active (no status/fault flags) — check power and init ---");
   }
 
   BoardConfig board = g_driver->GetBoardConfig();

@@ -1,5 +1,5 @@
-warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.DlaCPi
-warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.DlaCPi' has become obsolete.
+warning: ignoring unsupported tag 'PAGE_OUTLINE_PANEL' at line 1766, file /tmp/doxyfile.HCfv1G
+warning: Tag 'DOT_TRANSPARENT' at line 2789 of file '/tmp/doxyfile.HCfv1G' has become obsolete.
          To avoid this warning please remove this line from your configuration file or upgrade it using "doxygen -u"
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp:529: warning: Example /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200_registers.hpp was already documented. Ignoring documentation found here.
 /home/runner/work/hf-max22200-driver/hf-max22200-driver/inc/max22200.hpp:125: warning: included file 'Basic' is not found. Check your EXAMPLE_PATH
