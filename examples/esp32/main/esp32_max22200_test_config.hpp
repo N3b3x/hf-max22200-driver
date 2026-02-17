@@ -35,6 +35,23 @@
 #define ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING 0
 #endif
 
+/**
+ * @brief Enable verbose bus init/pin logging
+ *
+ * @details
+ * When enabled (set to 1), the Esp32Max22200SpiBus will log:
+ * - "SPI interface initialized successfully"
+ * - Per-pin init messages (ENABLE, CMD, TRIGA, TRIGB, FAULT)
+ *
+ * When disabled (set to 0), only ESP_LOGE (real failures) and the MISO pullup
+ * warning (if it fails) are logged from the bus.
+ *
+ * Default: 0 (disabled) - Set to 1 for bring-up or pin debugging
+ */
+#ifndef ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING
+#define ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING 1
+#endif
+
 namespace MAX22200_TestConfig {
 
 /**

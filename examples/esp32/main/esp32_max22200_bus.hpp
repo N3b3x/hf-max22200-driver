@@ -105,7 +105,9 @@ public:
     }
 
     initialized_ = true;
+#if (ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING != 0)
     ESP_LOGI(TAG, "SPI interface initialized successfully");
+#endif
     return true;
   }
 
@@ -116,8 +118,8 @@ public:
    * @param length Number of bytes to transfer
    * @return true if successful, false otherwise
    */
-  /** If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). */
-  static constexpr bool LOG_SPI_HEX = true;
+  /** If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). Controlled by ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING in esp32_max22200_test_config.hpp. */
+  static constexpr bool LOG_SPI_HEX = (ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING != 0);
 
   bool Transfer(const uint8_t *tx_data, uint8_t *rx_data, size_t length) {
     if (!initialized_ || spi_device_ == nullptr) {
@@ -303,7 +305,9 @@ private:
         return false;
       }
       gpio_set_level(static_cast<gpio_num_t>(pin), initial);
+#if (ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING != 0)
       ESP_LOGI(TAG, "%s pin (GPIO%d) initialized, level=%d", name, pin, initial);
+#endif
       return true;
     };
     if (!configure_output(config_.enable_pin, "ENABLE", 0)) return false;
@@ -323,7 +327,9 @@ private:
         ESP_LOGE(TAG, "Failed to configure FAULT pin (GPIO%d)", config_.fault_pin);
         return false;
       }
+#if (ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING != 0)
       ESP_LOGI(TAG, "FAULT pin (GPIO%d) initialized as input (active-low, inactive-high)", config_.fault_pin);
+#endif
     }
     return true;
   }
