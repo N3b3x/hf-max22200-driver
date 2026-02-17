@@ -199,7 +199,7 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-attribs" name="pub-static-attribs"></a>
 Static Public Attributes</h2></td></tr>
-<tr class="memitem:a67c65f54c7267bfd96b06c0ff691e4ac" id="r_a67c65f54c7267bfd96b06c0ff691e4ac"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67c65f54c7267bfd96b06c0ff691e4ac">LOG_SPI_HEX</a> = true</td></tr>
+<tr class="memitem:a67c65f54c7267bfd96b06c0ff691e4ac" id="r_a67c65f54c7267bfd96b06c0ff691e4ac"><td class="memItemLeft" align="right" valign="top">static constexpr bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a67c65f54c7267bfd96b06c0ff691e4ac">LOG_SPI_HEX</a> = (<a class="el" href="esp32__max22200__test__config_8hpp.html#a26ef05b7f869884bdc82189a98463b34">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</a> != 0)</td></tr>
 <tr class="memdesc:a67c65f54c7267bfd96b06c0ff691e4ac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Perform a full-duplex SPI data transfer.  <br /></td></tr>
 <tr class="separator:a67c65f54c7267bfd96b06c0ff691e4ac"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -696,7 +696,7 @@ Additional Inherited Members</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">constexpr bool Esp32Max22200SpiBus::LOG_SPI_HEX = true</td>
+          <td class="memname">constexpr bool Esp32Max22200SpiBus::LOG_SPI_HEX = (<a class="el" href="esp32__max22200__test__config_8hpp.html#a26ef05b7f869884bdc82189a98463b34">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</a> != 0)</td>
         </tr>
       </table>
   </td>
@@ -715,7 +715,7 @@ Additional Inherited Members</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>true if successful, false otherwise If true, log every SPI transfer as hex TX/RX bytes (TX1/RX1, TX2/RX2, ...). Controlled by ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING in <a class="el" href="esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32-C6.">esp32_max22200_test_config.hpp</a>. </dd></dl>
 
 </div>
 </div>

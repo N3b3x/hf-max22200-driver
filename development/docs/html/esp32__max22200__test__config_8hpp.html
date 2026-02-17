@@ -149,6 +149,9 @@ Macros</h2></td></tr>
 <tr class="memitem:a26ef05b7f869884bdc82189a98463b34" id="r_a26ef05b7f869884bdc82189a98463b34"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26ef05b7f869884bdc82189a98463b34">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</a>&#160;&#160;&#160;0</td></tr>
 <tr class="memdesc:a26ef05b7f869884bdc82189a98463b34"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable detailed SPI transaction logging.  <br /></td></tr>
 <tr class="separator:a26ef05b7f869884bdc82189a98463b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06f26453e15145252fd8cc811cd27b4" id="r_ad06f26453e15145252fd8cc811cd27b4"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad06f26453e15145252fd8cc811cd27b4">ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING</a>&#160;&#160;&#160;1</td></tr>
+<tr class="memdesc:ad06f26453e15145252fd8cc811cd27b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Enable verbose bus init/pin logging.  <br /></td></tr>
+<tr class="separator:ad06f26453e15145252fd8cc811cd27b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a241256c18e675d15b6efbd02b53eedd6" id="r_a241256c18e675d15b6efbd02b53eedd6"><td class="memItemLeft" align="right" valign="top">#define&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a241256c18e675d15b6efbd02b53eedd6">MAX22200_VALIDATE_GPIO</a>(pin)&#160;&#160;&#160;    static_assert((pin) &gt;= 0 &amp;&amp; (pin) &lt;= 48, &quot;Invalid GPIO pin number for ESP32-C6&quot;)</td></tr>
 <tr class="memdesc:a241256c18e675d15b6efbd02b53eedd6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper macro for compile-time GPIO pin validation (ESP32-C6 allows 0-48)  <br /></td></tr>
 <tr class="separator:a241256c18e675d15b6efbd02b53eedd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -179,6 +182,28 @@ Macros</h2></td></tr>
 </ul>
 <p>When disabled (set to 0), only basic error logging is performed.</p>
 <p>Default: 0 (disabled) - Set to 1 to enable for debugging </p>
+
+</div>
+</div>
+<a id="ad06f26453e15145252fd8cc811cd27b4" name="ad06f26453e15145252fd8cc811cd27b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad06f26453e15145252fd8cc811cd27b4">&#9670;&#160;</a></span>ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#define ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Enable verbose bus init/pin logging. </p>
+<p>When enabled (set to 1), the <a class="el" href="classEsp32Max22200SpiBus.html" title="ESP32 SPI transport implementation for MAX22200 driver.">Esp32Max22200SpiBus</a> will log:</p><ul>
+<li>"SPI interface initialized successfully"</li>
+<li>Per-pin init messages (ENABLE, CMD, TRIGA, TRIGB, FAULT)</li>
+</ul>
+<p>When disabled (set to 0), only ESP_LOGE (real failures) and the MISO pullup warning (if it fails) are logged from the bus.</p>
+<p>Default: 0 (disabled) - Set to 1 for bring-up or pin debugging </p>
 
 </div>
 </div>

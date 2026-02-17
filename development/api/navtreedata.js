@@ -70,8 +70,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "Basic-example.html",
-"functions_t.html",
-"namespacemax22200_1_1CfgChReg.html#a6dba8632c1cc630790abba9eea8a3068",
+"functions_s.html",
+"namespacemax22200_1_1CfgChReg.html#a6b7d84e35c5522f5c19c152f31c72dd3",
 "structmax22200_1_1DpmConfig.html#abea418633d442e0b3c072260130de158"
 ];
 
