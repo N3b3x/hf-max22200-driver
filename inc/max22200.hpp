@@ -72,6 +72,7 @@
 #include "max22200_registers.hpp"
 #include "max22200_types.hpp"
 #include "max22200_spi_interface.hpp"
+#include "max22200_version.h"
 #include <cstdint>
 
 namespace max22200 {
@@ -827,6 +828,30 @@ public:
 
   static bool IsValidChannel(uint8_t channel) { return channel < NUM_CHANNELS_; }
 
+  // ===========================================================================
+  // Driver Version
+  // ===========================================================================
+
+  /** @brief Get the compiled driver version string. */
+  static constexpr const char* GetDriverVersion() noexcept {
+    return HF_MAX22200_VERSION_STRING;
+  }
+
+  /** @brief Get the compiled driver major version number. */
+  static constexpr uint8_t GetDriverVersionMajor() noexcept {
+    return HF_MAX22200_VERSION_MAJOR;
+  }
+
+  /** @brief Get the compiled driver minor version number. */
+  static constexpr uint8_t GetDriverVersionMinor() noexcept {
+    return HF_MAX22200_VERSION_MINOR;
+  }
+
+  /** @brief Get the compiled driver patch version number. */
+  static constexpr uint8_t GetDriverVersionPatch() noexcept {
+    return HF_MAX22200_VERSION_PATCH;
+  }
+
 private:
   SpiType &spi_interface_;
   bool initialized_;
@@ -923,6 +948,11 @@ private:
 
   void updateStatistics(bool success) const;
 };
+
+// Public API: Get driver version string
+inline const char* GetDriverVersion() noexcept {
+  return HF_MAX22200_VERSION_STRING;
+}
 
 } // namespace max22200
 
