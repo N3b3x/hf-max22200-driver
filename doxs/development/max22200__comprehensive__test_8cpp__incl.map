@@ -1,72 +1,74 @@
 <map id="examples/esp32/main/max22200_comprehensive_test.cpp" name="examples/esp32/main/max22200_comprehensive_test.cpp">
-<area shape="rect" id="Node000001" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="839,5,1041,60"/>
-<area shape="rect" id="Node000002" title=" " alt="" coords="35,108,117,133"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="838,43,524,67,330,87,136,111,132,111,131,106,136,105,330,81,524,62,838,38"/>
-<area shape="rect" id="Node000003" title=" " alt="" coords="359,269,422,295"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="838,42,697,52,541,66,410,86,366,97,343,110,333,126,329,145,330,165,335,185,353,224,375,257,370,260,349,227,330,187,325,165,324,144,328,124,339,106,364,92,409,81,541,61,696,46,838,37"/>
-<area shape="rect" id="Node000004" title=" " alt="" coords="745,189,823,214"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="917,62,806,180,802,177,913,58"/>
-<area shape="rect" id="Node000005" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="924,108,1119,133"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="967,58,1003,96,999,100,963,62"/>
-<area shape="rect" id="Node000009" href="$esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="1398,181,1567,221"/>
-<area shape="poly" id="edge19_Node000001_Node000009" title=" " alt="" coords="1026,58,1409,175,1408,180,1025,63"/>
-<area shape="rect" id="Node000012" title=" " alt="" coords="1721,189,1805,214"/>
-<area shape="poly" id="edge44_Node000001_Node000012" title=" " alt="" coords="1042,46,1342,98,1526,135,1709,179,1719,182,1718,187,1707,184,1525,140,1341,103,1041,51"/>
-<area shape="rect" id="Node000016" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="354,108,473,133"/>
-<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="839,53,487,110,486,105,838,48"/>
-<area shape="rect" id="Node000017" href="$max22200__registers_8hpp.html" title="Register definitions and constants for MAX22200 IC." alt="" coords="153,269,335,295"/>
-<area shape="poly" id="edge32_Node000001_Node000017" title=" " alt="" coords="839,39,710,45,565,58,433,79,381,93,343,110,324,124,308,142,282,181,263,222,252,257,247,255,258,220,277,179,304,138,321,120,340,106,379,88,432,74,564,53,709,40,838,34"/>
-<area shape="rect" id="Node000018" href="$max22200__types_8hpp.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="5,189,168,214"/>
-<area shape="poly" id="edge33_Node000001_Node000018" title=" " alt="" coords="838,39,678,45,489,57,312,79,241,93,188,110,163,125,141,142,106,179,102,176,137,138,160,120,186,106,239,88,311,73,488,52,677,40,838,33"/>
-<area shape="rect" id="Node000021" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="1900,108,2033,133"/>
-<area shape="poly" id="edge34_Node000001_Node000021" title=" " alt="" coords="1042,40,1887,110,1886,115,1042,45"/>
-<area shape="rect" id="Node000023" title=" " alt="" coords="2267,189,2418,214"/>
-<area shape="poly" id="edge42_Node000001_Node000023" title=" " alt="" coords="1042,30,1230,32,1480,42,1762,65,1906,83,2046,105,2117,122,2188,142,2302,181,2300,186,2186,147,2116,127,2045,111,1905,88,1762,70,1480,48,1230,38,1042,36"/>
-<area shape="rect" id="Node000026" title=" " alt="" coords="2443,189,2560,214"/>
-<area shape="poly" id="edge43_Node000001_Node000026" title=" " alt="" coords="1042,32,1240,37,1507,48,1810,70,1964,86,2115,105,2209,122,2301,143,2451,182,2450,187,2300,148,2208,127,2114,111,1964,91,1809,75,1507,53,1240,42,1041,37"/>
-<area shape="poly" id="edge18_Node000005_Node000004" title=" " alt="" coords="984,136,836,184,828,186,826,181,834,179,983,131"/>
-<area shape="rect" id="Node000006" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="570,181,721,221"/>
-<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="966,136,734,184,733,179,965,131"/>
-<area shape="rect" id="Node000007" title=" " alt="" coords="886,269,957,295"/>
-<area shape="poly" id="edge14_Node000005_Node000007" title=" " alt="" coords="1017,135,966,223,940,260,936,257,962,220,1013,133"/>
-<area shape="rect" id="Node000008" title=" " alt="" coords="513,343,580,368"/>
-<area shape="poly" id="edge15_Node000005_Node000008" title=" " alt="" coords="1024,134,1023,167,1017,211,1000,258,987,279,970,297,941,313,900,325,797,343,686,352,594,356,594,351,686,347,796,338,899,320,939,308,966,293,983,276,995,255,1011,210,1018,166,1019,134"/>
-<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="1095,131,1385,179,1384,184,1094,136"/>
-<area shape="rect" id="Node000010" title=" " alt="" coords="1592,189,1696,214"/>
-<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="1119,125,1331,143,1456,158,1579,179,1596,183,1595,188,1578,184,1455,163,1331,148,1119,130"/>
-<area shape="rect" id="Node000011" title=" " alt="" coords="1084,189,1231,214"/>
-<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="1043,131,1127,179,1124,184,1040,136"/>
-<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="1119,120,1239,125,1387,134,1548,152,1709,179,1721,182,1720,187,1707,184,1547,157,1386,140,1239,130,1119,126"/>
-<area shape="rect" id="Node000013" title=" " alt="" coords="1255,189,1374,214"/>
-<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="1065,131,1260,183,1258,188,1063,136"/>
-<area shape="rect" id="Node000014" title=" " alt="" coords="847,189,908,214"/>
-<area shape="poly" id="edge16_Node000005_Node000014" title=" " alt="" coords="1001,136,912,184,909,180,999,131"/>
-<area shape="rect" id="Node000015" title=" " alt="" coords="692,269,759,295"/>
-<area shape="poly" id="edge17_Node000005_Node000015" title=" " alt="" coords="1012,136,962,186,922,224,884,242,845,257,773,276,771,270,843,252,882,237,918,219,958,183,1008,132"/>
-<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="712,219,873,264,872,269,711,224"/>
-<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="635,223,564,332,559,330,631,220"/>
-<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="1409,224,1252,261,1066,297,932,317,799,333,594,353,594,348,799,328,931,312,1065,292,1251,255,1408,219"/>
-<area shape="poly" id="edge27_Node000016_Node000006" title=" " alt="" coords="448,131,578,174,576,179,446,136"/>
-<area shape="poly" id="edge28_Node000016_Node000008" title=" " alt="" coords="407,135,386,174,381,197,385,220,403,239,439,269,521,332,518,336,436,273,399,243,380,223,375,197,381,172,402,132"/>
-<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="399,136,340,183,265,261,261,257,337,179,396,132"/>
-<area shape="poly" id="edge23_Node000016_Node000018" title=" " alt="" coords="366,136,148,188,147,183,365,131"/>
-<area shape="rect" id="Node000020" href="$max22200_8ipp.html" title="Template implementation for MAX22200 driver." alt="" coords="395,189,546,214"/>
-<area shape="poly" id="edge29_Node000016_Node000020" title=" " alt="" coords="424,132,456,176,452,179,420,135"/>
-<area shape="poly" id="edge22_Node000017_Node000008" title=" " alt="" coords="293,292,501,341,499,346,292,297"/>
-<area shape="poly" id="edge26_Node000018_Node000008" title=" " alt="" coords="79,216,68,233,58,254,55,275,62,293,83,304,125,314,247,331,386,342,500,349,499,354,385,348,246,336,124,319,81,309,58,296,49,275,53,252,63,230,75,213"/>
-<area shape="poly" id="edge24_Node000018_Node000017" title=" " alt="" coords="111,212,210,261,208,266,108,216"/>
-<area shape="rect" id="Node000019" title=" " alt="" coords="72,269,128,295"/>
-<area shape="poly" id="edge25_Node000018_Node000019" title=" " alt="" coords="91,214,98,255,93,256,86,215"/>
-<area shape="poly" id="edge30_Node000020_Node000003" title=" " alt="" coords="461,216,414,261,411,257,457,212"/>
-<area shape="poly" id="edge31_Node000020_Node000015" title=" " alt="" coords="508,211,680,264,678,269,507,217"/>
-<area shape="poly" id="edge37_Node000021_Node000010" title=" " alt="" coords="1914,136,1709,184,1696,187,1694,182,1707,179,1912,131"/>
-<area shape="poly" id="edge35_Node000021_Node000012" title=" " alt="" coords="1938,136,1806,186,1804,181,1936,131"/>
-<area shape="rect" id="Node000022" title=" " alt="" coords="1991,189,2089,214"/>
-<area shape="poly" id="edge36_Node000021_Node000022" title=" " alt="" coords="1979,132,2022,176,2018,180,1976,135"/>
-<area shape="poly" id="edge38_Node000021_Node000023" title=" " alt="" coords="2023,131,2255,179,2276,183,2275,188,2254,184,2022,136"/>
-<area shape="rect" id="Node000024" title=" " alt="" coords="2114,189,2243,214"/>
-<area shape="poly" id="edge39_Node000021_Node000024" title=" " alt="" coords="1998,131,2136,182,2134,187,1997,136"/>
-<area shape="rect" id="Node000025" title=" " alt="" coords="1829,189,1966,214"/>
-<area shape="poly" id="edge40_Node000021_Node000025" title=" " alt="" coords="1958,135,1919,180,1915,177,1954,132"/>
-<area shape="poly" id="edge41_Node000021_Node000026" title=" " alt="" coords="2034,125,2214,145,2323,160,2431,179,2449,183,2448,188,2430,184,2322,165,2213,150,2033,130"/>
+<area shape="rect" id="Node000001" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="1172,5,1375,60"/>
+<area shape="rect" id="Node000002" title=" " alt="" coords="5,108,88,133"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="1172,39,975,45,710,58,410,79,107,111,103,111,102,106,106,105,410,74,710,53,975,40,1172,34"/>
+<area shape="rect" id="Node000003" title=" " alt="" coords="459,269,522,295"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="1172,41,1060,48,925,61,779,82,634,111,573,121,523,127,501,133,480,143,460,159,441,183,435,202,441,221,453,241,469,258,465,262,449,244,436,224,430,201,436,180,457,155,477,139,499,128,522,122,572,115,633,105,778,76,924,56,1060,43,1171,35"/>
+<area shape="rect" id="Node000004" title=" " alt="" coords="860,189,937,214"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="1215,63,938,185,936,180,1213,58"/>
+<area shape="rect" id="Node000005" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="1328,108,1523,133"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="1321,58,1395,99,1392,104,1318,62"/>
+<area shape="rect" id="Node000009" href="$esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32&#45;C6." alt="" coords="1690,181,1859,221"/>
+<area shape="poly" id="edge19_Node000001_Node000009" title=" " alt="" coords="1374,57,1536,105,1718,174,1716,179,1534,111,1372,63"/>
+<area shape="rect" id="Node000012" title=" " alt="" coords="1883,189,1967,214"/>
+<area shape="poly" id="edge45_Node000001_Node000012" title=" " alt="" coords="1376,53,1604,107,1871,179,1881,182,1879,187,1870,184,1602,112,1374,58"/>
+<area shape="rect" id="Node000016" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="646,108,765,133"/>
+<area shape="poly" id="edge20_Node000001_Node000016" title=" " alt="" coords="1172,52,779,111,778,106,1171,47"/>
+<area shape="rect" id="Node000017" href="$max22200__registers_8hpp.html" title="Register definitions and constants for MAX22200 IC." alt="" coords="85,269,267,295"/>
+<area shape="poly" id="edge33_Node000001_Node000017" title=" " alt="" coords="1172,41,742,65,516,85,423,97,352,111,296,121,251,128,231,135,212,145,194,160,177,183,169,200,167,219,171,256,166,256,161,219,164,198,172,180,191,157,209,141,229,130,249,123,296,115,352,105,422,92,516,80,742,60,1172,35"/>
+<area shape="rect" id="Node000018" href="$max22200__types_8hpp.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="213,189,376,214"/>
+<area shape="poly" id="edge34_Node000001_Node000018" title=" " alt="" coords="1172,37,985,41,760,52,648,61,546,74,460,90,396,110,371,124,349,142,314,179,310,176,345,138,368,120,394,106,458,85,545,69,648,56,759,47,985,36,1172,32"/>
+<area shape="rect" id="Node000022" href="$TestFramework_8h.html" title="Shared testing framework for ESP32&#45;C6 comprehensive test suites." alt="" coords="2192,108,2325,133"/>
+<area shape="poly" id="edge35_Node000001_Node000022" title=" " alt="" coords="1375,40,2178,110,2178,115,1375,45"/>
+<area shape="rect" id="Node000024" title=" " alt="" coords="2559,189,2710,214"/>
+<area shape="poly" id="edge43_Node000001_Node000024" title=" " alt="" coords="1375,31,1557,33,1797,44,2067,66,2204,83,2338,105,2409,122,2480,142,2594,181,2592,186,2478,147,2408,127,2337,111,2203,89,2066,72,1796,49,1556,39,1375,36"/>
+<area shape="rect" id="Node000027" title=" " alt="" coords="2735,189,2852,214"/>
+<area shape="poly" id="edge44_Node000001_Node000027" title=" " alt="" coords="1375,32,1567,37,1824,49,2114,71,2262,86,2407,105,2501,122,2593,143,2743,182,2742,187,2592,148,2500,127,2406,111,2262,92,2114,76,1823,55,1567,43,1375,38"/>
+<area shape="poly" id="edge18_Node000005_Node000004" title=" " alt="" coords="1328,132,1154,150,1055,165,957,184,944,187,942,182,955,179,1054,160,1153,145,1327,126"/>
+<area shape="rect" id="Node000006" href="$max22200__spi__interface_8hpp.html" title="CRTP&#45;based template interface for SPI communication." alt="" coords="1013,181,1163,221"/>
+<area shape="poly" id="edge5_Node000005_Node000006" title=" " alt="" coords="1377,136,1178,182,1177,177,1376,131"/>
+<area shape="rect" id="Node000007" title=" " alt="" coords="1086,269,1157,295"/>
+<area shape="poly" id="edge14_Node000005_Node000007" title=" " alt="" coords="1501,131,1543,149,1562,162,1577,180,1585,202,1583,213,1576,223,1555,235,1517,244,1405,261,1171,281,1170,275,1404,256,1516,239,1553,230,1573,219,1579,211,1580,202,1572,183,1558,166,1540,153,1499,136"/>
+<area shape="rect" id="Node000008" title=" " alt="" coords="885,343,952,368"/>
+<area shape="poly" id="edge15_Node000005_Node000008" title=" " alt="" coords="1488,131,1537,145,1582,164,1598,176,1608,190,1610,206,1601,223,1581,241,1555,257,1486,285,1401,307,1305,324,1113,346,966,355,966,350,1112,340,1304,319,1399,302,1485,280,1553,253,1578,237,1597,220,1604,205,1603,192,1594,180,1579,168,1536,150,1486,136"/>
+<area shape="poly" id="edge8_Node000005_Node000009" title=" " alt="" coords="1477,131,1678,176,1677,181,1476,136"/>
+<area shape="rect" id="Node000010" title=" " alt="" coords="1992,189,2096,214"/>
+<area shape="poly" id="edge10_Node000005_Node000010" title=" " alt="" coords="1523,125,1734,143,1857,158,1979,179,1996,183,1995,188,1978,184,1856,164,1733,148,1523,130"/>
+<area shape="rect" id="Node000011" title=" " alt="" coords="1273,189,1420,214"/>
+<area shape="poly" id="edge11_Node000005_Node000011" title=" " alt="" coords="1416,135,1370,181,1366,177,1412,132"/>
+<area shape="poly" id="edge12_Node000005_Node000012" title=" " alt="" coords="1523,127,1687,145,1780,160,1871,179,1883,182,1882,187,1870,184,1779,165,1686,151,1522,132"/>
+<area shape="rect" id="Node000013" title=" " alt="" coords="1445,189,1563,214"/>
+<area shape="poly" id="edge13_Node000005_Node000013" title=" " alt="" coords="1439,132,1484,177,1481,181,1435,135"/>
+<area shape="rect" id="Node000014" title=" " alt="" coords="1188,189,1249,214"/>
+<area shape="poly" id="edge16_Node000005_Node000014" title=" " alt="" coords="1393,136,1262,184,1258,186,1256,181,1260,179,1391,131"/>
+<area shape="rect" id="Node000015" title=" " alt="" coords="907,269,973,295"/>
+<area shape="poly" id="edge17_Node000005_Node000015" title=" " alt="" coords="1328,129,1238,135,1143,146,1059,162,1026,172,1001,184,984,199,969,218,950,257,945,255,965,215,980,195,999,179,1024,167,1057,156,1142,140,1238,130,1327,123"/>
+<area shape="poly" id="edge6_Node000006_Node000007" title=" " alt="" coords="1099,221,1113,255,1109,258,1094,223"/>
+<area shape="poly" id="edge7_Node000006_Node000008" title=" " alt="" coords="1069,223,987,297,944,335,940,332,984,293,1065,219"/>
+<area shape="poly" id="edge9_Node000009_Node000008" title=" " alt="" coords="1762,223,1724,262,1699,282,1672,297,1610,315,1527,330,1429,340,1324,347,1118,355,966,357,965,351,1118,350,1324,342,1429,335,1526,324,1609,310,1670,292,1697,277,1721,258,1758,220"/>
+<area shape="poly" id="edge27_Node000016_Node000006" title=" " alt="" coords="762,131,1000,179,999,184,760,136"/>
+<area shape="poly" id="edge29_Node000016_Node000008" title=" " alt="" coords="729,131,763,152,798,179,833,218,864,259,908,329,904,332,859,262,829,221,794,183,760,156,726,136"/>
+<area shape="poly" id="edge21_Node000016_Node000017" title=" " alt="" coords="646,124,536,125,404,132,340,140,282,150,235,165,203,183,191,199,183,217,178,255,172,255,178,216,186,196,200,179,233,160,281,145,339,134,403,127,535,119,646,118"/>
+<area shape="poly" id="edge23_Node000016_Node000018" title=" " alt="" coords="646,136,368,189,367,184,645,131"/>
+<area shape="rect" id="Node000020" title=" " alt="" coords="626,189,785,214"/>
+<area shape="poly" id="edge28_Node000016_Node000020" title=" " alt="" coords="708,134,708,175,703,175,703,134"/>
+<area shape="rect" id="Node000021" href="$max22200_8ipp.html" title="Template implementation for MAX22200 driver." alt="" coords="451,189,602,214"/>
+<area shape="poly" id="edge30_Node000016_Node000021" title=" " alt="" coords="680,136,566,186,564,181,678,131"/>
+<area shape="poly" id="edge22_Node000017_Node000008" title=" " alt="" coords="268,290,287,292,872,347,871,352,286,297,268,295"/>
+<area shape="poly" id="edge26_Node000018_Node000008" title=" " alt="" coords="298,214,307,254,317,275,332,292,362,304,415,314,568,331,872,349,871,355,567,336,414,319,360,309,329,297,312,278,302,256,293,215"/>
+<area shape="poly" id="edge24_Node000018_Node000017" title=" " alt="" coords="279,216,207,264,204,259,276,212"/>
+<area shape="rect" id="Node000019" title=" " alt="" coords="343,269,399,295"/>
+<area shape="poly" id="edge25_Node000018_Node000019" title=" " alt="" coords="308,212,352,258,348,261,304,216"/>
+<area shape="poly" id="edge31_Node000021_Node000003" title=" " alt="" coords="524,215,504,258,499,256,519,213"/>
+<area shape="poly" id="edge32_Node000021_Node000015" title=" " alt="" coords="579,211,614,219,894,270,893,275,613,224,578,217"/>
+<area shape="poly" id="edge38_Node000022_Node000010" title=" " alt="" coords="2228,136,2089,187,2087,182,2227,131"/>
+<area shape="poly" id="edge36_Node000022_Node000012" title=" " alt="" coords="2195,136,2094,156,1981,184,1971,187,1969,182,1979,179,2093,151,2194,131"/>
+<area shape="rect" id="Node000023" title=" " alt="" coords="2283,189,2381,214"/>
+<area shape="poly" id="edge37_Node000022_Node000023" title=" " alt="" coords="2271,132,2314,176,2310,180,2268,135"/>
+<area shape="poly" id="edge39_Node000022_Node000024" title=" " alt="" coords="2315,131,2547,179,2568,183,2567,188,2546,184,2314,136"/>
+<area shape="rect" id="Node000025" title=" " alt="" coords="2406,189,2535,214"/>
+<area shape="poly" id="edge40_Node000022_Node000025" title=" " alt="" coords="2290,131,2428,182,2426,187,2289,136"/>
+<area shape="rect" id="Node000026" title=" " alt="" coords="2121,189,2258,214"/>
+<area shape="poly" id="edge41_Node000022_Node000026" title=" " alt="" coords="2250,135,2211,180,2207,177,2246,132"/>
+<area shape="poly" id="edge42_Node000022_Node000027" title=" " alt="" coords="2326,125,2506,145,2615,160,2723,179,2741,183,2740,188,2722,184,2614,165,2505,150,2325,130"/>
 </map>
