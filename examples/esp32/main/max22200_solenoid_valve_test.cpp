@@ -337,6 +337,7 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "║         MAX22200 SOLENOID / VALVE TEST  (all 8 channels)               ║");
   ESP_LOGI(TAG, "║  C21-style: 100ms hit, 50%% hold  •  Sequential + Parallel patterns   ║");
   ESP_LOGI(TAG, "╚══════════════════════════════════════════════════════════════════════╝");
+  ESP_LOGI(TAG, "Driver version: %s", max22200::GetDriverVersion());
   vTaskDelay(pdMS_TO_TICKS(800));
 
   if (!init_driver_and_valve_config()) {
