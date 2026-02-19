@@ -943,6 +943,7 @@ extern "C" void app_main(void) {
   ESP_LOGI(TAG, "║        ESP32 MAX22200 COMPREHENSIVE TEST SUITE           ║");
   ESP_LOGI(TAG, "║         Unit APIs: mA, %%, ms • Errors reported           ║");
   ESP_LOGI(TAG, "╚═══════════════════════════════════════════════════════════╝");
+  ESP_LOGI(TAG, "Driver version: %s", max22200::GetDriverVersion());
 
   vTaskDelay(pdMS_TO_TICKS(1000));
 

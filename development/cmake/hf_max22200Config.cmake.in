@@ -1,0 +1,5 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/hf_max22200Targets.cmake")
+
+check_required_components(hf_max22200)

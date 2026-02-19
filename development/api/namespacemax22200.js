@@ -172,6 +172,7 @@ var namespacemax22200 =
     [ "FaultTypeToStr", "namespacemax22200.html#a44fc2cafd903163aebcc907711ff2aea", null ],
     [ "getChannelCfgBank", "namespacemax22200.html#aab49b674a6a3f59d961019c61d18bf27", null ],
     [ "getChopFreqKhz", "namespacemax22200.html#a6d0504534109b4ee59755901057b7eb8", null ],
+    [ "GetDriverVersion", "namespacemax22200.html#ab4dbe12c79b4540933d59e925b619cf9", null ],
     [ "getMaxHitTimeMs", "namespacemax22200.html#adf9fde7e58661aef7d66e1ca940c1ea9", null ],
     [ "hitTimeMsToRaw", "namespacemax22200.html#a5ad6efb6e9cf058e17546ad64bc48005", null ],
     [ "MAX_SPI_FREQ_DAISY_CHAIN_", "namespacemax22200.html#a10792d535c2b89f6c57ecc8cc5a97b71", null ],
