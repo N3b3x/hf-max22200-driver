@@ -468,7 +468,7 @@ channel_config.chop_freq = ChopFreq::FMAIN_DIV2;
 
 ## 📚 Additional Resources
 
-- [MAX22200 Datasheet](../../datasheet/MAX22200.pdf)
+- [MAX22200 Datasheet](../../docs/datasheet/MAX22200.pdf)
 - [Driver API Documentation](../../docs/api_reference.md)
 - [Hardware Integration Guide](../../docs/hardware_guide.md)
 - [ASCII Diagrams](../../docs/ascii_diagrams.md)
