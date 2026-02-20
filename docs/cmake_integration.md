@@ -11,10 +11,6 @@ permalink: /docs/cmake_integration/
 
 How to consume the MAX22200 driver in your CMake or ESP-IDF project.
 
-> **Build contract architecture, variable naming conventions, porting guide,
-> and templates for new drivers** are documented at the HAL level:
-> [CMake Build Contract](../../../../../docs/development/CMAKE_BUILD_CONTRACT.md).
-> This page covers only the MAX22200-specific integration steps.
 
 ---
 
@@ -55,4 +51,4 @@ target_compile_features(${COMPONENT_LIB} PRIVATE cxx_std_20)
 ---
 
 **Navigation**
-⬅️ [Back to Documentation Index](../../DOCUMENTATION_INDEX.md) | [CMake Build Contract ↗](../../../../../docs/development/CMAKE_BUILD_CONTRACT.md)
+⬅️ [Back to Documentation Index](index.md)
