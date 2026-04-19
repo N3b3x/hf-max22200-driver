@@ -386,7 +386,7 @@
   },"55": {
     "doc": "🔌 Hardware Setup",
     "title": "Hardware Setup",
-    "content": "This guide covers the physical connections and hardware requirements for the MAX22200 octal solenoid and motor driver chip. ",
+    "content": ". This guide covers the physical connections and hardware requirements for the MAX22200 octal solenoid and motor driver chip. ",
     "url": "/hf-max22200-driver/development/docs/hardware_setup/#hardware-setup",
     
     "relUrl": "/docs/hardware_setup/#hardware-setup"

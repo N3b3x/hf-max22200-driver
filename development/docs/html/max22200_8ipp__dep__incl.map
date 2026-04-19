@@ -1,9 +1,11 @@
 <map id="src/max22200.ipp" name="src/max22200.ipp">
-<area shape="rect" id="Node000001" title="Template implementation for MAX22200 driver." alt="" coords="149,5,288,31"/>
-<area shape="rect" id="Node000002" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="147,79,290,104"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="221,44,221,79,216,79,216,44"/>
-<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="5,152,208,207"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="194,115,142,154,139,150,191,110"/>
-<area shape="rect" id="Node000004" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="232,152,432,207"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="247,110,299,150,296,154,243,115"/>
+<area shape="rect" id="Node000001" title="Template implementation for MAX22200 driver." alt="" coords="229,5,367,31"/>
+<area shape="rect" id="Node000002" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="227,79,369,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="301,44,301,79,295,79,295,44"/>
+<area shape="rect" id="Node000003" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="5,159,172,199"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="258,112,136,162,134,157,256,107"/>
+<area shape="rect" id="Node000004" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="197,152,399,207"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="301,118,301,152,295,152,295,118"/>
+<area shape="rect" id="Node000005" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="423,152,623,207"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="342,106,456,149,454,154,340,111"/>
 </map>

@@ -43,6 +43,19 @@ apps:
     featured: true
     documentation: "README.md"
 
+  # --------------------------------------------------------------------------
+  # Single-channel C21 24V solenoid hit-and-hold cycle test (CH0 / OUT0)
+  # --------------------------------------------------------------------------
+  c21_cycle_test:
+    description: "Cycle a Parker C21 24V solenoid on CH0 (102 mA hit / 51 mA hold) with continuous STATUS+FAULT telemetry and DPM detection"
+    source_file: "c21_cycle_test.cpp"
+    category: "test"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: false
+    featured: false
+    documentation: "README.md"
+
 # ============================================================================
 # BUILD CONFIGURATION (ESP-IDF Standard Build Types)
 # ============================================================================

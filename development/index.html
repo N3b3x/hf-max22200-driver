@@ -301,6 +301,8 @@ Interactive guides, examples, and step-by-step tutorials</p>
 <p><strong>HF-MAX22200</strong> is a portable C++20 driver for the <strong>MAX22200</strong> octal (eight-channel) solenoid and motor driver IC. The MAX22200 features eight half-bridges, each capable of handling up to 36V and 1A RMS, with integrated current sensing, current/voltage regulation, and comprehensive protection features.</p>
 
 <p>The driver uses a CRTP-based <code class="language-plaintext highlighter-rouge">SpiInterface</code> for hardware abstraction, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It implements all major features from the MAX22200 datasheet including channel configuration, current/voltage regulation modes, integrated current sensing (ICS), fault detection, and callback support for event-driven programming.</p>
+
+<p><img src="/hf-max22200-driver/development/docs/assets/max22200-topology.svg" alt="MAX22200 octal half-bridge topology with HIT/HOLD current profile" /></p>
 <h2 id="-features">
   
   
