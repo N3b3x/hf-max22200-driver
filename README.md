@@ -23,8 +23,9 @@ permalink: /
 5. [API Reference](#-api-reference)
 6. [Examples](#-examples)
 7. [Documentation](#-documentation)
-8. [Contributing](#-contributing)
-9. [License](#-license)
+8. [References](#-references)
+9. [Contributing](#-contributing)
+10. [License](#-license)
 
 ## 📦 Overview
 
@@ -129,6 +130,15 @@ Detailed example walkthroughs are available in [docs/examples.md](docs/examples.
 ## 📚 Documentation
 
 For complete documentation, see the [docs directory](docs/index.md).
+
+## 🔗 References
+
+| Resource | Link |
+|----------|------|
+| ADI/Maxim MAX22200 product page | <https://www.analog.com/en/products/max22200.html> |
+| MAX22200 datasheet (ADI) | <https://www.analog.com/media/en/technical-documentation/data-sheets/max22200.pdf> |
+| ESP-IDF SPI master | <https://docs.espressif.com/projects/esp-idf/en/stable/esp32/api-reference/peripherals/spi_master.html> |
+| C++20 language reference | <https://en.cppreference.com/w/cpp/20> |
 
 ## 🤝 Contributing
 
