@@ -36,6 +36,8 @@ permalink: /
 
 The driver uses a CRTP-based `SpiInterface` for hardware abstraction, allowing it to run on any platform (ESP32, STM32, Arduino, etc.) with zero runtime overhead. It implements all major features from the MAX22200 datasheet including channel configuration, current/voltage regulation modes, integrated current sensing (ICS), fault detection, and callback support for event-driven programming.
 
+![MAX22200 octal half-bridge topology with HIT/HOLD current profile](docs/assets/max22200-topology.svg)
+
 ## ✨ Features
 
 - ✅ **Eight Half-Bridges**: Each channel handles up to 36V and 1A RMS

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 820 580" width="820" height="580" role="img" aria-labelledby="t-mx d-mx">
+  <title id="t-mx">MAX22200 octal half-bridge topology with HIT/HOLD current profile and CDR vs VDR</title>
+  <desc id="d-mx">SPI-controlled MAX22200 with 8 half-bridges (each up to 36 V / 1 A RMS). Each channel can run in current-drive (CDR) or voltage-drive (VDR) regulation. Integrated current sensing (ICS) enables HIT/HOLD profiles without external sense resistors.</desc>
+  <defs>
+    <style type="text/css"><![CDATA[
+      .panel    { fill: #ffffff; }
+      .panelL   { fill: #ffffff; stroke: #1a365d; stroke-width: 2; }
+      .chip     { fill: #fef5e7; stroke: #c05621; stroke-width: 2; }
+      .ch       { fill: #ebf4ff; stroke: #2c5282; stroke-width: 1.6; }
+      .coil     { fill: #ffffff; stroke: #1a365d; stroke-width: 1.6; }
+      .box      { fill: #f4f6f8; stroke: #1a365d; stroke-width: 2; }
+      .wire-pwr { stroke: #c53030; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .wire-gnd { stroke: #4a5568; stroke-width: 2.5; fill: none; stroke-linecap: round; }
+      .wire-spi { stroke: #2b6cb0; stroke-width: 2; fill: none; stroke-linecap: round; }
+      .axis     { stroke: #1a365d; stroke-width: 1.5; fill: none; }
+      .grid     { stroke: #cbd5e0; stroke-width: 1; stroke-dasharray: 4 4; }
+      .curve    { stroke: #c05621; stroke-width: 3; fill: none; stroke-linejoin: round; }
+      .dashLevel{ stroke: #4a5568; stroke-width: 1; stroke-dasharray: 2 3; }
+      .head     { font-family: system-ui, sans-serif; font-size: 16px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+      .title    { font-family: system-ui, sans-serif; font-size: 13px; font-weight: 600; fill: #1a365d; text-anchor: middle; }
+      .label    { font-family: system-ui, sans-serif; font-size: 12px; fill: #1a202c; text-anchor: middle; }
+      .small    { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; text-anchor: middle; }
+      .pin      { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 11px; fill: #1a202c; text-anchor: middle; }
+      .pinL     { font-family: "DejaVu Sans Mono", Consolas, monospace; font-size: 11px; fill: #1a202c; text-anchor: end; }
+      .legend   { font-family: system-ui, sans-serif; font-size: 11px; fill: #4a5568; }
+      .body     { font-family: system-ui, sans-serif; font-size: 11.5px; fill: #1a202c; text-anchor: start; }
+      .bodyHi   { font-family: system-ui, sans-serif; font-size: 12px; font-weight: 600; fill: #1a365d; text-anchor: start; }
+    ]]></style>
+    <marker id="ar-mx" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 z" fill="#2b6cb0"/>
+    </marker>
+  </defs>
+  <rect class="panel" width="820" height="580"/>
+
+  <text class="head"  x="410" y="26">MAX22200 - eight half-bridges with HIT/HOLD current profile</text>
+  <text class="small" x="410" y="44">8 x half-bridge to 36 V / 1 A RMS &#183; per-channel CDR or VDR &#183; integrated current sensing (ICS), no external sense resistor</text>
+
+  <!-- VS supply rail (y=80) -->
+  <line class="wire-pwr" x1="60" y1="80" x2="720" y2="80"/>
+  <text class="pinL" x="54" y="84">VS</text>
+
+  <!-- 8 loads (y=92..146) -->
+  <g>
+    <rect class="coil" x="80"  y="92" width="62" height="56" rx="6"/><text class="title" x="111" y="112">Load 0</text><text class="small" x="111" y="130">e.g.</text><text class="small" x="111" y="142">coil</text>
+    <rect class="coil" x="160" y="92" width="62" height="56" rx="6"/><text class="title" x="191" y="112">Load 1</text>
+    <rect class="coil" x="240" y="92" width="62" height="56" rx="6"/><text class="title" x="271" y="112">Load 2</text>
+    <rect class="coil" x="320" y="92" width="62" height="56" rx="6"/><text class="title" x="351" y="112">Load 3</text>
+    <rect class="coil" x="400" y="92" width="62" height="56" rx="6"/><text class="title" x="431" y="112">Load 4</text>
+    <rect class="coil" x="480" y="92" width="62" height="56" rx="6"/><text class="title" x="511" y="112">Load 5</text>
+    <rect class="coil" x="560" y="92" width="62" height="56" rx="6"/><text class="title" x="591" y="112">Load 6</text>
+    <rect class="coil" x="640" y="92" width="62" height="56" rx="6"/><text class="title" x="671" y="112">Load 7</text>
+  </g>
+  <g>
+    <line class="wire-pwr" x1="111" y1="80" x2="111" y2="92"/>
+    <line class="wire-pwr" x1="191" y1="80" x2="191" y2="92"/>
+    <line class="wire-pwr" x1="271" y1="80" x2="271" y2="92"/>
+    <line class="wire-pwr" x1="351" y1="80" x2="351" y2="92"/>
+    <line class="wire-pwr" x1="431" y1="80" x2="431" y2="92"/>
+    <line class="wire-pwr" x1="511" y1="80" x2="511" y2="92"/>
+    <line class="wire-pwr" x1="591" y1="80" x2="591" y2="92"/>
+    <line class="wire-pwr" x1="671" y1="80" x2="671" y2="92"/>
+  </g>
+  <g>
+    <line class="wire-gnd" x1="111" y1="148" x2="111" y2="200"/>
+    <line class="wire-gnd" x1="191" y1="148" x2="191" y2="200"/>
+    <line class="wire-gnd" x1="271" y1="148" x2="271" y2="200"/>
+    <line class="wire-gnd" x1="351" y1="148" x2="351" y2="200"/>
+    <line class="wire-gnd" x1="431" y1="148" x2="431" y2="200"/>
+    <line class="wire-gnd" x1="511" y1="148" x2="511" y2="200"/>
+    <line class="wire-gnd" x1="591" y1="148" x2="591" y2="200"/>
+    <line class="wire-gnd" x1="671" y1="148" x2="671" y2="200"/>
+  </g>
+
+  <!-- Chip body (y=200..330) -->
+  <rect class="chip" x="60" y="200" width="660" height="130" rx="10"/>
+  <text class="head"  x="390" y="226">MAX22200</text>
+  <text class="small" x="390" y="244">8 x half-bridge &#183; ICS (no external R_sense) &#183; OCP / OL / DPM / TSD / UVLO &#183; SPI 1 MHz</text>
+
+  <!-- 8 channel cells inside chip (y=260..308) -->
+  <g>
+    <rect class="ch" x="80"  y="260" width="62" height="48" rx="4"/><text class="title" x="111" y="280">CH0</text><text class="small" x="111" y="298">OUT0</text>
+    <rect class="ch" x="160" y="260" width="62" height="48" rx="4"/><text class="title" x="191" y="280">CH1</text><text class="small" x="191" y="298">OUT1</text>
+    <rect class="ch" x="240" y="260" width="62" height="48" rx="4"/><text class="title" x="271" y="280">CH2</text><text class="small" x="271" y="298">OUT2</text>
+    <rect class="ch" x="320" y="260" width="62" height="48" rx="4"/><text class="title" x="351" y="280">CH3</text><text class="small" x="351" y="298">OUT3</text>
+    <rect class="ch" x="400" y="260" width="62" height="48" rx="4"/><text class="title" x="431" y="280">CH4</text><text class="small" x="431" y="298">OUT4</text>
+    <rect class="ch" x="480" y="260" width="62" height="48" rx="4"/><text class="title" x="511" y="280">CH5</text><text class="small" x="511" y="298">OUT5</text>
+    <rect class="ch" x="560" y="260" width="62" height="48" rx="4"/><text class="title" x="591" y="280">CH6</text><text class="small" x="591" y="298">OUT6</text>
+    <rect class="ch" x="640" y="260" width="62" height="48" rx="4"/><text class="title" x="671" y="280">CH7</text><text class="small" x="671" y="298">OUT7</text>
+  </g>
+
+  <!-- GND rail (y=355) -->
+  <line class="wire-gnd" x1="60" y1="355" x2="720" y2="355"/>
+  <text class="pinL" x="54" y="359">GND</text>
+  <g>
+    <line class="wire-gnd" x1="111" y1="330" x2="111" y2="355"/>
+    <line class="wire-gnd" x1="191" y1="330" x2="191" y2="355"/>
+    <line class="wire-gnd" x1="271" y1="330" x2="271" y2="355"/>
+    <line class="wire-gnd" x1="351" y1="330" x2="351" y2="355"/>
+    <line class="wire-gnd" x1="431" y1="330" x2="431" y2="355"/>
+    <line class="wire-gnd" x1="511" y1="330" x2="511" y2="355"/>
+    <line class="wire-gnd" x1="591" y1="330" x2="591" y2="355"/>
+    <line class="wire-gnd" x1="671" y1="330" x2="671" y2="355"/>
+  </g>
+
+  <!-- SPI block on the right -->
+  <rect class="box" x="740" y="220" width="60" height="100" rx="6"/>
+  <text class="title" x="770" y="238">SPI</text>
+  <text class="pin"   x="770" y="256">SCLK</text>
+  <text class="pin"   x="770" y="272">MOSI</text>
+  <text class="pin"   x="770" y="288">MISO</text>
+  <text class="pin"   x="770" y="304">CS</text>
+  <line class="wire-spi" x1="740" y1="270" x2="720" y2="270" marker-end="url(#ar-mx)"/>
+
+  <!--
+    Bottom panels (y=380..500) split into two side-by-side panels.
+    Plot on the left, CDR/VDR explanation on the right.
+    Legend underneath in its own row (y=520..560).
+  -->
+
+  <!-- HIT/HOLD profile (y=380..500) -->
+  <rect class="panelL" x="60" y="380" width="380" height="120" rx="6"/>
+  <text class="title" x="250" y="398">HIT/HOLD current profile (CDR mode)</text>
+
+  <!-- Plot area: x 110..420, y 416..488 -->
+  <line class="axis" x1="110" y1="488" x2="420" y2="488"/>
+  <line class="axis" x1="110" y1="416" x2="110" y2="488"/>
+  <text class="small" x="100" y="492" text-anchor="end">0</text>
+  <text class="small" x="100" y="450" text-anchor="end">I_HOLD</text>
+  <text class="small" x="100" y="424" text-anchor="end">I_HIT</text>
+  <text class="small" x="420" y="492" text-anchor="end">time</text>
+  <line class="dashLevel" x1="110" y1="424" x2="420" y2="424"/>
+  <line class="dashLevel" x1="110" y1="450" x2="420" y2="450"/>
+  <!-- Curve: 0 -> rise to I_HIT -> hold -> drop to I_HOLD -> sustain -->
+  <path class="curve" d="M 120 488 L 150 424 L 250 424 L 265 450 L 410 450"/>
+  <text class="small" x="195" y="418">HIT_TIME</text>
+  <text class="small" x="335" y="446">hold setpoint</text>
+
+  <!-- CDR vs VDR explanation (y=380..500) -->
+  <rect class="panelL" x="460" y="380" width="340" height="120" rx="6"/>
+  <text class="title" x="630" y="398">CDR vs VDR drive modes</text>
+
+  <text class="bodyHi" x="476" y="420">CDR - Current-Drive Regulation</text>
+  <text class="body"   x="486" y="436">closed-loop on coil current via ICS,</text>
+  <text class="body"   x="486" y="450">setpoint in mA - best for solenoids</text>
+
+  <text class="bodyHi" x="476" y="472">VDR - Voltage-Drive Regulation</text>
+  <text class="body"   x="486" y="488">PWM duty over VS, no ICS feedback</text>
+
+  <!-- Legend in its own row, far below the panels (y=520..560) -->
+  <g transform="translate(60, 520)">
+    <text class="title" x="0" y="0" text-anchor="start" fill="#1a365d">Legend</text>
+    <rect class="ch" x="0" y="14" width="14" height="14"/>
+    <text class="legend" x="22" y="25">Half-bridge channel (CHn driving OUTn)</text>
+    <line class="wire-pwr" x1="320" y1="22" x2="342" y2="22"/>
+    <text class="legend" x="350" y="26">VS load current (high-side rail to load)</text>
+
+    <line class="wire-gnd" x1="0" y1="42" x2="22" y2="42"/>
+    <text class="legend" x="30" y="46">Coil sink to GND through OUTn</text>
+    <line class="wire-spi" x1="320" y1="42" x2="342" y2="42" marker-end="url(#ar-mx)"/>
+    <text class="legend" x="350" y="46">SPI control (SCLK / MOSI / MISO / CS)</text>
+  </g>
+</svg>

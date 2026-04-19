@@ -9,6 +9,8 @@ permalink: /docs/hardware_setup/
 
 # Hardware Setup
 
+![MAX22200 octal half-bridge topology with HIT/HOLD current profile](assets/max22200-topology.svg)
+
 This guide covers the physical connections and hardware requirements for the MAX22200 octal solenoid and motor driver chip.
 
 ## Pin Connections
