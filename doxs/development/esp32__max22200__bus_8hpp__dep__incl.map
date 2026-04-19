@@ -1,7 +1,9 @@
 <map id="examples/esp32/main/esp32_max22200_bus.hpp" name="examples/esp32/main/esp32_max22200_bus.hpp">
-<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="119,5,318,45"/>
-<area shape="rect" id="Node000002" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="5,93,208,148"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="187,56,140,95,137,91,184,52"/>
-<area shape="rect" id="Node000003" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="232,93,432,148"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="254,52,302,91,298,95,250,56"/>
+<area shape="rect" id="Node000001" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="199,5,397,45"/>
+<area shape="rect" id="Node000002" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="5,101,172,141"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="244,53,132,103,130,98,242,48"/>
+<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="197,93,399,148"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="301,59,301,93,295,93,295,59"/>
+<area shape="rect" id="Node000004" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="423,93,623,148"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="357,48,461,91,459,96,355,53"/>
 </map>
