@@ -71,7 +71,7 @@ var searchData=
   ['configuredpm_68',['ConfigureDpm',['../classmax22200_1_1MAX22200.html#a92683b26a641253278c6f179255cedb5',1,'max22200::MAX22200']]],
   ['contents_69',['📚 Table of Contents',['../index.html#autotoc_md57',1,'']]],
   ['continuous_5fhit_70',['CONTINUOUS_HIT',['../namespacemax22200_1_1CfgChReg.html#a16f0ce84d577578cccb3629c23869d7c',1,'max22200::CfgChReg']]],
-  ['contributing_71',['🤝 Contributing',['../index.html#autotoc_md65',1,'']]],
+  ['contributing_71',['🤝 Contributing',['../index.html#autotoc_md66',1,'']]],
   ['control_72',['Control',['../max22200__spi__interface_8hpp.html#autotoc_md29',1,'CMD Pin Control'],['../max22200__spi__interface_8hpp.html#autotoc_md30',1,'ENABLE Pin Control']]],
   ['controlpins_73',['ControlPins',['../structMAX22200__TestConfig_1_1ControlPins.html',1,'MAX22200_TestConfig']]],
   ['conversion_74',['Register Conversion',['../structmax22200_1_1ChannelConfig.html#autotoc_md48',1,'']]],
