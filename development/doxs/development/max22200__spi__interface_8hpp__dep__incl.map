@@ -1,16 +1,22 @@
 <map id="inc/max22200_spi_interface.hpp" name="inc/max22200_spi_interface.hpp">
-<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="181,5,415,31"/>
-<area shape="rect" id="Node000002" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="101,79,300,119"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="275,41,226,81,222,76,271,37"/>
-<area shape="rect" id="Node000006" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="324,86,467,111"/>
-<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="325,37,383,84,379,88,321,41"/>
-<area shape="rect" id="Node000003" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="5,174,172,214"/>
-<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="169,130,113,176,110,172,166,126"/>
-<area shape="rect" id="Node000004" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="197,167,399,221"/>
-<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="232,126,272,165,269,168,228,130"/>
-<area shape="rect" id="Node000005" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="423,167,623,221"/>
-<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="280,120,433,164,432,169,279,125"/>
-<area shape="poly" id="edge6_Node000006_Node000003" title=" " alt="" coords="346,118,151,177,150,171,344,113"/>
-<area shape="poly" id="edge7_Node000006_Node000004" title=" " alt="" coords="375,123,327,168,324,165,372,119"/>
-<area shape="poly" id="edge8_Node000006_Node000005" title=" " alt="" coords="424,117,489,164,486,169,421,122"/>
+<area shape="rect" id="Node000001" title="CRTP&#45;based template interface for SPI communication." alt="" coords="430,5,663,31"/>
+<area shape="rect" id="Node000002" href="$esp32__max22200__bus_8hpp.html" title="ESP32 SPI transport implementation for MAX22200 driver (header&#45;only)" alt="" coords="350,79,549,119"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="523,41,474,81,471,76,520,37"/>
+<area shape="rect" id="Node000008" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="573,86,715,111"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="573,37,631,84,628,88,570,41"/>
+<area shape="rect" id="Node000003" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="893,174,1059,214"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="562,116,725,138,794,147,882,164,912,171,911,176,881,169,794,153,724,143,562,121"/>
+<area shape="rect" id="Node000004" href="$c21__dpm__tuning__test_8cpp.html" title="DPM (Detection of Plunger Movement) tuning + CSV&#45;logging cycle test." alt="" coords="5,174,197,214"/>
+<area shape="poly" id="edge3_Node000002_Node000004" title=" " alt="" coords="366,125,172,177,171,171,365,120"/>
+<area shape="rect" id="Node000005" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="221,167,424,221"/>
+<area shape="poly" id="edge4_Node000002_Node000005" title=" " alt="" coords="414,129,360,169,357,164,411,125"/>
+<area shape="rect" id="Node000006" href="$max22200__diagnostic_8cpp.html" title="End&#45;to&#45;end MAX22200 health&#45;check on real hardware." alt="" coords="449,174,645,214"/>
+<area shape="poly" id="edge5_Node000002_Node000006" title=" " alt="" coords="481,126,529,172,525,176,477,130"/>
+<area shape="rect" id="Node000007" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="669,167,869,221"/>
+<area shape="poly" id="edge6_Node000002_Node000007" title=" " alt="" coords="528,120,680,164,678,169,527,125"/>
+<area shape="poly" id="edge8_Node000008_Node000003" title=" " alt="" coords="699,112,910,171,908,177,697,118"/>
+<area shape="poly" id="edge9_Node000008_Node000004" title=" " alt="" coords="583,117,560,121,462,136,385,145,308,153,210,169,175,177,174,171,209,164,307,148,384,140,461,131,560,116,582,112"/>
+<area shape="poly" id="edge10_Node000008_Node000005" title=" " alt="" coords="592,118,414,169,412,164,591,113"/>
+<area shape="poly" id="edge11_Node000008_Node000006" title=" " alt="" coords="624,123,568,176,565,172,620,119"/>
+<area shape="poly" id="edge12_Node000008_Node000007" title=" " alt="" coords="672,117,735,164,732,169,669,122"/>
 </map>

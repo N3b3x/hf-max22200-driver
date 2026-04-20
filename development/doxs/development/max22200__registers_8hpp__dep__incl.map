@@ -1,20 +1,28 @@
 <map id="inc/max22200_registers.hpp" name="inc/max22200_registers.hpp">
-<area shape="rect" id="Node000001" title="Register definitions and constants for MAX22200 IC." alt="" coords="289,5,495,31"/>
-<area shape="rect" id="Node000002" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="229,233,395,273"/>
-<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="402,44,410,106,408,143,398,178,375,211,346,235,343,230,371,207,394,176,403,142,405,107,396,44"/>
-<area shape="rect" id="Node000003" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="420,225,623,280"/>
-<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="408,42,509,224,504,226,403,44"/>
-<area shape="rect" id="Node000004" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="5,225,205,280"/>
-<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="276,28,213,46,185,61,159,81,135,114,119,153,111,192,108,225,103,225,106,191,114,151,130,111,155,77,182,56,211,41,274,23"/>
-<area shape="rect" id="Node000005" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="241,152,383,177"/>
-<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="390,45,382,75,369,105,349,133,327,154,324,150,345,129,364,103,377,73,385,44"/>
-<area shape="rect" id="Node000006" href="$max22200__types_8hpp.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="169,79,354,104"/>
-<area shape="poly" id="edge8_Node000001_Node000006" title=" " alt="" coords="360,40,284,81,281,76,357,35"/>
-<area shape="poly" id="edge5_Node000005_Node000002" title=" " alt="" coords="315,191,315,232,309,232,309,191"/>
-<area shape="poly" id="edge6_Node000005_Node000003" title=" " alt="" coords="354,180,459,223,457,228,352,185"/>
-<area shape="poly" id="edge7_Node000005_Node000004" title=" " alt="" coords="272,185,169,228,167,223,270,180"/>
-<area shape="poly" id="edge9_Node000006_Node000002" title=" " alt="" coords="245,117,231,146,229,161,232,176,254,207,282,230,278,234,250,211,227,178,223,162,226,144,240,114"/>
-<area shape="poly" id="edge10_Node000006_Node000003" title=" " alt="" coords="307,107,352,126,397,150,450,186,494,223,491,227,447,191,395,154,349,130,305,111"/>
-<area shape="poly" id="edge11_Node000006_Node000004" title=" " alt="" coords="242,116,133,227,129,223,239,112"/>
-<area shape="poly" id="edge12_Node000006_Node000005" title=" " alt="" coords="280,114,306,150,302,153,276,117"/>
+<area shape="rect" id="Node000001" title="Register definitions and constants for MAX22200 IC." alt="" coords="411,5,618,31"/>
+<area shape="rect" id="Node000002" href="$c21__cycle__test_8cpp.html" title="Real&#45;hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0." alt="" coords="446,233,613,273"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="569,34,599,51,622,77,630,99,631,122,625,144,614,165,585,204,554,234,551,230,581,201,610,163,620,142,625,121,625,100,618,80,595,55,566,38"/>
+<area shape="rect" id="Node000003" href="$c21__dpm__tuning__test_8cpp.html" title="DPM (Detection of Plunger Movement) tuning + CSV&#45;logging cycle test." alt="" coords="229,233,421,273"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="471,39,434,57,395,82,360,114,334,153,328,173,325,195,326,233,320,233,320,194,323,172,330,151,356,110,392,77,431,52,468,34"/>
+<area shape="rect" id="Node000004" href="$max22200__comprehensive__test_8cpp.html" title="Comprehensive test suite for MAX22200 driver on ESP32." alt="" coords="857,225,1060,280"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="564,33,617,52,673,76,744,113,812,153,922,223,919,228,809,158,741,118,671,81,615,57,562,38"/>
+<area shape="rect" id="Node000005" href="$max22200__diagnostic_8cpp.html" title="End&#45;to&#45;end MAX22200 health&#45;check on real hardware." alt="" coords="637,233,833,273"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="569,33,608,51,644,77,677,115,702,158,731,231,727,233,697,160,672,118,641,81,606,55,567,38"/>
+<area shape="rect" id="Node000006" href="$max22200__solenoid__valve__test_8cpp.html" title="Dedicated solenoid/valve test for MAX22200 driver on ESP32." alt="" coords="5,225,205,280"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="466,38,415,57,361,81,298,117,237,157,140,227,137,223,234,153,295,113,359,76,413,52,464,33"/>
+<area shape="rect" id="Node000007" href="$max22200_8hpp.html" title="Main driver class for MAX22200 octal solenoid and motor driver." alt="" coords="363,152,506,177"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="464,38,435,56,413,80,408,98,411,117,428,150,424,153,406,119,403,98,408,77,432,51,461,34"/>
+<area shape="rect" id="Node000008" href="$max22200__types_8hpp.html" title="Type definitions and structures for MAX22200 driver." alt="" coords="422,79,607,104"/>
+<area shape="poly" id="edge12_Node000001_Node000008" title=" " alt="" coords="517,44,517,79,512,79,512,44"/>
+<area shape="poly" id="edge7_Node000007_Node000002" title=" " alt="" coords="460,185,510,231,507,234,456,189"/>
+<area shape="poly" id="edge8_Node000007_Node000003" title=" " alt="" coords="411,188,351,235,348,230,407,184"/>
+<area shape="poly" id="edge9_Node000007_Node000004" title=" " alt="" coords="520,174,672,194,846,223,857,225,856,230,845,228,671,200,519,179"/>
+<area shape="poly" id="edge10_Node000007_Node000005" title=" " alt="" coords="489,179,669,230,668,235,487,184"/>
+<area shape="poly" id="edge11_Node000007_Node000006" title=" " alt="" coords="378,183,206,228,205,223,377,178"/>
+<area shape="poly" id="edge13_Node000008_Node000002" title=" " alt="" coords="520,117,530,232,525,233,514,118"/>
+<area shape="poly" id="edge14_Node000008_Node000003" title=" " alt="" coords="429,110,388,127,354,154,342,172,334,193,328,233,323,232,329,192,337,170,350,150,386,123,427,105"/>
+<area shape="poly" id="edge15_Node000008_Node000004" title=" " alt="" coords="560,106,887,223,885,228,559,111"/>
+<area shape="poly" id="edge16_Node000008_Node000005" title=" " alt="" coords="543,110,710,231,707,235,540,114"/>
+<area shape="poly" id="edge17_Node000008_Node000006" title=" " alt="" coords="464,111,333,154,162,228,160,223,331,150,462,105"/>
+<area shape="poly" id="edge18_Node000008_Node000007" title=" " alt="" coords="494,115,450,154,446,150,490,111"/>
 </map>

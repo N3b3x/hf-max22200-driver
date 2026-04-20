@@ -713,6 +713,21 @@ git submodule update <span class="nt">--init</span> <span class="nt">--recursive
       <td>Solenoid/valve test: all 8 channels, C21 hit/hold, sequential &amp; parallel patterns, full diagnostics</td>
       <td>MAX22200 board + valves (optional)</td>
     </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">max22200_diagnostic</code></td>
+      <td>Fault-isolation tool — dumps every SPI byte, walks the datasheet init flow, round-trips CFG_CH0, then continuous STATUS dump @ 5 Hz for scope probing. Use when chip won’t initialize or behaves unexpectedly</td>
+      <td>MAX22200 board (no coil required)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">c21_cycle_test</code></td>
+      <td>Single-channel Parker C21 24 V solenoid hit-and-hold cycle test on CH0 with 10 Hz STATUS+FAULT telemetry. Bench-validated baseline for MAX22200 + C21</td>
+      <td>MAX22200 board + C21 24 V solenoid wired between OUT0 and +VM</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">c21_dpm_tuning_test</code></td>
+      <td>Cycles a C21 with DPM enabled, polls FAULT @ 1 kHz during HIT window, emits CSV stream + summary stats so DPM ISTART/IPTH/TDEB can be tuned against real plunger movement. Hold the plunger still to validate the no-movement detection</td>
+      <td>MAX22200 board + C21 24 V solenoid</td>
+    </tr>
   </tbody>
 </table></div>
 <h3 id="list-available-applications">
@@ -1002,6 +1017,203 @@ idf.py <span class="nt">-p</span> /dev/ttyUSB0 monitor
     
 
 <p>Valve profile is controlled by <code class="language-plaintext highlighter-rouge">C21ValveConfig</code> in <code class="language-plaintext highlighter-rouge">esp32_max22200_test_config.hpp</code>: <code class="language-plaintext highlighter-rouge">USE_CDR</code>, <code class="language-plaintext highlighter-rouge">HIT_TIME_MS</code>, <code class="language-plaintext highlighter-rouge">HOLD_PERCENT</code>, <code class="language-plaintext highlighter-rouge">HIT_PERCENT</code>. Timing constants (e.g. <code class="language-plaintext highlighter-rouge">SEQUENTIAL_HIT_MS</code>, <code class="language-plaintext highlighter-rouge">PARALLEL_HOLD_MS</code>) are in <code class="language-plaintext highlighter-rouge">max22200_solenoid_valve_test.cpp</code>.</p><hr />
+<h3 id="max22200-diagnostic">
+  
+  
+    <a href="#max22200-diagnostic" class="anchor-heading" aria-labelledby="max22200-diagnostic"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> MAX22200 Diagnostic
+  
+  
+</h3>
+    
+
+<p><strong>Application</strong>: <code class="language-plaintext highlighter-rouge">max22200_diagnostic</code></p>
+
+<p>End-to-end fault-isolation tool. Walks every comm path the datasheet defines (Figures 7, 10, 11, 12, 13) and dumps the raw register bytes so they can be correlated against scope/DMM measurements at the chip pins. Use this when the chip won’t initialize, when nFAULT asserts unexpectedly, or when SPI round-trips don’t match expected bytes.</p>
+<h4 id="test-sections-1">
+  
+  
+    <a href="#test-sections-1" class="anchor-heading" aria-labelledby="test-sections-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Test sections
+  
+  
+</h4>
+    
+
+<ol>
+  <li><strong>Pin level snapshot</strong> (BEFORE bus init) — shows the chip’s idle state at MCU boot.
+0.5. <strong>Hard ENABLE pulse</strong> — drive ENABLE LOW for 50 ms (low-power start).</li>
+  <li><strong>Bus + driver construction</strong> (no chip access yet).</li>
+  <li><strong><code class="language-plaintext highlighter-rouge">driver.Initialize()</code></strong> — the datasheet init flow (read STATUS to clear UVM, write ACTIVE=1, verify); pin levels dumped again.</li>
+  <li><strong>Three consecutive raw STATUS reads</strong> — confirms the value is stable.</li>
+  <li><strong>CFG_CH0 round-trip</strong> — write <code class="language-plaintext highlighter-rouge">0x28500600</code>, read back, compare. Canonical SPI sanity check.</li>
+  <li><strong>FAULT register clear-by-read</strong> — clears OCP/HHF/OLF/DPM bits.</li>
+  <li><strong>STATUS read after FAULT clear</strong> — confirms nFAULT releases.</li>
+  <li><strong>Two STATUS-write variants</strong> + a second CFG_CH0 round-trip.</li>
+  <li><strong>Continuous STATUS+FAULT @ 5 Hz</strong> with periodic ACTIVE=1 re-write.</li>
+</ol>
+
+<p>Always built with <code class="language-plaintext highlighter-rouge">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING=1</code>, so every TX/RX byte goes to the console.</p>
+<h4 id="build-and-run-1">
+  
+  
+    <a href="#build-and-run-1" class="anchor-heading" aria-labelledby="build-and-run-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build and run
+  
+  
+</h4>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh max22200_diagnostic Debug
+./scripts/flash_app.sh flash_monitor max22200_diagnostic Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+<h3 id="c21-single-channel-cycle-test">
+  
+  
+    <a href="#c21-single-channel-cycle-test" class="anchor-heading" aria-labelledby="c21-single-channel-cycle-test"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> C21 Single-Channel Cycle Test
+  
+  
+</h3>
+    
+
+<p><strong>Application</strong>: <code class="language-plaintext highlighter-rouge">c21_cycle_test</code></p>
+
+<p>Real-hardware cycle test for a Parker C21 24 V solenoid driven on MAX22200 channel 0 in CDR (current-controlled hit-and-hold) mode. Drives the coil at 102 mA hit / 51 mA hold (per the C21 Hit-and-Hold table) and cycles ON/OFF every 2 s while a 10 Hz telemetry task scrapes STATUS, FAULT, last CMD-echo byte and nFAULT pin.</p>
+
+<p>Bench-validated baseline for first-light bring-up of a new MAX22200 + C21 setup. Implements the recommended “wake the chip, then poll STATUS until ACTIVE=1” pattern — see <code class="language-plaintext highlighter-rouge">docs/troubleshooting.md</code> for why this is needed.</p>
+<h4 id="hardware">
+  
+  
+    <a href="#hardware" class="anchor-heading" aria-labelledby="hardware"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Hardware
+  
+  
+</h4>
+    
+
+<ul>
+  <li>C21 24 V solenoid wired between <strong>OUT0 and +VM</strong> (low-side switching).</li>
+  <li>+VM = 24 V supply to the MAX22200 board.</li>
+</ul>
+<h4 id="build-and-run-2">
+  
+  
+    <a href="#build-and-run-2" class="anchor-heading" aria-labelledby="build-and-run-2"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build and run
+  
+  
+</h4>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh c21_cycle_test Debug
+./scripts/flash_app.sh flash_monitor c21_cycle_test Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="configuration-1">
+  
+  
+    <a href="#configuration-1" class="anchor-heading" aria-labelledby="configuration-1"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Configuration
+  
+  
+</h4>
+    
+
+<p>Edit the <code class="language-plaintext highlighter-rouge">cfg</code> namespace at the top of <code class="language-plaintext highlighter-rouge">main/c21_cycle_test.cpp</code> for a different C21 variant, cycle cadence, or to enable per-channel diagnostics (DPM / OL / HHF). All fault detections are OFF by default for first-light bring-up.</p><hr />
+<h3 id="c21--dpm-tuning-test">
+  
+  
+    <a href="#c21--dpm-tuning-test" class="anchor-heading" aria-labelledby="c21--dpm-tuning-test"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> C21 + DPM Tuning Test
+  
+  
+</h3>
+    
+
+<p><strong>Application</strong>: <code class="language-plaintext highlighter-rouge">c21_dpm_tuning_test</code></p>
+
+<p>Cycles a Parker C21 24 V solenoid with DPM (Detection of Plunger Movement) enabled, polls the FAULT register at 1 kHz during the HIT window, and emits one CSV line per sample plus a final summary with DPM hit-rate and first-fire timing statistics.</p>
+
+<p>Use this to:</p>
+
+<ul>
+  <li>Verify DPM correctly detects plunger movement on healthy actuations (DPM=0 every cycle).</li>
+  <li>Validate stuck-plunger detection by holding the plunger still during a cycle (DPM=1 should fire).</li>
+  <li>Tune the global DPM parameters (ISTART / IPTH / TDEB) for your specific valve.</li>
+</ul>
+<h4 id="dpm-polarity-datasheet-detection-of-plunger-movement">
+  
+  
+    <a href="#dpm-polarity-datasheet-detection-of-plunger-movement" class="anchor-heading" aria-labelledby="dpm-polarity-datasheet-detection-of-plunger-movement"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DPM polarity (datasheet §”Detection of Plunger Movement”)
+  
+  
+</h4>
+    
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">FAULT.DPM[ch]</code> value</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>Current dip seen → plunger MOVED (healthy)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>Drop NOT revealed → plunger STUCK (fault flag)</td>
+    </tr>
+  </tbody>
+</table></div>
+<h4 id="csv-format">
+  
+  
+    <a href="#csv-format" class="anchor-heading" aria-labelledby="csv-format"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> CSV format
+  
+  
+</h4>
+    
+
+<p>Each sample emits a line like:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre></td><td class="rouge-code"><pre>CSV,cycle,phase,t_us,fault_dpm_byte,status_byte,dpm_fired,ocp,hhf,olf
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>Pipe through <code class="language-plaintext highlighter-rouge">grep '^CSV,' &gt; run.csv</code> and load into your plotter of choice.</p>
+<h4 id="build-and-run-3">
+  
+  
+    <a href="#build-and-run-3" class="anchor-heading" aria-labelledby="build-and-run-3"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Build and run
+  
+  
+</h4>
+    
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre></td><td class="rouge-code"><pre>./scripts/build_app.sh c21_dpm_tuning_test Debug
+./scripts/flash_app.sh flash_monitor c21_dpm_tuning_test Debug
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h4 id="configuration-2">
+  
+  
+    <a href="#configuration-2" class="anchor-heading" aria-labelledby="configuration-2"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Configuration
+  
+  
+</h4>
+    
+
+<p>Tunable parameters at the top of <code class="language-plaintext highlighter-rouge">main/c21_dpm_tuning_test.cpp</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre></td><td class="rouge-code"><pre><span class="k">constexpr</span> <span class="kt">float</span> <span class="n">kDpmStartCurrent_mA</span> <span class="o">=</span> <span class="mf">20.0</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// ISTART — start monitoring early</span>
+<span class="k">constexpr</span> <span class="kt">float</span> <span class="n">kDpmThreshold_mA</span>    <span class="o">=</span> <span class="mf">4.0</span><span class="n">f</span><span class="p">;</span>    <span class="c1">// IPTH   — most-sensitive non-zero</span>
+<span class="k">constexpr</span> <span class="kt">float</span> <span class="n">kDpmDebounce_ms</span>     <span class="o">=</span> <span class="mf">0.05</span><span class="n">f</span><span class="p">;</span>   <span class="c1">// TDEB   — minimum (1 chopping period)</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>See the file header for a full tuning workflow.</p><hr />
 <h2 id="-configuration">
   
   

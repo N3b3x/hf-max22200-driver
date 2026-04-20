@@ -293,7 +293,7 @@
 <p><strong>Symptoms:</strong></p>
 
 <ul>
-  <li><code class="language-plaintext highlighter-rouge">Initialize()</code> returns <code class="language-plaintext highlighter-rouge">INITIALIZATION_ERROR</code></li>
+  <li><code class="language-plaintext highlighter-rouge">Initialize()</code> returns <code class="language-plaintext highlighter-rouge">INITIALIZATION_ERROR</code> or <code class="language-plaintext highlighter-rouge">COMMUNICATION_ERROR</code></li>
   <li>Driver not responding</li>
 </ul>
 
@@ -310,9 +310,97 @@
 <ol>
   <li><strong>Verify SPI Interface</strong>: Ensure SPI interface is initialized before creating driver</li>
   <li><strong>Check Connections</strong>: Verify all SPI connections (SCLK, SDI, SDO, CS)</li>
-  <li><strong>Verify Power</strong>: Check power supply voltage (2.7V - 5.5V)</li>
+  <li><strong>Verify Power</strong>: Check power supply voltage (VM = 5.5V – 36V; VL via internal LDO)</li>
   <li><strong>Check CS Line</strong>: Verify chip select is properly controlled</li>
+  <li><strong>Run the diagnostic</strong>: Flash <code class="language-plaintext highlighter-rouge">examples/esp32/main/max22200_diagnostic.cpp</code> — it dumps every SPI byte and walks through the datasheet init flow with annotated output. Compare against the “expected healthy output” listed in the file header.</li>
 </ol><hr />
+<h3 id="error-active-bit-reads-back-as-0-even-though-initialize-returned-ok">
+  
+  
+    <a href="#error-active-bit-reads-back-as-0-even-though-initialize-returned-ok" class="anchor-heading" aria-labelledby="error-active-bit-reads-back-as-0-even-though-initialize-returned-ok"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Error: ACTIVE bit reads back as 0 even though <code class="language-plaintext highlighter-rouge">Initialize()</code> returned OK
+  
+  
+</h3>
+    
+
+<p><strong>Symptoms:</strong></p>
+
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">Initialize()</code> returns OK</li>
+  <li><code class="language-plaintext highlighter-rouge">IsInitialized()</code> reports <code class="language-plaintext highlighter-rouge">true</code></li>
+  <li>But <code class="language-plaintext highlighter-rouge">ReadStatus()</code> shows <code class="language-plaintext highlighter-rouge">status.active == false</code> and the chip won’t drive any channel</li>
+  <li><code class="language-plaintext highlighter-rouge">nFAULT</code> may still be asserted (LED on)</li>
+</ul>
+
+<p><strong>Cause:</strong></p>
+
+<p>The driver’s <code class="language-plaintext highlighter-rouge">Initialize()</code> returns OK as soon as its STATUS write transaction completes, but the chip’s specified <code class="language-plaintext highlighter-rouge">tWU</code> (wake-up time) is <strong>2.5 ms</strong> from the ACTIVE=1 write to “OUT_ active”. On rigs with a slow VL LDO ramp (slow / under-spec V18 bypass cap), ACTIVE may take dozens of ms to physically latch. Until then, channel writes are ignored.</p>
+
+<p><strong>Solution:</strong></p>
+
+<p>After <code class="language-plaintext highlighter-rouge">Initialize()</code>, poll STATUS in a loop, re-issuing a bare ACTIVE=1 write each iteration, until ACTIVE actually reads back as 1. The proven pattern from <code class="language-plaintext highlighter-rouge">c21_cycle_test</code>:</p>
+
+<div class="language-cpp highlighter-rouge"><div class="highlight"><pre class="highlight"><code><div class="table-wrapper"><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="rouge-code"><pre><span class="n">driver</span><span class="o">-&gt;</span><span class="n">Initialize</span><span class="p">();</span>                           <span class="c1">// datasheet init flow</span>
+<span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">50</span><span class="p">));</span>                  <span class="c1">// give VL a head-start</span>
+<span class="n">StatusConfig</span> <span class="n">st</span><span class="p">{};</span>
+<span class="k">for</span> <span class="p">(</span><span class="kt">uint32_t</span> <span class="n">waited</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">waited</span> <span class="o">&lt;</span> <span class="mi">2000</span><span class="p">;</span> <span class="n">waited</span> <span class="o">+=</span> <span class="mi">25</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">driver</span><span class="o">-&gt;</span><span class="n">WriteRegister32</span><span class="p">(</span><span class="n">RegBank</span><span class="o">::</span><span class="n">STATUS</span><span class="p">,</span> <span class="mh">0x00000001U</span><span class="p">);</span>  <span class="c1">// bare ACTIVE</span>
+    <span class="n">driver</span><span class="o">-&gt;</span><span class="n">ReadStatus</span><span class="p">(</span><span class="n">st</span><span class="p">);</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">st</span><span class="p">.</span><span class="n">active</span> <span class="o">&amp;&amp;</span> <span class="o">!</span><span class="n">st</span><span class="p">.</span><span class="n">undervoltage</span><span class="p">)</span> <span class="k">break</span><span class="p">;</span>
+    <span class="n">vTaskDelay</span><span class="p">(</span><span class="n">pdMS_TO_TICKS</span><span class="p">(</span><span class="mi">25</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+
+<p>If this still doesn’t bring ACTIVE up, check:</p>
+
+<ol>
+  <li><strong>VL pin bypass capacitor</strong> — the chip’s V18 LDO requires a <strong>2.2 µF ceramic</strong> between the V18 pin and GND. Missing or under-spec cap will keep V18 from settling.</li>
+  <li><strong>VM rail under SPI load</strong> — scope right at the chip’s VM pin. Brief brown-outs can collapse V18 and re-set UVM.</li>
+  <li><strong>Series elements on +VM</strong> — fuse / sense resistor / reverse-polarity diode that drops VM at the chip pin under transient current draw.</li>
+</ol><hr />
+<h3 id="chip-stuck-in-a-corrupted-state-across-mcu-reboots">
+  
+  
+    <a href="#chip-stuck-in-a-corrupted-state-across-mcu-reboots" class="anchor-heading" aria-labelledby="chip-stuck-in-a-corrupted-state-across-mcu-reboots"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> Chip stuck in a corrupted state across MCU reboots
+  
+  
+</h3>
+    
+
+<p><strong>Symptoms:</strong></p>
+
+<ul>
+  <li>STATUS register reads bizarre values (<code class="language-plaintext highlighter-rouge">0x0180C000</code>, CM76 = 0b11 = RESERVED, ONCH already set at boot, etc.)</li>
+  <li>STATUS reads return <em>different values on consecutive non-write reads</em></li>
+  <li><code class="language-plaintext highlighter-rouge">DPM</code> fault asserts even though no channel is being driven</li>
+  <li>Write-data SDO bytes 2-3 are non-zero (per datasheet Figure 10 they MUST be 0x00)</li>
+  <li>Toggling ENABLE LOW for 50 ms does NOT clear the bad state</li>
+</ul>
+
+<p><strong>Cause:</strong></p>
+
+<p>Per datasheet §”Undervoltage Lockout (UVLO)”: “The content of the logic registers is preserved until the V18 regulator… falls below the digital power-on reset (POR) threshold (typically 1.0 V). When this happens, all registers are reset to the default values.”</p>
+
+<p><strong>Driving ENABLE LOW only enters low-power mode — the register state is preserved.</strong> The only way to truly reset the chip is a full <strong>VM power cycle</strong>.</p>
+
+<p><strong>Solution:</strong></p>
+
+<ol>
+  <li>Disconnect +24V from the MAX22200’s VM pin completely.</li>
+  <li>Wait 10 seconds for all decoupling caps to discharge V18 below ~1 V.</li>
+  <li>Reconnect +24V, re-flash, re-run the diagnostic.</li>
+</ol>
+
+<p>If the chip still misbehaves after a clean POR, the chip itself may be damaged — try a fresh known-good MAX22200 in the same socket.</p><hr />
 <h3 id="error-communication-error">
   
   
@@ -661,7 +749,38 @@
 <span class="p">}</span>
 
 <span class="n">driver</span><span class="p">.</span><span class="n">SetFaultCallback</span><span class="p">(</span><span class="n">fault_handler</span><span class="p">);</span>
-</pre></td></tr></tbody></table></div></code></pre></div></div><hr />
+</pre></td></tr></tbody></table></div></code></pre></div></div>
+<h3 id="dpm-detection-of-plunger-movement-polarity">
+  
+  
+    <a href="#dpm-detection-of-plunger-movement-polarity" class="anchor-heading" aria-labelledby="dpm-detection-of-plunger-movement-polarity"><svg viewBox="0 0 16 16" aria-hidden="true"><use xlink:href="#svg-link"></use></svg></a> DPM (Detection of Plunger Movement) polarity
+  
+  
+</h3>
+    
+
+<p>Per datasheet §”Detection of Plunger Movement”: “If the drop is <strong>not revealed</strong> a fault indication is output on FAULT pin and a fault bit is asserted in the fault register.”</p>
+
+<div class="table-wrapper"><table>
+  <thead>
+    <tr>
+      <th><code class="language-plaintext highlighter-rouge">FAULT.DPM[ch]</code> value</th>
+      <th>Meaning</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">0</code></td>
+      <td>Current dip detected → plunger MOVED (healthy)</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">1</code></td>
+      <td>Drop NOT revealed → plunger STUCK (fault)</td>
+    </tr>
+  </tbody>
+</table></div>
+
+<p>So a healthy free-moving valve produces <strong>zero DPM fires</strong> across many cycles. To confirm the DPM algorithm is actually working, hold the plunger physically still during a cycle — DPM should then fire (<code class="language-plaintext highlighter-rouge">= 1</code>) for that cycle. See <code class="language-plaintext highlighter-rouge">examples/esp32/main/c21_dpm_tuning_test.cpp</code> for a full tuning workflow with CSV-format current/fault sampling.</p><hr />
 <h2 id="faq">
   
   

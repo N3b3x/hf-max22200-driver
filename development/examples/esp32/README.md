@@ -201,6 +201,9 @@ The test suites use a centralized build system with scripts. Available applicati
 |----------------------|----------------|----------------------|
 | `max22200_comprehensive_test` | Comprehensive MAX22200 driver testing with all features | MAX22200 board |
 | `max22200_solenoid_valve_test` | Solenoid/valve test: all 8 channels, C21 hit/hold, sequential & parallel patterns, full diagnostics | MAX22200 board + valves (optional) |
+| `max22200_diagnostic`         | Fault-isolation tool — dumps every SPI byte, walks the datasheet init flow, round-trips CFG_CH0, then continuous STATUS dump @ 5 Hz for scope probing. Use when chip won't initialize or behaves unexpectedly | MAX22200 board (no coil required) |
+| `c21_cycle_test`              | Single-channel Parker C21 24 V solenoid hit-and-hold cycle test on CH0 with 10 Hz STATUS+FAULT telemetry. Bench-validated baseline for MAX22200 + C21 | MAX22200 board + C21 24 V solenoid wired between OUT0 and +VM |
+| `c21_dpm_tuning_test`         | Cycles a C21 with DPM enabled, polls FAULT @ 1 kHz during HIT window, emits CSV stream + summary stats so DPM ISTART/IPTH/TDEB can be tuned against real plunger movement. Hold the plunger still to validate the no-movement detection | MAX22200 board + C21 24 V solenoid |
 
 ### List Available Applications
 
@@ -358,6 +361,112 @@ Dedicated full driver check on valves. Configures **all 8 channels** with the sa
 #### Configuration
 
 Valve profile is controlled by `C21ValveConfig` in `esp32_max22200_test_config.hpp`: `USE_CDR`, `HIT_TIME_MS`, `HOLD_PERCENT`, `HIT_PERCENT`. Timing constants (e.g. `SEQUENTIAL_HIT_MS`, `PARALLEL_HOLD_MS`) are in `max22200_solenoid_valve_test.cpp`.
+
+---
+
+### MAX22200 Diagnostic
+
+**Application**: `max22200_diagnostic`
+
+End-to-end fault-isolation tool. Walks every comm path the datasheet defines (Figures 7, 10, 11, 12, 13) and dumps the raw register bytes so they can be correlated against scope/DMM measurements at the chip pins. Use this when the chip won't initialize, when nFAULT asserts unexpectedly, or when SPI round-trips don't match expected bytes.
+
+#### Test sections
+
+0. **Pin level snapshot** (BEFORE bus init) — shows the chip's idle state at MCU boot.
+0.5. **Hard ENABLE pulse** — drive ENABLE LOW for 50 ms (low-power start).
+1. **Bus + driver construction** (no chip access yet).
+2. **`driver.Initialize()`** — the datasheet init flow (read STATUS to clear UVM, write ACTIVE=1, verify); pin levels dumped again.
+3. **Three consecutive raw STATUS reads** — confirms the value is stable.
+4. **CFG_CH0 round-trip** — write `0x28500600`, read back, compare. Canonical SPI sanity check.
+5. **FAULT register clear-by-read** — clears OCP/HHF/OLF/DPM bits.
+6. **STATUS read after FAULT clear** — confirms nFAULT releases.
+7. **Two STATUS-write variants** + a second CFG_CH0 round-trip.
+8. **Continuous STATUS+FAULT @ 5 Hz** with periodic ACTIVE=1 re-write.
+
+Always built with `ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING=1`, so every TX/RX byte goes to the console.
+
+#### Build and run
+
+```bash
+./scripts/build_app.sh max22200_diagnostic Debug
+./scripts/flash_app.sh flash_monitor max22200_diagnostic Debug
+```
+
+---
+
+### C21 Single-Channel Cycle Test
+
+**Application**: `c21_cycle_test`
+
+Real-hardware cycle test for a Parker C21 24 V solenoid driven on MAX22200 channel 0 in CDR (current-controlled hit-and-hold) mode. Drives the coil at 102 mA hit / 51 mA hold (per the C21 Hit-and-Hold table) and cycles ON/OFF every 2 s while a 10 Hz telemetry task scrapes STATUS, FAULT, last CMD-echo byte and nFAULT pin.
+
+Bench-validated baseline for first-light bring-up of a new MAX22200 + C21 setup. Implements the recommended "wake the chip, then poll STATUS until ACTIVE=1" pattern — see `docs/troubleshooting.md` for why this is needed.
+
+#### Hardware
+
+- C21 24 V solenoid wired between **OUT0 and +VM** (low-side switching).
+- +VM = 24 V supply to the MAX22200 board.
+
+#### Build and run
+
+```bash
+./scripts/build_app.sh c21_cycle_test Debug
+./scripts/flash_app.sh flash_monitor c21_cycle_test Debug
+```
+
+#### Configuration
+
+Edit the `cfg` namespace at the top of `main/c21_cycle_test.cpp` for a different C21 variant, cycle cadence, or to enable per-channel diagnostics (DPM / OL / HHF). All fault detections are OFF by default for first-light bring-up.
+
+---
+
+### C21 + DPM Tuning Test
+
+**Application**: `c21_dpm_tuning_test`
+
+Cycles a Parker C21 24 V solenoid with DPM (Detection of Plunger Movement) enabled, polls the FAULT register at 1 kHz during the HIT window, and emits one CSV line per sample plus a final summary with DPM hit-rate and first-fire timing statistics.
+
+Use this to:
+
+- Verify DPM correctly detects plunger movement on healthy actuations (DPM=0 every cycle).
+- Validate stuck-plunger detection by holding the plunger still during a cycle (DPM=1 should fire).
+- Tune the global DPM parameters (ISTART / IPTH / TDEB) for your specific valve.
+
+#### DPM polarity (datasheet §"Detection of Plunger Movement")
+
+| `FAULT.DPM[ch]` value | Meaning                                          |
+|-----------------------|--------------------------------------------------|
+| `0`                   | Current dip seen → plunger MOVED (healthy)       |
+| `1`                   | Drop NOT revealed → plunger STUCK (fault flag)   |
+
+#### CSV format
+
+Each sample emits a line like:
+
+```
+CSV,cycle,phase,t_us,fault_dpm_byte,status_byte,dpm_fired,ocp,hhf,olf
+```
+
+Pipe through `grep '^CSV,' > run.csv` and load into your plotter of choice.
+
+#### Build and run
+
+```bash
+./scripts/build_app.sh c21_dpm_tuning_test Debug
+./scripts/flash_app.sh flash_monitor c21_dpm_tuning_test Debug
+```
+
+#### Configuration
+
+Tunable parameters at the top of `main/c21_dpm_tuning_test.cpp`:
+
+```cpp
+constexpr float kDpmStartCurrent_mA = 20.0f;   // ISTART — start monitoring early
+constexpr float kDpmThreshold_mA    = 4.0f;    // IPTH   — most-sensitive non-zero
+constexpr float kDpmDebounce_ms     = 0.05f;   // TDEB   — minimum (1 chopping period)
+```
+
+See the file header for a full tuning workflow.
 
 ---
 

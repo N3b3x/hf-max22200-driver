@@ -3,52 +3,45 @@
  * @brief Real-hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0.
  *
  * @details
- *   Drives a single Parker C21-series 24 V solenoid (235 Ω coil → 102 mA
- *   peak / 51 mA hold per the C21 Hit-and-Hold table) on MAX22200 channel 0
- *   in CDR (current-controlled hit-and-hold) mode and cycles it ON / OFF
- *   periodically while the telemetry task scrapes:
+ *   Drives a single Parker C21-series 24 V solenoid (235 Ω coil →
+ *   102 mA peak / 51 mA hold per the C21 Hit-and-Hold table) on
+ *   MAX22200 channel 0 in CDR (current-controlled hit-and-hold) mode
+ *   and cycles it ON / OFF periodically. A 10 Hz telemetry task
+ *   scrapes:
  *
- *     * STATUS register (ACTIVE flag, channels-on bitmask, masked /
- *       unmasked fault summary)
- *     * FAULT register (OCP, HHF, OLF, DPM per-channel bitmasks)
- *     * Last fault byte from the CMD register (the fault byte the chip
- *       echoes back on every transaction)
- *     * nFAULT pin level (open-drain, asserts LOW on any unmasked fault)
- *
- *   This is the canonical bench check for:
- *     - Driver-level initialisation (the same path that exposed the
- *       MAX22200 GPIO 32+ EspGpio bug earlier)
- *     - CDR hit/hold profile actually pulses the coil at the configured
- *       102 mA hit then drops to 51 mA hold
- *     - DPM (plunger movement detection) fires once per actuation if a
- *       real C21 plunger moves
- *     - nFAULT pin and STATUS byte stay clean during normal operation
- *
- *   Datasheet anchors (cribbed from `WhValveCatalog::kSpecC21_24V` in
- *   the Flux WH valve example):
- *     * Coil resistance ≈ 235 Ω → 102 mA hit / 51 mA hold at 24 V
- *     * Minimum hit time per C21 Hit-and-Hold table: 100 ms
- *     * PWM chopping floor: 1 kHz (FMAIN_DIV4 satisfies this with a
- *       comfortable margin)
+ *     - STATUS register     (ACTIVE flag, channels-on bitmask, fault
+ *                            summary)
+ *     - FAULT register      (per-channel OCP / HHF / OLF / DPM bitmasks)
+ *     - last CMD-echo byte  (fault flags the chip stuffs into MISO on
+ *                            every cmd transfer, datasheet Figure 7)
+ *     - nFAULT pin          (open-drain, asserts LOW on any unmasked
+ *                            fault)
  *
  *   Default cycle profile:
- *     ON  for 2000 ms (hit pulse for 100 ms then hold at 51 mA)
- *     OFF for 2000 ms (channel released, coil de-energised)
+ *     ON  for 2000 ms (102 mA hit pulse for 100 ms then 51 mA hold)
+ *     OFF for 2000 ms (channel released)
  *     telemetry @ 10 Hz throughout
  *     run forever (Ctrl-] to stop)
  *
- *   Override at the top of the file for a different C21 variant.
+ *   Edit the `cfg` namespace below for a different C21 variant or
+ *   cycle cadence.
  *
- * @par Wiring (ESP32-S3 reference / Flux V1 pinout)
- *   See `main/esp32_max22200_test_config.hpp`. SPI: MISO=GPIO35,
- *   MOSI=GPIO37, SCLK=GPIO36, CS=GPIO38, ENABLE=GPIO2, CMD=GPIO39,
- *   FAULT_N=GPIO42, TRIGA=GPIO40, TRIGB=GPIO41. Coil between OUT0 and
- *   +VM (low-side switching).
+ * @par Wiring (Flux V1 / generic ESP32-S3 dev rig)
+ *   See `main/esp32_max22200_test_config.hpp` for the full pinout.
+ *   SPI: MISO=GPIO35, MOSI=GPIO37, SCLK=GPIO36, CS=GPIO38;
+ *   Control: ENABLE=GPIO2, CMD=GPIO39, FAULT_N=GPIO42, TRIGA=GPIO40,
+ *            TRIGB=GPIO41. Coil between OUT0 and +VM (low-side
+ *            switching).
  *
- * @par Build
+ * @par Build / flash
  *   From examples/esp32:
  *       ./scripts/build_app.sh c21_cycle_test Debug
  *       ./scripts/flash_app.sh flash_monitor c21_cycle_test Debug
+ *
+ * @par DPM polarity reminder (datasheet §"Detection of Plunger Movement")
+ *   FAULT.DPM bit = 1  →  drop NOT revealed → plunger STUCK (fault)
+ *   FAULT.DPM bit = 0  →  current dip seen  → plunger MOVING (healthy)
+ *   See `c21_dpm_tuning_test` for live tuning.
  *
  * @author HardFOC
  * @date   2026
@@ -60,8 +53,16 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-
 #include "esp_log.h"
+
+// Bus-level logging knobs (override at the build system if you need
+// raw SPI hex on the console for SPI-protocol debugging).
+#ifndef ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING
+#define ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING 0
+#endif
+#ifndef ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING
+#define ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING  1
+#endif
 
 #include "esp32_max22200_bus.hpp"
 #include "esp32_max22200_test_config.hpp"
@@ -80,28 +81,28 @@ static const char* TAG = "C21Cycle";
 
 namespace cfg {
 
-// ─── Channel under test ────────────────────────────────────────────────
+// Channel under test
 constexpr uint8_t kChannel = 0;                  ///< OUT0 / SOL_CH0
 
-// ─── Datasheet specs (Parker C21 24 V) ─────────────────────────────────
+// Datasheet specs — Parker C21 24 V coil
 constexpr uint16_t kHitCurrent_mA  = 102;        ///< 24 V / 235 Ω ≈ 102 mA
 constexpr uint16_t kHoldCurrent_mA =  51;        ///< 50 % of hit per C21 table
 constexpr float    kHitTime_ms     = 100.0f;     ///< C21 minimum hit pulse
 constexpr ChopFreq kChopFreq       = ChopFreq::FMAIN_DIV4;  ///< ≥ 1 kHz floor
 
-// ─── Cycle profile ─────────────────────────────────────────────────────
-constexpr uint32_t kOnDuration_ms  = 2000;       ///< 2 s energised
-constexpr uint32_t kOffDuration_ms = 2000;       ///< 2 s released
-constexpr uint32_t kCycleCount     = 0;          ///< 0 = run forever
-
-// ─── Telemetry cadence ─────────────────────────────────────────────────
+// Cycle profile
+constexpr uint32_t kOnDuration_ms      = 2000;
+constexpr uint32_t kOffDuration_ms     = 2000;
+constexpr uint32_t kCycleCount         = 0;      ///< 0 = run forever
 constexpr uint32_t kTelemetryPeriod_ms = 100;    ///< 10 Hz
 
-// ─── Diagnostic feature gates ─────────────────────────────────────────
+// Per-channel diagnostic feature gates. All-OFF is the safest first-light
+// configuration; see `c21_dpm_tuning_test` for DPM-specific tuning, and
+// the proven-working examples for OL / HHF setup.
 constexpr bool kEnableSlewRateControl     = true;
-constexpr bool kEnableOpenLoadDetection   = true;
-constexpr bool kEnablePlungerMovementDet  = true;
-constexpr bool kEnableHitCurrentCheck     = true;
+constexpr bool kEnableOpenLoadDetection   = false;
+constexpr bool kEnablePlungerMovementDet  = false;
+constexpr bool kEnableHitCurrentCheck     = false;
 
 }  // namespace cfg
 
@@ -122,10 +123,10 @@ static void telemetry_task(void* /*arg*/) noexcept {
     ESP_LOGI(TAG, "[telemetry] starting (period=%u ms)",
              static_cast<unsigned>(cfg::kTelemetryPeriod_ms));
 
-    uint32_t tick_count = 0;
-    bool     prev_dpm   = false;
-    bool     prev_active = false;
-    uint8_t  prev_chmask = 0xFF;  // force first print
+    uint32_t tick_count   = 0;
+    bool     prev_dpm     = false;
+    bool     prev_active  = false;
+    uint8_t  prev_chmask  = 0xFF;  // force first transition print
 
     while (g_telemetry_running && g_driver) {
         StatusConfig status{};
@@ -136,8 +137,6 @@ static void telemetry_task(void* /*arg*/) noexcept {
         bool fault_active = false;
         (void)g_driver->GetFaultPinState(fault_active);
 
-        // Always print one line per tick at INFO so the bench operator
-        // sees the chip is alive.
         if (s_rc == DriverStatus::OK && f_rc == DriverStatus::OK) {
             ESP_LOGI(TAG,
                      "[t=%4u s+%03u] active=%d chmask=0x%02X  "
@@ -157,12 +156,14 @@ static void telemetry_task(void* /*arg*/) noexcept {
                      DriverStatusToStr(s_rc), DriverStatusToStr(f_rc));
         }
 
-        // Edge-detected highlights so the user notices significant events
-        // even in the busy 10 Hz log stream.
+        // Edge-detected highlights so significant events stand out in
+        // the busy 10 Hz log stream.
         const bool dpm_now = (faults.plunger_movement_fault_channel_mask
                               & (1U << cfg::kChannel)) != 0;
         if (dpm_now && !prev_dpm) {
-            ESP_LOGW(TAG, "    🔔 DPM fired on CH%u — plunger movement detected",
+            // Per datasheet, DPM=1 = fault = chip did NOT see plunger
+            // movement (stuck valve). DPM=0 is the healthy state.
+            ESP_LOGW(TAG, "    🔔 FAULT.DPM[%u]=1 — chip did NOT detect plunger movement (stuck?)",
                      cfg::kChannel);
         }
         prev_dpm = dpm_now;
@@ -236,61 +237,70 @@ static bool create_bus_and_driver() noexcept {
     return true;
 }
 
+/**
+ * @brief Bring the MAX22200 from POR to a clean ACTIVE=1, UVM=0 state.
+ *
+ * The driver's `Initialize()` returns OK as soon as its STATUS write
+ * has been transmitted, but the chip's `tWU` (wake-up time) of 2.5 ms
+ * means ACTIVE doesn't physically latch immediately. On rigs where the
+ * V18 LDO bypass cap gives a slow rail ramp, ACTIVE can take dozens of
+ * milliseconds to settle. We poll STATUS, re-issuing a bare ACTIVE=1
+ * write each iteration, until ACTIVE reads back as 1.
+ *
+ * Then drain any POR-latched fault bits in FAULT (read-to-clear per
+ * datasheet) so nFAULT releases.
+ */
 static bool initialize_driver() noexcept {
-    ESP_LOGI(TAG, "Initializing MAX22200 driver...");
+    ESP_LOGI(TAG, "Initializing MAX22200 driver…");
 
-    // The MAX22200 latches UVM=1 at POR. Per datasheet that bit is
-    // "cleared by read", but the chip will silently REJECT any
-    // ACTIVE=1 write while UVM is asserted. The driver's own
-    // Initialize() does one read-clear and then writes ACTIVE=1, but
-    // if UVM re-asserts between those two steps (slow VM ramp,
-    // bench-supply noise, etc.) the chip just stays in low-power mode
-    // and Initialize() still returns OK. The visible symptom is
-    // STATUS.active=0 and the coil is silent even though channels_on_mask
-    // toggles correctly over SPI.
-    //
-    // Robust startup: try Init → ReadStatus → if !active, Deinit and
-    // retry up to N times with extra read-clears between each attempt.
-    constexpr int   kInitRetries = 6;
-    constexpr int   kReadClears  = 4;
-    constexpr uint32_t kRetryDelayMs = 50;
-    for (int attempt = 0; attempt < kInitRetries; ++attempt) {
-        DriverStatus s = g_driver->Initialize();
-        if (s != DriverStatus::OK) {
-            ESP_LOGE(TAG, "Driver Initialize failed (attempt %d/%d): %s",
-                     attempt + 1, kInitRetries, DriverStatusToStr(s));
-            (void)g_driver->Deinitialize();
-            vTaskDelay(pdMS_TO_TICKS(kRetryDelayMs));
-            continue;
-        }
+    constexpr uint32_t kPostInitWaitMs = 50;
+    constexpr uint32_t kPollIntervalMs = 25;
+    constexpr uint32_t kPollTimeoutMs  = 2000;
 
-        // Drain POR-latched fault bits with a few read-clears.
-        StatusConfig st{};
-        for (int i = 0; i < kReadClears; ++i) {
-            (void)g_driver->ReadStatus(st);
-            vTaskDelay(pdMS_TO_TICKS(2));
-        }
+    if (auto s = g_driver->Initialize(); s != DriverStatus::OK) {
+        ESP_LOGE(TAG, "Driver Initialize failed: %s", DriverStatusToStr(s));
+        return false;
+    }
+    ESP_LOGD(TAG, "  Initialize() returned OK; polling for ACTIVE=1");
 
+    vTaskDelay(pdMS_TO_TICKS(kPostInitWaitMs));
+
+    StatusConfig st{};
+    uint32_t waited_ms = 0;
+    while (waited_ms < kPollTimeoutMs) {
+        (void)g_driver->WriteRegister32(RegBank::STATUS, 0x00000001U);
+        (void)g_driver->ReadStatus(st);
         if (st.active && !st.undervoltage) {
-            ESP_LOGI(TAG, "✅ Driver initialized (attempt %d, ACTIVE=1, UVM=0)",
-                     attempt + 1);
-            return true;
+            ESP_LOGI(TAG, "✅ Chip awake after %u ms — ACTIVE=1, UVM=0",
+                     static_cast<unsigned>(kPostInitWaitMs + waited_ms));
+            break;
         }
-
-        ESP_LOGW(TAG,
-                 "Init attempt %d/%d landed with ACTIVE=%d UVM=%d — "
-                 "deinit + retry to wake the output stage",
-                 attempt + 1, kInitRetries,
-                 st.active, st.undervoltage);
-        (void)g_driver->Deinitialize();
-        vTaskDelay(pdMS_TO_TICKS(kRetryDelayMs));
+        vTaskDelay(pdMS_TO_TICKS(kPollIntervalMs));
+        waited_ms += kPollIntervalMs;
     }
 
-    ESP_LOGE(TAG,
-             "Failed to bring MAX22200 to ACTIVE=1 after %d attempts. "
-             "Verify +VM rail at the chip pin and check for sticky UVM.",
-             kInitRetries);
-    return false;
+    if (!st.active) {
+        ESP_LOGE(TAG,
+                 "Chip never reached ACTIVE=1 after %u ms (last STATUS: "
+                 "ACTIVE=%d UVM=%d). See troubleshooting.md.",
+                 static_cast<unsigned>(kPostInitWaitMs + waited_ms),
+                 st.active, st.undervoltage);
+        return false;
+    }
+
+    FaultStatus drain{};
+    (void)g_driver->ReadFaultRegister(drain);
+    ESP_LOGI(TAG, "  Drained POR fault bits: OCP=0x%02X OLF=0x%02X HHF=0x%02X DPM=0x%02X",
+             drain.overcurrent_channel_mask,
+             drain.open_load_fault_channel_mask,
+             drain.hit_not_reached_channel_mask,
+             drain.plunger_movement_fault_channel_mask);
+
+    bool fault_pin = false;
+    (void)g_driver->GetFaultPinState(fault_pin);
+    ESP_LOGI(TAG, "  nFAULT pin: %s", fault_pin ? "still ASSERTED" : "released ✓");
+
+    return true;
 }
 
 static bool configure_c21_channel() noexcept {
@@ -323,26 +333,32 @@ static bool configure_c21_channel() noexcept {
 // CYCLE DRIVER
 //==============================================================================
 
+/// Toggle channels via `SetChannelsOn` (8-bit MSB-only write to
+/// STATUS[31:24], the datasheet's "fast ONCH update" path). Touches
+/// only the ONCH byte and leaves the rest of STATUS untouched.
+static void set_channel_mask(uint8_t channel_mask) noexcept {
+    if (auto s = g_driver->SetChannelsOn(channel_mask); s != DriverStatus::OK) {
+        ESP_LOGE(TAG, "SetChannelsOn(0x%02X) failed: %s",
+                 channel_mask, DriverStatusToStr(s));
+    }
+}
+
 static void run_cycle(uint32_t cycle_index) noexcept {
+    const uint8_t ch_bit = static_cast<uint8_t>(1U << cfg::kChannel);
+
     ESP_LOGI(TAG, "");
     ESP_LOGI(TAG, "═══ Cycle %u: ENERGISE  CH%u  (hit %u mA → hold %u mA, %u ms) ═══",
              static_cast<unsigned>(cycle_index + 1U),
              cfg::kChannel, cfg::kHitCurrent_mA, cfg::kHoldCurrent_mA,
              static_cast<unsigned>(cfg::kOnDuration_ms));
-    if (auto s = g_driver->EnableChannel(cfg::kChannel); s != DriverStatus::OK) {
-        ESP_LOGE(TAG, "EnableChannel(%u) failed: %s",
-                 cfg::kChannel, DriverStatusToStr(s));
-    }
+    set_channel_mask(ch_bit);
     vTaskDelay(pdMS_TO_TICKS(cfg::kOnDuration_ms));
 
     ESP_LOGI(TAG, "═══ Cycle %u: RELEASE   CH%u  (%u ms) ═══════════════════════",
              static_cast<unsigned>(cycle_index + 1U),
              cfg::kChannel,
              static_cast<unsigned>(cfg::kOffDuration_ms));
-    if (auto s = g_driver->DisableChannel(cfg::kChannel); s != DriverStatus::OK) {
-        ESP_LOGE(TAG, "DisableChannel(%u) failed: %s",
-                 cfg::kChannel, DriverStatusToStr(s));
-    }
+    set_channel_mask(0);
     vTaskDelay(pdMS_TO_TICKS(cfg::kOffDuration_ms));
 }
 
@@ -376,8 +392,6 @@ extern "C" void app_main() {
     if (r != pdPASS) {
         ESP_LOGE(TAG, "Failed to create telemetry task");
     }
-
-    // Give the telemetry one tick before the first cycle.
     vTaskDelay(pdMS_TO_TICKS(cfg::kTelemetryPeriod_ms));
 
     uint32_t cycle = 0;

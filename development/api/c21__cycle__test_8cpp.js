@@ -1,5 +1,7 @@
 var c21__cycle__test_8cpp =
 [
+    [ "ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING", "c21__cycle__test_8cpp.html#a26ef05b7f869884bdc82189a98463b34", null ],
+    [ "ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING", "c21__cycle__test_8cpp.html#ad06f26453e15145252fd8cc811cd27b4", null ],
     [ "app_main", "c21__cycle__test_8cpp.html#abce06be17fc37d675118a678a8100a36", null ],
     [ "kChannel", "c21__cycle__test_8cpp.html#ab0598194a088576f03df5e18c90cbb8f", null ],
     [ "kChopFreq", "c21__cycle__test_8cpp.html#af1bc8a23b4ac4319fff4b3fe43d117fd", null ],
