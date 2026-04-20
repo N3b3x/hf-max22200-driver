@@ -69,6 +69,19 @@ apps:
     featured: false
     documentation: "README.md"
 
+  # --------------------------------------------------------------------------
+  # C21 + DPM (plunger movement detection) tuning + CSV logging
+  # --------------------------------------------------------------------------
+  c21_dpm_tuning_test:
+    description: "Cycle C21 with DPM enabled, poll FAULT @ 1 kHz during HIT window, emit CSV stream + summary stats so DPM ISTART/IPTH/TDEB can be tuned against real plunger movement"
+    source_file: "c21_dpm_tuning_test.cpp"
+    category: "test"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug", "Release"]
+    ci_enabled: false
+    featured: false
+    documentation: "README.md"
+
 # ============================================================================
 # BUILD CONFIGURATION (ESP-IDF Standard Build Types)
 # ============================================================================
