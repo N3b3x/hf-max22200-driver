@@ -44,6 +44,19 @@ apps:
     documentation: "README.md"
 
   # --------------------------------------------------------------------------
+  # End-to-end MAX22200 chip-and-comm health diagnostic
+  # --------------------------------------------------------------------------
+  max22200_diagnostic:
+    description: "Fault-isolation diagnostic: round-trips CFG_CH0, dumps STATUS+FAULT raw, tries both ACTIVE=1 write paths, then 5 Hz continuous STATUS dump for scope probing"
+    source_file: "max22200_diagnostic.cpp"
+    category: "test"
+    idf_versions: ["release/v5.5"]
+    build_types: ["Debug"]
+    ci_enabled: false
+    featured: false
+    documentation: "README.md"
+
+  # --------------------------------------------------------------------------
   # Single-channel C21 24V solenoid hit-and-hold cycle test (CH0 / OUT0)
   # --------------------------------------------------------------------------
   c21_cycle_test:
