@@ -44,18 +44,14 @@
  *   distribution of "time-to-fire" so you can see whether your
  *   ISTART/IPTH/TDEB tune is catching real plunger movements.
  *
- * @par DPM polarity (READ THIS BEFORE INTERPRETING RESULTS)
- *   Per the datasheet: "If the drop is NOT revealed a fault indication
- *   is output on FAULT pin and a fault bit is asserted in the fault
- *   register". So:
+ * @par DPM polarity (datasheet §"Detection of Plunger Movement")
  *
- *     DPM bit = 0  →  plunger MOVED  (healthy valve)
- *     DPM bit = 1  →  plunger DID NOT MOVE (stuck / no current dip seen)
+ *     FAULT.DPM[ch] = 0  →  current dip seen → plunger MOVED (healthy)
+ *     FAULT.DPM[ch] = 1  →  drop NOT revealed → plunger STUCK (fault)
  *
- *   A free-moving C21 should produce **zero DPM fires** across many
- *   cycles. To validate that the DPM logic is actually working, you
- *   need to hold the plunger still by hand — then DPM should fire
- *   on every cycle.
+ *   A free-moving valve should produce **zero DPM fires** across many
+ *   cycles. To validate the DPM logic, hold the plunger still by hand
+ *   during a cycle — then DPM should fire (DPM=1) for that cycle.
  *
  * @par Tuning workflow
  *   1. Run with the C21 plunger free. Expect 0 DPM fires per cycle —
@@ -223,8 +219,9 @@ static bool wake_chip() noexcept {
         return false;
     }
 
-    // Wake-up pattern (same as c21_cycle_test): bang bare ACTIVE writes
-    // until STATUS reads back ACTIVE=1.
+    // Wake-up: re-issue bare ACTIVE=1 writes until STATUS reads back
+    // ACTIVE=1, accommodating the chip's tWU=2.5 ms wake-up time and
+    // any V18 LDO settling delay.
     vTaskDelay(pdMS_TO_TICKS(50));
     StatusConfig st{};
     for (int i = 0; i < 100; ++i) {

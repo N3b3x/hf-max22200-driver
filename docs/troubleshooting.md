@@ -17,7 +17,7 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 
 **Symptoms:**
 
-- `Initialize()` returns `INITIALIZATION_ERROR`
+- `Initialize()` returns `INITIALIZATION_ERROR` or `COMMUNICATION_ERROR`
 - Driver not responding
 
 **Causes:**
@@ -30,8 +30,72 @@ This guide helps you diagnose and resolve common issues when using the MAX22200 
 
 1. **Verify SPI Interface**: Ensure SPI interface is initialized before creating driver
 2. **Check Connections**: Verify all SPI connections (SCLK, SDI, SDO, CS)
-3. **Verify Power**: Check power supply voltage (2.7V - 5.5V)
+3. **Verify Power**: Check power supply voltage (VM = 5.5V – 36V; VL via internal LDO)
 4. **Check CS Line**: Verify chip select is properly controlled
+5. **Run the diagnostic**: Flash `examples/esp32/main/max22200_diagnostic.cpp` — it dumps every SPI byte and walks through the datasheet init flow with annotated output. Compare against the "expected healthy output" listed in the file header.
+
+---
+
+### Error: ACTIVE bit reads back as 0 even though `Initialize()` returned OK
+
+**Symptoms:**
+
+- `Initialize()` returns OK
+- `IsInitialized()` reports `true`
+- But `ReadStatus()` shows `status.active == false` and the chip won't drive any channel
+- `nFAULT` may still be asserted (LED on)
+
+**Cause:**
+
+The driver's `Initialize()` returns OK as soon as its STATUS write transaction completes, but the chip's specified `tWU` (wake-up time) is **2.5 ms** from the ACTIVE=1 write to "OUT_ active". On rigs with a slow VL LDO ramp (slow / under-spec V18 bypass cap), ACTIVE may take dozens of ms to physically latch. Until then, channel writes are ignored.
+
+**Solution:**
+
+After `Initialize()`, poll STATUS in a loop, re-issuing a bare ACTIVE=1 write each iteration, until ACTIVE actually reads back as 1. The proven pattern from `c21_cycle_test`:
+
+```cpp
+driver->Initialize();                           // datasheet init flow
+vTaskDelay(pdMS_TO_TICKS(50));                  // give VL a head-start
+StatusConfig st{};
+for (uint32_t waited = 0; waited < 2000; waited += 25) {
+    driver->WriteRegister32(RegBank::STATUS, 0x00000001U);  // bare ACTIVE
+    driver->ReadStatus(st);
+    if (st.active && !st.undervoltage) break;
+    vTaskDelay(pdMS_TO_TICKS(25));
+}
+```
+
+If this still doesn't bring ACTIVE up, check:
+
+1. **VL pin bypass capacitor** — the chip's V18 LDO requires a **2.2 µF ceramic** between the V18 pin and GND. Missing or under-spec cap will keep V18 from settling.
+2. **VM rail under SPI load** — scope right at the chip's VM pin. Brief brown-outs can collapse V18 and re-set UVM.
+3. **Series elements on +VM** — fuse / sense resistor / reverse-polarity diode that drops VM at the chip pin under transient current draw.
+
+---
+
+### Chip stuck in a corrupted state across MCU reboots
+
+**Symptoms:**
+
+- STATUS register reads bizarre values (`0x0180C000`, CM76 = 0b11 = RESERVED, ONCH already set at boot, etc.)
+- STATUS reads return *different values on consecutive non-write reads*
+- `DPM` fault asserts even though no channel is being driven
+- Write-data SDO bytes 2-3 are non-zero (per datasheet Figure 10 they MUST be 0x00)
+- Toggling ENABLE LOW for 50 ms does NOT clear the bad state
+
+**Cause:**
+
+Per datasheet §"Undervoltage Lockout (UVLO)": "The content of the logic registers is preserved until the V18 regulator… falls below the digital power-on reset (POR) threshold (typically 1.0 V). When this happens, all registers are reset to the default values."
+
+**Driving ENABLE LOW only enters low-power mode — the register state is preserved.** The only way to truly reset the chip is a full **VM power cycle**.
+
+**Solution:**
+
+1. Disconnect +24V from the MAX22200's VM pin completely.
+2. Wait 10 seconds for all decoupling caps to discharge V18 below ~1 V.
+3. Reconnect +24V, re-flash, re-run the diagnostic.
+
+If the chip still misbehaves after a clean POR, the chip itself may be damaged — try a fresh known-good MAX22200 in the same socket.
 
 ---
 
@@ -249,6 +313,17 @@ void fault_handler(uint8_t channel, max22200::FaultType fault_type, void *user_d
 
 driver.SetFaultCallback(fault_handler);
 ```
+
+### DPM (Detection of Plunger Movement) polarity
+
+Per datasheet §"Detection of Plunger Movement": "If the drop is **not revealed** a fault indication is output on FAULT pin and a fault bit is asserted in the fault register."
+
+| `FAULT.DPM[ch]` value | Meaning                                          |
+|-----------------------|--------------------------------------------------|
+| `0`                   | Current dip detected → plunger MOVED (healthy)   |
+| `1`                   | Drop NOT revealed → plunger STUCK (fault)        |
+
+So a healthy free-moving valve produces **zero DPM fires** across many cycles. To confirm the DPM algorithm is actually working, hold the plunger physically still during a cycle — DPM should then fire (`= 1`) for that cycle. See `examples/esp32/main/c21_dpm_tuning_test.cpp` for a full tuning workflow with CSV-format current/fault sampling.
 
 ---
 
