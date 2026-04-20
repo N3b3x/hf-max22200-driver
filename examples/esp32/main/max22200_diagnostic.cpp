@@ -51,32 +51,56 @@
  *
  * @par Bench findings on the development board (2026-04)
  *
- *   With this tool the chip on the dev rig was found to be in a state
- *   where:
- *     - SPI is healthy (every cmd byte echoed correctly)
- *     - STATUS reads work (returns 32-bit value MSB-first)
- *     - STATUS writes work *only* for the ACTIVE bit; M_COMF and ONCH
- *       bits are silently dropped
- *     - **CFG_CHx register writes are silently dropped entirely** —
- *       round-trip of any pattern (0x28500600, 0x10101010, …) reads
- *       back as 0x00000000 every time
- *     - Consequence: all 8 channels stay at "0 mA hit / 0 mA hold",
- *       so even if ONCH could be set the chip would refuse to drive
+ *   With this tool the chip on the dev rig was found to be in a
+ *   chip-side-corrupt state where:
  *
- *   This is a hardware-level condition, not a firmware bug. Possible
- *   causes (in order of likelihood):
- *     1. A write-protect signal on the chip we're not handling. Some
- *        MAX22200 variants have an additional pin that gates CFG_CHx
- *        writes; check the schematic / chip variant.
- *     2. Daisy-chain mode auto-selected at POR — would require a
- *        multi-chip frame protocol the standalone driver doesn't speak.
- *        Check the SDIN/SDO pin state at chip reset.
- *     3. Damaged or counterfeit chip — try with a fresh known-good
- *        MAX22200 in the same socket.
+ *     - SPI is healthy (every cmd byte echoed correctly, byte order
+ *       confirmed against datasheet Figures 10-13)
+ *     - STATUS reads return *different values on consecutive reads*
+ *       (0x01806000 → 0x0180C000 → 0x0000C000) without any writes in
+ *       between. The chip's state machine is unstable.
+ *     - DPM fault (plunger-movement-detected) consistently asserts
+ *       even though ACTIVE=0 and no channel is actively driving — DPM
+ *       can only physically assert during channel drive.
+ *     - CM76 (channel-pair-mode bits 15:14 of STATUS) bounces between
+ *       0b00 / 0b01 / 0b10 / **0b11 = RESERVED** which the datasheet
+ *       explicitly says is forbidden. The chip is being commanded into
+ *       a forbidden state by something on its substrate.
+ *     - During every 32-bit write the SDO bytes 2 and 3 are non-zero
+ *       (e.g. 0x60 0x00, 0xC0 0x03, 0x30 0x06). Per Figure 10 these
+ *       bytes MUST be 0x00. Strongly suggests the chip is not in a
+ *       clean standalone-mode state.
+ *     - CFG_CHx round-trip writes never land — write any pattern,
+ *       read back zero (or unrelated value).
+ *     - ONCH writes are silently dropped via every path tried (8-bit
+ *       MSB-only, 32-bit STATUS+ACTIVE, 32-bit STATUS+ACTIVE+ONCH-all).
+ *     - ENABLE LOW for 50 ms does NOT reset the register state. Per
+ *       datasheet ENABLE LOW only enters low-power mode; register
+ *       contents are preserved.
  *
- *   Once the hardware blocker is resolved, the c21_cycle_test (which
- *   uses the same wake-up pattern this diagnostic discovered) should
- *   immediately produce real ENERGISE/RELEASE clicks on the C21 coil.
+ *   Diagnosis: this chip is in a corrupted internal state that only
+ *   a full VM power-cycle can clear. Possible causes (most likely
+ *   first):
+ *
+ *     1. **Chip needs a hard VM power-cycle.** Disconnect +24V from
+ *        the MAX22200's VM pin completely, wait 10 s for all
+ *        capacitors to discharge, reconnect. THEN re-flash and re-run
+ *        the diagnostic from a known-clean POR.
+ *
+ *     2. **The chip has been damaged** by a previous over-current /
+ *        over-temperature event on one of the output stages. Some
+ *        MAX22200 datasheet failure modes corrupt the channel-pair
+ *        config registers without bricking the SPI. Try with a fresh
+ *        known-good MAX22200 in the same socket.
+ *
+ *     3. **A pin we're not driving is floating** and the chip is
+ *        reading garbage from it. Specifically check that the
+ *        unused PGND/AGND/EP pins are well-grounded and that there's
+ *        no static accumulation on TRIGA / TRIGB.
+ *
+ *   Once a clean POR is achieved, the c21_cycle_test (which uses the
+ *   wake-up pattern this diagnostic discovered) should produce real
+ *   ENERGISE/RELEASE clicks on the C21 coil.
  *
  * @author HardFOC
  * @date   2026
@@ -132,6 +156,16 @@ static void log_status(const char* label, uint32_t raw) noexcept {
     ESP_LOGI(TAG, "    channels_on(b3)=0x%02X", b3);
 }
 
+/// Force CMD pin HIGH. The driver's writeCommandRegister leaves CMD LOW
+/// after the data phase, but per the datasheet CMD HIGH is the idle
+/// state. Leaving it LOW between transactions appears to cause the chip
+/// to mis-interpret subsequent CS-LOW pulses → COMER. This helper
+/// restores CMD to HIGH between our manual register accesses so we can
+/// test whether that's the actual bug.
+static void cmd_high() noexcept {
+    gpio_set_level(static_cast<gpio_num_t>(MAX22200_TestConfig::ControlPins::CMD), 1);
+}
+
 /// Pretty-print the FAULT register value.
 /// Per max22200_registers.hpp the byte layout is (MSB→LSB):
 ///   bits 31:24 = OCP   bits 23:16 = HHF
@@ -157,6 +191,61 @@ extern "C" void app_main() {
     ESP_LOGI(TAG, "║   Reads every register the datasheet exposes; round-trips CFG_CH0    ║");
     ESP_LOGI(TAG, "║   to verify the SPI byte order; tries both ACTIVE=1 write paths.     ║");
     ESP_LOGI(TAG, "╚══════════════════════════════════════════════════════════════════════╝");
+
+    // ───────────────────────────────────────────────────────────────────
+    // Step 0: dump GPIO levels BEFORE we touch anything (sanity check)
+    // ───────────────────────────────────────────────────────────────────
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 0: pin level snapshot BEFORE bus init ───────────────────────");
+    {
+        using ControlPins = MAX22200_TestConfig::ControlPins;
+        using SPIPins     = MAX22200_TestConfig::SPIPins;
+        ESP_LOGI(TAG,
+                 "  pin levels: ENABLE(GPIO%d)=%d  CMD(GPIO%d)=%d  "
+                 "TRIGA(GPIO%d)=%d  TRIGB(GPIO%d)=%d  FAULT(GPIO%d)=%d  "
+                 "CS(GPIO%d)=%d  MISO(GPIO%d)=%d",
+                 ControlPins::ENABLE, gpio_get_level(static_cast<gpio_num_t>(ControlPins::ENABLE)),
+                 ControlPins::CMD,    gpio_get_level(static_cast<gpio_num_t>(ControlPins::CMD)),
+                 ControlPins::TRIGA,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::TRIGA)),
+                 ControlPins::TRIGB,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::TRIGB)),
+                 ControlPins::FAULT,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::FAULT)),
+                 SPIPins::CS,         gpio_get_level(static_cast<gpio_num_t>(SPIPins::CS)),
+                 SPIPins::MISO,       gpio_get_level(static_cast<gpio_num_t>(SPIPins::MISO)));
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // Step 0.5: HARD CHIP RESET via ENABLE pin
+    //
+    //   The MAX22200 retains its STATUS register state across MCU reboots
+    //   if VM stays powered. After repeated test runs the chip can be left
+    //   in a forbidden state (e.g. CM76=0b11 = RESERVED). The ONLY way
+    //   to clear that is a power-down via the ENABLE pin. Per datasheet,
+    //   t_OFF (chip stays in low-power) must be at least a few ms; we
+    //   give it 50 ms to be safe.
+    //
+    //   Drive ENABLE LOW *before* the driver's bus init so the chip is
+    //   fully powered down, then return ENABLE control to the driver.
+    // ───────────────────────────────────────────────────────────────────
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 0.5: HARD CHIP RESET (force ENABLE LOW for 50 ms) ────────────");
+    {
+        using ControlPins = MAX22200_TestConfig::ControlPins;
+        gpio_config_t cfg = {
+            .pin_bit_mask = (1ULL << ControlPins::ENABLE),
+            .mode         = GPIO_MODE_OUTPUT,
+            .pull_up_en   = GPIO_PULLUP_DISABLE,
+            .pull_down_en = GPIO_PULLDOWN_DISABLE,
+            .intr_type    = GPIO_INTR_DISABLE
+        };
+        gpio_config(&cfg);
+        gpio_set_level(static_cast<gpio_num_t>(ControlPins::ENABLE), 0);
+        ESP_LOGI(TAG, "  ENABLE pin (GPIO%d) forced LOW; sleeping 50 ms…",
+                 ControlPins::ENABLE);
+        vTaskDelay(pdMS_TO_TICKS(50));
+        ESP_LOGI(TAG, "  Chip should now be in low-power / state cleared. "
+                      "level=%d",
+                 gpio_get_level(static_cast<gpio_num_t>(ControlPins::ENABLE)));
+    }
 
     // ───────────────────────────────────────────────────────────────────
     // Step 1: bus + driver construction (does NOT init the chip yet)
@@ -196,17 +285,58 @@ extern "C" void app_main() {
         return;
     }
 
+    // GPIO snapshot AFTER Initialize() — confirms ENABLE is now HIGH and
+    // CMD has returned to LOW (between transactions, CMD should be LOW
+    // because writeCommandRegister() drives it LOW after each cmd phase).
+    {
+        using ControlPins = MAX22200_TestConfig::ControlPins;
+        using SPIPins     = MAX22200_TestConfig::SPIPins;
+        ESP_LOGI(TAG,
+                 "  pin levels POST-init: ENABLE(GPIO%d)=%d  CMD(GPIO%d)=%d  "
+                 "TRIGA(GPIO%d)=%d  TRIGB(GPIO%d)=%d  FAULT(GPIO%d)=%d  "
+                 "CS(GPIO%d)=%d  MISO(GPIO%d)=%d",
+                 ControlPins::ENABLE, gpio_get_level(static_cast<gpio_num_t>(ControlPins::ENABLE)),
+                 ControlPins::CMD,    gpio_get_level(static_cast<gpio_num_t>(ControlPins::CMD)),
+                 ControlPins::TRIGA,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::TRIGA)),
+                 ControlPins::TRIGB,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::TRIGB)),
+                 ControlPins::FAULT,  gpio_get_level(static_cast<gpio_num_t>(ControlPins::FAULT)),
+                 SPIPins::CS,         gpio_get_level(static_cast<gpio_num_t>(SPIPins::CS)),
+                 SPIPins::MISO,       gpio_get_level(static_cast<gpio_num_t>(SPIPins::MISO)));
+    }
+
     // ───────────────────────────────────────────────────────────────────
-    // Step 3: raw STATUS dump
+    // Step 3: raw STATUS dump — with CMD-HIGH idle restored between reads
+    //
+    //   The driver's writeCommandRegister leaves CMD LOW after the data
+    //   phase, but per datasheet "CMD HIGH = SPI mode" is the idle
+    //   state. We're testing the hypothesis that leaving CMD LOW
+    //   between transactions causes the chip to mis-interpret subsequent
+    //   CS-LOW pulses as malformed → COMER. Restore CMD to HIGH after
+    //   every access and see if STATUS reads stabilize.
     // ───────────────────────────────────────────────────────────────────
     ESP_LOGI(TAG, "");
-    ESP_LOGI(TAG, "── Step 3: raw STATUS register read ─────────────────────────────────");
+    ESP_LOGI(TAG, "── Step 3: TWO consecutive raw STATUS reads, with CMD restored to HIGH between ─");
+    cmd_high();
     {
         uint32_t raw = 0;
         if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
-            log_status("[post-init]", raw);
+            log_status("[read #1]", raw);
         } else {
             ESP_LOGE(TAG, "  ReadRegister32(STATUS) failed");
+        }
+    }
+    cmd_high();
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[read #2 — should match #1 if no chip bug]", raw);
+        }
+    }
+    cmd_high();
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[read #3]", raw);
         }
     }
 
@@ -221,6 +351,7 @@ extern "C" void app_main() {
     ESP_LOGI(TAG, "── Step 4: CFG_CH0 round-trip ───────────────────────────────────────");
     constexpr uint32_t kCfgCh0_TestPattern = 0x28500600;  // example from
                                                           // spi_protocol_analysis.md
+    cmd_high();
     if (auto rc = driver->WriteRegister32(RegBank::CFG_CH0, kCfgCh0_TestPattern);
         rc != DriverStatus::OK) {
         ESP_LOGE(TAG, "  WriteRegister32(CFG_CH0, 0x%08" PRIX32 ") failed: %s",
@@ -228,7 +359,7 @@ extern "C" void app_main() {
     } else {
         ESP_LOGI(TAG, "  Wrote CFG_CH0 = 0x%08" PRIX32, kCfgCh0_TestPattern);
     }
-
+    cmd_high();
     {
         uint32_t raw = 0;
         if (auto rc = driver->ReadRegister32(RegBank::CFG_CH0, raw);
@@ -239,8 +370,8 @@ extern "C" void app_main() {
             ESP_LOGI(TAG, "  Read  CFG_CH0 = 0x%08" PRIX32 "  %s",
                      raw,
                      raw == kCfgCh0_TestPattern
-                         ? "✅ ROUND-TRIP MATCH (SPI is correct)"
-                         : "❌ MISMATCH — SPI byte order / CMD pin / CS timing problem");
+                         ? "✅ ROUND-TRIP MATCH (CMD-HIGH-idle was the bug!)"
+                         : "❌ STILL MISMATCH — not the CMD pin");
         }
     }
 
