@@ -101,6 +101,8 @@ OUTA ────[Load]──── OUTB
 
 ## Example Wiring Diagram
 
+![MAX22200 wiring](assets/max22200-wiring.svg)
+
 ```text
                     MAX22200
                     ┌─────────┐
