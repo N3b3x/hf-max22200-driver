@@ -463,7 +463,7 @@
   },"66": {
     "doc": "🔌 Hardware Setup",
     "title": "Example Wiring Diagram",
-    "content": "| 1 2 3 4 5 6 7 8 9 10 11 12 13 14 . | MAX22200 ┌─────────┐ 3.3V ───────┤ VDD │ GND ───────┤ GND │ SCK ───────┤ SCLK │ MOSI ───────┤ SDI │ MISO ───────┤ SDO │ CS ───────┤ CS │ └─────────┘ │ │ OUT0A ├───[Solenoid]─── GND │ │ OUT0B (not used in half-bridge) . | . ",
+    "content": ". | 1 2 3 4 5 6 7 8 9 10 11 12 13 14 . | MAX22200 ┌─────────┐ 3.3V ───────┤ VDD │ GND ───────┤ GND │ SCK ───────┤ SCLK │ MOSI ───────┤ SDI │ MISO ───────┤ SDO │ CS ───────┤ CS │ └─────────┘ │ │ OUT0A ├───[Solenoid]─── GND │ │ OUT0B (not used in half-bridge) . | . ",
     "url": "/hf-max22200-driver/development/docs/hardware_setup/#example-wiring-diagram",
     
     "relUrl": "/docs/hardware_setup/#example-wiring-diagram"
