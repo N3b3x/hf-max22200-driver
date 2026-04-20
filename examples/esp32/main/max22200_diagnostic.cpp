@@ -49,6 +49,35 @@
  *       ./scripts/build_app.sh max22200_diagnostic Debug
  *       ./scripts/flash_app.sh flash_monitor max22200_diagnostic Debug
  *
+ * @par Bench findings on the development board (2026-04)
+ *
+ *   With this tool the chip on the dev rig was found to be in a state
+ *   where:
+ *     - SPI is healthy (every cmd byte echoed correctly)
+ *     - STATUS reads work (returns 32-bit value MSB-first)
+ *     - STATUS writes work *only* for the ACTIVE bit; M_COMF and ONCH
+ *       bits are silently dropped
+ *     - **CFG_CHx register writes are silently dropped entirely** —
+ *       round-trip of any pattern (0x28500600, 0x10101010, …) reads
+ *       back as 0x00000000 every time
+ *     - Consequence: all 8 channels stay at "0 mA hit / 0 mA hold",
+ *       so even if ONCH could be set the chip would refuse to drive
+ *
+ *   This is a hardware-level condition, not a firmware bug. Possible
+ *   causes (in order of likelihood):
+ *     1. A write-protect signal on the chip we're not handling. Some
+ *        MAX22200 variants have an additional pin that gates CFG_CHx
+ *        writes; check the schematic / chip variant.
+ *     2. Daisy-chain mode auto-selected at POR — would require a
+ *        multi-chip frame protocol the standalone driver doesn't speak.
+ *        Check the SDIN/SDO pin state at chip reset.
+ *     3. Damaged or counterfeit chip — try with a fresh known-good
+ *        MAX22200 in the same socket.
+ *
+ *   Once the hardware blocker is resolved, the c21_cycle_test (which
+ *   uses the same wake-up pattern this diagnostic discovered) should
+ *   immediately produce real ENERGISE/RELEASE clicks on the C21 coil.
+ *
  * @author HardFOC
  * @date   2026
  */
@@ -272,6 +301,119 @@ extern "C" void app_main() {
         uint32_t raw = 0;
         if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
             log_status("[after 0x040001 write]", raw);
+        }
+    }
+
+    // ───────────────────────────────────────────────────────────────────
+    // Step 7c: bring TRIGA + TRIGB explicitly LOW
+    //
+    //   Per the CFG_CHx datasheet section, "VDRnCDR and HSnLS bits can
+    //   only be modified when ... both TRIGA and TRIGB inputs are
+    //   logic-low". The bus boots TRIGA/B HIGH (=inactive trigger).
+    //   With them HIGH the chip may also gate ONCH writes as a hardware
+    //   safety. Drive them LOW now and see if subsequent ONCH writes
+    //   start landing.
+    // ───────────────────────────────────────────────────────────────────
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7c: drive TRIGA + TRIGB LOW (release the modify-protect) ──");
+    if (bus->HasTrigA()) bus->SetTrigA(false);  // false → drive LOW per the bus API
+    if (bus->HasTrigB()) bus->SetTrigB(false);
+    vTaskDelay(pdMS_TO_TICKS(5));
+
+    // ───────────────────────────────────────────────────────────────────
+    // Step 7d: try every ONCH write variant we know
+    //
+    //   This is the critical experiment. We've confirmed the chip is
+    //   awake (ACTIVE=1, UVM=0, nFAULT released), CFG_CH0 has been
+    //   written, but ONCH bit writes are silently dropped. Try:
+    //
+    //     (i)   8-bit MSB-only ONCH write (driver's SetChannelsOn)
+    //     (ii)  32-bit STATUS write with ONCH=0x01 + ACTIVE=1
+    //     (iii) 32-bit STATUS write with ONCH=0xFF + ACTIVE=1
+    //
+    //   After each, raw STATUS read so we can correlate.
+    // ───────────────────────────────────────────────────────────────────
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7d(i): SetChannelsOn(0x01)  (8-bit MSB-only path) ──────────");
+    (void)driver->SetChannelsOn(0x01U);
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[after SetChannelsOn(0x01)]", raw);
+        }
+    }
+
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7d(ii): write STATUS=0x01000001  (ONCH[0] + ACTIVE) ────────");
+    (void)driver->WriteRegister32(RegBank::STATUS, 0x01000001U);
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[after raw 0x01000001]", raw);
+        }
+    }
+
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7d(iii): write STATUS=0xFF000001  (ONCH all + ACTIVE) ──────");
+    (void)driver->WriteRegister32(RegBank::STATUS, 0xFF000001U);
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[after raw 0xFF000001]", raw);
+        }
+    }
+
+    // Disable any ONCH writes we may have leaked into the chip before
+    // the next experiment.
+    (void)driver->WriteRegister32(RegBank::STATUS, 0x00000001U);
+
+    // ───────────────────────────────────────────────────────────────────
+    // Step 7e: re-do the CFG_CH0 round-trip AFTER wake-up
+    //
+    //   Step 4's round-trip mismatched but it ran before ACTIVE=1 had
+    //   landed. If CFG writes start working now (chip awake), it tells
+    //   us the chip just doesn't accept any non-STATUS register writes
+    //   while in low-power mode — which is normal and expected.
+    //   If round-trip STILL fails post-wake-up, the channel-config path
+    //   itself is broken and that's why ONCH is being refused (the
+    //   chip won't enable an unconfigured channel).
+    // ───────────────────────────────────────────────────────────────────
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7e: CFG_CH0 round-trip AFTER wake-up ─────────────────────────");
+    constexpr uint32_t kCfgCh0_TestPattern2 = 0x10101010;
+    (void)driver->WriteRegister32(RegBank::CFG_CH0, kCfgCh0_TestPattern2);
+    ESP_LOGI(TAG, "  Wrote CFG_CH0 = 0x%08" PRIX32, kCfgCh0_TestPattern2);
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::CFG_CH0, raw) == DriverStatus::OK) {
+            ESP_LOGI(TAG, "  Read  CFG_CH0 = 0x%08" PRIX32 "  %s",
+                     raw,
+                     raw == kCfgCh0_TestPattern2
+                         ? "✅ CFG round-trip works once chip is awake"
+                         : "❌ CFG round-trip STILL fails — chip-side write reject");
+        }
+    }
+
+    // Reset CFG_CH0 to a sane "C21 low-side, no diagnostics" config and
+    // immediately try to enable the channel via every path.
+    constexpr uint32_t kCfgCh0_C21 = 0x060D3F08U;  // hold=6 hit=0x0D HIT_T=0x3F SRC=1, all detect off
+    (void)driver->WriteRegister32(RegBank::CFG_CH0, kCfgCh0_C21);
+    ESP_LOGI(TAG, "  Wrote CFG_CH0 (C21 profile) = 0x%08" PRIX32, kCfgCh0_C21);
+    {
+        uint32_t raw = 0;
+        (void)driver->ReadRegister32(RegBank::CFG_CH0, raw);
+        ESP_LOGI(TAG, "  Read  CFG_CH0 = 0x%08" PRIX32 "  %s",
+                 raw, raw == kCfgCh0_C21 ? "✓ matches" : "✗ MISMATCH");
+    }
+
+    // Final ONCH attempt now that CFG is verified.
+    ESP_LOGI(TAG, "");
+    ESP_LOGI(TAG, "── Step 7f: SetChannelsOn(0x01) AFTER CFG verified ──────────────────");
+    (void)driver->SetChannelsOn(0x01U);
+    {
+        uint32_t raw = 0;
+        if (driver->ReadRegister32(RegBank::STATUS, raw) == DriverStatus::OK) {
+            log_status("[after SetChannelsOn post-CFG]", raw);
         }
     }
 
