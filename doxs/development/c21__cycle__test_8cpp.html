@@ -96,6 +96,7 @@ $(function(){initNavTree('c21__cycle__test_8cpp.html',''); initResizable(); });
 <div class="header">
   <div class="summary">
 <a href="#namespaces">Namespaces</a> &#124;
+<a href="#define-members">Macros</a> &#124;
 <a href="#func-members">Functions</a> &#124;
 <a href="#var-members">Variables</a>  </div>
   <div class="headertitle"><div class="title">c21_cycle_test.cpp File Reference</div></div>
@@ -126,6 +127,13 @@ Namespaces</h2></td></tr>
 <tr class="memitem:namespacecfg" id="r_namespacecfg"><td class="memItemLeft" align="right" valign="top">namespace &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html">cfg</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="define-members" name="define-members"></a>
+Macros</h2></td></tr>
+<tr class="memitem:a26ef05b7f869884bdc82189a98463b34" id="r_a26ef05b7f869884bdc82189a98463b34"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="classmax22200_1_1MAX22200.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a26ef05b7f869884bdc82189a98463b34">ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</a>&#160;&#160;&#160;0</td></tr>
+<tr class="separator:a26ef05b7f869884bdc82189a98463b34"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad06f26453e15145252fd8cc811cd27b4" id="r_ad06f26453e15145252fd8cc811cd27b4"><td class="memItemLeft" align="right" valign="top">#<a class="el" href="classmax22200_1_1MAX22200.html">define</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ad06f26453e15145252fd8cc811cd27b4">ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING</a>&#160;&#160;&#160;1</td></tr>
+<tr class="separator:ad06f26453e15145252fd8cc811cd27b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="func-members" name="func-members"></a>
 Functions</h2></td></tr>
 <tr class="memitem:abce06be17fc37d675118a678a8100a36" id="r_abce06be17fc37d675118a678a8100a36"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abce06be17fc37d675118a678a8100a36">app_main</a> ()</td></tr>
@@ -149,10 +157,8 @@ Variables</h2></td></tr>
 <tr class="memdesc:af1bc8a23b4ac4319fff4b3fe43d117fd"><td class="mdescLeft">&#160;</td><td class="mdescRight">≥ 1 kHz floor  <br /></td></tr>
 <tr class="separator:af1bc8a23b4ac4319fff4b3fe43d117fd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7aaaf6c06eb35894047d0b8138afcc1b" id="r_a7aaaf6c06eb35894047d0b8138afcc1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a7aaaf6c06eb35894047d0b8138afcc1b">cfg::kOnDuration_ms</a> = 2000</td></tr>
-<tr class="memdesc:a7aaaf6c06eb35894047d0b8138afcc1b"><td class="mdescLeft">&#160;</td><td class="mdescRight">2 s energised  <br /></td></tr>
 <tr class="separator:a7aaaf6c06eb35894047d0b8138afcc1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad83fceb7c0a13a18eda92a1708780297" id="r_ad83fceb7c0a13a18eda92a1708780297"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#ad83fceb7c0a13a18eda92a1708780297">cfg::kOffDuration_ms</a> = 2000</td></tr>
-<tr class="memdesc:ad83fceb7c0a13a18eda92a1708780297"><td class="mdescLeft">&#160;</td><td class="mdescRight">2 s released  <br /></td></tr>
 <tr class="separator:ad83fceb7c0a13a18eda92a1708780297"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ada89c01b01fd8122837e99fa2a8ff305" id="r_ada89c01b01fd8122837e99fa2a8ff305"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">uint32_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#ada89c01b01fd8122837e99fa2a8ff305">cfg::kCycleCount</a> = 0</td></tr>
 <tr class="memdesc:ada89c01b01fd8122837e99fa2a8ff305"><td class="mdescLeft">&#160;</td><td class="mdescRight">0 = run forever  <br /></td></tr>
@@ -162,40 +168,59 @@ Variables</h2></td></tr>
 <tr class="separator:ae6874d737cfb7e9425a7b2684a757f70"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3676ea65101808c79c04fb9793330ff6" id="r_a3676ea65101808c79c04fb9793330ff6"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a3676ea65101808c79c04fb9793330ff6">cfg::kEnableSlewRateControl</a> = <a class="el" href="classmax22200_1_1MAX22200.html">true</a></td></tr>
 <tr class="separator:a3676ea65101808c79c04fb9793330ff6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a958dea1403dc8eb5cfe909ad4de7f684" id="r_a958dea1403dc8eb5cfe909ad4de7f684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a958dea1403dc8eb5cfe909ad4de7f684">cfg::kEnableOpenLoadDetection</a> = <a class="el" href="classmax22200_1_1MAX22200.html">true</a></td></tr>
+<tr class="memitem:a958dea1403dc8eb5cfe909ad4de7f684" id="r_a958dea1403dc8eb5cfe909ad4de7f684"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a958dea1403dc8eb5cfe909ad4de7f684">cfg::kEnableOpenLoadDetection</a> = <a class="el" href="classmax22200_1_1MAX22200.html">false</a></td></tr>
 <tr class="separator:a958dea1403dc8eb5cfe909ad4de7f684"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4b3bfa215dd6802fbfe945458d7f6e54" id="r_a4b3bfa215dd6802fbfe945458d7f6e54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a4b3bfa215dd6802fbfe945458d7f6e54">cfg::kEnablePlungerMovementDet</a> = <a class="el" href="classmax22200_1_1MAX22200.html">true</a></td></tr>
+<tr class="memitem:a4b3bfa215dd6802fbfe945458d7f6e54" id="r_a4b3bfa215dd6802fbfe945458d7f6e54"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a4b3bfa215dd6802fbfe945458d7f6e54">cfg::kEnablePlungerMovementDet</a> = <a class="el" href="classmax22200_1_1MAX22200.html">false</a></td></tr>
 <tr class="separator:a4b3bfa215dd6802fbfe945458d7f6e54"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a567296b5891e7a41856d1c27346af16f" id="r_a567296b5891e7a41856d1c27346af16f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a567296b5891e7a41856d1c27346af16f">cfg::kEnableHitCurrentCheck</a> = <a class="el" href="classmax22200_1_1MAX22200.html">true</a></td></tr>
+<tr class="memitem:a567296b5891e7a41856d1c27346af16f" id="r_a567296b5891e7a41856d1c27346af16f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classmax22200_1_1MAX22200.html">constexpr</a> <a class="el" href="classmax22200_1_1MAX22200.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespacecfg.html#a567296b5891e7a41856d1c27346af16f">cfg::kEnableHitCurrentCheck</a> = <a class="el" href="classmax22200_1_1MAX22200.html">false</a></td></tr>
 <tr class="separator:a567296b5891e7a41856d1c27346af16f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Real-hardware Parker C21 24 V solenoid cycle test on MAX22200 CH0. </p>
-<p>Drives a single Parker C21-series 24 V solenoid (235 Ω coil → 102 mA peak / 51 mA hold per the C21 Hit-and-Hold table) on MAX22200 channel 0 in CDR (current-controlled hit-and-hold) mode and cycles it ON / OFF periodically while the telemetry task scrapes:</p>
+<p>Drives a single Parker C21-series 24 V solenoid (235 Ω coil → 102 mA peak / 51 mA hold per the C21 Hit-and-Hold table) on MAX22200 channel 0 in CDR (current-controlled hit-and-hold) mode and cycles it ON / OFF periodically. A 10 Hz telemetry task scrapes:</p>
 <ul>
-<li>STATUS register (ACTIVE flag, channels-on bitmask, masked / unmasked fault summary)</li>
-<li>FAULT register (OCP, HHF, OLF, DPM per-channel bitmasks)</li>
-<li>Last fault byte from the CMD register (the fault byte the chip echoes back on every transaction)</li>
-<li>nFAULT pin level (open-drain, asserts LOW on any unmasked fault)</li>
+<li>STATUS register (ACTIVE flag, channels-on bitmask, fault summary)</li>
+<li>FAULT register (per-channel OCP / HHF / OLF / DPM bitmasks)</li>
+<li>last CMD-echo byte (fault flags the chip stuffs into MISO on every cmd transfer, datasheet Figure 7)</li>
+<li>nFAULT pin (open-drain, asserts LOW on any unmasked fault)</li>
 </ul>
-<p>This is the canonical bench check for:</p><ul>
-<li>Driver-level initialisation (the same path that exposed the MAX22200 GPIO 32+ EspGpio bug earlier)</li>
-<li>CDR hit/hold profile actually pulses the coil at the configured 102 mA hit then drops to 51 mA hold</li>
-<li>DPM (plunger movement detection) fires once per actuation if a real C21 plunger moves</li>
-<li>nFAULT pin and STATUS byte stay clean during normal operation</li>
-</ul>
-<p>Datasheet anchors (cribbed from <code>WhValveCatalog::kSpecC21_24V</code> in the Flux WH valve example):</p><ul>
-<li>Coil resistance ≈ 235 Ω → 102 mA hit / 51 mA hold at 24 V</li>
-<li>Minimum hit time per C21 Hit-and-Hold table: 100 ms</li>
-<li>PWM chopping floor: 1 kHz (FMAIN_DIV4 satisfies this with a comfortable margin)</li>
-</ul>
-<p>Default cycle profile: ON for 2000 ms (hit pulse for 100 ms then hold at 51 mA) OFF for 2000 ms (channel released, coil de-energised) telemetry @ 10 Hz throughout run forever (Ctrl-] to stop)</p>
-<p>Override at the top of the file for a different C21 variant.</p>
-<dl class="section user"><dt>Wiring (ESP32-S3 reference / Flux V1 pinout)</dt><dd>See <code><a class="el" href="esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32-C6.">main/esp32_max22200_test_config.hpp</a></code>. SPI: MISO=GPIO35, MOSI=GPIO37, SCLK=GPIO36, CS=GPIO38, ENABLE=GPIO2, CMD=GPIO39, FAULT_N=GPIO42, TRIGA=GPIO40, TRIGB=GPIO41. Coil between OUT0 and +VM (low-side switching).</dd></dl>
-<dl class="section user"><dt>Build</dt><dd>From examples/esp32: ./scripts/build_app.sh c21_cycle_test Debug ./scripts/flash_app.sh flash_monitor c21_cycle_test Debug</dd></dl>
+<p>Default cycle profile: ON for 2000 ms (102 mA hit pulse for 100 ms then 51 mA hold) OFF for 2000 ms (channel released) telemetry @ 10 Hz throughout run forever (Ctrl-] to stop)</p>
+<p>Edit the <code>cfg</code> namespace below for a different C21 variant or cycle cadence.</p>
+<dl class="section user"><dt>Wiring (Flux V1 / generic ESP32-S3 dev rig)</dt><dd>See <code><a class="el" href="esp32__max22200__test__config_8hpp.html" title="Hardware configuration for MAX22200 driver on ESP32-C6.">main/esp32_max22200_test_config.hpp</a></code> for the full pinout. SPI: MISO=GPIO35, MOSI=GPIO37, SCLK=GPIO36, CS=GPIO38; Control: ENABLE=GPIO2, CMD=GPIO39, FAULT_N=GPIO42, TRIGA=GPIO40, TRIGB=GPIO41. Coil between OUT0 and +VM (low-side switching).</dd></dl>
+<dl class="section user"><dt>Build / flash</dt><dd>From examples/esp32: ./scripts/build_app.sh c21_cycle_test Debug ./scripts/flash_app.sh flash_monitor c21_cycle_test Debug</dd></dl>
+<dl class="section user"><dt>DPM polarity reminder (datasheet §"Detection of Plunger Movement")</dt><dd>FAULT.DPM bit = 1 → drop NOT revealed → plunger STUCK (fault) FAULT.DPM bit = 0 → current dip seen → plunger MOVING (healthy) See <code>c21_dpm_tuning_test</code> for live tuning.</dd></dl>
 <dl class="section author"><dt>Author</dt><dd>HardFOC </dd></dl>
 <dl class="section date"><dt>Date</dt><dd>2026 </dd></dl>
-</div><h2 class="groupheader">Function Documentation</h2>
+</div><h2 class="groupheader">Macro Definition Documentation</h2>
+<a id="a26ef05b7f869884bdc82189a98463b34" name="a26ef05b7f869884bdc82189a98463b34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ef05b7f869884bdc82189a98463b34">&#9670;&#160;</a></span>ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="classmax22200_1_1MAX22200.html">define</a> ESP32_MAX22200_ENABLE_DETAILED_SPI_LOGGING&#160;&#160;&#160;0</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ad06f26453e15145252fd8cc811cd27b4" name="ad06f26453e15145252fd8cc811cd27b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad06f26453e15145252fd8cc811cd27b4">&#9670;&#160;</a></span>ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">#<a class="el" href="classmax22200_1_1MAX22200.html">define</a> ESP32_MAX22200_ENABLE_VERBOSE_BUS_LOGGING&#160;&#160;&#160;1</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
 <a id="abce06be17fc37d675118a678a8100a36" name="abce06be17fc37d675118a678a8100a36"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#abce06be17fc37d675118a678a8100a36">&#9670;&#160;</a></span>app_main()</h2>
 
