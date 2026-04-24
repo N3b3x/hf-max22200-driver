@@ -68,4 +68,6 @@ exclude = [
   # Local file links (source code files referenced in docs)
   #'^\.\./src/.*\.cpp$',
   #'^\.\./inc/.*\.hpp$',
+  # Manufacturer / IC vendor documentation URLs (frequently block automated crawlers)
+  '^https?://(www\\.)?analog\\.com/',
 ]
